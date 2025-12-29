@@ -174,7 +174,7 @@ def category_analysis(data: list[dict[str, Any]]) -> dict[str, Any]:
     """Perform category-stratified correlation analysis."""
     # Define categories
     categories = {
-        "Longevity": ["FOXO3", "SIRT1", "PGC1A", "AMPK"],
+        "Longevity": ["FOXO3", "SIRT1", "PGC1A", "AMPK", "KLOTHO"],
         "Mechanosensitive": ["PIEZO1", "PIEZO2", "TRPV4", "YAP1", "TAZ", "VINCULIN", "TALIN1", "INTEGRIN_B1"],
         "HOX": [p['name'] for p in data if p['name'].startswith('HOX')],
         "PAX": [p['name'] for p in data if p['name'].startswith('PAX')],
@@ -187,25 +187,30 @@ def category_analysis(data: list[dict[str, Any]]) -> dict[str, Any]:
         for p in data:
             if p['name'] in cat_proteins:
                 curv = p.get('mean_curvature_plddt') or p.get('mean_curvature')
+                curv_raw = p.get('mean_curvature')
                 entropy = p.get('seq_entropy')
                 if curv is not None and entropy is not None and not np.isnan(curv) and not np.isnan(entropy):
-                    cat_data.append({'name': p['name'], 'entropy': entropy, 'curvature': curv})
+                    cat_data.append({'name': p['name'], 'entropy': entropy, 'curvature': curv, 'curvature_raw': curv_raw})
         
         n = len(cat_data)
         if n < 3:
-            results[cat_name] = {'n': n, 'r': np.nan, 'p': np.nan, 'ci_lo': np.nan, 'ci_hi': np.nan}
+            results[cat_name] = {'n': n, 'r': np.nan, 'p': np.nan, 'ci_lo': np.nan, 'ci_hi': np.nan, 'r_raw': np.nan}
             continue
         
         x = np.array([p['entropy'] for p in cat_data])
         y = np.array([p['curvature'] for p in cat_data])
+        y_raw = np.array([p['curvature_raw'] for p in cat_data])
         
         r, p = stats.pearsonr(x, y)
+        r_raw, p_raw = stats.pearsonr(x, y_raw)
         ci_lo, ci_hi = fisher_ci(r, n)
         
         results[cat_name] = {
             'n': int(n),
             'r': float(r),
             'p': float(p),
+            'r_raw': float(r_raw),
+            'p_raw': float(p_raw),
             'ci_lo': float(ci_lo),
             'ci_hi': float(ci_hi),
             'proteins': [p['name'] for p in cat_data],
@@ -482,14 +487,19 @@ def main() -> None:
     # Update report with category analysis
     with open(report_path, 'a') as f:
         f.write("\n\n## Category-Stratified Analysis\n\n")
-        f.write("| Category | n | Pearson r | p-value | 95% CI |\n")
-        f.write("|----------|---|-----------|---------|--------|\n")
+        f.write("| Category | n | Pearson r (pLDDT) | p-value | Pearson r (Raw) | p-value | 95% CI (pLDDT) |\n")
+        f.write("|----------|---|-------------------|---------|-----------------|---------|----------------|\n")
         for c in cats:
             res = cat_results[c]
             sig = "***" if res['p'] < 0.01 else "**" if res['p'] < 0.05 else "*" if res['p'] < 0.1 else ""
-            f.write(f"| {c} | {res['n']} | {res['r']:.3f}{sig} | {res['p']:.4f} | [{res['ci_lo']:.3f}, {res['ci_hi']:.3f}] |\n")
+            sig_raw = "***" if res['p_raw'] < 0.01 else "**" if res['p_raw'] < 0.05 else "*" if res['p_raw'] < 0.1 else ""
+            f.write(f"| {c} | {res['n']} | {res['r']:.3f}{sig} | {res['p']:.4f} | {res['r_raw']:.3f}{sig_raw} | {res['p_raw']:.4f} | [{res['ci_lo']:.3f}, {res['ci_hi']:.3f}] |\n")
         
-        f.write("\n**Key Finding**: HOX proteins show the strongest and most significant entropy-curvature correlation (r=0.585, p=0.004), supporting the information-geometry coupling hypothesis.\n")
+        # Determine best category based on max(abs(r)) across both types
+        best_cat_plddt = max(cats, key=lambda c: abs(cat_results[c]['r']) if not np.isnan(cat_results[c]['r']) else -1)
+        best_cat_raw = max(cats, key=lambda c: abs(cat_results[c]['r_raw']) if not np.isnan(cat_results[c]['r_raw']) else -1)
+        
+        f.write(f"\n**Key Finding**: {best_cat_raw} proteins show the strongest raw entropy-curvature correlation (r={cat_results[best_cat_raw]['r_raw']:.3f}, p={cat_results[best_cat_raw]['p_raw']:.4f}), while {best_cat_plddt} proteins show the strongest correlation under pLDDT filtering (r={cat_results[best_cat_plddt]['r']:.3f}, p={cat_results[best_cat_plddt]['p']:.4f}).\n")
     
     print("\n✅ Analysis complete!")
 

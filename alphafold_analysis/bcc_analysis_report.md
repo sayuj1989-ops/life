@@ -4,18 +4,19 @@
 
 ### Summary Statistics
 
-- **Total proteins analyzed**: 59
-- **Mean sequence length**: 602.9 aa
-- **Mean entropy**: 4.042 bits
-- **Mean curvature**: 0.1163
-- **Mean pLDDT (CA)**: 66.20
-- **Mean curvature (pLDDT >= 70)**: 0.1467
+- **Total proteins analyzed**: 75
+- **Mean sequence length**: 600.3 aa
+- **Mean entropy**: 4.033 bits
+- **Mean curvature**: 0.1147
+- **Mean pLDDT (CA)**: 65.46
+- **Mean curvature (pLDDT >= 70)**: 0.1475
 
 ### Detailed Analysis
 
 | Protein | Length | Entropy | Mean Curv | Mean Curv (pLDDT>=70) | Mean pLDDT | Frac pLDDT>=70 | Flex Index | Rg | Stiffness | Instability |
 |---------|--------|---------|-----------|-----------------------|------------|----------------|------------|----|-----------|------------|
 | HOXA4 | 320 | 3.956 | 0.1036 | 0.1578 | 61.82 | 0.24 | 0.358 | 42.33 | 0.016 | 76.11 |
+| HOXB8 | 243 | 4.099 | 0.1129 | 0.1580 | 63.57 | 0.30 | 0.269 | 35.78 | 0.007 | 65.78 |
 | TBX6 | 295 | 4.127 | 0.1189 | 0.1202 | 72.93 | 0.60 | 0.235 | 24.70 | 0.011 | 48.30 |
 | HOXB9 | 250 | 4.086 | 0.1079 | 0.1568 | 63.54 | 0.27 | 0.334 | 39.59 | 0.010 | 58.40 |
 | PAX1 | 433 | 3.985 | 0.1069 | 0.1509 | 59.44 | 0.30 | 0.401 | 45.99 | 0.013 | 50.59 |
@@ -26,20 +27,29 @@
 | RUNX2 | 507 | 3.997 | 0.1024 | 0.1209 | 59.51 | 0.31 | 0.374 | 45.10 | 0.012 | 69.00 |
 | TALIN1 | 2541 | 3.989 | 0.1502 | 0.1559 | 75.89 | 0.77 | 0.142 | 57.90 | 0.004 | 37.15 |
 | PAX2 | 396 | 4.036 | 0.1151 | 0.1515 | 64.38 | 0.38 | 0.374 | 43.59 | 0.011 | 41.39 |
+| PAX6 | 422 | 4.105 | 0.1221 | 0.1542 | 68.43 | 0.46 | 0.364 | 39.18 | 0.009 | 53.42 |
+| HOXA2 | 376 | 4.067 | 0.1016 | 0.1569 | 56.98 | 0.19 | 0.430 | 45.52 | 0.008 | 66.11 |
 | HOXD10 | 340 | 4.101 | 0.1027 | 0.1570 | 58.89 | 0.22 | 0.363 | 40.67 | 0.008 | 71.70 |
 | VINCULIN | 1134 | 4.037 | 0.1510 | 0.1577 | 86.59 | 0.89 | 0.139 | 36.18 | 0.006 | 42.20 |
+| HOXD11 | 338 | 3.894 | 0.1054 | 0.1580 | 57.88 | 0.21 | 0.398 | 40.14 | 0.012 | 59.30 |
+| HOXA3 | 443 | 3.890 | 0.0981 | 0.1581 | 57.85 | 0.18 | 0.389 | 45.63 | 0.017 | 74.79 |
+| HOXC9 | 260 | 4.121 | 0.1071 | 0.1567 | 64.17 | 0.29 | 0.354 | 35.77 | 0.010 | 63.41 |
 | HOXA1 | 335 | 4.093 | 0.0998 | 0.1588 | 57.80 | 0.22 | 0.382 | 44.32 | 0.007 | 59.38 |
 | SIRT1 | 747 | 4.086 | 0.1158 | 0.1396 | 65.02 | 0.50 | 0.345 | 40.25 | 0.009 | 53.88 |
+| HOXD13 | 343 | 3.999 | 0.0995 | 0.1574 | 55.35 | 0.19 | 0.456 | 43.34 | 0.007 | 55.72 |
 | HOXD12 | 217 | 3.836 | 0.1008 | 0.0000 | 52.07 | 0.00 | 0.294 | 43.57 | 0.013 | 60.19 |
 | HOXC8 | 242 | 4.105 | 0.1145 | 0.1592 | 64.14 | 0.30 | 0.303 | 34.35 | 0.006 | 63.34 |
 | OC90 | 477 | 4.088 | 0.1244 | 0.1530 | 65.84 | 0.56 | 0.251 | 35.40 | 0.007 | 58.27 |
 | HES1 | 280 | 4.032 | 0.1244 | 0.1563 | 68.62 | 0.47 | 0.283 | 40.42 | 0.013 | 52.33 |
 | COCHLIN | 550 | 4.129 | 0.1291 | 0.1341 | 85.43 | 0.89 | 0.223 | 34.68 | 0.005 | 30.78 |
+| HOXA11 | 313 | 4.072 | 0.1054 | 0.1582 | 59.85 | 0.26 | 0.398 | 39.65 | 0.008 | 61.72 |
 | FIBRONECTIN | 2477 | 4.131 | 0.1114 | 0.1106 | 69.65 | 0.61 | 0.307 | 52.46 | 0.008 | 40.12 |
 | HOXA10 | 410 | 3.922 | 0.0989 | 0.1534 | 59.12 | 0.22 | 0.383 | 45.63 | 0.012 | 73.58 |
 | HOXD8 | 290 | 4.054 | 0.1112 | 0.1553 | 61.71 | 0.29 | 0.315 | 38.03 | 0.013 | 70.57 |
+| FGF4 | 206 | 3.988 | 0.1273 | 0.1335 | 81.49 | 0.71 | 0.251 | 26.37 | 0.007 | 45.55 |
 | HOXC10 | 342 | 4.065 | 0.1003 | 0.1570 | 59.50 | 0.22 | 0.390 | 42.91 | 0.009 | 57.74 |
 | HOXC11 | 304 | 4.076 | 0.1029 | 0.1571 | 59.39 | 0.24 | 0.386 | 38.43 | 0.009 | 60.04 |
+| HOXD9 | 352 | 3.966 | 0.1015 | 0.1560 | 57.14 | 0.19 | 0.408 | 43.22 | 0.010 | 66.96 |
 | HES7 | 225 | 3.760 | 0.1258 | 0.1593 | 73.28 | 0.54 | 0.236 | 37.82 | 0.019 | 76.22 |
 | INTEGRIN_B1 | 798 | 4.162 | 0.1332 | 0.1346 | 85.87 | 0.89 | 0.223 | 46.63 | 0.004 | 41.12 |
 | YAP1 | 504 | 3.994 | 0.1110 | 0.1405 | 57.40 | 0.26 | 0.380 | 44.88 | 0.012 | 65.51 |
@@ -48,13 +58,16 @@
 | FOXO3 | 673 | 3.974 | 0.0961 | 0.1576 | 50.66 | 0.13 | 0.513 | 55.01 | 0.008 | 66.77 |
 | DLL3 | 587 | 3.880 | 0.1233 | 0.1253 | 67.62 | 0.57 | 0.254 | 37.68 | 0.011 | 55.26 |
 | WNT3A | 352 | 4.198 | 0.1353 | 0.1366 | 88.32 | 0.88 | 0.212 | 24.81 | 0.005 | 50.65 |
+| HOXD3 | 432 | 3.998 | 0.0973 | 0.1583 | 56.33 | 0.18 | 0.414 | 45.62 | 0.014 | 69.81 |
 | SOX9 | 509 | 4.051 | 0.1025 | 0.1520 | 55.97 | 0.16 | 0.399 | 46.59 | 0.014 | 78.58 |
 | HOXD1 | 328 | 3.954 | 0.1025 | 0.1589 | 59.56 | 0.24 | 0.398 | 46.72 | 0.011 | 66.82 |
+| COL1A1 | 1464 | 3.518 | 0.0957 | 0.1311 | 52.73 | 0.20 | 0.427 | 62.14 | 0.018 | 30.62 |
 | MESP2 | 397 | 3.825 | 0.1014 | 0.1557 | 54.17 | 0.18 | 0.336 | 43.54 | 0.012 | 73.92 |
 | DLL1 | 247 | 4.089 | 0.1215 | 0.1202 | 86.16 | 0.81 | 0.250 | 31.63 | 0.007 | 43.96 |
 | HOXD4 | 255 | 4.073 | 0.1106 | 0.1578 | 64.40 | 0.30 | 0.312 | 36.73 | 0.013 | 76.31 |
 | FGF8 | 233 | 4.101 | 0.1264 | 0.1298 | 81.05 | 0.66 | 0.222 | 29.41 | 0.005 | 47.80 |
 | TAC1 | 283 | 4.087 | 0.1112 | 0.1589 | 54.98 | 0.10 | 0.284 | 37.10 | 0.003 | 33.03 |
+| OTOLIN1 | 477 | 3.922 | 0.0964 | 0.1143 | 58.95 | 0.31 | 0.310 | 44.75 | 0.009 | 25.84 |
 | HOXB1 | 301 | 3.965 | 0.1023 | 0.1587 | 60.65 | 0.24 | 0.399 | 41.58 | 0.013 | 69.02 |
 | PAX9 | 341 | 4.068 | 0.1118 | 0.1510 | 63.44 | 0.37 | 0.401 | 41.95 | 0.010 | 50.19 |
 | HOXC4 | 264 | 4.053 | 0.1094 | 0.1577 | 63.83 | 0.29 | 0.341 | 37.41 | 0.013 | 81.10 |
@@ -64,10 +77,13 @@
 | COL2A1 | 1487 | 3.530 | 0.0965 | 0.1307 | 52.12 | 0.19 | 0.409 | 61.26 | 0.018 | 25.21 |
 | PGC1A | 671 | 4.028 | 0.1002 | 0.1435 | 53.59 | 0.24 | 0.539 | 49.34 | 0.007 | 78.05 |
 | NOTCH2 | 2471 | 4.150 | 0.1289 | 0.1533 | 59.40 | 0.35 | 0.325 | 58.07 | 0.007 | 45.58 |
+| HOXB7 | 217 | 4.060 | 0.1094 | 0.1578 | 63.92 | 0.32 | 0.347 | 34.85 | 0.005 | 65.80 |
+| KLOTHO | 1012 | 4.200 | 0.1374 | 0.1404 | 89.09 | 0.90 | 0.200 | 38.48 | 0.006 | 41.72 |
 | PIEZO1 | 2521 | 4.121 | 0.1390 | 0.1537 | 72.05 | 0.67 | 0.276 | 64.25 | 0.006 | 49.43 |
 | HOXB6 | 224 | 4.084 | 0.1116 | 0.1577 | 64.61 | 0.32 | 0.342 | 34.50 | 0.008 | 74.74 |
 | NOTCH3 | 2321 | 4.000 | 0.1291 | 0.1522 | 61.42 | 0.40 | 0.329 | 57.16 | 0.011 | 54.79 |
 | TRPV4 | 871 | 4.162 | 0.1371 | 0.1532 | 71.60 | 0.67 | 0.245 | 42.41 | 0.006 | 43.23 |
+| NOTCH1 | 2555 | 4.111 | 0.1294 | 0.1553 | 59.60 | 0.35 | 0.338 | 55.67 | 0.008 | 50.19 |
 | HOXB4 | 251 | 3.976 | 0.1120 | 0.1534 | 66.18 | 0.37 | 0.262 | 36.80 | 0.018 | 90.11 |
 | LAZY1 | 358 | 4.102 | 0.1034 | 0.1588 | 54.15 | 0.12 | 0.328 | 42.43 | 0.004 | 46.49 |
 | MCA1 | 421 | 4.129 | 0.1440 | 0.1570 | 75.69 | 0.74 | 0.179 | 32.01 | 0.002 | 54.53 |
@@ -77,35 +93,35 @@
 
 ### Key Findings
 
-**Entropy-Curvature Correlation (all residues)**: 0.430 (p=0.0007, N=59)
-**Entropy-Curvature Correlation (pLDDT >= 70)**: -0.048 (p=0.7226, N=58)
-**Partial Correlation (length-adjusted, all residues)**: 0.464 (p=0.0002, N=59)
-**Partial Correlation (length + mean pLDDT, filtered)**: 0.124 (p=0.3523, N=58)
+**Entropy-Curvature Correlation (all residues)**: 0.471 (p=0.0000, N=75)
+**Entropy-Curvature Correlation (pLDDT >= 70)**: 0.072 (p=0.5402, N=74)
+**Partial Correlation (length-adjusted, all residues)**: 0.520 (p=0.0000, N=75)
+**Partial Correlation (length + mean pLDDT, filtered)**: 0.264 (p=0.0230, N=74)
 
-**Stiffness-Flexibility Correlation**: 0.441 (p=0.0005)
+**Stiffness-Flexibility Correlation**: 0.447 (p=0.0001)
 
 
 ### Category-Specific Analysis
 
-**HOX** (22 proteins):
-- Mean entropy: 4.025
-- Mean curvature: 0.1065
-- Mean curvature (pLDDT >= 70): 0.1501
-- Mean pLDDT: 61.60
-- Mean flexibility: 0.348
+**HOX** (32 proteins):
+- Mean entropy: 4.023
+- Mean curvature: 0.1057
+- Mean curvature (pLDDT >= 70): 0.1524
+- Mean pLDDT: 60.88
+- Mean flexibility: 0.360
 
-- Entropy-curvature correlation: 0.329 (p=0.1343)
-- Entropy-curvature correlation (pLDDT >= 70): 0.290 (p=0.2018)
+- Entropy-curvature correlation: 0.396 (p=0.0248)
+- Entropy-curvature correlation (pLDDT >= 70): 0.157 (p=0.3985)
 
-**PAX** (4 proteins):
-- Mean entropy: 4.052
-- Mean curvature: 0.1133
-- Mean curvature (pLDDT >= 70): 0.1531
-- Mean pLDDT: 62.80
-- Mean flexibility: 0.383
+**PAX** (5 proteins):
+- Mean entropy: 4.062
+- Mean curvature: 0.1150
+- Mean curvature (pLDDT >= 70): 0.1533
+- Mean pLDDT: 63.92
+- Mean flexibility: 0.379
 
-- Entropy-curvature correlation: 0.879 (p=0.1207)
-- Entropy-curvature correlation (pLDDT >= 70): 0.796 (p=0.2045)
+- Entropy-curvature correlation: 0.886 (p=0.0451)
+- Entropy-curvature correlation (pLDDT >= 70): 0.770 (p=0.1277)
 
 **MECHANOSENSITIVE** (8 proteins):
 - Mean entropy: 4.082
@@ -117,33 +133,35 @@
 - Entropy-curvature correlation: 0.098 (p=0.8176)
 - Entropy-curvature correlation (pLDDT >= 70): -0.249 (p=0.5528)
 
-**SEGMENTATION** (9 proteins):
-- Mean entropy: 4.046
-- Mean curvature: 0.1281
-- Mean curvature (pLDDT >= 70): 0.1413
-- Mean pLDDT: 75.05
-- Mean flexibility: 0.258
+**SEGMENTATION** (11 proteins):
+- Mean entropy: 4.047
+- Mean curvature: 0.1282
+- Mean curvature (pLDDT >= 70): 0.1419
+- Mean pLDDT: 74.23
+- Mean flexibility: 0.264
 
-- Entropy-curvature correlation: 0.592 (p=0.0931)
-- Entropy-curvature correlation (pLDDT >= 70): -0.270 (p=0.4824)
+- Entropy-curvature correlation: 0.597 (p=0.0526)
+- Entropy-curvature correlation (pLDDT >= 70): -0.174 (p=0.6092)
 
-**LONGEVITY** (4 proteins):
-- Mean entropy: 4.068
-- Mean curvature: 0.1108
-- Mean curvature (pLDDT >= 70): 0.1450
-- Mean pLDDT: 62.21
-- Mean flexibility: 0.405
+**LONGEVITY** (5 proteins):
+- Mean entropy: 4.095
+- Mean curvature: 0.1162
+- Mean curvature (pLDDT >= 70): 0.1441
+- Mean pLDDT: 67.58
+- Mean flexibility: 0.364
 
-- Entropy-curvature correlation: 0.988 (p=0.0124)
-- Entropy-curvature correlation (pLDDT >= 70): -0.811 (p=0.1889)
+- Entropy-curvature correlation: 0.991 (p=0.0011)
+- Entropy-curvature correlation (pLDDT >= 70): -0.785 (p=0.1158)
 
-**ECM** (2 proteins):
-- Mean entropy: 3.831
-- Mean curvature: 0.1039
-- Mean curvature (pLDDT >= 70): 0.1207
-- Mean pLDDT: 60.88
-- Mean flexibility: 0.358
+**ECM** (3 proteins):
+- Mean entropy: 3.726
+- Mean curvature: 0.1012
+- Mean curvature (pLDDT >= 70): 0.1241
+- Mean pLDDT: 58.17
+- Mean flexibility: 0.381
 
+- Entropy-curvature correlation: 1.000 (p=0.0178)
+- Entropy-curvature correlation (pLDDT >= 70): -1.000 (p=0.0008)
 
 **TRANSCRIPTION** (4 proteins):
 - Mean entropy: 4.000
@@ -155,15 +173,15 @@
 - Entropy-curvature correlation: 0.705 (p=0.2946)
 - Entropy-curvature correlation (pLDDT >= 70): -0.617 (p=0.3825)
 
-**GRAVITY** (6 proteins):
-- Mean entropy: 4.116
-- Mean curvature: 0.1282
-- Mean curvature (pLDDT >= 70): 0.1536
-- Mean pLDDT: 70.48
-- Mean flexibility: 0.230
+**GRAVITY** (7 proteins):
+- Mean entropy: 4.088
+- Mean curvature: 0.1237
+- Mean curvature (pLDDT >= 70): 0.1480
+- Mean pLDDT: 68.83
+- Mean flexibility: 0.242
 
-- Entropy-curvature correlation: 0.851 (p=0.0316)
-- Entropy-curvature correlation (pLDDT >= 70): -0.104 (p=0.8445)
+- Entropy-curvature correlation: 0.755 (p=0.0496)
+- Entropy-curvature correlation (pLDDT >= 70): 0.788 (p=0.0353)
 
 
 ### Interpretation

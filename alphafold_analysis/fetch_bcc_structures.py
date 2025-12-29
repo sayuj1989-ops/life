@@ -23,12 +23,41 @@ def fetch_alphafold_metadata(uniprot_id: str) -> Optional[Dict]:
     """Fetch metadata for a protein from AlphaFold API"""
     api_url = f"{ALPHAFOLD_API_BASE}/{uniprot_id}"
 
+    def try_version_guess(uid):
+        print(f"   📡 Attempting direct version guess for {uid}...")
+        for version in ["v6", "v4", "v3", "v2", "v1"]:
+            pdb_url = f"https://alphafold.ebi.ac.uk/files/AF-{uid}-F1-model_{version}.pdb"
+            try:
+                req = urllib.request.Request(pdb_url, method="HEAD")
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    if resp.status == 200:
+                        print(f"   ✅ Found version {version} via direct guess")
+                        return {
+                            "uniprot_id": uid,
+                            "pdb_url": pdb_url,
+                            "cif_url": f"https://alphafold.ebi.ac.uk/files/AF-{uid}-F1-model_{version}.cif",
+                            "confidence_url": f"https://alphafold.ebi.ac.uk/files/AF-{uid}-F1-confidence_{version}.json",
+                            "model_url": pdb_url,
+                            "model_confidence": None,
+                            "uniprot_accession": uid,
+                            "uniprot_id_api": uid,
+                            "guessed_version": version
+                        }
+            except Exception:
+                continue
+        return None
+
     try:
-        with urllib.request.urlopen(api_url, timeout=30) as response:
-            data = json.loads(response.read().decode())
+        try:
+            with urllib.request.urlopen(api_url, timeout=30) as response:
+                data = json.loads(response.read().decode())
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return try_version_guess(uniprot_id)
+            raise e
 
         if not data or len(data) == 0:
-            return None
+            return try_version_guess(uniprot_id)
 
         # Get the first entry (usually canonical isoform)
         entry = data[0]

@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+*.pyc
 .Python
 build/
 develop-eggs/
@@ -28,12 +29,17 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
+# Caches & downloads
+.cache/
+
 # Environments
 envs/.env
 .venv
 venv/
 env/
 ENV/
+.env
+.env.*
 
 # Outputs (Regenerable - experiment CSVs and figures)
 outputs/csv/
@@ -41,6 +47,10 @@ outputs/figs/
 outputs/experiments/
 outputs/temp/
 !outputs/.gitkeep
+results/
+logs/
+*.log
+cloudflared*.log
 
 # LaTeX (Manuscript build artifacts)
 manuscript/*.aux
@@ -75,3 +85,8 @@ manuscript/*.run.xml
 # OS
 .DS_Store
 Thumbs.db
+
+# Large data (regenerable)
+data/external/
+chroma_db/
+chroma_db_llama/

@@ -4,15 +4,19 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Status: Under Review](https://img.shields.io/badge/status-under%20review-orange.svg)](.)
+[![DOI](https://img.shields.io/badge/DOI-10.0000%2Fplaceholder-blue.svg)](https://doi.org/10.0000/placeholder-doi)
 
 ---
 
 ## Overview
 
-This repository contains the manuscript, computational code, and analysis for a novel theoretical framework that explains how developmental information shapes biological structures against gravity. The work bridges developmental genetics, biomechanics, and differential geometry to understand spinal curvature in normal development, microgravity adaptation, and pathological conditions like scoliosis.
+This repository contains the manuscript, reproducible analysis code, and datasets supporting a theoretical framework that explains how developmental information shapes biological structures against gravity. The work bridges developmental genetics, biomechanics, and differential geometry to understand spinal curvature in normal development, microgravity adaptation, and pathological conditions like scoliosis.
 
 **Key Insight:** Developmental information acts as biological "countercurvature"—modifying the effective spacetime metric experienced by living structures, enabling them to maintain complex geometries against gravitational loading.
+
+📄 **Manuscript:** [manuscript/main.tex](manuscript/main.tex)  
+📊 **Figures:** [figures/main/](figures/main/)  
+🔬 **Analysis Code:** [alphafold_analysis/](alphafold_analysis/)
 
 ---
 
@@ -20,54 +24,42 @@ This repository contains the manuscript, computational code, and analysis for a 
 
 ```
 .
-├── manuscript/                      # Main LaTeX manuscript
-│   ├── main.tex                     # Main manuscript file
-│   ├── sections/                    # Individual sections
-│   │   ├── abstract.tex
-│   │   ├── introduction.tex
-│   │   ├── theory.tex              # IEC mathematical framework
-│   │   ├── methods.tex             # Computational implementation
-│   │   ├── results.tex
-│   │   ├── discussion.tex
-│   │   └── conclusion.tex
-│   ├── references.bib               # Complete bibliography
-│   └── fig_*.pdf                    # Generated figures
+├── manuscript/                   # Camera-ready manuscript
+│   ├── main.tex                  # Main manuscript file
+│   ├── sections/                 # Individual sections
+│   ├── numbers/                  # Extracted numbers for claims
+│   ├── extended_data/            # Extended data tables & figures
+│   └── references.bib            # Complete bibliography
 │
-├── life/src/spinalmodes/            # Core Python package
-│   ├── countercurvature/            # IEC implementation
-│   │   ├── coupling.py              # Information-elasticity coupling
-│   │   ├── info_fields.py           # Information field definitions
-│   │   ├── api.py                   # High-level API
-│   │   └── validation_and_metrics.py
-│   ├── model/solvers/               # Numerical solvers
-│   │   ├── cosserat.py              # 3D Cosserat rod (PyElastica)
-│   │   └── euler_bernoulli.py       # 1D beam solver
-│   └── experiments/countercurvature/
-│       ├── generate_countercurvature_figure.py
-│       ├── experiment_phase_diagram.py
-│       ├── experiment_microgravity_adaptation.py
-│       └── experiment_scoliosis_bifurcation.py
+├── figures/
+│   ├── main/                     # Final publication-ready figures (tracked)
+│   ├── extended_data/            # Supplementary figures (tracked)
+│   └── src/                      # Plotting scripts
 │
-├── outputs/                         # Simulation results
-│   └── experiments/
+├── data/
+│   ├── derived/                  # Small derived datasets for claims (tracked)
+│   └── external/                 # Large downloads (NOT tracked)
 │
-├── NATURE_PEER_REVIEW_REPORT.md     # Comprehensive peer review (6,000 words)
-├── PEER_REVIEW_SUMMARY.md           # Executive summary
-├── REVISIONS_IMPLEMENTED.md         # Documentation of changes
-├── REVISION_CHECKLIST.md            # Task list for publication
-└── README.md                        # This file
+├── alphafold_analysis/           # AlphaFold DB structure analysis
+├── scripts/                      # CLI entry scripts
+├── src/                          # Core Python package
+├── tests/                        # Unit tests
+│
+└── docs/
+    ├── notes/                    # Integration guides, setup docs
+    └── archive/                  # Historical drafts, reviews
 ```
 
 ---
 
-## Quick Start
+## Quick Start: Reproducibility
 
-### Installation
+### 1. Installation
 
 ```bash
 # Clone repository
-git clone https://github.com/sayujks0071/counte_curvature.git
-cd counte_curvature
+git clone https://github.com/sayujks0071/life.git
+cd life
 
 # Create virtual environment
 python3 -m venv .venv
@@ -77,49 +69,42 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Run Example Simulation
+### 2. Run Complete Analysis Pipeline
 
-```python
-from spinalmodes.countercurvature import run_spine_simulation
-
-# Simulate human spine with IEC coupling
-result = run_spine_simulation(
-    length=0.40,           # 40 cm spine
-    chi_kappa=0.05,        # Information-curvature coupling
-    chi_E=0.10,            # Information-stiffness coupling
-    g=1.0                  # Earth gravity
-)
-
-# Visualize
-import matplotlib.pyplot as plt
-plt.plot(result.centerline[:, 0], result.centerline[:, 2])
-plt.xlabel('Lateral (m)')
-plt.ylabel('Longitudinal (m)')
-plt.title('Spinal S-Curve from IEC Model')
-plt.show()
-```
-
-### Generate Figures
+**One-command reproducibility:**
 
 ```bash
-# Figure 3: Countercurvature panels
-python life/src/spinalmodes/experiments/countercurvature/generate_countercurvature_figure.py
-
-# Figure 4: Phase diagram
-python life/src/spinalmodes/experiments/countercurvature/experiment_phase_diagram.py
-
-# All figures
-python life/src/spinalmodes/experiments/countercurvature/generate_bcc_figures.py
+make alphafold-all
 ```
 
-### Compile Manuscript
+This executes:
+- `alphafold-data`: Build AlphaFold structure dataset index
+- `alphafold-analyze`: Analyze BCC-related protein structures
+- `alphafold-figs`: Generate publication figures
+- `alphafold-numbers`: Extract quantitative numbers for manuscript
+
+**Individual steps:**
+
+```bash
+# Step 1: Build dataset index
+make alphafold-data
+
+# Step 2: Run structural analysis
+make alphafold-analyze
+
+# Step 3: Generate figures
+make alphafold-figs
+
+# Step 4: Extract manuscript numbers
+make alphafold-numbers
+```
+
+### 3. Compile Manuscript
 
 ```bash
 cd manuscript
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
+make all
+# Output: manuscript/main.pdf
 ```
 
 ---
@@ -128,10 +113,7 @@ pdflatex main.tex
 
 ### 1. S-Curve Emergence from Information Patterning
 
-The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties:
-
-- **Passive beam**: Sags into monotonic C-shape (kyphosis)
-- **IEC-coupled beam**: Stabilizes robust S-shape (cervical/lumbar lordosis + thoracic kyphosis)
+The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties.
 
 ### 2. Phase Diagram of Countercurvature Regimes
 
@@ -148,120 +130,28 @@ Three distinct regimes identified in (χ_κ, g) parameter space:
 Model predicts spinal curvature **persists in microgravity** (unlike passive structures):
 - D̂_geo remains >0.15 even as g → 0
 - Lumbar lordosis decreases <20% (vs >80% passive prediction)
-- Consistent with astronaut MRI observations
 
 ### 4. Scoliosis as Amplified Asymmetry
 
-Small information field asymmetries (ε_asym ~3-5%) **amplify into scoliotic deformities** in information-dominated regime:
-- Lateral Cobb angles >20°
-- Emergence at χ_κ > 0.08 m⁻¹
-- Provides mechanistic link to adolescent idiopathic scoliosis
-
----
-
-## Mathematical Framework
-
-### Information-Elasticity Coupling (IEC)
-
-The framework couples a developmental information field **I(s)** to mechanical properties:
-
-1. **Rest curvature modulation:**
-   ```
-   κ_rest(s) = κ₀ + χ_κ ∂I/∂s
-   ```
-
-2. **Stiffness modulation:**
-   ```
-   B_eff(s) = E₀ I_area (1 + χ_E I(s))
-   ```
-
-3. **Biological metric:**
-   ```
-   g_eff(s) = exp[2(β₁ Ĩ(s) + β₂ ∂Ĩ/∂s)]
-   ```
-
-4. **Geodesic deviation:**
-   ```
-   D̂_geo = ∫|κ_IEC(s) - κ_passive(s)|² ds / D_geo,max
-   ```
-
-### Information Field for Human Spine
-
-```python
-I(s) = A_c exp[-(s/L - 0.80)²/(2·0.08²)]    # Cervical peak
-     + A_l exp[-(s/L - 0.25)²/(2·0.10²)]    # Lumbar peak
-     + I₀                                     # Baseline
-```
-
-Where: A_c = 0.5, A_l = 0.7, I₀ = 0.3
-
----
-
-## Testable Predictions
-
-### 1. HOX Perturbation Experiments
-**Prediction:** *Hoxc9* knockout in lumbar somites reduces lordosis from 50±5° to 30±5°
-- **System:** Conditional knockout mice (P21)
-- **Measurement:** Sagittal Cobb angle (L1-L5)
-
-### 2. Microgravity Persistence
-**Prediction:** D̂_geo > 0.15 after 6 months spaceflight, lordosis decreases <20%
-- **System:** Astronaut cohort (ISS)
-- **Measurement:** Serial MRI pre/in/post-flight
-
-### 3. Scoliosis Progression Biomarkers
-**Prediction:** χ_κ > 0.08 m⁻¹ → 2× faster curve progression
-- **System:** AIS patients (n~200)
-- **Measurement:** Initial radiograph FE fitting → 2-year Cobb angle progression
-
-### 4. Zebrafish Developmental Windows
-**Prediction:** Asymmetry amplification only at 24-36 hpf (not 48-60 hpf)
-- **System:** Zebrafish embryos with ciliary perturbation
-- **Measurement:** Body axis curvature >20°
-
----
-
-## Publication Status
-
-**Current Status:** Under revision for Nature
-
-**Timeline:**
-- ✅ Dec 17, 2025: Peer review complete, critical revisions implemented
-- 🔄 Dec 18-20, 2025: Generate missing figures, add clinical comparison
-- 🎯 Dec 20, 2025: Target resubmission date
-- 📅 Feb 2026: Estimated publication (if accepted)
-
-**Key Documents:**
-- [Full Peer Review Report](NATURE_PEER_REVIEW_REPORT.md) — 6,000-word joint review
-- [Executive Summary](PEER_REVIEW_SUMMARY.md) — Publication probability: 85%
-- [Revision Checklist](REVISION_CHECKLIST.md) — Remaining tasks
-
-**Revisions Completed:**
-- ✅ Mathematical rigor (metric justification, D_geo definition)
-- ✅ Parameter documentation (comprehensive table)
-- ✅ Alternative hypotheses discussion
-- ✅ Quantitative testable predictions
-- ✅ Complete bibliography
-
-**Critical Tasks Remaining:**
-- ⏳ Generate Figures 1, 2, 5 (code exists)
-- ⏳ Clinical angle comparison
-- ⏳ Clarify scoliosis results
+Small information field asymmetries (ε_asym ~3-5%) **amplify into scoliotic deformities** in information-dominated regime.
 
 ---
 
 ## Citation
 
-**Preprint (in preparation):**
+If you use this work, please cite:
+
 ```bibtex
 @article{krishnan2025biological_countercurvature,
   title   = {Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry},
   author  = {Krishnan, Sayuj},
-  journal = {Nature (under review)},
+  journal = {preprint},
   year    = {2025},
-  note    = {Preprint available at [repository URL]}
+  url     = {https://github.com/sayujks0071/life}
 }
 ```
+
+See [CITATION.cff](CITATION.cff) for structured citation metadata.
 
 ---
 
@@ -269,15 +159,12 @@ Where: A_c = 0.5, A_l = 0.7, I₀ = 0.3
 
 ### Core Requirements
 - **Python:** 3.8+
-- **PyElastica:** 0.3.0+ (Cosserat rod mechanics)
 - **NumPy:** 1.20+
 - **SciPy:** 1.7+
-- **Matplotlib:** 3.4+ (visualization)
+- **Matplotlib:** 3.4+
+- **PyElastica:** 0.3.0+ (Cosserat rod mechanics)
 
-### Optional
-- **Pandas:** For data analysis
-- **Seaborn:** Enhanced plotting
-- **pytest:** Unit testing
+See [requirements.txt](requirements.txt) for complete list.
 
 ### LaTeX (for manuscript compilation)
 - **TeX Live** or **MikTeX**
@@ -285,10 +172,22 @@ Where: A_c = 0.5, A_l = 0.7, I₀ = 0.3
 
 ---
 
+## Project Status
+
+**Current Status:** Research code and manuscript for publication
+
+**Key Features:**
+- ✅ Full theoretical framework (Information-Elasticity Coupling)
+- ✅ Numerical implementation (Cosserat rod solver)
+- ✅ Phase diagram analysis
+- ✅ Testable predictions
+- ✅ Reproducible analysis pipeline
+
+---
+
 ## Contributing
 
 This is an active research project. Contributions welcome in:
-
 1. **Experimental validation** — Connect model to real data
 2. **Parameter estimation** — Inverse problem solvers
 3. **Extensions** — Growth dynamics, patient-specific modeling
@@ -300,43 +199,19 @@ This is an active research project. Contributions welcome in:
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) file
-
-**Note:** Manuscript content is © 2025 Dr. Sayuj Krishnan S. Code is MIT licensed for research use.
+- **Code:** MIT License (see [LICENSE](LICENSE))
+- **Manuscript:** © 2025 Dr. Sayuj Krishnan S
 
 ---
 
 ## Acknowledgments
 
 - **PyElastica Team** — Open-source Cosserat rod framework
-- **Nature Peer Reviewers** — Constructive feedback improving rigor
+- **AlphaFold DB** — Protein structure data
 - **Yashoda Hospitals** — Institutional support
 
 ---
 
-## Project Metrics
-
-| Metric | Value |
-|--------|-------|
-| Lines of Code | ~5,000 |
-| Manuscript Pages | 15 (main text) |
-| Figures | 5 (4 present, 1 pending) |
-| References | 50+ |
-| Simulations Run | >1,000 |
-| Parameter Space Explored | 100 × 100 (χ_κ, g) |
-| Computational Time | ~20 hours (full phase diagram) |
-
----
-
-## Quick Links
-
-- **Manuscript:** [manuscript/main.pdf](manuscript/main.pdf)
-- **Code Documentation:** [Coming soon - Sphinx docs]
-- **Issue Tracker:** [GitHub Issues](https://github.com/sayujks0071/counte_curvature/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/sayujks0071/counte_curvature/discussions)
-
----
-
-**Last Updated:** December 17, 2025
-**Version:** 0.9.0 (pre-publication)
-**Status:** Publication-ready (pending final figures)
+**Last Updated:** December 29, 2025  
+**Version:** 1.0.0  
+**Status:** Publication-ready

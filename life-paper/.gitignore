@@ -1,0 +1,55 @@
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Results (generated outputs)
+results/
+*.csv
+*.json
+!data/processed/*.json
+
+# Figures (generated)
+paper/figures/*.pdf
+paper/figures/*.png
+!paper/figures/.gitkeep
+
+# Tables (generated)
+paper/tables/*.md
+paper/tables/*.csv
+!paper/tables/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model caches / databases
+models/
+chroma_db*/
+*.db
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+

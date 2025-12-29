@@ -328,3 +328,7 @@ AlphaFold structure predictions provide strong molecular evidence supporting the
 *This document is part of the Biological Countercurvature research project. For updates and additional resources, see the main project repository.*
 
 
+
+
+
+

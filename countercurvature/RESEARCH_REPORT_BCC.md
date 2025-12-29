@@ -272,3 +272,29 @@ Phase diagram regimes (example anchors):
 Mode transition (baseline gravity):
 - First S-like (>=1 inflection) chi_kappa: 0.02
 
+Microgravity persistence:
+- At g = 1.0: Dhat_geo = 6.54, E_total = 0.994
+- At g = 0.01: Dhat_geo = 654, E_total = 1.01
+- E_total reduction: -1.79% (g=1.0→0.01)
+- Dhat_geo persistence ratio: 100
+
+Phase diagram regimes (example anchors):
+- Low Dhat_geo point: chi_kappa=0, g=0.01, Dhat_geo=0
+- High Dhat_geo point: chi_kappa=0.1, g=0.01, Dhat_geo=1.09e+03
+
+Mode transition (baseline gravity):
+- First S-like (>=1 inflection) chi_kappa: 0.02
+
+Microgravity persistence:
+- At g = 1.0: Dhat_geo = 6.54, E_total = 0.994
+- At g = 0.01: Dhat_geo = 654, E_total = 1.01
+- E_total reduction: -1.79% (g=1.0→0.01)
+- Dhat_geo persistence ratio: 100
+
+Phase diagram regimes (example anchors):
+- Low Dhat_geo point: chi_kappa=0, g=0.01, Dhat_geo=0
+- High Dhat_geo point: chi_kappa=0.1, g=0.01, Dhat_geo=1.09e+03
+
+Mode transition (baseline gravity):
+- First S-like (>=1 inflection) chi_kappa: 0.02
+

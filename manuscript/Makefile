@@ -6,6 +6,9 @@ TEX = $(MAIN).tex
 PDF = $(MAIN).pdf
 BIB = references.bib
 
+# Set TEXINPUTS to include figures directories
+export TEXINPUTS := .:../figures/main:$(TEXINPUTS)
+
 # Default target
 all: $(PDF)
 

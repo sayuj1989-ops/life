@@ -66,7 +66,8 @@ def generate_coherence_field(
     s_norm = s / params.length
 
     if params.I_mode == "constant":
-        return np.ones_like(s) * params.I_amplitude
+        # Use full_like for better performance (avoids multiplication)
+        return np.full_like(s, params.I_amplitude)
 
     elif params.I_mode == "linear":
         # Linear gradient: I(s) = I_amplitude * (1 + I_gradient * s_norm)
@@ -79,10 +80,8 @@ def generate_coherence_field(
         )
 
     elif params.I_mode == "step":
-        # Piecewise step function
-        I_field = np.zeros_like(s)
-        I_field[s_norm >= params.I_center] = params.I_amplitude
-        return I_field
+        # Piecewise step function (optimized with where)
+        return np.where(s_norm >= params.I_center, params.I_amplitude, 0.0)
 
     else:
         raise ValueError(f"Unknown I_mode: {params.I_mode}")
@@ -184,15 +183,31 @@ def compute_node_positions(
     Returns:
         Array of node positions (m)
     """
+    # Handle empty arrays and validate inputs
+    if len(s) == 0 or len(theta) == 0:
+        return np.array([], dtype=np.float64)
+    
+    if len(s) != len(theta):
+        raise ValueError(f"Length mismatch: s has {len(s)} elements, theta has {len(theta)} elements")
+    
+    # Need at least 3 points to detect local minima (point and two neighbors)
+    if len(s) < 3:
+        return np.array([], dtype=np.float64)
+    
     theta_centered = theta - np.mean(theta)
     theta_abs = np.abs(theta_centered)
 
-    # Find local minima below threshold
-    local_min_idx = []
-    for i in range(1, len(theta_abs) - 1):
-        if theta_abs[i] < theta_abs[i - 1] and theta_abs[i] < theta_abs[i + 1]:
-            if theta_abs[i] < threshold * np.max(theta_abs):
-                local_min_idx.append(i)
+    # Vectorized local minima detection
+    # A point is a local minimum if it's less than both neighbors
+    is_local_min = np.zeros(len(theta_abs), dtype=bool)
+    is_local_min[1:-1] = (theta_abs[1:-1] < theta_abs[:-2]) & (theta_abs[1:-1] < theta_abs[2:])
+    
+    # Apply threshold: only keep minima below threshold * max
+    threshold_value = threshold * np.max(theta_abs)
+    below_threshold = theta_abs < threshold_value
+    
+    # Combine conditions
+    local_min_idx = np.where(is_local_min & below_threshold)[0]
 
     return s[local_min_idx]
 

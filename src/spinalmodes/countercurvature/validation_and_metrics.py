@@ -194,10 +194,24 @@ def compute_shape_preservation_index(
     centerline_final: ArrayF64,
     centerline_passive: ArrayF64,
 ) -> float:
-    """Compute how well information preserves shape against gravitational sag."""
-    dev_info = np.mean(np.linalg.norm(centerline_final - centerline_initial, axis=-1))
-    dev_passive = np.mean(np.linalg.norm(centerline_passive - centerline_initial, axis=-1))
-    return float(dev_passive / (dev_info + 1e-10))
+    """Compute how well information preserves shape against gravitational sag.
+
+    Returns a dimensionless score in [0, 1] where:
+    - 1 means "perfect preservation" (no additional deviation vs. the initial shape)
+    - 0 means "no improvement over passive" (info-driven deviation matches passive)
+    - values < 0 (info worse than passive) are clipped to 0
+    """
+    eps = 1e-12
+    dev_info = float(np.mean(np.linalg.norm(centerline_final - centerline_initial, axis=-1)))
+    dev_passive = float(np.mean(np.linalg.norm(centerline_passive - centerline_initial, axis=-1)))
+
+    # Trivial identical-shape case: both deviations ~0 → perfect preservation.
+    if dev_passive <= eps and dev_info <= eps:
+        return 1.0
+
+    # Normalized improvement relative to passive sag.
+    score = 1.0 - (dev_info / (dev_passive + eps))
+    return float(np.clip(score, 0.0, 1.0))
 
 def compare_with_beam_solver(
     centerline_pyelastica: ArrayF64,

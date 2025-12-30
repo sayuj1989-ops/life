@@ -1,0 +1,25 @@
+FROM runpod/pytorch:2.1.0-py3.10-cuda11.8.0-devel
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    transformers>=4.37.0 \
+    accelerate \
+    bitsandbytes \
+    langchain \
+    langchain-community \
+    chromadb \
+    sentence-transformers \
+    biopython \
+    einops
+
+# Set working directory
+WORKDIR /workspace
+
+# Download and cache Qwen2.5-32B model
+RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; \
+    print('Downloading Qwen2.5-32B-Instruct...'); \
+    AutoTokenizer.from_pretrained('Qwen/Qwen2.5-32B-Instruct', trust_remote_code=True); \
+    AutoModelForCausalLM.from_pretrained('Qwen/Qwen2.5-32B-Instruct', device_map='auto', torch_dtype='auto', trust_remote_code=True)"
+
+# Default command
+CMD ["/bin/bash"]

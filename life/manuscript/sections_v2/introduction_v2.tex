@@ -1,0 +1,22 @@
+\section{Introduction}
+
+\subsection{The puzzle of spinal curvature under gravity}
+Living systems do not simply obey gravity; they negotiate with it. While a passive elastic beam clamped at one end and subject to gravity will sag into a monotonic C-shape, biological structures such as plant stems and vertebrate spines adopt complex, posturally robust geometries that defy this passive tendency. The human spine, in particular, maintains a characteristic S-shaped sagittal profile---cervical and lumbar lordosis alternating with thoracic kyphosis---that is critical for bipedal energy efficiency and shock absorption~\cite{white_panjabi_spine}. This shape is not merely a reaction to external load but an intrinsic, actively maintained ``counter-curvature'' against the gravitational field.
+
+\subsection{From genetic coordinates to macroscopic geometry}
+The blueprint for this geometry is established during embryogenesis, long before the spine bears weight. The paraxial mesoderm segments into somites, driven by the oscillatory dynamics of the segmentation clock~\cite{pourquie2011vertebrate}. These segments acquire distinct identities through the expression of HOX and PAX genes, which specify the morphological characteristics of the resulting vertebrae~\cite{wellik2007hox, mallo2010hox}. 
+
+Recent advances in structural biology (e.g., AlphaFold predictions) allow us to map these genetic identities to molecular properties: \textit{HOXA10} expression correlates with lumbar stiffness regimes, while ciliary motor proteins like \textit{DNAH5} define the initial symmetry-breaking events that establish the body's chiral axis~\cite{nonaka2002determination}. However, a fundamental gap remains: how are these discrete, molecular-scale genetic codes translated into the continuous, mesoscale geometry of the adult spine?
+
+\subsection{Limitations of current biomechanical models}
+Classical spinal biomechanics typically treats the spine as a passive column or distinct rigid bodies connected by compliant elements~\cite{white_panjabi_spine}. While successful at predicting failure modes under extreme load, these models fail to explain the \textit{origin} of the resting geometry. They cannot account for the remarkable robustness of the S-curve across environments (e.g., its persistence in microgravity~\cite{green2018spinal}) or the emergence of idiopathic scoliosis (AIS), where severe deformations arise without obvious vertebral structural defects~\cite{weinstein2008adolescent}. This suggests that spinal geometry is governed by an active informational control layer, not just passive elasticity.
+
+\subsection{Hypothesis: Information--Elasticity Coupling (IEC)}
+We propose that developmental information acts as a scalar field that modifies the effective geometry experienced by the spine. Drawing an analogy to General Relativity, where matter curves spacetime, we suggest that biological information curves the ``material manifold'' of the spine. We formalize this as an \emph{Information--Elasticity Coupling (IEC)} framework. In this model, the gradient of a genetic information field $I(s)$---representing the HOX code---modifies the rest curvature $\kappa_0$ and stiffness $B(s)$ of the structure. The spine does not ``fight'' gravity; instead, it settles into the geodesic of a curved biological metric $d\ell_{\mathrm{eff}}^2$ shaped by this information field.
+
+\subsection{Contribution and overview}
+In this work, we Bridge the gap between genetics and mechanics by:
+(i) Formalizing the IEC model, defining a phenomenological ``biological metric'' that maps genetic information density to geometric distortion.
+(ii) Linking this field to structural parameters derived from AlphaFold protein constraints (e.g., collagen stiffness, ciliary chirality).
+(iii) Implementing a 3D Cosserat rod simulation (using \texttt{PyElastica}) to demonstrate that the S-shape emerges as a specific, gravity-selected eigenmode of this information-coupled system.
+(iv) Showing that in information-dominated regimes, deviations in the information field---akin to ``decoding errors''---can amplify small asymmetries into pathological, scoliosis-like deformities.

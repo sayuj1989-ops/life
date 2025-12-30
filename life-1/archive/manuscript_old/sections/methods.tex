@@ -1,0 +1,81 @@
+\section{Methods}
+
+\subsection{Computational Implementation}
+
+We implemented the IEC model in Python using a rigorous boundary value problem (BVP) solver. The codebase is available at \url{https://github.com/sayujks0071/life}.
+
+\subsubsection{BVP Solver}
+
+We use \texttt{scipy.integrate.solve\_bvp} to solve the equilibrium equations with adaptive mesh refinement. This replaces simplified forward-integration approaches with a publication-ready solver that:
+
+\begin{itemize}
+    \item Handles general boundary conditions (cantilever, pinned-pinned, etc.)
+    \item Ensures global equilibrium satisfaction
+    \item Provides convergence control via tolerance parameters
+    \item Validates solution quality automatically
+\end{itemize}
+
+\subsubsection{Validation}
+
+We validated the BVP solver against analytical Euler-Bernoulli beam solutions for linear cases:
+
+\begin{itemize}
+    \item \textbf{L2 error:} 0.0000 (machine precision)
+    \item \textbf{Boundary condition satisfaction:} $6.94 \times 10^{-17}$ (machine precision)
+    \item \textbf{Convergence:} All solutions satisfy $|\theta(0)| < 10^{-4}$ and residual $< 2.0$
+\end{itemize}
+
+All validation tests pass (4/4 smoke tests) as documented in \texttt{test\_solver\_upgrade.py}.
+
+\subsubsection{Parameter Space}
+
+We explore the 4D parameter space:
+\begin{itemize}
+    \item $\chi_\kappa \in [0, 0.1]$: Target curvature coupling
+    \item $\chi_E \in [-0.5, 0.1]$: Stiffness coupling (negative = reduced stiffness)
+    \item $\chi_C \in [0, 0.1]$: Damping coupling
+    \item $\chi_f \in [0, 0.5]$: Active moment coupling
+\end{itemize}
+
+Default physical parameters:
+\begin{itemize}
+    \item Length: $L = 0.1$ \si{\meter} (10 cm, typical embryo)
+    \item Young's modulus: $E_0 = 1 \times 10^6$ \si{\pascal} (soft tissue)
+    \item Second moment: $I_{\text{moment}} = 1 \times 10^{-12}$ \si{\meter^4}
+    \item Tip load: $P = 100$ \si{\newton} (when applicable)
+\end{itemize}
+
+\subsection{Information Field Generation}
+
+We implement four coherence field modes (Table~\ref{tab:info_fields}):
+\begin{enumerate}
+    \item \textbf{Constant:} $I(s) = I_0$ (uniform expression)
+    \item \textbf{Linear:} $I(s) = I_0(1 + g \cdot s/L)$ with gradient $g$
+    \item \textbf{Gaussian:} $I(s) = I_0 \exp[-(s-s_c)^2/(2\sigma^2)]$ centered at $s_c$
+    \item \textbf{Step:} $I(s) = I_0 \cdot H(s-s_c)$ (Heaviside function)
+\end{enumerate}
+
+\subsection{Analysis Metrics}
+
+For each solution, we compute:
+
+\begin{itemize}
+    \item \textbf{Wavelength} $\Lambda$: Spatial period of curvature oscillations (if periodic)
+    \item \textbf{Amplitude} $A$: Maximum angular deflection (\si{\degree})
+    \item \textbf{Node drift} $\Delta x$: Shift in zero-crossing positions relative to baseline (\si{\milli\meter})
+    \item \textbf{Helical threshold} $\theta_{\text{crit}}$: Critical angle for 3D helical instability
+\end{itemize}
+
+\subsection{Reproducibility}
+
+All simulations use:
+\begin{itemize}
+    \item Random seed: 1337 (for deterministic results)
+    \item Python 3.10.12
+    \item numpy 1.24.3, scipy 1.11.2
+\end{itemize}
+
+Environment specifications (Conda, pip, Docker) are provided in \texttt{envs/} directory. All code includes git SHA and timestamp provenance.
+
+
+

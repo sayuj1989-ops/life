@@ -1,0 +1,113 @@
+\section{Theory and Model}
+
+\subsection{Information Fields in Development}
+
+We represent developmental information as a \textbf{coherence field} $I(s,t)$ encoding:
+
+\begin{itemize}
+    \item \textbf{HOX/PAX expression levels:} Spatially graded transcription factor concentrations
+    \item \textbf{Morphogen gradients:} Retinoic acid (RA), FGF, Wnt establish positional information
+    \item \textbf{Ciliary flow fields:} Nodal flow breaks left-right symmetry; ciliary beating generates fluid shear~\cite{grimes2016}
+\end{itemize}
+
+For static analysis, we consider time-averaged fields $I(s)$ along arclength $s$. We model several prototypical profiles:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Mode} & \textbf{Expression} & \textbf{Use Case} \\
+\midrule
+Constant & $I(s) = I_0$ & Uniform expression domain \\
+Linear & $I(s) = I_0(1 + g \cdot s/L)$ & Rostro-caudal gradient (e.g., RA) \\
+Gaussian & $I(s) = I_0 \exp[-(s-s_c)^2/(2\sigma^2)]$ & Localized signaling center \\
+Step & $I(s) = I_0 \cdot H(s-s_c)$ & Sharp domain boundary (e.g., HOX transition) \\
+\bottomrule
+\end{tabular}
+\caption{Prototypical information field profiles used in IEC model}
+\label{tab:info_fields}
+\end{table}
+
+\subsection{IEC Mechanisms}
+
+\subsubsection{IEC-1: Target Curvature Bias ($\chi_\kappa$)}
+
+\textbf{Hypothesis:} Information gradients shift the intrinsic (stress-free) curvature of tissue.
+
+\textbf{Mathematical Form:}
+\begin{equation}
+\bar{\kappa}(s) = \bar{\kappa}_{\text{gen}}(s) + \chi_\kappa \cdot \frac{\partial I}{\partial s}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $\bar{\kappa}(s)$: target curvature (\si{\per\meter})
+    \item $\bar{\kappa}_{\text{gen}}(s)$: baseline genetic curvature
+    \item $\chi_\kappa$: coupling strength (\si{\meter})
+    \item $\partial I/\partial s$: information gradient
+\end{itemize}
+
+\textbf{Biological Justification:} HOX genes establish segmental identity; transitions between HOX domains may create intrinsic curvature biases~\cite{wellik2007}.
+
+\subsubsection{IEC-2: Constitutive Bias ($\chi_E$, $\chi_C$)}
+
+\textbf{Hypothesis:} Information fields modulate Young's modulus $E$ and damping coefficient $C$.
+
+\textbf{Mathematical Form:}
+\begin{align}
+E(s) &= E_0 \left[1 + \chi_E \cdot I(s)\right] \\
+C(s) &= C_0 \left[1 + \chi_C \cdot I(s)\right]
+\end{align}
+
+where:
+\begin{itemize}
+    \item $E_0$, $C_0$: baseline values
+    \item $\chi_E$, $\chi_C$: dimensionless coupling strengths
+\end{itemize}
+
+\textbf{Biological Justification:} SOX9 and ECM components (collagen, proteoglycans) vary with HOX expression domains, affecting tissue stiffness~\cite{lefebvre2016}.
+
+\subsubsection{IEC-3: Active Moment ($\chi_f$)}
+
+\textbf{Hypothesis:} Information gradients generate active moments via ciliary flow or contractile forces.
+
+\textbf{Mathematical Form:}
+\begin{equation}
+M_{\text{active}}(s) = \chi_f \cdot \left|\nabla I(s)\right| \cdot F_{\text{max}}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $M_{\text{active}}$: active moment per unit length (\si{\newton\meter\per\meter})
+    \item $\chi_f$: coupling strength (\si{\meter^2\per\newton})
+    \item $\left|\nabla I\right|$: magnitude of information gradient
+    \item $F_{\text{max}}$: maximum active force
+\end{itemize}
+
+\textbf{Biological Justification:} Ciliary flow generates left-right asymmetric forces; disruptions cause vertebral malformations~\cite{grimes2016}.
+
+\subsection{Governing Equations}
+
+For a planar beam with IEC couplings, the equilibrium equations are:
+
+\begin{align}
+\frac{d\theta}{ds} &= \kappa(s) \\
+\frac{d\kappa}{ds} &= \frac{M_{\text{ext}}(s) - M_{\text{active}}(s)}{EI(s)} - \frac{d\bar{\kappa}}{ds}
+\end{align}
+
+where:
+\begin{itemize}
+    \item $\theta(s)$: angle from horizontal
+    \item $\kappa(s)$: curvature
+    \item $M_{\text{ext}}(s)$: external moment (from loads)
+    \item $EI(s)$: bending stiffness (varies with $E(s)$ from IEC-2)
+\end{itemize}
+
+Boundary conditions depend on anatomy:
+\begin{itemize}
+    \item \textbf{Cantilever:} $\theta(0) = 0$, $\kappa(0) = 0$ (clamped at base)
+    \item \textbf{Pinned-pinned:} $\theta(0) = \theta(L) = 0$ (simply supported)
+\end{itemize}
+
+
+

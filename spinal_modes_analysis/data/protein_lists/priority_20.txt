@@ -1,0 +1,31 @@
+# Priority 20 Proteins for Initial AFDB Integration
+# Format: One UniProt accession per line
+# Lines starting with # are comments
+
+# === Mechanotransduction (5 proteins) ===
+Q92508  # PIEZO1 - Piezo-type mechanosensitive ion channel 1
+Q9H5I5  # PIEZO2 - Piezo-type mechanosensitive ion channel 2
+Q9HBA0  # TRPV4 - Transient receptor potential cation channel V4
+P98161  # PKD1 - Polycystin-1
+Q13563  # PKD2 - Polycystin-2
+
+# === Ciliary Motors (5 proteins) ===
+Q8TE73  # DNAH5 - Dynein heavy chain 5
+Q9NYC9  # DNAH9 - Dynein heavy chain 9
+Q13099  # IFT88 - Intraflagellar transport 88
+Q9Y496  # KIF3A - Kinesin family 3A
+O15066  # KIF3B - Kinesin family 3B
+
+# === ECM Structural (5 proteins) ===
+P02458  # COL2A1 - Collagen type II alpha 1
+P02452  # COL1A1 - Collagen type I alpha 1
+P08123  # COL1A2 - Collagen type I alpha 2
+P16112  # ACAN - Aggrecan
+P35555  # FBN1 - Fibrillin-1
+
+# === HOX/PAX Patterning (5 proteins) ===
+P49639  # HOXA1 - Homeobox protein Hox-A1
+P31260  # HOXA10 - Homeobox protein Hox-A10
+P31274  # HOXC9 - Homeobox protein Hox-C9
+P31277  # HOXD11 - Homeobox protein Hox-D11
+P15863  # PAX1 - Paired box protein Pax-1

@@ -1,0 +1,67 @@
+\section*{Figures}
+
+% Figure 1: Gene to Geometry
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig_gene_to_geometry.pdf}
+    \caption{\textbf{From Genes to Geometry.} (A) Conceptual mapping of HOX gene expression domains along the sagittal axis to the scalar information field $I(s)$. (B) The resulting information field $I(s)$ (blue) and its gradient $\partial_s I$ (red dashed), with peaks corresponding to cervical and lumbar lordotic regions. (C) The biological metric factor $g_{\mathrm{eff}}(s)$ derived from the information field, showing effective arc-length dilation in lordotic zones.}
+    \label{fig:iec_landscape}
+\end{figure}
+
+% Figure 2: Mode Spectrum
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fig_mode_spectrum.pdf}
+    \caption{\textbf{Gravity-Selected vs. Information-Selected Modes.} (A) First three eigenmodes of a passive uniform beam in gravity; the ground state (Mode 0, blue) is a monotonic C-shaped sag. (B) Eigenmodes of the IEC-coupled beam ($\chi_\kappa=0.05$); the shift in effective stiffness $B_{\mathrm{eff}}(s)$ reorders the spectrum, selecting the S-shaped mode as the new energetic ground state. (C) Normalized eigenvalue spectrum $\lambda_n/\lambda_0$ showing the shift in the lowest energy mode.}
+    \label{fig:mode_spectrum}
+\end{figure}
+
+% Figure 3: 3D Solutions (Main Panel)
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig_countercurvature_panelA.pdf}
+        \caption{Curvature profiles $\kappa_{0}(s)$ vs $\kappa_{I}(s)$.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig_countercurvature_panelB.pdf}
+        \caption{Countercurvature metric $g_{\mathrm{eff}}(s)$ and information field.}
+    \end{subfigure}
+
+    \vspace{0.5em}
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig_countercurvature_panelC.pdf}
+        \caption{Normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ vs $\chi_{\kappa}$.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fig_countercurvature_panelD.pdf}
+        \caption{Microgravity adaptation: $\widehat{D}_{\mathrm{geo}}$ vs $g$.}
+    \end{subfigure}
+
+    \caption{\textbf{Information-driven countercurvature in 3D Cosserat simulations.}
+    Panel A shows curvature profiles for passive (gravity-only) and IEC-coupled configurations. Panel B displays the countercurvature metric $g_{\mathrm{eff}}(s)$, highlighting regions of high counter-curvature demand. Panel C shows how geodesic deviation $\widehat{D}_{\mathrm{geo}}$ scales with coupling strength $\chi_{\kappa}$. Panel D demonstrates the persistence of counter-curvature in microgravity ($g \to 0$), explaining the stability of spinal curves in orbit.}
+    \label{fig:countercurvature_main}
+\end{figure}
+
+% Figure 4: Phase Diagram
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig_phase_diagram_scoliosis.pdf}
+    \caption{\textbf{Phase Diagram of Countercurvature Regimes.} Heatmap of normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ in the $(\chi_{\kappa},g)$ plane. Three distinct regimes are identified: (I) Gravity-dominated (sag), (II) Cooperative (stable S-curves matching biological norms), and (III) Information-dominated (high $\chi_\kappa$, leading to metric distortions and potential instability).}
+    \label{fig:phase_diagram}
+\end{figure}
+
+% Figure 5: Scoliosis Emergence
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{fig_scoliosis_emergence.png}
+    \caption{\textbf{Scoliosis as Countercurvature Failure.} (A) Lateral scoliosis index $S_{\mathrm{lat}}$ vs coupling strength $\chi_\kappa$ for varying asymmetry levels $\varepsilon$. (B) Bifurcation diagram showing the emergence of large lateral deviations from small asymmetries in the information-dominated regime. (C) Scoliosis regime map in $(\chi_\kappa, \varepsilon)$ space; the shaded region indicates scoliotic configurations (Cobb $> 10^\circ$). (D) Amplification factor ($S_{\mathrm{lat}}/\varepsilon$), showing that in the high-$\chi_\kappa$ regime, small patterning errors are amplified by over 100-fold.}
+    \label{fig:scoliosis_emergence}
+\end{figure}

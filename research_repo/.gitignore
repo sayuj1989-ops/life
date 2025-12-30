@@ -1,0 +1,24 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Data & Outputs
+research_repo/data/raw/
+*.log
+*.sqlite3
+
+# Temp files
+*.bak
+*.tmp
+.idea/
+.vscode/
+
+# Project specifics
+.gemini/

@@ -1,0 +1,20 @@
+{
+  "parameters": {
+    "chi_kappa": 0.02,
+    "I_mode": "linear",
+    "length_m": 0.4
+  },
+  "results": {
+    "wavelength_mm": null,
+    "amplitude_deg": 46.40958140559666,
+    "node_positions_mm": [
+      169.69696969696972
+    ],
+    "torsion_stats": {
+      "mean": 2.024999999999999,
+      "std": 1.1656163009694085,
+      "max": 4.00479797979798,
+      "rms": 2.336511579488876
+    }
+  }
+}

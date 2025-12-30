@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q04721",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q04721-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q04721-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q04721",
+  "uniprot_id_api": "NOTC2_HUMAN"
+}

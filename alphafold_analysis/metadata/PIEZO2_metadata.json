@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q9H5I5",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9H5I5-3-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9H5I5-3-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q9H5I5-3",
+  "uniprot_id_api": "PIEZ2_HUMAN"
+}

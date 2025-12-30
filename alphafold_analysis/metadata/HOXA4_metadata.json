@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q00056",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q00056-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q00056-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q00056",
+  "uniprot_id_api": "HXA4_HUMAN"
+}

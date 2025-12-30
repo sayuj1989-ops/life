@@ -1,0 +1,797 @@
+{
+  "timestamp": "2025-12-30 00:02:01",
+  "category": "all",
+  "total": 79,
+  "results": [
+    {
+      "name": "HOXA1",
+      "uniprot_id": "P49639",
+      "category": "HOX",
+      "gene": "HOXA1",
+      "function": "Cervical vertebral identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA1_metadata.json"
+    },
+    {
+      "name": "HOXA2",
+      "uniprot_id": "O43364",
+      "category": "HOX",
+      "gene": "HOXA2",
+      "function": "Cervical patterning",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXA2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA2_metadata.json"
+    },
+    {
+      "name": "HOXA3",
+      "uniprot_id": "O43365",
+      "category": "HOX",
+      "gene": "HOXA3",
+      "function": "Cervical/thoracic boundary",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXA3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA3_metadata.json"
+    },
+    {
+      "name": "HOXA4",
+      "uniprot_id": "Q00056",
+      "category": "HOX",
+      "gene": "HOXA4",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA4_metadata.json"
+    },
+    {
+      "name": "HOXA5",
+      "uniprot_id": "P20719",
+      "category": "HOX",
+      "gene": "HOXA5",
+      "function": "Thoracic patterning",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA5.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA5_metadata.json"
+    },
+    {
+      "name": "HOXA7",
+      "uniprot_id": "P31268",
+      "category": "HOX",
+      "gene": "HOXA7",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA7.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA7_metadata.json"
+    },
+    {
+      "name": "HOXA9",
+      "uniprot_id": "P31269",
+      "category": "HOX",
+      "gene": "HOXA9",
+      "function": "Lumbar identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA9_metadata.json"
+    },
+    {
+      "name": "HOXA10",
+      "uniprot_id": "P31260",
+      "category": "HOX",
+      "gene": "HOXA10",
+      "function": "Lumbar/sacral boundary",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXA10.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA10_metadata.json"
+    },
+    {
+      "name": "HOXA11",
+      "uniprot_id": "P31270",
+      "category": "HOX",
+      "gene": "HOXA11",
+      "function": "Sacral identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXA11.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXA11_metadata.json"
+    },
+    {
+      "name": "HOXB1",
+      "uniprot_id": "P14653",
+      "category": "HOX",
+      "gene": "HOXB1",
+      "function": "Cervical identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB1_metadata.json"
+    },
+    {
+      "name": "HOXB2",
+      "uniprot_id": "P14652",
+      "category": "HOX",
+      "gene": "HOXB2",
+      "function": "Cervical patterning",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB2_metadata.json"
+    },
+    {
+      "name": "HOXB4",
+      "uniprot_id": "P17483",
+      "category": "HOX",
+      "gene": "HOXB4",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB4_metadata.json"
+    },
+    {
+      "name": "HOXB5",
+      "uniprot_id": "P09067",
+      "category": "HOX",
+      "gene": "HOXB5",
+      "function": "Thoracic patterning",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB5.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB5_metadata.json"
+    },
+    {
+      "name": "HOXB6",
+      "uniprot_id": "P17509",
+      "category": "HOX",
+      "gene": "HOXB6",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB6.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB6_metadata.json"
+    },
+    {
+      "name": "HOXB7",
+      "uniprot_id": "P09629",
+      "category": "HOX",
+      "gene": "HOXB7",
+      "function": "Thoracic/lumbar boundary",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXB7.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB7_metadata.json"
+    },
+    {
+      "name": "HOXB8",
+      "uniprot_id": "P17481",
+      "category": "HOX",
+      "gene": "HOXB8",
+      "function": "Lumbar identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXB8.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB8_metadata.json"
+    },
+    {
+      "name": "HOXB9",
+      "uniprot_id": "P17482",
+      "category": "HOX",
+      "gene": "HOXB9",
+      "function": "Lumbar patterning",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXB9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXB9_metadata.json"
+    },
+    {
+      "name": "HOXC4",
+      "uniprot_id": "P09017",
+      "category": "HOX",
+      "gene": "HOXC4",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXC4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC4_metadata.json"
+    },
+    {
+      "name": "HOXC6",
+      "uniprot_id": "P09630",
+      "category": "HOX",
+      "gene": "HOXC6",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXC6.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC6_metadata.json"
+    },
+    {
+      "name": "HOXC8",
+      "uniprot_id": "P31273",
+      "category": "HOX",
+      "gene": "HOXC8",
+      "function": "Lumbar identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXC8.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC8_metadata.json"
+    },
+    {
+      "name": "HOXC9",
+      "uniprot_id": "P31274",
+      "category": "HOX",
+      "gene": "HOXC9",
+      "function": "Lumbar identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXC9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC9_metadata.json"
+    },
+    {
+      "name": "HOXC10",
+      "uniprot_id": "Q9NYD6",
+      "category": "HOX",
+      "gene": "HOXC10",
+      "function": "Lumbar identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXC10.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC10_metadata.json"
+    },
+    {
+      "name": "HOXC11",
+      "uniprot_id": "O43248",
+      "category": "HOX",
+      "gene": "HOXC11",
+      "function": "Sacral identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXC11.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXC11_metadata.json"
+    },
+    {
+      "name": "HOXD1",
+      "uniprot_id": "Q9GZZ0",
+      "category": "HOX",
+      "gene": "HOXD1",
+      "function": "Cervical identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXD1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD1_metadata.json"
+    },
+    {
+      "name": "HOXD3",
+      "uniprot_id": "P31249",
+      "category": "HOX",
+      "gene": "HOXD3",
+      "function": "Cervical/thoracic boundary",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXD3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD3_metadata.json"
+    },
+    {
+      "name": "HOXD4",
+      "uniprot_id": "P09016",
+      "category": "HOX",
+      "gene": "HOXD4",
+      "function": "Thoracic identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXD4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD4_metadata.json"
+    },
+    {
+      "name": "HOXD8",
+      "uniprot_id": "P13378",
+      "category": "HOX",
+      "gene": "HOXD8",
+      "function": "Lumbar identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXD8.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD8_metadata.json"
+    },
+    {
+      "name": "HOXD9",
+      "uniprot_id": "P28356",
+      "category": "HOX",
+      "gene": "HOXD9",
+      "function": "Lumbar identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXD9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD9_metadata.json"
+    },
+    {
+      "name": "HOXD10",
+      "uniprot_id": "P28358",
+      "category": "HOX",
+      "gene": "HOXD10",
+      "function": "Lumbar/sacral boundary",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXD10.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD10_metadata.json"
+    },
+    {
+      "name": "HOXD11",
+      "uniprot_id": "P31277",
+      "category": "HOX",
+      "gene": "HOXD11",
+      "function": "Sacral identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXD11.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD11_metadata.json"
+    },
+    {
+      "name": "HOXD12",
+      "uniprot_id": "P35452",
+      "category": "HOX",
+      "gene": "HOXD12",
+      "function": "Sacral identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HOXD12.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD12_metadata.json"
+    },
+    {
+      "name": "HOXD13",
+      "uniprot_id": "P35453",
+      "category": "HOX",
+      "gene": "HOXD13",
+      "function": "Sacral/caudal identity",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/HOXD13.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HOXD13_metadata.json"
+    },
+    {
+      "name": "PAX1",
+      "uniprot_id": "P15863",
+      "category": "PAX",
+      "gene": "PAX1",
+      "function": "Sclerotome development, vertebral formation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PAX1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PAX1_metadata.json"
+    },
+    {
+      "name": "PAX2",
+      "uniprot_id": "Q02962",
+      "category": "PAX",
+      "gene": "PAX2",
+      "function": "Kidney development, segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PAX2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PAX2_metadata.json"
+    },
+    {
+      "name": "PAX3",
+      "uniprot_id": "P23760",
+      "category": "PAX",
+      "gene": "PAX3",
+      "function": "Neural crest, somite development",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PAX3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PAX3_metadata.json"
+    },
+    {
+      "name": "PAX6",
+      "uniprot_id": "P26367",
+      "category": "PAX",
+      "gene": "PAX6",
+      "function": "Eye development, neural patterning",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/PAX6.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PAX6_metadata.json"
+    },
+    {
+      "name": "PAX9",
+      "uniprot_id": "P55771",
+      "category": "PAX",
+      "gene": "PAX9",
+      "function": "Pharyngeal arch, vertebral identity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PAX9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PAX9_metadata.json"
+    },
+    {
+      "name": "YAP1",
+      "uniprot_id": "P46937",
+      "category": "MECHANOSENSITIVE",
+      "gene": "YAP1",
+      "function": "Hippo pathway, mechanosensitive transcription",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/YAP1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/YAP1_metadata.json"
+    },
+    {
+      "name": "TAZ",
+      "uniprot_id": "Q9GZV5",
+      "category": "MECHANOSENSITIVE",
+      "gene": "WWTR1",
+      "function": "Hippo pathway, mechanosensitive transcription",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/TAZ.pdb",
+      "metadata_path": "alphafold_analysis/metadata/TAZ_metadata.json"
+    },
+    {
+      "name": "PIEZO1",
+      "uniprot_id": "Q92508",
+      "category": "MECHANOSENSITIVE",
+      "gene": "PIEZO1",
+      "function": "Mechanosensitive ion channel",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PIEZO1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PIEZO1_metadata.json"
+    },
+    {
+      "name": "PIEZO2",
+      "uniprot_id": "Q9H5I5",
+      "category": "MECHANOSENSITIVE",
+      "gene": "PIEZO2",
+      "function": "Mechanosensitive ion channel",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PIEZO2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PIEZO2_metadata.json"
+    },
+    {
+      "name": "TRPV4",
+      "uniprot_id": "Q9HBA0",
+      "category": "MECHANOSENSITIVE",
+      "gene": "TRPV4",
+      "function": "Mechanosensitive calcium channel",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/TRPV4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/TRPV4_metadata.json"
+    },
+    {
+      "name": "INTEGRIN_B1",
+      "uniprot_id": "P05556",
+      "category": "MECHANOSENSITIVE",
+      "gene": "ITGB1",
+      "function": "Mechanotransduction, ECM sensing",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/INTEGRIN_B1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/INTEGRIN_B1_metadata.json"
+    },
+    {
+      "name": "VINCULIN",
+      "uniprot_id": "P18206",
+      "category": "MECHANOSENSITIVE",
+      "gene": "VCL",
+      "function": "Focal adhesion, force transmission",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/VINCULIN.pdb",
+      "metadata_path": "alphafold_analysis/metadata/VINCULIN_metadata.json"
+    },
+    {
+      "name": "TALIN1",
+      "uniprot_id": "Q9Y490",
+      "category": "MECHANOSENSITIVE",
+      "gene": "TLN1",
+      "function": "Focal adhesion, mechanosensing",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/TALIN1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/TALIN1_metadata.json"
+    },
+    {
+      "name": "NOTCH1",
+      "uniprot_id": "P46531",
+      "category": "SEGMENTATION",
+      "gene": "NOTCH1",
+      "function": "Segmentation clock, somite formation",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/NOTCH1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/NOTCH1_metadata.json"
+    },
+    {
+      "name": "NOTCH2",
+      "uniprot_id": "Q04721",
+      "category": "SEGMENTATION",
+      "gene": "NOTCH2",
+      "function": "Segmentation clock",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/NOTCH2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/NOTCH2_metadata.json"
+    },
+    {
+      "name": "NOTCH3",
+      "uniprot_id": "Q9UM47",
+      "category": "SEGMENTATION",
+      "gene": "NOTCH3",
+      "function": "Segmentation clock",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/NOTCH3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/NOTCH3_metadata.json"
+    },
+    {
+      "name": "DLL1",
+      "uniprot_id": "O00548",
+      "category": "SEGMENTATION",
+      "gene": "DLL1",
+      "function": "Notch ligand, segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/DLL1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/DLL1_metadata.json"
+    },
+    {
+      "name": "DLL3",
+      "uniprot_id": "Q9NYJ7",
+      "category": "SEGMENTATION",
+      "gene": "DLL3",
+      "function": "Notch ligand, segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/DLL3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/DLL3_metadata.json"
+    },
+    {
+      "name": "HES1",
+      "uniprot_id": "Q14469",
+      "category": "SEGMENTATION",
+      "gene": "HES1",
+      "function": "Notch target, clock oscillation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HES1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HES1_metadata.json"
+    },
+    {
+      "name": "HES7",
+      "uniprot_id": "Q9BYE0",
+      "category": "SEGMENTATION",
+      "gene": "HES7",
+      "function": "Segmentation clock oscillator",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/HES7.pdb",
+      "metadata_path": "alphafold_analysis/metadata/HES7_metadata.json"
+    },
+    {
+      "name": "WNT3A",
+      "uniprot_id": "P56704",
+      "category": "SEGMENTATION",
+      "gene": "WNT3A",
+      "function": "Wnt signaling, segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/WNT3A.pdb",
+      "metadata_path": "alphafold_analysis/metadata/WNT3A_metadata.json"
+    },
+    {
+      "name": "WNT5A",
+      "uniprot_id": "P41221",
+      "category": "SEGMENTATION",
+      "gene": "WNT5A",
+      "function": "Wnt signaling, morphogenesis",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/WNT5A.pdb",
+      "metadata_path": "alphafold_analysis/metadata/WNT5A_metadata.json"
+    },
+    {
+      "name": "FGF8",
+      "uniprot_id": "P55075",
+      "category": "SEGMENTATION",
+      "gene": "FGF8",
+      "function": "FGF signaling, segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/FGF8.pdb",
+      "metadata_path": "alphafold_analysis/metadata/FGF8_metadata.json"
+    },
+    {
+      "name": "FGF4",
+      "uniprot_id": "P08620",
+      "category": "SEGMENTATION",
+      "gene": "FGF4",
+      "function": "FGF signaling, growth",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/FGF4.pdb",
+      "metadata_path": "alphafold_analysis/metadata/FGF4_metadata.json"
+    },
+    {
+      "name": "FOXO3",
+      "uniprot_id": "O43524",
+      "category": "LONGEVITY",
+      "gene": "FOXO3",
+      "function": "Longevity, stress response, mechanosensitive",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/FOXO3.pdb",
+      "metadata_path": "alphafold_analysis/metadata/FOXO3_metadata.json"
+    },
+    {
+      "name": "SIRT1",
+      "uniprot_id": "Q96EB6",
+      "category": "LONGEVITY",
+      "gene": "SIRT1",
+      "function": "NAD+ deacetylase, longevity",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/SIRT1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/SIRT1_metadata.json"
+    },
+    {
+      "name": "KLOTHO",
+      "uniprot_id": "Q9UEF7",
+      "category": "LONGEVITY",
+      "gene": "KL",
+      "function": "Anti-aging, calcium homeostasis",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/KLOTHO.pdb",
+      "metadata_path": "alphafold_analysis/metadata/KLOTHO_metadata.json"
+    },
+    {
+      "name": "PGC1A",
+      "uniprot_id": "Q9UBK2",
+      "category": "LONGEVITY",
+      "gene": "PPARGC1A",
+      "function": "Mitochondrial biogenesis",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/PGC1A.pdb",
+      "metadata_path": "alphafold_analysis/metadata/PGC1A_metadata.json"
+    },
+    {
+      "name": "AMPK",
+      "uniprot_id": "Q13131",
+      "category": "LONGEVITY",
+      "gene": "PRKAA1",
+      "function": "Energy sensing, mechanosensitive",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/AMPK.pdb",
+      "metadata_path": "alphafold_analysis/metadata/AMPK_metadata.json"
+    },
+    {
+      "name": "COL1A1",
+      "uniprot_id": "P02452",
+      "category": "ECM",
+      "gene": "COL1A1",
+      "function": "Type I collagen, bone matrix",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/COL1A1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/COL1A1_metadata.json"
+    },
+    {
+      "name": "COL2A1",
+      "uniprot_id": "P02458",
+      "category": "ECM",
+      "gene": "COL2A1",
+      "function": "Type II collagen, cartilage",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/COL2A1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/COL2A1_metadata.json"
+    },
+    {
+      "name": "FIBRONECTIN",
+      "uniprot_id": "P02751",
+      "category": "ECM",
+      "gene": "FN1",
+      "function": "ECM protein, mechanosensing",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/FIBRONECTIN.pdb",
+      "metadata_path": "alphafold_analysis/metadata/FIBRONECTIN_metadata.json"
+    },
+    {
+      "name": "LAMININ_A1",
+      "uniprot_id": "P25391",
+      "category": "ECM",
+      "gene": "LAMA1",
+      "function": "Basement membrane, structure",
+      "status": "not_found",
+      "pdb_path": null,
+      "metadata_path": null
+    },
+    {
+      "name": "SOX9",
+      "uniprot_id": "P48436",
+      "category": "TRANSCRIPTION",
+      "gene": "SOX9",
+      "function": "Chondrogenesis, vertebral development",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/SOX9.pdb",
+      "metadata_path": "alphafold_analysis/metadata/SOX9_metadata.json"
+    },
+    {
+      "name": "RUNX2",
+      "uniprot_id": "Q13950",
+      "category": "TRANSCRIPTION",
+      "gene": "RUNX2",
+      "function": "Osteogenesis, bone development",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/RUNX2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/RUNX2_metadata.json"
+    },
+    {
+      "name": "TBX6",
+      "uniprot_id": "O95947",
+      "category": "TRANSCRIPTION",
+      "gene": "TBX6",
+      "function": "Somite specification",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/TBX6.pdb",
+      "metadata_path": "alphafold_analysis/metadata/TBX6_metadata.json"
+    },
+    {
+      "name": "MESP2",
+      "uniprot_id": "Q0VG99",
+      "category": "TRANSCRIPTION",
+      "gene": "MESP2",
+      "function": "Somite segmentation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/MESP2.pdb",
+      "metadata_path": "alphafold_analysis/metadata/MESP2_metadata.json"
+    },
+    {
+      "name": "LAZY1",
+      "uniprot_id": "Q5XV40",
+      "category": "GRAVITY",
+      "gene": "LAZY1",
+      "function": "Plant gravitropism, PIN polarization",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/LAZY1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/LAZY1_metadata.json"
+    },
+    {
+      "name": "PIN3",
+      "uniprot_id": "Q9C5L7",
+      "category": "GRAVITY",
+      "gene": "PIN3",
+      "function": "Auxin transporter, gravity response",
+      "status": "not_found",
+      "pdb_path": null,
+      "metadata_path": null
+    },
+    {
+      "name": "ARG1",
+      "uniprot_id": "P93005",
+      "category": "GRAVITY",
+      "gene": "ARG1",
+      "function": "Gravity signal transduction (DnaJ-like)",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/ARG1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/ARG1_metadata.json"
+    },
+    {
+      "name": "MCA1",
+      "uniprot_id": "Q8L7E9",
+      "category": "GRAVITY",
+      "gene": "MCA1",
+      "function": "Mechanosensitive Ca2+ channel",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/MCA1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/MCA1_metadata.json"
+    },
+    {
+      "name": "DRO1",
+      "uniprot_id": "Q9S771",
+      "category": "GRAVITY",
+      "gene": "DRO1",
+      "function": "Deeper rooting 1, root architecture",
+      "status": "not_found",
+      "pdb_path": null,
+      "metadata_path": null
+    },
+    {
+      "name": "TAC1",
+      "uniprot_id": "F4IJ79",
+      "category": "GRAVITY",
+      "gene": "TAC1",
+      "function": "Tiller angle control 1",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/TAC1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/TAC1_metadata.json"
+    },
+    {
+      "name": "OC90",
+      "uniprot_id": "Q02509",
+      "category": "GRAVITY",
+      "gene": "OC90",
+      "function": "Otolith matrix protein 90, biomineralization",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/OC90.pdb",
+      "metadata_path": "alphafold_analysis/metadata/OC90_metadata.json"
+    },
+    {
+      "name": "OTOLIN1",
+      "uniprot_id": "A6NHN0",
+      "category": "GRAVITY",
+      "gene": "OTOL1",
+      "function": "Otolith scaffold protein",
+      "status": "downloaded",
+      "pdb_path": "alphafold_analysis/predictions/OTOLIN1.pdb",
+      "metadata_path": "alphafold_analysis/metadata/OTOLIN1_metadata.json"
+    },
+    {
+      "name": "OTOGLIN",
+      "uniprot_id": "Q6ZRI0",
+      "category": "GRAVITY",
+      "gene": "OTOG",
+      "function": "Otolith anchoring protein",
+      "status": "not_found",
+      "pdb_path": null,
+      "metadata_path": null
+    },
+    {
+      "name": "COCHLIN",
+      "uniprot_id": "O43405",
+      "category": "GRAVITY",
+      "gene": "COCH",
+      "function": "Otolith matrix, crystal formation",
+      "status": "cached",
+      "pdb_path": "alphafold_analysis/predictions/COCHLIN.pdb",
+      "metadata_path": "alphafold_analysis/metadata/COCHLIN_metadata.json"
+    }
+  ]
+}

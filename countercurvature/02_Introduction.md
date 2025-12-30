@@ -1,0 +1,17 @@
+# Introduction
+
+## The puzzle of spinal curvature under gravity
+Living systems do not simply obey gravity; they negotiate with it. While a passive elastic beam clamped at one end and subject to gravity will sag into a monotonic C-shape, biological structures such as plant stems and vertebrate spines adopt complex, robust geometries that defy this passive tendency. The human spine, in particular, maintains a characteristic S-shaped sagittal profile (cervical and lumbar lordosis, thoracic kyphosis) that is critical for bipedal posture and shock absorption~(white_panjabi_spine, 1990). This shape is not merely a reaction to load but an intrinsic, actively maintained "counter-curvature."
+
+## Developmental genetic patterning
+The blueprint for this geometry is laid down during embryogenesis. The paraxial mesoderm segments into somites, driven by the segmentation clock and oscillating gene expression (e.g., Notch, Wnt, FGF)~(pourquie2011vertebrate, 2011). These segments acquire distinct identities through the expression of HOX and PAX genes, which specify the morphological characteristics of the resulting vertebrae~(wellik2007hox, 2007). However, the mechanism by which these discrete genetic codes are translated into the continuous, mesoscale geometry of the adult spine remains a fundamental open question.
+
+## Hypothesis: Information--Elasticity Coupling and effective metric
+We propose that developmental information acts as a field that modifies the effective geometry experienced by the spine. Drawing an analogy to General Relativity, where matter curves spacetime, we suggest that biological information curves the "material manifold" of the spine. We formalize this as an \emph{Information--Elasticity Coupling (IEC)} framework, where a genetic information field $I(s)$ modifies the rest curvature, stiffness, and active moments of the structure. In this view, the spine does not "fight" gravity; it settles into the geodesic of a curved biological metric $d\ell_{\mathrm{eff}}^2$ shaped by information.
+
+## Contribution and overview
+In this work, we:
+(i) Define the IEC model and a phenomenological "biological metric" that maps genetic information to geometric distortions.
+(ii) Implement this framework in a 3D Cosserat rod simulation (using \texttt{PyElastica}) to model the spine under gravitational loading.
+(iii) Demonstrate that the interplay between gravity and information selects specific "spinal modes"---shifting the ground state from a passive C-shape to an active S-shape.
+(iv) Show that in information-dominated regimes, this same mechanism can amplify small asymmetries into pathological, scoliosis-like deformities.

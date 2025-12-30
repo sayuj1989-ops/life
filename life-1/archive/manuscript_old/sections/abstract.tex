@@ -1,0 +1,14 @@
+\begin{abstract}
+
+\textbf{Background:} Spinal development in vertebrates exhibits remarkable coordination between genetic patterning (HOX/PAX expression) and mechanical morphogenesis, yet the mechanisms coupling information fields to material properties remain poorly understood. Scoliosis and other spinal deformities may arise from disruptions in this coupling.
+
+\textbf{Methods:} We introduce an Information-Elasticity Coupling (IEC) model comprising three mechanisms: (1) target curvature bias ($\chi_\kappa$), where information gradients shift neutral geometric states; (2) constitutive bias ($\chi_E$, $\chi_C$), modulating stiffness and damping; and (3) active moments ($\chi_f$), generating load-independent forces. We implemented this model using a rigorous boundary value problem (BVP) solver (scipy.integrate.solve\_bvp) with perfect analytical validation (L2 error = 0.0000) and tested predictions against known biomechanical phenomena.
+
+\textbf{Results:} IEC-1 produces node drift without altering characteristic wavelength ($|\Delta\Lambda| < 2\%$), consistent with pattern shifts in somitogenesis. IEC-2 modulates deformation amplitude ($>33\%$ for $25\%$ modulus change) while preserving load-response scaling. IEC-3 reduces helical instability thresholds in the presence of information gradients, explaining onset of three-dimensional deformities. Phase diagrams identify parameter regimes separating planar from helical modes.
+
+\textbf{Conclusions:} The IEC framework unifies genetic patterning with mechanical self-organization, providing testable mechanisms for spinal curvature disorders. We propose specific experiments to measure coupling strengths in vivo and identify candidate molecular mediators.
+
+\end{abstract}
+
+
+

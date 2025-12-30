@@ -1,0 +1,42 @@
+% IEC Equations Diagram
+% Visual representation of the IEC coupling equations
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    node distance=1.2cm,
+    eqbox/.style={rectangle, draw, fill=blue!5, text width=9cm, minimum height=0.9cm, align=left},
+    smallbox/.style={rectangle, draw, fill=green!8, text width=6cm, minimum height=0.7cm, align=left},
+    arrow/.style={->, >=stealth, thick}
+]
+
+% Information Field
+\node[eqbox] (I) {$I(s)$: HOX/PAX patterning, morphogens, neural control; gradient $\partial_s I$};
+
+% Cilia patch
+\node[smallbox, right=3.8cm of I] (cilia) {Cilia patch (thoracic): localized active moments $M_{\mathrm{cilia}}(s,t)$, sensing asymmetry};
+
+% Metric
+\node[eqbox, below of=I] (metric) {$d\ell_{\mathrm{eff}}^{2} = g_{\mathrm{eff}}(s)\,ds^{2},\quad g_{\mathrm{eff}} = \exp\!\big[2(\beta_{1}\tilde I + \beta_{2}\tilde I')\big]$};
+
+% Equations
+\node[eqbox, below of=metric, yshift=-0.4cm] (eq1) {$\kappa_{\mathrm{rest}}(s) = \kappa_{0}(s) + \chi_{\kappa}\,\partial_{s} I(s)$};
+
+\node[eqbox, below of=eq1] (eq2) {$E_{\mathrm{eff}}(s) = E_{0}\,\bigl(1 + \chi_{E} I(s)\bigr)$};
+
+\node[eqbox, below of=eq2] (eq3) {$M_{\mathrm{info}}(s,t) = \chi_{M}\,\partial_{s} I(s) + M_{\mathrm{cilia}}(s,t)$};
+
+% Arrows
+\draw[arrow] (I) -- (metric);
+\draw[arrow] (I) -- (eq1);
+\draw[arrow] (I) -- (eq2);
+\draw[arrow] (metric) -- (eq1);
+\draw[arrow] (metric) -- (eq3);
+\draw[arrow] (cilia) -- (eq3);
+\draw[arrow] (cilia) |- (metric);
+
+\end{tikzpicture}
+\caption{Information-Elasticity Coupling (IEC) with effective metric. Genetic and neural information $I(s)$ sets the biological metric $g_{\mathrm{eff}}(s)$ and feeds curvature/stiffness couplings; cilia provide localized active moments and metric boosts near asymmetric regions.}
+\label{fig:iec_equations}
+\end{figure}
+

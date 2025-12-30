@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q96EB6",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q96EB6-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q96EB6-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q96EB6",
+  "uniprot_id_api": "SIR1_HUMAN"
+}

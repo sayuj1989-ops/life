@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spinal Modes - IEC Model</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    display: flex;
+  }
+  .sidebar {
+    width: 220px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+  }
+  .sidebar h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar li {
+    margin: 15px 0;
+  }
+  .sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  .content {
+    margin-left: 240px;
+    padding: 40px;
+    max-width: 800px;
+  }
+  section {
+    margin-bottom: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  section h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: #2980b9;
+  }
+  pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #7f8c8d;
+  }
+</style>
+</head>
+<body>
+  <nav class="sidebar">
+    <h2>Contents</h2>
+    <ul>
+      <li><a href="#manuscript">Research Manuscript</a></li>
+      <li><a href="#code">Source Code</a></li>
+      <li><a href="#quickstart">Quick Start</a></li>
+      <li><a href="#docs">Documentation</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#figures">Figures</a></li>
+    </ul>
+  </nav>
+  <main class="content">
+    <h1>🧬 Spinal Modes: IEC Model</h1>
+    <p><strong>Information‑Elasticity Coupling in Spinal Development and Biomechanics</strong></p>
+    <section id="manuscript">
+      <h2>📄 Research Manuscript</h2>
+      <p><em>Biological Counter‑Curvature and Information‑Elasticity Coupling in Spinal Development</em></p>
+      <p>600+ line research manuscript with testable predictions.</p>
+      <a href="https://github.com/sayujks0071/life/blob/main/docs/manuscript/SpinalCountercurvature_IEC.md" class="btn">Read Manuscript →</a>
+    </section>
+    <section id="code">
+      <h2>💻 Source Code</h2>
+      <p>Complete Python implementation with CLI tools, test suite, and documentation.</p>
+      <a href="https://github.com/sayujks0071/life" class="btn">View Repository →</a>
+      <a href="https://github.com/sayujks0071/life/archive/refs/heads/main.zip" class="btn">Download ZIP</a>
+    </section>
+    <section id="quickstart">
+      <h2>🚀 Quick Start</h2>
+      <pre>git clone https://github.com/sayujks0071/life.git
+cd life
+poetry install
+poetry run spinalmodes iec demo</pre>
+    </section>
+    <section id="docs">
+      <h2>📖 Documentation</h2>
+      <ul>
+        <li><a href="cli.md">CLI Reference</a> – Command‑line interface documentation.</li>
+        <li><a href="figures.md">Figure Guide</a> – How to generate and interpret figures.</li>
+        <li><a href="../README.md">Project README</a> – Overview and installation.</li>
+      </ul>
+    </section>
+    <section id="features">
+      <h2>✨ Features</h2>
+      <ul>
+        <li>Three IEC coupling mechanisms (χ_κ, χ_E/χ_C, χ_f).</li>
+        <li>CLI tools for parameter sweeps and phase diagrams.</li>
+        <li>Comprehensive test suite with acceptance criteria.</li>
+        <li>Publication‑ready figure generation.</li>
+        <li>Integration with HOX/PAX developmental biology.</li>
+      </ul>
+    </section>
+    <section id="figures">
+      <h2>🖼️ Figures (Placeholders)</h2>
+      <p>The interactive figure gallery will live here. Check out the <a href="figures.md">figure guide</a> to generate your own plots.</p>
+      <!-- Placeholder for future figure thumbnails -->
+      <div style="background:#ecf0f1; padding:30px; text-align:center; border-radius:5px;">
+        <em>Figure gallery coming soon…</em>
+      </div>
+    </section>
+    <footer>
+      <p>© 2025 Dr. Sayuj Krishnan | IEC Model for Spinal Biomechanics</p>
+      <p><a href="https://github.com/sayujks0071/life/blob/main/LICENSE">MIT License</a> | <a href="https://github.com/sayujks0071/life/issues">Report Issues</a> | <a href="mailto:sayuj@example.com">Contact</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,76 @@
+name: manuscript-editing
+
+resources:
+  # GPU requirements - prioritize cost-effective options
+  accelerators: 
+    - RTX4090:1      # RunPod: $0.39/hr, 24GB VRAM
+    - A100:1         # Lambda/RunPod: $1.10/hr, 40GB VRAM  
+    - L40S:1         # Alternative: $0.90/hr, 48GB VRAM
+  
+  # Prefer specific clouds (in order)
+  cloud: runpod  # Start with RunPod, can change to 'lambda' or remove for auto-select
+  
+  # Disk space for model cache
+  disk_size: 100
+  
+  # Use spot instances for cost savings (optional)
+  use_spot: false  # Set to true for 3-6x savings with auto-recovery
+
+# Working directory - sync local files to cloud
+workdir: .
+
+# Files to exclude from sync (save time and bandwidth)
+file_mounts:
+  /tmp/skip:
+    source: ~/.gitignore
+    mode: COPY
+
+# Setup commands - run once when cluster is created
+setup: |
+  # Update system
+  echo "Setting up environment..."
+  
+  # Install Python dependencies
+  pip install -r requirements_cloud.txt
+  
+  # Pre-download Qwen2.5-32B model to cache
+  echo "Downloading Qwen2.5-32B model (this may take 5-10 minutes)..."
+  python3 -c "
+  from transformers import AutoTokenizer, AutoModelForCausalLM
+  import torch
+  
+  MODEL_ID = 'Qwen/Qwen2.5-32B-Instruct'
+  print(f'Downloading {MODEL_ID}...')
+  
+  tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+  model = AutoModelForCausalLM.from_pretrained(
+      MODEL_ID,
+      device_map='auto',
+      torch_dtype='auto',
+      trust_remote_code=True
+  )
+  print('Model downloaded and cached successfully!')
+  "
+  
+  echo "Setup complete!"
+
+# Main task - run manuscript editing
+run: |
+  echo "Starting manuscript editing with Qwen2.5-32B..."
+  echo "Working directory: $(pwd)"
+  echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader)"
+  
+  # Run the manuscript editor
+  python3 edit_manuscript.py
+  
+  echo "Manuscript editing complete!"
+  echo "Results saved to edited_sections/"
+  
+  # Show summary
+  ls -lh edited_sections/
+
+# Environment variables
+envs:
+  PYTHONUNBUFFERED: "1"
+  TRANSFORMERS_CACHE: "/tmp/transformers_cache"
+  HF_HOME: "/tmp/huggingface"

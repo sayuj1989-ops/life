@@ -1,0 +1,3 @@
+# Conclusion
+
+We have presented a theoretical framework for \emph{Biological Countercurvature}, positing that the geometry of the spine is determined by the interaction between a developmental information field and the gravitational environment. By coupling a Cosserat rod model with an Information--Elasticity mechanism, we demonstrated that the spinal S-curve emerges as a gravity-selected mode---a stable equilibrium accessible only when information modifies the effective metric of the structure. This framework unifies the understanding of normal spinal development, microgravity adaptation, and pathological deformity (scoliosis) under a single physical principle: the shaping of biological spacetime by genetic information.

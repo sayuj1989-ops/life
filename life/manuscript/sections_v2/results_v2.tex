@@ -1,0 +1,43 @@
+\section{Results}
+
+We present numerical results demonstrating how the Information--Elasticity Coupling (IEC) framework stabilizes spinal geometry against gravity. By incorporating structural parameters derived from AlphaFold (e.g., stiffness norms from Collagen II, chirality from Dynein), we map the specific regimes where this stability holds and where it breaks down into pathology.
+
+\subsection{Segmentation-Derived Information Field}
+We first establish the connection between developmental patterning and the mechanical information field. Figure 1 illustrates the mapping from discrete genetic domains (HOX code) to the continuous information field $I(s)$.
+\begin{figure}[h!]
+    \centering
+    % Placeholder for Figure 1
+    \caption{\textbf{From Genes to Geometry.} (A) Conceptual mapping of HOX/PAX segmentation domains to the scalar information field $I(s)$. (B) The IEC landscape: peaks in $I(s)$ correspond to regions of high lordotic demand (cervical/lumbar), while the nodal flow parameter $\epsilon$ induces a baseline chiral twist.}
+    \label{fig:iec_landscape}
+\end{figure}
+The resulting field $I(s)$ exhibits peaks in the cervical ($\tilde{I} \approx 0.8$) and lumbar ($\tilde{I} \approx 1.0$) regions. Through the biological metric (Eq.~\ref{eq:biological_metric}), these regions possess a larger ``effective length,'' effectively encoding the target S-shape into the manifold itself.
+
+\subsection{Microgravity Persistence and Mode Selection}
+To differentiate between passive elasticity and active IEC control, we simulated spinal geometry under varying gravitational loads (Fig. 3).
+\begin{figure}[h!]
+    \centering
+    % Placeholder for Figure 3
+    \caption{\textbf{3D Equilibrium Configurations.} (A) Comparison of passive sag (gray) and IEC-stabilized S-curve (blue) under Earth gravity ($1g$). (B) Persistence of the S-curve in active microgravity simulations ($0g$), contrasted with the distinct straightening of the passive beam.}
+    \label{fig:3d_solutions}
+\end{figure}
+In the passive model, the S-shape is a load-dependent deformation that vanishes in microgravity. In the IEC model, however, the S-curve persists as $g \to 0$ (Fig. 3B), albeit with slightly reduced magnitude due to the removal of the gravitational moment. This aligns with observations of astronaut spinal elongation and shape retention~\cite{green2018spinal}, confirming that the S-curve is an intrinsic ``rest shape'' encoded by the information field.
+
+\subsection{Phase Diagrams: The Stable Valley vs. Scoliotic Canyon}
+We map the system behavior across the parameter space of coupling strength $\chi_\kappa$ and gravitational acceleration $g$.
+\begin{figure}[h!]
+    \centering
+    % Placeholder for Figure 4
+    \caption{\textbf{Phase Diagram of Countercurvature Regimes.} Heatmap of geodesic deviation $\widehat{D}_{\mathrm{geo}}$. Region II (Cooperative) represents the healthy ''Stable Valley''. Region III (Information-Dominated) shows the emergence of complex, high-energy buckling modes.}
+    \label{fig:phase_diagram}
+\end{figure}
+Figure 4 reveals a critical stability window. In the \emph{cooperative} regime ($\chi_\kappa \approx 0.04$--$0.06$), information and gravity balance to produce a stable S-curve. However, when coupling strength exceeds a critical threshold ($\chi_\kappa > 0.08$), the system enters an \emph{information-dominated} regime. Here, the effective metric becomes highly distorted, and the ground state bifurcation leads to complex, non-planar geometries.
+
+\subsection{Scoliosis as a Symmetry-Breaking Mode}
+Finally, we explore the consequences of molecular asymmetry defects (e.g., low dyanin chirality $\epsilon \to 0$ or high asymmetry).
+\begin{figure}[h!]
+    \centering
+    % Placeholder for Figure 5
+    \caption{\textbf{Emergence of Scoliosis-like Patterns.} (A) Standard IEC model with robust bilateral symmetry. (B) Perturbation with random L-R noise ($\sigma = 0.05$). In the information-dominated regime, this noise is amplified into a coupled lateral-twist mode (scoliosis) with high Cobb angle and axial rotation.}
+    \label{fig:scoliosis}
+\end{figure}
+In the information-dominated regime, small random perturbations in the left-right information field are amplified into large-scale lateral deviations with coupled axial rotation (Fig. 5). This suggests that idiopathic scoliosis may represent a ``decoding error'' where the spine falls into a latent, high-curvature eigenmode of the information-coupled system.

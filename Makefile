@@ -1,36 +1,50 @@
-.PHONY: help install test format lint typecheck green clean
+.PHONY: all data figs alphafold alphafold-data alphafold-analyze alphafold-figs alphafold-numbers alphafold-all clean manuscript
 
-help:
-	@echo "Available targets:"
-	@echo "  install     - Install dependencies via poetry"
-	@echo "  test        - Run pytest with coverage"
-	@echo "  format      - Format code with black"
-	@echo "  lint        - Lint code with ruff"
-	@echo "  typecheck   - Type check with mypy"
-	@echo "  green       - Run all checks (format, lint, typecheck, test)"
-	@echo "  clean       - Remove generated files"
+PYTHON = .venv/bin/python3
 
-install:
-	poetry install
+all: data figs manuscript
 
-test:
-	poetry run pytest tests/ -v --cov=src/spinalmodes --cov-report=term-missing
+data: results/sweep_results.csv results/alphafold_summary.csv
 
-format:
-	poetry run black src/ tests/ tools/
-	poetry run ruff --fix src/ tests/ tools/
+results/single_sim.csv: scripts/sim_single.py
+	$(PYTHON) scripts/sim_single.py
 
-lint:
-	poetry run ruff check src/ tests/ tools/
+results/sweep_results.csv: scripts/sweep_params.py scripts/sim_single.py
+	$(PYTHON) scripts/sweep_params.py
 
-typecheck:
-	poetry run mypy src/ tests/ tools/ --ignore-missing-imports
+results/alphafold_summary.csv: scripts/alphafold_reanalysis.py
+	$(PYTHON) scripts/alphafold_reanalysis.py
 
-green: format lint typecheck test
-	@echo "✅ All checks passed!"
+figs: scripts/make_figures.py data
+	$(PYTHON) scripts/make_figures.py
+
+manuscript: data
+	$(PYTHON) scripts/update_manuscript.py
+
+alphafold: results/alphafold_summary.csv
+
+# AlphaFold analysis pipeline targets
+alphafold-data:
+	mkdir -p results
+	$(PYTHON) -m alphafold_analysis.build_dataset --output results/alphafold_dataset_index.csv
+
+alphafold-analyze:
+	mkdir -p results
+	$(PYTHON) alphafold_analysis/analyze_bcc_structures.py --index results/alphafold_dataset_index.csv --output-dir results
+
+alphafold-figs:
+	mkdir -p figures/main
+	$(PYTHON) figures/src/plot_alphafold_main.py --data results/bcc_analysis_data.csv --summary results/bcc_stats_summary.json 2>/dev/null || true
+	cp fig_alphafold_*.pdf figures/main/ 2>/dev/null || true
+	cp fig_alphafold_*.png figures/main/ 2>/dev/null || true
+
+alphafold-numbers:
+	mkdir -p manuscript/numbers
+	$(PYTHON) scripts/update_manuscript_numbers.py --stats results/bcc_stats_summary.json --out manuscript/numbers/alphafold_numbers.json 2>/dev/null || true
+
+alphafold-all: alphafold-data alphafold-analyze alphafold-figs alphafold-numbers
+	@echo "✅ AlphaFold analysis pipeline complete"
 
 clean:
-	rm -rf .pytest_cache .coverage htmlcov
-	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name "*.pyc" -delete
-
+	rm -rf results/*.csv figures/*.png
+	rm -rf results/ .cache/afdb/

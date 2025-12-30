@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------------------------------------------------------------------------
+% Basic packages
+% ---------------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+
+% ---------------------------------------------------------------------------
+% Hyperref setup
+% ---------------------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={Biological Countercurvature of Spacetime},
+    pdfauthor={Dr. Sayuj Krishnan S},
+}
+
+% ---------------------------------------------------------------------------
+% Macros for recurring notation
+% ---------------------------------------------------------------------------
+% Fields and functions
+\newcommand{\Ifield}{I(s)}
+\newcommand{\Ifieldt}{I(s,t)}
+\newcommand{\gEff}{g_{\mathrm{eff}}}
+\newcommand{\Dgeo}{D_{\mathrm{geo}}}
+\newcommand{\Dgeohat}{\widehat{D}_{\mathrm{geo}}}
+\newcommand{\kappaPassive}{\kappa_{0}}
+\newcommand{\kappaInfo}{\kappa_{I}}
+\newcommand{\chiK}{\chi_{\kappa}}
+\newcommand{\chiE}{\chi_{E}}
+\newcommand{\chiC}{\chi_{C}}
+\newcommand{\chiM}{\chi_{M}}
+
+% Metric and line element
+\newcommand{\dlEff}{d\ell_{\mathrm{eff}}}
+\newcommand{\metricEff}{\dlEff^{2} = \gEff(s)\,ds^{2}}
+
+% Scoliosis metrics
+\newcommand{\Slat}{S_{\mathrm{lat}}}
+\newcommand{\Cobb}{\theta_{\mathrm{Cobb}}}
+
+% Nonlocal sliding (counterbend mechanics)
+\newcommand{\muSliding}{\mu}
+\newcommand{\gammaCompliance}{\gamma}
+
+% Misc
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\dd}{\mathrm{d}}
+
+% ---------------------------------------------------------------------------
+% Mathematical Box environment
+% ---------------------------------------------------------------------------
+\tcbset{
+  colback=gray!5!white,
+  colframe=black!60,
+  fonttitle=\bfseries,
+  center title,
+}
+
+\newtcolorbox{mathbox}[1][]{
+  enhanced,
+  breakable,
+  title={#1},
+}
+
+% ---------------------------------------------------------------------------
+% Title / Authors
+% ---------------------------------------------------------------------------
+\title{Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry}
+
+\author{Dr.~Sayuj Krishnan S, MBBS, DNB (Neurosurgery)\\
+Consultant Neurosurgeon and Spine Surgeon, Yashoda Hospitals, Malakpet, Hyderabad, India\\
+\texttt{dr.sayujkrishnan@gmail.com}
+}
+
+\date{\today}
+
+% ---------------------------------------------------------------------------
+% Document
+% ---------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+
+% \input{sections/significance}
+
+\input{sections/introduction}
+
+\input{sections/theory}
+
+\input{sections/methods}
+
+\input{sections/results}
+
+\input{sections/discussion}
+
+\input{sections/conclusion}
+
+\input{sections/availability}
+
+\input{sections/tables}
+
+\input{sections/figures}
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\end{document}

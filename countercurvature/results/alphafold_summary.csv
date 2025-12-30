@@ -1,0 +1,7 @@
+protein,uniprot,category,ok,reason
+YAP1,P46937,MECHANOSENSITIVE,False,parse_error:biopython is required. Install dependencies via `make deps`.
+FOXO3,O43524,LONGEVITY,False,parse_error:biopython is required. Install dependencies via `make deps`.
+SIRT1,Q96EB6,LONGEVITY,False,parse_error:biopython is required. Install dependencies via `make deps`.
+PGC1A,Q9UBK2,LONGEVITY,False,parse_error:biopython is required. Install dependencies via `make deps`.
+VINCULIN,P18206,MECHANOSENSITIVE,False,parse_error:biopython is required. Install dependencies via `make deps`.
+INTEGRIN_B1,P05556,MECHANOSENSITIVE,False,parse_error:biopython is required. Install dependencies via `make deps`.

@@ -1,147 +1,217 @@
-# Spinal Modes: Counter-Curvature & IEC Model
+# Biological Countercurvature of Spacetime
 
-[![Status](https://img.shields.io/badge/status-publication--ready-green.svg)]()
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Solver](https://img.shields.io/badge/solver-BVP%20validated-blue.svg)]()
+**An Information-Cosserat Framework for Spinal Geometry**
 
-**✅ STATUS: Core Framework Publication-Ready (85% Complete)**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://img.shields.io/badge/DOI-10.0000%2Fplaceholder-blue.svg)](https://doi.org/10.0000/placeholder-doi)
 
-A research framework for studying biological counter-curvature and Information-Elasticity Coupling (IEC) in spinal biomechanics, integrating developmental genetics (HOX/PAX), ciliary origins, and scoliosis as symmetry-breaking.
-
-> **Upgrade Complete (2025-11-04):** Rigorous BVP solver implemented and validated (L2 error = 0.0000 vs analytical). All three IEC mechanisms functional. See [summary.md](summary.md) for full report.
-
-## Quickstart (Reproducible Environment)
-
-**For publication reproducibility, use pinned environment specs:**
-
-### Option 1: Conda (Recommended)
-
-```bash
-# Create environment from spec
-conda env create -f envs/environment.yml
-conda activate spinalmodes
-
-# Run smoke tests (should pass all 4)
-python test_solver_upgrade.py
-```
-
-### Option 2: pip
-
-```bash
-# Install dependencies
-pip install -r envs/requirements.txt
-
-# Run smoke tests
-python test_solver_upgrade.py
-```
-
-### Option 3: Docker
-
-```bash
-# Build container
-docker build -t spinalmodes:0.2.0 -f envs/Dockerfile .
-
-# Run tests
-docker run --rm -v $(pwd):/workspace -w /workspace spinalmodes:0.2.0 python test_solver_upgrade.py
-```
-
-**Expected output:** All 4 smoke tests should pass ✅
-
-> **Note:** The core BVP solver upgrade is complete and publication-ready. See [summary.md](summary.md) and [TODO_NEXT_STEPS.md](TODO_NEXT_STEPS.md) for details.
+---
 
 ## Overview
 
-This package implements:
-- **IEC Model**: Three coupling mechanisms linking information fields to mechanical properties
-  - IEC-1: Target curvature bias (χ_κ)
-  - IEC-2: Constitutive bias (χ_E, χ_C)
-  - IEC-3: Active moment (χ_f)
-- **Beam/Cosserat Solvers**: For spinal mechanics with coupled oscillators
-- **Phase Analysis**: Parameter sweeps, node drift, helical threshold computations
-- **Figure Generation**: Publication-ready figures with validation
+This repository contains the manuscript, reproducible analysis code, and datasets supporting a theoretical framework that explains how developmental information shapes biological structures against gravity. The work bridges developmental genetics, biomechanics, and differential geometry to understand spinal curvature in normal development, microgravity adaptation, and pathological conditions like scoliosis.
 
-## Installation (Alternative: Poetry)
+**Key Insight:** Developmental information acts as biological "countercurvature"—modifying the effective spacetime metric experienced by living structures, enabling them to maintain complex geometries against gravitational loading.
+
+📄 **Manuscript:** [manuscript/main.tex](manuscript/main.tex)  
+📊 **Figures:** [figures/main/](figures/main/)  
+🔬 **Analysis Code:** [alphafold_analysis/](alphafold_analysis/)
+
+---
+
+## Repository Structure
+
+```
+.
+├── manuscript/                   # Camera-ready manuscript
+│   ├── main.tex                  # Main manuscript file
+│   ├── sections/                 # Individual sections
+│   ├── numbers/                  # Extracted numbers for claims
+│   ├── extended_data/            # Extended data tables & figures
+│   └── references.bib            # Complete bibliography
+│
+├── figures/
+│   ├── main/                     # Final publication-ready figures (tracked)
+│   ├── extended_data/            # Supplementary figures (tracked)
+│   └── src/                      # Plotting scripts
+│
+├── data/
+│   ├── derived/                  # Small derived datasets for claims (tracked)
+│   └── external/                 # Large downloads (NOT tracked)
+│
+├── alphafold_analysis/           # AlphaFold DB structure analysis
+├── scripts/                      # CLI entry scripts
+├── src/                          # Core Python package
+├── tests/                        # Unit tests
+│
+└── docs/
+    ├── notes/                    # Integration guides, setup docs
+    └── archive/                  # Historical drafts, reviews
+```
+
+---
+
+## Quick Start: Reproducibility
+
+### 1. Installation
 
 ```bash
-# Install dependencies (development environment)
-poetry install
+# Clone repository
+git clone https://github.com/sayujks0071/life.git
+cd life
 
-# Verify installation
-poetry run spinalmodes --help
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-> **For reproducibility**, prefer Conda/pip/Docker (see Quickstart above).
+### 2. Run Complete Analysis Pipeline
 
-## Quick Start (Using CLI)
+**One-command reproducibility:**
 
 ```bash
-# Run IEC demo
-poetry run spinalmodes iec demo --out-prefix outputs/csv/iec_demo
-
-# Generate phase diagram
-poetry run spinalmodes iec phase \
-  --delta-b 0.0:0.2:41 \
-  --gradI 0.0:0.1:21 \
-  --out-csv outputs/csv/iec_phase_map.csv \
-  --out-fig outputs/figs/fig_iec_phase.png
-
-# Node drift analysis
-poetry run spinalmodes iec node-drift \
-  --I-mode step \
-  --chi-kappa 0.04 \
-  --out-fig outputs/figs/fig_iec_node_drift.png
+make alphafold-all
 ```
 
-## Development
+This executes:
+- `alphafold-data`: Build AlphaFold structure dataset index
+- `alphafold-analyze`: Analyze BCC-related protein structures
+- `alphafold-figs`: Generate publication figures
+- `alphafold-numbers`: Extract quantitative numbers for manuscript
+
+**Individual steps:**
 
 ```bash
-# Run all checks
-make green
+# Step 1: Build dataset index
+make alphafold-data
 
-# Run tests
-make test
+# Step 2: Run structural analysis
+make alphafold-analyze
 
-# Format code
-make format
+# Step 3: Generate figures
+make alphafold-figs
 
-# Validate figures
-poetry run python tools/validate_figures.py
+# Step 4: Extract manuscript numbers
+make alphafold-numbers
 ```
 
-## Project Structure
+### 3. Compile Manuscript
 
-```
-spinalmodes/
-├── src/spinalmodes/       # Core package
-│   ├── iec.py            # IEC model utilities
-│   ├── iec_cli.py        # CLI commands
-│   ├── fig_*.py          # Figure generation
-│   └── solvers/          # Beam/Cosserat solvers
-├── tests/                # Unit tests
-├── docs/                 # Documentation & manuscript
-├── outputs/              # Generated outputs
-│   ├── figs/            # Figures (PNG + JSON)
-│   ├── csv/             # Data tables
-│   ├── aor/             # Analysis of record
-│   └── reports/         # Reports
-└── tools/               # Validation scripts
+```bash
+cd manuscript
+make all
+# Output: manuscript/main.pdf
 ```
 
-## Documentation
+---
 
-- [CLI Reference](docs/cli.md)
-- [Figure Guide](docs/figures.md)
-- [Manuscript](docs/manuscript/SpinalCountercurvature_IEC.md)
+## Key Results
+
+### 1. S-Curve Emergence from Information Patterning
+
+The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties.
+
+### 2. Phase Diagram of Countercurvature Regimes
+
+Three distinct regimes identified in (χ_κ, g) parameter space:
+
+| Regime | D̂_geo | Description |
+|--------|-------|-------------|
+| **Gravity-dominated** | < 0.1 | Structure follows passive gravitational geodesics |
+| **Cooperative** | 0.1–0.3 | Information and gravity balance (normal physiology) |
+| **Information-dominated** | > 0.3 | Strong geometric distortion (potential pathology) |
+
+### 3. Microgravity Persistence
+
+Model predicts spinal curvature **persists in microgravity** (unlike passive structures):
+- D̂_geo remains >0.15 even as g → 0
+- Lumbar lordosis decreases <20% (vs >80% passive prediction)
+
+### 4. Scoliosis as Amplified Asymmetry
+
+Small information field asymmetries (ε_asym ~3-5%) **amplify into scoliotic deformities** in information-dominated regime.
+
+---
 
 ## Citation
 
-If you use this code, please cite:
+If you use this work, please cite:
+
+```bibtex
+@article{krishnan2025biological_countercurvature,
+  title   = {Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry},
+  author  = {Krishnan, Sayuj},
+  journal = {preprint},
+  year    = {2025},
+  url     = {https://github.com/sayujks0071/life}
+}
 ```
-Krishnan, S. et al. (2025). Biological Counter-Curvature and Information-Elasticity
-Coupling in Spinal Development. [Journal TBD].
-```
+
+See [CITATION.cff](CITATION.cff) for structured citation metadata.
+
+---
+
+## Dependencies
+
+### Core Requirements
+- **Python:** 3.8+
+- **NumPy:** 1.20+
+- **SciPy:** 1.7+
+- **Matplotlib:** 3.4+
+- **PyElastica:** 0.3.0+ (Cosserat rod mechanics)
+
+See [requirements.txt](requirements.txt) for complete list.
+
+### LaTeX (for manuscript compilation)
+- **TeX Live** or **MikTeX**
+- Required packages: amsmath, tikz, natbib, booktabs, siunitx
+
+---
+
+## Project Status
+
+**Current Status:** Research code and manuscript for publication
+
+**Key Features:**
+- ✅ Full theoretical framework (Information-Elasticity Coupling)
+- ✅ Numerical implementation (Cosserat rod solver)
+- ✅ Phase diagram analysis
+- ✅ Testable predictions
+- ✅ Reproducible analysis pipeline
+
+---
+
+## Contributing
+
+This is an active research project. Contributions welcome in:
+1. **Experimental validation** — Connect model to real data
+2. **Parameter estimation** — Inverse problem solvers
+3. **Extensions** — Growth dynamics, patient-specific modeling
+4. **Documentation** — Tutorials, examples
+
+**Contact:** dr.sayujkrishnan@gmail.com
+
+---
 
 ## License
 
-MIT License - see LICENSE file for details.
+- **Code:** MIT License (see [LICENSE](LICENSE))
+- **Manuscript:** © 2025 Dr. Sayuj Krishnan S
 
+---
+
+## Acknowledgments
+
+- **PyElastica Team** — Open-source Cosserat rod framework
+- **AlphaFold DB** — Protein structure data
+- **Yashoda Hospitals** — Institutional support
+
+---
+
+**Last Updated:** December 29, 2025  
+**Version:** 1.0.0  
+**Status:** Publication-ready

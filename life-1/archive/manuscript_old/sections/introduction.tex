@@ -1,0 +1,45 @@
+\section{Introduction}
+
+\subsection{Spinal Development as Coupled Information-Mechanics}
+
+Vertebrate spinal development orchestrates genetic segmentation (somitogenesis), tissue differentiation (sclerotome$\rightarrow$vertebrae), and mechanical morphogenesis into precisely patterned anatomical structures. The columnar organization emerges from:
+
+\begin{enumerate}
+    \item \textbf{Genetic segmentation:} HOX and PAX genes establish rostro-caudal and medio-lateral identities through expression gradients
+    \item \textbf{Oscillatory clocks:} Coupled oscillators in the presomitic mesoderm (PSM) generate periodic somites via Notch/Wnt/FGF signaling
+    \item \textbf{Mechanical feedback:} Physical forces from notochord, neural tube, and myotome influence tissue geometry and stress distributions
+\end{enumerate}
+
+Despite extensive molecular characterization, how \textbf{information fields} (gene expression, morphogen gradients, ciliary flow patterns) \textbf{couple to mechanical properties} (stiffness, damping, target curvature) remains an open question. Disruptions in this coupling are implicated in:
+
+\begin{itemize}
+    \item \textbf{Idiopathic scoliosis:} Asymmetric three-dimensional spinal deformity (prevalence $\sim$2--3\% in adolescents)
+    \item \textbf{Congenital vertebral malformations:} Hemivertebrae, fusions, wedge defects linked to segmentation failures
+    \item \textbf{Ciliopathies:} Primary ciliary dyskinesia patients show elevated scoliosis incidence~\cite{grimes2016}
+\end{itemize}
+
+\subsection{The Counter-Curvature Hypothesis}
+
+Classical mechanics predicts that a loaded column under gravity adopts curvature determined by load magnitude, boundary conditions, and uniform material properties. However, biological spines exhibit \textbf{counter-curvatures} (cervical lordosis, thoracic kyphosis, lumbar lordosis) that:
+
+\begin{itemize}
+    \item Appear during development prior to substantial loading
+    \item Persist across diverse loading conditions
+    \item Correlate with segmental HOX/PAX expression domains~\cite{wellik2007}
+\end{itemize}
+
+We hypothesize that \textbf{information fields program spatially varying target curvatures and constitutive properties}, creating intrinsic mechanical heterogeneity that guides morphogenesis independent of external loads.
+
+\subsection{Goals of This Work}
+
+We formalize the Information-Elasticity Coupling (IEC) concept through three specific mechanisms, implement them computationally using rigorous numerical methods, and derive discriminating experimental predictions. Our objectives:
+
+\begin{enumerate}
+    \item \textbf{Theory:} Define mathematical couplings between information fields $I(s)$ and mechanical parameters (curvature, stiffness, damping, active forces)
+    \item \textbf{Computation:} Implement IEC in a validated BVP framework with perfect analytical validation; perform parameter sweeps and phase analysis
+    \item \textbf{Validation:} Demonstrate that IEC reproduces known phenomenology (pattern shifts, amplitude modulation, helical instabilities) with testable parameter constraints
+    \item \textbf{Outlook:} Propose experiments to measure $\chi_\kappa$, $\chi_E$, $\chi_C$, $\chi_f$ in vivo; identify candidate molecular effectors
+\end{enumerate}
+
+
+

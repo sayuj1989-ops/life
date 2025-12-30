@@ -1,0 +1,41 @@
+\section*{Tables}
+
+\begin{table}[h!]
+\centering
+\caption{Computational model parameters and biological justification}
+\label{tab:parameters}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Units} & \textbf{Biological Basis} \\
+\midrule
+\multicolumn{4}{l}{\textit{Geometry}} \\
+Length $L$ & 0.40 & m & Adult spine (sacrum to cranium) \\
+Diameter $d$ & 0.03 & m & Typical vertebral body dimension \\
+$n$ elements & 50--100 & -- & Convergence-tested discretization \\
+\midrule
+\multicolumn{4}{l}{\textit{Material Properties}} \\
+Young's modulus $E_0$ & 1.0 & GPa & Effective modulus (bone + disc) \\
+Area moment $I_{\mathrm{area}}$ & $1.0 \times 10^{-8}$ & m$^4$ & Cylindrical cross-section \\
+Density $\rho$ & 1100 & kg/m$^3$ & Tissue-averaged density \\
+Cross-section $A$ & $7.1 \times 10^{-4}$ & m$^2$ & $\pi (d/2)^2$ \\
+\midrule
+\multicolumn{4}{l}{\textit{IEC Coupling Parameters}} \\
+$\chi_\kappa$ & 0--0.10 & m$^{-1}$ & Rest curvature coupling (sweep) \\
+$\chi_E$ & 0.10 & -- & Stiffness modulation (fixed) \\
+$\chi_M$ & 0--0.05 & N$\cdot$m & Active moment coupling \\
+$\beta_1, \beta_2$ & 0.1, 0.05 & -- & Metric coupling constants \\
+\midrule
+\multicolumn{4}{l}{\textit{Information Field (Spinal Profile)}} \\
+Cervical peak & $s/L = 0.80$ & -- & C1-C7 region \\
+Lumbar peak & $s/L = 0.25$ & -- & L1-L5 region \\
+Peak amplitude & 0.5--0.7 & -- & Normalized HOX expression \\
+Baseline $I_0$ & 0.3 & -- & Background patterning \\
+\midrule
+\multicolumn{4}{l}{\textit{Loading \& Dynamics}} \\
+Gravity $g$ & 0.01--1.0 & $g_\oplus$ & Microgravity to Earth \\
+Damping $\nu$ & 0.1--1.0 & s$^{-1}$ & Numerical dissipation \\
+Equilibrium criterion & $v_{\max} < 10^{-6}$ & m/s & Kinetic energy threshold \\
+\bottomrule
+\end{tabular}
+\end{table}

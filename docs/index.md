@@ -1,8 +1,16 @@
-# Spinal Modes: IEC Model Documentation
+# spinalmodes: Information--Cosserat Framework for Spinal Geometry
 
-Welcome to the documentation for the **Spinal Modes** project, implementing the Information-Elasticity Coupling (IEC) model for spinal biomechanics.
+The `spinalmodes` package implements the Information-Elasticity Coupling (IEC) framework for modeling biological rods (spines, plant stems, flagella).
 
-## Quick Links
+## Core Features
+
+- **IEC-Modified Cosserat Rods**: Extension of the Cosserat rod model to include information-dependent rest curvature and stiffness.
+- **Spectral Mode Analysis**: Tools for analyzing the eigenvalue spectrum of biological beams in gravity.
+- **Geodesic Deviation Metrics**: Quantitative measures for "biological spacetime" distortion.
+- **Scoliosis Simulation**: Bifurcation analysis of lateral symmetry breaking.
+- **Countercurvature Coupling**: Growth-driven mechanisms opposing gravitational bending.
+
+## Documentation
 
 - [CLI Reference](cli.md) - Command-line interface documentation
 - [Figure Guide](figures.md) - Generated figures and interpretation
@@ -50,53 +58,25 @@ poetry run python tools/validate_figures.py
 
 ## Installation
 
-Requirements:
-- Python 3.10+
-- Poetry for dependency management
-
 ```bash
-git clone https://github.com/[username]/spinalmodes.git
-cd spinalmodes
-poetry install
+pip install -r requirements.txt
+pip install -e .
 ```
 
-## Testing
+## Quick Start
 
-```bash
-# Run all tests
-poetry run pytest tests/ -v
+```python
+from spinalmodes.iec import solve_beam_static
+from spinalmodes.countercurvature import make_uniform_grid
 
-# Run with coverage
-poetry run pytest tests/ --cov=src/spinalmodes --cov-report=term-missing
+# Define grid
+s = make_uniform_grid(0.4, 100)
 
-# Run all checks (lint + format + type + test)
-make green
+# Solve for equilibrium
+# ...
 ```
 
-## Citation
+## Reference
 
 If you use this code, please cite:
-
-```bibtex
-@article{krishnan2025iec,
-  title={Biological Counter-Curvature and Information-Elasticity Coupling in Spinal Development},
-  author={Krishnan, Sayuj and others},
-  journal={[Journal TBD]},
-  year={2025}
-}
-```
-
-## License
-
-MIT License - see [LICENSE](../LICENSE) file.
-
-## Contact
-
-For questions or collaboration inquiries, please contact:
-- Dr. Sayuj Krishnan: [email]
-- GitHub: [github.com/username/spinalmodes]
-
-## Acknowledgments
-
-This work integrates concepts from developmental biology, biomechanics, and applied mathematics. We thank the research community for foundational work on HOX patterning, ciliary mechanics, and spinal biomechanics.
-
+S. Krishnan (2025) "Biological Countercurvature of Spacetime"

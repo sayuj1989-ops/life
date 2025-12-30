@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+% Metadata
+\title{Biological Counter-Curvature and Information-Elasticity Coupling in Spinal Development}
+\author{Dr. Sayuj Krishnan\thanks{Correspondence: sayuj@example.com}}
+\date{\today}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={Biological Counter-Curvature and Information-Elasticity Coupling in Spinal Development},
+    pdfauthor={Dr. Sayuj Krishnan}
+}
+
+\begin{document}
+
+\maketitle
+
+% Abstract
+\input{sections/abstract}
+
+% Keywords
+\noindent\textbf{Keywords:} spinal biomechanics, morphogenesis, HOX genes, scoliosis, mechanobiology, developmental mechanics, information-elasticity coupling
+
+\newpage
+
+% Main sections
+\input{sections/introduction}
+\input{sections/theory}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusions}
+
+% Bibliography
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% Reproducibility statement
+\newpage
+\section*{Reproducibility Statement}
+All code, data, and analysis scripts are available at:
+\url{https://github.com/sayujks0071/life}
+
+Reproducible environment specifications:
+\begin{itemize}
+    \item Conda: \texttt{envs/environment.yml} (Python 3.10.12, numpy 1.24.3, scipy 1.11.2)
+    \item pip: \texttt{envs/requirements.txt}
+    \item Docker: \texttt{envs/Dockerfile}
+\end{itemize}
+
+All simulations use random seed 1337 for reproducibility. Validation results are available in \texttt{test\_solver\_upgrade.py} (4/4 tests passing).
+
+\end{document}
+
+
+

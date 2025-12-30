@@ -1,0 +1,50 @@
+\section{Methods}
+
+We implement the Information--Cosserat framework using two complementary numerical approaches: a fast deterministic beam model for parameter sweeps and eigenanalysis, and a full three-dimensional Cosserat rod simulation for capturing large deformations and geometric nonlinearities.
+
+\subsection{Deterministic IEC Beam Model}
+
+To explore the mode selection mechanism (Eq.~\ref{eq:mode_selection}), we discretize the linearized beam equations using a finite difference scheme on a 1D domain $s \in [0, L]$. The rod is divided into $N=100$ segments. The information field $I(s)$ is mapped to local stiffness $E_i$ and rest curvature $\kappa_{i}$ at each node. We solve the resulting boundary value problem (BVP) using a standard shooting method (or sparse matrix solver for the eigenproblem). This allows rapid exploration of the $(\chi_\kappa, g)$ parameter space to identify regions where S-modes become the ground state.
+
+\subsection{3D Cosserat Rod Implementation (PyElastica)}
+
+For full 3D simulations, we utilize \texttt{PyElastica}~\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory. The spine is modeled as a Cosserat rod with the following specifications:
+
+\begin{itemize}
+    \item \textbf{Discretization}: The rod is discretized into $n=50$--$100$ elements, which was numerically verified for convergence ($\Delta \widehat{D}_{\mathrm{geo}} < 1\%$ for $n \ge 50$).
+    \item \textbf{IEC Coupling}: We implemented a custom callback in \texttt{PyElastica} that updates the local rest curvature vector $\bm{\kappa}^0(s)$ and bending stiffness matrix $\mathbf{B}(s)$ at initialization based on the information field $I(s)$.
+    \item \textbf{Information Field}: The field $I(s)$ is modeled as a bimodal Gaussian distribution peaking at the cervical ($s_c$) and lumbar ($s_l$) regions. To bridge the gap between discrete HOX domains $H_i$ and the continuous field $I(s)$, we employ a \emph{biological coarse-graining} logic. Each genetic domain is integrated via a convolution kernel $G(s; \sigma)$, where $\sigma$ represents the characteristic length scale of morphogen diffusion.
+    \begin{equation}
+    I(s) = \left[ \sum_i H_i \Theta(s - s_i) \right] \otimes G(s; \sigma) + I_{base},
+    \label{eq:coarse_graining}
+    \end{equation}
+    where $\Theta$ is the domain step function. The spatial frequency of the resulting S-mode is directly coupled to the temporal frequency $\omega$ of the \emph{segmentation clock}~\cite{pourquie2011vertebrate}, such that the characteristic wavelength $\lambda \approx v/\omega$ (with $v$ being the axial growth velocity) determines the optimal metric curvature.
+    \item \textbf{Boundary Conditions}: The rod is clamped at the base (sacrum: $\mathbf{r}(0) = \mathbf{0}$, $\mathbf{d}_i(0) = \delta_{ij}$) and free at the top (cranium: $\mathbf{n}(L) = \mathbf{0}$, $\mathbf{m}(L) = \mathbf{0}$), simulating a cantilever spine.
+    \item \textbf{Gravitational Loading}: Gravity is applied as a uniform body force $\mathbf{f} = \rho A \mathbf{g}$.
+    \item \textbf{Damping}: To find static equilibrium, we apply dissipation ($\nu \sim 0.1$--$1.0$) and integrate until $v_{\max} < 10^{-6}$ m/s.
+\end{itemize}
+
+The source code for the IEC-modified Cosserat solver is available in the \texttt{spinalmodes} Python package (see Data Availability).
+
+\subsection{Dimensionless Analysis and Parameter Identifiability}
+To quantify the relative dominance of biological information over gravitational mechanics across different scales, we define the dimensionless \emph{BCC Number} ($N_{\mathrm{BCC}}$):
+\begin{equation}
+N_{\mathrm{BCC}} = \frac{\chi_\kappa I(s) \kappa_0(s)^2}{\rho g L^3},
+\label{eq:bcc_number}
+\end{equation}
+which represents the ratio of information-driven counter-torque to gravitational sag-torque. We predict that healthy spinal morphology is maintained in the regime $N_{\mathrm{BCC}} \sim 1$--$10$, whereas scoliotic instabilities emerge when $N_{\mathrm{BCC}} < 1$, indicating a failure of the biological counter-torque to balance gravitational loads.
+
+To ensure the identifiability of the phenomenological parameters $\chi_\kappa$ and $\beta$, we propose an experimental protocol using \emph{Traction Force Microscopy} (TFM) and \emph{Brillouin Microscopy}. TFM allows for the measurement of local surface stresses in spinal tissue segments under controlled loading, while Brillouin microscopy provides a non-invasive mapping of the effective longitudinal modulus $M' \propto B_{\mathrm{eff}}$. By correlating these mechanical maps with HOX gene expression profiles, the coupling constants can be calibrated against empirical stiffness gradients in vivo.
+
+\subsection{Parameter Sweeps and Mode Classification}
+
+We perform systematic parameter sweeps over the coupling strength $\chi_\kappa$ (range $[0, 0.1]$) and gravitational acceleration $g$ (range $[0.01, 1.0]$ $g_{\mathrm{Earth}}$). For each simulation, we compute the equilibrium shape and evaluate the following metrics:
+1.  \textbf{Geodesic Deviation} $\widehat{D}_{\mathrm{geo}}$: Quantifies the difference between the realized shape and the gravity-only geodesic.
+2.  \textbf{Lateral Deviation} $S_{\mathrm{lat}}$: Measures symmetry breaking in the coronal plane.
+3.  \textbf{Cobb Angle}: Standard clinical measure for scoliotic curves.
+
+Regimes are classified as \emph{gravity-dominated} ($\widehat{D}_{\mathrm{geo}} < 0.1$), \emph{cooperative} ($0.1 < \widehat{D}_{\mathrm{geo}} < 0.3$), or \emph{information-dominated} ($\widehat{D}_{\mathrm{geo}} > 0.3$).
+
+\subsection{Validation}
+
+The numerical implementation was validated against analytical solutions for small-deflection Euler-Bernoulli beams. The \texttt{PyElastica} implementation was further verified by reproducing standard buckling and hanging chain benchmarks (see Supplementary Material).

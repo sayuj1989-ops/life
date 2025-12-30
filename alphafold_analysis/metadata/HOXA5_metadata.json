@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "P20719",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P20719-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P20719-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "P20719",
+  "uniprot_id_api": "HXA5_HUMAN"
+}

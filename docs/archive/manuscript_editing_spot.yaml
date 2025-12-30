@@ -1,0 +1,59 @@
+name: manuscript-editing-spot
+
+resources:
+  # GPU requirements - same as on-demand
+  accelerators: 
+    - RTX4090:1
+    - A100:1
+    - L40S:1
+  
+  cloud: runpod
+  disk_size: 100
+  
+  # Enable spot instances for 3-6x cost savings
+  use_spot: true
+
+# Working directory
+workdir: .
+
+# Setup - same as on-demand
+setup: |
+  echo "Setting up environment (spot instance)..."
+  pip install -r requirements_cloud.txt
+  
+  echo "Downloading Qwen2.5-32B model..."
+  python3 -c "
+  from transformers import AutoTokenizer, AutoModelForCausalLM
+  MODEL_ID = 'Qwen/Qwen2.5-32B-Instruct'
+  print(f'Downloading {MODEL_ID}...')
+  tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, trust_remote_code=True)
+  model = AutoModelForCausalLM.from_pretrained(
+      MODEL_ID,
+      device_map='auto',
+      torch_dtype='auto',
+      trust_remote_code=True
+  )
+  print('Model cached!')
+  "
+  
+  echo "Setup complete!"
+
+# Main task with checkpointing for spot recovery
+run: |
+  echo "Starting manuscript editing (SPOT instance)..."
+  echo "GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader)"
+  
+  # Create checkpoint directory
+  mkdir -p checkpoints
+  
+  # Run with progress tracking
+  python3 edit_manuscript_cloud.py --checkpoint-dir checkpoints
+  
+  echo "Editing complete!"
+  ls -lh edited_sections/
+
+envs:
+  PYTHONUNBUFFERED: "1"
+  TRANSFORMERS_CACHE: "/tmp/transformers_cache"
+  HF_HOME: "/tmp/huggingface"
+  SPOT_INSTANCE: "true"

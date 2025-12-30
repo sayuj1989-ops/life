@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or results, please cite:"
+title: "spinalmodes: Information–Cosserat framework for spinal countercurvature"
+version: 0.3.0
+authors:
+  - family-names: Krishnan
+    given-names: Sayuj
+    affiliation: Yashoda Hospitals, Hyderabad
+license: MIT
+repository-code: https://github.com/sayujks0071/life
+identifiers:
+  - type: doi
+    value: 10.0000/placeholder-doi
+preferred-citation:
+  type: article
+  title: "Biological Countercurvature: An Information–Cosserat Theory of Spinal Geometry"
+  authors:
+    - family-names: Krishnan
+      given-names: Sayuj
+  journal: "preprint"
+  year: 2025
+

@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "P28358",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P28358-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P28358-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "P28358",
+  "uniprot_id_api": "HXD10_HUMAN"
+}

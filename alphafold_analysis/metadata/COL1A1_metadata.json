@@ -1,0 +1,11 @@
+{
+  "uniprot_id": "P02452",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P02452-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P02452-F1-model_v6.cif",
+  "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-P02452-F1-confidence_v6.json",
+  "model_url": "https://alphafold.ebi.ac.uk/files/AF-P02452-F1-model_v6.pdb",
+  "model_confidence": null,
+  "uniprot_accession": "P02452",
+  "uniprot_id_api": "P02452",
+  "guessed_version": "v6"
+}

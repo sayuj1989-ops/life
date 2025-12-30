@@ -1,0 +1,11 @@
+{
+  "uniprot_id": "P17481",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P17481-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P17481-F1-model_v6.cif",
+  "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-P17481-F1-confidence_v6.json",
+  "model_url": "https://alphafold.ebi.ac.uk/files/AF-P17481-F1-model_v6.pdb",
+  "model_confidence": null,
+  "uniprot_accession": "P17481",
+  "uniprot_id_api": "P17481",
+  "guessed_version": "v6"
+}

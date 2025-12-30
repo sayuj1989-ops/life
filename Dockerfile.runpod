@@ -1,0 +1,28 @@
+FROM runpod/pytorch:2.1.0-py3.10-cuda11.8.0-devel
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    transformers>=4.35.0 \
+    accelerate \
+    bitsandbytes \
+    langchain \
+    langchain-community \
+    chromadb \
+    sentence-transformers \
+    biopython
+
+# Set working directory
+WORKDIR /workspace
+
+# Download and cache Instella model
+RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; \
+    AutoTokenizer.from_pretrained('amd/Instella-3B-Long-Instruct', trust_remote_code=True); \
+    AutoModelForCausalLM.from_pretrained('amd/Instella-3B-Long-Instruct', device_map='auto', torch_dtype='auto', trust_remote_code=True)"
+
+# Copy scripts (will be mounted from RunPod volume)
+# COPY edit_manuscript.py /workspace/
+# COPY langchain_manuscript_analyzer.py /workspace/
+# COPY instella_client.py /workspace/
+
+# Default command
+CMD ["/bin/bash"]

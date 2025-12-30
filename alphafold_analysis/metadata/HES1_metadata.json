@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q14469",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q14469-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q14469-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q14469",
+  "uniprot_id_api": "HES1_HUMAN"
+}

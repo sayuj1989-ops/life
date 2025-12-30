@@ -1,0 +1,83 @@
+[tool.poetry]
+name = "spinalmodes"
+version = "0.3.3"
+description = "Spinal counter-curvature and Information-Elasticity Coupling (IEC) model for biomechanical analysis"
+authors = ["Dr. Sayuj Krishnan S <dr.sayujkrishnan@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/sayujks0071/biology_reasearch"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+packages = [
+    {include = "spinalmodes", from = "src"},
+    # Legacy shim to preserve old `import model.*` code paths
+    {include = "model", from = "src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.24.0"
+scipy = "^1.11.0"
+matplotlib = "^3.7.0"
+typer = "^0.9.0"
+pydantic = "^2.0.0"
+pandas = "^2.0.0"
+lifelines = "^0.27.8"
+requests = "^2.31.0"
+pyelastica = "^0.3.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.2"
+pytest-cov = "^4.1.0"
+black = ">=24.8"
+ruff = ">=0.6"
+mypy = ">=1.11"
+mkdocs = "^1.5.0"
+mkdocs-material = "^9.2.0"
+
+# [tool.poetry.extras]
+# dev = ["pytest>=8.2", "pytest-cov>=4.1", "ruff>=0.6", "black>=24.8", "mypy>=1.11", "lifelines>=0.27"]
+# cosserat = ["pyelastica>=0.0.7"]
+# docs = ["pandoc>=3.1"]
+
+[tool.poetry.scripts]
+spinalmodes = "spinalmodes.cli:app"
+spinalmodes-validate = "spinalmodes.cli:cmd_validate"
+spinalmodes-figures = "spinalmodes.cli:cmd_figures"
+spinalmodes-paper = "spinalmodes.cli:cmd_paper"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["spinalmodes*", "model*"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

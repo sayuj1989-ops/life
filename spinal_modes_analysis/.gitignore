@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.ipynb_checkpoints/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+envs/.env
+.venv
+venv/
+env/
+ENV/
+
+# Outputs (Regenerable - experiment CSVs and figures)
+outputs/csv/
+outputs/figs/
+outputs/experiments/
+outputs/temp/
+!outputs/.gitkeep
+
+# LaTeX (Manuscript build artifacts)
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.fls
+manuscript/*.fdb_latexmk
+manuscript/*.synctex.gz
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.out
+manuscript/*.toc
+manuscript/*.lof
+manuscript/*.lot
+manuscript/*.bcf
+manuscript/*.run.xml
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

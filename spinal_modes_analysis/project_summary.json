@@ -1,0 +1,122 @@
+
+{
+  "project_name": "LIFE",
+  "domain_title": "Biological Counter-Curvature & Information-Elasticity Coupling in Spinal Development",
+  "target_journal": "PRX Life",
+  "primary_claim": "The model explains how local information-elasticity coupling can lead to global spinal counter-curvature patterns.",
+  "license": "MIT",
+  "inventory": {
+    "notebooks": [
+      "/Users/mac/LIFE/life/examples/quickstart.ipynb"
+    ],
+    "scripts": [
+      "/Users/mac/LIFE/life/run_experiments.sh",
+      "/Users/mac/LIFE/life/RUN_FULL_SWEEPS.sh",
+      "/Users/mac/LIFE/life/setup_github.sh",
+      "/Users/mac/LIFE/life/scripts/extract_anchor_numbers.py",
+      "/Users/mac/LIFE/life/scripts/generate_manuscript_figures.py",
+      "/Users/mac/LIFE/life/scripts/update_manuscript_with_numbers.py",
+      "/Users/mac/LIFE/life/tools/validate_figures.py",
+      "/Users/mac/LIFE/life/test_solver_upgrade.py"
+    ],
+    "analysis_scripts": [
+      "/Users/mac/LIFE/life/analysis/03_iec_discriminators.py",
+      "/Users/mac/LIFE/life/analysis/utils.py"
+    ],
+    "model_source": {
+      "new_model_dir": [
+        "/Users/mac/LIFE/life/model/coherence_fields.py",
+        "/Users/mac/LIFE/life/model/core.py",
+        "/Users/mac/LIFE/life/model/couplings.py",
+        "/Users/mac/LIFE/life/model/solvers/base.py",
+        "/Users/mac/LIFE/life/model/solvers/bvp_scipy.py",
+        "/Users/mac/LIFE/life/model/solvers/euler_bernoulli.py"
+      ],
+      "legacy_src_dir": [
+        "/Users/mac/LIFE/life/src/spinalmodes/cli.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/countercurvature/api.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/countercurvature/coupling.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/countercurvature/info_fields.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/countercurvature/pyelastica_bridge.py",
+        "/Usersmac/LIFE/life/src/spinalmodes/countercurvature/scoliosis_metrics.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/countercurvature/validation_and_metrics.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/common.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/example_countercurvature_metrics.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/experiment_microgravity_adaptation.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/experiment_phase_diagram.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/experiment_plant_upward_growth.py",
+        "/Users/mac/LIFE/life/srcs/pinalmodes/experiments/countercurvature/experiment_scoliosis_bifurcation.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/experiment_spine_modes_vs_gravity.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/experiments/countercurvature/generate_countercurvature_figure.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/fig_iec_discriminators.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/iec.py",
+        "/Users/mac/LIFE/life/src/spinalmodes/iec_cli.py"
+      ]
+    },
+    "tests": [
+      "/Users/mac/LIFE/life/tests/test_countercurvature_metrics.py",
+      "/Users/mac/LIFE/life/tests/test_iec.py",
+      "/Users/mac/LIFE/life/tests/test_pyelastica_bridge.py",
+      "/Users/mac/LIFE/life/tests/test_scoliosis_metrics.py",
+      "/Users/mac/LIFE/life/tests/test_smoke.py"
+    ],
+    "data_and_outputs": {
+      "csv": [
+        "/Users/mac/LIFE/life/outputs/csv/demo.csv",
+        "/Users/mac/LIFE/life/outputs/csv/fig_iec_discriminators.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/microgravity/microgravity_results.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/microgravity/microgravity_summary.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/phase_diagram/phase_diagram_data.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/plant_growth/plant_growth_results.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/spine_modes/spine_modes_results.csv",
+        "/Users/mac/LIFE/life/outputs/experiments/spine_modes/spine_modes_summary.csv"
+      ],
+      "json": [
+        "/Users/mac/LIFE/life/outputs/csv/demo_summary.json"
+      ],
+      "figures": [
+        "/Users/mac/LIFE/life/manuscript/fig_countercurvature_panelA.pdf",
+        "/Users/mac/LIFE/life/manuscript/fig_countercurvature_panelB.pdf",
+        "/Usersmac/LIFE/life/manuscript/fig_countercurvature_panelC.pdf",
+        "/Users/mac/LIFE/life/manuscript/fig_countercurvature_panelD.pdf",
+        "/Users/mac/LIFE/life/manuscript/fig_phase_diagram_scoliosis.pdf",
+        "/Users/mac/LIFE/life/outputs/examples/quickstart_curvature.png",
+        "/Users/mac/LIFE/life/outputs/experiments/microgravity/microgravity_figure.png",
+        "/Users/mac/LIFE/life/outputs/experiments/phase_diagram/phase_diagram.png",
+        "/Users/mac/LIFE/life/outputs/experiments/plant_growth/plant_growth_figure.png",
+        "/Users/mac/LIFE/life/outputs/experiments/spine_modes/spine_modes_figure.png",
+        "/Users/mac/LIFE/life/outputs/figs/fig_countercurvature_metrics.png",
+        "/Users/mac/LIFE/life/outputs/figs/fig_iec_discriminators.pdf",
+        "/Users/mac/LIFE/life/outputs/figs/fig_iec_discriminators.png"
+      ]
+    },
+    "manuscript": [
+      "/Users/mac/LIFE/life/manuscript/main_countercurvature.tex",
+      "/Users/mac/LIFE/life/manuscript/refs.bib"
+    ],
+    "configuration": [
+      "/Users/mac/LIFE/life/.gitignore",
+      "/Users/mac/LIFE/life/mkdocs.yml",
+      "/Users/mac/LIFE/life/pyproject.toml",
+      "/Users/mac/LIFE/life/Makefile",
+      "/Users/mac/LIFE/life/manuscript/Makefile",
+      "/Users/mac/LIFE/life/envs/Dockerfile",
+      "/Users/mac/LIFE/life/envs/environment.yml",
+      "/Users/mac/LIFE/life/envs/requirements.txt"
+    ],
+    "documentation": [
+      "/Users/mac/LIFE/life/README.md",
+      "Numerous .md files in /docs"
+    ],
+    "license": "/Users/mac/LIFE/life/LICENSE",
+    "citation": "/Users/mac/LIFE/life/CITATION.cff"
+  },
+  "dependencies": {
+    "tests": ["model_source"],
+    "analysis_scripts": ["model_source", "data_and_outputs"],
+    "scripts": ["model_source", "data_and_outputs", "manuscript"],
+    "notebooks": ["model_source", "data_and_outputs"]
+  },
+  "lineage": "See analysis scripts for data-to-figure generation. Lineage is not explicitly tracked.",
+  "notes": "Code is split between 'src/spinalmodes' and 'model'. These should be unified. The 'archive' directory contains a large number of old files that should be reviewed and possibly removed."
+}

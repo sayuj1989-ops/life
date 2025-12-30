@@ -1,0 +1,43 @@
+# Single source of truth for deterministic simulations + figures.
+#
+# All scripts should write ONLY into:
+# - results/
+# - figures/
+
+io:
+  results_dir: results
+  figures_dir: figures
+
+simulation:
+  seed: 0
+  n_nodes: 201            # grid points along arc length (odd recommended)
+  length: 1.0             # nondimensional length
+  gravity: 1.0            # baseline g (dimensionless)
+
+material:
+  B0: 1.0                 # baseline bending stiffness
+  rhoA: 1.0               # linear density (mass per length)
+
+iec:
+  chi_kappa: 0.06         # intrinsic curvature coupling strength
+  chi_g: 0.00             # metric/stretch coupling (optional in surrogate)
+  chi_E: 0.00             # stiffness weighting (optional)
+  info_profile:
+    cervical_center: 0.20
+    lumbar_center: 0.80
+    sigma: 0.10
+    thoracic_center: 0.50
+    thoracic_sigma: 0.18
+    thoracic_depth: 0.60
+
+sweeps:
+  gravity:
+    values: [0.01, 0.03, 0.1, 0.3, 1.0]
+  chi_kappa:
+    values: [0.0, 0.02, 0.04, 0.06, 0.08, 0.1]
+
+figures:
+  fmt: png
+  dpi: 200
+  n_modes_plot: 3
+

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Author"
+    given-names: "Name"
+title: "Biological Countercurvature: Longevity Protein Analysis"
+version: "1.0.0"
+date-released: "2024-01-XX"
+url: "https://github.com/..."
+repository-code: "https://github.com/..."
+keywords:
+  - "longevity"
+  - "protein structure"
+  - "entropy"
+  - "curvature"
+  - "AlphaFold"
+license: "MIT"
+
+

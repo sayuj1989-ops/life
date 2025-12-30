@@ -1,0 +1,66 @@
+\section{Discussion}
+
+\subsection{Connection to Developmental Biology}
+
+Our IEC framework unifies three well-established developmental phenomena:
+
+\subsubsection{Pattern Shifts (IEC-1)}
+
+HOX gene expression domains establish segmental identity during somitogenesis. Transitions between HOX domains correlate with morphological boundaries~\cite{wellik2007}. IEC-1 captures this by coupling information gradients to target curvature, producing node drift without wavelength change---exactly what is observed when HOX expression boundaries shift experimentally.
+
+\subsubsection{Stiffness Heterogeneity (IEC-2)}
+
+SOX9 and ECM components (collagen II, aggrecan) vary spatially with HOX expression, creating stiffness gradients~\cite{lefebvre2016}. IEC-2 formalizes this by coupling information fields to Young's modulus, reproducing amplitude modulation while preserving load-response scaling.
+
+\subsubsection{Ciliary Flow and Asymmetry (IEC-3)}
+
+Grimes et al.~\cite{grimes2016} demonstrated that ciliary flow breaks left-right symmetry and that disruptions cause vertebral malformations. IEC-3 connects information gradients (ciliary flow patterns) to active moments, explaining how asymmetric forces can trigger helical instabilities characteristic of scoliosis.
+
+\subsection{Testable Predictions}
+
+Our model makes specific, experimentally testable predictions:
+
+\begin{enumerate}
+    \item \textbf{Measurement of $\chi_\kappa$:} In HOX mutant embryos, measure node drift vs. expression gradient. Predicted: $\chi_\kappa \approx 0.01$--$0.05$ \si{\meter}.
+    \item \textbf{Measurement of $\chi_E$:} In SOX9 conditional knockouts, measure stiffness vs. expression level. Predicted: $\chi_E \approx -0.2$ to $-0.3$.
+    \item \textbf{Ciliary flow correlation:} In ciliopathy models, measure helical threshold vs. flow asymmetry. Predicted: $\chi_f \propto \text{flow velocity}$.
+\end{enumerate}
+
+\subsection{Clinical Implications}
+
+\subsubsection{Scoliosis}
+
+Idiopathic scoliosis may arise from:
+\begin{itemize}
+    \item IEC-1: Asymmetric HOX expression creating curvature bias
+    \item IEC-2: Regional stiffness reduction in growth plates
+    \item IEC-3: Ciliary flow disruptions generating asymmetric forces
+\end{itemize}
+
+Our phase diagrams suggest that combinations of these mechanisms can trigger helical instabilities even under normal loading conditions.
+
+\subsubsection{Ciliopathies}
+
+Primary ciliary dyskinesia patients show elevated scoliosis incidence. IEC-3 provides a mechanistic link: ciliary flow disruptions $\rightarrow$ asymmetric information gradients $\rightarrow$ active moments $\rightarrow$ helical instability.
+
+\subsection{Limitations and Future Work}
+
+\subsubsection{Current Limitations}
+
+\begin{itemize}
+    \item \textbf{2D planar only:} Full 3D Cosserat rod model needed for complete helical analysis
+    \item \textbf{Static analysis:} Time-dependent $I(s,t)$ from segmentation clock not yet implemented
+    \item \textbf{Energy balance:} Approximate (67\% error) but solution satisfies governing equations
+\end{itemize}
+
+\subsubsection{Future Directions}
+
+\begin{enumerate}
+    \item \textbf{Full Cosserat upgrade:} Implement 6-DOF rod model with torsion for complete 3D analysis
+    \item \textbf{Dynamic simulations:} Couple to segmentation clock for time-dependent $I(s,t)$
+    \item \textbf{Experimental validation:} Measure coupling strengths in vivo using proposed protocols
+    \item \textbf{Molecular mediators:} Identify candidate proteins that implement IEC mechanisms (e.g., ECM remodeling enzymes, ciliary motor proteins)
+\end{enumerate}
+
+
+

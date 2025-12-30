@@ -1,0 +1,48 @@
+site_name: Spinal Modes - IEC Model
+site_description: Information-Elasticity Coupling in Spinal Development
+site_author: Dr. Sayuj Krishnan
+repo_url: https://github.com/[username]/spinalmodes
+repo_name: spinalmodes
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - CLI Reference: cli.md
+  - Figure Guide: figures.md
+  - Manuscript:
+      - Full Text: manuscript/SpinalCountercurvature_IEC.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+  - autorefs
+

@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "Q9GZZ0",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9GZZ0-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9GZZ0-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "Q9GZZ0",
+  "uniprot_id_api": "HXD1_HUMAN"
+}

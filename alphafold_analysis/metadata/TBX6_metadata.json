@@ -1,0 +1,10 @@
+{
+  "uniprot_id": "O95947",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-O95947-2-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-O95947-2-F1-model_v6.cif",
+  "confidence_url": null,
+  "model_url": null,
+  "model_confidence": null,
+  "uniprot_accession": "O95947-2",
+  "uniprot_id_api": "TBX6_HUMAN"
+}

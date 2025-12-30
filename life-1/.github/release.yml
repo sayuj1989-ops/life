@@ -1,0 +1,13 @@
+changelog:
+  categories:
+    - title: "🚀 Features"
+      labels: [feature, enhancement]
+    - title: "🛠 Fixes"
+      labels: [bug, fix]
+    - title: "🧪 Tests & CI"
+      labels: [test, ci]
+    - title: "📦 Packaging & Docs"
+      labels: [packaging, docs]
+    - title: "Other Changes"
+      labels: ["*"]
+

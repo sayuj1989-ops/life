@@ -1,0 +1,11 @@
+{
+  "uniprot_id": "Q9UEF7",
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UEF7-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UEF7-F1-model_v6.cif",
+  "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UEF7-F1-confidence_v6.json",
+  "model_url": "https://alphafold.ebi.ac.uk/files/AF-Q9UEF7-F1-model_v6.pdb",
+  "model_confidence": null,
+  "uniprot_accession": "Q9UEF7",
+  "uniprot_id_api": "Q9UEF7",
+  "guessed_version": "v6"
+}

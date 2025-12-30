@@ -5,14 +5,22 @@ from __future__ import annotations
 import subprocess
 import sys
 
-import typer
+try:
+    import typer  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover
+    # Allow importing this module in minimal environments (e.g. some CI sandboxes)
+    # where CLI dependencies aren't installed. Unit tests only require that the
+    # module imports and exposes helper functions (e.g. cmd_figures).
+    typer = None
 
-from spinalmodes.iec_cli import app as iec_app
+if typer is not None:
+    from spinalmodes.iec_cli import app as iec_app
 
-app = typer.Typer(help="Spinal modes: Counter-curvature and IEC model")
-
-# Register subcommands
-app.add_typer(iec_app, name="iec")
+    app = typer.Typer(help="Spinal modes: Counter-curvature and IEC model")
+    # Register subcommands
+    app.add_typer(iec_app, name="iec")
+else:
+    app = None  # type: ignore
 
 
 def _run(pyfile: str) -> int:
@@ -45,13 +53,19 @@ def cmd_paper() -> int:
     return subprocess.call(["make", "paper"])
 
 
-@app.command()
-def version():
-    """Show version information."""
-    from spinalmodes import __version__
+if typer is not None:
 
-    typer.echo(f"spinalmodes version {__version__}")
+    @app.command()
+    def version():
+        """Show version information."""
+        from spinalmodes import __version__
+
+        typer.echo(f"spinalmodes version {__version__}")
 
 
 if __name__ == "__main__":
+    if typer is None or app is None:
+        raise SystemExit(
+            "CLI dependencies not installed. Install 'typer' (and extras) to use the CLI."
+        )
     app()

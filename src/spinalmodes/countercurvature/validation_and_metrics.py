@@ -51,9 +51,15 @@ def compute_countercurvature_metric(
     # Centered, so "excess" information is relative to mean
     I_centered = I_norm - float(np.mean(I_norm))
 
-    # Normalize gradient to ~[-1, 1]
+    # Normalize gradient magnitude to ~[0, 1]
+    #
+    # Important for interpretability/testing:
+    # For symmetric information bumps I(s), the metric factor g_eff(s) should be
+    # symmetric as well. Using the *signed* gradient would introduce an
+    # antisymmetric contribution to φ(s), making exp(2φ) asymmetric. We therefore
+    # use |∂I/∂s| as the default "gradient strength" term.
     max_grad = float(np.max(np.abs(dIds))) + eps
-    dI_norm = dIds / max_grad
+    dI_norm = np.abs(dIds) / max_grad
 
     # Build φ(s) (dimensionless)
     phi = beta1 * I_centered + beta2 * dI_norm

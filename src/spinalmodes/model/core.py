@@ -31,13 +31,43 @@ def uniform_grid(L: float, n: int) -> np.ndarray:
 
 def iec_kappa_target(st: State, p: Params) -> np.ndarray:
     """
-    IEC target curvature: κ_target(s) = κ0(s) + χ_k * dI/ds.
+    IEC-1 target curvature implements a **phase drift** of the baseline curvature
+    profile induced by the information field.
+
+    A convenient model for a phase drift (that preserves wavelength content) is a
+    *global* reparameterization of the baseline curvature along arc-length:
+
+        κ_target(s) = κ0(s + Δs(s)),
+
+    where the shift Δs is derived from the information field magnitude. We use
+    the RMS of I(s) to produce a non-zero drift for oscillatory fields while
+    keeping the transformation wavelength-preserving:
+
+        Δs = χ_k * rms(I).
 
     IEC-2 (χ_E) is applied in solver/load amplitude rather than adding a second derivative term here.
     """
-    kappa = np.copy(st.kappa0)
-    if st.I is not None and p.chi_k != 0.0:
-        dIds = np.gradient(st.I, st.s, edge_order=2)
-        kappa += p.chi_k * dIds
-    return kappa
+    kappa0 = np.asarray(st.kappa0, dtype=float)
+    if st.I is None or p.chi_k == 0.0:
+        return np.copy(kappa0)
+
+    s = np.asarray(st.s, dtype=float)
+    I = np.asarray(st.I, dtype=float)
+    if s.shape != kappa0.shape or I.shape != s.shape:
+        raise ValueError("State arrays (s, kappa0, I) must have the same shape.")
+
+    L = float(s[-1] - s[0])
+    if L <= 0.0:
+        return np.copy(kappa0)
+
+    delta_s = float(p.chi_k) * float(np.sqrt(np.mean(I**2)))
+
+    # Treat κ0 as periodic on [s0, s0+L] to avoid edge clipping artifacts.
+    s0 = float(s[0])
+    s_shifted = ((s - s0 + delta_s) % L) + s0
+
+    # Periodic interpolation by extending the endpoint.
+    s_ext = np.concatenate([s, [s0 + L]])
+    k_ext = np.concatenate([kappa0, [kappa0[0]]])
+    return np.interp(s_shifted, s_ext, k_ext).astype(float)
 

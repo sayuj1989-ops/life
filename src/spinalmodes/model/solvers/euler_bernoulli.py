@@ -9,15 +9,39 @@ def integrate_shape_from_curvature(s: np.ndarray, kappa: np.ndarray) -> tuple[np
     """
     Integrate curvature to angle and centerline in the small-slopes regime.
 
-    θ'(s) = κ(s); x'(s) = cos θ; y'(s) = sin θ with x(0)=0, y(0)=0, θ(0)=0.
+    For small slopes, curvature is approximated by the second derivative of the
+    transverse deflection:
+
+        y''(s) = κ(s)
+
+    We integrate twice using a trapezoidal rule, and choose integration constants
+    such that:
+
+        y(0) = 0,  y(L) = 0
+
+    (Dirichlet endpoints). This avoids spurious linear drift that would otherwise
+    dominate amplitude/wavelength metrics when κ is oscillatory.
     """
-    ds = np.gradient(s)
-    theta = np.cumsum(kappa * ds)
-    x = np.cumsum(np.cos(theta) * ds)
-    y = np.cumsum(np.sin(theta) * ds)
-    # enforce clamped base at the origin
-    x -= x[0]
-    y -= y[0]
+    if s.ndim != 1 or kappa.ndim != 1 or s.shape != kappa.shape:
+        raise ValueError("s and kappa must be 1D arrays with the same shape.")
+    if s.size < 2:
+        return np.asarray(s, dtype=float), np.zeros_like(s, dtype=float)
+
+    x = (s - s[0]).astype(float)
+    ds = np.diff(s).astype(float)
+
+    # θ(s) = ∫ κ ds, with θ(0)=0
+    theta = np.zeros_like(s, dtype=float)
+    theta[1:] = np.cumsum(0.5 * (kappa[:-1] + kappa[1:]) * ds)
+
+    # y0(s) = ∫ θ ds, with y0(0)=0 and y0'(0)=0
+    y = np.zeros_like(s, dtype=float)
+    y[1:] = np.cumsum(0.5 * (theta[:-1] + theta[1:]) * ds)
+
+    # Enforce y(L)=0 by removing a linear trend: y <- y + C1*s, C1 = -y(L)/L
+    L = float(x[-1]) if float(x[-1]) != 0.0 else 1.0
+    c1 = -float(y[-1]) / L
+    y = y + c1 * x
     return x, y
 
 

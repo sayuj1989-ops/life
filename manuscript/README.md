@@ -13,10 +13,11 @@ The primary LaTeX document that orchestrates the entire manuscript. It includes:
 - All section inputs in proper order
 
 ### references.bib
-Consolidated bibliography containing **46 unique entries** merged from multiple sources:
+Consolidated bibliography containing **44 unique entries** merged from multiple sources:
 - `countercurvature/references.bib` (38 entries)
 - `manuscript/references.bib` (original 24 entries)
 - `life-1/manuscript/refs.bib` (21 entries)
+- Note: 2 duplicate entries removed during consolidation
 
 All 10 citations used in the manuscript are verified to be present in this file.
 
@@ -99,9 +100,9 @@ The repository contains alternative section versions in `/edited_sections/` with
 
 ### Bibliography Consolidation
 The bibliography has been consolidated from multiple sources to ensure:
-- No duplicate entries
+- No duplicate entries (2 duplicates removed)
 - All cited references are included
-- Comprehensive coverage of related literature (46 entries total)
+- Comprehensive coverage of related literature (44 entries total)
 
 ## Quality Checks
 

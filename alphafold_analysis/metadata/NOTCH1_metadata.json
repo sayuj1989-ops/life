@@ -3,9 +3,8 @@
   "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P46531-F1-model_v6.pdb",
   "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P46531-F1-model_v6.cif",
   "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-P46531-F1-confidence_v6.json",
-  "model_url": "https://alphafold.ebi.ac.uk/files/AF-P46531-F1-model_v6.pdb",
+  "model_url": null,
   "model_confidence": null,
   "uniprot_accession": "P46531",
-  "uniprot_id_api": "P46531",
-  "guessed_version": "v6"
+  "uniprot_id_api": "NOTC1_HUMAN"
 }

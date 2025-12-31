@@ -1,10 +1,10 @@
 {
   "uniprot_id": "P41221",
-  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P41221-2-F1-model_v6.pdb",
-  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P41221-2-F1-model_v6.cif",
-  "confidence_url": null,
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-P41221-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-P41221-F1-model_v6.cif",
+  "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-P41221-F1-confidence_v6.json",
   "model_url": null,
   "model_confidence": null,
-  "uniprot_accession": "P41221-2",
+  "uniprot_accession": "P41221",
   "uniprot_id_api": "WNT5A_HUMAN"
 }

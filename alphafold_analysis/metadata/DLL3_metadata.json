@@ -1,10 +1,10 @@
 {
   "uniprot_id": "Q9NYJ7",
-  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NYJ7-2-F1-model_v6.pdb",
-  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NYJ7-2-F1-model_v6.cif",
-  "confidence_url": null,
+  "pdb_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NYJ7-F1-model_v6.pdb",
+  "cif_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NYJ7-F1-model_v6.cif",
+  "confidence_url": "https://alphafold.ebi.ac.uk/files/AF-Q9NYJ7-F1-confidence_v6.json",
   "model_url": null,
   "model_confidence": null,
-  "uniprot_accession": "Q9NYJ7-2",
+  "uniprot_accession": "Q9NYJ7",
   "uniprot_id_api": "DLL3_HUMAN"
 }

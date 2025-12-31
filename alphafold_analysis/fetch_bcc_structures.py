@@ -61,11 +61,18 @@ def fetch_alphafold_metadata(uniprot_id: str) -> Optional[Dict]:
 
         # Get the first entry (usually canonical isoform)
         entry = data[0]
+
+        # Deduce confidence URL if missing
+        confidence_url = entry.get("confidenceUrl")
+        pdb_url = entry.get("pdbUrl")
+        if not confidence_url and pdb_url and "model_" in pdb_url:
+            confidence_url = pdb_url.replace("model_", "confidence_").replace(".pdb", ".json")
+
         return {
             "uniprot_id": uniprot_id,
-            "pdb_url": entry.get("pdbUrl"),
+            "pdb_url": pdb_url,
             "cif_url": entry.get("cifUrl"),
-            "confidence_url": entry.get("confidenceUrl"),
+            "confidence_url": confidence_url,
             "model_url": entry.get("modelUrl"),
             "model_confidence": entry.get("modelConfidence"),
             "uniprot_accession": entry.get("uniprotAccession"),
@@ -136,13 +143,32 @@ def fetch_protein_structure(protein: Dict, force_refresh: bool = False) -> Dict:
     print(f"📥 Downloading PDB...", end=" ")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    success = True
     if download_pdb(metadata["pdb_url"], output_path):
-        print("✅")
-        result["status"] = "downloaded"
+        print("✅ PDB", end=" ")
         result["pdb_path"] = str(output_path)
+    else:
+        print("❌ PDB", end=" ")
+        success = False
+
+    # Download PAE/Confidence if available
+    if metadata.get("confidence_url"):
+        pae_path = OUTPUT_DIR / f"{name}_pae.json"
+        if download_pdb(metadata["confidence_url"], pae_path):  # reusing download_pdb for generic download
+            print("✅ PAE", end=" ")
+            result["pae_path"] = str(pae_path)
+        else:
+            print("❌ PAE", end=" ")
+            # Not strictly a failure if PAE fails, but good to know
+    else:
+        print("⚪ No PAE", end=" ")
+
+    print("") # newline
+
+    if success:
+        result["status"] = "downloaded"
         result["metadata_path"] = str(metadata_path)
     else:
-        print("❌")
         result["status"] = "download_failed"
 
     return result

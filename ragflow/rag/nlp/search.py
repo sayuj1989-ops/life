@@ -67,6 +67,8 @@ class Dealer:
         # TODO(yzc): `available_int` is nullable however infinity doesn't support nullable columns.
         for key in ["knowledge_graph_kwd", "available_int", "entity_kwd", "from_entity_kwd", "to_entity_kwd", "removed_kwd"]:
             if key in req and req[key] is not None:
+                if key == "available_int" and settings.DOC_ENGINE_INFINITY:
+                    continue
                 condition[key] = req[key]
         return condition
 

@@ -45,8 +45,8 @@ task_executor:
 user_default_llm:
   default_models:
     embedding_model: BAAI/bge-small-en-v1.5@FastEmbed
-      api_key: 'xxx'
-      base_url: 'http://localhost:6380'
+#      api_key: 'xxx'
+#      base_url: 'http://localhost:6380'
 # postgres:
 #   name: 'rag_flow'
 #   user: 'rag_flow'

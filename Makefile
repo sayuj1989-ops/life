@@ -1,6 +1,6 @@
 .PHONY: all data figs alphafold alphafold-data alphafold-analyze alphafold-figs alphafold-numbers alphafold-all clean manuscript
 
-PYTHON = .venv/bin/python3
+PYTHON = python3
 
 all: data figs manuscript
 
@@ -30,17 +30,15 @@ alphafold-data:
 
 alphafold-analyze:
 	mkdir -p results
-	$(PYTHON) alphafold_analysis/analyze_bcc_structures.py --index results/alphafold_dataset_index.csv --output-dir results
+	$(PYTHON) alphafold_analysis/analyze_bcc_structures.py --output results/bcc_analysis_report.md --json-output results/bcc_stats_summary.json
 
 alphafold-figs:
 	mkdir -p figures/main
-	$(PYTHON) figures/src/plot_alphafold_main.py --data results/bcc_analysis_data.csv --summary results/bcc_stats_summary.json 2>/dev/null || true
-	cp fig_alphafold_*.pdf figures/main/ 2>/dev/null || true
-	cp fig_alphafold_*.png figures/main/ 2>/dev/null || true
+	$(PYTHON) figures/src/plot_alphafold_main.py --data results/bcc_stats_summary.csv --summary results/bcc_stats_summary.json
 
 alphafold-numbers:
 	mkdir -p manuscript/numbers
-	$(PYTHON) scripts/update_manuscript_numbers.py --stats results/bcc_stats_summary.json --out manuscript/numbers/alphafold_numbers.json 2>/dev/null || true
+	$(PYTHON) scripts/update_manuscript_numbers.py --stats results/bcc_stats_summary.json --out manuscript/numbers/alphafold_numbers.json
 
 alphafold-all: alphafold-data alphafold-analyze alphafold-figs alphafold-numbers
 	@echo "✅ AlphaFold analysis pipeline complete"

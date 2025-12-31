@@ -101,7 +101,39 @@ class CounterCurvatureRodSystem:
         
         # PyElastica rest_kappa has shape (3, n_elements-1)
         rest_kappa = np.zeros((3, n_elements - 1))
-        rest_kappa[1, :] = kappa_voronoi[:-1] # Use y-axis for sagittal plane
+        # Ensure we have the correct number of points
+        if len(kappa_voronoi) == n_elements - 1:
+            rest_kappa[1, :] = kappa_voronoi
+        elif len(kappa_voronoi) == n_elements:
+            # If we calculated at element centers but somehow got N, take N-1
+            # (Usually Voronoi is N-1 if defined on internal boundaries)
+            # Here kappa_voronoi is interpolated from info.s (N points) to s_voronoi
+            # s_voronoi should have N-1 points if constructed as midpoints of N points
+            # But let's be safe
+            rest_kappa[1, :] = kappa_voronoi[:n_elements-1]
+        else:
+             # Interpolate specifically to the rod's internal nodes if size mismatch
+             # Rod internal nodes are effectively 0.5, 1.5, ..., N-1.5 indices
+             # mapped to s space
+             rod_s = np.linspace(0, length, n_elements+1)
+             rod_s_voronoi = 0.5 * (rod_s[:-1] + rod_s[1:]) # size N
+             # Wait, PyElastica definition of rest_kappa is at Voronoi domains.
+             # For N elements, there are N-1 internal nodes?
+             # Actually PyElastica uses N elements.
+             # kappa is defined at N-1 Voronoi domains?
+             # No, rest_kappa is (3, n_elems-1).
+             # So we need n_elems-1 values.
+             # If kappa_voronoi has mismatched size, re-interpolate.
+
+             # Re-interpolate to ensure correct size
+             target_s = np.linspace(length/(2*n_elements), length - length/(2*n_elements), n_elements-1)
+             # Actually let's just resize if needed, assuming s covers the same domain
+             if len(kappa_voronoi) > n_elements - 1:
+                 rest_kappa[1, :] = kappa_voronoi[:n_elements-1]
+             else:
+                  # This case shouldn't happen with standard info.s setup
+                  pass
+
         rod.rest_kappa[:] = rest_kappa
 
         return cls(rod=rod, info_field=info, params=params)

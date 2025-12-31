@@ -12,7 +12,10 @@ from typing import Dict, List, Optional
 import time
 
 # Import protein database
-from bcc_protein_database import BCC_PROTEINS, get_all_proteins
+try:
+    from alphafold_analysis.bcc_protein_database import BCC_PROTEINS, get_all_proteins
+except ImportError:
+    from bcc_protein_database import BCC_PROTEINS, get_all_proteins
 
 ALPHAFOLD_API_BASE = "https://alphafold.ebi.ac.uk/api/prediction"
 OUTPUT_DIR = Path("alphafold_analysis/predictions")

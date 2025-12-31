@@ -17,7 +17,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Import protein database
-from bcc_protein_database import BCC_PROTEINS
+try:
+    from alphafold_analysis.bcc_protein_database import BCC_PROTEINS
+except ImportError:
+    from bcc_protein_database import BCC_PROTEINS
 
 def calculate_sequence_entropy(sequence: str) -> float:
     """Calculate Shannon entropy of amino acid composition (sequence heterogeneity)."""
@@ -614,6 +617,24 @@ def main():
         with open(json_output, 'w') as f:
             json.dump(make_json_safe(results), f, indent=2)
         print(f"✅ Data saved: {json_output}")
+
+        # Save CSV data
+        csv_output = json_output.with_suffix('.csv')
+
+        # Flatten results for CSV
+        flat_results = []
+        for r in results:
+            # Create a copy without lists/nested structures that mess up CSV
+            r_flat = r.copy()
+            if 'curvatures' in r_flat: del r_flat['curvatures']
+            if 'curvatures_plddt' in r_flat: del r_flat['curvatures_plddt']
+            if 'ca_coords' in r_flat: del r_flat['ca_coords']
+            flat_results.append(r_flat)
+
+        import pandas as pd
+        df = pd.DataFrame(flat_results)
+        df.to_csv(csv_output, index=False)
+        print(f"✅ CSV Data saved: {csv_output}")
         
         print(f"\n📊 Generating plots...")
         plot_correlations(results, pdb_dir.parent / 'figures', plddt_threshold=args.plddt_threshold)

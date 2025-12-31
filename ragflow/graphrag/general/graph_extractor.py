@@ -64,8 +64,6 @@ class GraphExtractor(Extractor):
     ):
         super().__init__(llm_invoker, language, entity_types)
         """Init method definition."""
-        # TODO: streamline construction
-        self._llm = llm_invoker
         self._join_descriptions = join_descriptions
         self._input_text_key = input_text_key or "input_text"
         self._tuple_delimiter_key = tuple_delimiter_key or "tuple_delimiter"
@@ -84,17 +82,23 @@ class GraphExtractor(Extractor):
         self.prompt_token_count = num_tokens_from_string(self._extraction_prompt)
 
         # Construct the looping arguments
+        self._loop_args = self._build_loop_args()
+
+        # Wire defaults into the prompt variables
+        self._prompt_variables = self._build_prompt_variables(entity_types)
+
+    def _build_loop_args(self):
         encoding = tiktoken.get_encoding("cl100k_base")
         yes = encoding.encode("YES")
         no = encoding.encode("NO")
-        self._loop_args = {"logit_bias": {yes[0]: 100, no[0]: 100}, "max_tokens": 1}
+        return {"logit_bias": {yes[0]: 100, no[0]: 100}, "max_tokens": 1}
 
-        # Wire defaults into the prompt variables
-        self._prompt_variables = {
+    def _build_prompt_variables(self, entity_types: list[str] | None):
+        return {
             self._tuple_delimiter_key: DEFAULT_TUPLE_DELIMITER,
             self._record_delimiter_key: DEFAULT_RECORD_DELIMITER,
             self._completion_delimiter_key: DEFAULT_COMPLETION_DELIMITER,
-            self._entity_types_key: ",".join(entity_types),
+            self._entity_types_key: ",".join(entity_types) if entity_types else "",
         }
 
     async def _process_single_content(self, chunk_key_dp: tuple[str, str], chunk_seq: int, num_chunks: int, out_results, task_id=""):

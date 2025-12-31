@@ -49,8 +49,7 @@ class MindMapExtractor(Extractor):
             on_error: ErrorHandlerFn | None = None,
     ):
         """Init method definition."""
-        # TODO: streamline construction
-        self._llm = llm_invoker
+        super().__init__(llm_invoker)
         self._input_text_key = input_text_key or "input_text"
         self._mind_map_prompt = prompt or MIND_MAP_EXTRACTION_PROMPT
         self._on_error = on_error or (lambda _e, _s, _d: None)
@@ -58,25 +57,27 @@ class MindMapExtractor(Extractor):
     def _key(self, k):
         return re.sub(r"\*+", "", k)
 
-    def _be_children(self, obj: dict, keyset: set):
+    def _be_children(self, obj: dict | list | str, keyset: set):
         if isinstance(obj, str):
             obj = [obj]
+
         if isinstance(obj, list):
             keyset.update(obj)
-            obj = [re.sub(r"\*+", "", i) for i in obj]
+            obj = [self._key(i) for i in obj]
             return [{"id": i, "children": []} for i in obj if i]
-        arr = []
+
+        children = []
         for k, v in obj.items():
-            k = self._key(k)
-            if k and k not in keyset:
-                keyset.add(k)
-                arr.append(
+            k_clean = self._key(k)
+            if k_clean and k_clean not in keyset:
+                keyset.add(k_clean)
+                children.append(
                     {
-                        "id": k,
+                        "id": k_clean,
                         "children": self._be_children(v, keyset)
                     }
                 )
-        return arr
+        return children
 
     async def __call__(
             self, sections: list[str], prompt_variables: dict[str, Any] | None = None
@@ -103,22 +104,25 @@ class MindMapExtractor(Extractor):
         if not res:
             return MindMapResult(output={"id": "root", "children": []})
         merge_json = reduce(self._merge, res)
+
         if len(merge_json) > 1:
-            keys = [re.sub(r"\*+", "", k) for k, v in merge_json.items() if isinstance(v, dict)]
-            keyset = set(i for i in keys if i)
+            valid_items = [(self._key(k), v) for k, v in merge_json.items() if isinstance(v, dict) and self._key(k)]
+            keyset = set(k for k, _ in valid_items)
+            children = []
+            for k, v in valid_items:
+                children.append({
+                    "id": k,
+                    "children": self._be_children(v, keyset)
+                })
+
             merge_json = {
                 "id": "root",
-                "children": [
-                    {
-                        "id": self._key(k),
-                        "children": self._be_children(v, keyset)
-                    }
-                    for k, v in merge_json.items() if isinstance(v, dict) and self._key(k)
-                ]
+                "children": children
             }
         else:
-            k = self._key(list(merge_json.keys())[0])
-            merge_json = {"id": k, "children": self._be_children(list(merge_json.items())[0][1], {k})}
+            first_key, first_val = list(merge_json.items())[0]
+            k = self._key(first_key)
+            merge_json = {"id": k, "children": self._be_children(first_val, {k})}
 
         return MindMapResult(output=merge_json)
 

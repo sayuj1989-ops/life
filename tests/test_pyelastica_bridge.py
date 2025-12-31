@@ -56,15 +56,24 @@ def test_pyelastica_gravity_only_sag():
         radius=radius,
         gravity=gravity,
         base_position=(0.0, 0.0, 0.0),
-        base_direction=(0.0, 0.0, 1.0),  # Pointing in +z
+        base_direction=(1.0, 0.0, 0.0),  # Pointing in +x (horizontal)
         normal=(0.0, 1.0, 0.0),
     )
 
     # Run simulation to equilibrium
-    final_time = 2.0  # seconds (enough to reach quasi-static)
-    dt = 1e-4  # seconds
+    # Critical time step check:
+    # c = sqrt(E/rho) = sqrt(1e9/1000) = 1000 m/s
+    # dl = L/n = 0.4/50 = 0.008 m
+    # dt_crit = dl/c = 8e-6 s
+    # We use dt = 5e-6 s to be safe.
+    final_time = 1.0  # seconds (enough to reach quasi-static with damping)
+    dt = 5e-6  # seconds
+
+    # Save less frequently to avoid huge memory usage/output
+    save_every = int(0.01 / dt)  # Save every 0.01 seconds
+
     result = rod_system.run_simulation(
-        final_time=final_time, dt=dt, save_every=100, gravity=gravity
+        final_time=final_time, dt=dt, save_every=save_every, gravity=gravity
     )
 
     # Get final tip position (last node, last time step)
@@ -94,11 +103,13 @@ def test_pyelastica_gravity_only_sag():
 
     # Tip deflection from beam solver (integrate curvature)
     # For small deflections: y(L) ≈ ∫∫ κ(s) ds ds
-    from scipy.integrate import cumtrapz
+    from scipy.integrate import cumulative_trapezoid
 
-    dy_ds = cumtrapz(kappa_beam, s_beam, initial=0.0)
-    y_beam = cumtrapz(dy_ds, s_beam, initial=0.0)
-    tip_z_beam = y_beam[-1]  # Should be negative (sagging)
+    dy_ds = cumulative_trapezoid(kappa_beam, s_beam, initial=0.0)
+    y_beam = cumulative_trapezoid(dy_ds, s_beam, initial=0.0)
+    # Beam solver convention: positive load gives positive deflection.
+    # But gravity acts in -z, so physical deflection is negative.
+    tip_z_beam = -y_beam[-1]
 
     # PyElastica tip should be close to beam solver
     # Allow 20% tolerance due to different discretization and dynamics
@@ -129,9 +140,12 @@ def test_pyelastica_with_info_coupling():
     dIds = np.gradient(I, s)
     info = InfoField1D(s=s, I=I, dIds=dIds)
 
-    # Non-zero coupling
+    # Non-zero coupling - make it strong enough to overcome gravity
+    # With chi_kappa=1.0 and dI/ds approx 0.75, kappa_rest approx 0.3
+    # Deflection ~ 0.5 * 0.3 * 0.16 = 0.024 m = 2.4 cm.
+    # Gravity sag is ~1.2 mm. So this should clearly lift it up.
     params = CounterCurvatureParams(
-        chi_kappa=0.01, chi_E=0.0, chi_M=0.0, scale_length=length
+        chi_kappa=1.0, chi_E=0.0, chi_M=0.0, scale_length=length
     )
 
     # Material properties
@@ -150,13 +164,19 @@ def test_pyelastica_with_info_coupling():
         rho=rho,
         radius=radius,
         gravity=gravity,
+        base_position=(0.0, 0.0, 0.0),
+        base_direction=(1.0, 0.0, 0.0),  # Pointing in +x (horizontal)
+        normal=(0.0, 1.0, 0.0),
     )
 
     # Run simulation
-    final_time = 2.0
-    dt = 1e-4
+    # Use stable time step (see calculation in test_pyelastica_gravity_only_sag)
+    final_time = 1.0
+    dt = 5e-6
+    save_every = int(0.01 / dt)
+
     result = rod_system.run_simulation(
-        final_time=final_time, dt=dt, save_every=100, gravity=gravity
+        final_time=final_time, dt=dt, save_every=save_every, gravity=gravity
     )
 
     # Check that we got results
@@ -183,9 +203,12 @@ def test_pyelastica_with_info_coupling():
         rho=rho,
         radius=radius,
         gravity=gravity,
+        base_position=(0.0, 0.0, 0.0),
+        base_direction=(1.0, 0.0, 0.0),  # Pointing in +x (horizontal)
+        normal=(0.0, 1.0, 0.0),
     )
     result_zero = rod_system_zero.run_simulation(
-        final_time=final_time, dt=dt, save_every=100, gravity=gravity
+        final_time=final_time, dt=dt, save_every=save_every, gravity=gravity
     )
     tip_zero = result_zero.centerline[-1, -1, :]
     tip_z_zero = tip_zero[2]

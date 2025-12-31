@@ -96,12 +96,32 @@ class CounterCurvatureRodSystem:
         kappa_rest = compute_rest_curvature(info, params, kappa_gen)
         
         # Interpolate to element centers (n_elements - 1 internal nodes)
-        s_voronoi = 0.5 * (info.s[:-1] + info.s[1:])
-        kappa_voronoi = np.interp(s_voronoi, info.s, kappa_rest)
+        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
+        # For a rod with n_elements, there are n_elements-1 Voronoi nodes.
+        s_rod = np.linspace(0, length, n_elements + 1)
+        s_voronoi = 0.5 * (s_rod[:-1] + s_rod[1:])
+
+        # We need to map kappa_rest (defined on info.s) to s_voronoi
+        kappa_interp = np.interp(s_voronoi, info.s, kappa_rest)
         
         # PyElastica rest_kappa has shape (3, n_elements-1)
         rest_kappa = np.zeros((3, n_elements - 1))
-        rest_kappa[1, :] = kappa_voronoi[:-1] # Use y-axis for sagittal plane
+
+        # Voronoi centers are n_elements long? No, elements are bounded by nodes.
+        # Nodes: 0, 1, ..., n_elements (total n_elements+1 nodes).
+        # Elements: (0,1), (1,2), ..., (n-1,n). Total n_elements.
+        # Voronoi domains for curvature are at internal nodes: 1, 2, ..., n_elements-1.
+        # So there are n_elements - 1 kappa values.
+
+        # s_voronoi computed above from s_rod (nodes) has n_elements entries (centers of elements).
+        # But kappa is defined on Voronoi domains (dual grid).
+        # Actually PyElastica doc says rest_kappa is (3, n_elems-1).
+
+        # The internal nodes locations are s_rod[1:-1].
+        s_internal = s_rod[1:-1]
+        kappa_internal = np.interp(s_internal, info.s, kappa_rest)
+
+        rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
         rod.rest_kappa[:] = rest_kappa
 
         return cls(rod=rod, info_field=info, params=params)

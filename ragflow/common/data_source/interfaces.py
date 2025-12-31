@@ -251,9 +251,8 @@ class BaseConnector(abc.ABC, Generic[CT]):
         """Implement if the underlying connector wants to skip/allow image downloading
         based on the application level image analysis setting."""
 
-    def build_dummy_checkpoint(self) -> CT:
-        # TODO: find a way to make this work without type: ignore
-        return ConnectorCheckpoint(has_more=True)  # type: ignore
+    def build_dummy_checkpoint(self) -> ConnectorCheckpoint:
+        return ConnectorCheckpoint(has_more=True)
 
 
 CheckpointOutput: TypeAlias = Generator[Document | ConnectorFailure, None, CT]

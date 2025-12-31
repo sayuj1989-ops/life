@@ -17,15 +17,19 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
-from common import DATASET_NAME_LIMIT, INVALID_API_TOKEN, list_datasets, update_dataset
+from common import (
+    DATASET_NAME_LIMIT,
+    INVALID_API_TOKEN,
+    add_chunk,
+    bulk_upload_documents,
+    list_datasets,
+    update_dataset,
+)
 from hypothesis import HealthCheck, example, given, settings
 from libs.auth import RAGFlowHttpApiAuth
 from libs.utils import encode_avatar
 from libs.utils.file_utils import create_image_file
 from libs.utils.hypothesis_utils import valid_names
-
-# TODO: Missing scenario for updating embedding_model with chunk_count != 0
-
 
 class TestAuthorization:
     @pytest.mark.p1
@@ -320,6 +324,20 @@ class TestDatasetUpdate:
         res = update_dataset(get_http_api_auth, dataset_id, payload)
         assert res["code"] == 101, res
         assert "Input should be a valid string" in res["message"], res
+
+    @pytest.mark.p2
+    def test_embedding_model_with_chunks(self, get_http_api_auth, add_dataset_func, tmp_path):
+        dataset_id = add_dataset_func
+
+        document_ids = bulk_upload_documents(get_http_api_auth, dataset_id, 1, tmp_path)
+        document_id = document_ids[0]
+
+        add_chunk(get_http_api_auth, dataset_id, document_id, {"content_with_weight": "some content"})
+
+        payload = {"embedding_model": "BAAI/bge-small-en-v1.5@Builtin"}
+        res = update_dataset(get_http_api_auth, dataset_id, payload)
+        assert res["code"] == 102, res
+        assert "embedding_model must remain" in res["message"], res
 
     @pytest.mark.p1
     @pytest.mark.parametrize(

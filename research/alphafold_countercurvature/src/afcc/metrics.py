@@ -306,7 +306,9 @@ class MetricsAnalyzer:
         # User asked for "exposed_surface_proxy (e.g., count of residues likely solvent-exposed)".
         # Let's compute fraction of exposed residues.
         # "Exposed" if coordination number (C-alpha within 10A) < some val (say 14).
-        cn = np.array([])  # Initialize to empty array
+        exposed_fraction = 0.0
+        cn = None  # Initialize to None, will be computed if coords available
+        
         if len(coords) > 0:
             # Distance matrix
             # Use a subset if too large, but 1000 res is fine.
@@ -323,15 +325,13 @@ class MetricsAnalyzer:
             n_exposed = np.sum((cn < 15) & plddt_mask)
             denom = np.sum(plddt_mask)
             exposed_fraction = n_exposed / denom if denom > 0 else 0.0
-        else:
-            exposed_fraction = 0.0
 
         # Charged Patch Score
         # "density of charged residues in high-confidence exposed regions"
         # We don't have sequence in coords/plddt call signature easily unless structure is passed.
         # `structure` is passed.
         charged_patch_score = 0.0
-        if structure and len(coords) > 0:
+        if structure and len(coords) > 0 and cn is not None:
             # Extract sequence and map to exposure
             # iterate residues
             charged_count = 0
@@ -344,9 +344,10 @@ class MetricsAnalyzer:
                 for chain in model:
                     for residue in chain:
                         if 'CA' in residue:
-                            # Validate index bounds
+                            # Validate index bounds - continue to next residue if out of bounds
                             if idx >= len(plddt_scores) or idx >= len(cn):
-                                break
+                                idx += 1
+                                continue
                             
                             # Check confidence
                             conf = plddt_scores[idx]

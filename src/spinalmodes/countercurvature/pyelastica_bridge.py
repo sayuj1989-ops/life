@@ -89,38 +89,45 @@ class CounterCurvatureRodSystem:
             shear_modulus=E0 / (2.0 * (1.0 + nu)),
         )
 
-        # Set heterogeneous stiffness (simplified: use E0 for now)
+        # Compute effective stiffness E_eff based on information field
+        E_eff = compute_effective_stiffness(info, params, E0)
+
+        # Interpolate E_eff to element centers for shear matrix modification
+        # s_rod (nodes): [0, ..., L]
+        # s_elements (centers): midpoints of nodes
+        s_rod = np.linspace(0, length, n_elements + 1)
+        s_elements = 0.5 * (s_rod[:-1] + s_rod[1:])
+        E_eff_elements = np.interp(s_elements, info.s, E_eff)
+
+        # Scale shear matrix (3, 3, n_elements)
+        # Assuming isotropic scaling of shear modulus with Young's modulus
+        # shear_matrix ~ G ~ E. So we scale by E_eff_elements / E0
+        scaling_shear = E_eff_elements / E0
+        for k in range(n_elements):
+            rod.shear_matrix[..., k] *= scaling_shear[k]
+
+        # Interpolate E_eff to Voronoi domains (internal nodes) for bend matrix modification
+        # Voronoi domains are at s_rod[1:-1]
+        s_internal = s_rod[1:-1]
+        E_eff_internal = np.interp(s_internal, info.s, E_eff)
+
+        # Scale bend matrix (3, 3, n_elements - 1)
+        # bend_matrix ~ E * I. So we scale by E_eff_internal / E0
+        scaling_bend = E_eff_internal / E0
+        for k in range(n_elements - 1):
+            rod.bend_matrix[..., k] *= scaling_bend[k]
+
         # Set rest curvature
         if kappa_gen is None:
             kappa_gen = np.zeros(info.n_points)
         kappa_rest = compute_rest_curvature(info, params, kappa_gen)
-        
-        # Interpolate to element centers (n_elements - 1 internal nodes)
-        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
-        # For a rod with n_elements, there are n_elements-1 Voronoi nodes.
-        s_rod = np.linspace(0, length, n_elements + 1)
-        s_voronoi = 0.5 * (s_rod[:-1] + s_rod[1:])
 
-        # We need to map kappa_rest (defined on info.s) to s_voronoi
-        kappa_interp = np.interp(s_voronoi, info.s, kappa_rest)
+        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
+        # We need to map kappa_rest (defined on info.s) to s_internal
+        kappa_internal = np.interp(s_internal, info.s, kappa_rest)
         
         # PyElastica rest_kappa has shape (3, n_elements-1)
         rest_kappa = np.zeros((3, n_elements - 1))
-
-        # Voronoi centers are n_elements long? No, elements are bounded by nodes.
-        # Nodes: 0, 1, ..., n_elements (total n_elements+1 nodes).
-        # Elements: (0,1), (1,2), ..., (n-1,n). Total n_elements.
-        # Voronoi domains for curvature are at internal nodes: 1, 2, ..., n_elements-1.
-        # So there are n_elements - 1 kappa values.
-
-        # s_voronoi computed above from s_rod (nodes) has n_elements entries (centers of elements).
-        # But kappa is defined on Voronoi domains (dual grid).
-        # Actually PyElastica doc says rest_kappa is (3, n_elems-1).
-
-        # The internal nodes locations are s_rod[1:-1].
-        s_internal = s_rod[1:-1]
-        kappa_internal = np.interp(s_internal, info.s, kappa_rest)
-
         rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
         rod.rest_kappa[:] = rest_kappa
 

@@ -306,6 +306,7 @@ class MetricsAnalyzer:
         # User asked for "exposed_surface_proxy (e.g., count of residues likely solvent-exposed)".
         # Let's compute fraction of exposed residues.
         # "Exposed" if coordination number (C-alpha within 10A) < some val (say 14).
+        cn = np.array([])  # Initialize to empty array
         if len(coords) > 0:
             # Distance matrix
             # Use a subset if too large, but 1000 res is fine.

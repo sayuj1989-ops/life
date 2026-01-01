@@ -38,9 +38,9 @@ class TestAFCCPipeline(unittest.TestCase):
     def test_rg_calculation(self):
         # 3 points forming a triangle
         coords = np.array([[0,0,0], [1,0,0], [0,1,0]], dtype=float)
-        structure = self.create_dummy_structure(coords)
 
-        rg = self.analyzer.calculate_rg(structure)
+        # Test directly with coords array as per new API
+        rg = self.analyzer.calculate_rg(coords)
 
         # Center of mass = (1/3, 1/3, 0)
         # Distances sq from COM:
@@ -55,9 +55,9 @@ class TestAFCCPipeline(unittest.TestCase):
     def test_anisotropy_linear(self):
         # Linear structure
         coords = np.array([[0,0,0], [1,0,0], [2,0,0]], dtype=float)
-        structure = self.create_dummy_structure(coords)
 
-        metrics = self.analyzer.calculate_anisotropy(structure)
+        # Test directly with coords array as per new API
+        metrics = self.analyzer.calculate_anisotropy(coords)
 
         # Should be highly anisotropic (l3 >> l1, l2)
         # l1, l2 should be near 0 (planar/linear)

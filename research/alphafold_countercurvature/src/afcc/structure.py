@@ -27,22 +27,30 @@ class StructureParser:
         Returns array of scores per residue (averaging atoms if necessary,
         though usually CA is sufficient or all atoms have same pLDDT in AF models).
         """
+        _, plddts = self.extract_coords_and_plddt(structure)
+        return plddts
+
+    def extract_coords_and_plddt(self, structure: Structure) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Extracts CA coordinates and pLDDT scores in a single pass.
+        Coords: Only for residues with CA atoms (N, 3).
+        pLDDT: For all residues (using CA bfactor or avg bfactor) (M,).
+        """
+        coords = []
         plddts = []
         for model in structure:
             for chain in model:
                 for residue in chain:
-                    # In AlphaFold PDBs, pLDDT is stored in B-factor
-                    # All atoms in a residue usually have same B-factor
-                    # We take CA atom if available, else average
                     if 'CA' in residue:
+                        coords.append(residue['CA'].get_coord())
                         plddts.append(residue['CA'].get_bfactor())
                     else:
-                        # Fallback: average of all atoms
+                        # Fallback: average of all atoms for pLDDT
                         bfactors = [atom.get_bfactor() for atom in residue]
                         if bfactors:
                             plddts.append(sum(bfactors) / len(bfactors))
 
-        return np.array(plddts)
+        return np.array(coords), np.array(plddts)
 
     def parse_pae(self, pae_path: Path) -> Optional[np.ndarray]:
         """

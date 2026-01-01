@@ -7,41 +7,25 @@ class MetricsAnalyzer:
     def __init__(self):
         pass
 
-    def calculate_rg(self, structure: Structure) -> float:
+    def calculate_rg(self, coords: np.ndarray) -> float:
         """Calculates Radius of Gyration based on CA atoms."""
-        coords = []
-        for model in structure:
-            for chain in model:
-                for residue in chain:
-                    if 'CA' in residue:
-                        coords.append(residue['CA'].get_coord())
-
-        if not coords:
+        if len(coords) == 0:
             return 0.0
 
-        coords = np.array(coords)
         center_of_mass = np.mean(coords, axis=0)
         # Rg = sqrt(mean((r_i - r_cm)^2))
         sq_dists = np.sum((coords - center_of_mass)**2, axis=1)
         rg = np.sqrt(np.mean(sq_dists))
         return float(rg)
 
-    def calculate_anisotropy(self, structure: Structure) -> Dict[str, float]:
+    def calculate_anisotropy(self, coords: np.ndarray) -> Dict[str, float]:
         """
         Calculates Principal Moments of Inertia and Anisotropy.
         Using CA atoms as point masses.
         """
-        coords = []
-        for model in structure:
-            for chain in model:
-                for residue in chain:
-                    if 'CA' in residue:
-                        coords.append(residue['CA'].get_coord())
-
         if len(coords) < 3:
             return {'lambda1': 0, 'lambda2': 0, 'lambda3': 0, 'anisotropy': 1.0}
 
-        coords = np.array(coords)
         center = np.mean(coords, axis=0)
         coords_centered = coords - center
 
@@ -82,10 +66,36 @@ class MetricsAnalyzer:
         else:
             return "Globular"
 
-    def analyze_structure(self, structure: Structure, plddt_scores: np.ndarray) -> Dict[str, Any]:
-        """Runs all metrics on a structure."""
-        rg = self.calculate_rg(structure)
-        shape_props = self.calculate_anisotropy(structure)
+    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None) -> Dict[str, Any]:
+        """
+        Runs all metrics on a structure.
+
+        Args:
+            structure: Bio.PDB Structure object (deprecated, used if coords/plddt not provided)
+            plddt_scores: Pre-extracted pLDDT scores
+            coords: Pre-extracted CA coordinates
+        """
+        # Support legacy call signature for a moment or handle both
+        if coords is None and structure is not None:
+             # Extract manually if not provided (though this is what we want to avoid)
+             # But for strict compatibility with older calls that might pass structure + plddt but not coords
+             # we should probably extract coords here if missing.
+             # However, let's assume the caller will be updated to pass coords.
+             # Or we can re-implement the extraction here if needed.
+             coords = []
+             for model in structure:
+                 for chain in model:
+                     for residue in chain:
+                         if 'CA' in residue:
+                             coords.append(residue['CA'].get_coord())
+             coords = np.array(coords)
+
+        if plddt_scores is None and structure is not None:
+             # This shouldn't happen based on previous signature, but for safety
+             pass
+
+        rg = self.calculate_rg(coords)
+        shape_props = self.calculate_anisotropy(coords)
 
         mean_plddt = np.mean(plddt_scores) if len(plddt_scores) > 0 else 0
         fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0

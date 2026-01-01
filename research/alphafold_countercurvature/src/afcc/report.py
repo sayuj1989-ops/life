@@ -91,7 +91,9 @@ High anisotropy indicates fibrous/extended potential.
         for _, row in top_aniso.iterrows():
             md += f"| {row['gene_symbol']} | {row['anisotropy']:.2f} | {row['radius_of_gyration']:.1f} | {row['mean_plddt']:.1f} | {row['morphology']} |\n"
 
-        md += """
+        high_aniso_genes = ", ".join(top_aniso['gene_symbol'].tolist()[:3])
+
+        md += f"""
 ### Confidence Overview
 Distribution of model confidence. High pLDDT (>70) suggests well-ordered domains.
 
@@ -107,9 +109,6 @@ Based on these metrics, we predict:
 - Expand search using the 'Expansion Modules' in `targets.yaml`.
 - Correlate with tissue stiffness data.
 """
-        high_aniso_genes = ", ".join(top_aniso['gene_symbol'].tolist()[:3])
-        md = md.format(high_aniso_genes=high_aniso_genes)
-
         return md
 
     def run(self):

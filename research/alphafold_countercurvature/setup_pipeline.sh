@@ -21,8 +21,11 @@ source .venv/bin/activate
 
 echo "📦 Installing dependencies..."
 
+# Resolve script directory to handle running from anywhere
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REQ_FILE="$SCRIPT_DIR/requirements.txt"
+
 # Create requirements.txt if not exists
-REQ_FILE="research/alphafold_countercurvature/requirements.txt"
 if [ ! -f "$REQ_FILE" ]; then
     echo "Creating $REQ_FILE..."
     cat <<EOF > "$REQ_FILE"

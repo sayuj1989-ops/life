@@ -72,13 +72,20 @@ def main():
         if (idx + 1) % 5 == 0:
             print(f"   ... {idx + 1} done")
 
+    if not results:
+        print("⚠️ No results generated.")
+        sys.exit(0)
+
     df = pd.DataFrame(results)
 
-    # Reorder columns
-    cols = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
+    # Reorder columns safely
+    desired_order = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
             'anisotropy', 'radius_of_gyration', 'mean_plddt', 'n_residues', 'dise_score']
-    # Add remaining cols
+
+    # Only use columns that actually exist
+    cols = [c for c in desired_order if c in df.columns]
     remaining = [c for c in df.columns if c not in cols]
+
     df = df[cols + remaining]
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)

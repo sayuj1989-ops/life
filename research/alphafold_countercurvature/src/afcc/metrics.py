@@ -173,7 +173,17 @@ class MetricsAnalyzer:
              coords = np.array(coords)
 
         if plddt_scores is None and structure is not None:
-             pass
+            # Extract pLDDT scores from B-factors (AlphaFold stores pLDDT in B-factor field)
+            plddt_scores = []
+            for model in structure:
+                for chain in model:
+                    for residue in chain:
+                        if 'CA' in residue:
+                            plddt_scores.append(residue['CA'].get_bfactor())
+            plddt_scores = np.array(plddt_scores)
+        
+        if plddt_scores is None:
+            raise ValueError("plddt_scores are required but not provided and could not be extracted from structure")
 
         rg = self.calculate_rg(coords)
         shape_props = self.calculate_anisotropy(coords)
@@ -294,9 +304,10 @@ class MetricsAnalyzer:
             # Heuristic threshold for "exposed" on CA-only model?
             # Say < 20 neighbors in 10A sphere (dense packing is ~30?).
             # Let's report mean coordination number as proxy?
-            # Or fraction with CN < 15.
-            n_exposed = np.sum(cn < 15)
-            exposed_fraction = n_exposed / len(coords)
+            # Or fraction with CN < 15, restricted to high-confidence residues (pLDDT >= 70).
+            n_exposed = np.sum((cn < 15) & plddt_mask)
+            denom = np.sum(plddt_mask)
+            exposed_fraction = n_exposed / denom if denom > 0 else 0.0
         else:
             exposed_fraction = 0.0
 
@@ -305,11 +316,32 @@ class MetricsAnalyzer:
         # We don't have sequence in coords/plddt call signature easily unless structure is passed.
         # `structure` is passed.
         charged_patch_score = 0.0
-        if structure:
+        if structure and len(coords) > 0:
+            # Ensure cn is defined (should be from exposed_fraction calculation above)
+            if 'cn' not in locals():
+                # Calculate cn if not already computed
+                dists = np.sqrt(np.sum((coords[:, np.newaxis, :] - coords[np.newaxis, :, :]) ** 2, axis=2))
+                cn = np.sum(dists < 10.0, axis=1) - 1
+            
             # Extract sequence and map to exposure
             # iterate residues
             charged_count = 0
             exposed_hc_count = 0
+
+            # Count total number of residues with CA atoms for validation
+            total_ca_residues = 0
+            for model in structure:
+                for chain in model:
+                    for residue in chain:
+                        if 'CA' in residue:
+                            total_ca_residues += 1
+            
+            # Validate that array lengths match
+            if total_ca_residues != len(plddt_scores) or total_ca_residues != len(cn):
+                raise ValueError(
+                    f"Mismatch between number of CA residues ({total_ca_residues}), "
+                    f"plddt_scores length ({len(plddt_scores)}), and cn length ({len(cn)})"
+                )
 
             # Re-iterate to match coords index
             # Assuming coords logic matches this iteration order
@@ -318,17 +350,18 @@ class MetricsAnalyzer:
                 for chain in model:
                     for residue in chain:
                         if 'CA' in residue:
-                            # Check confidence
-                            conf = plddt_scores[idx]
-                            # Check exposure
-                            is_exposed = (cn[idx] < 15) if idx < len(cn) else False
+                            # Check confidence (with bounds check)
+                            if idx < len(plddt_scores):
+                                conf = plddt_scores[idx]
+                                # Check exposure (with bounds check)
+                                is_exposed = (cn[idx] < 15) if idx < len(cn) else False
 
-                            if conf >= 70 and is_exposed:
-                                exposed_hc_count += 1
-                                resname = residue.get_resname().upper()
-                                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
-                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
-                                    charged_count += 1
+                                if conf >= 70 and is_exposed:
+                                    exposed_hc_count += 1
+                                    resname = residue.get_resname().upper()
+                                    # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                                    if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
+                                        charged_count += 1
                             idx += 1
 
             if exposed_hc_count > 0:

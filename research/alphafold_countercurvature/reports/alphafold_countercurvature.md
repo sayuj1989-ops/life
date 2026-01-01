@@ -8,7 +8,7 @@ This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis
 While gravity is negligible at the molecular scale, we assume that organism-level loads select for specific protein architectures (fibrous, anisotropic, stiff) in load-bearing tissues.
 
 ## 2. Methodology
-- **Selection:** based on discreation/rank/score (HOX/PAX seeds).
+- **Selection:** based on discrete ranking/scoring (HOX/PAX seeds).
 - **Data Source:** AlphaFold Protein Structure Database (Official API).
 - **Metrics:** Anisotropy (Principal Moments of Inertia), Radius of Gyration, pLDDT Confidence.
 

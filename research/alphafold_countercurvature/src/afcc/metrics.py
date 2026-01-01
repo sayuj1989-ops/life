@@ -173,7 +173,14 @@ class MetricsAnalyzer:
              coords = np.array(coords)
 
         if plddt_scores is None and structure is not None:
-             pass
+             # Extract pLDDT scores from structure's B-factors (AlphaFold stores pLDDT in B-factor column)
+             plddt_scores = []
+             for model in structure:
+                 for chain in model:
+                     for residue in chain:
+                         if 'CA' in residue:
+                             plddt_scores.append(residue['CA'].get_bfactor())
+             plddt_scores = np.array(plddt_scores)
 
         rg = self.calculate_rg(coords)
         shape_props = self.calculate_anisotropy(coords)

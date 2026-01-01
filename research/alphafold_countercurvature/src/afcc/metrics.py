@@ -340,14 +340,19 @@ class MetricsAnalyzer:
             # Re-iterate to match coords index
             # Assuming coords logic matches this iteration order
             idx = 0
+            stop_processing = False
             for model in structure:
+                if stop_processing:
+                    break
                 for chain in model:
+                    if stop_processing:
+                        break
                     for residue in chain:
                         if 'CA' in residue:
-                            # Validate index bounds - continue to next residue if out of bounds
+                            # Validate index bounds - stop processing if we've run out of data
                             if idx >= len(plddt_scores) or idx >= len(cn):
-                                idx += 1
-                                continue
+                                stop_processing = True
+                                break
                             
                             # Check confidence
                             conf = plddt_scores[idx]

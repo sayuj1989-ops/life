@@ -11,6 +11,7 @@ from Bio.PDB import PDBParser, PPBuilder
 from Bio.SeqUtils import ProtParam
 import matplotlib.pyplot as plt
 import json
+from numpy.lib.stride_tricks import sliding_window_view
 from scipy.spatial.distance import pdist
 from scipy.stats import pearsonr
 import warnings
@@ -46,38 +47,45 @@ def calculate_backbone_curvature(
     Calculate local backbone curvature using sliding window
     Returns: (curvatures array, mean curvature, std curvature)
     """
-    if len(coords) < 2 * window + 1:
+    window_len = 2 * window + 1
+    if len(coords) < window_len:
         return np.array([]), 0.0, 0.0
     
-    if mask is None:
-        mask = np.ones(len(coords), dtype=bool)
-    else:
+    # Vectorized calculation using sliding_window_view
+    # coords: (N, 3) -> windows: (M, 3, W) where M is number of windows, W is window length
+    # sliding_window_view puts window axis last
+    windows = sliding_window_view(coords, window_shape=window_len, axis=0)
+
+    # Transpose to (M, W, 3) for easier broadcasting with centroid
+    windows = windows.transpose(0, 2, 1) # (M, W, 3)
+
+    # Calculate centroids for each window
+    centroids = np.mean(windows, axis=1, keepdims=True) # (M, 1, 3)
+
+    # Calculate distances from centroid
+    diff = windows - centroids # (M, W, 3)
+    dists = np.linalg.norm(diff, axis=2) # (M, W)
+    mean_dists = np.mean(dists, axis=1) # (M,)
+
+    # Calculate curvature
+    curvatures = np.zeros_like(mean_dists)
+    valid_dist = mean_dists > 1e-6
+    curvatures[valid_dist] = 1.0 / mean_dists[valid_dist]
+
+    if mask is not None:
         mask = np.asarray(mask, dtype=bool)
         if len(mask) != len(coords):
             raise ValueError("Mask length must match coordinates length")
 
-    curvatures = []
+        # Create sliding windows for mask
+        mask_windows = sliding_window_view(mask, window_shape=window_len, axis=0) # (M, W)
+        
+        # Check if all elements in window are True
+        valid_windows = mask_windows.all(axis=1) # (M,)
+        
+        # Filter curvatures
+        curvatures = curvatures[valid_windows]
     
-    for i in range(window, len(coords) - window):
-        if not mask[i - window:i + window + 1].all():
-            continue
-        # Get window of coordinates
-        window_coords = coords[i-window:i+window+1]
-        
-        # Calculate curvature as inverse of radius of fitted circle
-        # Simplified: use variance of distances from centroid
-        centroid = np.mean(window_coords, axis=0)
-        distances = np.linalg.norm(window_coords - centroid, axis=1)
-        mean_dist = np.mean(distances)
-        
-        if mean_dist > 1e-6:
-            curvature = 1.0 / mean_dist
-        else:
-            curvature = 0.0
-        
-        curvatures.append(curvature)
-    
-    curvatures = np.array(curvatures)
     if len(curvatures) == 0:
         return curvatures, 0.0, 0.0
     return curvatures, np.mean(curvatures), np.std(curvatures)
@@ -295,12 +303,36 @@ def analyze_structure(pdb_file: Path, plddt_threshold: float = 70.0) -> Optional
         
         # Calculate all metrics
         seq_entropy = calculate_sequence_entropy(sequence)
-        curvatures, mean_curvature, std_curvature = calculate_backbone_curvature(ca_coords)
+
+        # ⚡ Bolt Optimization: Calculate curvature once, then filter
+        # First call gets all curvatures (no mask)
+        window_size = 7
+        curvatures, mean_curvature, std_curvature = calculate_backbone_curvature(ca_coords, window=window_size)
+
+        # Filter for plddt without recomputing geometry
         plddt_mask = plddt_values >= plddt_threshold
-        curvatures_plddt, mean_curvature_plddt, std_curvature_plddt = calculate_backbone_curvature(
-            ca_coords,
-            mask=plddt_mask,
-        )
+        window_len = 2 * window_size + 1
+
+        if len(curvatures) > 0 and len(plddt_mask) >= window_len:
+             # Match the windowing logic in calculate_backbone_curvature
+            mask_windows = sliding_window_view(plddt_mask, window_shape=window_len, axis=0)
+            valid_windows = mask_windows.all(axis=1)
+
+            # Since calculate_backbone_curvature(mask=None) returns ALL windows
+            # and they are aligned with the mask windows, we can just filter.
+            if len(curvatures) == len(valid_windows):
+                curvatures_plddt = curvatures[valid_windows]
+            else:
+                # Should not happen if lengths match, but fallback just in case
+                curvatures_plddt = np.array([])
+        else:
+            curvatures_plddt = np.array([])
+
+        if len(curvatures_plddt) > 0:
+            mean_curvature_plddt = np.mean(curvatures_plddt)
+            std_curvature_plddt = np.std(curvatures_plddt)
+        else:
+            mean_curvature_plddt, std_curvature_plddt = 0.0, 0.0
         flexibility = calculate_flexibility(ca_coords)
         compactness = calculate_compactness(ca_coords)
         mechanical = calculate_mechanical_properties(sequence, ca_coords)

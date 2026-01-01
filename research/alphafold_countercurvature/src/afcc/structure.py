@@ -1,0 +1,79 @@
+import warnings
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Any
+import numpy as np
+import json
+from Bio.PDB import PDBParser
+from Bio.PDB.Structure import Structure
+
+class StructureParser:
+    def __init__(self):
+        self.parser = PDBParser(QUIET=True)
+
+    def parse_pdb(self, pdb_path: Path, structure_id: str = "structure") -> Optional[Structure]:
+        """Parses a PDB file using Bio.PDB"""
+        if not pdb_path.exists():
+            return None
+        try:
+            structure = self.parser.get_structure(structure_id, str(pdb_path))
+            return structure
+        except Exception as e:
+            print(f"⚠️ Error parsing PDB {pdb_path}: {e}")
+            return None
+
+    def extract_plddt(self, structure: Structure) -> np.ndarray:
+        """
+        Extracts pLDDT scores from the B-factor column of the structure.
+        Returns array of scores per residue (averaging atoms if necessary,
+        though usually CA is sufficient or all atoms have same pLDDT in AF models).
+        """
+        plddts = []
+        for model in structure:
+            for chain in model:
+                for residue in chain:
+                    # In AlphaFold PDBs, pLDDT is stored in B-factor
+                    # All atoms in a residue usually have same B-factor
+                    # We take CA atom if available, else average
+                    if 'CA' in residue:
+                        plddts.append(residue['CA'].get_bfactor())
+                    else:
+                        # Fallback: average of all atoms
+                        bfactors = [atom.get_bfactor() for atom in residue]
+                        if bfactors:
+                            plddts.append(sum(bfactors) / len(bfactors))
+
+        return np.array(plddts)
+
+    def parse_pae(self, pae_path: Path) -> Optional[np.ndarray]:
+        """
+        Parses PAE JSON file.
+        Returns PAE matrix (N, N).
+        """
+        if not pae_path or not Path(pae_path).exists():
+            return None
+
+        try:
+            with open(pae_path, 'r') as f:
+                data = json.load(f)
+
+            # AlphaFold V2/V3 format usually has "predicted_aligned_error" or "pae"
+            # It can be a flattened list or list of lists.
+            # Usually: [{"predicted_aligned_error": [[...]]}] or similar structure.
+
+            # Common formats:
+            # 1. New API: [ { "predicted_aligned_error": [[...]], ... } ]
+            # 2. Old/Other: { "predicted_aligned_error": ... }
+
+            pae_data = None
+            if isinstance(data, list) and len(data) > 0:
+                pae_data = data[0].get("predicted_aligned_error")
+            elif isinstance(data, dict):
+                pae_data = data.get("predicted_aligned_error")
+
+            if pae_data:
+                return np.array(pae_data)
+
+        except Exception as e:
+            print(f"⚠️ Error parsing PAE {pae_path}: {e}")
+
+        return None

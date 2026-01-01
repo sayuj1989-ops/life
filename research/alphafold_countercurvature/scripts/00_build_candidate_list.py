@@ -3,7 +3,7 @@
 00_build_candidate_list.py
 
 Generates the initial candidate list based on seed configurations and manual overrides.
-Applies the discreation/rank/score rubric (initial automated pass).
+Applies the discrete ranking/scoring rubric (initial automated pass).
 """
 
 import sys

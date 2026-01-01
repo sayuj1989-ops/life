@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from Bio.PDB.Structure import Structure
 from typing import Dict, Any
+import warnings
 
 class MetricsAnalyzer:
     def __init__(self):
@@ -97,7 +98,14 @@ class MetricsAnalyzer:
         # R = abc / 4K
         # Kappa = 4K / abc
         denom = a * b * c
-        # Avoid division by zero
+        # Avoid division by zero and check for degenerate cases
+        degenerate_count = np.sum(denom == 0)
+        if degenerate_count > 0:
+            warnings.warn(
+                f"Found {degenerate_count} degenerate curvature cases (collinear or duplicate points). "
+                "This may indicate structural data quality issues.",
+                UserWarning
+            )
         with np.errstate(divide='ignore', invalid='ignore'):
             kappa = 4 * area / denom
             kappa[denom == 0] = 0.0
@@ -109,8 +117,15 @@ class MetricsAnalyzer:
 
     def calculate_torsion(self, coords: np.ndarray) -> np.ndarray:
         """
-        Calculates discrete torsion (tau) for each residue.
-        Returns array of size len(coords), padded with NaNs.
+        Calculates discrete torsion (tau) for each residue using a 4-point sliding window.
+        
+        For each set of 4 consecutive points (i, i+1, i+2, i+3), the torsion is computed
+        and assigned to index i+1 (the second point in the window).
+        
+        Returns:
+            Array of size len(coords), padded with NaNs. Torsion values are placed at
+            indices 1 to len(coords)-3 (inclusive), with NaNs at index 0 and the last
+            two indices (len(coords)-2 and len(coords)-1).
         """
         if len(coords) < 4:
             return np.full(len(coords), np.nan)
@@ -146,11 +161,10 @@ class MetricsAnalyzer:
 
         torsion = phi * sign # in radians
 
-        # Pad results (lost 1 start, 2 end? No, window 4. indices 0,1,2,3 -> torsion at 1 or 2?)
-        # Let's align with the bond b2, so between residues i+1 and i+2.
-        # Let's just pad to length
+        # Pad results: place torsion values at indices 1 to len(coords)-3
+        # (corresponding to the second point in each 4-point window)
         result = np.full(len(coords), np.nan)
-        result[1:-2] = torsion # Align somewhat to middle
+        result[1:-2] = torsion
         return result
 
     def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None) -> Dict[str, Any]:
@@ -173,7 +187,17 @@ class MetricsAnalyzer:
              coords = np.array(coords)
 
         if plddt_scores is None and structure is not None:
-             pass
+            # Extract pLDDT from B-factors (AlphaFold stores pLDDT in B-factor field)
+            plddt_scores = []
+            for model in structure:
+                for chain in model:
+                    for residue in chain:
+                        if 'CA' in residue:
+                            plddt_scores.append(residue['CA'].get_bfactor())
+            plddt_scores = np.array(plddt_scores)
+        
+        if plddt_scores is None:
+            raise ValueError("plddt_scores must be provided either directly or via structure with B-factors")
 
         rg = self.calculate_rg(coords)
         shape_props = self.calculate_anisotropy(coords)
@@ -251,9 +275,9 @@ class MetricsAnalyzer:
         else:
             end_to_end = 0.0
 
-        # Bending Hotspots: top 3 regions by local curvature (in high conf regions)
+        # Bending Hotspots: top 3 individual residues by local curvature (in high conf regions)
         # Find peaks in kappa (smoothed or raw?)
-        # User says "top 3 regions by local curvature, with residue ranges".
+        # Reports individual residue indices with highest curvature values.
         # Let's pick residues with highest kappa in strict_mask_kappa
         hotspots = []
         if len(kappa_valid) > 0:
@@ -294,9 +318,10 @@ class MetricsAnalyzer:
             # Heuristic threshold for "exposed" on CA-only model?
             # Say < 20 neighbors in 10A sphere (dense packing is ~30?).
             # Let's report mean coordination number as proxy?
-            # Or fraction with CN < 15.
-            n_exposed = np.sum(cn < 15)
-            exposed_fraction = n_exposed / len(coords)
+            # Or fraction with CN < 15, restricted to high-confidence residues (pLDDT >= 70).
+            n_exposed = np.sum((cn < 15) & plddt_mask)
+            denom = np.sum(plddt_mask)
+            exposed_fraction = n_exposed / denom if denom > 0 else 0.0
         else:
             exposed_fraction = 0.0
 
@@ -305,7 +330,7 @@ class MetricsAnalyzer:
         # We don't have sequence in coords/plddt call signature easily unless structure is passed.
         # `structure` is passed.
         charged_patch_score = 0.0
-        if structure:
+        if structure and len(coords) > 0:
             # Extract sequence and map to exposure
             # iterate residues
             charged_count = 0
@@ -318,16 +343,20 @@ class MetricsAnalyzer:
                 for chain in model:
                     for residue in chain:
                         if 'CA' in residue:
+                            # Validate index bounds
+                            if idx >= len(plddt_scores) or idx >= len(cn):
+                                break
+                            
                             # Check confidence
                             conf = plddt_scores[idx]
                             # Check exposure
-                            is_exposed = (cn[idx] < 15) if idx < len(cn) else False
+                            is_exposed = (cn[idx] < 15)
 
                             if conf >= 70 and is_exposed:
                                 exposed_hc_count += 1
                                 resname = residue.get_resname().upper()
-                                # Basic/Acidic? "Charged". D, E, K, R, H.
-                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS', 'D', 'E', 'K', 'R', 'H']:
+                                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
                                     charged_count += 1
                             idx += 1
 

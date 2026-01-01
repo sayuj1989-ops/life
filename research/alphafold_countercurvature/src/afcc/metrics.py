@@ -326,8 +326,8 @@ class MetricsAnalyzer:
                             if conf >= 70 and is_exposed:
                                 exposed_hc_count += 1
                                 resname = residue.get_resname().upper()
-                                # Basic/Acidic? "Charged". D, E, K, R, H.
-                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS', 'D', 'E', 'K', 'R', 'H']:
+                                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
                                     charged_count += 1
                             idx += 1
 

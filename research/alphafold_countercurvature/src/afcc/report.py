@@ -22,14 +22,23 @@ class ReportGenerator:
 
         # 1. Anisotropy vs Radius of Gyration (Morphology Space)
         plt.figure(figsize=(10, 6))
-        sns.scatterplot(
-            data=df,
-            x='radius_of_gyration',
-            y='anisotropy',
-            hue='source_category',
-            style='morphology',
-            s=100
-        )
+        if 'source_category' in df.columns:
+            sns.scatterplot(
+                data=df,
+                x='radius_of_gyration',
+                y='anisotropy',
+                hue='source_category',
+                style='morphology',
+                s=100
+            )
+        else:
+             sns.scatterplot(
+                data=df,
+                x='radius_of_gyration',
+                y='anisotropy',
+                style='morphology',
+                s=100
+            )
 
         # Label points
         for i, row in df.iterrows():
@@ -49,47 +58,68 @@ class ReportGenerator:
 
         # 2. pLDDT Distribution
         plt.figure(figsize=(10, 6))
-        sns.histplot(data=df, x='mean_plddt', hue='source_category', multiple="stack", bins=15)
+        if 'source_category' in df.columns:
+            sns.histplot(data=df, x='pLDDT_mean', hue='source_category', multiple="stack", bins=15)
+        else:
+            sns.histplot(data=df, x='pLDDT_mean', bins=15)
         plt.axvline(70, color='red', linestyle='--', label='Confident Threshold (70)')
         plt.title("Confidence Distribution (pLDDT)")
         plt.legend()
         plt.savefig(self.figures_dir / "plddt_dist.png", dpi=150)
         plt.close()
 
+        # 3. Curvature Summary
+        if 'curvature_summary' in df.columns:
+            plt.figure(figsize=(10, 6))
+            if 'source_category' in df.columns:
+                sns.boxplot(data=df, x='source_category', y='curvature_summary')
+            else:
+                 sns.boxplot(data=df, y='curvature_summary')
+            plt.title("Mean Curvature by Category")
+            plt.savefig(self.figures_dir / "curvature_dist.png", dpi=150)
+            plt.close()
+
+
     def generate_markdown(self, df: pd.DataFrame) -> str:
         """Generates the text report."""
 
         top_aniso = df.sort_values('anisotropy', ascending=False).head(5)
-        top_compact = df.sort_values('radius_of_gyration', ascending=True).head(5)
 
-        md = f"""# AlphaFold Counter-Curvature Analysis Report
+        md = f"""# AlphaFold Counter-Curvature Analysis Report (Bolt-BioFold ⚡)
 
 **Date:** {pd.Timestamp.now().strftime('%Y-%m-%d')}
 **Proteins Analyzed:** {len(df)}
+**Code Version:** {pd.Timestamp.now().strftime('%Y%m%d')}-AFCC
 
 ## 1. Scientific Framework
-This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis by identifying structural proteins that may contribute to axial mechanical robustness.
-While gravity is negligible at the molecular scale, we assume that organism-level loads select for specific protein architectures (fibrous, anisotropic, stiff) in load-bearing tissues.
+This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis.
+We analyze protein geometry (curvature, torsion, anisotropy) on high-confidence segments to identify load-bearing candidates in spine development.
 
 ## 2. Methodology
-- **Selection:** based on discreation/rank/score (HOX/PAX seeds).
+- **Selection:** User-defined or Default Seed List (Core Spine, ECM, Cytoskeleton, etc.).
 - **Data Source:** AlphaFold Protein Structure Database (Official API).
-- **Metrics:** Anisotropy (Principal Moments of Inertia), Radius of Gyration, pLDDT Confidence.
+- **Metrics:**
+    - **Confidence:** pLDDT gated (≥70). PAE blockiness for domain estimation.
+    - **Geometry:** Curvature & Torsion (discrete differential geometry on C-alpha), Anisotropy (Inertia Tensor), Radius of Gyration.
+    - **Interaction:** Exposed Surface Proxy (Coordination Number), Charged Patch Score.
 
 ## 3. Key Findings
 
 ### Morphology Landscape
-The plot below maps proteins based on their extension (Anisotropy) vs size (Rg).
 High anisotropy indicates fibrous/extended potential.
 
 ![Morphology Space](figures/morphology_space.png)
 
-### Top Anisotropic Candidates (Fibrous Potential)
-| Gene | Anisotropy | Rg (Å) | pLDDT | Morphology |
-|------|------------|--------|-------|------------|
+### Summary Results Table
+Top candidates by Anisotropy:
+
+| Gene | Category | Anisotropy | Rg (Å) | Curvature | pLDDT (Mean) | Exposed Frac |
+|------|----------|------------|--------|-----------|--------------|--------------|
 """
         for _, row in top_aniso.iterrows():
-            md += f"| {row['gene_symbol']} | {row['anisotropy']:.2f} | {row['radius_of_gyration']:.1f} | {row['mean_plddt']:.1f} | {row['morphology']} |\n"
+            cat = row['source_category'] if 'source_category' in row else 'N/A'
+            curv = f"{row['curvature_summary']:.3f}" if 'curvature_summary' in row else 'N/A'
+            md += f"| {row['gene_symbol']} | {cat} | {row['anisotropy']:.2f} | {row['radius_of_gyration']:.1f} | {curv} | {row['pLDDT_mean']:.1f} | {row['exposed_fraction']:.2f} |\n"
 
         md += """
 ### Confidence Overview
@@ -97,18 +127,28 @@ Distribution of model confidence. High pLDDT (>70) suggests well-ordered domains
 
 ![pLDDT Distribution](figures/plddt_dist.png)
 
-## 4. Testable Predictions
-Based on these metrics, we predict:
-1. **High Anisotropy Candidates:** Proteins like {high_aniso_genes} likely form extended cytoskeletal or ECM networks essential for resisting compression.
-2. **Compact/Globular Candidates:** Proteins with low anisotropy likely function as soluble regulators or globular domains.
+## 4. Interpretation & Predictions
 
-## 5. Next Steps
-- Validate extended candidates in vivo (staining/KO).
-- Expand search using the 'Expansion Modules' in `targets.yaml`.
-- Correlate with tissue stiffness data.
+### What We See
+* **Fibrous Candidates:** Proteins like {high_aniso_genes} show high anisotropy (>2.5), consistent with load-bearing filaments or extended linkers.
+* **Curvature Profiles:** Mean curvature values indicate the "bendiness" of the rigid segments.
+
+### Why It Matters
+For spine development, rigid rods (high anisotropy, low curvature) provide compression resistance (vertebral bodies), while flexible tethers (intermediate anisotropy, variable curvature) may mediate tension (ligaments/annulus).
+
+### Next Test
+* **Hypothesis:** {top_gene} acts as a mechanical strut.
+* **Experiment:** Compare persistence length in vitro vs orthologs with known skeletal defects.
+
+## 5. Best Next Move
+**Correlate curvature metrics with known phenotype genes?** (e.g. check if high curvature correlates with scoliosis-associated variants).
+
+## Appendix: Full Metrics
+See `data/processed/protein_metrics.csv` for the complete dataset.
 """
         high_aniso_genes = ", ".join(top_aniso['gene_symbol'].tolist()[:3])
-        md = md.format(high_aniso_genes=high_aniso_genes)
+        top_gene = top_aniso.iloc[0]['gene_symbol'] if not top_aniso.empty else "Candidate"
+        md = md.format(high_aniso_genes=high_aniso_genes, top_gene=top_gene)
 
         return md
 

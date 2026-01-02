@@ -2,64 +2,55 @@
 
 # General Settings
 organism: "Homo sapiens"
-max_targets: 50  # Cap on total candidates to process
+max_targets: 20  # Cap on total candidates to process, matching user default
 include_controls: true
-n_controls: 5
+n_controls: 3
 
 # Seed Lists
 # These genes are automatically scored with D=2 (Developmental Relevance)
 
 seeds:
-  HOX:
-    # HOX A Cluster
-    - HOXA1
-    - HOXA2
-    - HOXA3
-    - HOXA4
-    - HOXA5
+  Core_Spine:
     - HOXA9
-    - HOXA10
-    - HOXA11
-    - HOXA13
-    # HOX B Cluster
-    - HOXB1
-    - HOXB4
-    - HOXB9
-    # HOX C Cluster
-    - HOXC6
-    - HOXC8
-    # HOX D Cluster
-    - HOXD4
-    - HOXD9
-    - HOXD13
+    - PAX1
 
-  PAX:
-    - PAX1  # Sclerotome/vertebrae
-    - PAX3  # Myotome/neural crest
-    - PAX9  # Vertebral bodies
+  ECM:
+    - COL2A1
+    - ACAN
+    - FN1
 
-  # Optional Expansion Sets (controlled by include_* flags below)
+  Cytoskeleton:
+    - ACTB
+    - TUBA1A
+
+  Adhesion:
+    - CDH2
+    - ITGB1
+
+  Cilia:
+    - KIF3A
+    - IFT88
+
+  Growth_Plate:
+    - COMP
+    - MATN3
+
+  Morphogens:
+    - SHH
+    - BMP4
+    - WNT3A
+
   expansion_modules:
-    segmentation:
-      - TBX6
-      - MESP2
-      - DLL3
-      - HES7
-      - LFNG
-
     mechanotransduction:
       - YAP1
-      - WWTR1  # TAZ
-      - VCL    # Vinculin
-      - TLN1   # Talin-1
+      - VCL
 
 # Control Flags
 include_expansion:
-  segmentation: false
-  mechanotransduction: false
+  mechanotransduction: true
 
 # Control/Housekeeping genes (for contrast)
 controls:
   - GAPDH
-  - ACTB
   - ALB
+  - MYH9

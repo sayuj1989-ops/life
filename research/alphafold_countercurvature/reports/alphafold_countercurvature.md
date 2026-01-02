@@ -1,45 +1,59 @@
-# AlphaFold Counter-Curvature Analysis Report
+# AlphaFold Counter-Curvature Analysis Report (Bolt-BioFold ⚡)
 
-**Date:** 2026-01-01
-**Proteins Analyzed:** 23
+**Date:** 2026-01-02
+**Proteins Analyzed:** 21
+**Code Version:** 20260102-AFCC
 
 ## 1. Scientific Framework
-This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis by identifying structural proteins that may contribute to axial mechanical robustness.
-While gravity is negligible at the molecular scale, we assume that organism-level loads select for specific protein architectures (fibrous, anisotropic, stiff) in load-bearing tissues.
+This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis.
+We analyze protein geometry (curvature, torsion, anisotropy) on high-confidence segments to identify load-bearing candidates in spine development.
 
 ## 2. Methodology
-- **Selection:** based on discreation/rank/score (HOX/PAX seeds).
+- **Selection:** User-defined or Default Seed List (Core Spine, ECM, Cytoskeleton, etc.).
 - **Data Source:** AlphaFold Protein Structure Database (Official API).
-- **Metrics:** Anisotropy (Principal Moments of Inertia), Radius of Gyration, pLDDT Confidence.
+- **Metrics:**
+    - **Confidence:** pLDDT gated (≥70). PAE blockiness for domain estimation.
+    - **Geometry:** Curvature & Torsion (discrete differential geometry on C-alpha), Anisotropy (Inertia Tensor), Radius of Gyration.
+    - **Interaction:** Exposed Surface Proxy (Coordination Number), Charged Patch Score.
 
 ## 3. Key Findings
 
 ### Morphology Landscape
-The plot below maps proteins based on their extension (Anisotropy) vs size (Rg).
 High anisotropy indicates fibrous/extended potential.
 
 ![Morphology Space](figures/morphology_space.png)
 
-### Top Anisotropic Candidates (Fibrous Potential)
-| Gene | Anisotropy | Rg (Å) | pLDDT | Morphology |
-|------|------------|--------|-------|------------|
-| HOXB9 | 2.58 | 39.6 | 63.5 | Intermediate |
-| ACTB | 2.16 | 21.6 | 95.2 | Intermediate |
-| HOXD13 | 2.07 | 43.3 | 55.4 | Intermediate |
-| ALB | 1.82 | 27.1 | 92.7 | Intermediate |
-| HOXA1 | 1.82 | 44.3 | 57.8 | Intermediate |
+### Summary Results Table
+Top candidates by Anisotropy:
+
+| Gene | Category | Anisotropy | Rg (Å) | Curvature | pLDDT (Mean) | Exposed Frac |
+|------|----------|------------|--------|-----------|--------------|--------------|
+| MATN3 | seed_Growth_Plate | 4.98 | 53.9 | 0.308 | 79.3 | 0.47 |
+| CDH2 | seed_Adhesion | 4.52 | 67.3 | 0.287 | 79.4 | 0.50 |
+| ITGB1 | seed_Adhesion | 2.79 | 46.6 | 0.305 | 85.9 | 0.34 |
+| BMP4 | seed_Morphogens | 2.69 | 27.8 | 0.297 | 78.5 | 0.47 |
+| KIF3A | seed_Cilia | 2.43 | 37.7 | 0.328 | 75.4 | 0.54 |
 
 ### Confidence Overview
 Distribution of model confidence. High pLDDT (>70) suggests well-ordered domains.
 
 ![pLDDT Distribution](figures/plddt_dist.png)
 
-## 4. Testable Predictions
-Based on these metrics, we predict:
-1. **High Anisotropy Candidates:** Proteins like HOXB9, ACTB, HOXD13 likely form extended cytoskeletal or ECM networks essential for resisting compression.
-2. **Compact/Globular Candidates:** Proteins with low anisotropy likely function as soluble regulators or globular domains.
+## 4. Interpretation & Predictions
 
-## 5. Next Steps
-- Validate extended candidates in vivo (staining/KO).
-- Expand search using the 'Expansion Modules' in `targets.yaml`.
-- Correlate with tissue stiffness data.
+### What We See
+* **Fibrous Candidates:** Proteins like MATN3, CDH2, ITGB1 show high anisotropy (>2.5), consistent with load-bearing filaments or extended linkers.
+* **Curvature Profiles:** Mean curvature values indicate the "bendiness" of the rigid segments.
+
+### Why It Matters
+For spine development, rigid rods (high anisotropy, low curvature) provide compression resistance (vertebral bodies), while flexible tethers (intermediate anisotropy, variable curvature) may mediate tension (ligaments/annulus).
+
+### Next Test
+* **Hypothesis:** MATN3 acts as a mechanical strut.
+* **Experiment:** Compare persistence length in vitro vs orthologs with known skeletal defects.
+
+## 5. Best Next Move
+**Correlate curvature metrics with known phenotype genes?** (e.g. check if high curvature correlates with scoliosis-associated variants).
+
+## Appendix: Full Metrics
+See `data/processed/protein_metrics.csv` for the complete dataset.

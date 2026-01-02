@@ -43,6 +43,7 @@ class SimulationResult:
     centerline: ArrayF64
     curvature: ArrayF64
     info_field: InfoField1D
+    kappa: Optional[ArrayF64] = None
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
@@ -169,9 +170,12 @@ class CounterCurvatureRodSystem:
                 if current_step % self.every == 0:
                     self.results["time"].append(time)
                     self.results["centerline"].append(system.position_collection.copy().T)
+                    # Use norm of kappa for backwards compatibility of 'curvature' metric
                     self.results["curvature"].append(np.linalg.norm(system.kappa, axis=0))
+                    # Store full kappa vector for detailed analysis (torsion/curvature components)
+                    self.results["kappa"].append(system.kappa.copy())
 
-        results = {"time": [], "centerline": [], "curvature": []}
+        results = {"time": [], "centerline": [], "curvature": [], "kappa": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
 
         system.finalize()
@@ -179,15 +183,26 @@ class CounterCurvatureRodSystem:
         ea.integrate(timestepper, system, final_time, int(final_time/dt))
 
         # Pad curvature to match n_points
+        # Curvature computed on Voronoi domains (n_elems - 1)
+        # Padding to n_nodes (n_elems + 1)
         curv = np.array(results["curvature"])
         padded_curv = np.zeros((curv.shape[0], curv.shape[1] + 2))
         padded_curv[:, 1:-1] = curv
+
+        # Pad full kappa array similarly
+        # kappa shape: (n_steps, 3, n_elems-1)
+        # padded shape: (n_steps, 3, n_nodes)
+        kappa_raw = np.array(results["kappa"]) # (n_steps, 3, n_elems-1)
+        n_steps, _, n_voronoi = kappa_raw.shape
+        padded_kappa = np.zeros((n_steps, 3, n_voronoi + 2))
+        padded_kappa[:, :, 1:-1] = kappa_raw
 
         return SimulationResult(
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
             curvature=padded_curv,
-            info_field=self.info_field
+            info_field=self.info_field,
+            kappa=padded_kappa
         )
 
 __all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE"]

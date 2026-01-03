@@ -10,48 +10,36 @@ n_controls: 5
 # These genes are automatically scored with D=2 (Developmental Relevance)
 
 seeds:
-  HOX:
-    # HOX A Cluster
-    - HOXA1
-    - HOXA2
-    - HOXA3
-    - HOXA4
-    - HOXA5
-    - HOXA9
-    - HOXA10
-    - HOXA11
-    - HOXA13
-    # HOX B Cluster
-    - HOXB1
-    - HOXB4
-    - HOXB9
-    # HOX C Cluster
-    - HOXC6
-    - HOXC8
-    # HOX D Cluster
-    - HOXD4
-    - HOXD9
-    - HOXD13
+  ECM:
+    - COL2A1
+    - ACAN
+    - FBN1
 
-  PAX:
-    - PAX1  # Sclerotome/vertebrae
-    - PAX3  # Myotome/neural crest
-    - PAX9  # Vertebral bodies
+  Cytoskeleton:
+    - ACTB
+    - TUBB
+    - VIM
+
+  Adhesion:
+    - CDH2
+    - ITGB1
+
+  Cilia:
+    - KIF3A
+    - IFT88
+
+  Growth_Plate:
+    - SOX9
+    - PTH1R
+
+  Morphogens:
+    - SHH
+    - BMP4
 
   # Optional Expansion Sets (controlled by include_* flags below)
   expansion_modules:
-    segmentation:
-      - TBX6
-      - MESP2
-      - DLL3
-      - HES7
-      - LFNG
-
-    mechanotransduction:
-      - YAP1
-      - WWTR1  # TAZ
-      - VCL    # Vinculin
-      - TLN1   # Talin-1
+    # Legacy or extra modules can go here
+    pass: []
 
 # Control Flags
 include_expansion:
@@ -61,5 +49,3 @@ include_expansion:
 # Control/Housekeeping genes (for contrast)
 controls:
   - GAPDH
-  - ACTB
-  - ALB

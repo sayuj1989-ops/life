@@ -271,8 +271,7 @@ class MetricsAnalyzer:
             # Contrast. High score = distinct domains (low intra, high inter).
             # If single domain, mean_far is roughly mean_near. Score ~ 1.
             # If multi domain, mean_near is low, mean_far is high. Score > 1.
-            epsilon = 1e-8
-            if mean_near > epsilon:
+            if mean_near > 0:
                 pae_blockiness = mean_far / mean_near
             else:
                 pae_blockiness = 0.0

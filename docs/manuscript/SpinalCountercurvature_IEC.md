@@ -828,7 +828,7 @@ We thank [colleagues] for discussions on HOX biology, ciliary mechanics, and cli
 
 5. **Wellik DM** (2007). Hox patterning of the vertebrate axial skeleton. *Dev Dyn* 236:2454–2463.
 
-6. **Grimes DT et al.** (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. *Science* 352:1341–1344. doi: 10.1126/science.aaf6419
+6. **Grimes DT et al.** (2016). Zebrafish models of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. *Science* 352:1341–1344. doi: 10.1126/science.aaf6419
 
 7. **Pourquié O, Kusumi K** (2001). When body segmentation goes wrong. *Clin Genet* 60:409–416.
 

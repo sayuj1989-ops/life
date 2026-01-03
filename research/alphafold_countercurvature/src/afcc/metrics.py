@@ -309,8 +309,8 @@ class MetricsAnalyzer:
 
         # Fast path using pre-extracted arrays
         if resnames is not None and len(resnames) == len(coords):
-            # Limit checks to available length
-            n_check = min(len(resnames), len(coords))
+            # Limit checks to available length (equal for resnames and coords here)
+            n_check = len(coords)
 
             # Create masks
             # Note: plddt_scores might be longer if it includes non-CA residues,

@@ -1,4 +1,4 @@
-TITLE: Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature
+TITLE: Zebrafish models of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature
 
 Abstract:
 Idiopathic scoliosis (IS) affects 3% of children worldwide, yet mechanisms underlying spinal deformity remain unknown. Here we show that ptk7 mutant zebrafish, a faithful genetic model of IS, exhibit ependymal cell (EC) cilia development and cerebrospinal fluid (CSF) flow defects. Transgenic re-introduction of Ptk7 in motile ciliated lineages prevents scoliosis in ptk7 mutants, while mutation of multiple independent cilia motility genes yield IS phenotypes. We define a finite developmental window for motile cilia in spine morphogenesis. Notably, restoration of cilia motility, after scoliosis onset, blocks spinal curve progression. Together, our results indicate a critical role for cilia-driven CSF flow in spine development, implicate irregularities in CSF flow as an underlying biological cause of IS and provide proof-of-principle that non-invasive therapeutic intervention could prevent severe scoliosis.

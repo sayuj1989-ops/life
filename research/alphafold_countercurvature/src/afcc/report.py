@@ -32,7 +32,7 @@ class ReportGenerator:
                 s=100
             )
         else:
-             sns.scatterplot(
+            sns.scatterplot(
                 data=df,
                 x='radius_of_gyration',
                 y='anisotropy',
@@ -74,7 +74,7 @@ class ReportGenerator:
             if 'source_category' in df.columns:
                 sns.boxplot(data=df, x='source_category', y='curvature_summary')
             else:
-                 sns.boxplot(data=df, y='curvature_summary')
+                sns.boxplot(data=df, y='curvature_summary')
             plt.title("Mean Curvature by Category")
             plt.savefig(self.figures_dir / "curvature_dist.png", dpi=150)
             plt.close()

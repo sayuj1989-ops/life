@@ -77,12 +77,17 @@ def run_experiment():
     print(f"Peak memory usage: {peak_mem / 1024 / 1024:.2f} MB")
 
     # 5. Analyze Results
-    final_curvature = result.curvature[-1]
+    final_curvature = result.curvature[-1] # Norm
+    final_bending = result.bending_curvature[-1]
+    final_torsion = result.torsion[-1]
     final_centerline = result.centerline[-1]
 
     # Calculate average curvature
     avg_curvature = np.mean(final_curvature)
+    avg_torsion = np.mean(np.abs(final_torsion))
+
     print(f"Final average curvature: {avg_curvature:.4f} m^-1")
+    print(f"Final average torsion: {avg_torsion:.4f} m^-1")
 
     # Output simple validation
     # If chi_kappa is positive and dIds has structure, we expect curvature variance
@@ -100,10 +105,17 @@ def run_experiment():
         f.write(f"Runtime: {end_time - start_time:.2f}s\n")
         f.write(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB\n")
         f.write(f"Avg Curvature: {avg_curvature:.4f}\n")
+        f.write(f"Avg Torsion (abs): {avg_torsion:.4f}\n")
         f.write(f"Curvature Std: {curvature_std:.4f}\n")
         f.write(f"Parameters: {params}\n")
 
+    # Save data for reproducibility
+    np.save(output_dir / "kappa.npy", result.kappa)
+    np.save(output_dir / "centerline.npy", result.centerline)
+    np.save(output_dir / "time.npy", result.time)
+
     print(f"Report saved to {output_dir / 'report.txt'}")
+    print(f"Data saved to {output_dir}")
 
 if __name__ == "__main__":
     run_experiment()

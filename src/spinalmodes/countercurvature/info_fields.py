@@ -60,7 +60,7 @@ class InfoField1D(NamedTuple):
     I:
         Dimensionless information density evaluated on ``s``.
     dIds:
-        Spatial derivative :math:`\partial I/\partial s` with the same shape as ``s``.
+        Spatial derivative :math:`\\partial I/\\partial s` with the same shape as ``s``.
 
     Notes
     -----

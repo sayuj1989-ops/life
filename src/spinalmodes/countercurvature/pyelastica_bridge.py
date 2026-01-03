@@ -37,16 +37,49 @@ except ImportError:
         class NoForces: pass
         class CallBackBaseClass: pass
 
-@dataclass
-class SimulationResult:
-    time: ArrayF64
-    centerline: ArrayF64
-    curvature: ArrayF64
-    info_field: InfoField1D
-
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
         raise ImportError("PyElastica is not installed.")
+
+@dataclass
+class SimulationResult:
+    """Results from a countercurvature simulation.
+
+    Attributes
+    ----------
+    time:
+        Time points of the simulation.
+    centerline:
+        Rod position history. Shape: (time, 3, n_nodes).
+    kappa:
+        Rod curvature/torsion history. Shape: (time, 3, n_nodes).
+        Components 0, 1 are bending curvatures (about d1, d2).
+        Component 2 is torsion (about d3).
+    info_field:
+        The information field used for the simulation.
+    """
+    time: ArrayF64
+    centerline: ArrayF64
+    kappa: ArrayF64
+    info_field: InfoField1D
+
+    @property
+    def curvature(self) -> ArrayF64:
+        """Total curvature magnitude (norm of kappa vector).
+
+        Note: This includes torsion component. To get bending only, use `bending_curvature`.
+        """
+        return np.linalg.norm(self.kappa, axis=1)
+
+    @property
+    def bending_curvature(self) -> ArrayF64:
+        """Magnitude of bending curvature (components 0 and 1)."""
+        return np.linalg.norm(self.kappa[:, :2, :], axis=1)
+
+    @property
+    def torsion(self) -> ArrayF64:
+        """Torsion component (component 2)."""
+        return self.kappa[:, 2, :]
 
 class CounterCurvatureRodSystem:
     def __init__(self, rod: ea.CosseratRod, info_field: InfoField1D, params: CounterCurvatureParams):
@@ -169,24 +202,28 @@ class CounterCurvatureRodSystem:
                 if current_step % self.every == 0:
                     self.results["time"].append(time)
                     self.results["centerline"].append(system.position_collection.copy().T)
-                    self.results["curvature"].append(np.linalg.norm(system.kappa, axis=0))
+                    # Capture full kappa vector (3, n_elements-1)
+                    self.results["kappa"].append(system.kappa.copy())
 
-        results = {"time": [], "centerline": [], "curvature": []}
+        results = {"time": [], "centerline": [], "kappa": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
 
         system.finalize()
         timestepper = ea.PositionVerlet()
         ea.integrate(timestepper, system, final_time, int(final_time/dt))
 
-        # Pad curvature to match n_points
-        curv = np.array(results["curvature"])
-        padded_curv = np.zeros((curv.shape[0], curv.shape[1] + 2))
-        padded_curv[:, 1:-1] = curv
+        # Process kappa: (time, 3, n_internal) -> (time, 3, n_points)
+        kappa_raw = np.array(results["kappa"]) # (time, 3, n_internal)
+        n_time, n_dim, n_internal = kappa_raw.shape
+        n_points = n_internal + 2 # Pad 1 on each side
+
+        padded_kappa = np.zeros((n_time, n_dim, n_points))
+        padded_kappa[:, :, 1:-1] = kappa_raw
 
         return SimulationResult(
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
-            curvature=padded_curv,
+            kappa=padded_kappa,
             info_field=self.info_field
         )
 

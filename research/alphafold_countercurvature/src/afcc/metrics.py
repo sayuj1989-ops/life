@@ -308,14 +308,19 @@ class MetricsAnalyzer:
         charged_patch_score = 0.0
 
         # Fast path using pre-extracted arrays
-        if resnames is not None and len(resnames) == len(coords):
-            # Limit checks to available length (equal for resnames and coords here)
+        # Only safe if coords, resnames, and plddt_scores are all CA-aligned and of equal length.
+        if (
+            resnames is not None
+            and plddt_scores is not None
+            and len(coords) > 0
+            and len(resnames) == len(coords) == len(plddt_scores)
+        ):
+            # Limit checks to available length (defensive, though lengths are equal here)
             n_check = len(coords)
 
             # Create masks
-            # Note: plddt_scores might be longer if it includes non-CA residues,
-            # but idx logic in slow path assumes strictly sequential CA iteration.
-            # We assume plddt_scores[0:n_check] corresponds to coords[0:n_check].
+            # Here plddt_scores[0:n_check] is guaranteed to correspond to coords[0:n_check]
+            # because we only enter the fast path when lengths are equal and CA-aligned.
             plddt_subset = plddt_scores[:n_check]
             cn_subset = cn[:n_check]
             res_subset = resnames[:n_check]
@@ -329,7 +334,7 @@ class MetricsAnalyzer:
             if exposed_hc_count > 0:
                 # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
                 # Vectorized check
-                charged_residues = np.isin(res_subset, ['ASP', 'GLU', 'LYS', 'ARG', 'HIS', 'Asp', 'Glu', 'Lys', 'Arg', 'His'])
+                charged_residues = np.isin(res_subset, ['ASP', 'GLU', 'LYS', 'ARG', 'HIS'])
                 charged_count = np.sum(charged_residues & mask)
                 charged_patch_score = charged_count / exposed_hc_count
 

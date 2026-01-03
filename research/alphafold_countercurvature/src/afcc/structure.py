@@ -33,9 +33,18 @@ class StructureParser:
     def extract_coords_and_plddt(self, structure: Structure) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
         Extracts CA coordinates, pLDDT scores, and residue names in a single pass.
-        Coords: Only for residues with CA atoms (N, 3).
-        pLDDT: For all residues (using CA bfactor or avg bfactor) (M,).
-        Resnames: Residue names for residues with CA atoms (N,).
+
+        Returns
+        -------
+        coords : np.ndarray
+            Coordinates of CA atoms for residues that have a CA atom.
+            Shape: (N, 3), where N is the number of residues with a CA atom.
+        plddts : np.ndarray
+            pLDDT scores for residues with CA atoms (using the CA B-factor).
+            Shape: (N,), aligned with ``coords``.
+        resnames : np.ndarray
+            Residue names for residues with CA atoms, aligned with ``coords``.
+            Shape: (N,).
         """
         coords = []
         plddts = []
@@ -47,11 +56,6 @@ class StructureParser:
                         coords.append(residue['CA'].get_coord())
                         plddts.append(residue['CA'].get_bfactor())
                         resnames.append(residue.get_resname())
-                    else:
-                        # Fallback: average of all atoms for pLDDT
-                        bfactors = [atom.get_bfactor() for atom in residue]
-                        if bfactors:
-                            plddts.append(sum(bfactors) / len(bfactors))
 
         return np.array(coords), np.array(plddts), np.array(resnames)
 

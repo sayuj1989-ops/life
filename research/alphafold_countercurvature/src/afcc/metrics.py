@@ -153,7 +153,7 @@ class MetricsAnalyzer:
         result[1:-2] = torsion # Align somewhat to middle
         return result
 
-    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None) -> Dict[str, Any]:
+    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None) -> Dict[str, Any]:
         """
         Runs all metrics on a structure.
 
@@ -161,6 +161,7 @@ class MetricsAnalyzer:
             structure: Bio.PDB Structure object (deprecated, used if coords/plddt not provided)
             plddt_scores: Pre-extracted pLDDT scores
             coords: Pre-extracted CA coordinates
+            resnames: Pre-extracted residue names (CA only)
         """
         # Support legacy call signature for a moment or handle both
         if coords is None and structure is not None:
@@ -305,7 +306,35 @@ class MetricsAnalyzer:
         # We don't have sequence in coords/plddt call signature easily unless structure is passed.
         # `structure` is passed.
         charged_patch_score = 0.0
-        if structure:
+
+        # Fast path using pre-extracted arrays
+        if resnames is not None and len(resnames) == len(coords):
+            # Limit checks to available length
+            n_check = min(len(resnames), len(coords))
+
+            # Create masks
+            # Note: plddt_scores might be longer if it includes non-CA residues,
+            # but idx logic in slow path assumes strictly sequential CA iteration.
+            # We assume plddt_scores[0:n_check] corresponds to coords[0:n_check].
+            plddt_subset = plddt_scores[:n_check]
+            cn_subset = cn[:n_check]
+            res_subset = resnames[:n_check]
+
+            is_exposed = cn_subset < 15
+            is_hc = plddt_subset >= 70
+
+            mask = is_exposed & is_hc
+            exposed_hc_count = np.sum(mask)
+
+            if exposed_hc_count > 0:
+                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                # Vectorized check
+                charged_residues = np.isin(res_subset, ['ASP', 'GLU', 'LYS', 'ARG', 'HIS', 'Asp', 'Glu', 'Lys', 'Arg', 'His'])
+                charged_count = np.sum(charged_residues & mask)
+                charged_patch_score = charged_count / exposed_hc_count
+
+        # Slow fallback path
+        elif structure:
             # Extract sequence and map to exposure
             # iterate residues
             charged_count = 0

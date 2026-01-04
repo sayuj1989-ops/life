@@ -135,13 +135,13 @@ class MetricsAnalyzer:
             pae_matrix: Pre-extracted PAE matrix (optional)
         """
         if coords is None and structure is not None:
-             coords_list = []
-             for model in structure:
-                 for chain in model:
-                     for residue in chain:
-                         if 'CA' in residue:
-                             coords_list.append(residue['CA'].get_coord())
-             coords = np.array(coords_list)
+            coords_list = []
+            for model in structure:
+                for chain in model:
+                    for residue in chain:
+                        if 'CA' in residue:
+                            coords_list.append(residue['CA'].get_coord())
+            coords = np.array(coords_list)
 
         rg = self.calculate_rg(coords)
         shape_props = self.calculate_anisotropy(coords)
@@ -165,15 +165,15 @@ class MetricsAnalyzer:
 
         strict_mask_kappa = np.zeros(len(coords), dtype=bool)
         if len(coords) >= 3:
-             m = plddt_mask[:-2] & plddt_mask[1:-1] & plddt_mask[2:]
-             strict_mask_kappa[1:-1] = m
+            m = plddt_mask[:-2] & plddt_mask[1:-1] & plddt_mask[2:]
+            strict_mask_kappa[1:-1] = m
 
         kappa_valid = kappa[strict_mask_kappa & ~np.isnan(kappa)]
 
         strict_mask_tau = np.zeros(len(coords), dtype=bool)
         if len(coords) >= 4:
-             m = plddt_mask[:-3] & plddt_mask[1:-2] & plddt_mask[2:-1] & plddt_mask[3:]
-             strict_mask_tau[1:-2] = m
+            m = plddt_mask[:-3] & plddt_mask[1:-2] & plddt_mask[2:-1] & plddt_mask[3:]
+            strict_mask_tau[1:-2] = m
 
         tau_valid = tau[strict_mask_tau & ~np.isnan(tau)]
 
@@ -271,7 +271,8 @@ class MetricsAnalyzer:
             # Contrast. High score = distinct domains (low intra, high inter).
             # If single domain, mean_far is roughly mean_near. Score ~ 1.
             # If multi domain, mean_near is low, mean_far is high. Score > 1.
-            if mean_near > 0:
+            epsilon = 1e-8
+            if mean_near > epsilon:
                 pae_blockiness = mean_far / mean_near
             else:
                 pae_blockiness = 0.0

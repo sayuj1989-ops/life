@@ -53,8 +53,8 @@ def main():
         if not structure:
             continue
 
-        coords, plddt = parser.extract_coords_and_plddt(structure)
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords)
+        coords, plddt, resnames = parser.extract_coords_and_plddt(structure)
+        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames)
 
         # Merge basic info
         metrics['gene_symbol'] = gene

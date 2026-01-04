@@ -153,7 +153,7 @@ class MetricsAnalyzer:
         result[1:-2] = torsion # Align somewhat to middle
         return result
 
-    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None) -> Dict[str, Any]:
+    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None) -> Dict[str, Any]:
         """
         Runs all metrics on a structure.
 
@@ -161,6 +161,7 @@ class MetricsAnalyzer:
             structure: Bio.PDB Structure object (deprecated, used if coords/plddt not provided)
             plddt_scores: Pre-extracted pLDDT scores
             coords: Pre-extracted CA coordinates
+            resnames: Pre-extracted residue names (optional, enables fast path)
         """
         # Support legacy call signature for a moment or handle both
         if coords is None and structure is not None:
@@ -302,10 +303,30 @@ class MetricsAnalyzer:
 
         # Charged Patch Score
         # "density of charged residues in high-confidence exposed regions"
-        # We don't have sequence in coords/plddt call signature easily unless structure is passed.
-        # `structure` is passed.
         charged_patch_score = 0.0
-        if structure:
+
+        if resnames is not None and len(resnames) == len(plddt_scores):
+             # Vectorized path
+             charged_residues = ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']
+             is_charged = np.isin(resnames, charged_residues)
+
+             # Align with cn which is computed on coords
+             # Assuming len(coords) == len(plddt_scores) == len(resnames)
+             min_len = min(len(coords), len(plddt_scores), len(resnames))
+
+             if min_len > 0:
+                 # Masks
+                 mask_hc = (plddt_scores[:min_len] >= 70)
+                 mask_exposed = (cn[:min_len] < 15)
+                 mask_target = mask_hc & mask_exposed
+
+                 exposed_hc_count = np.sum(mask_target)
+                 if exposed_hc_count > 0:
+                     charged_count = np.sum(is_charged[:min_len] & mask_target)
+                     charged_patch_score = float(charged_count / exposed_hc_count)
+
+        elif structure:
+            # Slow legacy path
             # Extract sequence and map to exposure
             # iterate residues
             charged_count = 0
@@ -319,16 +340,17 @@ class MetricsAnalyzer:
                     for residue in chain:
                         if 'CA' in residue:
                             # Check confidence
-                            conf = plddt_scores[idx]
-                            # Check exposure
-                            is_exposed = (cn[idx] < 15) if idx < len(cn) else False
+                            if idx < len(plddt_scores):
+                                conf = plddt_scores[idx]
+                                # Check exposure
+                                is_exposed = (cn[idx] < 15) if idx < len(cn) else False
 
-                            if conf >= 70 and is_exposed:
-                                exposed_hc_count += 1
-                                resname = residue.get_resname().upper()
-                                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
-                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
-                                    charged_count += 1
+                                if conf >= 70 and is_exposed:
+                                    exposed_hc_count += 1
+                                    resname = residue.get_resname().upper()
+                                    # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                                    if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
+                                        charged_count += 1
                             idx += 1
 
             if exposed_hc_count > 0:

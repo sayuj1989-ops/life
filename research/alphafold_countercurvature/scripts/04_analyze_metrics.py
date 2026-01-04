@@ -53,8 +53,16 @@ def main():
         if not structure:
             continue
 
+        # Load PAE if available
+        pae_path = row.get('pae_path')
+        pae_matrix = None
+        if pae_path and isinstance(pae_path, str):
+             p = Path(pae_path)
+             if p.exists():
+                 pae_matrix = parser.parse_pae(p)
+
         coords, plddt, resnames = parser.extract_coords_and_plddt(structure)
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames)
+        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
 
         # Merge basic info
         metrics['gene_symbol'] = gene

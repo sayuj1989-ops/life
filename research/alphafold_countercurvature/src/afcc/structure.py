@@ -55,7 +55,7 @@ class StructureParser:
                     if 'CA' in residue:
                         coords.append(residue['CA'].get_coord())
                         plddts.append(residue['CA'].get_bfactor())
-                        resnames.append(residue.get_resname())
+                        resnames.append(residue.get_resname().upper())
 
         return np.array(coords), np.array(plddts), np.array(resnames)
 

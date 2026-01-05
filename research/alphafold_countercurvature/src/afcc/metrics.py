@@ -315,18 +315,9 @@ class MetricsAnalyzer:
             and len(coords) > 0
             and len(resnames) == len(coords) == len(plddt_scores)
         ):
-            # All arrays are equal length and CA-aligned
-            n_check = len(coords)
-
-            # Create masks
-            # Here plddt_scores[0:n_check] is guaranteed to correspond to coords[0:n_check]
-            # because we only enter the fast path when lengths are equal and CA-aligned.
-            plddt_subset = plddt_scores[:n_check]
-            cn_subset = cn[:n_check]
-            res_subset = resnames[:n_check]
-
-            is_exposed = cn_subset < 15
-            is_hc = plddt_subset >= 70
+            # All arrays are equal length and CA-aligned, so we can use them directly.
+            is_exposed = cn < 15
+            is_hc = plddt_scores >= 70
 
             mask = is_exposed & is_hc
             exposed_hc_count = np.sum(mask)
@@ -334,7 +325,7 @@ class MetricsAnalyzer:
             if exposed_hc_count > 0:
                 # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
                 # Vectorized check using uppercase variants only
-                charged_residues = np.isin(res_subset, ['ASP', 'GLU', 'LYS', 'ARG', 'HIS'])
+                charged_residues = np.isin(resnames, ['ASP', 'GLU', 'LYS', 'ARG', 'HIS'])
                 charged_count = np.sum(charged_residues & mask)
                 charged_patch_score = charged_count / exposed_hc_count
 

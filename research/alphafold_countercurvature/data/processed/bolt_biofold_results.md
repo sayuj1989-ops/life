@@ -55,3 +55,10 @@
 
 ## 4. Best Next Move
 Cluster by geometry and correlate curvature metrics with known phenotype genes.
+
+## 5. Quality & Reproducibility Checklist
+- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
+- Date/Time: 2026-01-05 19:08:17
+- Code Version: 40bd445
+- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
+- Notes: 14 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

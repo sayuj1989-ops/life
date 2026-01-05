@@ -21,6 +21,66 @@ class StructureParser:
             print(f"⚠️ Error parsing PDB {pdb_path}: {e}")
             return None
 
+    def fast_parse_pdb_arrays(self, pdb_path: Path) -> Tuple[Optional[np.ndarray], Optional[np.ndarray], Optional[np.ndarray]]:
+        """
+        Fast specialized PDB parser that only extracts CA coordinates, pLDDT (B-factor), and residue names.
+        Skips Bio.PDB structure building for performance.
+
+        Returns:
+            coords: (N, 3) float array of CA coordinates
+            plddt: (N,) float array of pLDDT scores
+            resnames: (N,) string array of residue names (3-letter)
+        """
+        if not pdb_path.exists():
+            return None, None, None
+
+        coords_list = []
+        plddt_list = []
+        resnames_list = []
+
+        try:
+            with open(pdb_path, 'r') as f:
+                for line in f:
+                    if line.startswith("ATOM"):
+                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
+                        # PDB format (1-based index in documentation, 0-based slice here):
+                        # 12-16: Atom name
+                        # 16: AltLoc (Alternate location indicator)
+                        # 17-20: Residue name
+                        # 21: Chain identifier
+                        # 30-38: X
+                        # 38-46: Y
+                        # 46-54: Z
+                        # 60-66: Temperature factor (pLDDT)
+
+                        atom_name = line[12:16].strip()
+
+                        # Only handle primary conformations (' ' or 'A')
+                        # AF structures usually don't have altlocs, but we check for safety.
+                        alt_loc = line[16]
+                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
+                            try:
+                                res_name = line[17:20].strip()
+                                x = float(line[30:38])
+                                y = float(line[38:46])
+                                z = float(line[46:54])
+                                b_factor = float(line[60:66])
+
+                                coords_list.append([x, y, z])
+                                plddt_list.append(b_factor)
+                                resnames_list.append(res_name)
+                            except ValueError:
+                                continue # Skip malformed lines
+
+            if not coords_list:
+                return None, None, None
+
+            return np.array(coords_list), np.array(plddt_list), np.array(resnames_list)
+
+        except Exception as e:
+            print(f"⚠️ Error fast parsing PDB {pdb_path}: {e}")
+            return None, None, None
+
     def extract_plddt(self, structure: Structure) -> np.ndarray:
         """
         Extracts pLDDT scores from the B-factor column of the structure.

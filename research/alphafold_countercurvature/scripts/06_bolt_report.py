@@ -170,7 +170,14 @@ def main():
         best_move = "Add proteins: Expand search to include more cytoskeletal linkers."
 
     # --- Output ---
-    print("# Bolt-BioFold ⚡ Analysis Report\n")
+    print("# Bolt-BioFold ⚡ Analysis Report")
+
+    # Check source from dataframe to avoid hardcoding if possible, or just append the checklist item later.
+    # For now, we will print a summary of sources found.
+    # Metrics file uses 'source_category' (e.g. seed_ECM)
+    sources = df['source_category'].unique()
+    source_summary = ", ".join(str(s) for s in sources)
+    print(f"Sources: {source_summary}\n")
 
     print("## 1. Results Table")
     # Manual markdown table generation to avoid tabulate dependency
@@ -182,7 +189,10 @@ def main():
     for _, row in table_df.iterrows():
         print("| " + " | ".join(str(x) for x in row.values) + " |")
 
-    print("\n")
+    print("\n### CSV Block")
+    print("```csv")
+    print(table_df.to_csv(index=False))
+    print("```\n")
 
     print("## 2. Key Plots Summary")
     print(f"- Generated `{plot_path}`: Scatter plot of Length vs Confidence, sized by Anisotropy.")
@@ -195,6 +205,22 @@ def main():
 
     print("## 4. Best Next Move")
     print(best_move)
+
+    import datetime
+    import subprocess
+
+    try:
+        commit_hash = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode().strip()
+    except:
+        commit_hash = "Unknown"
+
+    print("\n## 5. Quality & Reproducibility Checklist")
+    print(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)")
+    print(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"- Code Version: {commit_hash}")
+    print(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default")
+    print(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml")
+
 
     # Save to file
     with open(OUTPUT_MD, 'w') as f:
@@ -215,6 +241,13 @@ def main():
             f.write(line + "\n")
         f.write("\n## 4. Best Next Move\n")
         f.write(best_move + "\n")
+
+        f.write("\n## 5. Quality & Reproducibility Checklist\n")
+        f.write(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)\n")
+        f.write(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"- Code Version: {commit_hash}\n")
+        f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
+        f.write(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml\n")
 
 if __name__ == "__main__":
     main()

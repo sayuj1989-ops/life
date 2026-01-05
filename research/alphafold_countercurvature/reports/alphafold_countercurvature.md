@@ -1,7 +1,7 @@
 # AlphaFold Counter-Curvature Analysis Report
 
-**Date:** 2026-01-01
-**Proteins Analyzed:** 23
+**Date:** 2026-01-03
+**Proteins Analyzed:** 14
 
 ## 1. Scientific Framework
 This pipeline explores the "Biological Countercurvature of Spacetime" hypothesis by identifying structural proteins that may contribute to axial mechanical robustness.
@@ -23,11 +23,11 @@ High anisotropy indicates fibrous/extended potential.
 ### Top Anisotropic Candidates (Fibrous Potential)
 | Gene | Anisotropy | Rg (Å) | pLDDT | Morphology |
 |------|------------|--------|-------|------------|
-| HOXB9 | 2.58 | 39.6 | 63.5 | Intermediate |
-| ACTB | 2.16 | 21.6 | 95.2 | Intermediate |
-| HOXD13 | 2.07 | 43.3 | 55.4 | Intermediate |
-| ALB | 1.82 | 27.1 | 92.7 | Intermediate |
-| HOXA1 | 1.82 | 44.3 | 57.8 | Intermediate |
+| VIM | 5.57 | 71.7 | 77.1 | Fibrous/Extended |
+| CDH2 | 4.52 | 67.3 | 79.4 | Fibrous/Extended |
+| PTH1R | 3.02 | 45.3 | 71.0 | Fibrous/Extended |
+| ITGB1 | 2.79 | 46.6 | 85.9 | Intermediate |
+| BMP4 | 2.69 | 27.8 | 78.5 | Intermediate |
 
 ### Confidence Overview
 Distribution of model confidence. High pLDDT (>70) suggests well-ordered domains.
@@ -36,7 +36,7 @@ Distribution of model confidence. High pLDDT (>70) suggests well-ordered domains
 
 ## 4. Testable Predictions
 Based on these metrics, we predict:
-1. **High Anisotropy Candidates:** Proteins like HOXB9, ACTB, HOXD13 likely form extended cytoskeletal or ECM networks essential for resisting compression.
+1. **High Anisotropy Candidates:** Proteins like VIM, CDH2, PTH1R likely form extended cytoskeletal or ECM networks essential for resisting compression.
 2. **Compact/Globular Candidates:** Proteins with low anisotropy likely function as soluble regulators or globular domains.
 
 ## 5. Next Steps

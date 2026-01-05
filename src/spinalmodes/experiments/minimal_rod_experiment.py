@@ -1,20 +1,14 @@
-"""Minimal experiment linking biological parameters to rod curvature.
 
-This script demonstrates a measurable, safe step connecting the CounterCurvature
-framework with PyElastica simulations. It simulates a rod with spatially modulated
-stiffness and rest curvature (derived from an 'information field') and measures
-the resulting equilibrium curvature and runtime/memory usage.
-"""
-
-import time
-import tracemalloc
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+import time
+import tracemalloc
 
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 def run_experiment():
     print("Starting minimal PyElastica rod experiment...")
@@ -89,6 +83,37 @@ def run_experiment():
     curvature_std = np.std(final_curvature)
     print(f"Curvature standard deviation: {curvature_std:.4f} m^-1")
 
+    # 6. Compute Scoliosis Metrics
+    # The simulation aligns the rod initially along x, with gravity in -z.
+    # Sagittal plane bending is in (x, z).
+    # Coronal plane deviation is in y.
+
+    # Coordinates from PyElastica: (3, n_nodes)
+    # final_centerline[0, :] -> x (longitudinal approx)
+    # final_centerline[1, :] -> y (lateral/coronal deviation)
+    # final_centerline[2, :] -> z (vertical/sagittal deviation)
+
+    # Debug info
+    print(f"Final centerline shape: {final_centerline.shape}")
+
+    x_coords = final_centerline[:, 0]
+    y_coords = final_centerline[:, 1]
+    z_coords = final_centerline[:, 2]
+
+    print(f"X range: {np.min(x_coords):.4f} to {np.max(x_coords):.4f}")
+    print(f"Y range: {np.min(y_coords):.4f} to {np.max(y_coords):.4f}")
+    print(f"Z range: {np.min(z_coords):.4f} to {np.max(z_coords):.4f}")
+
+    # Sagittal indices (using x as longitudinal, z as "lateral" in the sagittal plane)
+    sagittal_metrics = compute_scoliosis_metrics(z=x_coords, y=z_coords)
+    print(f"Sagittal Metrics (S_lat): {sagittal_metrics.S_lat:.4f}")
+
+    # Coronal indices (using x as longitudinal, y as lateral)
+    # Should be near zero for this symmetric setup
+    coronal_metrics = compute_scoliosis_metrics(z=x_coords, y=y_coords)
+    print(f"Coronal Metrics (S_lat): {coronal_metrics.S_lat:.6f}")
+    print(f"Coronal Cobb Angle: {coronal_metrics.cobb_like_deg:.6f} deg")
+
     # Create output directory
     output_dir = Path("outputs/experiments/minimal_rod")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -101,6 +126,9 @@ def run_experiment():
         f.write(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB\n")
         f.write(f"Avg Curvature: {avg_curvature:.4f}\n")
         f.write(f"Curvature Std: {curvature_std:.4f}\n")
+        f.write(f"Sagittal S_lat: {sagittal_metrics.S_lat:.4f}\n")
+        f.write(f"Coronal S_lat: {coronal_metrics.S_lat:.6f}\n")
+        f.write(f"Coronal Cobb Angle: {coronal_metrics.cobb_like_deg:.6f} deg\n")
         f.write(f"Parameters: {params}\n")
 
     print(f"Report saved to {output_dir / 'report.txt'}")

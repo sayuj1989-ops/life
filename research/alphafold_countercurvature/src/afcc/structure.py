@@ -27,30 +27,34 @@ class StructureParser:
         Returns array of scores per residue (averaging atoms if necessary,
         though usually CA is sufficient or all atoms have same pLDDT in AF models).
         """
-        _, plddts = self.extract_coords_and_plddt(structure)
+        _, plddts, _ = self.extract_coords_and_plddt(structure)
         return plddts
 
-    def extract_coords_and_plddt(self, structure: Structure) -> Tuple[np.ndarray, np.ndarray]:
+    def extract_coords_and_plddt(self, structure: Structure) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        Extracts CA coordinates and pLDDT scores in a single pass.
+        Extracts CA coordinates, pLDDT scores, and residue names in a single pass.
         Coords: Only for residues with CA atoms (N, 3).
         pLDDT: For all residues (using CA bfactor or avg bfactor) (M,).
+        Resnames: Residue names corresponding to the coords/pLDDT entries (M,).
         """
         coords = []
         plddts = []
+        resnames = []
         for model in structure:
             for chain in model:
                 for residue in chain:
                     if 'CA' in residue:
                         coords.append(residue['CA'].get_coord())
                         plddts.append(residue['CA'].get_bfactor())
+                        resnames.append(residue.get_resname().upper())
                     else:
                         # Fallback: average of all atoms for pLDDT
                         bfactors = [atom.get_bfactor() for atom in residue]
                         if bfactors:
                             plddts.append(sum(bfactors) / len(bfactors))
+                            resnames.append(residue.get_resname().upper())
 
-        return np.array(coords), np.array(plddts)
+        return np.array(coords), np.array(plddts), np.array(resnames)
 
     def parse_pae(self, pae_path: Path) -> Optional[np.ndarray]:
         """

@@ -153,7 +153,74 @@ class MetricsAnalyzer:
         result[1:-2] = torsion # Align somewhat to middle
         return result
 
-    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None) -> Dict[str, Any]:
+    def calculate_pae_metrics(self, pae_matrix: np.ndarray, plddt_scores: np.ndarray) -> Dict[str, float]:
+        """
+        Calculates PAE-based metrics: mean PAE and domain blockiness.
+        """
+        if pae_matrix is None or pae_matrix.size == 0:
+            return {'pae_mean': 0.0, 'pae_blockiness': 0.0}
+
+        pae_mean = np.mean(pae_matrix)
+
+        # Domain blockiness
+        # heuristic: blocks defined by pLDDT >= 70
+        # If we have distinct high-conf blocks
+        mask_hc = (plddt_scores >= 70).astype(int)
+        # Find segments
+        bounded = np.hstack(([0], mask_hc, [0]))
+        d = np.diff(bounded)
+        starts = np.where(d == 1)[0]
+        ends = np.where(d == -1)[0]
+
+        segments = list(zip(starts, ends))
+        # Filter short segments (< 10 residues)
+        segments = [s for s in segments if (s[1] - s[0]) >= 10]
+
+        if len(segments) < 2:
+            return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0}
+
+        intra_scores = []
+        inter_scores = []
+
+        for i, (s1, e1) in enumerate(segments):
+            # Intra
+            # Check bounds
+            if s1 >= pae_matrix.shape[0] or e1 > pae_matrix.shape[0]: continue
+
+            block = pae_matrix[s1:e1, s1:e1]
+            if block.size > 0:
+                intra_scores.append(np.mean(block))
+
+            # Inter
+            for j, (s2, e2) in enumerate(segments):
+                if i != j:
+                    if s2 >= pae_matrix.shape[0] or e2 > pae_matrix.shape[0]: continue
+                    block_inter = pae_matrix[s1:e1, s2:e2]
+                    if block_inter.size > 0:
+                        inter_scores.append(np.mean(block_inter))
+
+        mean_intra = np.mean(intra_scores) if intra_scores else 1.0
+        mean_inter = np.mean(inter_scores) if inter_scores else 1.0
+
+        # Avoid div by zero
+        if mean_intra < 1e-3: mean_intra = 1e-3
+
+        # Blockiness: contrast. High if inter > intra (meaning low error within, high error between)
+        # But PAE is error (lower is better).
+        # So we want LOW intra PAE and HIGH inter PAE.
+        # Ratio: mean_inter / mean_intra.
+        # If domains are well defined: inter is high (uncertain), intra is low (certain). Ratio >> 1.
+        blockiness = mean_inter / mean_intra
+        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness)}
+
+    def analyze_structure(
+        self,
+        structure: Structure = None,
+        plddt_scores: np.ndarray = None,
+        coords: np.ndarray = None,
+        resnames: np.ndarray = None,
+        pae_matrix: np.ndarray = None,
+    ) -> Dict[str, Any]:
         """
         Runs all metrics on a structure.
 
@@ -161,7 +228,8 @@ class MetricsAnalyzer:
             structure: Bio.PDB Structure object (deprecated, used if coords/plddt not provided)
             plddt_scores: Pre-extracted pLDDT scores
             coords: Pre-extracted CA coordinates
-            resnames: Pre-extracted residue names (CA only)
+            resnames: Pre-extracted residue names (CA only, enables fast path)
+            pae_matrix: Optional PAE matrix (N, N)
         """
         # Support legacy call signature for a moment or handle both
         if coords is None and structure is not None:
@@ -181,6 +249,7 @@ class MetricsAnalyzer:
 
         mean_plddt = np.mean(plddt_scores) if len(plddt_scores) > 0 else 0
         fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0
+        disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores) if len(plddt_scores) > 0 else 0
 
         # Geometry
         kappa = self.calculate_curvature(coords)
@@ -303,8 +372,6 @@ class MetricsAnalyzer:
 
         # Charged Patch Score
         # "density of charged residues in high-confidence exposed regions"
-        # We don't have sequence in coords/plddt call signature easily unless structure is passed.
-        # `structure` is passed.
         charged_patch_score = 0.0
 
         # Fast path using pre-extracted arrays
@@ -344,16 +411,17 @@ class MetricsAnalyzer:
                     for residue in chain:
                         if 'CA' in residue:
                             # Check confidence
-                            conf = plddt_scores[idx]
-                            # Check exposure
-                            is_exposed = (cn[idx] < 15) if idx < len(cn) else False
+                            if idx < len(plddt_scores):
+                                conf = plddt_scores[idx]
+                                # Check exposure
+                                is_exposed = (cn[idx] < 15) if idx < len(cn) else False
 
-                            if conf >= 70 and is_exposed:
-                                exposed_hc_count += 1
-                                resname = residue.get_resname().upper()
-                                # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
-                                if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
-                                    charged_count += 1
+                                if conf >= 70 and is_exposed:
+                                    exposed_hc_count += 1
+                                    resname = residue.get_resname().upper()
+                                    # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
+                                    if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
+                                        charged_count += 1
                             idx += 1
 
             if exposed_hc_count > 0:
@@ -362,12 +430,50 @@ class MetricsAnalyzer:
         # Count residues
         n_res = len(plddt_scores)
 
+        # PAE Metrics
+        pae_metrics = self.calculate_pae_metrics(pae_matrix, plddt_scores)
+
+        # Hinge candidates: positions where pLDDT drops (< 70) AND curvature is high
+        # High curvature defined as > mean + 1 std (of valid kappa)
+        hinge_candidates = 0
+        if len(kappa_valid) > 0:
+            k_mean = np.mean(kappa_valid)
+            k_std = np.std(kappa_valid)
+            thresh = k_mean + k_std
+
+            # Use original kappa array but check mask
+            # Indices where pLDDT < 70 AND kappa > thresh
+            # strict_mask_kappa is where pLDDT >= 70.
+            # We want pLDDT < 70.
+            # But kappa needs neighbors. If pLDDT is low, kappa might be garbage?
+            # User: "hinge_candidates (positions where confidence drops + geometry bends)"
+            # This implies the bend is real but confidence is lower (flexible).
+            # Let's check kappa where pLDDT is < 70 but > 50 (to avoid total garbage)?
+            # Or just pLDDT < 70.
+
+            # We need kappa calculated at i.
+            # Check pLDDT[i] < 70.
+            mask_hinge = (plddt_scores < 70) & (plddt_scores >= 50)
+            # Align with kappa padding (1:-1)
+            # We can only check 1:-1
+            if len(kappa) > 2:
+                 k_vals = kappa[1:-1]
+                 m_vals = mask_hinge[1:-1]
+                 hinges = (k_vals > thresh) & m_vals & (~np.isnan(k_vals))
+                 hinge_candidates = np.sum(hinges)
+
+        # Flags
+        low_confidence_warning = (mean_plddt < 70) or (fraction_low_conf > 0.5)
+        multi_domain_uncertain = (pae_metrics['pae_blockiness'] > 1.5) and (pae_metrics['pae_mean'] > 10) # Heuristic
+        likely_idr_heavy = (disorder_fraction > 0.3)
+
         morphology = self.classify_morphology(shape_props['anisotropy_ratio'], rg, n_res)
 
         return {
             'n_residues': n_res,
             'mean_plddt': mean_plddt,
             'fraction_low_plddt': fraction_low_conf,
+            'disorder_fraction': disorder_fraction,
             'radius_of_gyration': rg,
             'anisotropy': shape_props['anisotropy_ratio'],
             'morphology': morphology,
@@ -375,7 +481,12 @@ class MetricsAnalyzer:
             'torsion_summary': mean_torsion,
             'end_to_end_distance': end_to_end,
             'bending_hotspots': bending_hotspots_str,
+            'hinge_candidates': int(hinge_candidates),
             'exposed_fraction': exposed_fraction,
             'charged_patch_score': charged_patch_score,
+            'low_confidence_warning': low_confidence_warning,
+            'multi_domain_uncertain': multi_domain_uncertain,
+            'likely_idr_heavy': likely_idr_heavy,
+            **pae_metrics,
             **shape_props
         }

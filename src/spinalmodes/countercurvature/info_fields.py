@@ -60,7 +60,7 @@ class InfoField1D(NamedTuple):
     I:
         Dimensionless information density evaluated on ``s``.
     dIds:
-        Spatial derivative :math:`\partial I/\partial s` with the same shape as ``s``.
+        Spatial derivative :math:`\\partial I/\\partial s` with the same shape as ``s``.
 
     Notes
     -----
@@ -75,6 +75,19 @@ class InfoField1D(NamedTuple):
     s: ArrayF64
     I: ArrayF64
     dIds: ArrayF64
+
+    """
+    1D Information field I(s).
+
+    Attributes
+    ----------
+    s : np.ndarray
+        Spatial coordinate (arc length).
+    I : np.ndarray
+        Information content I(s) with the same shape as ``s``.
+    dIds : np.ndarray
+        Spatial derivative :math:`\\partial I/\\partial s` with the same shape as ``s``.
+    """
 
     def as_dict(self) -> dict[str, ArrayF64]:
         """Return the field as a dictionary of arrays."""

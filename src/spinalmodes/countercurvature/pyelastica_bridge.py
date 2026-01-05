@@ -41,8 +41,21 @@ except ImportError:
 class SimulationResult:
     time: ArrayF64
     centerline: ArrayF64
-    curvature: ArrayF64
+    kappa: ArrayF64
     info_field: InfoField1D
+
+    @property
+    def curvature(self) -> ArrayF64:
+        """Returns the bending curvature (norm of kappa[0,1])."""
+        # kappa is (time, n_nodes, 3).
+        # We assume d1, d2 are bending, d3 is torsion.
+        # Norm of first two components.
+        return np.linalg.norm(self.kappa[..., :2], axis=-1)
+
+    @property
+    def torsion(self) -> ArrayF64:
+        """Returns the torsion (kappa[2])."""
+        return self.kappa[..., 2]
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
@@ -169,24 +182,28 @@ class CounterCurvatureRodSystem:
                 if current_step % self.every == 0:
                     self.results["time"].append(time)
                     self.results["centerline"].append(system.position_collection.copy().T)
-                    self.results["curvature"].append(np.linalg.norm(system.kappa, axis=0))
+                    # Save full kappa vector (3, n_elems-1) -> transpose to (n_elems-1, 3)
+                    self.results["kappa"].append(system.kappa.copy().T)
 
-        results = {"time": [], "centerline": [], "curvature": []}
+        results = {"time": [], "centerline": [], "kappa": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
 
         system.finalize()
         timestepper = ea.PositionVerlet()
         ea.integrate(timestepper, system, final_time, int(final_time/dt))
 
-        # Pad curvature to match n_points
-        curv = np.array(results["curvature"])
-        padded_curv = np.zeros((curv.shape[0], curv.shape[1] + 2))
-        padded_curv[:, 1:-1] = curv
+        # Pad kappa to match n_nodes (n_elems + 1)
+        # kappa is (time, n_elems-1, 3)
+        # We want (time, n_elems+1, 3)
+        kappa_raw = np.array(results["kappa"])
+        n_time, n_internal, n_dim = kappa_raw.shape
+        padded_kappa = np.zeros((n_time, n_internal + 2, n_dim))
+        padded_kappa[:, 1:-1, :] = kappa_raw
 
         return SimulationResult(
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
-            curvature=padded_curv,
+            kappa=padded_kappa,
             info_field=self.info_field
         )
 

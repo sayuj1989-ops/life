@@ -72,6 +72,7 @@ def run_experiment():
 
     # 5. Analyze Results
     final_curvature = result.curvature[-1]
+    final_torsion = result.torsion[-1]
     final_centerline = result.centerline[-1]
 
     # Calculate average curvature
@@ -82,6 +83,10 @@ def run_experiment():
     # If chi_kappa is positive and dIds has structure, we expect curvature variance
     curvature_std = np.std(final_curvature)
     print(f"Curvature standard deviation: {curvature_std:.4f} m^-1")
+
+    # Torsion check
+    avg_torsion = np.mean(final_torsion)
+    print(f"Final average torsion: {avg_torsion:.4f} rad/m")
 
     # 6. Compute Scoliosis Metrics
     # The simulation aligns the rod initially along x, with gravity in -z.
@@ -118,6 +123,53 @@ def run_experiment():
     output_dir = Path("outputs/experiments/minimal_rod")
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Save data for reproducibility
+    np.save(output_dir / "centerline.npy", result.centerline)
+    np.save(output_dir / "kappa.npy", result.kappa)
+    np.save(output_dir / "time.npy", result.time)
+    print(f"Simulation data saved to {output_dir}")
+
+    # Plot results
+    plt.figure(figsize=(10, 8))
+
+    # Sagittal View (X-Z)
+    plt.subplot(2, 2, 1)
+    plt.plot(x_coords, z_coords, label="Final Shape")
+    plt.plot([min(x_coords), max(x_coords)], [0, 0], 'k--', alpha=0.3)
+    plt.axis("equal")
+    plt.xlabel("X (m)")
+    plt.ylabel("Z (m)")
+    plt.title("Sagittal View (Side)")
+    plt.legend()
+
+    # Coronal View (X-Y)
+    plt.subplot(2, 2, 2)
+    plt.plot(x_coords, y_coords, label="Final Shape")
+    plt.axis("equal")
+    plt.xlabel("X (m)")
+    plt.ylabel("Y (m)")
+    plt.title("Coronal View (Top/Back)")
+
+    # Curvature Profile
+    plt.subplot(2, 2, 3)
+    s_axis = np.linspace(0, L, len(final_curvature))
+    plt.plot(s_axis, final_curvature, label="Curvature")
+    plt.xlabel("Arc Length s (m)")
+    plt.ylabel("Curvature (1/m)")
+    plt.title("Curvature Profile")
+
+    # Torsion Profile
+    plt.subplot(2, 2, 4)
+    plt.plot(s_axis, final_torsion, label="Torsion", color="orange")
+    plt.xlabel("Arc Length s (m)")
+    plt.ylabel("Torsion (rad/m)")
+    plt.title("Torsion Profile")
+
+    plt.tight_layout()
+    plt.savefig(output_dir / "final_state.png")
+    plt.close()
+    print(f"Plots saved to {output_dir / 'final_state.png'}")
+
     # Save minimal report
     with open(output_dir / "report.txt", "w") as f:
         f.write("Minimal Rod Experiment Report\n")
@@ -126,6 +178,7 @@ def run_experiment():
         f.write(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB\n")
         f.write(f"Avg Curvature: {avg_curvature:.4f}\n")
         f.write(f"Curvature Std: {curvature_std:.4f}\n")
+        f.write(f"Avg Torsion: {avg_torsion:.4f}\n")
         f.write(f"Sagittal S_lat: {sagittal_metrics.S_lat:.4f}\n")
         f.write(f"Coronal S_lat: {coronal_metrics.S_lat:.6f}\n")
         f.write(f"Coronal Cobb Angle: {coronal_metrics.cobb_like_deg:.6f} deg\n")

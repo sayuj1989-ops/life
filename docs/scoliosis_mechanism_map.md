@@ -59,7 +59,7 @@ The gene `LBX1` (Ladybird Homeobox 1) is one of the strongest and most replicate
 > **Hypothesis**: In the Counter-Curvature model, `LBX1` deficiency creates "noisy" sensors in the control loop. The system cannot accurately detect its deviation from the vertical, leading to a drift in the control signal that manifests as a buckle.
 
 **Citation**:
-*   *Guo, L., et al. (2016). Functional investigation of a non-coding variant associated with adolescent idiopathic scoliosis in zebrafish: elevated expression of the ladybird homeobox gene lbx1 causes body axis deformation. PLoS Genetics.*
+*   *Guo, L., et al. (2016). Functional investigation of a non-coding variant associated with adolescent idiopathic scoliosis in zebrafish: elevated expression of the ladybird homeobox gene lbx1 causes body axis deformation. PLoS Genetics, 12(1), e1005802. https://doi.org/10.1371/journal.pgen.1005802*
 *   *Cheng, J.C., et al. (2015). Adolescent idiopathic scoliosis. Nature Reviews Disease Primers, 1, 15030. https://doi.org/10.1038/nrdp.2015.30*
 
 ---

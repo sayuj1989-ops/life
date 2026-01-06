@@ -10,8 +10,8 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 ## Phase 1: Repository Cleanup & Organization (High Priority)
 
-- [ ] **Consolidate Legacy Folders**: Move `biology_reasearch`, `life`, `life-1`, `life-paper`, `research_repo` into `archive/`. These appear to be duplicate or older versions of the project.
-- [ ] **Fix Typos**: Rename any clearly typoed directories (e.g., `biology_reasearch`) if they are kept or archived.
+- [ ] **Consolidate Legacy Folders**: Move `biology_research`, `life`, `life-1`, `life-paper`, `research_repo` into `archive/`. These appear to be duplicate or older versions of the project.
+- [ ] **Fix Typos**: Rename any clearly typoed directories (e.g., `biology_research`) if they are kept or archived.
 - [ ] **Standardize Source Layout**:
     - [ ] Decide on the canonical source location (likely `src/`).
     - [ ] Move top-level packages (`alphafold_analysis`, `countercurvature`) into `src/` or `research/` as appropriate.

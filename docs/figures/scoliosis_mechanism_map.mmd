@@ -1,0 +1,72 @@
+graph TD
+    %% Subgraphs for Organization
+    subgraph Genetics [Genetic & Molecular Layer]
+        HOX[HOX Cluster<br/>HOXA10, HOXD11]
+        COL[COL2A1<br/>Collagen Type II]
+        PIEZO[PIEZO1<br/>Mechanosensor]
+        CILIA[DNAH5/PKD1L1<br/>Cilia Motility]
+        LBX1[LBX1<br/>Transcription Factor]
+    end
+
+    subgraph Processes [Cellular & Developmental Processes]
+        Region[Regionalization<br/>Segment Identity]
+        ECM_Assembly[ECM Assembly<br/>Fibrillogenesis]
+        Mech_Trans[Mechanotransduction<br/>Ca2+ Influx]
+        Sym_Break[Symmetry Breaking<br/>Nodal Flow]
+        Neur_Diff[Somatosensory<br/>Differentiation]
+    end
+
+    subgraph Tissue [Tissue Mechanics & Properties]
+        Rest_Kappa[Rest Curvature κ0<br/>Target Geometry]
+        Stiffness[Stiffness EI<br/>Material Quality]
+        Gain[Feedback Gain G_mech<br/>Adaptive Growth]
+        Torsion[Chiral Torsion ε<br/>Initial Twist]
+        Muscle_Tone[Proprioception &<br/>Muscle Tone Balance]
+    end
+
+    subgraph Outcome [Macroscopic Outcome]
+        S_Curve[S-Shaped Spine<br/>Counter-Curvature]
+        Stability[Mechanical Stability<br/>Buckling Resistance]
+        Scoliosis[Scoliosis<br/>System Failure]
+    end
+
+    %% Connections
+    HOX --> Region
+    Region --> Rest_Kappa
+    Rest_Kappa --> S_Curve
+
+    COL --> ECM_Assembly
+    ECM_Assembly --> Stiffness
+    Stiffness --> Stability
+
+    PIEZO --> Mech_Trans
+    Mech_Trans --> Gain
+    Gain --> S_Curve
+
+    CILIA --> Sym_Break
+    Sym_Break --> Torsion
+    Torsion --> S_Curve
+
+    %% NEW ARC: LBX1
+    LBX1 --> Neur_Diff
+    Neur_Diff --> Muscle_Tone
+    Muscle_Tone --> Stability
+
+    %% Cross-Talk and Failures
+    Stability --> S_Curve
+    S_Curve -- "Loss of Control" --> Scoliosis
+    Stiffness -- "Too Low" --> Scoliosis
+    Gain -- "Too Low" --> Scoliosis
+    Torsion -- "Randomized" --> Scoliosis
+    Muscle_Tone -- "Asymmetry" --> Scoliosis
+
+    %% Styling
+    classDef gene fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef process fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
+    classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
+
+    class HOX,COL,PIEZO,CILIA,LBX1 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff process;
+    class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone tissue;
+    class S_Curve,Stability,Scoliosis outcome;

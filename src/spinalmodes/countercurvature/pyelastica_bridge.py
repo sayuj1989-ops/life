@@ -81,6 +81,16 @@ class ActiveMuscleTorques(ea.NoForces):
         self.torques = torques  # (3, n_elements)
 
     def apply_torques(self, system, time: float = 0.0):
+        """Apply the stored distributed torques to the rod system.
+
+        Parameters
+        ----------
+        system :
+            PyElastica Cosserat rod whose ``external_torques`` array is updated in-place.
+        time : float, optional
+            Simulation time provided by PyElastica. The torques are static so this
+            parameter is unused.
+        """
         system.external_torques += self.torques
 
 class CounterCurvatureRodSystem:
@@ -199,6 +209,30 @@ class CounterCurvatureRodSystem:
         bc_cls: Optional[Type] = None,
         bc_kwargs: Optional[Dict[str, Any]] = None,
     ) -> SimulationResult:
+        """Run a dynamic PyElastica simulation with optional boundary overrides.
+
+        Parameters
+        ----------
+        final_time : float
+            Physical duration to simulate (seconds).
+        dt : float
+            Integrator time step size (seconds).
+        save_every : int, optional
+            Number of integration steps between stored snapshots.
+        gravity : float, optional
+            Magnitude of gravitational acceleration applied along -z (m/s^2).
+        damping_constant : float, optional
+            Non-dimensional viscous damping factor for the analytical damper.
+        bc_cls : Optional[Type], optional
+            Custom PyElastica boundary condition class. Defaults to ``OneEndFixedBC``.
+        bc_kwargs : Optional[Dict[str, Any]], optional
+            Keyword arguments forwarded to ``bc_cls`` during instantiation.
+
+        Returns
+        -------
+        SimulationResult
+            Time history of centerline, curvature and metadata for the rod.
+        """
         _check_pyelastica()
 
         class CCSystem(ea.BaseSystemCollection, ea.Constraints, ea.Forcing, ea.Damping, ea.CallBacks):
@@ -224,7 +258,7 @@ class CounterCurvatureRodSystem:
 
         # Active Moments (if any)
         if self.active_torques is not None:
-             system.add_forcing_to(self.rod).using(ActiveMuscleTorques, torques=self.active_torques)
+            system.add_forcing_to(self.rod).using(ActiveMuscleTorques, torques=self.active_torques)
 
         # Damping
         system.dampen(self.rod).using(ea.AnalyticalLinearDamper, damping_constant=damping_constant, time_step=dt)

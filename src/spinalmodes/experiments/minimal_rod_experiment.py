@@ -9,7 +9,6 @@ import csv
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
-from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 def run_experiment():
     print("Starting minimal PyElastica rod parameter sweep...")
@@ -40,19 +39,19 @@ def run_experiment():
     tracemalloc.start()
     start_time_total = time.time()
 
-    for chi_k in chi_kappa_values:
+    for chi_kappa_value in chi_kappa_values:
         # Define Parameters (Protein/ECM-inspired)
         # chi_E: stiffness modulation (ECM densification)
         # chi_kappa: rest curvature modulation (Developmental shape programming)
         # chi_M: active moments (Muscle tone / Active stresses)
         params = CounterCurvatureParams(
             chi_E=0.5,
-            chi_kappa=chi_k,
+            chi_kappa=chi_kappa_value,
             chi_M=0.0,
             scale_length=L
         )
 
-        print(f"\nRunning simulation for chi_kappa={chi_k}...")
+        print(f"\nRunning simulation for chi_kappa={chi_kappa_value}...")
 
         # Horizontal rod to see gravity sag vs countercurvature
         system = CounterCurvatureRodSystem.from_iec(
@@ -80,7 +79,7 @@ def run_experiment():
 
         # Store
         results_summary.append({
-            "chi_kappa": chi_k,
+            "chi_kappa": chi_kappa_value,
             "avg_curvature": avg_curvature,
             "tip_deflection_z": tip_deflection_z
         })
@@ -113,7 +112,7 @@ def run_experiment():
     # Plot 1: Chi_kappa vs Tip Deflection
     plt.subplot(1, 2, 1)
     plt.plot(chi_k_list, tip_z_list, 'o-', label="Tip Z")
-    plt.xlabel("Coupling Gain $\chi_\kappa$")
+    plt.xlabel("Coupling Gain $\chi_{\kappa}$")
     plt.ylabel("Tip Deflection Z (m)")
     plt.title("Effect of Geometric Countercurvature")
     plt.grid(True)
@@ -121,13 +120,14 @@ def run_experiment():
     # Plot 2: Chi_kappa vs Avg Curvature
     plt.subplot(1, 2, 2)
     plt.plot(chi_k_list, avg_k_list, 's-', color='orange', label="Avg Curvature")
-    plt.xlabel("Coupling Gain $\chi_\kappa$")
+    plt.xlabel("Coupling Gain $\chi_{\kappa}$")
     plt.ylabel("Average Curvature ($m^{-1}$)")
     plt.title("Emergent Curvature")
     plt.grid(True)
 
     plt.tight_layout()
     plt.savefig(output_dir / "sweep_plot.png")
+    plt.close()
     print(f"Sweep plot saved to {output_dir / 'sweep_plot.png'}")
 
     # 3. Demonstration of Active Moments (Chi_M)

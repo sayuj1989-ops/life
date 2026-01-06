@@ -35,7 +35,7 @@ class TestPyElasticaBridge:
         )
 
         assert system.active_torques is not None
-        # Shape should be (3, 50)
+        # Shape should be (3, n_elements) == (3, 50) since n_elements=50 above
         assert system.active_torques.shape == (3, 50)
         # Gradient is 1.0. chi_M=1.0. Moment should be 1.0 (interp)
         # Torques are around y axis (index 1)
@@ -59,6 +59,8 @@ class TestPyElasticaBridge:
             n_elements=10,
             gravity=0.0
         )
+
+        assert system.active_torques is None
 
         # Very short run
         result = system.run_simulation(final_time=0.001, dt=1e-5)

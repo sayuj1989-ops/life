@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import time
 import tracemalloc
+import csv
 
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
@@ -11,7 +12,8 @@ from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 def run_experiment():
-    print("Starting minimal PyElastica rod experiment...")
+    print("Starting minimal PyElastica rod parameter sweep...")
+    print("Mapping protein/ECM parameters (chi_kappa, chi_M) to rod curvature.")
 
     # 1. Define Information Field (e.g., sinusoidal modulation)
     L = 1.0
@@ -22,169 +24,156 @@ def run_experiment():
     dIds = np.gradient(I, s)
     info = InfoField1D(s=s, I=I, dIds=dIds)
 
-    # 2. Define Parameters (Protein/ECM-inspired)
-    # chi_E: stiffness modulation (e.g., calcification or ECM stiffening)
-    # chi_kappa: countercurvature gain (e.g., intrinsic shape programming)
-    params = CounterCurvatureParams(
-        chi_E=0.5,       # 50% max stiffness increase
-        chi_kappa=2.0,   # Significant rest curvature modulation
-        chi_M=0.0,
-        scale_length=L
-    )
-
-    # 3. Setup Simulation
+    # 2. Setup Simulation Parameters
     n_elements = 50
-    # Horizontal rod to see gravity sag vs countercurvature
-    # gravity acts in -z (vertical). Rod along x.
-    # Sagittal plane bending around y.
-
-    # Measure resource usage
-    tracemalloc.start()
-    start_time = time.time()
-
-    system = CounterCurvatureRodSystem.from_iec(
-        info=info,
-        params=params,
-        length=L,
-        n_elements=n_elements,
-        E0=1e6,           # Baseline Young's modulus (Pa)
-        radius=0.02,      # 2cm radius
-        rho=1000,         # Density
-        gravity=9.81,
-        base_direction=(1.0, 0.0, 0.0), # Horizontal
-        normal=(0.0, 1.0, 0.0)
-    )
-
-    # 4. Run Simulation
-    # Relax to equilibrium
     final_time = 2.0
-    dt = 1e-4 # Conservative time step
+    dt = 1e-4
 
-    print(f"Running simulation for {final_time}s...")
-    result = system.run_simulation(final_time=final_time, dt=dt, save_every=100)
+    # Sweep parameters: chi_kappa (geometric countercurvature)
+    chi_kappa_values = [0.0, 1.0, 2.0, 3.0]
+    results_summary = []
 
-    end_time = time.time()
+    # Output directory
+    output_dir = Path("outputs/experiments/minimal_rod_sweep")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    tracemalloc.start()
+    start_time_total = time.time()
+
+    for chi_k in chi_kappa_values:
+        # Define Parameters (Protein/ECM-inspired)
+        # chi_E: stiffness modulation (ECM densification)
+        # chi_kappa: rest curvature modulation (Developmental shape programming)
+        # chi_M: active moments (Muscle tone / Active stresses)
+        params = CounterCurvatureParams(
+            chi_E=0.5,
+            chi_kappa=chi_k,
+            chi_M=0.0,
+            scale_length=L
+        )
+
+        print(f"\nRunning simulation for chi_kappa={chi_k}...")
+
+        # Horizontal rod to see gravity sag vs countercurvature
+        system = CounterCurvatureRodSystem.from_iec(
+            info=info,
+            params=params,
+            length=L,
+            n_elements=n_elements,
+            E0=1e6,
+            radius=0.02,
+            rho=1000,
+            gravity=9.81,
+            base_direction=(1.0, 0.0, 0.0),
+            normal=(0.0, 1.0, 0.0)
+        )
+
+        result = system.run_simulation(final_time=final_time, dt=dt, save_every=100)
+
+        # Metrics
+        final_curvature = result.curvature[-1]
+        avg_curvature = np.mean(final_curvature)
+
+        # Sagittal deflection (z-coordinate)
+        final_centerline = result.centerline[-1]
+        tip_deflection_z = final_centerline[2, -1] # Sagittal vertical
+
+        # Store
+        results_summary.append({
+            "chi_kappa": chi_k,
+            "avg_curvature": avg_curvature,
+            "tip_deflection_z": tip_deflection_z
+        })
+
+        print(f"  Avg Curvature: {avg_curvature:.4f}")
+        print(f"  Tip Deflection Z: {tip_deflection_z:.4f} m")
+
+    end_time_total = time.time()
     current_mem, peak_mem = tracemalloc.get_traced_memory()
     tracemalloc.stop()
 
-    print(f"Simulation completed in {end_time - start_time:.2f}s")
-    print(f"Peak memory usage: {peak_mem / 1024 / 1024:.2f} MB")
+    print(f"\nTotal Sweep Runtime: {end_time_total - start_time_total:.2f}s")
+    print(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB")
 
-    # 5. Analyze Results
-    final_curvature = result.curvature[-1]
-    final_torsion = result.torsion[-1]
-    final_centerline = result.centerline[-1]
+    # Save summary using CSV module
+    csv_path = output_dir / "sweep_results.csv"
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["chi_kappa", "avg_curvature", "tip_deflection_z"])
+        writer.writeheader()
+        writer.writerows(results_summary)
+    print(f"Sweep results saved to {csv_path}")
 
-    # Calculate average curvature
-    avg_curvature = np.mean(final_curvature)
-    print(f"Final average curvature: {avg_curvature:.4f} m^-1")
+    # Plot
+    chi_k_list = [r["chi_kappa"] for r in results_summary]
+    tip_z_list = [r["tip_deflection_z"] for r in results_summary]
+    avg_k_list = [r["avg_curvature"] for r in results_summary]
 
-    # Output simple validation
-    # If chi_kappa is positive and dIds has structure, we expect curvature variance
-    curvature_std = np.std(final_curvature)
-    print(f"Curvature standard deviation: {curvature_std:.4f} m^-1")
+    plt.figure(figsize=(10, 5))
 
-    # Torsion check
-    avg_torsion = np.mean(final_torsion)
-    print(f"Final average torsion: {avg_torsion:.4f} rad/m")
+    # Plot 1: Chi_kappa vs Tip Deflection
+    plt.subplot(1, 2, 1)
+    plt.plot(chi_k_list, tip_z_list, 'o-', label="Tip Z")
+    plt.xlabel("Coupling Gain $\chi_\kappa$")
+    plt.ylabel("Tip Deflection Z (m)")
+    plt.title("Effect of Geometric Countercurvature")
+    plt.grid(True)
 
-    # 6. Compute Scoliosis Metrics
-    # The simulation aligns the rod initially along x, with gravity in -z.
-    # Sagittal plane bending is in (x, z).
-    # Coronal plane deviation is in y.
-
-    # Coordinates from PyElastica: (3, n_nodes)
-    # final_centerline[0, :] -> x (longitudinal approx)
-    # final_centerline[1, :] -> y (lateral/coronal deviation)
-    # final_centerline[2, :] -> z (vertical/sagittal deviation)
-
-    # Debug info
-    print(f"Final centerline shape: {final_centerline.shape}")
-
-    x_coords = final_centerline[:, 0]
-    y_coords = final_centerline[:, 1]
-    z_coords = final_centerline[:, 2]
-
-    print(f"X range: {np.min(x_coords):.4f} to {np.max(x_coords):.4f}")
-    print(f"Y range: {np.min(y_coords):.4f} to {np.max(y_coords):.4f}")
-    print(f"Z range: {np.min(z_coords):.4f} to {np.max(z_coords):.4f}")
-
-    # Sagittal indices (using x as longitudinal, z as "lateral" in the sagittal plane)
-    sagittal_metrics = compute_scoliosis_metrics(z=x_coords, y=z_coords)
-    print(f"Sagittal Metrics (S_lat): {sagittal_metrics.S_lat:.4f}")
-
-    # Coronal indices (using x as longitudinal, y as lateral)
-    # Should be near zero for this symmetric setup
-    coronal_metrics = compute_scoliosis_metrics(z=x_coords, y=y_coords)
-    print(f"Coronal Metrics (S_lat): {coronal_metrics.S_lat:.6f}")
-    print(f"Coronal Cobb Angle: {coronal_metrics.cobb_like_deg:.6f} deg")
-
-    # Create output directory
-    output_dir = Path("outputs/experiments/minimal_rod")
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    # Save data for reproducibility
-    np.save(output_dir / "centerline.npy", result.centerline)
-    np.save(output_dir / "kappa.npy", result.kappa)
-    np.save(output_dir / "time.npy", result.time)
-    print(f"Simulation data saved to {output_dir}")
-
-    # Plot results
-    plt.figure(figsize=(10, 8))
-
-    # Sagittal View (X-Z)
-    plt.subplot(2, 2, 1)
-    plt.plot(x_coords, z_coords, label="Final Shape")
-    plt.plot([min(x_coords), max(x_coords)], [0, 0], 'k--', alpha=0.3)
-    plt.axis("equal")
-    plt.xlabel("X (m)")
-    plt.ylabel("Z (m)")
-    plt.title("Sagittal View (Side)")
-    plt.legend()
-
-    # Coronal View (X-Y)
-    plt.subplot(2, 2, 2)
-    plt.plot(x_coords, y_coords, label="Final Shape")
-    plt.axis("equal")
-    plt.xlabel("X (m)")
-    plt.ylabel("Y (m)")
-    plt.title("Coronal View (Top/Back)")
-
-    # Curvature Profile
-    plt.subplot(2, 2, 3)
-    s_axis = np.linspace(0, L, len(final_curvature))
-    plt.plot(s_axis, final_curvature, label="Curvature")
-    plt.xlabel("Arc Length s (m)")
-    plt.ylabel("Curvature (1/m)")
-    plt.title("Curvature Profile")
-
-    # Torsion Profile
-    plt.subplot(2, 2, 4)
-    plt.plot(s_axis, final_torsion, label="Torsion", color="orange")
-    plt.xlabel("Arc Length s (m)")
-    plt.ylabel("Torsion (rad/m)")
-    plt.title("Torsion Profile")
+    # Plot 2: Chi_kappa vs Avg Curvature
+    plt.subplot(1, 2, 2)
+    plt.plot(chi_k_list, avg_k_list, 's-', color='orange', label="Avg Curvature")
+    plt.xlabel("Coupling Gain $\chi_\kappa$")
+    plt.ylabel("Average Curvature ($m^{-1}$)")
+    plt.title("Emergent Curvature")
+    plt.grid(True)
 
     plt.tight_layout()
-    plt.savefig(output_dir / "final_state.png")
-    plt.close()
-    print(f"Plots saved to {output_dir / 'final_state.png'}")
+    plt.savefig(output_dir / "sweep_plot.png")
+    print(f"Sweep plot saved to {output_dir / 'sweep_plot.png'}")
 
-    # Save minimal report
-    with open(output_dir / "report.txt", "w") as f:
-        f.write("Minimal Rod Experiment Report\n")
-        f.write("=============================\n")
-        f.write(f"Runtime: {end_time - start_time:.2f}s\n")
-        f.write(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB\n")
-        f.write(f"Avg Curvature: {avg_curvature:.4f}\n")
-        f.write(f"Curvature Std: {curvature_std:.4f}\n")
-        f.write(f"Avg Torsion: {avg_torsion:.4f}\n")
-        f.write(f"Sagittal S_lat: {sagittal_metrics.S_lat:.4f}\n")
-        f.write(f"Coronal S_lat: {coronal_metrics.S_lat:.6f}\n")
-        f.write(f"Coronal Cobb Angle: {coronal_metrics.cobb_like_deg:.6f} deg\n")
-        f.write(f"Parameters: {params}\n")
+    # 3. Demonstration of Active Moments (Chi_M)
+    print("\nDemonstrating Active Moments (Chi_M)...")
+    params_active = CounterCurvatureParams(
+        chi_E=0.0,
+        chi_kappa=0.0,
+        chi_M=5.0, # Active torque
+        scale_length=L
+    )
 
-    print(f"Report saved to {output_dir / 'report.txt'}")
+    system_active = CounterCurvatureRodSystem.from_iec(
+            info=info,
+            params=params_active,
+            length=L,
+            n_elements=n_elements,
+            E0=1e6,
+            radius=0.02,
+            rho=1000,
+            gravity=9.81, # With gravity
+            base_direction=(1.0, 0.0, 0.0),
+            normal=(0.0, 1.0, 0.0)
+    )
+    result_active = system_active.run_simulation(final_time=final_time, dt=dt, save_every=100)
+    tip_active = result_active.centerline[-1, 2, -1]
+    print(f"  Tip Deflection Z (Active Moments): {tip_active:.4f} m")
+
+    # Save active moment result
+    np.save(output_dir / "active_centerline.npy", result_active.centerline)
+
+    # Report using Markdown table
+    with open(output_dir / "report.md", "w") as f:
+        f.write("# Minimal Rod Experiment Report\n\n")
+        f.write(f"- **Runtime**: {end_time_total - start_time_total:.2f}s\n")
+        f.write(f"- **Peak Memory**: {peak_mem / 1024 / 1024:.2f} MB\n\n")
+        f.write("## Parameter Sweep (Chi_Kappa)\n\n")
+        f.write("| chi_kappa | avg_curvature | tip_deflection_z |\n")
+        f.write("|-----------|---------------|------------------|\n")
+        for r in results_summary:
+            f.write(f"| {r['chi_kappa']} | {r['avg_curvature']:.4f} | {r['tip_deflection_z']:.4f} |\n")
+
+        f.write("\n\n## Active Moments Demonstration\n")
+        f.write(f"- Chi_M: 5.0\n")
+        f.write(f"- Tip Deflection Z: {tip_active:.4f} m\n")
+
+    print(f"Report saved to {output_dir / 'report.md'}")
 
 if __name__ == "__main__":
     run_experiment()

@@ -2,7 +2,7 @@
 
 **Date:** 2024-05-21
 **Topic:** Gravity Adaptation / Mechanotransduction
-**Reference:** McMillin et al., *Am. J. Hum. Genet.* (2014) [Mutations in PIEZO2 cause... scoliosis]
+**Reference:** McMillin et al., *Am. J. Hum. Genet.* (2014) [Mutations in PIEZO2 cause Gordon syndrome, Marden-Walker syndrome, and distal arthrogryposis type 5]
 
 ## Claim
 Defective mechanotransduction, specifically the loss-of-function or gain-of-function mutations in the **PIEZO2** channel, is causally linked to **scoliosis** and distal arthrogryposis. This suggests that spinal alignment is not merely a structural property of bone/ligament but an **active, neurally-regulated state** maintained by constant mechanosensory feedback (proprioception).

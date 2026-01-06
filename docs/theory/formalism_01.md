@@ -37,7 +37,7 @@ $$ \Omega = \frac{\chi_M}{EI} $$
 
 - Dimensions of $\Omega$: Since $\chi_M$ has dimensions of $[Force \cdot Length^2]$ and $EI$ has dimensions of $[Force \cdot Length^2]$, the ratio $\Omega$ is **dimensionless**.
 
-This dimensionless number $\Omega$ represents the **Morpho-elastic Efficiency**. It quantifies how efficiently a gradient in information is converted into geometric curvature. If $\Omega \approx 1$, a unit gradient in information produces a unit curvature.
+This dimensionless number $\Omega$ represents a **morpho-elastic efficiency**: it compares the strength of the information-driven active moment ($\chi_M$ in $M_{bio} = \chi_M \,\partial I/\partial s$) to the passive bending stiffness ($EI$ in $M = EI\,\kappa$). In a simple beam model, these relations give $\kappa \approx \Omega\,(\partial I/\partial s)$, so when $\Omega \approx 1$ an information gradient of order $1/L$ can generate a curvature of comparable order $1/L$.
 
 ## 2. Falsifiable Tests
 

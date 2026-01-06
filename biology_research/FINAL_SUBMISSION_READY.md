@@ -13,6 +13,6 @@ This repository has been fully audited and prepared for submission to **Nature**
 ## 🚀 Final Step
 Run the following command to push to the remote repository:
 ```bash
-cd biology_reasearch
+cd biology_research
 git push -u origin main
 ```

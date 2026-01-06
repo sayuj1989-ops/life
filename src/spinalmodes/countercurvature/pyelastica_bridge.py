@@ -10,7 +10,7 @@ modes.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING, Type, Dict, Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -36,6 +36,15 @@ except ImportError:
         class CosseratRod: pass
         class NoForces: pass
         class CallBackBaseClass: pass
+        class OneEndFixedBC: pass
+        class GravityForces: pass
+        class AnalyticalLinearDamper: pass
+        class BaseSystemCollection: pass
+        class Constraints: pass
+        class Forcing: pass
+        class Damping: pass
+        class CallBacks: pass
+        class PositionVerlet: pass
 
 @dataclass
 class SimulationResult:
@@ -59,15 +68,35 @@ class SimulationResult:
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
-        raise ImportError("PyElastica is not installed.")
+        raise ImportError(
+            "PyElastica is not installed. To install:\n"
+            "pip install pyelastica\n"
+            "Or see: https://github.com/GazzolaLab/PyElastica"
+        )
+
+class ActiveMuscleTorques(ea.NoForces):
+    """Applies a static distributed active moment (muscle torque)."""
+    def __init__(self, torques: ArrayF64):
+        super().__init__()
+        self.torques = torques  # (3, n_elements)
+
+    def apply_torques(self, system, time: float = 0.0):
+        system.external_torques += self.torques
 
 class CounterCurvatureRodSystem:
-    def __init__(self, rod: ea.CosseratRod, info_field: InfoField1D, params: CounterCurvatureParams):
+    def __init__(
+        self,
+        rod: ea.CosseratRod,
+        info_field: InfoField1D,
+        params: CounterCurvatureParams,
+        active_torques: Optional[ArrayF64] = None
+    ):
         self.rod = rod
         self.info_field = info_field
         self.params = params
         self.n_elements = rod.n_elems
         self.length = np.sum(rod.rest_lengths)
+        self.active_torques = active_torques
 
     @classmethod
     def from_iec(
@@ -144,7 +173,20 @@ class CounterCurvatureRodSystem:
         rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
         rod.rest_kappa[:] = rest_kappa
 
-        return cls(rod=rod, info_field=info, params=params)
+        # Compute active moments (scalar field on nodes) if chi_M != 0
+        active_torques = None
+        if params.chi_M != 0.0:
+            M_active_nodes = compute_active_moments(info, params)
+
+            # Interpolate to elements (where external torques are applied)
+            M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
+
+            # Create torque vector (3, n_elements)
+            # Bending in sagittal plane (x-z) with normal y: torque around y-axis (index 1)
+            active_torques = np.zeros((3, n_elements))
+            active_torques[1, :] = M_active_elems
+
+        return cls(rod=rod, info_field=info, params=params, active_torques=active_torques)
 
     def run_simulation(
         self,
@@ -154,6 +196,8 @@ class CounterCurvatureRodSystem:
         save_every: int = 100,
         gravity: float = 9.81,
         damping_constant: float = 0.5,
+        bc_cls: Optional[Type] = None,
+        bc_kwargs: Optional[Dict[str, Any]] = None,
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -164,10 +208,23 @@ class CounterCurvatureRodSystem:
         system.append(self.rod)
 
         # Constraints
-        system.constrain(self.rod).using(ea.OneEndFixedBC, constrained_position_idx=(0,), constrained_director_idx=(0,))
+        if bc_cls is None:
+            # Default to OneEndFixedBC
+            system.constrain(self.rod).using(
+                ea.OneEndFixedBC,
+                constrained_position_idx=(0,),
+                constrained_director_idx=(0,)
+            )
+        else:
+            kwargs = bc_kwargs or {}
+            system.constrain(self.rod).using(bc_cls, **kwargs)
 
         # Gravity
         system.add_forcing_to(self.rod).using(ea.GravityForces, acc_gravity=np.array([0.0, 0.0, -gravity]))
+
+        # Active Moments (if any)
+        if self.active_torques is not None:
+             system.add_forcing_to(self.rod).using(ActiveMuscleTorques, torques=self.active_torques)
 
         # Damping
         system.dampen(self.rod).using(ea.AnalyticalLinearDamper, damping_constant=damping_constant, time_step=dt)
@@ -196,9 +253,12 @@ class CounterCurvatureRodSystem:
         # kappa is (time, n_elems-1, 3)
         # We want (time, n_elems+1, 3)
         kappa_raw = np.array(results["kappa"])
-        n_time, n_internal, n_dim = kappa_raw.shape
-        padded_kappa = np.zeros((n_time, n_internal + 2, n_dim))
-        padded_kappa[:, 1:-1, :] = kappa_raw
+        if len(kappa_raw) > 0:
+            n_time, n_internal, n_dim = kappa_raw.shape
+            padded_kappa = np.zeros((n_time, n_internal + 2, n_dim))
+            padded_kappa[:, 1:-1, :] = kappa_raw
+        else:
+            padded_kappa = np.empty((0, self.n_elements + 1, 3))
 
         return SimulationResult(
             time=np.array(results["time"]),
@@ -207,4 +267,4 @@ class CounterCurvatureRodSystem:
             info_field=self.info_field
         )
 
-__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE"]
+__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques"]

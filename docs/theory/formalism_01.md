@@ -53,7 +53,7 @@ To move from "metaphor" to "theory", we propose specific falsifiable predictions
 - Measurement: Spinal/Stem curvature $\kappa(s)$ over time.
 
 **Prediction (Theory holds):**
-The organism will develop "Hyper-Counter-Curvature". Since $M_{bio}$ opposes gravity, removing gravity ($M_{grav} \to 0$) should leave $M_{bio}$ unopposed, leading to a curvature *opposite* to the usual gravitational sag (e.g., "back-bending" or extreme lordosis) before proprioception down-regulates it.
+The organism will develop "Hyper-Counter-Curvature". Since $M_{bio}$ opposes gravity, removing gravity ($M_{grav} \to 0$) should leave $M_{bio}$ unopposed, leading to a curvature *opposite* to the usual gravitational sag (e.g., "back-bending" or extreme lordosis) that persists over the experimental observation window (e.g., days).
 
 **Refutation Condition:**
 If the organism grows perfectly straight ($\kappa(s) \approx 0$) or random walks, it implies $M_{bio}$ is purely reactive (i.e., a proportional feedback that only reduces deviations from the current posture) rather than an intrinsic active moment field driven by $I(s)$.

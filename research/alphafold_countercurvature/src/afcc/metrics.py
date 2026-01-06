@@ -33,13 +33,21 @@ class MetricsAnalyzer:
         # T_ij = (1/N) * sum(r_i_a * r_i_b)
         tensor = np.dot(coords_centered.T, coords_centered) / len(coords)
 
-        eigvals = np.linalg.eigvalsh(tensor)
+        eigvals, eigvecs = np.linalg.eigh(tensor)
         # Sort ascending
-        eigvals = np.sort(eigvals)
+        idx = np.argsort(eigvals)
+        eigvals = eigvals[idx]
+        eigvecs = eigvecs[:, idx]
 
         # lambda1 >= lambda2 >= lambda3 usually in physics, but here sorted ascending
         # so l1 is smallest, l3 is largest
         l1, l2, l3 = eigvals
+
+        # Principal axis is the eigenvector corresponding to the LARGEST eigenvalue of the COVARIANCE matrix (dispersion)
+        # or SMALLEST eigenvalue of INERTIA tensor.
+        # Here we computed covariance (tensor = dot(coords.T, coords) / N).
+        # So largest eigenvalue (l3) corresponds to principal axis of the shape (longest dimension).
+        principal_axis = eigvecs[:, 2]
 
         # Anisotropy ratio (largest / smallest)
         # Add epsilon to avoid div by zero
@@ -49,7 +57,8 @@ class MetricsAnalyzer:
             'lambda_min': float(l1),
             'lambda_mid': float(l2),
             'lambda_max': float(l3),
-            'anisotropy_ratio': float(ratio)
+            'anisotropy_ratio': float(ratio),
+            'principal_axis': principal_axis.tolist()
         }
 
     def classify_morphology(self, anisotropy: float, rg: float, n_residues: int) -> str:
@@ -153,12 +162,12 @@ class MetricsAnalyzer:
         result[1:-2] = torsion # Align somewhat to middle
         return result
 
-    def calculate_pae_metrics(self, pae_matrix: np.ndarray, plddt_scores: np.ndarray) -> Dict[str, float]:
+    def calculate_pae_metrics(self, pae_matrix: np.ndarray, plddt_scores: np.ndarray) -> Dict[str, Any]:
         """
         Calculates PAE-based metrics: mean PAE and domain blockiness.
         """
         if pae_matrix is None or pae_matrix.size == 0:
-            return {'pae_mean': 0.0, 'pae_blockiness': 0.0}
+            return {'pae_mean': 0.0, 'pae_blockiness': 0.0, 'predicted_domain_segments': []}
 
         pae_mean = np.mean(pae_matrix)
 
@@ -176,8 +185,11 @@ class MetricsAnalyzer:
         # Filter short segments (< 10 residues)
         segments = [s for s in segments if (s[1] - s[0]) >= 10]
 
+        # Convert segments to list of "start-end" strings for reporting
+        domain_segments_str = [f"{s}-{e}" for s, e in segments]
+
         if len(segments) < 2:
-            return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0}
+            return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0, 'predicted_domain_segments': domain_segments_str}
 
         intra_scores = []
         inter_scores = []
@@ -211,7 +223,7 @@ class MetricsAnalyzer:
         # Ratio: mean_inter / mean_intra.
         # If domains are well defined: inter is high (uncertain), intra is low (certain). Ratio >> 1.
         blockiness = mean_inter / mean_intra
-        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness)}
+        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness), 'predicted_domain_segments': domain_segments_str}
 
     def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None, pae_matrix: np.ndarray = None) -> Dict[str, Any]:
         """

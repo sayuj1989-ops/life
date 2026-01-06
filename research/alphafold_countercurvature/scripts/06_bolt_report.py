@@ -92,6 +92,32 @@ def main():
     table_df['Exposed_Frac'] = df['exposed_fraction'].round(2)
     table_df['Charged_Patch'] = df['charged_patch_score'].round(2)
 
+    # New Metrics
+    if 'principal_axis' in df.columns:
+        # Format list string "[x, y, z]" -> "x,y,z" or similar
+        # It's likely a string representation of a list in the CSV
+        def fmt_axis(val):
+            try:
+                # remove brackets and split
+                v = str(val).replace('[','').replace(']','')
+                parts = v.split(',')
+                # Format to 2 decimal places
+                return ",".join([f"{float(p):.2f}" for p in parts])
+            except:
+                return str(val)
+        table_df['Backbone_Axis'] = df['principal_axis'].apply(fmt_axis)
+
+    if 'predicted_domain_segments' in df.columns:
+         # Format list string "['10-50', '60-100']" -> "10-50; 60-100"
+        def fmt_domains(val):
+            try:
+                v = str(val).replace('[','').replace(']','').replace("'", "")
+                return v.replace(',', ';')
+            except:
+                return str(val)
+        table_df['Domains'] = df['predicted_domain_segments'].apply(fmt_domains)
+
+
     # Flags
     # Combine boolean flags into a string?
     def get_flags(row):

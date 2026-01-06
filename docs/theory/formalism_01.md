@@ -33,7 +33,7 @@ This is equivalent to the dimensions of **Bending Stiffness** ($EI \sim [Force] 
 
 We define the **Intrinsic Curvature Ratio** $\Omega$ as the ratio of the coupling constant to the structural stiffness $E_0 \cdot I_{area}$ (or $EI$):
 
-$$ \Omega = \frac{\chi_M}{EI} $$
+$$ \Omega = \frac{\chi_M}{E_0 I_{area}} $$
 
 - Dimensions of $\Omega$: Since $\chi_M$ has dimensions of $[Force \cdot Length^2]$ and $EI$ has dimensions of $[Force \cdot Length^2]$, the ratio $\Omega$ is **dimensionless**.
 

@@ -60,7 +60,7 @@ The gene `LBX1` (Ladybird Homeobox 1) is one of the strongest and most replicate
 
 **Citation**:
 *   *Guo, L., et al. (2016). Functional investigation of a non-coding variant associated with adolescent idiopathic scoliosis in zebrafish: elevated expression of the ladybird homeobox gene lbx1 causes body axis deformation. PLoS Genetics.*
-*   *Cheng, J.C., et al. (2015). Adolescent idiopathic scoliosis. Nature Reviews Disease Primers.*
+*   *Cheng, J.C., et al. (2015). Adolescent idiopathic scoliosis. Nature Reviews Disease Primers, 1, 15030. https://doi.org/10.1038/nrdp.2015.30*
 
 ---
 

@@ -38,11 +38,39 @@ def main():
     # Load candidate info to get Source tags
     candidates = pd.read_csv(CANDIDATES_FILE) if CANDIDATES_FILE.exists() else None
 
+    # ⚡ Bolt Optimization: Load existing results to skip redundant processing
+    existing_df = None
+    processed_keys = set()
+    if OUTPUT_FILE.exists():
+        try:
+            existing_df = pd.read_csv(OUTPUT_FILE)
+            if 'gene_symbol' in existing_df.columns and 'uniprot' in existing_df.columns:
+                # Create set of (gene, uniprot) tuples
+                processed_keys = set(zip(existing_df['gene_symbol'], existing_df['uniprot']))
+        except Exception as e:
+            print(f"⚠️ Could not read existing metrics: {e}. Starting fresh.")
+
+    # Filter downloaded list
+    to_process = []
+    for idx, row in downloaded.iterrows():
+        key = (row['gene_symbol'], row['uniprot'])
+        if key not in processed_keys:
+            to_process.append(row)
+
+    if not to_process:
+        print("✅ All structures already processed.")
+        if existing_df is not None:
+             # Just print the summary as usual
+             print("\nTop 5 High Anisotropy:")
+             print(existing_df.sort_values('anisotropy', ascending=False)[['gene_symbol', 'morphology', 'anisotropy', 'mean_plddt']].head().to_string(index=False))
+        return
+
+    downloaded = pd.DataFrame(to_process)
+    print(f"   Processing {len(downloaded)} new structures (skipped {len(processed_keys)})...")
+
     results = []
     parser = StructureParser()
     analyzer = MetricsAnalyzer()
-
-    print(f"   Processing {len(downloaded)} structures...")
 
     for idx, row in downloaded.iterrows():
         pdb_path = Path(row['pdb_path'])
@@ -89,24 +117,33 @@ def main():
         if (idx + 1) % 5 == 0:
             print(f"   ... {idx + 1} done")
 
-    df = pd.DataFrame(results)
+    new_df = pd.DataFrame(results)
 
-    # Reorder columns
-    cols = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
-            'anisotropy', 'radius_of_gyration', 'mean_plddt', 'n_residues', 'dise_score']
-    # Add remaining cols
-    remaining = [c for c in df.columns if c not in cols]
-    df = df[cols + remaining]
+    # Combine
+    if existing_df is not None and not new_df.empty:
+        final_df = pd.concat([existing_df, new_df], ignore_index=True)
+    elif not new_df.empty:
+        final_df = new_df
+    else:
+        final_df = existing_df
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_FILE, index=False)
+    if final_df is not None and not final_df.empty:
+        # Reorder columns
+        cols = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
+                'anisotropy', 'radius_of_gyration', 'mean_plddt', 'n_residues', 'dise_score']
+        # Add remaining cols
+        remaining = [c for c in final_df.columns if c not in cols]
+        final_df = final_df[cols + remaining]
 
-    print(f"\n✅ Metrics calculated for {len(df)} proteins.")
-    print(f"📄 Saved to: {OUTPUT_FILE}")
+        OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+        final_df.to_csv(OUTPUT_FILE, index=False)
 
-    # Preview
-    print("\nTop 5 High Anisotropy:")
-    print(df.sort_values('anisotropy', ascending=False)[['gene_symbol', 'morphology', 'anisotropy', 'mean_plddt']].head().to_string(index=False))
+        print(f"\n✅ Metrics calculated for {len(final_df)} proteins.")
+        print(f"📄 Saved to: {OUTPUT_FILE}")
+
+        # Preview
+        print("\nTop 5 High Anisotropy:")
+        print(final_df.sort_values('anisotropy', ascending=False)[['gene_symbol', 'morphology', 'anisotropy', 'mean_plddt']].head().to_string(index=False))
 
 if __name__ == "__main__":
     main()

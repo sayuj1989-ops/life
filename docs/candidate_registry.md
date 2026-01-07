@@ -12,26 +12,36 @@ This registry tracks high-priority gene and protein candidates identified as rel
 
 | Rank | Gene Symbol | Score | Mechanism / Rationale | Gravity/Mechano Link |
 |:----:|:-----------:|:-----:|:----------------------|:---------------------|
-| 1 | **PIEZO2** | 95 | **Proprioception**: Essential for body schema and postural tone. Loss causes scoliosis. | Primary mechanoreceptor for proprioception (gravity sensing). |
-| 2 | **LBX1** | 95 | **Muscle Tone**: Top AIS GWAS hit. Regulates dorsal horn interneurons and muscle migration. | Controls sensitivity of proprioceptive loops regulating posture against gravity. |
-| 3 | **YAP1** | 90 | **Mechanotransduction**: Hippo pathway effector. Senses matrix stiffness. | Nuclear localization driven by mechanical load/gravity. |
-| 4 | **POC5** | 90 | **Cilia**: Centriolar protein. Mutations cause ciliary defects and AIS. | Cilia act as cellular antennae/statocysts for fluid flow (gravity proxy). |
-| 5 | **WWTR1 (TAZ)**| 88 | **Osteogenesis**: YAP paralog. Critical for bone formation and stem cell fate. | Mechano-responsive transcriptional co-activator. |
-| 6 | **ADGRG6** | 88 | **Disc Health**: Mechanosensitive GPCR (GPR126) in chondrocytes/Schwann cells. | Required for maintenance of intervertebral discs under load. |
-| 7 | **VANGL1** | 85 | **PCP**: Planar Cell Polarity gene. Aligns cells in tissue plane. | PCP systems align tissues against stress vectors. |
-| 8 | **PTK7** | 85 | **PCP**: Regulator of convergent extension. | Loss leads to spinal curvature in models; resists buckling. |
-| 9 | **COL2A1** | 85 | **ECM Integrity**: Main collagen of cartilage/discs. | Provides tensile/compressive strength against gravity. |
-| 10 | **TBX6** | 85 | **Segmentation**: Controls somite clock timing. | Hemivertebrae (wedge deformities) cause local curvature. |
-| 11 | **TRPV4** | 82 | **Ion Channel**: Osmotic/mechanical sensor in cartilage. | Activated by compressive loading (gravity). |
-| 12 | **PKD1L1** | 80 | **Cilia/CSF**: Detects flow in spinal central canal. | CSF flow dynamics are potentially gravity-dependent. |
-| 13 | **COMP** | 80 | **ECM Assembly**: Organizes collagen fibrils. | Mutations weaken matrix, leading to deformation under load. |
-| 14 | **KIF6** | 78 | **Ciliary Motor**: Transport in cilia. | Linked to AIS; cilia function is key for symmetry. |
-| 15 | **MATN1** | 75 | **ECM Network**: Cartilage stiffness. | Genetic link to scoliosis; structural role. |
-| 16 | **HSPG2** | 75 | **Perlecan**: Mechanosensor in bone lacunae. | Transduces fluid shear stress in bone (gravity load). |
-| 17 | **WNT3A** | 75 | **Bone Mass**: Wnt signaling. | Load-induced bone remodeling pathway. |
-| 18 | **GREM1** | 72 | **Growth Plate**: BMP antagonist. | Regulates chondrocyte proliferation timing. |
-| 19 | **SCUBE3** | 70 | **Morphogenesis**: Modulates BMP. | Emerging role in skeletal form. |
-| 20 | **HOXB1** | 70 | **Patterning**: Axial identity. | Specifies "thoracic" vs "lumbar" properties. |
+| 1 | **LBX1** | 95 | **Somite**: Major genetic driver of AIS with clear mechanistic link to postural tone. | Regulates migration of muscle precursors and formation of dorsal horn neurons involved in proprioception/gravity sensing. |
+| 2 | **PIEZO2** | 95 | **Mechanotransduction**: Direct link between gravity sensing (proprioception) and spinal alignment. | Essential for proprioception, which provides the gravity reference frame for posture control. |
+| 3 | **FBN1** | 92 | **ECM**: Major structural determinant of spine elasticity. | Microfibrils provide long-range elasticity and sequester TGF-beta, responding to tissue stretch. |
+| 4 | **ITGB1** | 90 | **Mechanotransduction**: Primary gravity sensor at cell-ECM interface. | Integrins are the primary cellular gravity/load sensors via focal adhesions. |
+| 5 | **POC5** | 90 | **Cilia**: Direct genetic cause of scoliosis linked to ciliary geometry. | Ciliary function is critical for detecting fluid flow and potentially gravity vectors (statocysts analogy). |
+| 6 | **YAP1** | 90 | **Mechanotransduction**: Central hub of cellular mechanotransduction. | Nuclear translocation is directly regulated by mechanical stiffness and gravity loading forces. |
+| 7 | **ADGRG6** | 88 | **Mechanotransduction**: Mechanosensitive receptor directly linked to spine integrity. | GPR126 is a mechanosensitive GPCR; essential for intervertebral disc maintenance under mechanical load. |
+| 8 | **FLNB** | 88 | **Cytoskeleton**: Structural integrator of stress and segmentation. | Actin cytoskeleton crosslinker, responds to mechanical stress. |
+| 9 | **MESP2** | 88 | **Segmentation**: Critical for vertebral segmentation integrity. | Regulates somite boundary formation (the 'clock'), establishing structural units. |
+| 10 | **WWTR1** | 88 | **Mechanotransduction**: Key partner of YAP in mechanosensing. | Paralog of YAP, acts as a mechanosensor of matrix stiffness and gravity-derived stress. |
+| 11 | **CDH2** | 85 | **Adhesion**: Transmits mechanical information between cells. | Cell-cell adhesion, transmits tension across tissues. |
+| 12 | **COL2A1** | 85 | **ECM**: Primary gravity-resisting molecule in the spine. | Major structural component resisting compressive gravity loads in spine. |
+| 13 | **DLL3** | 85 | **Segmentation**: Notch ligand essential for somite boundaries. | Notch signaling component for segmentation. |
+| 14 | **PKD2** | 85 | **Cilia**: Ciliary mechanosensor linked to asymmetry. | Mechanosensitive ion channel in cilia (flow/bending). |
+| 15 | **PTK2** | 85 | **Mechanotransduction**: Key signal transducer for gravity sensing. | Central mediator of integrin mechanotransduction and gravity response. |
+| 16 | **PTK7** | 85 | **PCP**: Core PCP component linked to spinal curvature. | Regulates convergent extension movements, resisting gravity-induced spreading. |
+| 17 | **TBX6** | 85 | **Segmentation**: Fundamental to vertebral segmentation symmetry. | Regulates somite segmentation clock; timing errors lead to hemivertebrae. |
+| 18 | **VANGL1** | 85 | **PCP**: PCP pathway is fundamental to body axis linearity. | Planar Cell Polarity (PCP) aligns cells against tissue stress lines (gravity). |
+| 19 | **CELSR1** | 82 | **PCP**: PCP determinant of tissue polarity. | PCP pathway component aligning tissues against stress. |
+| 20 | **COL11A1** | 82 | **ECM**: Controls collagen fibril mechanics. | Nucleates collagen fibril assembly, determining fiber diameter and mechanical strength. |
+| 21 | **TRPV4** | 82 | **Mechanotransduction**: Direct mechanosensor in chondrocytes. | Mechanosensitive ion channel activated by osmotic and mechanical stress (gravity load). |
+| 22 | **COMP** | 80 | **ECM**: Critical for matrix integrity under load. | Cartilage Oligomeric Matrix Protein; organizes collagen to resist load. |
+| 23 | **PKD1L1** | 80 | **Cilia**: Links CSF flow sensing to spine straightness. | Detects cerebrospinal fluid flow in central canal; flow dynamics are gravity-influenced. |
+| 24 | **RUNX2** | 80 | **Bone**: Master regulator of bone response to load. | Master osteogenic factor; expression is upregulated by mechanical load (gravity). |
+| 25 | **SHH** | 80 | **Development**: Morphogen establishing the gravity axis. | Notochord (hydrostatic skeleton) secretion; provides initial gravity resistance. |
+| 26 | **KIF6** | 78 | **Cilia**: Ciliary motor protein linked to scoliosis. | Kinesin motor for ciliary transport; cilia are potential gravity sensors. |
+| 27 | **HSPG2** | 75 | **ECM**: Key mechanosensory ECM component. | Perlecan; mechanosensor in lacuno-canalicular system of bone. |
+| 28 | **MATN1** | 75 | **ECM**: Structural component of cartilage matrix. | Forms filamentous networks in cartilage; contributes to stiffness. |
+| 29 | **WNT3A** | 75 | **Signaling**: Key signaling pathway in bone mechanobiology. | Wnt signaling responds to mechanical load (osteocyte mechanotransduction). |
+| 30 | **GREM1** | 72 | **Signaling**: Regulates growth plate sensitivity. | BMP antagonist; balances proliferation/differentiation in growth plate under load. |
 
 ## Selection Methodology
 

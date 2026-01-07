@@ -346,14 +346,15 @@ class MetricsAnalyzer:
         # Let's compute fraction of exposed residues.
         # "Exposed" if coordination number (C-alpha within 10A) < some val (say 14).
         if len(coords) > 0:
-            # Distance matrix
-            # Use a subset if too large, but 1000 res is fine.
-            # dists = np.linalg.norm(coords[:, None, :] - coords[None, :, :], axis=2)
-            # CN = np.sum(dists < 10.0, axis=1) - 1 # exclude self
-            # Avoid full matrix for memory? Loop is slow.
-            # 20 proteins * 500 res is small.
-            dists = np.sqrt(np.sum((coords[:, np.newaxis, :] - coords[np.newaxis, :, :]) ** 2, axis=2))
-            cn = np.sum(dists < 10.0, axis=1) - 1
+            # Optimize: Use KDTree for O(N log N) neighbor search instead of O(N^2) distance matrix.
+            # Significant speedup for N > 500.
+            from scipy.spatial import cKDTree
+            tree = cKDTree(coords)
+            # query_ball_point returns number of neighbors within radius.
+            # return_length=True returns counts directly, faster than returning indices.
+            # We subtract 1 because query includes the point itself.
+            cn = tree.query_ball_point(coords, 10.0, return_length=True) - 1
+
             # Heuristic threshold for "exposed" on CA-only model?
             # Say < 20 neighbors in 10A sphere (dense packing is ~30?).
             # Let's report mean coordination number as proxy?

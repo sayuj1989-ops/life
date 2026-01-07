@@ -111,10 +111,12 @@ class CounterCurvatureRodSystem:
         rho: float = 1000.0,
         radius: float = 0.01,
         kappa_gen: Optional[ArrayF64] = None,
+        kappa_lat: Optional[ArrayF64] = None,
         gravity: float = 9.81,
         base_position: tuple[float, float, float] = (0.0, 0.0, 0.0),
         base_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         normal: tuple[float, float, float] = (0.0, 1.0, 0.0),
+        bending_axis: int = 0,  # 0: sagittal (y-axis, opposes z-gravity), 1: lateral (z-axis)
     ) -> "CounterCurvatureRodSystem":
         _check_pyelastica()
 
@@ -162,15 +164,32 @@ class CounterCurvatureRodSystem:
         # Set rest curvature
         if kappa_gen is None:
             kappa_gen = np.zeros(info.n_points)
-        kappa_rest = compute_rest_curvature(info, params, kappa_gen)
-
-        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
-        # We need to map kappa_rest (defined on info.s) to s_internal
-        kappa_internal = np.interp(s_internal, info.s, kappa_rest)
         
+        # Compute "CounterCurvature" (Sagittal)
+        kappa_rest_sagittal = compute_rest_curvature(info, params, kappa_gen)
+
+        # Interpolate to internal nodes
+        kappa_sag_internal = np.interp(s_internal, info.s, kappa_rest_sagittal)
+
+        # Lateral (Scoliosis)
+        if kappa_lat is not None:
+             kappa_lat_internal = np.interp(s_internal, info.s, kappa_lat)
+        else:
+             kappa_lat_internal = np.zeros_like(s_internal)
+
         # PyElastica rest_kappa has shape (3, n_elements-1)
         rest_kappa = np.zeros((3, n_elements - 1))
-        rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
+
+        # Bending axis logic:
+        # Default: sagittal=0 (around d1=y), lateral=1 (around d2=z).
+        # This matches rod along x, normal along y.
+        # d1=y, d2=z.
+        # Sagittal bending (x-z plane) is around d1(y). -> Index 0.
+        # Lateral bending (x-y plane) is around d2(z). -> Index 1.
+
+        rest_kappa[0, :] = kappa_sag_internal
+        rest_kappa[1, :] = kappa_lat_internal
+
         rod.rest_kappa[:] = rest_kappa
 
         # Compute active moments (scalar field on nodes) if chi_M != 0
@@ -182,9 +201,9 @@ class CounterCurvatureRodSystem:
             M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
 
             # Create torque vector (3, n_elements)
-            # Bending in sagittal plane (x-z) with normal y: torque around y-axis (index 1)
+            # Active moment follows bending axis 0 (Sagittal)
             active_torques = np.zeros((3, n_elements))
-            active_torques[1, :] = M_active_elems
+            active_torques[0, :] = M_active_elems
 
         return cls(rod=rod, info_field=info, params=params, active_torques=active_torques)
 

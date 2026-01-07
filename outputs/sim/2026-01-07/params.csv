@@ -1,0 +1,7 @@
+parameter,values
+anisotropy_values,"[0.5, 0.75, 1.0, 1.25, 1.5, 2.0]"
+fixed_chi_kappa,2.0
+E0,1000000.0
+L,1.0
+n_elements,50
+Gravity_Y,1.0

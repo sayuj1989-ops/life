@@ -6,6 +6,7 @@ graph TD
         PIEZO[PIEZO1<br/>Mechanosensor]
         CILIA[DNAH5/PKD1L1<br/>Cilia Motility]
         LBX1[LBX1<br/>Transcription Factor]
+        ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -14,6 +15,7 @@ graph TD
         Mech_Trans[Mechanotransduction<br/>Ca2+ Influx]
         Sym_Break[Symmetry Breaking<br/>Nodal Flow]
         Neur_Diff[Somatosensory<br/>Differentiation]
+        Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -47,10 +49,13 @@ graph TD
     Sym_Break --> Torsion
     Torsion --> S_Curve
 
-    %% NEW ARC: LBX1
     LBX1 --> Neur_Diff
     Neur_Diff --> Muscle_Tone
     Muscle_Tone --> Stability
+
+    %% NEW ARC: ADGRG6
+    ADGRG6 --> Disc_Maint
+    Disc_Maint --> Stiffness
 
     %% Cross-Talk and Failures
     Stability --> S_Curve
@@ -66,7 +71,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone tissue;
     class S_Curve,Stability,Scoliosis outcome;

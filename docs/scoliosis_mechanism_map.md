@@ -42,25 +42,30 @@ The map categorizes the system into four layers:
 *   **Property**: **Chiral Torsion ($\epsilon$)**.
 *   **Role**: Establishes the initial subtle twist. Loss of this signal results in randomized symmetry breaking, a high risk factor for scoliosis.
 
+### 5. The Proprioception Pathway (LBX1)
+*   **Source**: `LBX1` (Transcription Factor).
+*   **Mechanism**: Drives differentiation of somatosensory relay neurons.
+*   **Property**: **Muscle Tone Balance**.
+*   **Role**: Maintains symmetric active tension ("guy wires") to stabilize the column. `LBX1` deficiency leads to sensor noise and asymmetric pull.
+
 ---
 
-## New Pathway: Proprioception and Muscle Tone
+## New Pathway: Disc Maintenance (ADGRG6)
 
-**Arc Added**: `LBX1` $\rightarrow$ Somatosensory Differentiation $\rightarrow$ Muscle Tone $\rightarrow$ Stability.
+**Arc Added**: `ADGRG6` $\rightarrow$ Disc Maintenance $\rightarrow$ Stiffness $\rightarrow$ Stability.
 
 ### Evidence
-The gene `LBX1` (Ladybird Homeobox 1) is one of the strongest and most replicated genetic risk factors for Adolescent Idiopathic Scoliosis (AIS).
+The gene `ADGRG6` (also known as `GPR126`) is an Adhesion GPCR that has been identified as a susceptibility gene for AIS and is essential for intervertebral disc development.
 
-*   **Molecular Actor**: `LBX1` is a transcription factor critical for the development of specific neuronal populations in the dorsal horn of the spinal cord and hindbrain.
-*   **Process**: It drives the differentiation of **somatosensory relay neurons** which process proprioceptive information (body position sensing).
-*   **Tissue Property**: This leads to the correct maintenance of **Muscle Tone Balance** and proprioception. The paraspinal muscles act as "guy wires" for the spine; if the sensory input regulating them is defective, asymmetric muscle tension can develop.
-*   **Outcome**: Imbalanced muscle forces destabilize the spinal column, facilitating the progression of curvature into scoliosis.
+*   **Molecular Actor**: `ADGRG6` is expressed in the cartilage and developing spine.
+*   **Process**: It regulates **Disc Maintenance**, specifically the fusion of the annulus fibrosus and the structural integrity of cartilaginous tissues.
+*   **Tissue Property**: Loss of this gene compromises the **Stiffness ($EI$)** and structural continuity of the spinal column. The intervertebral discs act as flexible joints; if their material quality degrades or they fail to form correctly, the column's effective stiffness drops, making it susceptible to buckling.
+*   **Outcome**: In mouse models, conditional deletion of `ADGRG6` in cartilage causes severe scoliosis and pectus excavatum, confirming its critical role in maintaining spinal linearity against loads.
 
-> **Hypothesis**: In the Counter-Curvature model, `LBX1` deficiency creates "noisy" sensors in the control loop. The system cannot accurately detect its deviation from the vertical, leading to a drift in the control signal that manifests as a buckle.
+> **Hypothesis**: `ADGRG6` signaling may couple mechanical load on the disc to metabolic maintenance of the ECM, ensuring the disc remains stiff enough to support the growing column.
 
 **Citation**:
-*   *Guo, L., et al. (2016). Functional investigation of a non-coding variant associated with adolescent idiopathic scoliosis in zebrafish: elevated expression of the ladybird homeobox gene lbx1 causes body axis deformation. PLoS Genetics.*
-*   *Cheng, J.C., et al. (2015). Adolescent idiopathic scoliosis. Nature Reviews Disease Primers, 1, 15030. https://doi.org/10.1038/nrdp.2015.30*
+*   *Karner, C. M., et al. (2015). Gpr126/Adgrg6 deletion in cartilage models idiopathic scoliosis and pectus excavatum in mice. Human Molecular Genetics, 24(15), 4365-4376.* https://doi.org/10.1093/hmg/ddv170
 
 ---
 

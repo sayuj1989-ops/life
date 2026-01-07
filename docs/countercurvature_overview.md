@@ -14,6 +14,8 @@ The hypothesis draws an analogy between:
 
 Living systems (plants growing upward, vertebrate spines, neural structures in microgravity) systematically generate organized structure against or beyond naive gravitational sag. The **information dynamics** behind life and consciousness modulate an effective curvature field—not literally rewriting General Relativity, but acting like a local, information-driven counter-curvature that shapes the geometry experienced by the body.
 
+For formal definitions of variables and coupling constants, see [docs/theory/formalism_01.md](theory/formalism_01.md).
+
 ### Implementation
 
 We use **Cosserat rod mechanics as an analog spacetime** in which an **information field** modifies:

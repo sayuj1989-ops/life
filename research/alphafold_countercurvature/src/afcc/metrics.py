@@ -224,7 +224,11 @@ class MetricsAnalyzer:
         # Ratio: mean_inter / mean_intra.
         # If domains are well defined: inter is high (uncertain), intra is low (certain). Ratio >> 1.
         blockiness = mean_inter / mean_intra
-        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness)}
+        return {
+            'pae_mean': float(pae_mean),
+            'pae_blockiness': float(blockiness),
+            'predicted_domain_segments': len(segments)
+        }
 
     def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None, pae_matrix: np.ndarray = None) -> Dict[str, Any]:
         """
@@ -256,6 +260,9 @@ class MetricsAnalyzer:
         rg = shape_props.get('radius_of_gyration', 0.0)
 
         mean_plddt = np.mean(plddt_scores) if len(plddt_scores) > 0 else 0
+        median_plddt = np.median(plddt_scores) if len(plddt_scores) > 0 else 0
+        fraction_high_conf = np.sum(plddt_scores >= 90) / len(plddt_scores) if len(plddt_scores) > 0 else 0
+        fraction_ok_conf = np.sum((plddt_scores >= 70) & (plddt_scores < 90)) / len(plddt_scores) if len(plddt_scores) > 0 else 0
         fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0
         disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores) if len(plddt_scores) > 0 else 0
 
@@ -479,6 +486,9 @@ class MetricsAnalyzer:
         return {
             'n_residues': n_res,
             'mean_plddt': mean_plddt,
+            'median_plddt': median_plddt,
+            'fraction_high_plddt': fraction_high_conf,
+            'fraction_ok_plddt': fraction_ok_conf,
             'fraction_low_plddt': fraction_low_conf,
             'disorder_fraction': disorder_fraction,
             'radius_of_gyration': rg,

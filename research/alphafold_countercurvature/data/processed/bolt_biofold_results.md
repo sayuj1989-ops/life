@@ -1,71 +1,64 @@
 # Bolt-BioFold ⚡ Analysis Report
-Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Segmentation,Somite, Mechanotransduction,Hippo, Cytoskeleton,Segmentation
 
 ## 1. Results Table
-| Identity | Species | Length | pLDDT_mean | pLDDT_frac_low | PAE_mean | PAE_blockiness | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Hotspots | Exposed_Frac | Charged_Patch | Flags |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PIEZO2 (Q9H5I5) | Homo sapiens | 709 | 79.4 | 0.21 | 17.0 | 2.8 | 0.14 | 0 | 48.6 | 28.4 | 0.329 | 1.428 | 3.45 | 460:0.38; 239:0.38; 138:0.38 | 0.56 | 0.25 | MultiDomUncert |
-| LBX1 (P52954) | Homo sapiens | 281 | 66.9 | 0.61 | 25.1 | 7.35 | 0.26 | 0 | 37.0 | 51.9 | 0.343 | 1.173 | 1.76 | 83:0.39; 37:0.39; 34:0.38 | 0.93 | 0.36 | LowConf, MultiDomUncert |
-| YAP1 (P46937) | Homo sapiens | 504 | 57.4 | 0.74 | 27.5 | 9.26 | 0.45 | 2 | 44.9 | 11.4 | 0.321 | 1.628 | 1.54 | 182:0.38; 241:0.38; 257:0.38 | 0.93 | 0.3 | LowConf, MultiDomUncert, IDR_Heavy |
-| POC5 (Q8NA72) | Homo sapiens | 575 | 64.0 | 0.61 | 25.6 | 3.51 | 0.49 | 5 | 83.2 | 307.4 | 0.364 | 0.848 | 4.97 | 156:0.38; 247:0.38; 192:0.37 | 1.0 | 0.36 | LowConf, MultiDomUncert, IDR_Heavy |
-| ITGB1 (P05556) | Homo sapiens | 798 | 85.9 | 0.11 | 18.2 | 4.9 | 0.03 | 10 | 46.6 | 94.9 | 0.305 | 1.725 | 2.79 | 193:0.39; 474:0.38; 521:0.38 | 0.34 | 0.35 | MultiDomUncert |
-| MESP2 (Q0VG99) | Homo sapiens | 397 | 54.2 | 0.82 | 26.9 | 0.0 | 0.58 | 1 | 43.5 | 42.6 | 0.351 | 1.183 | 1.56 | 142:0.38; 85:0.38; 109:0.38 | 0.97 | 0.36 | LowConf, IDR_Heavy |
-| WWTR1 (Q9GZV5) | Homo sapiens | 400 | 59.1 | 0.7 | 27.1 | 5.85 | 0.52 | 0 | 41.0 | 52.0 | 0.326 | 1.471 | 1.66 | 135:0.39; 42:0.38; 49:0.38 | 0.97 | 0.29 | LowConf, MultiDomUncert, IDR_Heavy |
-| ADGRG6 (Q86SQ4) | Homo sapiens | 1221 | 73.7 | 0.3 | 24.4 | 6.78 | 0.15 | 12 | 55.0 | 50.9 | 0.308 | 1.633 | 2.8 | 57:0.43; 530:0.39; 247:0.39 | 0.44 | 0.25 | MultiDomUncert |
-| FLNB (O75369) | Homo sapiens | 2602 | 76.3 | 0.24 | 27.0 | 8.93 | 0.04 | 158 | 55.0 | 35.9 | 0.277 | 2.133 | 2.06 | 1505:0.44; 2595:0.43; 1409:0.42 | 0.28 | 0.41 | MultiDomUncert |
+| Identity | Species | Length | pLDDT_mean | pLDDT_median | pLDDT_frac_high | pLDDT_frac_ok | pLDDT_frac_low | PAE_mean | PAE_blockiness | Dom_Segs | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Hotspots | Exposed_Frac | Charged_Patch | Flags |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ACAN (P16112) | Homo sapiens | 2530 | 51.9 | 45.1 | 0.15 | 0.12 | 0.73 | 26.3 | 5.01 | 10.0 | 0.54 | 26 | 59.8 | 24.4 | 0.288 | 1.909 | 1.33 | 2343:0.42; 2405:0.42; 109:0.41 | 0.56 | 0.41 | LowConf, MultiDomUncert, IDR_Heavy |
+| ACTB (P60709) | Homo sapiens | 375 | 95.2 | 97.4 | 0.93 | 0.05 | 0.03 | 5.0 | 1.26 | 2.0 | 0.01 | 1 | 21.6 | 42.7 | 0.318 | 1.551 | 2.16 | 335:0.39; 265:0.39; 258:0.38 | 0.3 | 0.34 | OK |
+| BMP4 (P12644) | Homo sapiens | 408 | 78.5 | 88.5 | 0.47 | 0.25 | 0.28 | 13.4 | 1.53 | 6.0 | 0.15 | 12 | 27.8 | 16.4 | 0.297 | 1.901 | 2.69 | 343:0.39; 329:0.38; 352:0.38 | 0.47 | 0.38 | MultiDomUncert |
+| CDH2 (P19022) | Homo sapiens | 906 | 79.4 | 90.4 | 0.51 | 0.24 | 0.25 | 22.5 | 6.35 | 8.0 | 0.17 | 22 | 67.3 | 177.2 | 0.287 | 2.02 | 4.52 | 205:0.44; 176:0.43; 315:0.43 | 0.5 | 0.26 | MultiDomUncert |
+| COL2A1 (P02458) | Homo sapiens | 1487 | 52.1 | 44.1 | 0.13 | 0.06 | 0.81 | 27.4 | 5.9 | 3.0 | 0.69 | 16 | 61.3 | 45.4 | 0.294 | 1.87 | 1.19 | 1327:0.42; 1454:0.39; 1282:0.38 | 0.87 | 0.28 | LowConf, MultiDomUncert, IDR_Heavy |
+| IFT88 (Q13099) | Homo sapiens | 824 | 76.3 | 89.3 | 0.47 | 0.25 | 0.29 | 19.4 | 2.43 | 3.0 | 0.23 | 1 | 44.1 | 92.4 | 0.358 | 1.121 | 2.38 | 315:0.38; 643:0.38; 426:0.38 | 0.51 | 0.44 | MultiDomUncert |
+| ITGB1 (P05556) | Homo sapiens | 798 | 85.9 | 89.8 | 0.49 | 0.4 | 0.11 | 18.2 | 4.9 | 10.0 | 0.03 | 10 | 46.6 | 94.9 | 0.305 | 1.725 | 2.79 | 193:0.39; 474:0.38; 521:0.38 | 0.34 | 0.35 | MultiDomUncert |
+| KIF3A (Q9Y496) | Homo sapiens | 699 | 75.4 | 83.1 | 0.21 | 0.52 | 0.27 | 20.0 | 4.44 | 12.0 | 0.15 | 4 | 37.7 | 40.6 | 0.328 | 1.461 | 2.43 | 359:0.38; 43:0.38; 88:0.38 | 0.54 | 0.51 | MultiDomUncert |
+| PTH1R (Q03431) | Homo sapiens | 593 | 71.0 | 82.1 | 0.35 | 0.23 | 0.41 | 19.5 | 2.87 | 6.0 | 0.3 | 0 | 45.3 | 10.6 | 0.343 | 1.136 | 3.02 | 186:0.38; 33:0.38; 298:0.38 | 0.64 | 0.32 | MultiDomUncert |
+| SHH (Q15465) | Homo sapiens | 462 | 78.4 | 89.5 | 0.47 | 0.27 | 0.26 | 17.9 | 6.13 | 5.0 | 0.16 | 6 | 27.4 | 31.2 | 0.303 | 1.81 | 1.94 | 48:0.40; 259:0.39; 174:0.39 | 0.44 | 0.33 | MultiDomUncert |
+| SOX9 (P48436) | Homo sapiens | 509 | 56.0 | 50.2 | 0.11 | 0.05 | 0.84 | 27.4 | 0.0 | nan | 0.49 | 2 | 46.6 | 20.7 | 0.341 | 1.288 | 1.3 | 134:0.38; 147:0.38; 116:0.37 | 0.92 | 0.52 | LowConf, IDR_Heavy |
+| TUBB (P07437) | Homo sapiens | 444 | 92.1 | 94.9 | 0.84 | 0.12 | 0.04 | 6.3 | 1.26 | 2.0 | 0.02 | 0 | 21.0 | 12.8 | 0.324 | 1.499 | 1.42 | 271:0.39; 61:0.39; 391:0.39 | 0.27 | 0.44 | OK |
+| VIM (P08670) | Homo sapiens | 466 | 77.1 | 89.8 | 0.5 | 0.2 | 0.3 | 23.7 | 4.02 | 4.0 | 0.24 | 1 | 71.7 | 208.3 | 0.36 | 0.936 | 5.57 | 404:0.38; 318:0.38; 337:0.37 | 1.0 | 0.38 | MultiDomUncert |
+| GAPDH (P04406) | Homo sapiens | 335 | 98.1 | 98.7 | 0.99 | 0.01 | 0.0 | 2.5 | 0.0 | nan | 0.0 | 0 | 19.8 | 11.4 | 0.307 | 1.693 | 1.78 | 17:0.38; 216:0.38; 148:0.38 | 0.25 | 0.37 | OK |
 
-### CSV Block
-```csv
-Identity,Species,Length,pLDDT_mean,pLDDT_frac_low,PAE_mean,PAE_blockiness,Disorder_Proxy,Hinge_Cands,Rg,End_to_End,Curvature,Torsion,Anisotropy,Hotspots,Exposed_Frac,Charged_Patch,Flags
-PIEZO2 (Q9H5I5),Homo sapiens,709,79.4,0.21,17.0,2.8,0.14,0,48.6,28.4,0.329,1.428,3.45,460:0.38; 239:0.38; 138:0.38,0.56,0.25,MultiDomUncert
-LBX1 (P52954),Homo sapiens,281,66.9,0.61,25.1,7.35,0.26,0,37.0,51.9,0.343,1.173,1.76,83:0.39; 37:0.39; 34:0.38,0.93,0.36,"LowConf, MultiDomUncert"
-YAP1 (P46937),Homo sapiens,504,57.4,0.74,27.5,9.26,0.45,2,44.9,11.4,0.321,1.628,1.54,182:0.38; 241:0.38; 257:0.38,0.93,0.3,"LowConf, MultiDomUncert, IDR_Heavy"
-POC5 (Q8NA72),Homo sapiens,575,64.0,0.61,25.6,3.51,0.49,5,83.2,307.4,0.364,0.848,4.97,156:0.38; 247:0.38; 192:0.37,1.0,0.36,"LowConf, MultiDomUncert, IDR_Heavy"
-ITGB1 (P05556),Homo sapiens,798,85.9,0.11,18.2,4.9,0.03,10,46.6,94.9,0.305,1.725,2.79,193:0.39; 474:0.38; 521:0.38,0.34,0.35,MultiDomUncert
-MESP2 (Q0VG99),Homo sapiens,397,54.2,0.82,26.9,0.0,0.58,1,43.5,42.6,0.351,1.183,1.56,142:0.38; 85:0.38; 109:0.38,0.97,0.36,"LowConf, IDR_Heavy"
-WWTR1 (Q9GZV5),Homo sapiens,400,59.1,0.7,27.1,5.85,0.52,0,41.0,52.0,0.326,1.471,1.66,135:0.39; 42:0.38; 49:0.38,0.97,0.29,"LowConf, MultiDomUncert, IDR_Heavy"
-ADGRG6 (Q86SQ4),Homo sapiens,1221,73.7,0.3,24.4,6.78,0.15,12,55.0,50.9,0.308,1.633,2.8,57:0.43; 530:0.39; 247:0.39,0.44,0.25,MultiDomUncert
-FLNB (O75369),Homo sapiens,2602,76.3,0.24,27.0,8.93,0.04,158,55.0,35.9,0.277,2.133,2.06,1505:0.44; 2595:0.43; 1409:0.42,0.28,0.41,MultiDomUncert
-
-```
 
 ## 2. Key Plots Summary
-- Generated `/app/research/alphafold_countercurvature/data/processed/figures/quality_scatter.png`: Scatter plot of Length vs Confidence, sized by Anisotropy.
-- Shows clear separation between globular domains (high conf, low aniso) and fibrous tails (often lower conf or very high aniso).
-
+- Generated `/app/research/alphafold_countercurvature/data/processed/figures/plddt_vs_length_scatter.png`: Scatter plot of Length vs Mean Confidence, sized by Anisotropy.
+- Shows distribution of structure quality across the batch.
 
 ## 3. Interpretation
-**Family: Cilia,Centriole**
-- **POC5**: POC5: Anisotropy=5.0, pLDDT=64. Highly extended/fibrous. Warning: Low confidence structure. Detected 5 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Verify fiber formation in vivo; test mechanical stiffness.
+**Family: control**
+- **GAPDH**: GAPDH: Anisotropy=1.8, pLDDT=98. Intermediate shape.  Standard globular domain, likely biochemical role or node in network. (Conf: High). Test: Check expression timing relative to spine straightening.
 
-**Family: Cytoskeleton,Segmentation**
-- **FLNB**: FLNB: Anisotropy=2.1, pLDDT=76. Intermediate shape.  Detected 158 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
-**Family: Mechanotransduction,Adhesion**
+**Family: seed_Adhesion**
+- **CDH2**: CDH2: Anisotropy=4.5, pLDDT=79. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
 - **ITGB1**: ITGB1: Anisotropy=2.8, pLDDT=86. Intermediate shape.  Detected 10 potential flexible hinges; may act as mechanical sensor/switch. (Conf: High). Test: Mutate hinge region to test effect on mechanosensitivity.
-- **ADGRG6**: ADGRG6: Anisotropy=2.8, pLDDT=74. Intermediate shape.  Detected 12 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
 
-**Family: Mechanotransduction,Hippo**
-- **WWTR1**: WWTR1: Anisotropy=1.7, pLDDT=59. Intermediate shape. Warning: Low confidence structure. Standard globular domain, likely biochemical role or node in network. (Conf: Low). Test: Check expression timing relative to spine straightening.
+**Family: seed_Cilia**
+- **IFT88**: IFT88: Anisotropy=2.4, pLDDT=76. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+- **KIF3A**: KIF3A: Anisotropy=2.4, pLDDT=75. Intermediate shape.  Detected 4 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
 
-**Family: Mechanotransduction,Hippo,Growth_Plate**
-- **YAP1**: YAP1: Anisotropy=1.5, pLDDT=57. Intermediate shape. Warning: Low confidence structure. Detected 2 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
+**Family: seed_Cytoskeleton**
+- **ACTB**: ACTB: Anisotropy=2.2, pLDDT=95. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: High). Test: Mutate hinge region to test effect on mechanosensitivity.
+- **TUBB**: TUBB: Anisotropy=1.4, pLDDT=92. Globular/Compact.  Standard globular domain, likely biochemical role or node in network. (Conf: High). Test: Check expression timing relative to spine straightening.
+- **VIM**: VIM: Anisotropy=5.6, pLDDT=77. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
 
-**Family: Mechanotransduction,Proprioception**
-- **PIEZO2**: PIEZO2: Anisotropy=3.5, pLDDT=79. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Check expression timing relative to spine straightening.
+**Family: seed_ECM**
+- **ACAN**: ACAN: Anisotropy=1.3, pLDDT=52. Globular/Compact. Warning: Low confidence structure. Detected 26 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
+- **COL2A1**: COL2A1: Anisotropy=1.2, pLDDT=52. Globular/Compact. Warning: Low confidence structure. Detected 16 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
 
-**Family: Segmentation,Somite**
-- **MESP2**: MESP2: Anisotropy=1.6, pLDDT=54. Intermediate shape. Warning: Low confidence structure. Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
+**Family: seed_Growth_Plate**
+- **PTH1R**: PTH1R: Anisotropy=3.0, pLDDT=71. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Check expression timing relative to spine straightening.
+- **SOX9**: SOX9: Anisotropy=1.3, pLDDT=56. Globular/Compact. Warning: Low confidence structure. Detected 2 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
 
-**Family: Somite,Muscle,Proprioception**
-- **LBX1**: LBX1: Anisotropy=1.8, pLDDT=67. Intermediate shape. Warning: Low confidence structure. Standard globular domain, likely biochemical role or node in network. (Conf: Low). Test: Check expression timing relative to spine straightening.
+**Family: seed_Morphogens**
+- **BMP4**: BMP4: Anisotropy=2.7, pLDDT=79. Intermediate shape.  Detected 12 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+- **SHH**: SHH: Anisotropy=1.9, pLDDT=78. Intermediate shape.  Detected 6 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+
 
 ## 4. Best Next Move
-Add proteins: Expand search to include more cytoskeletal linkers.
+Cluster by geometry and correlate curvature metrics with known phenotype genes.
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-01-07 21:51:37
-- Code Version: 235121a
+- Date/Time: 2026-01-08 19:28:44
+- Code Version: f9289a2
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
-- Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml
+- Notes: 14 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

@@ -50,22 +50,36 @@ The map categorizes the system into four layers:
 
 ---
 
-## New Pathway: Disc Maintenance (ADGRG6)
+### 6. The Disc Maintenance Pathway (ADGRG6)
+*   **Source**: `ADGRG6` (GPR126).
+*   **Mechanism**: Regulates fusion of the annulus fibrosus and cartilage integrity.
+*   **Property**: **Stiffness ($EI$)** and structural continuity.
+*   **Role**: Prevents material failure at the "joints" of the spine. Loss leads to severe buckling.
 
-**Arc Added**: `ADGRG6` $\rightarrow$ Disc Maintenance $\rightarrow$ Stiffness $\rightarrow$ Stability.
+### 7. The Polarity Pathway (PTK7)
+*   **Source**: `PTK7` (Planar Cell Polarity).
+*   **Mechanism**: Modulates Wnt signaling to orient cells and tissues (PCP).
+*   **Property**: **Tissue Anisotropy**.
+*   **Role**: Ensures that growth and mechanical properties are directionally ordered. Loss of polarity makes the tissue mechanically isotropic or chaotic, reducing stability against buckling.
+
+---
+
+## New Pathway: Polarity (PTK7)
+
+**Arc Added**: `PTK7` $\rightarrow$ PCP Signaling $\rightarrow$ Anisotropy $\rightarrow$ Stability.
 
 ### Evidence
-The gene `ADGRG6` (also known as `GPR126`) is an Adhesion GPCR that has been identified as a susceptibility gene for AIS and is essential for intervertebral disc development.
+The gene `PTK7` (Protein Tyrosine Kinase 7) is a key regulator of Planar Cell Polarity (PCP) and has been identified as a causative gene for idiopathic scoliosis in zebrafish models.
 
-*   **Molecular Actor**: `ADGRG6` is expressed in the cartilage and developing spine.
-*   **Process**: It regulates **Disc Maintenance**, specifically the fusion of the annulus fibrosus and the structural integrity of cartilaginous tissues.
-*   **Tissue Property**: Loss of this gene compromises the **Stiffness ($EI$)** and structural continuity of the spinal column. The intervertebral discs act as flexible joints; if their material quality degrades or they fail to form correctly, the column's effective stiffness drops, making it susceptible to buckling.
-*   **Outcome**: In mouse models, conditional deletion of `ADGRG6` in cartilage causes severe scoliosis and pectus excavatum, confirming its critical role in maintaining spinal linearity against loads.
+*   **Molecular Actor**: `PTK7` is conserved across vertebrates and regulates the non-canonical Wnt pathway.
+*   **Process**: It drives **PCP Signaling**, which aligns cell polarity perpendicular to the axis of extension (convergence and extension).
+*   **Tissue Property**: This alignment creates **Tissue Anisotropy**, ensuring that the spinal column has distinct properties along the longitudinal axis versus the transverse axes.
+*   **Outcome**: In zebrafish, `ptk7` mutants develop severe, late-onset spinal curvature that mimics human AIS. This suggests that without the correct "compass" for cell alignment, the macroscopic structure loses its ability to maintain a straight trajectory during rapid growth.
 
-> **Hypothesis**: `ADGRG6` signaling may couple mechanical load on the disc to metabolic maintenance of the ECM, ensuring the disc remains stiff enough to support the growing column.
+> **Hypothesis**: High-anisotropy proteins like PTK7 act as "Vectorial Strain Amplifiers," translating micro-scale strain into macro-scale alignment cues. Loss of this anisotropy decouples the tissue from the "Information Field," leading to geometric instability.
 
 **Citation**:
-*   *Karner, C. M., et al. (2015). Gpr126/Adgrg6 deletion in cartilage models idiopathic scoliosis and pectus excavatum in mice. Human Molecular Genetics, 24(15), 4365-4376.* https://doi.org/10.1093/hmg/ddv170
+*   *Hayes, M., et al. (2014). Ptk7 mutant zebrafish models of congenital and idiopathic scoliosis implicate dysregulated Wnt signalling. Nature Communications, 5, 4726.* https://doi.org/10.1038/ncomms5726
 
 ---
 

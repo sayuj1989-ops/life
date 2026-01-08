@@ -7,6 +7,7 @@ graph TD
         CILIA[DNAH5/PKD1L1<br/>Cilia Motility]
         LBX1[LBX1<br/>Transcription Factor]
         ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
+        PTK7[PTK7<br/>Planar Cell Polarity]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -16,6 +17,7 @@ graph TD
         Sym_Break[Symmetry Breaking<br/>Nodal Flow]
         Neur_Diff[Somatosensory<br/>Differentiation]
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
+        PCP_Sig[PCP Signaling<br/>Wnt Pathway]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -24,6 +26,7 @@ graph TD
         Gain[Feedback Gain G_mech<br/>Adaptive Growth]
         Torsion[Chiral Torsion ε<br/>Initial Twist]
         Muscle_Tone[Proprioception &<br/>Muscle Tone Balance]
+        Anisotropy[Tissue Anisotropy<br/>Directional Order]
     end
 
     subgraph Outcome [Macroscopic Outcome]
@@ -57,6 +60,11 @@ graph TD
     ADGRG6 --> Disc_Maint
     Disc_Maint --> Stiffness
 
+    %% NEW ARC: PTK7
+    PTK7 --> PCP_Sig
+    PCP_Sig --> Anisotropy
+    Anisotropy --> Stability
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -71,7 +79,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint process;
-    class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone tissue;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig process;
+    class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

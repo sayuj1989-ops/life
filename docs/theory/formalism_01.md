@@ -44,6 +44,18 @@ $$ \boldsymbol{\kappa}_{rest} = \boldsymbol{\kappa}_{gen} + \chi_\kappa \cdot \n
 *   **Dimensions**: $[1]$ (Dimensionless).
 *   **Physical Interpretation**: A scaling factor determining how strongly information gradients dictate local curvature targets.
 
+### 2.3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
+
+$\mathbf{\Lambda}$ represents the directional efficiency of the tissue in converting biochemical gradients into mechanical torque. It connects molecular anisotropy (e.g., cytoskeletal alignment) to macroscopic actuation.
+
+$$ \mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I) $$
+
+*   **Dimensions**: $[1]$ (Dimensionless rank-2 tensor).
+*   **Physical Interpretation**:
+    *   In a perfectly aligned tissue (isotropic transduction), $\mathbf{\Lambda}$ is the identity matrix $\mathbf{I}$.
+    *   If Planar Cell Polarity (PCP) signaling is skewed (e.g., *PTK7* mutation), $\mathbf{\Lambda}$ acquires off-diagonal components, converting a planar gradient ($\nabla I_y$) into a torsional moment ($M_z$), driving scoliotic rotation.
+    *   The trace $\text{Tr}(\mathbf{\Lambda})$ corresponds to the "Anisotropy Score" measured in protein structural analysis.
+
 ## 3. Measurable Proxy: The Counter-Curvature Energy
 
 To operationalize the hypothesis, we define the **Counter-Curvature Energy** ($U_{CC}$) as the work done by the organism against the gravitational field to maintain its shape, normalized by the elastic energy.
@@ -66,8 +78,20 @@ The theory makes specific predictions about growth in altered gravity environmen
 *   **Data Needed**: Spinal geometry of *Piezo1/2* conditional knockouts in paraspinal muscles/osteoblasts.
 *   **Refutation**: If *Piezo* KO mice develop normal S-curves despite the loss of sensation, the active coupling mechanism ($\mathbf{M}_{bio} \propto \nabla I$) is falsified. The theory predicts progressive scoliosis or collapse (buckling).
 
+### Test C: The "Tensor Misalignment" Prediction (PCP Perturbation)
+*   **Hypothesis**: The directionality of $\mathbf{M}_{bio}$ depends on PCP signaling. Disrupting PCP genes (e.g., *PTK7*, *VANGL2*) alters $\mathbf{\Lambda}$, causing off-axis torque generation.
+*   **Data Needed**: 3D kinematics of spinal growth in *Ptk7* mutant zebrafish/mice compared to wild-type, specifically measuring the ratio of torsion to lateral bending ($\tau / \kappa$).
+*   **Refutation**: If *Ptk7* mutants exhibit only reduced magnitude of curvature (lower $\chi_M$) but no torsional instability (maintained planarity), the hypothesis that "PCP defines the $\mathbf{\Lambda}$ tensor direction" is falsified.
+
+### Test D: The "Anisotropy Threshold" Prediction
+*   **Hypothesis**: Effective mechanotransduction requires a minimum degree of protein anisotropy to maintain $\text{Tr}(\mathbf{\Lambda}) > \Lambda_{crit}$.
+*   **Data Needed**: Correlation between AFCC "Anisotropy Scores" of variant proteins (e.g., truncated forms) and the resulting spinal cobb angle in corresponding organism models.
+*   **Refutation**: If variants with low structural anisotropy (spherical proteins) can still rescue the spinal phenotype in complementation assays, the link between "molecular anisotropy" and "macroscopic torque generation" is falsified.
+
 ## 5. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
 2.  **Coste, B., et al. (2010).** "Piezo1 and Piezo2 are essential components of distinct mechanically activated cation channels." *Science*, 330(6000). (Mechanotransduction basis).
 3.  **Gorb, S. N. (2011).** "Functional Surfaces in Biology." *Springer*. (General principles of biological structure vs. mechanics).
+4.  **Hayes, M., et al. (2014).** "Ptk7 mutant zebrafish models of congenital and idiopathic scoliosis implicate dysregulated Wnt signalling." *Nature Communications*, 5. (PCP/Anisotropy link).
+5.  **Xie, J., et al. (2023).** "PIEZO2 regulates bone development and mechanotransduction." *Nature*. (Specific molecular transducer for Test D).

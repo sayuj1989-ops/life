@@ -43,6 +43,7 @@ class CounterCurvatureParams(NamedTuple):
     chi_E: float = 0.0
     chi_M: float = 0.0
     scale_length: float = 1.0
+    chi_tau: float = 0.0
 
     def nondimensional_gradient(self, dIds: ArrayF64) -> ArrayF64:
         """Return a gradient scaled by ``scale_length`` if provided."""
@@ -91,6 +92,31 @@ def compute_rest_curvature(
     _validate_shapes(info, kappa_gen)
     grad = params.nondimensional_gradient(info.dIds)
     return np.asarray(kappa_gen, dtype=float) + params.chi_kappa * grad
+
+
+def compute_rest_torsion(
+    info: InfoField1D, params: CounterCurvatureParams, tau_gen: ArrayF64
+) -> ArrayF64:
+    """Compute information-biased rest torsion ``τ_rest``.
+
+    Parameters
+    ----------
+    info:
+        Information field describing ``I(s)`` and ``∂I/∂s`` along the rod.
+    params:
+        Coupling parameters; uses ``chi_tau`` here.
+    tau_gen:
+        Baseline geometric torsion with the same discretisation as ``info``.
+
+    Returns
+    -------
+    numpy.ndarray
+        The rest torsion profile ``τ_rest(s)``.
+    """
+
+    _validate_shapes(info, tau_gen)
+    grad = params.nondimensional_gradient(info.dIds)
+    return np.asarray(tau_gen, dtype=float) + params.chi_tau * grad
 
 
 def compute_effective_stiffness(

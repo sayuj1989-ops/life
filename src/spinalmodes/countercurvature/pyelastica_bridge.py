@@ -20,6 +20,7 @@ from .coupling import (
     compute_active_moments,
     compute_effective_stiffness,
     compute_rest_curvature,
+    compute_rest_torsion,
 )
 from .info_fields import InfoField1D
 
@@ -111,6 +112,7 @@ class CounterCurvatureRodSystem:
         rho: float = 1000.0,
         radius: float = 0.01,
         kappa_gen: Optional[ArrayF64] = None,
+        tau_gen: Optional[ArrayF64] = None,
         gravity: float = 9.81,
         base_position: tuple[float, float, float] = (0.0, 0.0, 0.0),
         base_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
@@ -167,10 +169,23 @@ class CounterCurvatureRodSystem:
         # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
         # We need to map kappa_rest (defined on info.s) to s_internal
         kappa_internal = np.interp(s_internal, info.s, kappa_rest)
+
+        # Compute rest torsion
+        if tau_gen is None:
+            tau_gen = np.zeros(info.n_points)
+        tau_rest = compute_rest_torsion(info, params, tau_gen)
+        tau_internal = np.interp(s_internal, info.s, tau_rest)
         
         # PyElastica rest_kappa has shape (3, n_elements-1)
+        # We use y-axis (index 1) for sagittal plane curvature
+        # We use z-axis (index 2) for torsion (twist about tangent)
+        # Note: PyElastica uses (d1, d2, d3) where d3 is tangent.
+        # kappa[0] -> bending about d1
+        # kappa[1] -> bending about d2
+        # kappa[2] -> twist about d3
         rest_kappa = np.zeros((3, n_elements - 1))
-        rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
+        rest_kappa[1, :] = kappa_internal
+        rest_kappa[2, :] = tau_internal
         rod.rest_kappa[:] = rest_kappa
 
         # Compute active moments (scalar field on nodes) if chi_M != 0

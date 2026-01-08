@@ -1,3 +1,4 @@
+# AFCC Latest Dashboard
 # Bolt-BioFold ⚡ Analysis Report
 Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Segmentation,Somite, Mechanotransduction,Hippo, Cytoskeleton,Segmentation
 
@@ -69,3 +70,9 @@ Add proteins: Expand search to include more cytoskeletal linkers.
 - Code Version: f9289a2
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml
+
+## Insights (2026-01-08)
+
+- Top Anisotropy candidates identified: POC5 and PIEZO2, confirming fibrous potential.
+- FBN1 was not found in AlphaFold DB, suggesting a need for alternative fetching or specialized modelling.
+- High confidence structures (pLDDT > 70) available for 9/10 candidates.

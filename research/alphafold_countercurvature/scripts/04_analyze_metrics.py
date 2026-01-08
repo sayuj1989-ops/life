@@ -92,8 +92,12 @@ def main():
     df = pd.DataFrame(results)
 
     # Reorder columns
-    cols = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
+    cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
             'anisotropy', 'radius_of_gyration', 'mean_plddt', 'n_residues', 'dise_score']
+
+    # Filter only columns that exist
+    cols = [c for c in cols_preferred if c in df.columns]
+
     # Add remaining cols
     remaining = [c for c in df.columns if c not in cols]
     df = df[cols + remaining]

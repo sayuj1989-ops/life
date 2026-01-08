@@ -14,27 +14,51 @@ seeds:
     - COL2A1
     - ACAN
     - FBN1
+    - COL11A1
+    - HSPG2
 
   Cytoskeleton:
     - ACTB
     - TUBB
     - VIM
+    - LMNA
+    - FLNB
 
   Adhesion:
     - CDH2
     - ITGB1
+    - TLN1
+    - VCL
 
   Cilia:
     - KIF3A
     - IFT88
+    - POC5
+    - VANGL1
+    - VANGL2
 
   Growth_Plate:
     - SOX9
     - PTH1R
+    - IHH
+    - GDF5
 
   Morphogens:
     - SHH
     - BMP4
+    - BMP2
+
+  Wnt_Signaling:
+    - LRP5
+    - CTNNB1
+    - WNT3A
+
+  Segmentation:
+    - LBX1
+    - MESP2
+    - HES7
+    - LFNG
+    - TBX6
 
   # Optional Expansion Sets (controlled by include_* flags below)
   expansion_modules:
@@ -43,8 +67,8 @@ seeds:
 
 # Control Flags
 include_expansion:
-  segmentation: false
-  mechanotransduction: false
+  segmentation: true
+  mechanotransduction: true
 
 # Control/Housekeeping genes (for contrast)
 controls:

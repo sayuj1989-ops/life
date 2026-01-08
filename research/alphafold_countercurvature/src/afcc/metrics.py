@@ -45,11 +45,20 @@ class MetricsAnalyzer:
         # Add epsilon to avoid div by zero
         ratio = np.sqrt(l3) / (np.sqrt(l1) + 1e-6)
 
+        # Optimization: Return Radius of Gyration for free
+        # Rg^2 = trace(T) = sum(eigenvalues)
+        # Note: eigvalsh returns eigenvalues of the tensor T = sum(r_centered^2)/N
+        # So sum(eigvals) = sum(r_centered^2)/N = Rg^2
+        rg_sq = np.sum(eigvals)
+        # Ensure non-negative (float precision)
+        rg = np.sqrt(max(rg_sq, 0.0))
+
         return {
             'lambda_min': float(l1),
             'lambda_mid': float(l2),
             'lambda_max': float(l3),
-            'anisotropy_ratio': float(ratio)
+            'anisotropy_ratio': float(ratio),
+            'radius_of_gyration': float(rg)
         }
 
     def classify_morphology(self, anisotropy: float, rg: float, n_residues: int) -> str:
@@ -140,8 +149,12 @@ class MetricsAnalyzer:
             phi = np.arccos(cos_phi)
 
             # Sign
-            cross_n1_n2 = np.cross(n1, n2)
-            sign_check = np.einsum('ij,ij->i', cross_n1_n2, b2)
+            # Optimization: sign( (n1 x n2) . b2 ) == sign( b1 . n2 )
+            # This avoids calculating the cross product of n1 and n2 (intermediate vector)
+            # and the subsequent dot product with b2.
+            # Identity: (b1 x b2) x (b2 x b3) = (b1 . (b2 x b3)) b2
+            # So (n1 x n2) . b2 = (b1 . n2) * |b2|^2. Since |b2|^2 > 0, sign is same as b1 . n2.
+            sign_check = np.einsum('ij,ij->i', b1, n2)
             sign = np.sign(sign_check)
 
         torsion = phi * sign # in radians
@@ -237,8 +250,10 @@ class MetricsAnalyzer:
         if plddt_scores is None and structure is not None:
              pass
 
-        rg = self.calculate_rg(coords)
+        # Bolt Optimization: calculate_anisotropy computes the gyration tensor,
+        # so we can extract Rg from it for free, saving an extra pass over coords.
         shape_props = self.calculate_anisotropy(coords)
+        rg = shape_props.get('radius_of_gyration', 0.0)
 
         mean_plddt = np.mean(plddt_scores) if len(plddt_scores) > 0 else 0
         fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0

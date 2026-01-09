@@ -65,14 +65,14 @@ The map categorizes the system into four layers:
 ### 8. The Stiffness Maintenance Pathway (YAP/TAZ)
 *   **Source**: `WWTR1` / `YAP1` (YAP/TAZ).
 *   **Mechanism**: Mechanosensitive proteins that shuttle to the nucleus when cells are stretched or on stiff substrates.
-*   **Property**: **ECM Homeostasis**.
+*   **Property**: **Bending Stiffness ($EI$)**.
 *   **Role**: Creates a positive feedback loop (Strain $\rightarrow$ YAP $\rightarrow$ Collagen $\rightarrow$ Stiffness). In microgravity (unloading), this loop may collapse, leading to rapid atrophy and instability.
 
 ---
 
-## New Pathway: Stiffness Maintenance (YAP/TAZ Mechanotransduction)
+## New Pathway: YAP/TAZ Mechanotransduction
 
-**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness, with Mechanotransduction $\rightarrow$ Nuclear Shuttling completing the feedback loop.
+**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness.
 
 ### Evidence
 YAP (Yes-associated protein) and TAZ (transcriptional coactivator with PDZ-binding motif) are the primary effectors of the Hippo signaling pathway and are crucial for sensing mechanical cues.

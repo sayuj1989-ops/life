@@ -5,15 +5,19 @@ from pathlib import Path
 import time
 import tracemalloc
 import csv
+import sys
+from typing import List, Dict, Any
+
+# Ensure project root is in path
+sys.path.append(".")
 
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
-from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 def run_experiment():
     print("Starting minimal PyElastica rod parameter sweep...")
-    print("Mapping protein/ECM parameters (chi_kappa, chi_M) to rod curvature.")
+    print("Mapping protein/ECM parameters (chi_kappa, chi_M, chi_tau) to rod metrics.")
 
     # 1. Define Information Field (e.g., sinusoidal modulation)
     L = 1.0
@@ -29,30 +33,26 @@ def run_experiment():
     final_time = 2.0
     dt = 1e-4
 
-    # Sweep parameters: chi_kappa (geometric countercurvature)
-    chi_kappa_values = [0.0, 1.0, 2.0, 3.0]
-    results_summary = []
-
     # Output directory
     output_dir = Path("outputs/experiments/minimal_rod_sweep")
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    results_summary: List[Dict[str, Any]] = []
+
     tracemalloc.start()
     start_time_total = time.time()
 
+    # --- Sweep 1: Chi_kappa (Geometric Countercurvature) ---
+    print("\n--- Sweep 1: Chi_kappa (Planar Bending) ---")
+    chi_kappa_values = [0.0, 1.0, 2.0, 3.0]
+
     for chi_k in chi_kappa_values:
-        # Define Parameters (Protein/ECM-inspired)
-        # chi_E: stiffness modulation (ECM densification)
-        # chi_kappa: rest curvature modulation (Developmental shape programming)
-        # chi_M: active moments (Muscle tone / Active stresses)
         params = CounterCurvatureParams(
             chi_E=0.5,
             chi_kappa=chi_k,
             chi_M=0.0,
             scale_length=L
         )
-
-        print(f"\nRunning simulation for chi_kappa={chi_k}...")
 
         # Horizontal rod to see gravity sag vs countercurvature
         system = CounterCurvatureRodSystem.from_iec(
@@ -71,109 +71,127 @@ def run_experiment():
         result = system.run_simulation(final_time=final_time, dt=dt, save_every=100)
 
         # Metrics
-        final_curvature = result.curvature[-1]
+        final_curvature = result.curvature[-1] # shape (n_nodes,)
         avg_curvature = np.mean(final_curvature)
+
+        final_torsion = result.torsion[-1]
+        avg_torsion = np.mean(final_torsion)
 
         # Sagittal deflection (z-coordinate)
         final_centerline = result.centerline[-1]
-        tip_deflection_z = final_centerline[2, -1] # Sagittal vertical
+        tip_deflection_z = final_centerline[2, -1]
 
-        # Store
         results_summary.append({
-            "chi_kappa": chi_k,
+            "sweep": "chi_kappa",
+            "val": chi_k,
             "avg_curvature": avg_curvature,
+            "avg_torsion": avg_torsion,
             "tip_deflection_z": tip_deflection_z
         })
+        print(f"chi_kappa={chi_k}: Avg Curv={avg_curvature:.4f}, Tip Z={tip_deflection_z:.4f}")
 
-        print(f"  Avg Curvature: {avg_curvature:.4f}")
-        print(f"  Tip Deflection Z: {tip_deflection_z:.4f} m")
+    # --- Sweep 2: Chi_tau (Torsion Coupling) ---
+    print("\n--- Sweep 2: Chi_tau (Torsion Coupling) ---")
+    chi_tau_values = [0.0, 0.5, 1.0, 1.5]
 
-    end_time_total = time.time()
-    current_mem, peak_mem = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
+    for chi_t in chi_tau_values:
+        params = CounterCurvatureParams(
+            chi_E=0.5,
+            chi_kappa=0.0, # No planar bias
+            chi_tau=chi_t, # Torsion bias
+            chi_M=0.0,
+            scale_length=L
+        )
 
-    print(f"\nTotal Sweep Runtime: {end_time_total - start_time_total:.2f}s")
-    print(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB")
-
-    # Save summary using CSV module
-    csv_path = output_dir / "sweep_results.csv"
-    with open(csv_path, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["chi_kappa", "avg_curvature", "tip_deflection_z"])
-        writer.writeheader()
-        writer.writerows(results_summary)
-    print(f"Sweep results saved to {csv_path}")
-
-    # Plot
-    chi_k_list = [r["chi_kappa"] for r in results_summary]
-    tip_z_list = [r["tip_deflection_z"] for r in results_summary]
-    avg_k_list = [r["avg_curvature"] for r in results_summary]
-
-    plt.figure(figsize=(10, 5))
-
-    # Plot 1: Chi_kappa vs Tip Deflection
-    plt.subplot(1, 2, 1)
-    plt.plot(chi_k_list, tip_z_list, 'o-', label="Tip Z")
-    plt.xlabel("Coupling Gain $\chi_\kappa$")
-    plt.ylabel("Tip Deflection Z (m)")
-    plt.title("Effect of Geometric Countercurvature")
-    plt.grid(True)
-
-    # Plot 2: Chi_kappa vs Avg Curvature
-    plt.subplot(1, 2, 2)
-    plt.plot(chi_k_list, avg_k_list, 's-', color='orange', label="Avg Curvature")
-    plt.xlabel("Coupling Gain $\chi_\kappa$")
-    plt.ylabel("Average Curvature ($m^{-1}$)")
-    plt.title("Emergent Curvature")
-    plt.grid(True)
-
-    plt.tight_layout()
-    plt.savefig(output_dir / "sweep_plot.png")
-    print(f"Sweep plot saved to {output_dir / 'sweep_plot.png'}")
-
-    # 3. Demonstration of Active Moments (Chi_M)
-    print("\nDemonstrating Active Moments (Chi_M)...")
-    params_active = CounterCurvatureParams(
-        chi_E=0.0,
-        chi_kappa=0.0,
-        chi_M=5.0, # Active torque
-        scale_length=L
-    )
-
-    system_active = CounterCurvatureRodSystem.from_iec(
+        system = CounterCurvatureRodSystem.from_iec(
             info=info,
-            params=params_active,
+            params=params,
             length=L,
             n_elements=n_elements,
             E0=1e6,
             radius=0.02,
             rho=1000,
-            gravity=9.81, # With gravity
+            gravity=9.81,
             base_direction=(1.0, 0.0, 0.0),
             normal=(0.0, 1.0, 0.0)
-    )
-    result_active = system_active.run_simulation(final_time=final_time, dt=dt, save_every=100)
-    tip_active = result_active.centerline[-1, 2, -1]
-    print(f"  Tip Deflection Z (Active Moments): {tip_active:.4f} m")
+        )
 
-    # Save active moment result
-    np.save(output_dir / "active_centerline.npy", result_active.centerline)
+        result = system.run_simulation(final_time=final_time, dt=dt, save_every=100)
 
-    # Report using Markdown table
+        final_torsion = result.torsion[-1]
+        avg_torsion = np.mean(np.abs(final_torsion)) # Magnitude of torsion
+
+        final_centerline = result.centerline[-1]
+        tip_deflection_z = final_centerline[2, -1]
+
+        results_summary.append({
+            "sweep": "chi_tau",
+            "val": chi_t,
+            "avg_curvature": np.mean(result.curvature[-1]),
+            "avg_torsion": avg_torsion,
+            "tip_deflection_z": tip_deflection_z
+        })
+        print(f"chi_tau={chi_t}: Avg Torsion={avg_torsion:.4f}")
+
+    end_time_total = time.time()
+    current_mem, peak_mem = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    print(f"\nTotal Runtime: {end_time_total - start_time_total:.2f}s")
+    print(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB")
+
+    # Save summary
+    csv_path = output_dir / "sweep_results.csv"
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["sweep", "val", "avg_curvature", "avg_torsion", "tip_deflection_z"])
+        writer.writeheader()
+        writer.writerows(results_summary)
+    print(f"Results saved to {csv_path}")
+
+    # Plot
+    plt.figure(figsize=(12, 5))
+
+    # Plot 1: Chi_kappa
+    plt.subplot(1, 2, 1)
+    sub_res_k = [r for r in results_summary if r["sweep"] == "chi_kappa"]
+    plt.plot([r["val"] for r in sub_res_k], [r["tip_deflection_z"] for r in sub_res_k], 'o-', label="Tip Z")
+    plt.xlabel(r"Coupling Gain $\chi_\kappa$")
+    plt.ylabel("Tip Deflection Z (m)")
+    plt.title("Effect of Geometric Countercurvature")
+    plt.grid(True)
+    plt.legend()
+
+    # Plot 2: Chi_tau
+    plt.subplot(1, 2, 2)
+    sub_res_t = [r for r in results_summary if r["sweep"] == "chi_tau"]
+    plt.plot([r["val"] for r in sub_res_t], [r["avg_torsion"] for r in sub_res_t], 's-', color='purple', label="Avg Torsion")
+    plt.xlabel(r"Torsion Gain $\chi_\tau$")
+    plt.ylabel(r"Average Torsion ($m^{-1}$)")
+    plt.title("Emergent Torsion")
+    plt.grid(True)
+    plt.legend()
+
+    plt.tight_layout()
+    plt.savefig(output_dir / "sweep_plot.png")
+    print(f"Plot saved to {output_dir / 'sweep_plot.png'}")
+
+    # Report
     with open(output_dir / "report.md", "w") as f:
         f.write("# Minimal Rod Experiment Report\n\n")
         f.write(f"- **Runtime**: {end_time_total - start_time_total:.2f}s\n")
         f.write(f"- **Peak Memory**: {peak_mem / 1024 / 1024:.2f} MB\n\n")
-        f.write("## Parameter Sweep (Chi_Kappa)\n\n")
+
+        f.write("## Sweep 1: Geometric Countercurvature (chi_kappa)\n\n")
         f.write("| chi_kappa | avg_curvature | tip_deflection_z |\n")
         f.write("|-----------|---------------|------------------|\n")
-        for r in results_summary:
-            f.write(f"| {r['chi_kappa']} | {r['avg_curvature']:.4f} | {r['tip_deflection_z']:.4f} |\n")
+        for r in sub_res_k:
+            f.write(f"| {r['val']} | {r['avg_curvature']:.4f} | {r['tip_deflection_z']:.4f} |\n")
 
-        f.write("\n\n## Active Moments Demonstration\n")
-        f.write(f"- Chi_M: 5.0\n")
-        f.write(f"- Tip Deflection Z: {tip_active:.4f} m\n")
-
-    print(f"Report saved to {output_dir / 'report.md'}")
+        f.write("\n## Sweep 2: Torsion Coupling (chi_tau)\n\n")
+        f.write("| chi_tau | avg_torsion | tip_deflection_z |\n")
+        f.write("|---------|-------------|------------------|\n")
+        for r in sub_res_t:
+            f.write(f"| {r['val']} | {r['avg_torsion']:.4f} | {r['tip_deflection_z']:.4f} |\n")
 
 if __name__ == "__main__":
     run_experiment()

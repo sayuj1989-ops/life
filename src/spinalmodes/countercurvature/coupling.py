@@ -9,7 +9,7 @@ bending when fed to a Cosserat rod solver (e.g. PyElastica).
 
 from __future__ import annotations
 
-from typing import NamedTuple
+from typing import NamedTuple, Union
 
 import numpy as np
 from numpy.typing import NDArray
@@ -34,6 +34,10 @@ class CounterCurvatureParams(NamedTuple):
         Coupling gain converting information gradients into active internal moments
         (units: N·m per unit gradient).  This represents the "effort" expended by the
         living system to steer curvature against gravity.
+    chi_tau:
+        Coupling gain transforming information gradients (``∂I/∂s``) into rest torsion
+        (units: 1/m per unit information gradient). This models the "twist" induced by
+        anisotropic tissue organisation (e.g. PCP defects).
     scale_length:
         Optional length scale used when non-dimensionalising information gradients.  Set
         to ``1.0`` to operate directly in SI units.
@@ -42,6 +46,7 @@ class CounterCurvatureParams(NamedTuple):
     chi_kappa: float = 0.0
     chi_E: float = 0.0
     chi_M: float = 0.0
+    chi_tau: float = 0.0
     scale_length: float = 1.0
 
     def nondimensional_gradient(self, dIds: ArrayF64) -> ArrayF64:
@@ -54,16 +59,21 @@ class CounterCurvatureParams(NamedTuple):
 
 def _validate_shapes(info: InfoField1D, *arrays: ArrayF64) -> None:
     for array in arrays:
-        if array.shape != info.s.shape:
-            raise ValueError(
-                "All arrays must share the same shape as the information grid."
+        # Allow broadcasting if array has compatible shape
+        if array.ndim == 1 and array.shape != info.s.shape:
+             raise ValueError(
+                "1D arrays must share the same shape as the information grid."
+            )
+        elif array.ndim > 1 and array.shape[-1] != info.s.shape[0]:
+             raise ValueError(
+                "Multi-dimensional arrays must match the information grid in the last dimension."
             )
 
 
 def compute_rest_curvature(
-    info: InfoField1D, params: CounterCurvatureParams, kappa_gen: ArrayF64
+    info: InfoField1D, params: CounterCurvatureParams, kappa_gen: Union[float, ArrayF64]
 ) -> ArrayF64:
-    """Compute information-biased rest curvature ``κ_rest``.
+    """Compute information-biased rest curvature vector ``κ_rest``.
 
     Parameters
     ----------
@@ -72,25 +82,56 @@ def compute_rest_curvature(
     params:
         Coupling parameters mapping information gradients to curvature corrections.
     kappa_gen:
-        Baseline geometric curvature (e.g. from evolutionary morphology) with the same
-        discretisation as ``info``.
+        Baseline geometric curvature (e.g. from evolutionary morphology).
+        Can be a scalar (constant curvature), a 1D array (planar curvature profile),
+        or a (3, N) array (full 3D curvature profile).
 
     Returns
     -------
     numpy.ndarray
-        The rest curvature profile ``κ_rest(s)`` incorporating biological countercurvature.
+        The rest curvature profile ``κ_rest(s)`` of shape ``(3, n_points)``.
+        Index 0: Binormal curvature (bending)
+        Index 1: Normal curvature (bending, main plane)
+        Index 2: Tangent curvature (torsion)
 
     Notes
     -----
-    ``κ_rest = κ_gen + χ_κ * scale_length * ∂I/∂s`` encapsulates the IEC-1 coupling where
-    organised information flows create effective modifications to the reference geometry.
-    This is interpreted as biological countercurvature acting analogously to a local
-    correction of spacetime curvature perceived by the rod.
+    ``κ_rest`` incorporates both planar curvature coupling (``χ_κ``) and torsional coupling
+    (``χ_τ``). The gradient term ``∂I/∂s`` drives these corrections:
+    - ``κ_rest[1] += χ_κ * scale_length * ∂I/∂s``
+    - ``κ_rest[2] += χ_τ * scale_length * ∂I/∂s``
     """
 
-    _validate_shapes(info, kappa_gen)
+    n_points = info.s.shape[0]
+
+    # Normalise kappa_gen to (3, n_points)
+    k_gen_arr = np.zeros((3, n_points))
+
+    kappa_gen = np.asarray(kappa_gen, dtype=float)
+    if kappa_gen.ndim == 0:
+        # Scalar: assume constant planar curvature in y-direction (index 1)
+        k_gen_arr[1, :] = kappa_gen
+    elif kappa_gen.ndim == 1:
+        _validate_shapes(info, kappa_gen)
+        # 1D array: assume planar curvature in y-direction
+        k_gen_arr[1, :] = kappa_gen
+    elif kappa_gen.ndim == 2:
+        if kappa_gen.shape != (3, n_points):
+             raise ValueError(f"kappa_gen shape {kappa_gen.shape} mismatch with (3, {n_points})")
+        k_gen_arr = kappa_gen
+    else:
+        raise ValueError("kappa_gen must be scalar, 1D array, or (3, N) array.")
+
     grad = params.nondimensional_gradient(info.dIds)
-    return np.asarray(kappa_gen, dtype=float) + params.chi_kappa * grad
+
+    # Apply couplings
+    # chi_kappa couples to index 1 (planar bending)
+    k_gen_arr[1, :] += params.chi_kappa * grad
+
+    # chi_tau couples to index 2 (torsion)
+    k_gen_arr[2, :] += params.chi_tau * grad
+
+    return k_gen_arr
 
 
 def compute_effective_stiffness(

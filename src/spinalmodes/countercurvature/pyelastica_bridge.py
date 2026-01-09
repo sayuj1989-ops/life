@@ -45,6 +45,7 @@ except ImportError:
         class Damping: pass
         class CallBacks: pass
         class PositionVerlet: pass
+        class integrate: pass
 
 @dataclass
 class SimulationResult:
@@ -160,17 +161,17 @@ class CounterCurvatureRodSystem:
             rod.bend_matrix[..., k] *= scaling_bend[k]
 
         # Set rest curvature
-        if kappa_gen is None:
-            kappa_gen = np.zeros(info.n_points)
-        kappa_rest = compute_rest_curvature(info, params, kappa_gen)
+        # kappa_rest is now (3, n_points)
+        kappa_rest = compute_rest_curvature(info, params, kappa_gen if kappa_gen is not None else 0.0)
 
         # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
         # We need to map kappa_rest (defined on info.s) to s_internal
-        kappa_internal = np.interp(s_internal, info.s, kappa_rest)
+        # We need to interpolate each component: (3, n_points) -> (3, n_elements-1)
         
-        # PyElastica rest_kappa has shape (3, n_elements-1)
         rest_kappa = np.zeros((3, n_elements - 1))
-        rest_kappa[1, :] = kappa_internal # Use y-axis for sagittal plane
+        for i in range(3):
+            rest_kappa[i, :] = np.interp(s_internal, info.s, kappa_rest[i, :])
+
         rod.rest_kappa[:] = rest_kappa
 
         # Compute active moments (scalar field on nodes) if chi_M != 0

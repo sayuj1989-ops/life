@@ -72,7 +72,7 @@ The map categorizes the system into four layers:
 
 ## New Pathway: Stiffness Maintenance (YAP/TAZ Mechanotransduction)
 
-**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness.
+**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness, with Mechanotransduction $\rightarrow$ Nuclear Shuttling completing the feedback loop.
 
 ### Evidence
 YAP (Yes-associated protein) and TAZ (transcriptional coactivator with PDZ-binding motif) are the primary effectors of the Hippo signaling pathway and are crucial for sensing mechanical cues.

@@ -8,11 +8,13 @@ graph TD
         LBX1[LBX1<br/>Transcription Factor]
         ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
         PTK7[PTK7<br/>Planar Cell Polarity]
+        YAP[YAP/TAZ<br/>Hippo Pathway]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
         Region[Regionalization<br/>Segment Identity]
         ECM_Assembly[ECM Assembly<br/>Fibrillogenesis]
+        Nucl_Shuttle[Nuclear Shuttling<br/>Transcriptional Switch]
         Mech_Trans[Mechanotransduction<br/>Ca2+ Influx]
         Sym_Break[Symmetry Breaking<br/>Nodal Flow]
         Neur_Diff[Somatosensory<br/>Differentiation]
@@ -65,6 +67,11 @@ graph TD
     PCP_Sig --> Anisotropy
     Anisotropy --> Stability
 
+    %% NEW ARC: YAP/TAZ
+    YAP --> Nucl_Shuttle
+    Nucl_Shuttle --> ECM_Assembly
+    Mech_Trans --> Nucl_Shuttle
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -79,7 +86,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

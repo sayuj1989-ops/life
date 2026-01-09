@@ -62,24 +62,31 @@ The map categorizes the system into four layers:
 *   **Property**: **Tissue Anisotropy**.
 *   **Role**: Ensures that growth and mechanical properties are directionally ordered. Loss of polarity makes the tissue mechanically isotropic or chaotic, reducing stability against buckling.
 
+### 8. The Stiffness Maintenance Pathway (YAP/TAZ)
+*   **Source**: `WWTR1` / `YAP1` (YAP/TAZ).
+*   **Mechanism**: Mechanosensitive proteins that shuttle to the nucleus when cells are stretched or on stiff substrates.
+*   **Property**: **ECM Homeostasis**.
+*   **Role**: Creates a positive feedback loop (Strain $\rightarrow$ YAP $\rightarrow$ Collagen $\rightarrow$ Stiffness). In microgravity (unloading), this loop may collapse, leading to rapid atrophy and instability.
+
 ---
 
-## New Pathway: Polarity (PTK7)
+## New Pathway: YAP/TAZ Mechanotransduction
 
-**Arc Added**: `PTK7` $\rightarrow$ PCP Signaling $\rightarrow$ Anisotropy $\rightarrow$ Stability.
+**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness.
 
 ### Evidence
-The gene `PTK7` (Protein Tyrosine Kinase 7) is a key regulator of Planar Cell Polarity (PCP) and has been identified as a causative gene for idiopathic scoliosis in zebrafish models.
+YAP (Yes-associated protein) and TAZ (transcriptional coactivator with PDZ-binding motif) are the primary effectors of the Hippo signaling pathway and are crucial for sensing mechanical cues.
 
-*   **Molecular Actor**: `PTK7` is conserved across vertebrates and regulates the non-canonical Wnt pathway.
-*   **Process**: It drives **PCP Signaling**, which aligns cell polarity perpendicular to the axis of extension (convergence and extension).
-*   **Tissue Property**: This alignment creates **Tissue Anisotropy**, ensuring that the spinal column has distinct properties along the longitudinal axis versus the transverse axes.
-*   **Outcome**: In zebrafish, `ptk7` mutants develop severe, late-onset spinal curvature that mimics human AIS. This suggests that without the correct "compass" for cell alignment, the macroscopic structure loses its ability to maintain a straight trajectory during rapid growth.
+*   **Molecular Actor**: `YAP`/`TAZ`.
+*   **Process**: **Nuclear Shuttling**. Under mechanical tension (high stiffness), YAP/TAZ translocate to the nucleus to drive gene expression. In soft environments or under unloading, they exit the nucleus, promoting apoptosis or quiescence.
+*   **Tissue Property**: They regulate **ECM Assembly** (including Collagen and Proteoglycans), directly influencing the **Stiffness ($EI$)** of the intervertebral discs and paraspinal ligaments.
+*   **Outcome**: This pathway maintains the structural "gain" of the spine. Its disruption (e.g., via unloading or mutation) leads to a "Dynamic Stiffness Collapse," rendering the spine susceptible to buckling.
 
-> **Hypothesis**: High-anisotropy proteins like PTK7 act as "Vectorial Strain Amplifiers," translating micro-scale strain into macro-scale alignment cues. Loss of this anisotropy decouples the tissue from the "Information Field," leading to geometric instability.
+> **Hypothesis**: The constitutive nuclear activation of YAP/TAZ in IVD cells could rescue microgravity-induced apoptosis and collagen loss, suggesting a potential therapeutic target for spaceflight-induced spinal elongation.
 
 **Citation**:
-*   *Hayes, M., et al. (2014). Ptk7 mutant zebrafish models of congenital and idiopathic scoliosis implicate dysregulated Wnt signalling. Nature Communications, 5, 4726.* https://doi.org/10.1038/ncomms5726
+*   *Dupont, S., et al. (2011). Role of YAP/TAZ in mechanotransduction. Nature, 474(7350), 179-183.* https://doi.org/10.1038/nature10137
+*   *Panciera, T., et al. (2017). Mechanobiology of YAP and TAZ in physiology and disease. Nature Reviews Molecular Cell Biology, 18(12), 758-770.* https://doi.org/10.1038/nrm.2017.87
 
 ---
 

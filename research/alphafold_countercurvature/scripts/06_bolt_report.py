@@ -7,20 +7,66 @@ Generates the "Bolt-BioFold" report compliant with specific user requirements.
 
 import sys
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
+import json
 
 # Add repo root to path to import src
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
+from research.alphafold_countercurvature.src.afcc.structure import StructureParser
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 PROCESSED_DIR = DATA_DIR / "processed"
 METRICS_FILE = PROCESSED_DIR / "protein_metrics.csv"
+MANIFEST_FILE = DATA_DIR / "manifest.csv"
 OUTPUT_MD = PROCESSED_DIR / "bolt_biofold_results.md"
 FIGURES_DIR = PROCESSED_DIR / "figures"
+
+def plot_pae_heatmap(pae_path, gene, output_path):
+    try:
+        with open(pae_path) as f:
+            data = json.load(f)
+
+        # Check format. Usually data[0]['predicted_aligned_error']
+        if isinstance(data, list) and 'predicted_aligned_error' in data[0]:
+            pae = np.array(data[0]['predicted_aligned_error'])
+        elif isinstance(data, dict) and 'predicted_aligned_error' in data:
+            pae = np.array(data['predicted_aligned_error'])
+        else:
+            print(f"⚠️ Unknown PAE format for {gene}")
+            return False
+
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(pae, cmap='Greens_r', vmin=0, vmax=30, cbar_kws={'label': 'Expected Error (Å)'})
+        plt.title(f"PAE Heatmap: {gene}")
+        plt.xlabel("Residue Index")
+        plt.ylabel("Residue Index")
+        plt.tight_layout()
+        plt.savefig(output_path)
+        plt.close()
+        return True
+    except Exception as e:
+        print(f"⚠️ Failed to plot PAE for {gene}: {e}")
+        return False
+
+def plot_plddt_profile(plddt_scores, gene, output_path):
+    plt.figure(figsize=(10, 4))
+    plt.plot(plddt_scores, color='blue', linewidth=1)
+    plt.axhline(70, color='orange', linestyle='--', label='Confidence Threshold (70)')
+    plt.axhline(90, color='green', linestyle='--', label='High Confidence (90)')
+    plt.ylim(0, 100)
+    plt.title(f"pLDDT Profile: {gene}")
+    plt.xlabel("Residue Index")
+    plt.ylabel("pLDDT Score")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
 
 def main():
     if not METRICS_FILE.exists():
@@ -28,39 +74,51 @@ def main():
         sys.exit(1)
 
     df = pd.read_csv(METRICS_FILE)
+    manifest = pd.read_csv(MANIFEST_FILE) if MANIFEST_FILE.exists() else None
+
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    parser = StructureParser()
 
     # --- Generate Plots ---
-    # 1. pLDDT vs Residue Index (Sample)
-    # Since we don't have per-residue data in the CSV (only summaries),
-    # we can't plot pLDDT vs Index here without reloading structures.
-    # The prompt asks for "Minimal plots... pLDDT vs residue index (1 plot per protein or combined)".
-    # Generating this for all 15 proteins might be too much for the summary, but let's do a combined distribution or simple bar.
-    # Actually, the user wants "Key plots summary" text. I will generate a pLDDT distribution plot.
+    plot_summary = []
 
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(data=df, x='n_residues', y='mean_plddt', hue='source_category', size='anisotropy')
-    plt.title("Protein Quality: Length vs Confidence (Size = Anisotropy)")
-    plt.axhline(70, color='red', linestyle='--', label='Gating Threshold (70)')
-    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-    plt.tight_layout()
-    plot_path = FIGURES_DIR / "quality_scatter.png"
-    plt.savefig(plot_path)
-    plt.close()
+    # 1. pLDDT vs Residue Index (For top 3 relevant proteins)
+    # Selection: Highest Anisotropy (fibrous) and Highest Hinge Count (mechanosensing)
+    # Or simply top 3 by priority/score if available. Let's pick top 3 Anisotropy + top 1 Hinge.
+
+    # Safe column access
+    aniso_col = 'anisotropy_index' if 'anisotropy_index' in df.columns else 'anisotropy'
+
+    top_aniso = df.sort_values(aniso_col, ascending=False).head(2)
+    top_hinge = df.sort_values('hinge_candidates', ascending=False).head(1)
+
+    selected_genes = list(set(top_aniso['gene_symbol'].tolist() + top_hinge['gene_symbol'].tolist()))
+
+    print(f"📊 Generating detailed plots for: {', '.join(selected_genes)}")
+
+    for gene in selected_genes:
+        if manifest is not None:
+            row = manifest[manifest['gene_symbol'] == gene]
+            if not row.empty:
+                pdb_path = Path(row.iloc[0]['pdb_path'])
+                pae_path = Path(row.iloc[0]['pae_path']) if not pd.isna(row.iloc[0]['pae_path']) else None
+
+                # Load structure for pLDDT
+                if pdb_path.exists():
+                     _, plddt, _ = parser.fast_parse_pdb_arrays(pdb_path)
+                     if plddt is not None:
+                         p_path = FIGURES_DIR / f"{gene}_plddt.png"
+                         plot_plddt_profile(plddt, gene, p_path)
+                         plot_summary.append(f"- `{p_path.name}`: pLDDT profile for {gene}")
+
+                # Load PAE
+                if pae_path and pae_path.exists():
+                    p_path = FIGURES_DIR / f"{gene}_pae.png"
+                    if plot_pae_heatmap(pae_path, gene, p_path):
+                        plot_summary.append(f"- `{p_path.name}`: PAE heatmap for {gene}")
+
 
     # --- Generate Table ---
-    # Requested columns:
-    # Identity: protein_id (uniprot/gene), species, length
-    # AlphaFold confidence: pLDDT_mean, pLDDT_median (missing), pLDDT_fraction_high (missing), pLDDT_fraction_ok (missing), pLDDT_fraction_low, PAE_mean, PAE_blockiness
-    # Architecture: disorder_fraction, hinge_candidates
-    # Geometry: radius_of_gyration, end_to_end_distance, curvature_summary, torsion_summary, anisotropy_index, bending_hotspots
-    # Interaction: exposed_fraction, charged_patch_score
-    # Flags: low_confidence_warning, multi_domain_uncertain, likely_IDR_heavy
-
-    # Prepare DataFrame for table
-    # Mapping some columns
-
-    # We need species. Config says "Homo sapiens".
     species = "Homo sapiens"
 
     table_df = pd.DataFrame()
@@ -68,45 +126,84 @@ def main():
     table_df['Species'] = species
     table_df['Length'] = df['n_residues']
 
-    table_df['pLDDT_mean'] = df['mean_plddt'].round(1)
-    # We calculated fraction_low_plddt (<70).
-    table_df['pLDDT_frac_low'] = df['fraction_low_plddt'].round(2)
+    # Handle varying column names (legacy vs new)
+    col_map = {
+        'mean_plddt': 'plddt_mean',
+        'plddt_mean': 'plddt_mean',
+        'fraction_low_plddt': 'plddt_fraction_low',
+        'plddt_fraction_low': 'plddt_fraction_low',
+        'pae_mean': 'PAE_mean',
+        'PAE_mean': 'PAE_mean',
+        'pae_blockiness': 'PAE_blockiness',
+        'PAE_domain_blockiness_score': 'PAE_blockiness',
+        'disorder_fraction': 'Disorder_Proxy',
+        'disorder_fraction_proxy': 'Disorder_Proxy',
+        'radius_of_gyration': 'Rg',
+        'end_to_end_distance': 'End_to_End',
+        'curvature_summary': 'Curvature',
+        'torsion_summary': 'Torsion',
+        'anisotropy': 'Anisotropy',
+        'anisotropy_index': 'Anisotropy',
+        'bending_hotspots': 'Hotspots',
+        'exposed_fraction': 'Exposed_Frac',
+        'exposed_surface_proxy': 'Exposed_Frac',
+        'charged_patch_score': 'Charged_Patch',
+        'backbone_principal_axis': 'Principal_Axis'
+    }
 
-    if 'pae_mean' in df.columns:
-        table_df['PAE_mean'] = df['pae_mean'].round(1)
-        table_df['PAE_blockiness'] = df['pae_blockiness'].round(2)
+    # Helper to get column data safely
+    def get_col(target_name, round_digits=None):
+        # Find which source column exists in df
+        for src, target in col_map.items():
+            if target == target_name and src in df.columns:
+                series = df[src]
+                if round_digits is not None:
+                     if pd.api.types.is_numeric_dtype(series):
+                        return series.round(round_digits)
+                return series
+        return None
+
+    table_df['pLDDT_mean'] = get_col('plddt_mean', 1)
+    table_df['pLDDT_frac_low'] = get_col('plddt_fraction_low', 2)
+
+    pae_mean = get_col('PAE_mean', 1)
+    if pae_mean is not None:
+        table_df['PAE_mean'] = pae_mean
+        table_df['PAE_blockiness'] = get_col('PAE_blockiness', 2)
     else:
         table_df['PAE_mean'] = "N/A"
         table_df['PAE_blockiness'] = "N/A"
 
-    table_df['Disorder_Proxy'] = df['disorder_fraction'].round(2)
+    table_df['Disorder_Proxy'] = get_col('Disorder_Proxy', 2)
     table_df['Hinge_Cands'] = df['hinge_candidates']
 
-    table_df['Rg'] = df['radius_of_gyration'].round(1)
-    table_df['End_to_End'] = df['end_to_end_distance'].round(1)
-    table_df['Curvature'] = df['curvature_summary'].round(3)
-    table_df['Torsion'] = df['torsion_summary'].round(3)
-    table_df['Anisotropy'] = df['anisotropy'].round(2)
-    table_df['Hotspots'] = df['bending_hotspots'] # Strings
+    table_df['Rg'] = get_col('Rg', 1)
+    table_df['End_to_End'] = get_col('End_to_End', 1)
+    table_df['Curvature'] = get_col('Curvature', 3)
+    table_df['Torsion'] = get_col('Torsion', 3)
+    table_df['Anisotropy'] = get_col('Anisotropy', 2)
+    table_df['Principal_Axis'] = get_col('Principal_Axis')
+    table_df['Hotspots'] = get_col('Hotspots').fillna("")
 
-    table_df['Exposed_Frac'] = df['exposed_fraction'].round(2)
-    table_df['Charged_Patch'] = df['charged_patch_score'].round(2)
+    table_df['Exposed_Frac'] = get_col('Exposed_Frac', 2)
+    table_df['Charged_Patch'] = get_col('Charged_Patch', 2)
+
+    if 'predicted_domain_segments' in df.columns:
+        table_df['Domains'] = df['predicted_domain_segments']
+    else:
+        table_df['Domains'] = "N/A"
 
     # Flags
-    # Combine boolean flags into a string?
     def get_flags(row):
         flags = []
-        if row['low_confidence_warning']: flags.append("LowConf")
-        if row['multi_domain_uncertain']: flags.append("MultiDomUncert")
-        if row['likely_idr_heavy']: flags.append("IDR_Heavy")
+        if row.get('low_confidence_warning', False): flags.append("LowConf")
+        if row.get('multi_domain_uncertain', False): flags.append("MultiDomUncert")
+        if row.get('likely_idr_heavy', False): flags.append("IDR_Heavy")
         return ", ".join(flags) if flags else "OK"
 
     table_df['Flags'] = df.apply(get_flags, axis=1)
 
     # --- Interpretation ---
-    # For each protein (or family), tight interpretation.
-    # Group by source category.
-
     interpretations = []
 
     groups = df.groupby('source_category')
@@ -114,52 +211,59 @@ def main():
         interpretations.append(f"**Family: {name}**")
         for _, row in group.iterrows():
             gene = row['gene_symbol']
-            aniso = row['anisotropy']
-            plddt = row['mean_plddt']
+
+            aniso_col = 'anisotropy_index' if 'anisotropy_index' in df.columns else 'anisotropy'
+            plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
+
+            aniso = row[aniso_col]
+            plddt = row[plddt_col]
             flags = get_flags(row)
 
-            # Logic for interpretation
-            # "What we see": Metrics
-            what_we_see = f"{gene}: Anisotropy={aniso:.1f}, pLDDT={plddt:.0f}. "
-            if aniso > 3.0:
-                what_we_see += "Highly extended/fibrous. "
-            elif aniso < 1.5:
-                what_we_see += "Globular/Compact. "
+            # Check if aniso is NaN (low conf structure)
+            if pd.isna(aniso):
+                what_we_see = f"{gene}: pLDDT={plddt:.0f}. **Unstructured/Disordered**. "
+                why_matters = "Lack of high-confidence structure prevents geometric analysis."
+                next_test = "Investigate IDR function or wait for complex structure."
+                conf_level = "Low"
             else:
-                what_we_see += "Intermediate shape. "
+                what_we_see = f"{gene}: Anisotropy={aniso:.1f}, pLDDT={plddt:.0f}. "
+                if aniso > 3.0:
+                    what_we_see += "Highly extended/fibrous. "
+                elif aniso < 1.5:
+                    what_we_see += "Globular/Compact. "
+                else:
+                    what_we_see += "Intermediate shape. "
 
-            if "LowConf" in flags:
-                what_we_see += "Warning: Low confidence structure."
+                if "LowConf" in flags:
+                    what_we_see += "Warning: Low confidence structure."
 
-            # "Why it matters"
-            why_matters = ""
-            if aniso > 3.0 and plddt > 70:
-                why_matters = "Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity."
-            elif row['hinge_candidates'] > 0:
-                 why_matters = f"Detected {int(row['hinge_candidates'])} potential flexible hinges; may act as mechanical sensor/switch."
-            else:
-                 why_matters = "Standard globular domain, likely biochemical role or node in network."
+                why_matters = ""
+                if aniso > 3.0 and plddt > 70:
+                    why_matters = "Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity."
+                elif row['hinge_candidates'] > 0:
+                     why_matters = f"Detected {int(row['hinge_candidates'])} potential flexible hinges; may act as mechanical sensor/switch."
+                else:
+                     why_matters = "Standard globular domain, likely biochemical role or node in network."
 
-            # "Confidence"
-            conf_level = "High" if plddt > 85 else ("Medium" if plddt > 70 else "Low")
+                conf_level = "High" if plddt > 85 else ("Medium" if plddt > 70 else "Low")
 
-            # "Next test"
-            next_test = ""
-            if aniso > 4.0:
-                 next_test = "Verify fiber formation in vivo; test mechanical stiffness."
-            elif row['hinge_candidates'] > 0:
-                 next_test = "Mutate hinge region to test effect on mechanosensitivity."
-            else:
-                 next_test = "Check expression timing relative to spine straightening."
+                next_test = ""
+                if aniso > 4.0:
+                     next_test = "Verify fiber formation in vivo; test mechanical stiffness."
+                elif row['hinge_candidates'] > 0:
+                     next_test = "Mutate hinge region to test effect on mechanosensitivity."
+                else:
+                     next_test = "Check expression timing relative to spine straightening."
 
             interpretations.append(f"- **{gene}**: {what_we_see} {why_matters} (Conf: {conf_level}). Test: {next_test}")
-        interpretations.append("") # spacer
+        interpretations.append("")
 
     # --- Best Next Move ---
-    # Logic: if many low confidence, suggest adding orthologs or filtering.
-    # If high anisotropy found, suggest clustering or mechanics.
-    avg_plddt = df['mean_plddt'].mean()
-    high_aniso_count = (df['anisotropy'] > 3.0).sum()
+    plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
+    aniso_col = 'anisotropy_index' if 'anisotropy_index' in df.columns else 'anisotropy'
+
+    avg_plddt = df[plddt_col].mean()
+    high_aniso_count = (df[aniso_col] > 3.0).sum()
 
     best_move = ""
     if avg_plddt < 60:
@@ -172,15 +276,11 @@ def main():
     # --- Output ---
     print("# Bolt-BioFold ⚡ Analysis Report")
 
-    # Check source from dataframe to avoid hardcoding if possible, or just append the checklist item later.
-    # For now, we will print a summary of sources found.
-    # Metrics file uses 'source_category' (e.g. seed_ECM)
     sources = df['source_category'].unique()
     source_summary = ", ".join(str(s) for s in sources)
     print(f"Sources: {source_summary}\n")
 
     print("## 1. Results Table")
-    # Manual markdown table generation to avoid tabulate dependency
     headers = table_df.columns.tolist()
     header_line = "| " + " | ".join(headers) + " |"
     separator_line = "| " + " | ".join(["---"] * len(headers)) + " |"
@@ -195,8 +295,8 @@ def main():
     print("```\n")
 
     print("## 2. Key Plots Summary")
-    print(f"- Generated `{plot_path}`: Scatter plot of Length vs Confidence, sized by Anisotropy.")
-    print("- Shows clear separation between globular domains (high conf, low aniso) and fibrous tails (often lower conf or very high aniso).")
+    for line in plot_summary:
+        print(line)
     print("\n")
 
     print("## 3. Interpretation")
@@ -234,8 +334,9 @@ def main():
 
         f.write("\n\n")
         f.write("## 2. Key Plots Summary\n")
-        f.write(f"- Generated `{plot_path}`: Scatter plot of Length vs Confidence, sized by Anisotropy.\n")
-        f.write("- Shows clear separation between globular domains (high conf, low aniso) and fibrous tails (often lower conf or very high aniso).\n\n")
+        for line in plot_summary:
+            f.write(line + "\n")
+        f.write("\n")
         f.write("## 3. Interpretation\n")
         for line in interpretations:
             f.write(line + "\n")

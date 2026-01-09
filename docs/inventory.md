@@ -10,7 +10,7 @@ Analyzed at: 2025-12-20
   - `countercurvature/`: Manuscript sections.
   - `alphafold_analysis/`: Protein structure analysis relating to the theory.
   - `ragflow/`: Integration files for RAG-based analysis.
-  - `life`, `life-1`, `biology_reasearch`: Apparent duplicates or previous versions of the workspace.
+  - `life`, `life-1`, `biology_research`: Apparent duplicates or previous versions of the workspace.
 - **File Counts:**
   - Python (`.py`): ~887
   - Markdown (`.md`): ~392
@@ -19,7 +19,7 @@ Analyzed at: 2025-12-20
 
 ## Duplicates Detected
 
-- `life/`, `life-1/`, and `biology_reasearch/` contain similar manuscript and source structures to `spinal_modes_analysis/`.
+- `life/`, `life-1/`, and `biology_research/` contain similar manuscript and source structures to `spinal_modes_analysis/`.
 - Multiple copies of `fig_countercurvature_panel*.pdf` across different folders.
 
 ## Initial Classification

@@ -51,9 +51,9 @@ This approach is supported by high-confidence **AlphaFold** predictions for scol
 Biological Countercurvature unifies the understanding of normal spinal development, microgravity adaptation, and pathological deformity. The spine's geometry is a "standing wave" of information maintaining structural integrity against environmental forces.
 
 ## 8. DIAGRAMS (Figures)
-- **FIGURE 1**: Gene-to-Geometry Mapping ([fig_gene_to_geometry.png](file:///Users/mac/LIFE/biology_reasearch/manuscript/figures/fig_gene_to_geometry.png))
-- **FIGURE 2**: Mode Selection Spectrum ([fig_mode_spectrum.png](file:///Users/mac/LIFE/biology_reasearch/manuscript/figures/fig_mode_spectrum.png))
-- **FIGURE 5**: Scoliosis Bifurcation ([fig_scoliosis_emergence.png](file:///Users/mac/LIFE/biology_reasearch/manuscript/figures/fig_scoliosis_emergence.png))
+- **FIGURE 1**: Gene-to-Geometry Mapping ([fig_gene_to_geometry.png](file:///Users/mac/LIFE/biology_research/manuscript/figures/fig_gene_to_geometry.png))
+- **FIGURE 2**: Mode Selection Spectrum ([fig_mode_spectrum.png](file:///Users/mac/LIFE/biology_research/manuscript/figures/fig_mode_spectrum.png))
+- **FIGURE 5**: Scoliosis Bifurcation ([fig_scoliosis_emergence.png](file:///Users/mac/LIFE/biology_research/manuscript/figures/fig_scoliosis_emergence.png))
 
 ## 9. DATA AVAILABILITY
 All code (v0.3.3) and simulation data are archived on Zenodo (DOI: 10.5281/zenodo.XXXXX).

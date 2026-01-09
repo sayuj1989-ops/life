@@ -70,7 +70,7 @@ The map categorizes the system into four layers:
 
 ---
 
-## New Pathway: YAP/TAZ Mechanotransduction
+## New Pathway: Stiffness Maintenance (YAP/TAZ Mechanotransduction)
 
 **Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness.
 

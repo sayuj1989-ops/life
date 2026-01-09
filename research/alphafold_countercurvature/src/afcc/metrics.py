@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from Bio.PDB.Structure import Structure
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 class MetricsAnalyzer:
     def __init__(self):
@@ -75,37 +75,54 @@ class MetricsAnalyzer:
         else:
             return "Globular"
 
-    def calculate_curvature(self, coords: np.ndarray) -> np.ndarray:
+    def calculate_curvature(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None, bond_lengths: Optional[np.ndarray] = None) -> np.ndarray:
         """
         Calculates discrete curvature (kappa) for each residue (assigning to the middle of 3 points).
         Returns array of size len(coords), padded with NaNs at ends.
         Curvature = 4 * Area / (abc)
+
+        Args:
+            coords: (N, 3) CA coordinates
+            bond_vectors: (N-1, 3) precomputed bond vectors (coords[i+1] - coords[i])
+            bond_lengths: (N-1,) precomputed bond lengths
         """
         if len(coords) < 3:
             return np.full(len(coords), np.nan)
 
-        # Vectorized calculation using 3-point sliding window
-        # We need A (i-1), B (i), C (i+1)
-        # Shifted arrays
-        A = coords[:-2]
-        B = coords[1:-1]
-        C = coords[2:]
+        if bond_vectors is None:
+            bond_vectors = coords[1:] - coords[:-1]
+        if bond_lengths is None:
+            bond_lengths = np.linalg.norm(bond_vectors, axis=1)
 
-        # Edge lengths
-        a = np.linalg.norm(B - C, axis=1) # Side opposite A
-        b = np.linalg.norm(A - C, axis=1) # Side opposite B
-        c = np.linalg.norm(A - B, axis=1) # Side opposite C
+        # Vectorized calculation using 3-point sliding window A(i-1), B(i), C(i+1)
+        # a = |B-C| = bond_lengths[i] (vector from i->i+1)
+        # c = |A-B| = bond_lengths[i-1] (vector from i-1->i)
+
+        # Valid i range for curvature: 1 to N-2
+        # bond_vectors indices: 0 to N-2
+
+        # Slices for side lengths
+        c_len = bond_lengths[:-1] # |A-B|
+        a_len = bond_lengths[1:]  # |B-C|
+
+        # b = |A-C| = |vec(i-1->i) + vec(i->i+1)|
+        # Optimization: Use precomputed bond vectors to avoid re-fetching coords or re-calculating diffs
+        bv1 = bond_vectors[:-1] # i-1 -> i
+        bv2 = bond_vectors[1:]  # i -> i+1
+
+        vec_ac = bv1 + bv2
+        b_len = np.linalg.norm(vec_ac, axis=1)
 
         # Heron's formula for area
-        s = (a + b + c) / 2
+        s = (a_len + b_len + c_len) / 2
         # Clip to avoid negative due to float errors
-        arg = s * (s - a) * (s - b) * (s - c)
+        arg = s * (s - a_len) * (s - b_len) * (s - c_len)
         arg = np.maximum(arg, 0)
         area = np.sqrt(arg)
 
         # R = abc / 4K
         # Kappa = 4K / abc
-        denom = a * b * c
+        denom = a_len * b_len * c_len
         # Avoid division by zero
         with np.errstate(divide='ignore', invalid='ignore'):
             kappa = 4 * area / denom
@@ -116,18 +133,28 @@ class MetricsAnalyzer:
         result[1:-1] = kappa
         return result
 
-    def calculate_torsion(self, coords: np.ndarray) -> np.ndarray:
+    def calculate_torsion(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None) -> np.ndarray:
         """
         Calculates discrete torsion (tau) for each residue.
         Returns array of size len(coords), padded with NaNs.
+
+        Args:
+            coords: (N, 3) CA coordinates
+            bond_vectors: (N-1, 3) precomputed bond vectors
         """
         if len(coords) < 4:
             return np.full(len(coords), np.nan)
 
+        if bond_vectors is None:
+            bond_vectors = coords[1:] - coords[:-1]
+
         # Vectors b1, b2, b3
-        b1 = coords[1:-2] - coords[:-3]
-        b2 = coords[2:-1] - coords[1:-2]
-        b3 = coords[3:] - coords[2:-1]
+        # b1: i-1 -> i
+        # b2: i -> i+1
+        # b3: i+1 -> i+2
+        b1 = bond_vectors[:-2]
+        b2 = bond_vectors[1:-1]
+        b3 = bond_vectors[2:]
 
         # Normals
         n1 = np.cross(b1, b2)
@@ -259,9 +286,17 @@ class MetricsAnalyzer:
         fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0
         disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores) if len(plddt_scores) > 0 else 0
 
+        # Geometry Optimization: Precompute bond vectors and lengths once
+        # These are used by both curvature and torsion calculations
+        bond_vectors = None
+        bond_lengths = None
+        if len(coords) > 1:
+            bond_vectors = coords[1:] - coords[:-1]
+            bond_lengths = np.linalg.norm(bond_vectors, axis=1)
+
         # Geometry
-        kappa = self.calculate_curvature(coords)
-        tau = self.calculate_torsion(coords)
+        kappa = self.calculate_curvature(coords, bond_vectors=bond_vectors, bond_lengths=bond_lengths)
+        tau = self.calculate_torsion(coords, bond_vectors=bond_vectors)
 
         # High confidence mask (pLDDT >= 70)
         # For curvature at i, we need pLDDT at i-1, i, i+1 >= 70

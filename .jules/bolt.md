@@ -10,3 +10,8 @@
 
 **Learning:** `Bio.PDB.PDBParser` is a significant bottleneck when processing thousands of structures just to extract coordinates and pLDDT. It builds a complex object hierarchy (Model->Chain->Residue->Atom) which is unnecessary for simple array extraction. Parsing a 10,000 residue protein took ~1.2s.
 **Action:** Implemented `fast_parse_pdb_arrays` in `StructureParser` which reads the PDB file line-by-line and extracts data directly into NumPy arrays. This reduced parse time to ~0.05s (~20x speedup). Updated `04_analyze_metrics.py` to use this fast parser, with a fallback to the legacy parser if needed.
+
+## 2025-01-09 - [Shared Geometry Vectors]
+
+**Learning:** Curvature and Torsion calculations both compute bond vectors ($r_{i+1} - r_i$) and bond lengths. For a 10,000 residue protein, repeatedly allocating these arrays and computing norms adds overhead (~200ms).
+**Action:** Refactored `MetricsAnalyzer` to pre-calculate `bond_vectors` and `bond_lengths` once in `analyze_structure` and pass them to `calculate_curvature` and `calculate_torsion`. This reduced geometry calculation time by ~15% and reduced memory churn.

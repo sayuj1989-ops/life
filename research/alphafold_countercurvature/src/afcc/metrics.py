@@ -18,13 +18,14 @@ class MetricsAnalyzer:
         rg = np.sqrt(np.mean(sq_dists))
         return float(rg)
 
-    def calculate_anisotropy(self, coords: np.ndarray) -> Dict[str, float]:
+    def calculate_anisotropy(self, coords: np.ndarray) -> Dict[str, Any]:
         """
         Calculates Principal Moments of Inertia and Anisotropy.
         Using CA atoms as point masses.
         """
         if len(coords) < 3:
-            return {'lambda1': 0, 'lambda2': 0, 'lambda3': 0, 'anisotropy': 1.0}
+            return {'lambda1': 0, 'lambda2': 0, 'lambda3': 0, 'anisotropy': 1.0,
+                    'principal_axis': "[0.0, 0.0, 1.0]", 'radius_of_gyration': 0.0}
 
         center = np.mean(coords, axis=0)
         coords_centered = coords - center
@@ -33,32 +34,36 @@ class MetricsAnalyzer:
         # T_ij = (1/N) * sum(r_i_a * r_i_b)
         tensor = np.dot(coords_centered.T, coords_centered) / len(coords)
 
-        eigvals = np.linalg.eigvalsh(tensor)
-        # Sort ascending
-        eigvals = np.sort(eigvals)
+        # eigh returns eigenvalues and eigenvectors
+        eigvals, eigvecs = np.linalg.eigh(tensor)
 
-        # lambda1 >= lambda2 >= lambda3 usually in physics, but here sorted ascending
-        # so l1 is smallest, l3 is largest
+        # Sort is guaranteed by eigh in ascending order?
+        # Numpy docs: "The eigenvalues are returned in ascending order."
+        # So l1 <= l2 <= l3
         l1, l2, l3 = eigvals
+
+        # Principal axis is the eigenvector corresponding to the largest eigenvalue
+        # Columns of v are the eigenvectors.
+        principal_axis = eigvecs[:, 2]
 
         # Anisotropy ratio (largest / smallest)
         # Add epsilon to avoid div by zero
         ratio = np.sqrt(l3) / (np.sqrt(l1) + 1e-6)
 
         # Optimization: Return Radius of Gyration for free
-        # Rg^2 = trace(T) = sum(eigenvalues)
-        # Note: eigvalsh returns eigenvalues of the tensor T = sum(r_centered^2)/N
-        # So sum(eigvals) = sum(r_centered^2)/N = Rg^2
         rg_sq = np.sum(eigvals)
-        # Ensure non-negative (float precision)
         rg = np.sqrt(max(rg_sq, 0.0))
+
+        # Format axis as string
+        axis_str = f"[{principal_axis[0]:.3f}, {principal_axis[1]:.3f}, {principal_axis[2]:.3f}]"
 
         return {
             'lambda_min': float(l1),
             'lambda_mid': float(l2),
             'lambda_max': float(l3),
             'anisotropy_ratio': float(ratio),
-            'radius_of_gyration': float(rg)
+            'radius_of_gyration': float(rg),
+            'principal_axis': axis_str
         }
 
     def classify_morphology(self, anisotropy: float, rg: float, n_residues: int) -> str:
@@ -95,18 +100,10 @@ class MetricsAnalyzer:
             bond_lengths = np.linalg.norm(bond_vectors, axis=1)
 
         # Vectorized calculation using 3-point sliding window A(i-1), B(i), C(i+1)
-        # a = |B-C| = bond_lengths[i] (vector from i->i+1)
-        # c = |A-B| = bond_lengths[i-1] (vector from i-1->i)
-
-        # Valid i range for curvature: 1 to N-2
-        # bond_vectors indices: 0 to N-2
-
-        # Slices for side lengths
         c_len = bond_lengths[:-1] # |A-B|
         a_len = bond_lengths[1:]  # |B-C|
 
         # b = |A-C| = |vec(i-1->i) + vec(i->i+1)|
-        # Optimization: Use precomputed bond vectors to avoid re-fetching coords or re-calculating diffs
         bv1 = bond_vectors[:-1] # i-1 -> i
         bv2 = bond_vectors[1:]  # i -> i+1
 
@@ -115,7 +112,6 @@ class MetricsAnalyzer:
 
         # Heron's formula for area
         s = (a_len + b_len + c_len) / 2
-        # Clip to avoid negative due to float errors
         arg = s * (s - a_len) * (s - b_len) * (s - c_len)
         arg = np.maximum(arg, 0)
         area = np.sqrt(arg)
@@ -123,12 +119,11 @@ class MetricsAnalyzer:
         # R = abc / 4K
         # Kappa = 4K / abc
         denom = a_len * b_len * c_len
-        # Avoid division by zero
         with np.errstate(divide='ignore', invalid='ignore'):
             kappa = 4 * area / denom
             kappa[denom == 0] = 0.0
 
-        # Pad results to match original length (lost 1 at start, 1 at end)
+        # Pad results
         result = np.full(len(coords), np.nan)
         result[1:-1] = kappa
         return result
@@ -148,49 +143,29 @@ class MetricsAnalyzer:
         if bond_vectors is None:
             bond_vectors = coords[1:] - coords[:-1]
 
-        # Vectors b1, b2, b3
-        # b1: i-1 -> i
-        # b2: i -> i+1
-        # b3: i+1 -> i+2
         b1 = bond_vectors[:-2]
         b2 = bond_vectors[1:-1]
         b3 = bond_vectors[2:]
 
-        # Normals
         n1 = np.cross(b1, b2)
         n2 = np.cross(b2, b3)
-
-        # Normalize to get angle
-        # Torsion angle formula
-        # cos(phi) = (n1 . n2) / (|n1| |n2|)
-        # But we need sign.
-        # sign = sign( (n1 x n2) . b2 )
 
         n1_norm = np.linalg.norm(n1, axis=1)
         n2_norm = np.linalg.norm(n2, axis=1)
 
         with np.errstate(divide='ignore', invalid='ignore'):
             cos_phi = np.einsum('ij,ij->i', n1, n2) / (n1_norm * n2_norm)
-            # Clip for arccos stability
             cos_phi = np.clip(cos_phi, -1.0, 1.0)
             phi = np.arccos(cos_phi)
 
-            # Sign
-            # Optimization: sign( (n1 x n2) . b2 ) == sign( b1 . n2 )
-            # This avoids calculating the cross product of n1 and n2 (intermediate vector)
-            # and the subsequent dot product with b2.
-            # Identity: (b1 x b2) x (b2 x b3) = (b1 . (b2 x b3)) b2
-            # So (n1 x n2) . b2 = (b1 . n2) * |b2|^2. Since |b2|^2 > 0, sign is same as b1 . n2.
+            # Sign check
             sign_check = np.einsum('ij,ij->i', b1, n2)
             sign = np.sign(sign_check)
 
         torsion = phi * sign # in radians
 
-        # Pad results (lost 1 start, 2 end? No, window 4. indices 0,1,2,3 -> torsion at 1 or 2?)
-        # Let's align with the bond b2, so between residues i+1 and i+2.
-        # Let's just pad to length
         result = np.full(len(coords), np.nan)
-        result[1:-2] = torsion # Align somewhat to middle
+        result[1:-2] = torsion
         return result
 
     def calculate_pae_metrics(self, pae_matrix: np.ndarray, plddt_scores: np.ndarray) -> Dict[str, float]:
@@ -198,15 +173,17 @@ class MetricsAnalyzer:
         Calculates PAE-based metrics: mean PAE and domain blockiness.
         """
         if pae_matrix is None or pae_matrix.size == 0:
-            return {'pae_mean': 0.0, 'pae_blockiness': 0.0}
+            return {'pae_mean': 0.0, 'pae_blockiness': 0.0, 'predicted_domain_segments': 0}
 
         pae_mean = np.mean(pae_matrix)
 
         # Domain blockiness
         # heuristic: blocks defined by pLDDT >= 70
-        # If we have distinct high-conf blocks
         mask_hc = (plddt_scores >= 70).astype(int)
-        # Find segments
+
+        if len(mask_hc) == 0:
+             return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0, 'predicted_domain_segments': 0}
+
         bounded = np.hstack(([0], mask_hc, [0]))
         d = np.diff(bounded)
         starts = np.where(d == 1)[0]
@@ -216,17 +193,17 @@ class MetricsAnalyzer:
         # Filter short segments (< 10 residues)
         segments = [s for s in segments if (s[1] - s[0]) >= 10]
 
+        predicted_domain_segments = len(segments)
+
         if len(segments) < 2:
-            return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0}
+            return {'pae_mean': float(pae_mean), 'pae_blockiness': 0.0, 'predicted_domain_segments': predicted_domain_segments}
 
         intra_scores = []
         inter_scores = []
 
         for i, (s1, e1) in enumerate(segments):
             # Intra
-            # Check bounds
             if s1 >= pae_matrix.shape[0] or e1 > pae_matrix.shape[0]: continue
-
             block = pae_matrix[s1:e1, s1:e1]
             if block.size > 0:
                 intra_scores.append(np.mean(block))
@@ -242,29 +219,16 @@ class MetricsAnalyzer:
         mean_intra = np.mean(intra_scores) if intra_scores else 1.0
         mean_inter = np.mean(inter_scores) if inter_scores else 1.0
 
-        # Avoid div by zero
         if mean_intra < 1e-3: mean_intra = 1e-3
 
-        # Blockiness: contrast. High if inter > intra (meaning low error within, high error between)
-        # But PAE is error (lower is better).
-        # So we want LOW intra PAE and HIGH inter PAE.
-        # Ratio: mean_inter / mean_intra.
-        # If domains are well defined: inter is high (uncertain), intra is low (certain). Ratio >> 1.
         blockiness = mean_inter / mean_intra
-        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness)}
+        return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness), 'predicted_domain_segments': predicted_domain_segments}
 
     def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None, pae_matrix: np.ndarray = None) -> Dict[str, Any]:
         """
         Runs all metrics on a structure.
-
-        Args:
-            structure: Bio.PDB Structure object (deprecated, used if coords/plddt not provided)
-            plddt_scores: Pre-extracted pLDDT scores
-            coords: Pre-extracted CA coordinates
-            resnames: Pre-extracted residue names (optional, enables fast path)
-            pae_matrix: Optional PAE matrix (N, N)
         """
-        # Support legacy call signature for a moment or handle both
+        # Support legacy call signature
         if coords is None and structure is not None:
              coords = []
              for model in structure:
@@ -274,20 +238,36 @@ class MetricsAnalyzer:
                              coords.append(residue['CA'].get_coord())
              coords = np.array(coords)
 
-        if plddt_scores is None and structure is not None:
-             pass
+        # pLDDT metrics
+        if len(plddt_scores) > 0:
+            mean_plddt = np.mean(plddt_scores)
+            median_plddt = np.median(plddt_scores)
+            fraction_high = np.sum(plddt_scores >= 90) / len(plddt_scores)
+            fraction_ok = np.sum((plddt_scores >= 70) & (plddt_scores < 90)) / len(plddt_scores)
+            fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores)
+            disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores)
+        else:
+            mean_plddt = 0
+            median_plddt = 0
+            fraction_high = 0
+            fraction_ok = 0
+            fraction_low_conf = 0
+            disorder_fraction = 0
 
-        # Bolt Optimization: calculate_anisotropy computes the gyration tensor,
-        # so we can extract Rg from it for free, saving an extra pass over coords.
-        shape_props = self.calculate_anisotropy(coords)
+        # Bolt Optimization: Anisotropy + Rg
+        # Scientific Correction: Compute only on high-confidence residues (pLDDT >= 70)
+        plddt_mask = (plddt_scores >= 70)
+        coords_hc = coords[plddt_mask] if len(coords) > 0 else np.array([])
+
+        if len(coords_hc) >= 3:
+             shape_props = self.calculate_anisotropy(coords_hc)
+        else:
+             # Fallback if too few high-confidence residues
+             shape_props = {'anisotropy_ratio': np.nan, 'radius_of_gyration': np.nan, 'principal_axis': "N/A", 'lambda_min': 0, 'lambda_mid': 0, 'lambda_max': 0}
+
         rg = shape_props.get('radius_of_gyration', 0.0)
 
-        mean_plddt = np.mean(plddt_scores) if len(plddt_scores) > 0 else 0
-        fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores) if len(plddt_scores) > 0 else 0
-        disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores) if len(plddt_scores) > 0 else 0
-
-        # Geometry Optimization: Precompute bond vectors and lengths once
-        # These are used by both curvature and torsion calculations
+        # Geometry Optimization: Precompute bond vectors and lengths
         bond_vectors = None
         bond_lengths = None
         if len(coords) > 1:
@@ -298,27 +278,14 @@ class MetricsAnalyzer:
         kappa = self.calculate_curvature(coords, bond_vectors=bond_vectors, bond_lengths=bond_lengths)
         tau = self.calculate_torsion(coords, bond_vectors=bond_vectors)
 
-        # High confidence mask (pLDDT >= 70)
-        # For curvature at i, we need pLDDT at i-1, i, i+1 >= 70
-        # Shifted masks
-        plddt_mask = (plddt_scores >= 70)
-        # We need mask[i-1] & mask[i] & mask[i+1]
-        # Valid curvature indices are 1..N-2 (0-based) effectively due to implementation returning padded array
-        # But `kappa` has NaNs at ends.
-
-        # Create strict mask for curvature
-        # mask_prev = mask[:-2], mask_curr = mask[1:-1], mask_next = mask[2:]
+        # High confidence mask for curvature/torsion
         strict_mask_kappa = np.zeros(len(coords), dtype=bool)
         if len(coords) >= 3:
-             # Indices 1 to N-2
              m = plddt_mask[:-2] & plddt_mask[1:-1] & plddt_mask[2:]
              strict_mask_kappa[1:-1] = m
 
         kappa_valid = kappa[strict_mask_kappa & ~np.isnan(kappa)]
 
-        # Similar for torsion (needs i-1, i, i+1, i+2 effectively, or b1, b2, b3)
-        # Torsion at i corresponds to bond i->i+1 usually or the dihedral
-        # My implementation pads at 1:-2.
         strict_mask_tau = np.zeros(len(coords), dtype=bool)
         if len(coords) >= 4:
              m = plddt_mask[:-3] & plddt_mask[1:-2] & plddt_mask[2:-1] & plddt_mask[3:]
@@ -329,16 +296,8 @@ class MetricsAnalyzer:
         mean_curvature = np.mean(kappa_valid) if len(kappa_valid) > 0 else 0.0
         mean_torsion = np.mean(np.abs(tau_valid)) if len(tau_valid) > 0 else 0.0
 
-        # End-to-end distance (high confidence)
-        # Find first and last high-confidence residue? Or just max distance between any two HC residues?
-        # Usually end-to-end of the whole chain, but if disordered tails, it's misleading.
-        # User says "Compute these only on **high-confidence backbone segments**".
-        # Let's take the longest contiguous high-confidence segment.
-
-        # Identify segments
+        # End-to-end distance (longest contiguous high-confidence segment)
         is_hc = plddt_mask.astype(int)
-        # Find runs of 1s
-        # Prepend/append 0 to handle edges
         bounded = np.hstack(([0], is_hc, [0]))
         d = np.diff(bounded)
         starts = np.where(d == 1)[0]
@@ -355,7 +314,6 @@ class MetricsAnalyzer:
 
         if best_segment:
             s, e = best_segment
-            # e is exclusive
             seg_coords = coords[s:e]
             if len(seg_coords) > 1:
                 end_to_end = np.linalg.norm(seg_coords[-1] - seg_coords[0])
@@ -364,21 +322,12 @@ class MetricsAnalyzer:
         else:
             end_to_end = 0.0
 
-        # Bending Hotspots: top 3 regions by local curvature (in high conf regions)
-        # Find peaks in kappa (smoothed or raw?)
-        # User says "top 3 regions by local curvature, with residue ranges".
-        # Let's pick residues with highest kappa in strict_mask_kappa
+        # Bending Hotspots
         hotspots = []
         if len(kappa_valid) > 0:
-            # We want indices.
             valid_indices = np.where(strict_mask_kappa & ~np.isnan(kappa))[0]
             valid_kappas = kappa[valid_indices]
-
-            # Sort descending
             sorted_idx = np.argsort(valid_kappas)[::-1]
-
-            # Pick top 3 non-overlapping?
-            # Simple approach: Top 3 points.
             top_k = min(3, len(sorted_idx))
             for k in range(top_k):
                 idx = valid_indices[sorted_idx[k]]
@@ -388,116 +337,80 @@ class MetricsAnalyzer:
         bending_hotspots_str = "; ".join(hotspots)
 
         # Exposed Surface Proxy (SASA)
-        # Heuristic: Count neighbors within X angstroms. Fewer neighbors -> more exposed.
-        # Simple generic approach: Neighbor count (CN).
-        # Sphere 10A. High CN = buried. Low CN = exposed.
-        # Exposed if CN < threshold?
-        # User asked for "exposed_surface_proxy (e.g., count of residues likely solvent-exposed)".
-        # Let's compute fraction of exposed residues.
-        # "Exposed" if coordination number (C-alpha within 10A) < some val (say 14).
         if len(coords) > 0:
-            # Optimize: Use KDTree for O(N log N) neighbor search instead of O(N^2) distance matrix.
-            # Significant speedup for N > 500.
-            from scipy.spatial import cKDTree
-            tree = cKDTree(coords)
-            # query_ball_point returns number of neighbors within radius.
-            # return_length=True returns counts directly, faster than returning indices.
-            # We subtract 1 because query includes the point itself.
-            cn = tree.query_ball_point(coords, 10.0, return_length=True) - 1
+            # Replaced cKDTree with pure NumPy for dependency compliance
+            # Calculate pairwise distances (broadcasting) - only for coords < 3000 to be safe on memory?
+            # Or chunked. Protein size is usually small enough.
 
-            # Heuristic threshold for "exposed" on CA-only model?
-            # Say < 20 neighbors in 10A sphere (dense packing is ~30?).
-            # Let's report mean coordination number as proxy?
-            # Or fraction with CN < 15.
+            # Simple dist matrix
+            # coords: (N, 3)
+            # diff: (N, N, 3) -> can be large. 1000^2 * 3 * 8bytes ~ 24MB. 2000 residues ~ 100MB. Fine.
+            # dists: (N, N)
+
+            # Optimization: If N is very large, use block processing.
+            if len(coords) < 2000:
+                diff = coords[:, np.newaxis, :] - coords[np.newaxis, :, :]
+                dists = np.sqrt(np.sum(diff**2, axis=-1))
+                # Count neighbors within 10A (excluding self)
+                cn = np.sum(dists < 10.0, axis=1) - 1
+            else:
+                # Loop approach to save memory
+                cn = np.zeros(len(coords), dtype=int)
+                for i in range(len(coords)):
+                    d = np.linalg.norm(coords - coords[i], axis=1)
+                    cn[i] = np.sum(d < 10.0) - 1
+
             n_exposed = np.sum(cn < 15)
             exposed_fraction = n_exposed / len(coords)
         else:
             exposed_fraction = 0.0
 
         # Charged Patch Score
-        # "density of charged residues in high-confidence exposed regions"
         charged_patch_score = 0.0
-
         if resnames is not None and len(resnames) == len(plddt_scores):
-             # Vectorized path
              charged_residues = ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']
              is_charged = np.isin(resnames, charged_residues)
-
-             # Align with cn which is computed on coords
-             # Assuming len(coords) == len(plddt_scores) == len(resnames)
              min_len = min(len(coords), len(plddt_scores), len(resnames))
-
              if min_len > 0:
-                 # Masks
                  mask_hc = (plddt_scores[:min_len] >= 70)
                  mask_exposed = (cn[:min_len] < 15)
                  mask_target = mask_hc & mask_exposed
-
                  exposed_hc_count = np.sum(mask_target)
                  if exposed_hc_count > 0:
                      charged_count = np.sum(is_charged[:min_len] & mask_target)
                      charged_patch_score = float(charged_count / exposed_hc_count)
-
         elif structure:
-            # Slow legacy path
-            # Extract sequence and map to exposure
-            # iterate residues
             charged_count = 0
             exposed_hc_count = 0
-
-            # Re-iterate to match coords index
-            # Assuming coords logic matches this iteration order
             idx = 0
             for model in structure:
                 for chain in model:
                     for residue in chain:
                         if 'CA' in residue:
-                            # Check confidence
                             if idx < len(plddt_scores):
                                 conf = plddt_scores[idx]
-                                # Check exposure
                                 is_exposed = (cn[idx] < 15) if idx < len(cn) else False
-
                                 if conf >= 70 and is_exposed:
                                     exposed_hc_count += 1
                                     resname = residue.get_resname().upper()
-                                    # Basic/Acidic? "Charged". Asp, Glu, Lys, Arg, His.
                                     if resname in ['ASP', 'GLU', 'LYS', 'ARG', 'HIS']:
                                         charged_count += 1
                             idx += 1
-
             if exposed_hc_count > 0:
                 charged_patch_score = charged_count / exposed_hc_count
 
-        # Count residues
         n_res = len(plddt_scores)
 
         # PAE Metrics
         pae_metrics = self.calculate_pae_metrics(pae_matrix, plddt_scores)
 
-        # Hinge candidates: positions where pLDDT drops (< 70) AND curvature is high
-        # High curvature defined as > mean + 1 std (of valid kappa)
+        # Hinge candidates
         hinge_candidates = 0
         if len(kappa_valid) > 0:
             k_mean = np.mean(kappa_valid)
             k_std = np.std(kappa_valid)
             thresh = k_mean + k_std
-
-            # Use original kappa array but check mask
-            # Indices where pLDDT < 70 AND kappa > thresh
-            # strict_mask_kappa is where pLDDT >= 70.
-            # We want pLDDT < 70.
-            # But kappa needs neighbors. If pLDDT is low, kappa might be garbage?
-            # User: "hinge_candidates (positions where confidence drops + geometry bends)"
-            # This implies the bend is real but confidence is lower (flexible).
-            # Let's check kappa where pLDDT is < 70 but > 50 (to avoid total garbage)?
-            # Or just pLDDT < 70.
-
-            # We need kappa calculated at i.
-            # Check pLDDT[i] < 70.
             mask_hinge = (plddt_scores < 70) & (plddt_scores >= 50)
-            # Align with kappa padding (1:-1)
-            # We can only check 1:-1
             if len(kappa) > 2:
                  k_vals = kappa[1:-1]
                  m_vals = mask_hinge[1:-1]
@@ -506,29 +419,41 @@ class MetricsAnalyzer:
 
         # Flags
         low_confidence_warning = (mean_plddt < 70) or (fraction_low_conf > 0.5)
-        multi_domain_uncertain = (pae_metrics['pae_blockiness'] > 1.5) and (pae_metrics['pae_mean'] > 10) # Heuristic
+        multi_domain_uncertain = (pae_metrics['pae_blockiness'] > 1.5) and (pae_metrics['pae_mean'] > 10)
         likely_idr_heavy = (disorder_fraction > 0.3)
 
-        morphology = self.classify_morphology(shape_props['anisotropy_ratio'], rg, n_res)
+        # Determine morphology
+        # Use anisotropy_ratio from shape_props (which is now based on high-conf coords)
+        # If shape_props['anisotropy_ratio'] is NaN (too few residues), use a fallback or keep it NaN
+        anisotropy = shape_props['anisotropy_ratio']
+        if np.isnan(anisotropy):
+             morphology = "Unstructured/Disordered"
+        else:
+             morphology = self.classify_morphology(anisotropy, rg, n_res)
 
         return {
             'n_residues': n_res,
-            'mean_plddt': mean_plddt,
-            'fraction_low_plddt': fraction_low_conf,
-            'disorder_fraction': disorder_fraction,
+            'plddt_mean': mean_plddt,
+            'plddt_median': median_plddt,
+            'plddt_fraction_high': fraction_high,
+            'plddt_fraction_ok': fraction_ok,
+            'plddt_fraction_low': fraction_low_conf,
+            'disorder_fraction_proxy': disorder_fraction,
             'radius_of_gyration': rg,
-            'anisotropy': shape_props['anisotropy_ratio'],
+            'anisotropy_index': anisotropy,
+            'backbone_principal_axis': shape_props['principal_axis'],
             'morphology': morphology,
             'curvature_summary': mean_curvature,
             'torsion_summary': mean_torsion,
             'end_to_end_distance': end_to_end,
             'bending_hotspots': bending_hotspots_str,
             'hinge_candidates': int(hinge_candidates),
-            'exposed_fraction': exposed_fraction,
+            'exposed_surface_proxy': exposed_fraction,
             'charged_patch_score': charged_patch_score,
             'low_confidence_warning': low_confidence_warning,
             'multi_domain_uncertain': multi_domain_uncertain,
-            'likely_idr_heavy': likely_idr_heavy,
-            **pae_metrics,
-            **shape_props
+            'likely_IDR_heavy': likely_idr_heavy,
+            'predicted_domain_segments': pae_metrics['predicted_domain_segments'],
+            'PAE_mean': pae_metrics['pae_mean'],
+            'PAE_domain_blockiness_score': pae_metrics['pae_blockiness']
         }

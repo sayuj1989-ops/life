@@ -71,6 +71,7 @@ def run_experiment():
         result = system.run_simulation(final_time=final_time, dt=dt, save_every=100)
 
         # Metrics
+        # result.curvature is computed from result.kappa using norm of first 2 components
         final_curvature = result.curvature[-1] # shape (n_nodes,)
         avg_curvature = np.mean(final_curvature)
 
@@ -78,8 +79,10 @@ def run_experiment():
         avg_torsion = np.mean(final_torsion)
 
         # Sagittal deflection (z-coordinate)
-        final_centerline = result.centerline[-1]
-        tip_deflection_z = final_centerline[2, -1]
+        # result.centerline is (time, n_nodes, 3) because of pyelastica_bridge output logic
+        final_centerline = result.centerline[-1] # (n_nodes, 3)
+        # Tip is the last node [-1], Z coordinate is index 2
+        tip_deflection_z = final_centerline[-1, 2]
 
         results_summary.append({
             "sweep": "chi_kappa",
@@ -122,7 +125,8 @@ def run_experiment():
         avg_torsion = np.mean(np.abs(final_torsion)) # Magnitude of torsion
 
         final_centerline = result.centerline[-1]
-        tip_deflection_z = final_centerline[2, -1]
+        # Tip is the last node [-1], Z coordinate is index 2
+        tip_deflection_z = final_centerline[-1, 2]
 
         results_summary.append({
             "sweep": "chi_tau",

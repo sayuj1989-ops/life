@@ -9,6 +9,7 @@ graph TD
         ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
         PTK7[PTK7<br/>Planar Cell Polarity]
         YAP[YAP/TAZ<br/>Hippo Pathway]
+        PKD2L1[PKD2L1<br/>CSF-Contacting Neurons]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -17,6 +18,7 @@ graph TD
         Nucl_Shuttle[Nuclear Shuttling<br/>Transcriptional Switch]
         Mech_Trans[Mechanotransduction<br/>Ca2+ Influx]
         Sym_Break[Symmetry Breaking<br/>Nodal Flow]
+        CSF_Sensing[CSF Flow Sensing<br/>Reissner Fiber Signal]
         Neur_Diff[Somatosensory<br/>Differentiation]
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
@@ -72,6 +74,11 @@ graph TD
     Nucl_Shuttle --> ECM_Assembly
     Mech_Trans --> Nucl_Shuttle
 
+    %% NEW ARC: CSF/Reissner Fiber
+    CILIA --> CSF_Sensing
+    PKD2L1 --> CSF_Sensing
+    CSF_Sensing --> Muscle_Tone
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -86,7 +93,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

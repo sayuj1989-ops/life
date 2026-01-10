@@ -21,12 +21,12 @@ def count_zero_crossings(signal: np.ndarray) -> int:
     return int(np.sum(np.diff(np.signbit(signal))))
 
 def run_experiment():
-    print("Starting S-Shape Counter-Curvature Experiment...")
-    print("Exploring the emergence of S-shaped profiles via Active Muscle Torques (chi_M).")
+    print("Starting Sigmoid Counter-Curvature Experiment...")
+    print("Exploring the emergence of sigmoid profiles via Active Muscle Torques (chi_M).")
 
     # 1. Define Information Field (Sinusoidal)
     # The information field encodes the "target" shape.
-    # A full sine wave (0 to 2pi) promotes an S-shape.
+    # A full sine wave (0 to 2pi) promotes a sigmoid.
     L = 1.0
     n_points = 200
     s = np.linspace(0, L, n_points)
@@ -41,7 +41,7 @@ def run_experiment():
     dt = 5e-5        # Smaller timestep for stability with active torques
 
     # Output directory
-    output_dir = Path("outputs/experiments/s_shape_sweep")
+    output_dir = Path("outputs/experiments/sigmoid_sweep")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     results_summary: List[Dict[str, Any]] = []
@@ -51,7 +51,7 @@ def run_experiment():
 
     # --- Sweep: Active Muscle Torque Gain (chi_M) ---
     # We expect that as chi_M increases, the rod will transition from
-    # gravity-dominated (C-shape sag) to information-dominated (S-shape).
+    # gravity-dominated (C-shape sag) to information-dominated (sigmoid).
     chi_M_values = [0.0, 5.0, 10.0, 15.0, 20.0]
 
     # Fixed parameters
@@ -103,14 +103,14 @@ def run_experiment():
         # Metric 1: Tip Deflection (Sag)
         tip_deflection_z = z_coords[-1]
 
-        # Metric 2: "S-Shape Index" using Scoliosis Metrics (repurposed for Sagittal plane)
+        # Metric 2: "Sigmoid Index" using Scoliosis Metrics (repurposed for Sagittal plane)
         # We treat 'x' as longitudinal and 'z' as lateral deviation.
         # This gives a measure of how much the rod deviates from the horizontal axis, normalized by length.
         sagittal_index, _, max_dev = compute_lateral_scoliosis_index(x_coords, z_coords)
 
         # Metric 3: Zero Crossings of Curvature
         # Gravity alone -> C-shape -> 0 crossings (mostly monotonic curvature or single sign)
-        # S-shape -> At least 1 crossing (inflection point)
+        # Sigmoid -> At least 1 crossing (inflection point)
         # We ignore small noise around zero.
         zero_crossings = count_zero_crossings(final_kappa_y)
 
@@ -132,7 +132,7 @@ def run_experiment():
     print(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB")
 
     # Save Results to CSV
-    csv_path = output_dir / "s_shape_results.csv"
+    csv_path = output_dir / "sigmoid_results.csv"
     with open(csv_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["chi_M", "tip_deflection_z", "sagittal_index", "max_dev_z", "zero_crossings"])
         writer.writeheader()
@@ -160,15 +160,15 @@ def run_experiment():
     ax2.tick_params(axis='y', labelcolor=color)
     ax2.set_yticks(range(0, max(crossings)+2))
 
-    plt.title("Emergence of S-Shape from Active Muscle Torques")
+    plt.title("Emergence of Sigmoid from Active Muscle Torques")
     fig.tight_layout()
-    plt.savefig(output_dir / "s_shape_plot.png")
-    print(f"Plot saved to {output_dir / 's_shape_plot.png'}")
+    plt.savefig(output_dir / "sigmoid_plot.png")
+    print(f"Plot saved to {output_dir / 'sigmoid_plot.png'}")
 
     # Generate Markdown Report
     with open(output_dir / "report.md", "w") as f:
-        f.write("# S-Shape Counter-Curvature Experiment Report\n\n")
-        f.write("This experiment maps the Active Muscle Torque parameter (`chi_M`) to the emergence of S-shaped spinal profiles.\n")
+        f.write("# Sigmoid Counter-Curvature Experiment Report\n\n")
+        f.write("This experiment maps the Active Muscle Torque parameter (`chi_M`) to the emergence of sigmoid spinal profiles.\n")
         f.write("A horizontal rod is subjected to gravity. An information field `I(s) ~ sin(s)` drives active moments.\n\n")
 
         f.write(f"- **Runtime**: {end_time_total - start_time_total:.2f}s\n")
@@ -182,7 +182,7 @@ def run_experiment():
 
         f.write("\n## Interpretation\n\n")
         f.write("- **Low chi_M**: Gravity dominates, rod sags into a C-shape (0 crossings).\n")
-        f.write("- **High chi_M**: Active torques counteract gravity, inducing the target S-shape (multiple crossings).\n")
+        f.write("- **High chi_M**: Active torques counteract gravity, inducing the target sigmoid (multiple crossings).\n")
         f.write("- **Sagittal Index**: Measures the normalized amplitude of the deflection.\n")
 
 if __name__ == "__main__":

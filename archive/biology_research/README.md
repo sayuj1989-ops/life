@@ -16,7 +16,7 @@ This repository contains the official implementation of the **Information-Elasti
 ## 📂 Repository Structure
 
 ```text
-biology_reasearch/
+biology_research/
 ├── manuscript/          # Nature-standard LaTeX manuscript files
 │   ├── main.tex         # Main document
 │   ├── references.bib   # Bibliography
@@ -36,8 +36,8 @@ biology_reasearch/
 
 ```bash
 # Clone the repository
-git clone https://github.com/sayujks0071/biology_reasearch.git
-cd biology_reasearch
+git clone https://github.com/sayujks0071/biology_research.git
+cd biology_research
 
 # Install dependencies (requires Poetry or pip)
 pip install -r requirements.txt

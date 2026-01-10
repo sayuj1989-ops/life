@@ -4,7 +4,7 @@ version = "0.3.3"
 description = "Spinal counter-curvature and Information-Elasticity Coupling (IEC) model for biomechanical analysis"
 authors = ["Dr. Sayuj Krishnan S <dr.sayujkrishnan@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/sayujks0071/biology_reasearch"
+repository = "https://github.com/sayujks0071/biology_research"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",

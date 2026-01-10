@@ -38,13 +38,44 @@ def main():
     # Load candidate info to get Source tags
     candidates = pd.read_csv(CANDIDATES_FILE) if CANDIDATES_FILE.exists() else None
 
+    # ⚡ Bolt Optimization: Incremental Processing
+    # Check for existing results to avoid re-processing
+    processed_keys = set()
+    existing_df = None
+    if OUTPUT_FILE.exists():
+        try:
+            existing_df = pd.read_csv(OUTPUT_FILE)
+
+            # Normalize legacy columns if present
+            rename_map = {}
+            if 'anisotropy' in existing_df.columns and 'anisotropy_index' not in existing_df.columns:
+                 rename_map['anisotropy'] = 'anisotropy_index'
+            if 'mean_plddt' in existing_df.columns and 'plddt_mean' not in existing_df.columns:
+                 rename_map['mean_plddt'] = 'plddt_mean'
+
+            if rename_map:
+                print(f"   Migrating columns in existing file: {list(rename_map.keys())} -> {list(rename_map.values())}")
+                existing_df.rename(columns=rename_map, inplace=True)
+
+            if 'gene_symbol' in existing_df.columns and 'uniprot' in existing_df.columns:
+                processed_keys = set(zip(existing_df['gene_symbol'], existing_df['uniprot']))
+            print(f"   Found {len(processed_keys)} existing records in {OUTPUT_FILE.name}")
+        except Exception as e:
+            print(f"⚠️ Error reading existing metrics: {e}. Starting fresh.")
+
+    # Filter work list
+    to_process = []
+    for _, row in downloaded.iterrows():
+        if (row['gene_symbol'], row['uniprot']) not in processed_keys:
+            to_process.append(row)
+
+    print(f"   Processing {len(to_process)} new structures (skipped {len(downloaded) - len(to_process)})...")
+
     results = []
     parser = StructureParser()
     analyzer = MetricsAnalyzer()
 
-    print(f"   Processing {len(downloaded)} structures...")
-
-    for idx, row in downloaded.iterrows():
+    for idx, row in enumerate(to_process):
         pdb_path = Path(row['pdb_path'])
         gene = row['gene_symbol']
         uid = row['uniprot']
@@ -89,28 +120,48 @@ def main():
         if (idx + 1) % 5 == 0:
             print(f"   ... {idx + 1} done")
 
-    df = pd.DataFrame(results)
+    new_df = pd.DataFrame(results)
 
-    # Reorder columns
-    cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
-            'anisotropy', 'radius_of_gyration', 'mean_plddt', 'n_residues', 'dise_score']
+    # Combine with existing
+    if existing_df is not None and not new_df.empty:
+        df = pd.concat([existing_df, new_df], ignore_index=True)
+    elif not new_df.empty:
+        df = new_df
+    elif existing_df is not None:
+        df = existing_df
+    else:
+        df = pd.DataFrame()
 
-    # Filter only columns that exist
-    cols = [c for c in cols_preferred if c in df.columns]
+    if not df.empty:
+        # Reorder columns
+        cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
+                'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'n_residues', 'dise_score']
 
-    # Add remaining cols
-    remaining = [c for c in df.columns if c not in cols]
-    df = df[cols + remaining]
+        # Filter only columns that exist
+        cols = [c for c in cols_preferred if c in df.columns]
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_FILE, index=False)
+        # Add remaining cols
+        remaining = [c for c in df.columns if c not in cols]
+        df = df[cols + remaining]
 
-    print(f"\n✅ Metrics calculated for {len(df)} proteins.")
-    print(f"📄 Saved to: {OUTPUT_FILE}")
+        OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+        df.to_csv(OUTPUT_FILE, index=False)
 
-    # Preview
-    print("\nTop 5 High Anisotropy:")
-    print(df.sort_values('anisotropy', ascending=False)[['gene_symbol', 'morphology', 'anisotropy', 'mean_plddt']].head().to_string(index=False))
+        print(f"\n✅ Metrics calculated for {len(df)} proteins.")
+        print(f"📄 Saved to: {OUTPUT_FILE}")
+
+        # Preview
+        print("\nTop 5 High Anisotropy:")
+        if 'anisotropy_index' in df.columns:
+             # Check which plddt column exists (legacy vs new)
+             plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
+             cols_to_show = ['gene_symbol', 'morphology', 'anisotropy_index']
+             if plddt_col in df.columns:
+                 cols_to_show.append(plddt_col)
+
+             print(df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))
+    else:
+        print("\n⚠️ No metrics to save.")
 
 if __name__ == "__main__":
     main()

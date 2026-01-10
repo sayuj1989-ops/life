@@ -15,3 +15,8 @@
 
 **Learning:** Curvature and Torsion calculations both compute bond vectors ($r_{i+1} - r_i$) and bond lengths. For a 10,000 residue protein, repeatedly allocating these arrays and computing norms adds overhead (~200ms).
 **Action:** Refactored `MetricsAnalyzer` to pre-calculate `bond_vectors` and `bond_lengths` once in `analyze_structure` and pass them to `calculate_curvature` and `calculate_torsion`. This reduced geometry calculation time by ~15% and reduced memory churn.
+
+## 2025-05-22 - [Incremental Processing]
+
+**Learning:** The pipeline re-processes all structures every run, even if they haven't changed. As the dataset grows (>500 proteins), this wastes minutes parsing PDBs and computing identical metrics.
+**Action:** Implemented incremental processing in `04_analyze_metrics.py`. It now loads the existing `protein_metrics.csv`, filters out `(gene, uniprot)` pairs that are already present, and processes only new additions. This reduces runtime for updates from O(N) to O(N_new). Also fixed a crash in report generation due to column name mismatches (`anisotropy` vs `anisotropy_index`).

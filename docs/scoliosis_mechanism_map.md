@@ -38,7 +38,7 @@ The map categorizes the system into four layers:
 
 ### 4. The Chirality Pathway (Cilia)
 *   **Source**: `DNAH5` / `PKD1L1`.
-*   **Mechanism**: Motile cilia generate nodal flow, breaking Left-Right symmetry.
+*   **Mechanism**: Motile cilia generate nodal flow, breaking Left-Right symmetry during embryogenesis.
 *   **Property**: **Chiral Torsion ($\epsilon$)**.
 *   **Role**: Establishes the initial subtle twist. Loss of this signal results in randomized symmetry breaking, a high risk factor for scoliosis.
 
@@ -47,8 +47,6 @@ The map categorizes the system into four layers:
 *   **Mechanism**: Drives differentiation of somatosensory relay neurons.
 *   **Property**: **Muscle Tone Balance**.
 *   **Role**: Maintains symmetric active tension ("guy wires") to stabilize the column. `LBX1` deficiency leads to sensor noise and asymmetric pull.
-
----
 
 ### 6. The Disc Maintenance Pathway (ADGRG6)
 *   **Source**: `ADGRG6` (GPR126).
@@ -66,27 +64,26 @@ The map categorizes the system into four layers:
 *   **Source**: `WWTR1` / `YAP1` (YAP/TAZ).
 *   **Mechanism**: Mechanosensitive proteins that shuttle to the nucleus when cells are stretched or on stiff substrates.
 *   **Property**: **Bending Stiffness ($EI$)**.
-*   **Role**: Creates a positive feedback loop (Strain $\rightarrow$ YAP $\rightarrow$ Collagen $\rightarrow$ Stiffness). In microgravity (unloading), this loop may collapse, leading to rapid atrophy and instability.
+*   **Role**: Creates a positive feedback loop (Strain $\rightarrow$ YAP $\rightarrow$ Collagen $\rightarrow$ Stiffness). Disruption leads to a "Dynamic Stiffness Collapse."
 
 ---
 
-## New Pathway: YAP/TAZ Mechanotransduction
+## New Pathway: The Hydraulic Pathway (PKD2L1/Reissner Fiber)
 
-**Arc Added**: `YAP` $\rightarrow$ Nuclear Shuttling $\rightarrow$ ECM Assembly $\rightarrow$ Stiffness.
+**Arc Added**: `CILIA` $\rightarrow$ CSF Sensing $\rightarrow$ Muscle Tone.
 
 ### Evidence
-YAP (Yes-associated protein) and TAZ (transcriptional coactivator with PDZ-binding motif) are the primary effectors of the Hippo signaling pathway and are crucial for sensing mechanical cues.
+The Reissner Fiber (RF) is a sub-commissural organ-derived thread that runs through the central canal. Research in zebrafish models has shown that this fiber is essential for maintaining a straight spine.
 
-*   **Molecular Actor**: `YAP`/`TAZ`.
-*   **Process**: **Nuclear Shuttling**. Under mechanical tension (high stiffness), YAP/TAZ translocate to the nucleus to drive gene expression. In soft environments or under unloading, they exit the nucleus, promoting apoptosis or quiescence.
-*   **Tissue Property**: They regulate **ECM Assembly** (including Collagen and Proteoglycans), directly influencing the **Stiffness ($EI$)** of the intervertebral discs and paraspinal ligaments.
-*   **Outcome**: This pathway maintains the structural "gain" of the spine. Its disruption (e.g., via unloading or mutation) leads to a "Dynamic Stiffness Collapse," rendering the spine susceptible to buckling.
+*   **Molecular Actor**: `PKD2L1` (Polycystic Kidney Disease 2-Like 1). This is a channel expressed in Cerebrospinal Fluid-contacting Neurons (CSF-cNs) lining the central canal.
+*   **Process**: **CSF Flow Sensing**. Motile cilia generate CSF flow. The Reissner Fiber, under tension, interacts with the cilia of CSF-cNs. Changes in flow or geometry (curvature) alter this interaction, triggering `PKD2L1`.
+*   **Tissue Property**: **Muscle Tone Balance**. The firing of CSF-cNs (typically inhibitory) modulates the local motor neurons controlling paraspinal muscles.
+*   **Outcome**: The RF acts as a "tension reference" or "geometric guide." If the spine curves, the fiber touches the concave side's neurons, inhibiting muscle contraction on that side to restore straightness. Loss of the fiber or the sensor leads to unchecked curvature (scoliosis).
 
-> **Hypothesis**: The constitutive nuclear activation of YAP/TAZ in IVD cells could rescue microgravity-induced apoptosis and collagen loss, suggesting a potential therapeutic target for spaceflight-induced spinal elongation.
+> **Hypothesis**: The Reissner Fiber functions as a physical "plumb line" or integral feedback controller ($I$-term), complementing the proportional mechanotransduction ($P$-term) of Piezo channels.
 
 **Citation**:
-*   *Dupont, S., et al. (2011). Role of YAP/TAZ in mechanotransduction. Nature, 474(7350), 179-183.* https://doi.org/10.1038/nature10137
-*   *Panciera, T., et al. (2017). Mechanobiology of YAP and TAZ in physiology and disease. Nature Reviews Molecular Cell Biology, 18(12), 758-770.* https://doi.org/10.1038/nrm.2017.87
+*   *Grimes, D. T., Boswell, C. W., et al. (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. Science, 352(6291), 1341-1344.* https://doi.org/10.1126/science.aaf6419
 
 ---
 

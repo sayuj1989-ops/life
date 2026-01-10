@@ -20,7 +20,8 @@ MASTER_CANDIDATES_PATH = repo_root / "data" / "candidates_master.csv"
 OUTPUT_DIR = BASE_DIR / "data" / "processed"
 OUTPUT_FILE = OUTPUT_DIR / "candidates.csv"
 
-TOP_N = 10
+# Increased to 50 for clustering analysis
+TOP_N = 50
 
 def main():
     print("📋 Preparing Inputs from Master Candidate List...")

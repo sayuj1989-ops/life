@@ -45,6 +45,23 @@ $$ \boldsymbol{\kappa}_{rest} = \boldsymbol{\kappa}_{gen} + \chi_\kappa \cdot \n
 *   **Dimensions**: $[1]$ (Dimensionless).
 *   **Physical Interpretation**: A scaling factor determining how strongly information gradients dictate local curvature targets.
 
+### 2.3. The Bio-Gravitational Number ($\mathcal{B}_g$)
+
+A dimensionless group comparing the magnitude of the active biological counter-moment to the passive gravitational moment.
+
+$$ \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2} $$
+
+*   **Definition**:
+    *   $\chi_M$: Morphomechanical stiffness $[ML^3T^{-2}]$.
+    *   $\langle |\nabla I| \rangle$: Mean information gradient magnitude $[L^{-1}]$.
+    *   $\rho A g$: Weight per unit length ($N/m$) derived from density $\rho$, cross-section $A$, and gravity $g$.
+    *   $L$: Characteristic length scale of the spinal column $[L]$.
+*   **Interpretation**:
+    *   $\mathcal{B}_g > 1$: The organism dominates the gravitational field (stable counter-curvature).
+    *   $\mathcal{B}_g < 1$: Gravity dominates (buckling/collapse/scoliosis).
+    *   $\mathcal{B}_g \gg 1$: Microgravity regime (potential for sensory confusion/overshoot).
+*   **Measurable Proxy**: The ratio of paraspinal muscle physiological cross-sectional area (PCSA) to vertebral bone mineral content (BMC), scaled by spinal length.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -82,9 +99,21 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Correlation between collagen anisotropy (via SHG) in the annulus fibrosus and the onset of curve progression in scoliotic animal models (e.g., *Adgrg6* mutants).
 *   **Refutation**: If spinal deformities occur despite maintained tissue anisotropy and stiffness, the causal link between $\mathbf{\Lambda}$ and geometric stability is broken. (Reference: Karner et al., 2015).
 
+### Test C: The Microgravity Stiffness Drop
+*   **Hypothesis**: If $\mathcal{B}_g \gg 1$ in space (due to $g \to 0$), the organism will downregulate $\chi_M$ (via muscle atrophy and ECM degradation) to restore homeostatic $\mathcal{B}_g \approx 1$.
+*   **Data Needed**: Temporal dataset of paraspinal muscle density (MRI) and vertebral bone density (DXA/QCT) from astronauts or murine spaceflight (e.g., RR-9), correlated with spinal flattening.
+*   **Refutation**: If muscle/bone atrophy is uniform rather than specifically targeting the anti-gravity paraspinal complex to lower $\chi_M$, or if $\chi_M$ remains high while curvature is lost. (Reference: McNamara et al., 2019).
+
+### Test D: The Critical Length Scale
+*   **Hypothesis**: There exists a critical length $L_c$ for a given species where $\mathcal{B}_g = 1$. Growth beyond $L_c$ without a corresponding increase in $\chi_M$ (squared scaling) precipitates deformity.
+*   **Data Needed**: Allometric scaling data of spinal slenderness vs. paraspinal muscle cross-section in rapid growth phases of adolescent idiopathic scoliosis (AIS) patients.
+*   **Refutation**: If scoliosis onset is uncorrelated with a drop in $\mathcal{B}_g$ (e.g., patients have "strong enough" muscles but still curve), the purely mechanical buckling hypothesis is insufficient. (Reference: Bagnat & Gray, 2020).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
 2.  **Hayes, M., et al. (2014).** "Ptk7 mutant zebrafish models of congenital and idiopathic scoliosis implicate dysregulated Wnt signalling." *Nature Communications*, 5. (Links PCP signaling to spinal alignment and torsion).
 3.  **Coste, B., et al. (2010).** "Piezo1 and Piezo2 are essential components of distinct mechanically activated cation channels." *Science*, 330(6000). (Mechanotransduction basis).
 4.  **Gorb, S. N. (2011).** "Functional Surfaces in Biology." *Springer*. (General principles of biological structure vs. mechanics).
+5.  **McNamara, K. P., et al. (2019).** "Lumbopelvic muscle changes following long-duration spaceflight." *Frontiers in Physiology*, 10. (Microgravity atrophy evidence).
+6.  **Bagnat, M., & Gray, R. S. (2020).** "Development of the spine and spinal curvatures." *Development*, 147(23). (Spinal scaling and mechanism).

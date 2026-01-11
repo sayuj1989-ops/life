@@ -42,11 +42,17 @@ The map categorizes the system into four layers:
 *   **Property**: **Chiral Torsion ($\epsilon$)**.
 *   **Role**: Establishes the initial subtle twist. Loss of this signal results in randomized symmetry breaking, a high risk factor for scoliosis.
 
-### 5. The Proprioception Pathway (LBX1)
+### 5. The Proprioception & Myogenic Pathway (LBX1)
 *   **Source**: `LBX1` (Transcription Factor).
-*   **Mechanism**: Drives differentiation of somatosensory relay neurons.
+*   **Mechanism**: Dual action:
+    1.  **Neural**: Drives differentiation of somatosensory relay neurons (proprioception).
+    2.  **Myogenic**: Regulates muscle fiber type specification in paraspinal muscles.
 *   **Property**: **Muscle Tone Balance**.
-*   **Role**: Maintains symmetric active tension ("guy wires") to stabilize the column. `LBX1` deficiency leads to sensor noise and asymmetric pull.
+*   **Role**: Maintains symmetric active tension ("guy wires") to stabilize the column. `LBX1` deficiency leads to both sensor noise (proprioceptive deficit) and asymmetric muscle atrophy on the concave side.
+*   **Evidence**: Downregulation of `LBX1` in concave paraspinal muscles is a key driver of curve progression.
+
+**Citation**:
+*   *Zhang, Z., et al. (2024). LBX1 Modulates Muscle Function and Curve Progression in Adolescent Idiopathic Scoliosis. Orthopaedic Research Society (ORS) 2024 Annual Meeting, Paper 1216.* https://www.ors.org/wp-content/uploads/AM24/1216.pdf
 
 ### 6. The Disc Maintenance Pathway (ADGRG6)
 *   **Source**: `ADGRG6` (GPR126).

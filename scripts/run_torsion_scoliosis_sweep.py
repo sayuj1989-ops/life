@@ -216,9 +216,9 @@ def run_experiment():
         f.write("\n## Observations\n")
         f.write("- Increasing `chi_tau` induces significant torsion as expected.\n")
         if lats[-1] > lats[0] * 1.5:
-             f.write("- **Emergent Scoliosis**: Lateral deviation increases with torsion, confirming the coupling mechanism.\n")
+            f.write("- **Emergent Scoliosis**: Lateral deviation increases with torsion, confirming the coupling mechanism.\n")
         else:
-             f.write("- **Stability**: Lateral deviation remained relatively stable despite torsion.\n")
+            f.write("- **Stability**: Lateral deviation remained relatively stable despite torsion.\n")
 
         f.write("- The sagittal S-curve profile (measured by range) ")
         if sags[-1] < sags[0]:

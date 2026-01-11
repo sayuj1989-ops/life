@@ -6,6 +6,7 @@ import time
 import tracemalloc
 import csv
 import sys
+import datetime
 from typing import List, Dict, Any
 
 # Ensure project root is in path
@@ -36,7 +37,8 @@ def run_experiment():
     dt = 1e-4
 
     # Output directory
-    output_dir = Path("outputs/sim/2026-02-19")
+    today_str = datetime.date.today().isoformat()
+    output_dir = Path(f"outputs/sim/{today_str}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     results_summary: List[Dict[str, Any]] = []
@@ -129,7 +131,6 @@ def run_experiment():
 
     end_time_total = time.time()
     current_mem, peak_mem = tracemalloc.get_traced_memory()
-    print(f"Current memory usage: {current_mem / (1024 ** 2):.2f} MB, Peak memory usage: {peak_mem / (1024 ** 2):.2f} MB")
     tracemalloc.stop()
 
     print(f"\nTotal Runtime: {end_time_total - start_time_total:.2f}s")
@@ -199,7 +200,7 @@ def run_experiment():
     with open(output_dir / "report.md", "w") as f:
         f.write("# Torsion-Coupled Scoliosis Sweep Report\n\n")
         f.write("## Overview\n")
-        f.write(f"Date: 2026-02-19\n")
+        f.write(f"Date: {today_str}\n")
         f.write(f"Goal: Investigate if torsional coupling (chi_tau) transforms a planar S-curve (chi_kappa) into 3D scoliosis.\n\n")
         f.write("## Parameters\n")
         f.write(f"- **chi_kappa**: {fixed_chi_kappa} (Strong Planar Driver)\n")
@@ -215,10 +216,12 @@ def run_experiment():
 
         f.write("\n## Observations\n")
         f.write("- Increasing `chi_tau` induces significant torsion as expected.\n")
-        if lats[-1] > lats[0] * 1.5:
-            f.write("- **Emergent Scoliosis**: Lateral deviation increases with torsion, confirming the coupling mechanism.\n")
+
+        # Check if lateral deviation emerged (threshold > 1cm)
+        if lats[-1] > lats[0] + 0.01:
+             f.write("- **Emergent Scoliosis**: Lateral deviation increases with torsion, confirming the coupling mechanism.\n")
         else:
-            f.write("- **Stability**: Lateral deviation remained relatively stable despite torsion.\n")
+             f.write("- **Stability**: Lateral deviation remained relatively stable despite torsion.\n")
 
         f.write("- The sagittal S-curve profile (measured by range) ")
         if sags[-1] < sags[0]:

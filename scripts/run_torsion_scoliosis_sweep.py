@@ -129,6 +129,7 @@ def run_experiment():
 
     end_time_total = time.time()
     current_mem, peak_mem = tracemalloc.get_traced_memory()
+    print(f"Current memory usage: {current_mem / (1024 ** 2):.2f} MB, Peak memory usage: {peak_mem / (1024 ** 2):.2f} MB")
     tracemalloc.stop()
 
     print(f"\nTotal Runtime: {end_time_total - start_time_total:.2f}s")

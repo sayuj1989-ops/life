@@ -20,6 +20,7 @@ graph TD
         Sym_Break[Symmetry Breaking<br/>Nodal Flow]
         CSF_Sensing[CSF Flow Sensing<br/>Reissner Fiber Signal]
         Neur_Diff[Somatosensory<br/>Differentiation]
+        Muscle_Diff[Myogenic Differentiation<br/>Fiber Type Specification]
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
     end
@@ -57,7 +58,9 @@ graph TD
     Torsion --> S_Curve
 
     LBX1 --> Neur_Diff
+    LBX1 --> Muscle_Diff
     Neur_Diff --> Muscle_Tone
+    Muscle_Diff --> Muscle_Tone
     Muscle_Tone --> Stability
 
     %% NEW ARC: ADGRG6
@@ -94,6 +97,6 @@ graph TD
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
     class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing process;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

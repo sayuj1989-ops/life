@@ -2,42 +2,42 @@
 
 ## Key Findings
 
-1. **Apoptosis in Intervertebral Disc (IVD) Cells**
-   Simulated microgravity (rotating bioreactor) induces apoptosis in intervertebral disc cells, specifically triggering the type-II (mitochondrial) pathway. This suggests that the loss of disc height and hydration in astronauts is not merely fluid redistribution but an active degenerative process driven by unloading.
-   *Citation:* [PMC3612270](https://pmc.ncbi.nlm.nih.gov/articles/PMC3612270/) - "The Effects of Simulated Microgravity on Intervertebral Disc Degeneration"
+1. **The Swelling-Degeneration Paradox**
+   Microgravity (or analogs like dry immersion) induces significant IVD swelling (+8-11% volume) and hyper-hydration (+17% water content), leading to spinal elongation. However, this is uncoupled from tissue health; simulated microgravity simultaneously upregulates MMP-3 and induces apoptosis, suggesting the disc becomes "larger but structurally weaker" (swollen but degrading).
+   *Citation:* [Treffel et al., 2016](https://pubmed.ncbi.nlm.nih.gov/27994557/) & [PMC3612270](https://pmc.ncbi.nlm.nih.gov/articles/PMC3612270/)
 
 2. **YAP/TAZ as the Mechanotransduction Nexus**
-   YAP and TAZ are identified as the central mechanotransducers converting physical forces (shear stress, ECM rigidity) into transcriptional outputs. Their nuclear localization is strictly force-dependent. In the context of the spine, this implies that gravitational unloading leads to cytoplasmic retention of YAP/TAZ, effectively shutting down the "pro-growth" genetic program required for spinal maintenance.
-   *Citation:* [PMC6192510](https://pmc.ncbi.nlm.nih.gov/articles/PMC6192510/) - "Mechanobiology of YAP and TAZ in physiology and disease"
+   YAP and TAZ are central mechanotransducers converting physical forces into transcriptional outputs. Their nuclear localization is force-dependent. Gravitational unloading disrupts cytoskeletal tension, leading to cytoplasmic retention of YAP/TAZ, effectively shutting down the anabolic genetic program required for spinal maintenance.
+   *Citation:* [PMC6192510](https://pmc.ncbi.nlm.nih.gov/articles/PMC6192510/) - "Mechanobiology of YAP and TAZ..."
 
-3. **Vertebral Transcriptional Shifts**
-   Transcriptional profiling of vertebral bone from spaceflight mice (Rodent Research-6) reveals distinct gene expression signatures compared to ground controls, confirming that spinal tissues undergo rapid, genetic-level remodeling in response to the loss of gravity vector.
-   *Citation:* [OSD-203](https://osdr.nasa.gov/bio/repo/data/studies/OSD-203/) - "Rodent Research-6 (RR-6) ... vertebral bone"
+3. **Joint Tissue Degradation in Spaceflight**
+   Data from Rodent Research-9 (OSD-255) confirms that long-duration spaceflight leads to significant joint tissue degradation, providing a direct transcriptomic and histological link between unloading and articular surface breakdown.
+   *Citation:* [OSD-255](https://osdr.nasa.gov/bio/repo/data/studies/OSD-255) - "Rodent Research-9 (RR-9)"
 
 ## Mechanistic Bridge
 
-The link between **Microgravity (Unloading)** and **Spinal Degeneration** follows a clear mechanotransduction pathway:
+The **"Dynamic Stiffness Collapse"** model:
 
-1.  **Stimulus Loss:** Removal of gravitational loading reduces mechanical strain on spinal tissues (IVD, Vertebrae).
-2.  **Sensor Deactivation:** Mechanosensitive channels (e.g., Piezo1, TRPC1) and focal adhesions detect reduced tension.
-3.  **Signal Transduction Failure:** Reduced cytoskeletal tension fails to drive YAP/TAZ into the nucleus.
-4.  **Genetic Switch:** YAP/TAZ cytoplasmic retention halts the transcription of anabolic ECM genes (Collagens, Aggrecan).
-5.  **Catabolic Dominance:** Concurrently, stress pathways trigger apoptosis (mitochondrial) and upregulate MMPs.
-6.  **Outcome:** Net loss of tissue mass, stiffness, and structural integrity (Scoliosis/Osteopenia risk).
+1.  **Unloading:** $g \to 0$ removes compressive loading.
+2.  **Hydrostatic Shift:** Osmotic pressure > Compressive stress $\to$ IVD Hyper-hydration (Swelling).
+3.  **Tension Loss:** Swelling increases volume but reduces *shear stiffness* and cytoskeletal tension.
+4.  **Sensor Deactivation:** Low tension $\to$ YAP Cytoplasmic Retention.
+5.  **Catabolic Switch:** YAP-OFF $\to$ MMP-3 Upregulation + Apoptosis (Mitochondrial).
+6.  **Outcome:** A spine that is **longer** and **straighter** (loss of lordosis) but **weaker** in torsion, increasing scoliosis susceptibility upon re-loading.
 
 ## Predicted Directionality
 
-| Feature | Microgravity (Unloading) | 1g / Hypergravity (Loading) |
+| Feature | Microgravity (Unloading) | 1g (Loading) |
 | :--- | :--- | :--- |
-| **YAP/TAZ Localization** | Cytoplasmic (Inactive) | Nuclear (Active) |
-| **ECM Synthesis** | Decreased (Collagen I/II $\downarrow$) | Increased |
-| **Apoptosis (IVD)** | Increased (Mitochondrial pathway) | Baseline / Suppressed |
-| **Spinal Stiffness** | Decreased | Maintained / Increased |
-| **Mechanosensor Expression** | Downregulated (Disuse atrophy) | Upregulated (Adaptation) |
+| **IVD Volume/Height** | **Increased** (Swelling) | Maintained / Compressed |
+| **Shear Stiffness** | **Decreased** (Instability) | High |
+| **YAP/TAZ** | Cytoplasmic (Inactive) | Nuclear (Active) |
+| **MMP Expression** | **Upregulated** (Catabolic) | Basal |
+| **Spinal Curvature** | Flattened (Loss of Lordosis) | S-Shaped (Kyphosis/Lordosis) |
 
 ## Testable Predictions
 
 | ID | Statement | Rationale |
 | :--- | :--- | :--- |
+| **H_2026_02_18_Swelling** | IVD hyper-hydration under unloading reduces torsional shear stiffness, increasing susceptibility to rotational instability despite axial elongation. | Swelling increases hydrostatic pressure (axial) but disrupts the annulus fibrosus fiber alignment, reducing resistance to twist. |
 | **H_2026_02_17_YAP** | Constitutive nuclear activation of YAP/TAZ in IVD cells will prevent microgravity-induced apoptosis and ECM loss. | If YAP nuclear exclusion is the primary signal for "unloading," forcing it open should simulate "loading" regardless of gravity. |
-| **H_2026_02_17_Piezo** | Reduced Piezo1 expression in vertebral osteoblasts precedes the onset of microgravity-induced osteopenia. | Piezo1 is the primary rapid-response sensor; its downregulation likely gates the longer-term transcriptomic remodeling. |

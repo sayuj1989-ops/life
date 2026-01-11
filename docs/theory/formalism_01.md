@@ -62,6 +62,19 @@ $$ \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2} $$
     *   $\mathcal{B}_g \gg 1$: Microgravity regime (potential for sensory confusion/overshoot).
 *   **Measurable Proxy**: The ratio of paraspinal muscle physiological cross-sectional area (PCSA) to vertebral bone mineral content (BMC), scaled by spinal length.
 
+### 2.4. Dynamic Evolution of Stiffness ($\chi_M(t)$)
+
+We postulate that $\chi_M$ is not a static constant but a dynamic variable regulated by mechanotransduction feedback (e.g., via Piezo1/YAP signaling). Its time evolution follows a first-order governing equation:
+
+$$ \frac{d\chi_M}{dt} = \alpha (\sigma_{mech} - \sigma_{homeo}) - \beta \chi_M $$
+
+*   **Symbols**:
+    *   $\alpha$: **Mechanotransduction Gain** $[L^3]$. Sensitivity of the cell to stress deviations.
+    *   $\beta$: **Degradation Rate** $[T^{-1}]$. Natural turnover rate of the active mechanism.
+    *   $\sigma_{mech}$: Sensed local mechanical stress $[ML^{-1}T^{-2}]$.
+    *   $\sigma_{homeo}$: Homeostatic stress setpoint $[ML^{-1}T^{-2}]$.
+*   **Implication**: If unloading occurs ($g \to 0$), $\sigma_{mech}$ drops below $\sigma_{homeo}$, causing $d\chi_M/dt < 0$. $\chi_M$ decays until a new equilibrium is reached or the structure destabilizes.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -109,6 +122,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Allometric scaling data of spinal slenderness vs. paraspinal muscle cross-section in rapid growth phases of adolescent idiopathic scoliosis (AIS) patients.
 *   **Refutation**: If scoliosis onset is uncorrelated with a drop in $\mathcal{B}_g$ (e.g., patients have "strong enough" muscles but still curve), the purely mechanical buckling hypothesis is insufficient. (Reference: Bagnat & Gray, 2020).
 
+### Test E: The Dynamic Gain Blockade
+*   **Hypothesis**: $\chi_M$ is actively maintained by sensing. Blocking the sensor ($\alpha \to 0$) should cause $\chi_M$ to decay at rate $\beta$, even under normal gravity.
+*   **Data Needed**: Stiffness measurements of spinal organoids or zebrafish larvae treated with GsMTx4 (Piezo inhibitor) or Verteporfin (YAP inhibitor).
+*   **Refutation**: If stiffness ($\chi_M$) remains constant despite pharmacological blockade of mechanotransduction, the maintenance of the counter-curvature moment is passive (constitutive) rather than active. (Reference: Dupont et al., 2011).
+
+### Test F: Hyper-Gravity Adaptation
+*   **Hypothesis**: Increasing gravitational load ($\sigma_{mech} > \sigma_{homeo}$) drives an increase in $\chi_M$ (hypertrophy/stiffening) to restore equilibrium.
+*   **Data Needed**: Comparative transcriptomics and biomechanics of mice raised in hyper-gravity (2g centrifuge) vs. 1g controls, focusing on ECM synthesis genes (*Col1a1*, *Fbn1*) and paraspinal muscle stiffness.
+*   **Refutation**: If hyper-gravity fails to elicit a proportional upregulation of $\chi_M$ (e.g., muscle/ECM density), the feedback gain $\alpha$ is insufficient to explain spinal stability. (Reference: Shi et al., 2021).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -117,3 +140,5 @@ The theory makes specific predictions about the relationship between genetic ani
 4.  **Gorb, S. N. (2011).** "Functional Surfaces in Biology." *Springer*. (General principles of biological structure vs. mechanics).
 5.  **McNamara, K. P., et al. (2019).** "Lumbopelvic muscle changes following long-duration spaceflight." *Frontiers in Physiology*, 10. (Microgravity atrophy evidence).
 6.  **Bagnat, M., & Gray, R. S. (2020).** "Development of the spine and spinal curvatures." *Development*, 147(23). (Spinal scaling and mechanism).
+7.  **Dupont, S., et al. (2011).** "Role of YAP/TAZ in mechanotransduction." *Nature*, 474(7350). (Mechanotransduction feedback mechanism).
+8.  **Shi, Y., et al. (2021).** "YAP and TAZ in bone development and disease." *Bone Research*, 9. (Bone/ECM synthesis link).

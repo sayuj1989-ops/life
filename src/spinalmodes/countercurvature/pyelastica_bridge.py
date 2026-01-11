@@ -5,6 +5,10 @@ curvature, stiffness and active moments are modulated by information fields.  Th
 follows the biological countercurvature hypothesis: information gradients act as local
 corrections to the mechanical metric, effectively biasing the rod against gravity-driven
 modes.
+
+Example Usage:
+    See `src/spinalmodes/experiments/integrated_rod_experiment.py` for a full
+    parameter sweep experiment using this bridge.
 """
 
 from __future__ import annotations

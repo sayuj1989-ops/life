@@ -3,6 +3,7 @@
 06_bolt_report.py
 
 Generates the "Bolt-BioFold" report compliant with specific user requirements.
+Writes directly to research/alphafold_countercurvature/data/processed/bolt_biofold_results.md
 """
 
 import sys
@@ -12,6 +13,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 import json
+import datetime
+import subprocess
 
 # Add repo root to path to import src
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
@@ -84,7 +87,6 @@ def main():
 
     # 1. pLDDT vs Residue Index (For top 3 relevant proteins)
     # Selection: Highest Anisotropy (fibrous) and Highest Hinge Count (mechanosensing)
-    # Or simply top 3 by priority/score if available. Let's pick top 3 Anisotropy + top 1 Hinge.
 
     # Safe column access
     aniso_col = 'anisotropy_index' if 'anisotropy_index' in df.columns else 'anisotropy'
@@ -273,73 +275,46 @@ def main():
     else:
         best_move = "Add proteins: Expand search to include more cytoskeletal linkers."
 
-    # --- Output ---
-    print("# Bolt-BioFold ⚡ Analysis Report")
-
-    sources = df['source_category'].unique()
-    source_summary = ", ".join(str(s) for s in sources)
-    print(f"Sources: {source_summary}\n")
-
-    print("## 1. Results Table")
-    headers = table_df.columns.tolist()
-    header_line = "| " + " | ".join(headers) + " |"
-    separator_line = "| " + " | ".join(["---"] * len(headers)) + " |"
-    print(header_line)
-    print(separator_line)
-    for _, row in table_df.iterrows():
-        print("| " + " | ".join(str(x) for x in row.values) + " |")
-
-    print("\n### CSV Block")
-    print("```csv")
-    print(table_df.to_csv(index=False))
-    print("```\n")
-
-    print("## 2. Key Plots Summary")
-    for line in plot_summary:
-        print(line)
-    print("\n")
-
-    print("## 3. Interpretation")
-    for line in interpretations:
-        print(line)
-
-    print("## 4. Best Next Move")
-    print(best_move)
-
-    import datetime
-    import subprocess
-
+    # --- Output to File ---
     try:
         commit_hash = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode().strip()
     except:
         commit_hash = "Unknown"
 
-    print("\n## 5. Quality & Reproducibility Checklist")
-    print(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)")
-    print(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"- Code Version: {commit_hash}")
-    print(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default")
-    print(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml")
+    print(f"📝 Writing report to {OUTPUT_MD}...")
 
-
-    # Save to file
     with open(OUTPUT_MD, 'w') as f:
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
+
+        sources = df['source_category'].unique()
+        source_summary = ", ".join(str(s) for s in sources)
+        f.write(f"Sources: {source_summary}\n\n")
+
         f.write("## 1. Results Table\n")
+
+        headers = table_df.columns.tolist()
+        header_line = "| " + " | ".join(headers) + " |"
+        separator_line = "| " + " | ".join(["---"] * len(headers)) + " |"
 
         f.write(header_line + "\n")
         f.write(separator_line + "\n")
         for _, row in table_df.iterrows():
              f.write("| " + " | ".join(str(x) for x in row.values) + " |\n")
 
-        f.write("\n\n")
+        f.write("\n### CSV Block\n")
+        f.write("```csv\n")
+        f.write(table_df.to_csv(index=False))
+        f.write("```\n\n")
+
         f.write("## 2. Key Plots Summary\n")
         for line in plot_summary:
             f.write(line + "\n")
         f.write("\n")
+
         f.write("## 3. Interpretation\n")
         for line in interpretations:
             f.write(line + "\n")
+
         f.write("\n## 4. Best Next Move\n")
         f.write(best_move + "\n")
 
@@ -349,6 +324,8 @@ def main():
         f.write(f"- Code Version: {commit_hash}\n")
         f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
         f.write(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml\n")
+
+    print("✅ Report generated successfully.")
 
 if __name__ == "__main__":
     main()

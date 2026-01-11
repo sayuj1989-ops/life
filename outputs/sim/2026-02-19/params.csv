@@ -1,0 +1,8 @@
+Parameter,Value
+chi_kappa,5.0
+chi_E,0.5
+chi_M,0.0
+InfoField,Sine(2pi*s/L)
+Gravity,9.81 (-Z)
+Rod Base,"(1,0,0)"
+Rod Normal,"(0,0,-1)"

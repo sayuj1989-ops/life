@@ -88,6 +88,21 @@ The Reissner Fiber (RF) is a sub-commissural organ-derived thread that runs thro
 **Citation**:
 *   *Grimes, D. T., Boswell, C. W., et al. (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. Science, 352(6291), 1341-1344.* https://doi.org/10.1126/science.aaf6419
 
+## New Pathway: The Degradation Pathway (MMP)
+
+**Arc Added**: `MMP` $\rightarrow$ ECM Degradation $\rightarrow$ Stiffness.
+
+### Evidence
+Microgravity and unloading conditions have been shown to trigger a specific biochemical cascade in Intervertebral Disc (IVD) cells, leading to rapid tissue quality loss.
+
+*   **Molecular Actor**: `MMP1` / `MMP3` (Matrix Metalloproteinases).
+*   **Process**: **ECM Degradation**. Under simulated microgravity (unloading), IVD cells upregulate these enzymes, which break down collagen and proteoglycans.
+*   **Tissue Property**: **Bending Stiffness ($EI$)**. The degradation of the ECM matrix directly lowers the modulus of the disc.
+*   **Outcome**: Reduced stiffness lowers the critical buckling load ($\Lambda_{crit}$), making the spine susceptible to deformation even under reduced gravity. This confirms the formal prediction of "Microgravity Stiffness Drop."
+
+**Citation**:
+*   *Chen, X., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20(1), 71.* https://doi.org/10.1186/s13018-025-05508-6
+
 ---
 
 ## Figure

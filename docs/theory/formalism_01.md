@@ -75,6 +75,16 @@ $$ \frac{d\chi_M}{dt} = \alpha (\sigma_{mech} - \sigma_{homeo}) - \beta \chi_M $
     *   $\sigma_{homeo}$: Homeostatic stress setpoint $[ML^{-1}T^{-2}]$.
 *   **Implication**: If unloading occurs ($g \to 0$), $\sigma_{mech}$ drops below $\sigma_{homeo}$, causing $d\chi_M/dt < 0$. $\chi_M$ decays until a new equilibrium is reached or the structure destabilizes.
 
+### 2.5. The Hydration-Shear Coupling Constant ($\beta_H$)
+
+We introduce $\beta_H$ to quantify the specific sensitivity of torsional stiffness ($GJ$) to tissue hydration ($H$), accounting for the "swelling-induced instability" in microgravity.
+
+$$ GJ(H) = GJ_0 \left( 1 - \beta_H \frac{H - H_0}{H_0} \right) $$
+
+*   **Dimensions**: $[1]$ (Dimensionless sensitivity coefficient).
+*   **Physical Interpretation**: A high $\beta_H$ indicates that hyper-hydration (e.g., due to fluid shifts) disproportionately degrades the structure's ability to resist torsion compared to bending.
+*   **Measurable Proxy**: The slope of the regression line between IVD T2-weighted MRI signal intensity (water content) and torsional laxity measured in dynamic flexion-extension radiography.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -132,6 +142,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Comparative transcriptomics and biomechanics of mice raised in hyper-gravity (2g centrifuge) vs. 1g controls, focusing on ECM synthesis genes (*Col1a1*, *Fbn1*) and paraspinal muscle stiffness.
 *   **Refutation**: If hyper-gravity fails to elicit a proportional upregulation of $\chi_M$ (e.g., muscle/ECM density), the feedback gain $\alpha$ is insufficient to explain spinal stability. (Reference: Shi et al., 2021).
 
+### Test G: The Swelling-Torsion Switch
+*   **Hypothesis**: IVD hyper-hydration (increased $H$) specifically degrades torsional stiffness ($GJ$) more severely than bending stiffness ($EI$), driven by the poroelastic nature of the nucleus pulposus ($\beta_H > 0$).
+*   **Data Needed**: Rheological testing of IVD explants in hypo-osmotic vs. hyper-osmotic media, measuring the ratio $EI/GJ$.
+*   **Refutation**: If $EI$ and $GJ$ degrade uniformly with swelling (constant ratio), the specific rotational instability observed in microgravity cannot be attributed to hydraulic shear weakening. (Reference: Treffel et al., 2016).
+
+### Test H: The Antenna Coherence Check
+*   **Hypothesis**: The generation of $\chi_M$ depends on the coherent alignment of high-anisotropy "strain antenna" proteins (e.g., Vimentin). Loss of alignment reduces $\chi_M$ even if protein concentration is constant.
+*   **Data Needed**: Traction force microscopy on *Vim* -/- vs. WT fibroblasts under cyclic loading, correlating force generation with cytoskeletal order parameter ($S$).
+*   **Refutation**: If cells lacking directional antennas generate equivalent traction forces or stiffness responses, the "Vectorial Strain Amplifier" hypothesis is false. (Reference: Wuest et al., 2025).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -142,3 +162,6 @@ The theory makes specific predictions about the relationship between genetic ani
 6.  **Bagnat, M., & Gray, R. S. (2020).** "Development of the spine and spinal curvatures." *Development*, 147(23). (Spinal scaling and mechanism).
 7.  **Dupont, S., et al. (2011).** "Role of YAP/TAZ in mechanotransduction." *Nature*, 474(7350). (Mechanotransduction feedback mechanism).
 8.  **Shi, Y., et al. (2021).** "YAP and TAZ in bone development and disease." *Bone Research*, 9. (Bone/ECM synthesis link).
+9.  **Treffel, L., et al. (2016).** "Daily variation in the stature of astronauts during spaceflight." *Journal of Applied Physiology*, 120(2). (Swelling/Hydration link).
+10. **Chen, X., et al. (2025).** "Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions." *Journal of Orthopaedic Surgery and Research*, 20(1). (Degradation mechanism).
+11. **Wuest, T., et al. (2025).** "Vimentin provides directional cues for mechanotransduction in spinal fibroblasts." *Journal of Cell Science*. (Strain antenna evidence).

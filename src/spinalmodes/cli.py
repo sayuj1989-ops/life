@@ -30,17 +30,17 @@ def _run(pyfile: str) -> int:
 
 def cmd_validate() -> int:
     """Run solver validation script."""
-    return _run("analysis/02_validate_solvers.py")
+    return _run("scripts/validation/validate_solver_figures.py")
 
 
 def cmd_figures() -> int:
     """Regenerate all figures and tables."""
     for f in [
-        "analysis/01_data_audit.py",
-        "analysis/02_validate_solvers.py",
-        "analysis/03_iec_phase_amp.py",
-        "analysis/04_countercurvature.py",
-        "analysis/05_longevity_demo.py",
+        "scripts/analysis/01_data_audit.py",
+        "scripts/validation/validate_solver_figures.py",
+        "scripts/analysis/03_iec_phase_amp.py",
+        "scripts/analysis/04_countercurvature.py",
+        "scripts/analysis/05_longevity_demo.py",
     ]:
         rc = _run(f)
         if rc != 0:

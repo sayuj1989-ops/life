@@ -1,0 +1,8 @@
+param,value
+date,2026-01-12
+n_elements,50
+final_time,3.0
+dt,5e-05
+chi_kappa_fixed,10.0
+swept_param,tilt_angle
+values,"[0, 15, 30, 45, 60, 75, 90]"

@@ -21,7 +21,7 @@ OUTPUT_DIR = BASE_DIR / "data" / "processed"
 OUTPUT_FILE = OUTPUT_DIR / "candidates.csv"
 
 # Increased to 50 for clustering analysis
-TOP_N = 50
+TOP_N = 10
 
 def main():
     print("📋 Preparing Inputs from Master Candidate List...")

@@ -15,3 +15,12 @@
 - **Pipeline Health**: 46/50 structures successfully processed; FBN1/COL2A1/LAMA2/HSPG2 missing from AFDB.
 
 - [Full Report](outputs/afcc/2026-01-11/summary.md)
+
+## Latest Run: 2026-01-12
+
+**Summary of Findings:**
+*   **Extreme Anisotropy**: POC5 identified as highly fibrous (Anisotropy ~24.7), confirming its potential as a 'strain antenna' in the centriole.
+*   **Mechanosensing Hinges**: FLNB shows massive hinge potential (158 candidates), suggesting it acts as a complex stress absorber/sensor.
+*   **Structural Confidence**: PIEZO2 and LMNA show robust high-anisotropy structures (pLDDT > 75), validating them as solid candidates for geometric modeling.
+
+[Link to Full Report](../outputs/afcc/2026-01-12/summary.md)

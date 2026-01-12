@@ -8,3 +8,10 @@
 *   **Confidence Checks**: Several candidates (e.g., LBX1, YAP1) show low confidence (pLDDT < 70) in regions, warranting caution in geometric interpretation.
 
 [Link to Full Report](../outputs/afcc/2026-01-10/summary.md)
+
+### 2026-01-11
+- **Top Anisotropy**: POC5 (24.7), SCRIB (8.6), and VIM (7.5) show extreme elongation.
+- **Top Hinge Candidate**: PKD1L1 (194 detected hinges) suggests massive mechanosensing potential via conformational switching.
+- **Pipeline Health**: 46/50 structures successfully processed; FBN1/COL2A1/LAMA2/HSPG2 missing from AFDB.
+
+- [Full Report](outputs/afcc/2026-01-11/summary.md)

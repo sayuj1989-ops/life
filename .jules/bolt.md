@@ -20,3 +20,12 @@
 
 **Learning:** The pipeline re-processes all structures every run, even if they haven't changed. As the dataset grows (>500 proteins), this wastes minutes parsing PDBs and computing identical metrics.
 **Action:** Implemented incremental processing in `04_analyze_metrics.py`. It now loads the existing `protein_metrics.csv`, filters out `(gene, uniprot)` pairs that are already present, and processes only new additions. This reduces runtime for updates from O(N) to O(N_new). Also fixed a crash in report generation due to column name mismatches (`anisotropy` vs `anisotropy_index`).
+
+## 2025-06-15 - [Blocked Matrix Algebra for Surface Proxy]
+
+**Learning:** The "Exposed Surface Proxy" calculation (counting neighbors < 10A) used a hybrid approach: full O(N^2) broadcasting for N<2000 and a slow Python loop for N>=2000. The broadcasting spike caused high memory usage (50MB+ for N=1500) and the loop was CPU-bound.
+**Action:** Replaced the hybrid logic with a unified "Blocked Matrix Algebra" approach. It computes pairwise distances using `np.dot` (BLAS-optimized) in blocks of 1000 residues.
+**Impact:**
+- N=1500: ~6x speedup (0.13s -> 0.02s)
+- N=5000: ~3x speedup (0.95s -> 0.32s)
+- Removes massive memory spikes for medium-sized proteins.

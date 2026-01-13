@@ -69,6 +69,13 @@ The map categorizes the system into four layers:
 *   **Property**: **Bending Stiffness ($EI$)**.
 *   **Role**: Creates a positive feedback loop (Strain $\rightarrow$ YAP $\rightarrow$ Collagen $\rightarrow$ Stiffness). Disruption leads to a "Dynamic Stiffness Collapse."
 
+### 9. The Degradation Pathway (MMP1/3)
+*   **Source**: `MMP1` / `MMP3` (Matrix Metalloproteinases).
+*   **Mechanism**: These enzymes degrade the Extracellular Matrix (ECM), specifically collagen, in response to unloading or stress.
+*   **Property**: **Bending Stiffness ($EI$)** (Negative Regulation).
+*   **Role**: Under normal conditions, this facilitates remodeling. However, in microgravity or pathological unloading, uncontrolled upregulation leads to rapid softening of the intervertebral discs.
+*   **Evidence**: Microgravity significantly upregulates `MMP1`, `MMP3`, and `TIMP1`, driving the degeneration of annulus fibrosus cells (*Chen et al., 2025*). This explains the "softening" observed in astronauts and bed-rest patients.
+
 ---
 
 ## New Pathway: The Hydraulic Pathway (PKD2L1/Reissner Fiber)

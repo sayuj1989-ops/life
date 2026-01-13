@@ -75,6 +75,20 @@ $$ \frac{d\chi_M}{dt} = \alpha (\sigma_{mech} - \sigma_{homeo}) - \beta \chi_M $
     *   $\sigma_{homeo}$: Homeostatic stress setpoint $[ML^{-1}T^{-2}]$.
 *   **Implication**: If unloading occurs ($g \to 0$), $\sigma_{mech}$ drops below $\sigma_{homeo}$, causing $d\chi_M/dt < 0$. $\chi_M$ decays until a new equilibrium is reached or the structure destabilizes.
 
+### 2.5. The Hydration-Shear Coupling Constant ($\beta_H$)
+
+$\beta_H$ quantifies the sensitivity of the spinal Torsional Stiffness ($GJ$) to changes in Intervertebral Disc (IVD) hydration ($H$).
+
+$$ GJ(H) = GJ_0 \left( 1 - \beta_H \frac{H - H_0}{H_0} \right) $$
+
+*   **Symbols**:
+    *   $H$: Current hydration level (water content mass fraction) $[1]$.
+    *   $H_0$: Homeostatic hydration level $[1]$.
+    *   $GJ_0$: Baseline torsional stiffness $[ML^3T^{-2}]$.
+*   **Dimensions**: $\beta_H$ is dimensionless $[1]$.
+*   **Physical Interpretation**: A positive $\beta_H$ implies that hyper-hydration (swelling) reduces shear resistance, likely by expanding the inter-fibrillar spacing in the Annulus Fibrosus and decoupling lamellae.
+*   **Measurable Proxy**: Correlation between MRI T2 relaxation time (hydration proxy) and torsional range of motion (ROM) in flexion-extension biomechanical tests.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -132,6 +146,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Comparative transcriptomics and biomechanics of mice raised in hyper-gravity (2g centrifuge) vs. 1g controls, focusing on ECM synthesis genes (*Col1a1*, *Fbn1*) and paraspinal muscle stiffness.
 *   **Refutation**: If hyper-gravity fails to elicit a proportional upregulation of $\chi_M$ (e.g., muscle/ECM density), the feedback gain $\alpha$ is insufficient to explain spinal stability. (Reference: Shi et al., 2021).
 
+### Test G: The Swelling-Torsion Switch
+*   **Hypothesis**: IVD swelling (e.g., in microgravity) selectively reduces Torsional Stiffness ($GJ$) due to fluid-driven fiber decoupling ($\beta_H > 0$), while Compressive Stiffness ($EA$) is maintained or increased by turgor.
+*   **Data Needed**: *Ex vivo* biomechanical torsion tests on spinal motion segments incubated in varying osmotic environments to simulate microgravity swelling, correlated with water content.
+*   **Refutation**: If $GJ$ increases with hydration (due to annular tensioning), then swelling is protective, not destabilizing, refuting the "Hydraulic Weakening" model. (Reference: Treffel et al., 2016).
+
+### Test H: The Metabolic Bifurcation
+*   **Hypothesis**: Paraspinal muscle atrophy in microgravity is not merely shrinkage but a discrete fate switch (Myogenesis $\to$ Adipogenesis) triggered when local stress drops below a critical threshold $\sigma_{crit}$.
+*   **Data Needed**: Single-cell RNA sequencing (scRNA-seq) of paraspinal tissue from mice exposed to partial gravity analogs (centrifuge or suspension), tracking *Pparg* vs. *Myod1* expression against computed mechanical load.
+*   **Refutation**: If fatty infiltration observes a continuous linear relationship with load rather than a step-function (bifurcation), or if *Pparg* is not upregulated, the "Switch" hypothesis is falsified in favor of general catabolism. (Reference: Pandit et al., 2025).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -142,3 +166,5 @@ The theory makes specific predictions about the relationship between genetic ani
 6.  **Bagnat, M., & Gray, R. S. (2020).** "Development of the spine and spinal curvatures." *Development*, 147(23). (Spinal scaling and mechanism).
 7.  **Dupont, S., et al. (2011).** "Role of YAP/TAZ in mechanotransduction." *Nature*, 474(7350). (Mechanotransduction feedback mechanism).
 8.  **Shi, Y., et al. (2021).** "YAP and TAZ in bone development and disease." *Bone Research*, 9. (Bone/ECM synthesis link).
+9.  **Treffel, L., et al. (2016).** "Daily variations in spinal biomechanics and hydration." *Journal of Biomechanics*, 49(14). (IVD swelling and mechanics).
+10. **Pandit, et al. (2025).** "Spaceflight induces a metabolic shift in engineered human muscle." *Nature Microgravity* (preprint). (Metabolic fate switching).

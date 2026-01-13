@@ -143,15 +143,21 @@ class MetricsAnalyzer:
         if bond_vectors is None:
             bond_vectors = coords[1:] - coords[:-1]
 
-        b1 = bond_vectors[:-2]
-        b2 = bond_vectors[1:-1]
-        b3 = bond_vectors[2:]
+        # Bolt Optimization: Reuse cross products
+        # We need n1 = b_i x b_{i+1} and n2 = b_{i+1} x b_{i+2}
+        # Instead of computing two separate cross product arrays, we compute
+        # all adjacent cross products once: all_normals[i] = b_i x b_{i+1}
+        # Then n1 is all_normals[:-1] and n2 is all_normals[1:]
+        # This reduces cross product and norm calculations by 50%.
 
-        n1 = np.cross(b1, b2)
-        n2 = np.cross(b2, b3)
+        all_normals = np.cross(bond_vectors[:-1], bond_vectors[1:])
+        all_norms = np.linalg.norm(all_normals, axis=1)
 
-        n1_norm = np.linalg.norm(n1, axis=1)
-        n2_norm = np.linalg.norm(n2, axis=1)
+        n1 = all_normals[:-1]
+        n2 = all_normals[1:]
+
+        n1_norm = all_norms[:-1]
+        n2_norm = all_norms[1:]
 
         with np.errstate(divide='ignore', invalid='ignore'):
             cos_phi = np.einsum('ij,ij->i', n1, n2) / (n1_norm * n2_norm)
@@ -159,6 +165,9 @@ class MetricsAnalyzer:
             phi = np.arccos(cos_phi)
 
             # Sign check
+            # b1 corresponds to bond_vectors[:-2]
+            # n2 corresponds to all_normals[1:] (which is b_{i+1} x b_{i+2})
+            b1 = bond_vectors[:-2]
             sign_check = np.einsum('ij,ij->i', b1, n2)
             sign = np.sign(sign_check)
 

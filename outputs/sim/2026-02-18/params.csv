@@ -1,8 +1,0 @@
-param,value
-date,2026-02-18
-n_elements,50
-final_time,5.0
-dt,0.0001
-chi_kappa_fixed,5.0
-swept_param,chi_E
-values,"[0.0, 2.0, 4.0, 6.0, 8.0, 10.0, 15.0, 20.0]"

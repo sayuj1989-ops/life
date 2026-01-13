@@ -46,6 +46,7 @@ outputs/csv/
 outputs/figs/
 outputs/experiments/
 outputs/temp/
+outputs/sim/
 !outputs/.gitkeep
 results/
 logs/

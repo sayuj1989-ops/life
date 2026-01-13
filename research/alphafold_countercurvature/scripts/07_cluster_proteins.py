@@ -29,6 +29,18 @@ def main():
     # Load data
     df = pd.read_csv(METRICS_FILE)
 
+    # Rename columns if necessary to match script logic, or update script logic
+    # Mapping current metrics keys to script expected keys
+    column_mapping = {
+        'anisotropy_index': 'anisotropy',
+        'PAE_domain_blockiness_score': 'pae_blockiness'
+    }
+
+    # Apply mapping if columns exist
+    for new_col, old_col in column_mapping.items():
+        if new_col in df.columns and old_col not in df.columns:
+            df[old_col] = df[new_col]
+
     # Features for clustering
     features = ['anisotropy', 'pae_blockiness']
 

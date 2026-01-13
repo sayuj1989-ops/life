@@ -1,6 +1,6 @@
 # Bolt-BioFold ⚡ Analysis Report
 
-Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia,Mechanotransduction, Mechanotransduction,Growth_Plate,Ion_Channel, Mechanotransduction,Nucleus,Cytoskeleton, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Cytoskeleton,Segmentation
+Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia,Mechanotransduction, Mechanotransduction,Growth_Plate,Ion_Channel, Mechanotransduction,Nucleus,Cytoskeleton, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Epigenetics,Muscle,ROS
 
 ## 1. Results Table
 | Identity | Species | Length | pLDDT_mean | pLDDT_frac_low | PAE_mean | PAE_blockiness | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Principal_Axis | Hotspots | Exposed_Frac | Charged_Patch | Domains | Flags |
@@ -13,7 +13,7 @@ Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia
 | YAP1 (P46937) | Homo sapiens | 504 | 57.4 | 0.74 | 27.5 | 9.26 | 0.45 | 2 | 23.6 | 11.4 | 0.321 | 1.628 | 1.99 | [-0.676, 0.732, 0.082] | 182:0.38; 241:0.38; 257:0.38 | 0.93 | 0.3 | 5 | LowConf, MultiDomUncert |
 | POC5 (Q8NA72) | Homo sapiens | 575 | 64.0 | 0.61 | 25.6 | 3.51 | 0.49 | 5 | 87.3 | 307.4 | 0.364 | 0.848 | 24.69 | [-0.657, -0.161, 0.737] | 156:0.38; 247:0.38; 192:0.37 | 1.0 | 0.36 | 2 | LowConf, MultiDomUncert |
 | ITGB1 (P05556) | Homo sapiens | 798 | 85.9 | 0.11 | 18.2 | 4.9 | 0.03 | 10 | 45.8 | 94.9 | 0.305 | 1.725 | 3.23 | [-0.504, -0.483, 0.716] | 193:0.39; 474:0.38; 521:0.38 | 0.34 | 0.35 | 10 | MultiDomUncert |
-| FLNB (O75369) | Homo sapiens | 2602 | 76.3 | 0.24 | 27.0 | 8.93 | 0.04 | 158 | 55.9 | 35.9 | 0.277 | 2.133 | 2.25 | [0.559, 0.744, -0.367] | 1505:0.44; 2595:0.43; 1409:0.42 | 0.28 | 0.41 | 65 | MultiDomUncert |
+| METTL3 (Q86U44) | Homo sapiens | 580 | 75.4 | 0.29 | 21.9 | 5.07 | 0.23 | 1 | 29.3 | 37.7 | 0.314 | 1.607 | 1.65 | [0.135, -0.346, 0.928] | 93:0.39; 288:0.38; 254:0.38 | 0.62 | 0.38 | 7 | MultiDomUncert |
 
 ### CSV Block
 ```csv
@@ -26,14 +26,14 @@ LMNA (P02545),Homo sapiens,664,76.4,0.31,24.9,2.56,0.26,0,71.2,278.1,0.344,1.194
 YAP1 (P46937),Homo sapiens,504,57.4,0.74,27.5,9.26,0.45,2,23.6,11.4,0.321,1.628,1.99,"[-0.676, 0.732, 0.082]",182:0.38; 241:0.38; 257:0.38,0.93,0.3,5,"LowConf, MultiDomUncert"
 POC5 (Q8NA72),Homo sapiens,575,64.0,0.61,25.6,3.51,0.49,5,87.3,307.4,0.364,0.848,24.69,"[-0.657, -0.161, 0.737]",156:0.38; 247:0.38; 192:0.37,1.0,0.36,2,"LowConf, MultiDomUncert"
 ITGB1 (P05556),Homo sapiens,798,85.9,0.11,18.2,4.9,0.03,10,45.8,94.9,0.305,1.725,3.23,"[-0.504, -0.483, 0.716]",193:0.39; 474:0.38; 521:0.38,0.34,0.35,10,MultiDomUncert
-FLNB (O75369),Homo sapiens,2602,76.3,0.24,27.0,8.93,0.04,158,55.9,35.9,0.277,2.133,2.25,"[0.559, 0.744, -0.367]",1505:0.44; 2595:0.43; 1409:0.42,0.28,0.41,65,MultiDomUncert
+METTL3 (Q86U44),Homo sapiens,580,75.4,0.29,21.9,5.07,0.23,1,29.3,37.7,0.314,1.607,1.65,"[0.135, -0.346, 0.928]",93:0.39; 288:0.38; 254:0.38,0.62,0.38,7,MultiDomUncert
 ```
 
 ## 2. Key Plots Summary
+- `ITGB1_plddt.png`: pLDDT profile for ITGB1
+- `ITGB1_pae.png`: PAE heatmap for ITGB1
 - `POC5_plddt.png`: pLDDT profile for POC5
 - `POC5_pae.png`: PAE heatmap for POC5
-- `FLNB_plddt.png`: pLDDT profile for FLNB
-- `FLNB_pae.png`: PAE heatmap for FLNB
 - `LMNA_plddt.png`: pLDDT profile for LMNA
 - `LMNA_pae.png`: PAE heatmap for LMNA
 
@@ -44,8 +44,8 @@ FLNB (O75369),Homo sapiens,2602,76.3,0.24,27.0,8.93,0.04,158,55.9,35.9,0.277,2.1
 **Family: Cilia,Mechanotransduction**
 - **IFT88**: IFT88: Anisotropy=2.8, pLDDT=76. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
 
-**Family: Cytoskeleton,Segmentation**
-- **FLNB**: FLNB: Anisotropy=2.2, pLDDT=76. Intermediate shape.  Detected 158 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+**Family: Epigenetics,Muscle,ROS**
+- **METTL3**: METTL3: Anisotropy=1.6, pLDDT=75. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
 
 **Family: Mechanotransduction,Adhesion**
 - **ITGB1**: ITGB1: Anisotropy=3.2, pLDDT=86. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: High). Test: Mutate hinge region to test effect on mechanosensitivity.
@@ -71,7 +71,7 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-01-12 22:02:01
-- Code Version: 034980e
+- Date/Time: 2026-01-13 19:14:23
+- Code Version: 43fd3be
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

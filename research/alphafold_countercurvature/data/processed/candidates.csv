@@ -1,0 +1,11 @@
+gene_symbol,source,total_score,D,I,S,E,C,T,R,I_iso,O,E_exp,manual_review_needed,notes
+PIEZO2,"Mechanotransduction,Proprioception",95,0,0,0,0,0,0,0,0,0,0,False,Direct link between gravity sensing (proprioception) and spinal alignment.
+LBX1,"Somite,Muscle,Proprioception",95,0,0,0,0,0,0,0,0,0,0,False,Major genetic driver of AIS with clear mechanistic link to postural tone.
+IFT88,"Cilia,Mechanotransduction",92,0,0,0,0,0,0,0,0,0,0,False,Direct link via PIEZO1-cilia axis.
+PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,0,0,0,0,0,0,0,0,0,0,False,Direct mechanistic link to growth plate asymmetry in scoliosis.
+LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,0,0,0,0,0,0,0,0,0,0,False,Direct link between nuclear mechanotransduction and spinal stability.
+FBN1,"ECM,Mechanotransduction",92,0,0,0,0,0,0,0,0,0,0,False,Major structural determinant of spine elasticity.
+YAP1,"Mechanotransduction,Hippo,Growth_Plate",90,0,0,0,0,0,0,0,0,0,0,False,Central hub of cellular mechanotransduction.
+POC5,"Cilia,Centriole",90,0,0,0,0,0,0,0,0,0,0,False,Direct genetic cause of scoliosis linked to ciliary geometry.
+ITGB1,"Mechanotransduction,Adhesion",90,0,0,0,0,0,0,0,0,0,0,False,Primary gravity sensor at cell-ECM interface.
+METTL3,"Epigenetics,Muscle,ROS",89,0,0,0,0,0,0,0,0,0,0,False,Key epigenetic regulator linking oxidative stress to muscle asymmetry.

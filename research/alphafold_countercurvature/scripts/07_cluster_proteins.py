@@ -17,7 +17,7 @@ sys.path.append(str(repo_root))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
-METRICS_FILE = DATA_DIR / "processed" / "protein_metrics.csv"
+METRICS_FILE = BASE_DIR.parent.parent / "outputs" / "afcc" / "2026-01-09" / "metrics.csv"
 
 def main():
     print("🧩 Running Protein Clustering Analysis...")
@@ -28,6 +28,12 @@ def main():
 
     # Load data
     df = pd.read_csv(METRICS_FILE)
+
+    # Rename columns to match internal feature names
+    df = df.rename(columns={
+        'anisotropy_index': 'anisotropy',
+        'PAE_domain_blockiness_score': 'pae_blockiness'
+    })
 
     # Features for clustering
     features = ['anisotropy', 'pae_blockiness']

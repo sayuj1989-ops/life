@@ -4,11 +4,12 @@ We propose that the robust S-shaped geometry of the spine arises not from passiv
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-{Geodesic curvature deviation metric}{Eigenmode Selection and Spinal Geometry Emergence}
-{A Geodesic Curvature Deviation Metric}
+\subsection{Developmental Information Fields from Morphogenetic Patterning}
+
+\subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{ab}$ is determined by the mass-energy distribution $T_{ab}$. in our context, the information field acts as a source of \emph{information-matter density} $\rho_{I}(s)$ that dictates the target curvature $\kappa_{\mathrm{rest}}(s)$, effectively "shaping" the biological spacetime in which the musculoskeletal system must equilibrate. This field is physically anchored by the structural specificity of developmental transcription factors; for instance, AlphaFold 3 analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) reveals highly conserved amino acid domains (avg. pLDDT $\sim 64.1$) whose structural rigidity provides the necessary binding affinity landscapes to generate the segmented information profiles used in our model.
 
-\subsection{Biological metric and effective energy}
+\subsection{Biological Metric and the Effective Energy Functional}
 
 The central hypothesis of the IEC framework is that developmental information modifies the \emph{effective} metric experienced by the rod's reference manifold. We define a \emph{biological metric} $d\ell_{\mathrm{eff}}^2$ that encodes target geometry via a local dilation factor $g_{\mathrm{eff}}(s)$:
 
@@ -18,9 +19,7 @@ d\ell_{\mathrm{eff}}^2 = g_{\mathrm{eff}}(s)\,ds^2 = \exp\left[2\left(\beta_1 \t
 \end{equation}
 where $\tilde{I}$ is the normalized information field and $\beta_{1,2}$ are dimensionless coupling constants. 
 
-\paragraph{Justification of the functional form:} The exponential form is chosen for several physical and geometric reasons. First, it ensures $g_{\mathrm{eff}} > 0$ for all field configurations, preserving the metric's positivity. Second, it follows the convention of conformal rescaling in differential geometry ($g_{ab} \to e^{2\phi} g_{ab}$), where the scalar field $\phi = \beta_1 \tilde{I} + \beta_2 \partial_s \tilde{I}$ acts as a local conformal factor. In the weak-coupling limit ($\beta_{1,2} \ll 1$), we recover a linear perturbation $g_{\mathrm{eff}} \approx 1 + 2\beta_1 \tilde{I} + 2\beta_2 \partial_s \tilde{I}$, while the full form allows for the large geometric distortions required to model lordotic counter-curvature. We emphasize that this metric is a phenomenological ansatz used to interpret the resulting geometry; the forward mechanical model implements these effects through information-dependent rest states as derived below.
-
-The mechanics of the biological rod are governed by the minimization of a total potential energy $\mathcal{E}_{\mathrm{total}}$ that couples bending, torsion, and extension to the information field and gravity. For a Cosserat rod with centerline $\mathbf{r}(s)$, the full energy functional is:
+{A Geodesic Curvature Deviation Metric}The mechanics of the biological rod are governed by the minimization of a total potential energy $\mathcal{E}_{\mathrm{total}}$ that couples bending, torsion, and extension to the information field and gravity. For a Cosserat rod with centerline $\mathbf{r}(s)$, the full energy functional is:
 
 \begin{equation}
 \mathcal{E}_{\mathrm{total}} = \int_0^L \left[ \frac{1}{2} B_{\mathrm{eff}}(\kappa - \kappa_{\mathrm{rest}})^2 + \frac{1}{2} C_{\mathrm{eff}} \tau^2 + \frac{1}{2} K_{\mathrm{eff}} \varepsilon^2 + \rho A \mathbf{r} \cdot \mathbf{g} \right] ds,

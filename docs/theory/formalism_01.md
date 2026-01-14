@@ -75,6 +75,16 @@ $$ \frac{d\chi_M}{dt} = \alpha (\sigma_{mech} - \sigma_{homeo}) - \beta \chi_M $
     *   $\sigma_{homeo}$: Homeostatic stress setpoint $[ML^{-1}T^{-2}]$.
 *   **Implication**: If unloading occurs ($g \to 0$), $\sigma_{mech}$ drops below $\sigma_{homeo}$, causing $d\chi_M/dt < 0$. $\chi_M$ decays until a new equilibrium is reached or the structure destabilizes.
 
+### 2.5. The Hydration-Shear Coupling Constant ($\beta_H$)
+
+The intervertebral disc exhibits a non-linear coupling where increased osmotic swelling pressure (hydration) reduces torsional stability while increasing axial stiffness. We define $\beta_H$ as the sensitivity of torsional rigidity $GJ$ to hydration state $\phi$.
+
+$$ GJ(\phi) = GJ_0 \left(1 - \beta_H \frac{\phi - \phi_0}{\phi_0}\right) $$
+
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**: A positive $\beta_H$ implies that as the disc swells (e.g., in microgravity unloading), it becomes less resistant to twisting. This creates a "destabilizing swelling" effect.
+*   **Measurable Proxy**: The negative correlation coefficient between T2-weighted MRI signal intensity (proxy for nucleus pulposus water content) and rotational range of motion (ROM) under torque.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -132,6 +142,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Comparative transcriptomics and biomechanics of mice raised in hyper-gravity (2g centrifuge) vs. 1g controls, focusing on ECM synthesis genes (*Col1a1*, *Fbn1*) and paraspinal muscle stiffness.
 *   **Refutation**: If hyper-gravity fails to elicit a proportional upregulation of $\chi_M$ (e.g., muscle/ECM density), the feedback gain $\alpha$ is insufficient to explain spinal stability. (Reference: Shi et al., 2021).
 
+### Test G: The Swelling-Torsion Switch
+*   **Hypothesis**: Microgravity unloading causes disc hyper-hydration ($\phi > \phi_0$), which via $\beta_H$ specifically lowers torsional stiffness ($GJ$) relative to bending stiffness ($EI$), pushing the spine into a buckling regime where $EI/GJ > 1$.
+*   **Data Needed**: Pre- and post-bedrest (60 days) measurements of lumbar torsional stiffness (rotational dynamometry) correlated with disc height increases (MRI).
+*   **Refutation**: If hyper-hydrated discs show *increased* or unchanged torsional stiffness, the model of swelling-induced instability is incorrect. (Reference: Treffel et al., 2016).
+
+### Test H: The Adipogenic Trigger (Metabolic Switch)
+*   **Hypothesis**: The loss of gravitational strain ($\mathcal{B}_g \to \infty$) acts as a signal for paraspinal muscles to switch from myogenesis to adipogenesis to conserve energy, mediated by mitochondrial dysfunction.
+*   **Data Needed**: Lipidomic and transcriptomic profiling of paraspinal muscle biopsies from spaceflight (e.g., OSD-787) showing upregulation of *PPARG* and lipid accumulation pathways concurrent with downregulation of contractile proteins.
+*   **Refutation**: If muscle atrophy is purely proteolytic (ubiquitin-proteasome) without significant lipid replacement or metabolic reprogramming, the "switch" hypothesis is falsified. (Reference: Pandit et al., 2025; Burkhart et al., 2019).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -142,3 +162,6 @@ The theory makes specific predictions about the relationship between genetic ani
 6.  **Bagnat, M., & Gray, R. S. (2020).** "Development of the spine and spinal curvatures." *Development*, 147(23). (Spinal scaling and mechanism).
 7.  **Dupont, S., et al. (2011).** "Role of YAP/TAZ in mechanotransduction." *Nature*, 474(7350). (Mechanotransduction feedback mechanism).
 8.  **Shi, Y., et al. (2021).** "YAP and TAZ in bone development and disease." *Bone Research*, 9. (Bone/ECM synthesis link).
+9.  **Treffel, L., et al. (2016).** "Daily variation in the stature of astronauts during spaceflight." *Journal of Applied Physiology*, 120(2). (Disc swelling evidence).
+10. **Pandit, M., et al. (2025).** "Microgravity Accelerates Skeletal Muscle Degeneration..." *bioRxiv*. (Metabolic switch evidence).
+11. **Burkhart, K., et al. (2019).** "Effects of long-duration spaceflight on paraspinal muscle quality." *Journal of Orthopaedic Research*, 37(10). (Fatty infiltration evidence).

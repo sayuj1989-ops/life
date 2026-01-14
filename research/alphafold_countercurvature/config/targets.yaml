@@ -2,43 +2,32 @@
 
 # General Settings
 organism: "Homo sapiens"
-max_targets: 50  # Cap on total candidates to process
+max_targets: 20  # Focused cycle
 include_controls: true
-n_controls: 5
+n_controls: 1
 
 # Seed Lists
 # These genes are automatically scored with D=2 (Developmental Relevance)
 
 seeds:
+  Scoliosis_Drivers:
+    - LBX1
+    - PTK7
+    - POC5
+    - ADGRG6
+
+  Mechanosensors:
+    - PIEZO2
+
+  Segmentation:
+    - MESP2
+    - HES7
+
   ECM:
-    - COL2A1
-    - ACAN
-    - FBN1
+    - COL11A2
 
-  Cytoskeleton:
-    - ACTB
-    - TUBB
-    - VIM
-
-  Adhesion:
-    - CDH2
-    - ITGB1
-
-  Cilia:
-    - KIF3A
-    - IFT88
-
-  Growth_Plate:
-    - SOX9
-    - PTH1R
-
-  Morphogens:
-    - SHH
-    - BMP4
-
-  # Optional Expansion Sets (controlled by include_* flags below)
+  # Optional Expansion Sets
   expansion_modules:
-    # Legacy or extra modules can go here
     pass: []
 
 # Control Flags

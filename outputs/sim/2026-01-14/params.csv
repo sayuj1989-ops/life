@@ -1,0 +1,4 @@
+Parameter,Value
+chi_kappa,5.0
+chi_tau,0.5
+Description,Sweep Anisotropy Ratio (Lateral/Sagittal Stiffness)

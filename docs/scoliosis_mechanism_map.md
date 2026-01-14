@@ -97,6 +97,25 @@ The Reissner Fiber (RF) is a sub-commissural organ-derived thread that runs thro
 
 ---
 
+## New Pathway: The Nuclear Stiffness Pathway (Lamin A/C)
+
+**Arc Added**: `LMNA` $\rightarrow$ Nuclear Mechanotransduction $\rightarrow$ Myogenic Differentiation.
+
+### Evidence
+The nucleus is not a passive organelle but a critical mechanosensor. Its stiffness, determined largely by Lamin A/C levels, must match the stiffness of the surrounding tissue to ensure proper cell function.
+
+*   **Molecular Actor**: `LMNA` (Lamin A/C). This intermediate filament protein forms the nuclear lamina, providing structural support to the nucleus.
+*   **Process**: **Nuclear Mechanotransduction**. Cells actively sense the stiffness of their environment (e.g., bone vs. fat) and adjust their Lamin A/C levels accordingly. This scaling is gravity-dependent ("Use it or lose it").
+*   **Tissue Property**: **Muscle Quality / Differentiation**. High Lamin A/C levels stabilize the genome and promote myogenic (muscle) differentiation.
+*   **Outcome**: In microgravity or unloaded states, tissue stiffness drops, leading to Lamin A/C degradation. This triggers a "metabolic switch" where stem cells favor adipogenesis (fat formation) over myogenesis. The result is **fatty infiltration** of the paraspinal muscles, weakening the active stabilization ("guy wires") of the spine.
+
+> **Hypothesis**: The "Nuclear Stiffness Gauge" explains why paraspinal muscles rapidly atrophy and turn to fat in spaceflight, accelerating spinal instability.
+
+**Citation**:
+*   *Swift, J., et al. (2013). Nuclear lamin-A scales with tissue stiffness and enhances matrix-directed differentiation. Science, 341(6149), 1240104.* https://doi.org/10.1126/science.1240104
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

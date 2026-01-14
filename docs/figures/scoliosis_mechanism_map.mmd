@@ -11,6 +11,7 @@ graph TD
         YAP[YAP/TAZ<br/>Hippo Pathway]
         PKD2L1[PKD2L1<br/>CSF-Contacting Neurons]
         MMP[MMP1/MMP3<br/>Matrix Metalloproteinases]
+        LMNA[LMNA<br/>Lamin A/C]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -25,6 +26,7 @@ graph TD
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
         Degradation[ECM Degradation<br/>Collagen Breakdown]
+        Nucl_Mech[Nuclear Mechanotransduction<br/>Stiffness Gauge]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -88,6 +90,10 @@ graph TD
     MMP --> Degradation
     Degradation --> Stiffness
 
+    %% NEW ARC: Lamin A/C Stiffness Gauge
+    LMNA --> Nucl_Mech
+    Nucl_Mech --> Muscle_Diff
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -102,7 +108,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,LMNA gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Nucl_Mech process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

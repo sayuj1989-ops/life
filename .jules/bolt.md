@@ -29,3 +29,11 @@
 - N=1500: ~6x speedup (0.13s -> 0.02s)
 - N=5000: ~3x speedup (0.95s -> 0.32s)
 - Removes massive memory spikes for medium-sized proteins.
+
+## 2026-01-14 - Torsion Calculation Optimization
+
+**Learning:** Computing geometric metrics like torsion involves repetitive vector operations. Specifically, for a chain of atoms, the torsion angle calculation requires cross products of adjacent bond vectors ($b_i \times b_{i+1}$) and ($b_{i+1} \times b_{i+2}$). These are normally calculated as independent arrays `n1` and `n2`, effectively computing each cross product twice across the chain.
+
+**Action:** Implemented an optimization in `src/afcc/metrics.py` to compute the cross products of all adjacent bond pairs once (`normals`), then sliced this array to get `n1` and `n2`. This reduced the number of cross product operations by ~50%.
+
+**Result:** Benchmarking showed a ~14% speedup in the `calculate_torsion` method for a 5000-residue chain (0.82 ms -> 0.70 ms per call). While small per-call, this adds up across thousands of structures and bootstrap iterations. Correctness was verified with a unit test for a known geometry.

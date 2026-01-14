@@ -143,12 +143,19 @@ class MetricsAnalyzer:
         if bond_vectors is None:
             bond_vectors = coords[1:] - coords[:-1]
 
-        b1 = bond_vectors[:-2]
-        b2 = bond_vectors[1:-1]
-        b3 = bond_vectors[2:]
+        # Bolt Optimization: Reuse cross products
+        # We compute normals for all adjacent bond pairs once: normals[i] = b[i] x b[i+1]
+        # Then n1 (b_i x b_{i+1}) is normals[:-1]
+        # And n2 (b_{i+1} x b_{i+2}) is normals[1:]
+        # This reduces cross product operations by ~50%
+        normals = np.cross(bond_vectors[:-1], bond_vectors[1:])
 
-        n1 = np.cross(b1, b2)
-        n2 = np.cross(b2, b3)
+        n1 = normals[:-1]
+        n2 = normals[1:]
+
+        # We still need b1 for the sign check: sign_check = dot(b1, n2)
+        # b1 corresponds to bond_vectors[:-2]
+        b1 = bond_vectors[:-2]
 
         n1_norm = np.linalg.norm(n1, axis=1)
         n2_norm = np.linalg.norm(n2, axis=1)

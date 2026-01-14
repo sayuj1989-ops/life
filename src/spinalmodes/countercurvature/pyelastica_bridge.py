@@ -116,6 +116,7 @@ class CounterCurvatureRodSystem:
         base_position: tuple[float, float, float] = (0.0, 0.0, 0.0),
         base_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         normal: tuple[float, float, float] = (0.0, 1.0, 0.0),
+        stiffness_anisotropy: float = 1.0,
     ) -> "CounterCurvatureRodSystem":
         _check_pyelastica()
 
@@ -159,6 +160,12 @@ class CounterCurvatureRodSystem:
         scaling_bend = E_eff_internal / E0
         for k in range(n_elements - 1):
             rod.bend_matrix[..., k] *= scaling_bend[k]
+
+        # Apply stiffness anisotropy
+        # bend_matrix[0, 0] corresponds to lateral stiffness (rotation about d1)
+        # bend_matrix[1, 1] corresponds to sagittal stiffness (rotation about d2)
+        if stiffness_anisotropy != 1.0:
+            rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
 
         # Set rest curvature
         # kappa_rest is now (3, n_points)

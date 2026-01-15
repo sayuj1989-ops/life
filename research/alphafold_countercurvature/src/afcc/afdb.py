@@ -64,12 +64,12 @@ class AlphaFoldFetcher:
                 return entry
         except urllib.error.HTTPError as e:
             if e.code == 404:
-                return None
+                return {"error": "not_found"}
             print(f"   ⚠️  AFDB API Error {e.code}: {e.reason}")
-            return None
+            return {"error": "api_error", "details": str(e)}
         except Exception as e:
             print(f"   ⚠️  Connection Error: {e}")
-            return None
+            return {"error": "connection_error", "details": str(e)}
 
     def _download_file(self, url: str, dest_path: Path) -> bool:
         """Downloads a file with basic retry logic."""
@@ -108,12 +108,31 @@ class AlphaFoldFetcher:
              return {'status': 'skipped'}
 
         print(f"   📡 Fetching metadata for {gene_symbol} ({uniprot_id})...")
-        metadata = self._fetch_metadata(uniprot_id)
+        metadata_res = self._fetch_metadata(uniprot_id)
 
-        if not metadata:
-            print(f"   ❌ Not found in AFDB: {gene_symbol}")
-            self._update_manifest(uniprot_id, gene_symbol, 'not_found_afdb')
-            return {'status': 'not_found'}
+        if not metadata_res or "error" in metadata_res:
+            error_type = metadata_res.get("error") if metadata_res else "unknown"
+
+            if error_type == "not_found":
+                # SAFEGUARD: If we previously had it, a 404 is suspicious (likely network/firewall).
+                # Do not overwrite 'downloaded' with 'not_found'.
+                if not existing.empty and existing.iloc[0]['status'] == 'downloaded':
+                     print(f"   ⚠️  404 received for previously cached {gene_symbol}. Preserving manifest entry.")
+                     return {'status': 'connection_error'} # Treat as error to preserve state
+
+                print(f"   ❌ Not found in AFDB: {gene_symbol}")
+                self._update_manifest(uniprot_id, gene_symbol, 'not_found_afdb')
+                return {'status': 'not_found'}
+            elif error_type == "connection_error":
+                print(f"   ⚠️  Connection failed for {gene_symbol}. Preserving existing status.")
+                # Do NOT update manifest to 'failed' or 'not_found' if it was connection error
+                return {'status': 'connection_error'}
+            else:
+                 print(f"   ⚠️  API/Metadata failed for {gene_symbol}.")
+                 # For other errors, we might want to preserve status too?
+                 return {'status': 'failed'}
+
+        metadata = metadata_res # It's the actual entry dict if no error key
 
         # Extract URLs (Schema tolerant)
         # Look for pdbUrl, cifUrl, etc.

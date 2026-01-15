@@ -1,15 +1,12 @@
 # AFCC Rolling Dashboard
-
 ## 2026-01-06 Refresh
 - Analyzed 10 top candidates.
 - Highest anisotropy: **PTK7** (5.28).
 - Metrics saved to `outputs/afcc/2026-01-06/metrics.csv`.
-
 ## 2026-01-06 Refresh
 - Analyzed 10 top candidates.
 - Highest anisotropy: **PTK7** (5.28).
 - Metrics saved to `outputs/afcc/2026-01-06/metrics.csv`.
-
 ## 2026-01-07 Refresh
 - Analyzed 9 top candidates.
 - Highest anisotropy: **POC5** (4.97).
@@ -18,7 +15,6 @@
     - **POC5** and **PIEZO2** show high anisotropy, suggesting fibrous/extended morphology relevant to mechanotransduction.
     - **FLNB** has many potential hinge candidates (158), indicating flexibility.
     - **FBN1** was not found in AFDB (likely too large), requiring manual retrieval or split-chain analysis.
-
 ## 2026-01-09 Refresh
 - Analyzed 9 top candidates (FBN1 not found).
 - Highest anisotropy: **POC5** (24.7), followed by **PIEZO2** (4.4) and **MESP2** (4.0).
@@ -28,9 +24,7 @@
     - **PIEZO2** maintains high anisotropy (4.4) and rigid rod-like geometry, consistent with its mechanosensing function.
     - **FLNB** exhibits a massive number of potential hinge candidates (158), suggesting it acts as a flexible cross-linker or shock absorber.
 # Bolt-BioFold ⚡ Analysis Report
-
 Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia,Mechanotransduction, Mechanotransduction,Growth_Plate,Ion_Channel, Mechanotransduction,Nucleus,Cytoskeleton, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Epigenetics,Muscle,ROS
-
 ## 1. Results Table
 | Identity | Species | Length | pLDDT_mean | pLDDT_frac_low | PAE_mean | PAE_blockiness | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Principal_Axis | Hotspots | Exposed_Frac | Charged_Patch | Domains | Flags |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -43,7 +37,6 @@ Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia
 | POC5 (Q8NA72) | Homo sapiens | 575 | 64.0 | 0.61 | 25.6 | 3.51 | 0.49 | 5 | 87.3 | 307.4 | 0.364 | 0.848 | 24.69 | [-0.657, -0.161, 0.737] | 156:0.38; 247:0.38; 192:0.37 | 1.0 | 0.36 | 2 | LowConf, MultiDomUncert |
 | ITGB1 (P05556) | Homo sapiens | 798 | 85.9 | 0.11 | 18.2 | 4.9 | 0.03 | 10 | 45.8 | 94.9 | 0.305 | 1.725 | 3.23 | [-0.504, -0.483, 0.716] | 193:0.39; 474:0.38; 521:0.38 | 0.34 | 0.35 | 10 | MultiDomUncert |
 | METTL3 (Q86U44) | Homo sapiens | 580 | 75.4 | 0.29 | 21.9 | 5.07 | 0.23 | 1 | 29.3 | 37.7 | 0.314 | 1.607 | 1.65 | [0.135, -0.346, 0.928] | 93:0.39; 288:0.38; 254:0.38 | 0.62 | 0.38 | 7 | MultiDomUncert |
-
 ### CSV Block
 ```csv
 Identity,Species,Length,pLDDT_mean,pLDDT_frac_low,PAE_mean,PAE_blockiness,Disorder_Proxy,Hinge_Cands,Rg,End_to_End,Curvature,Torsion,Anisotropy,Principal_Axis,Hotspots,Exposed_Frac,Charged_Patch,Domains,Flags
@@ -57,7 +50,6 @@ POC5 (Q8NA72),Homo sapiens,575,64.0,0.61,25.6,3.51,0.49,5,87.3,307.4,0.364,0.848
 ITGB1 (P05556),Homo sapiens,798,85.9,0.11,18.2,4.9,0.03,10,45.8,94.9,0.305,1.725,3.23,"[-0.504, -0.483, 0.716]",193:0.39; 474:0.38; 521:0.38,0.34,0.35,10,MultiDomUncert
 METTL3 (Q86U44),Homo sapiens,580,75.4,0.29,21.9,5.07,0.23,1,29.3,37.7,0.314,1.607,1.65,"[0.135, -0.346, 0.928]",93:0.39; 288:0.38; 254:0.38,0.62,0.38,7,MultiDomUncert
 ```
-
 ## 2. Key Plots Summary
 - `LMNA_plddt.png`: pLDDT profile for LMNA
 - `LMNA_pae.png`: PAE heatmap for LMNA
@@ -65,42 +57,48 @@ METTL3 (Q86U44),Homo sapiens,580,75.4,0.29,21.9,5.07,0.23,1,29.3,37.7,0.314,1.60
 - `ITGB1_pae.png`: PAE heatmap for ITGB1
 - `POC5_plddt.png`: pLDDT profile for POC5
 - `POC5_pae.png`: PAE heatmap for POC5
-
 ## 3. Interpretation
 **Family: Cilia,Centriole**
 - **POC5**: POC5: Anisotropy=24.7, pLDDT=64. Highly extended/fibrous. Warning: Low confidence structure. Detected 5 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Verify fiber formation in vivo; test mechanical stiffness.
-
 **Family: Cilia,Mechanotransduction**
 - **IFT88**: IFT88: Anisotropy=2.8, pLDDT=76. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
 **Family: Epigenetics,Muscle,ROS**
 - **METTL3**: METTL3: Anisotropy=1.6, pLDDT=75. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
 **Family: Mechanotransduction,Adhesion**
 - **ITGB1**: ITGB1: Anisotropy=3.2, pLDDT=86. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: High). Test: Mutate hinge region to test effect on mechanosensitivity.
-
 **Family: Mechanotransduction,Growth_Plate,Ion_Channel**
 - **PIEZO1**: PIEZO1: Anisotropy=3.9, pLDDT=72. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
 **Family: Mechanotransduction,Hippo,Growth_Plate**
 - **YAP1**: YAP1: Anisotropy=2.0, pLDDT=57. Intermediate shape. Warning: Low confidence structure. Detected 2 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
-
 **Family: Mechanotransduction,Nucleus,Cytoskeleton**
 - **LMNA**: LMNA: Anisotropy=4.8, pLDDT=76. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
-
 **Family: Mechanotransduction,Proprioception**
 - **PIEZO2**: PIEZO2: Anisotropy=4.4, pLDDT=79. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
-
 **Family: Somite,Muscle,Proprioception**
 - **LBX1**: LBX1: Anisotropy=2.3, pLDDT=67. Intermediate shape. Warning: Low confidence structure. Standard globular domain, likely biochemical role or node in network. (Conf: Low). Test: Check expression timing relative to spine straightening.
-
-
 ## 4. Best Next Move
 Cluster by geometry and correlate curvature metrics with known phenotype genes.
-
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
 - Date/Time: 2026-01-14 21:36:09
 - Code Version: 4e77d57
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml
+- Network restrictions prevent acquiring new candidate structures.
+- Pipeline logic improved to handle connection failures without corrupting cache.
+- Local environment needs 'seaborn' for full visualization.
+# AFCC Latest Dashboard
+
+## Latest Run: 2026-01-15
+
+### Status: Mixed Results
+
+- **Fetch:** New structures failed (Network).
+- **Cache:** Utilized existing cached structures where available.
+- **Metrics:** Processing attempted on cached data.
+- **Issues:** 'seaborn' dependency missing for full report generation.
+
+### Insights
+- Network restrictions prevent acquiring new candidate structures.
+- Pipeline logic improved to handle connection failures without corrupting cache.
+- Local environment needs 'seaborn' for full visualization.

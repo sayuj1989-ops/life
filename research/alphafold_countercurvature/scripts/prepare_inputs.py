@@ -19,8 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MASTER_CANDIDATES_PATH = repo_root / "data" / "candidates_master.csv"
 OUTPUT_DIR = BASE_DIR / "data" / "processed"
 OUTPUT_FILE = OUTPUT_DIR / "candidates.csv"
+MAPPING_FILE = OUTPUT_DIR / "uniprot_mapping.csv"
 
-# Increased to 50 for clustering analysis
+# Default batch size as per user requirement (limit 20)
 TOP_N = 10
 
 def main():
@@ -75,8 +76,17 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     final_df.to_csv(OUTPUT_FILE, index=False)
 
+    # ⚡ Bolt Optimization: Generate mapping file directly from master list
+    # The master list already has uniprot_id, so we skip the API call in 01_map_to_uniprot.py
+    if 'uniprot_id' in top_candidates.columns:
+        mapping_df = top_candidates[['gene_symbol', 'uniprot_id']].copy()
+        mapping_df.rename(columns={'uniprot_id': 'uniprot_accession'}, inplace=True)
+        mapping_df.to_csv(MAPPING_FILE, index=False)
+        print(f"   ⚡ Generated Uniprot mapping directly (skipping API fetch).")
+
     print(f"✅ Input preparation complete.")
     print(f"📄 Saved {len(final_df)} candidates to: {OUTPUT_FILE}")
+    print(f"📄 Saved mapping to: {MAPPING_FILE}")
     print("\nTop 5 Selected:")
     print(final_df[['gene_symbol', 'source', 'total_score']].head().to_string(index=False))
 

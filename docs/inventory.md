@@ -9,7 +9,7 @@ Analyzed at: 2025-12-20
   - `spinal_modes_analysis/`: Core analysis code and manuscript drafts.
   - `countercurvature/`: Manuscript sections.
   - `alphafold_analysis/`: Protein structure analysis relating to the theory.
-  - `ragflow/`: Integration files for RAG-based analysis.
+  - `archive/ragflow/`: Vendored copy of RAGFlow for experimental analysis.
   - `life`, `life-1`, `biology_research`: Apparent duplicates or previous versions of the workspace.
 - **File Counts:**
   - Python (`.py`): ~887

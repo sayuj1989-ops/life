@@ -16,7 +16,8 @@ This document tracks the daily incremental refactor of the repository towards pu
     - [x] Decide on the canonical source location (likely `src/`).
     - [x] Move top-level packages (`alphafold_analysis`, `countercurvature`) into `src/` or `research/` as appropriate.
         - *Decision*: Moved to `archive/` as they were legacy versions. Active code is in `src/` and `research/alphafold_countercurvature`.
-    - [ ] Clarify `ragflow`'s role (vendor code vs. project code) and move/document accordingly.
+    - [x] Clarify `ragflow`'s role (vendor code vs. project code) and move/document accordingly.
+        - *Decision*: Moved to `archive/ragflow/` as it is a vendored tool not currently used in the active pipeline. Added `README_ARCHIVIST.md` to explain its status.
 - [ ] **Root Directory Cleanup**:
     - [ ] Move root-level python scripts (`02_validate_solvers.py`, `benchmark_analysis.py`, etc.) to `scripts/` or `tests/`.
     - [ ] Consolidate configuration files where possible.

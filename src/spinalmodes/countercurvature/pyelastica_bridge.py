@@ -84,6 +84,29 @@ class ActiveMuscleTorques(ea.NoForces):
     def apply_torques(self, system, time: float = 0.0):
         system.external_torques += self.torques
 
+class PinnedBC(ea.ConstraintBase):
+    """
+    Boundary Condition that pins the position of selected nodes (fixes position)
+    but allows free rotation (does not constrain directors).
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+        if not args:
+             raise ValueError("PinnedBC requires fixed position argument (passed via constrained_position_idx).")
+        self.fixed_position = np.array(args[0])
+
+    def constrain_values(self, *args, **kwargs):
+        # Expecting rod as first arg from partial application, but we use *args to be safe
+        if args:
+            rod = args[0]
+            if hasattr(self, 'fixed_position'):
+                rod.position_collection[..., 0] = self.fixed_position
+
+    def constrain_rates(self, *args, **kwargs):
+         if args:
+            rod = args[0]
+            rod.velocity_collection[..., 0] = 0.0
+
 class CounterCurvatureRodSystem:
     def __init__(
         self,
@@ -206,6 +229,7 @@ class CounterCurvatureRodSystem:
         damping_constant: float = 0.5,
         bc_cls: Optional[Type] = None,
         bc_kwargs: Optional[Dict[str, Any]] = None,
+        boundary_condition: str = "fixed",
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -216,16 +240,26 @@ class CounterCurvatureRodSystem:
         system.append(self.rod)
 
         # Constraints
-        if bc_cls is None:
-            # Default to OneEndFixedBC
-            system.constrain(self.rod).using(
-                ea.OneEndFixedBC,
-                constrained_position_idx=(0,),
-                constrained_director_idx=(0,)
-            )
-        else:
+        if bc_cls is not None:
             kwargs = bc_kwargs or {}
             system.constrain(self.rod).using(bc_cls, **kwargs)
+        else:
+            # Configure based on string description
+            if boundary_condition == "fixed":
+                system.constrain(self.rod).using(
+                    ea.OneEndFixedBC,
+                    constrained_position_idx=(0,),
+                    constrained_director_idx=(0,)
+                )
+            elif boundary_condition == "pinned":
+                # Pinned: Position fixed at node 0, Directors free
+                system.constrain(self.rod).using(
+                    PinnedBC,
+                    constrained_position_idx=(0,),
+                    constrained_director_idx=()
+                )
+            else:
+                raise ValueError(f"Unknown boundary_condition: {boundary_condition}. Use 'fixed' or 'pinned'.")
 
         # Gravity
         system.add_forcing_to(self.rod).using(ea.GravityForces, acc_gravity=np.array([0.0, 0.0, -gravity]))

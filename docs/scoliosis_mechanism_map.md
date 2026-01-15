@@ -95,6 +95,24 @@ The Reissner Fiber (RF) is a sub-commissural organ-derived thread that runs thro
 **Citation**:
 *   *Grimes, D. T., Boswell, C. W., et al. (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. Science, 352(6291), 1341-1344.* https://doi.org/10.1126/science.aaf6419
 
+### 10. The Nuclear Stiffness Pathway (Lamin A/C)
+
+**Arc Added**: `LMNA` $\rightarrow$ Adipogenesis $\rightarrow$ Fatty Infiltration $\rightarrow$ Muscle Tone.
+
+### Evidence
+Lamin A/C acts as a "nuclear mechanostat," scaling its levels with tissue stiffness and mechanical stress. In microgravity or unloaded conditions, reduced stress leads to Lamin A/C downregulation. This loss of nuclear stiffness triggers a switch in mesenchymal stem cell differentiation: away from myogenesis (muscle) and towards adipogenesis (fat).
+
+*   **Molecular Actor**: `LMNA` (Lamin A/C).
+*   **Process**: **Adipogenesis Switch**. Low nuclear tension favors the expression of adipogenic markers (e.g., PPARG) over myogenic ones.
+*   **Tissue Property**: **Fatty Infiltration**. Paraspinal muscles are replaced by non-contractile adipose tissue.
+*   **Outcome**: **Asymmetric Muscle Tone**. Fatty infiltration weakens the "guy wires" supporting the spine, leading to collapse.
+
+> **Hypothesis**: The "Nuclear Stiffness Gauge" links gravity directly to cell fate. Loss of gravity = Loss of Lamin = Gain of Fat = Loss of Support.
+
+**Citation**:
+*   *Swift, J., et al. (2013). Nuclear lamin-A scales with tissue stiffness and enhances matrix-directed differentiation. Science, 341(6149), 1240104.*
+*   *Pandit, M., et al. (2025). Microgravity Accelerates Skeletal Muscle Degeneration: Functional and Transcriptomic Insights from a Muscle Lab-on-Chip Model Onboard the ISS. bioRxiv.*
+
 ---
 
 ## Figure

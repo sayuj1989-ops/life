@@ -12,20 +12,28 @@ def validate_solvers():
         import spinalmodes
         print("✓ spinalmodes module found")
         
+        # Track whether any required submodule failed to import
+        import_failed = False
+
         # Check for key solver modules
         try:
             from spinalmodes.countercurvature import pyelastica_bridge
             print("✓ PyElastica bridge module found")
         except ImportError:
             print("! PyElastica bridge not available")
-        
+            import_failed = True
+
         # Check for model
         try:
             from spinalmodes.model import core
             print("✓ Model core module found")
         except ImportError:
             print("! Model core not available")
-        
+            import_failed = True
+
+        if import_failed:
+            print("\n! Solver validation completed with missing required modules")
+            return 1
         print("\n✓ Solver validation completed successfully")
         return 0
         

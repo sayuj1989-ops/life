@@ -5,7 +5,8 @@ import sys
 from pathlib import Path
 
 # Add alphafold_analysis to path
-sys.path.append(str(Path(__file__).parent.parent / "alphafold_analysis"))
+# Adjusted path to point to legacy archive where the script resides
+sys.path.append(str(Path(__file__).parent.parent / "archive/alphafold_analysis_legacy"))
 
 from analyze_bcc_structures import calculate_backbone_curvature
 

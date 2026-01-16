@@ -236,14 +236,18 @@ def compute_alpha_gold_countercurvature_metrics(
     )
     kappa_info = compute_rest_curvature(info, params, sample.kappa_passive_1_per_m)
 
+    # Extract planar component (index 1) for scalar 1D metrics
+    # compute_rest_curvature places the passive curvature in index 1.
+    kappa_info_planar = kappa_info[1]
+
     geo = geodesic_curvature_deviation(
         sample.s_m,
         sample.kappa_passive_1_per_m,
-        kappa_info,
+        kappa_info_planar,
         g_eff,
     )
     metric_dev = compute_effective_metric_deviation(
-        sample.kappa_passive_1_per_m, kappa_info, s=sample.s_m
+        sample.kappa_passive_1_per_m, kappa_info_planar, s=sample.s_m
     )
 
     return {

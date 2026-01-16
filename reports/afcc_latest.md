@@ -104,3 +104,9 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - Code Version: 4e77d57
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml
+
+## 2026-01-16
+- Processed 3/10 candidates.
+- Top candidate for anisotropy: **PIEZO2** (4.44)
+- Average pLDDT: 69.6
+- 7 candidates missing from local archive.

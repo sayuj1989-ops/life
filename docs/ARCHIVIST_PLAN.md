@@ -18,9 +18,9 @@ This document tracks the daily incremental refactor of the repository towards pu
         - *Decision*: Moved to `archive/` as they were legacy versions. Active code is in `src/` and `research/alphafold_countercurvature`.
     - [x] Clarify `ragflow`'s role (vendor code vs. project code) and move/document accordingly.
         - *Decision*: Moved to `archive/ragflow/` as it is a vendored tool not currently used in the active pipeline. Added `README_ARCHIVIST.md` to explain its status.
-- [ ] **Root Directory Cleanup**:
-    - [ ] Move root-level python scripts (`02_validate_solvers.py`, `benchmark_analysis.py`, etc.) to `scripts/` or `tests/`.
-    - [ ] Consolidate configuration files where possible.
+- [x] **Root Directory Cleanup**:
+    - [x] Move root-level python scripts (`02_validate_solvers.py`, `benchmark_analysis.py`, etc.) to `scripts/` or `tests/`.
+    - [x] Consolidate configuration files where possible.
 - [ ] **Data Organization**: Ensure `data/` has a clear structure and `README`.
 - [ ] **Archive Redundant Content**: Identify and move unused code to `archive/`.
 

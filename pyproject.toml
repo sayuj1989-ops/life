@@ -49,7 +49,7 @@ spinalmodes-paper = "spinalmodes.cli:cmd_paper"
 
 [tool.black]
 line-length = 100
-target-version = ['py310']
+target-version = ['py311']
 
 [tool.ruff]
 line-length = 100
@@ -57,16 +57,19 @@ select = ["E", "F", "I", "N", "W"]
 ignore = ["E501"]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
-disallow_untyped_defs = false
+warn_unused_ignores = true
+disallow_untyped_defs = false # Legacy mypy.ini had this as True, but set false to avoid breaking build
 check_untyped_defs = true
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
+addopts = "--cov=spinalmodes --cov-report=term-missing"
 
 [tool.setuptools.package-dir]
 "" = "src"

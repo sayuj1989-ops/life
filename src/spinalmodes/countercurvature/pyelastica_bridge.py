@@ -48,6 +48,14 @@ except ImportError:
         class integrate: pass
 
 @dataclass
+class ProteinRodConfig:
+    """Configuration mapping protein/cluster properties to rod mechanics."""
+    name: str
+    stiffness_anisotropy: float
+    cluster_id: int
+    description: str = ""
+
+@dataclass
 class SimulationResult:
     time: ArrayF64
     centerline: ArrayF64
@@ -121,6 +129,29 @@ class CounterCurvatureRodSystem:
         self.n_elements = rod.n_elems
         self.length = np.sum(rod.rest_lengths)
         self.active_torques = active_torques
+
+    @classmethod
+    def from_protein_config(
+        cls,
+        config: ProteinRodConfig,
+        info: InfoField1D,
+        params: CounterCurvatureParams,
+        length: float,
+        n_elements: int,
+        **kwargs
+    ) -> "CounterCurvatureRodSystem":
+        """
+        Factory method to create a rod system based on protein/cluster configuration.
+        Passes 'stiffness_anisotropy' from the config to the rod generation.
+        """
+        return cls.from_iec(
+            info=info,
+            params=params,
+            length=length,
+            n_elements=n_elements,
+            stiffness_anisotropy=config.stiffness_anisotropy,
+            **kwargs
+        )
 
     @classmethod
     def from_iec(
@@ -309,4 +340,12 @@ class CounterCurvatureRodSystem:
             info_field=self.info_field
         )
 
-__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques"]
+__all__ = [
+    "CounterCurvatureRodSystem",
+    "SimulationResult",
+    "PYELASTICA_AVAILABLE",
+    "ActiveMuscleTorques",
+    "ProteinRodConfig",
+    "CounterCurvatureParams",
+    "InfoField1D",
+]

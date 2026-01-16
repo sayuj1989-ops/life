@@ -78,22 +78,25 @@ The map categorizes the system into four layers:
 
 ---
 
-## New Pathway: The Hydraulic Pathway (PKD2L1/Reissner Fiber)
+### 10. The Urotensin Relay (PKD2L1 / Urp1/2)
 
-**Arc Added**: `CILIA` $\rightarrow$ CSF Sensing $\rightarrow$ Muscle Tone.
+**Arc Added**: `CILIA` $\rightarrow$ CSF Sensing $\rightarrow$ Urp1/2 $\rightarrow$ UTS2R $\rightarrow$ Muscle Tone.
 
-### Evidence
-The Reissner Fiber (RF) is a sub-commissural organ-derived thread that runs through the central canal. Research in zebrafish models has shown that this fiber is essential for maintaining a straight spine.
+*   **Source**: `PKD2L1` (Sensor), `Urp1` / `Urp2` (Peptide Signal), `UTS2R` (Receptor).
+*   **Mechanism**: **CSF-Urotensin Signaling**.
+    1.  Motile cilia generate CSF flow.
+    2.  `PKD2L1` channels on CSF-contacting neurons sense flow dynamics and Reissner Fiber tension.
+    3.  Activation triggers secretion of **Urotensin II-related peptides (Urp1/2)**.
+    4.  Urp1/2 bind to **UTS2R** receptors on paraspinal muscles.
+*   **Property**: **Muscle Tone Balance**. This pathway sets the "gain" for slow-twitch muscle fiber contraction, maintaining symmetric tension.
+*   **Role**: Acts as a "Gravitational Reference". The system requires this chemical signal to maintain straightness against gravity. Loss of Urp1/2 removes the "straightness command," leading to buckling.
+*   **Evidence**: Bearce et al. (2022) demonstrated that Urp1/2 are essential for spinal straightening. In microgravity, alteration of CSF hydrodynamics may downregulate this signal, explaining the loss of paraspinal tone.
 
-*   **Molecular Actor**: `PKD2L1` (Polycystic Kidney Disease 2-Like 1). This is a channel expressed in Cerebrospinal Fluid-contacting Neurons (CSF-cNs) lining the central canal.
-*   **Process**: **CSF Flow Sensing**. Motile cilia generate CSF flow. The Reissner Fiber, under tension, interacts with the cilia of CSF-cNs. Changes in flow or geometry (curvature) alter this interaction, triggering `PKD2L1`.
-*   **Tissue Property**: **Muscle Tone Balance**. The firing of CSF-cNs (typically inhibitory) modulates the local motor neurons controlling paraspinal muscles.
-*   **Outcome**: The RF acts as a "tension reference" or "geometric guide." If the spine curves, the fiber touches the concave side's neurons, inhibiting muscle contraction on that side to restore straightness. Loss of the fiber or the sensor leads to unchecked curvature (scoliosis).
+> **Hypothesis**: This is a "Hydro-Chemical" control loop where CSF flow serves as a proxy for gravitational orientation. The Reissner Fiber functions as a physical "plumb line," and Urp1/2 acts as the transmission signal to the muscle effectors.
 
-> **Hypothesis**: The Reissner Fiber functions as a physical "plumb line" or integral feedback controller ($I$-term), complementing the proportional mechanotransduction ($P$-term) of Piezo channels.
-
-**Citation**:
+**Citations**:
 *   *Grimes, D. T., Boswell, C. W., et al. (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. Science, 352(6291), 1341-1344.* https://doi.org/10.1126/science.aaf6419
+*   *Bearce, E. A., et al. (2022). Urotensin II-related peptides (Urp1 and Urp2) control somitic muscle contraction to straighten the zebrafish body axis. eLife, 11, e78344.* https://doi.org/10.7554/eLife.78344
 
 ---
 

@@ -11,6 +11,8 @@ graph TD
         YAP[YAP/TAZ<br/>Hippo Pathway]
         PKD2L1[PKD2L1<br/>CSF-Contacting Neurons]
         MMP[MMP1/MMP3<br/>Matrix Metalloproteinases]
+        URP[Urp1/2<br/>Urotensin Peptide]
+        UTS2R[UTS2R<br/>Urotensin Receptor]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -82,7 +84,9 @@ graph TD
     %% NEW ARC: CSF/Reissner Fiber
     CILIA --> CSF_Sensing
     PKD2L1 --> CSF_Sensing
-    CSF_Sensing --> Muscle_Tone
+    CSF_Sensing --> URP
+    URP --> UTS2R
+    UTS2R --> Muscle_Tone
 
     %% NEW ARC: MMP Degradation
     MMP --> Degradation
@@ -102,7 +106,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP gene;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R gene;
     class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

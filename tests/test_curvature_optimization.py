@@ -4,8 +4,8 @@ from numpy.lib.stride_tricks import sliding_window_view
 import sys
 from pathlib import Path
 
-# Add alphafold_analysis to path
-sys.path.append(str(Path(__file__).parent.parent / "alphafold_analysis"))
+# Add alphafold_analysis_legacy to path (moved to archive)
+sys.path.append(str(Path(__file__).parent.parent / "archive" / "alphafold_analysis_legacy"))
 
 from analyze_bcc_structures import calculate_backbone_curvature
 

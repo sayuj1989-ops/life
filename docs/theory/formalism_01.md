@@ -85,6 +85,19 @@ $$ GJ(\phi) = GJ_0 \left(1 - \beta_H \frac{\phi - \phi_0}{\phi_0}\right) $$
 *   **Physical Interpretation**: A positive $\beta_H$ implies that as the disc swells (e.g., in microgravity unloading), it becomes less resistant to twisting. This creates a "destabilizing swelling" effect.
 *   **Measurable Proxy**: The negative correlation coefficient between T2-weighted MRI signal intensity (proxy for nucleus pulposus water content) and rotational range of motion (ROM) under torque.
 
+### 2.6. The Nuclear Stiffness Gauge ($\gamma_N$)
+
+$\gamma_N$ quantifies the sensitivity of nuclear stiffness to effective mechanical stress. The nucleus acts as a mechanosensor, stiffening under load to protect chromatin integrity.
+
+$$ E_{nuc}(\sigma) = E_{nuc,0} \left[1 + \gamma_N \left(\frac{\sigma_{eff} - \sigma_0}{\sigma_0}\right)\right] $$
+
+*   **Symbols**:
+    *   $E_{nuc}$: Nuclear Young's modulus $[ML^{-1}T^{-2}]$.
+    *   $\sigma_{eff}$: Effective cytoskeletal stress transmitted to the LINC complex $[ML^{-1}T^{-2}]$.
+    *   $\gamma_N$: **Nuclear Stiffness Gauge** (Dimensionless).
+*   **Physical Interpretation**: A high $\gamma_N$ allows the cell to rapidly tune its mechanical resistance to gravity. In microgravity ($\sigma_{eff} < \sigma_0$), the nucleus softens ($E_{nuc} \to E_{nuc,0}$), potentially altering gene expression.
+*   **Measurable Proxy**: The stoichiometric ratio of **Lamin A to Lamin B** (A:B ratio) measured via quantitative immunofluorescence or Western blot, which scales with tissue stiffness (Swift et al., 2013).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -152,6 +165,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Lipidomic and transcriptomic profiling of paraspinal muscle biopsies from spaceflight (e.g., OSD-787) showing upregulation of *PPARG* and lipid accumulation pathways concurrent with downregulation of contractile proteins.
 *   **Refutation**: If muscle atrophy is purely proteolytic (ubiquitin-proteasome) without significant lipid replacement or metabolic reprogramming, the "switch" hypothesis is falsified. (Reference: Pandit et al., 2025; Burkhart et al., 2019).
 
+### Test I: Lamin-Gravity Scaling
+*   **Hypothesis**: Lamin A:B stoichiometry scales linearly with effective gravitational load ($g_{eff}$). In microgravity ($g \to 0$), the nucleus should soften ($\text{Ratio}_{micro} < \text{Ratio}_{1g}$), decoupling the "strain gauge".
+*   **Data Needed**: Quantitative Lamin A/C and Lamin B abundance from astronauts' blood/biopsy (OSD-665/RR-23) or cell culture in random positioning machines.
+*   **Refutation**: If Lamin A:B ratio is invariant to gravity or increases under unloading, the nuclear stiffness pathway is not the primary mechanotransducer. (Reference: Swift et al., 2013).
+
+### Test J: Chromatin Expansion Limit
+*   **Hypothesis**: Below a critical nuclear stiffness $E_{crit}$ (induced by low gravity), chromatin decompaction (heterochromatin loss) becomes irreversible, triggering aberrant differentiation (e.g., adipogenesis).
+*   **Data Needed**: ATAC-seq or H3K9me3 staining of paraspinal muscle cells under varying substrate stiffnesses or simulated microgravity.
+*   **Refutation**: If chromatin compaction remains stable or increases when $E_{nuc}$ drops below the threshold, the structural connection to gene regulation is falsified. (Reference: Stephens et al., 2017).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -165,3 +188,5 @@ The theory makes specific predictions about the relationship between genetic ani
 9.  **Treffel, L., et al. (2016).** "Daily variation in the stature of astronauts during spaceflight." *Journal of Applied Physiology*, 120(2). (Disc swelling evidence).
 10. **Pandit, M., et al. (2025).** "Microgravity Accelerates Skeletal Muscle Degeneration..." *bioRxiv*. (Metabolic switch evidence).
 11. **Burkhart, K., et al. (2019).** "Effects of long-duration spaceflight on paraspinal muscle quality." *Journal of Orthopaedic Research*, 37(10). (Fatty infiltration evidence).
+12. **Swift, J., et al. (2013).** "Nuclear lamin-A scales with tissue stiffness and enhances matrix-directed differentiation." *Science*, 341(6149). (Lamin A scaling law).
+13. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(2). (Chromatin mechanics).

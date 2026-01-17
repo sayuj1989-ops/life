@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns # Removed to avoid new dependencies
 import json
 import datetime
 import subprocess
@@ -45,7 +45,10 @@ def plot_pae_heatmap(pae_path, gene, output_path):
             return False
 
         plt.figure(figsize=(8, 6))
-        sns.heatmap(pae, cmap='Greens_r', vmin=0, vmax=30, cbar_kws={'label': 'Expected Error (Å)'})
+        # Use matplotlib imshow instead of seaborn heatmap
+        plt.imshow(pae, cmap='Greens_r', vmin=0, vmax=30, aspect='equal')
+        cbar = plt.colorbar()
+        cbar.set_label('Expected Error (Å)')
         plt.title(f"PAE Heatmap: {gene}")
         plt.xlabel("Residue Index")
         plt.ylabel("Residue Index")

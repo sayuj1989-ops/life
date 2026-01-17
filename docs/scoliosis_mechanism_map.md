@@ -100,6 +100,26 @@ The map categorizes the system into four layers:
 
 ---
 
+### 11. The Neuro-Inflammatory Pathway (GFAP)
+
+**Arc Added**: `CILIA` $\rightarrow$ Inflammation $\rightarrow$ CSF Sensing.
+
+*   **Source**: `GFAP` (Glial Fibrillary Acidic Protein).
+*   **Mechanism**: **Reactive Astrogliosis**.
+    1.  Ciliary dysfunction (e.g., in `POC5` or `DNAH5` mutants) triggers a neuro-inflammatory response in the ependymal cells and Subcommissural Organ (SCO).
+    2.  This manifests as upregulation of **GFAP** (Astrogliosis).
+    3.  Inflammation disrupts the secretion or aggregation of the **Reissner Fiber (RF)**.
+*   **Property**: **Muscle Tone Balance** (via the Urotensin Relay).
+*   **Role**: The inflammatory response acts as "noise" or "jamming" that blocks the gravitational reference signal from the RF.
+*   **Evidence**: Djebar et al. (2024) showed that reactive astrogliosis is not just a symptom but a driver; reducing inflammation rescues the spinal curvature even in the presence of ciliary defects.
+
+> **Hypothesis**: This links the "immunity" and "geometry" systems. Biological Counter-Curvature requires a "quiet" neuro-inflammatory environment to sense gravity accurately.
+
+**Citations**:
+*   *Djebar, M., et al. (2024). Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction. eLife, 13, RP96831.* https://doi.org/10.7554/eLife.96831
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

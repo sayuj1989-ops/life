@@ -13,6 +13,7 @@ graph TD
         MMP[MMP1/MMP3<br/>Matrix Metalloproteinases]
         URP[Urp1/2<br/>Urotensin Peptide]
         UTS2R[UTS2R<br/>Urotensin Receptor]
+        GFAP[GFAP<br/>Glial Fibrillary Acidic Protein]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -27,6 +28,7 @@ graph TD
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
         Degradation[ECM Degradation<br/>Collagen Breakdown]
+        Inflammation[Reactive Astrogliosis<br/>SCO Dysfunction]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -92,6 +94,11 @@ graph TD
     MMP --> Degradation
     Degradation --> Stiffness
 
+    %% NEW ARC: Neuro-Inflammation (Djebar et al 2024)
+    CILIA --> Inflammation
+    GFAP -.-> Inflammation
+    Inflammation -- "Disrupts RF" --> CSF_Sensing
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -106,7 +113,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Inflammation process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

@@ -17,7 +17,7 @@ sys.path.append(str(repo_root))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
-METRICS_FILE = BASE_DIR.parent.parent / "outputs" / "afcc" / "2026-01-14" / "metrics.csv"
+METRICS_FILE = BASE_DIR / "outputs" / "afcc" / "2026-01-12" / "metrics.csv"
 
 def main():
     print("🧩 Running Protein Clustering Analysis...")

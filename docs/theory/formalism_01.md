@@ -96,6 +96,19 @@ $$ E_{nuc} = E_0 \left(1 + \gamma_N \frac{\sigma_{eff} - \sigma_0}{\sigma_0}\rig
 *   **Biological Mechanism**: This coupling is mediated by the phosphorylation and solubility of Lamin A, regulated by cytoskeletal tension (Swift et al., 2013).
 *   **Implication**: In microgravity ($\sigma_{eff} \to 0$), $E_{nuc}$ drops, increasing chromatin mobility and transcriptional noise (entropy).
 
+### 2.7. The Neuro-Fluidic Gain ($\Gamma_{nf}$)
+
+To formalize the "Urotensin Relay" mechanism, we define a gain parameter coupling the Cerebrospinal Fluid (CSF) wall shear stress ($\tau_{csf}$) sensed by channel-contacting neurons (CSF-cNs) to the active paraspinal muscle moment ($M_{bio}$).
+
+$$ M_{bio} = \Gamma_{nf} \cdot (\tau_{csf} - \tau_{crit}) $$
+
+*   **Dimensions**:
+    *   $M_{bio}$: Active moment $[ML^2T^{-2}]$.
+    *   $\tau_{csf}$: Shear stress $[ML^{-1}T^{-2}]$.
+    *   $\Gamma_{nf}$: **Neuro-Fluidic Gain** $[L^3]$.
+*   **Physical Interpretation**: $\Gamma_{nf}$ represents the "effective volumetric amplification" of the sensor signal. It encapsulates the signaling cascade efficiency: PKD2L1 activation $\to$ Urp1/2 secretion $\to$ UTS2R binding $\to$ Muscle Contraction.
+*   **Implication**: In microgravity, the loss of hydrostatic pressure gradient reduces CSF flow velocity and shear stress ($\tau_{csf} < \tau_{crit}$), causing $M_{bio} \to 0$ (loss of tone) even if muscle mass is preserved.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -173,6 +186,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: 4D live-cell imaging of H3K9me3-labeled chromatin foci in cardiomyocytes or myoblasts during parabolic flight (varying $g$).
 *   **Refutation**: If chromatin compaction remains stable despite Lamin A/C downregulation in microgravity, the "Nuclear Stiffness Gauge" does not control genomic architecture. (Reference: Shao et al., 2025).
 
+### Test K: The Flow-Tone Correlation
+*   **Hypothesis**: Paraspinal muscle tone ($M_{bio}$) is linearly dependent on CSF flow shear stress ($\tau_{csf}$) via Urp1/2 signaling.
+*   **Data Needed**: Particle Image Velocimetry (PIV) of CSF flow in the central canal of wild-type vs. *motile cilia* mutants (*cfap298*), correlated with electromyography (EMG) of paraspinal muscles or curvature magnitude.
+*   **Refutation**: If cilia mutants (low flow) exhibit normal paraspinal tone or high Urp1/2 levels, the flow-sensing hypothesis is falsified. (Reference: Bearce et al., 2022).
+
+### Test L: The Exogenous Rescue
+*   **Hypothesis**: If the defect in microgravity is a loss of the signal ($\tau_{csf} \to 0 \implies \text{Urp} \downarrow$), then providing the signal exogenously should restore tone ($M_{bio}$) and prevent curvature, independent of gravity.
+*   **Data Needed**: Spinal curvature and muscle structure analysis of zebrafish larvae raised in a clinostat (simulated microgravity) treated with synthetic Urp1 peptide vs. vehicle control.
+*   **Refutation**: If Urp1 supplementation fails to rescue spinal straightness in unloaded conditions, the primary driver of deformity is not the Urotensin Relay (e.g., it might be direct myocyte mechanosensing). (Reference: Djebar et al., 2024).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -188,3 +211,5 @@ The theory makes specific predictions about the relationship between genetic ani
 11. **Burkhart, K., et al. (2019).** "Effects of long-duration spaceflight on paraspinal muscle quality." *Journal of Orthopaedic Research*, 37(10). (Fatty infiltration evidence).
 12. **Swift, J., et al. (2013).** "Nuclear lamin-A scales with tissue stiffness and enhances matrix-directed differentiation." *Science*, 341(6149). (Foundational paper for the Nuclear Stiffness Gauge).
 13. **Shao, Y., et al. (2025).** "Mitochondrial ROS production drives cytoskeletal collapse and nuclear softening in microgravity." *Cell Systems*, 12. (Links metabolic stress to nuclear mechanics).
+14. **Bearce, E. A., et al. (2022).** "Urotensin II-related peptides, Urp1 and Urp2, control zebrafish spine morphology." *PLoS Genetics*, 18(12). (Establishes the CSF-Urotensin-Spine pathway).
+15. **Djebar, M., et al. (2024).** "Reissner fiber-induced urotensin signaling governs body straightening in zebrafish." *Current Biology*. (Demonstrates the active straightening mechanism).

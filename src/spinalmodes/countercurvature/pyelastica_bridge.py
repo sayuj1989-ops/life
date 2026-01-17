@@ -22,6 +22,7 @@ from .coupling import (
     compute_rest_curvature,
 )
 from .info_fields import InfoField1D
+from .scoliosis_metrics import compute_scoliosis_metrics, ScoliosisMetrics
 
 ArrayF64 = NDArray[np.float64]
 
@@ -66,6 +67,56 @@ class SimulationResult:
     def torsion(self) -> ArrayF64:
         """Returns the torsion (kappa[2])."""
         return self.kappa[..., 2]
+
+    def compute_final_metrics(self) -> Dict[str, float]:
+        """Compute scalar metrics for the final state of the simulation.
+
+        Returns:
+            Dict containing:
+                - max_curvature: Maximum curvature magnitude.
+                - max_torsion: Maximum torsion magnitude.
+                - end_to_end_distance: Distance between first and last node.
+                - S_lat: Lateral scoliosis index (from scoliosis_metrics).
+                - cobb_angle: Cobb-like angle (from scoliosis_metrics).
+                - z_tip: Tip deflection in Z (vertical).
+        """
+        if len(self.time) == 0:
+            return {}
+
+        # Use final state
+        pos = self.centerline[-1] # (n_nodes, 3)
+        kappa = self.kappa[-1]    # (n_nodes, 3)
+
+        # Basic geometry
+        end_to_end = np.linalg.norm(pos[-1] - pos[0])
+
+        # Curvature/Torsion metrics
+        # kappa shape (n_nodes, 3). Bending is first two components.
+        bending_mag = np.linalg.norm(kappa[:, :2], axis=1)
+        max_curvature = float(np.max(bending_mag))
+
+        torsion_mag = np.abs(kappa[:, 2])
+        max_torsion = float(np.max(torsion_mag))
+
+        # Scoliosis metrics
+        # Assuming rod is vertical along Z.
+        # Longitudinal = Z (index 2).
+        # Lateral = X (index 0). Y (index 1) is sagittal depth.
+        z_coord = pos[:, 2]
+        x_coord = pos[:, 0]
+
+        scol_metrics = compute_scoliosis_metrics(z_coord, x_coord)
+
+        return {
+            "max_curvature": max_curvature,
+            "max_torsion": max_torsion,
+            "end_to_end_distance": float(end_to_end),
+            "S_lat": scol_metrics.S_lat,
+            "cobb_angle": scol_metrics.cobb_like_deg,
+            "z_tip": float(pos[-1, 2]),
+            "x_tip": float(pos[-1, 0]),
+            "y_tip": float(pos[-1, 1]),
+        }
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:

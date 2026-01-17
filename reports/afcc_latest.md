@@ -110,3 +110,9 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - Top candidate for anisotropy: **PIEZO2** (4.44)
 - Average pLDDT: 69.6
 - 7 candidates missing from local archive.
+
+## 2026-01-17 Refresh
+- Analyzed 18 top candidates.
+- Highest anisotropy: **PIEZO2** (4.44).
+- Average pLDDT: 66.6.
+- Metrics saved to `outputs/afcc/2026-01-17/metrics.csv`.

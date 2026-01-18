@@ -1,10 +1,18 @@
 """
 Minimal reproducible experiment for PyElastica rod simulation.
 
-This script maps protein/ECM-inspired parameters (stiffness anisotropy)
+This script maps protein/ECM-inspired parameters (stiffness anisotropy, boundary conditions)
 to emergent curvature/torsion outputs using a vertical rod model (spine-like).
 
-It runs a parameter sweep over stiffness anisotropy and prints a metrics table.
+Biological Context:
+- Stiffness Anisotropy: Maps to protein clusters.
+    - Low Anisotropy (~1.0): "Signaling Blocks" (Cluster 1, e.g., YAP1) - Isotropic stiffness.
+    - High Anisotropy (>5.0): "Tension Rods" (Cluster 0, e.g., POC5) - Highly directional stiffness.
+- Boundary Conditions:
+    - Fixed: Sacrum fully constrained (clamped).
+    - Pinned: Sacrum allows rotation (moment-free), testing stability without base moment support.
+
+It runs a parameter sweep and prints a metrics table.
 """
 
 import sys
@@ -27,109 +35,105 @@ from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 
 def run_experiment():
     print("Running minimal PyElastica experiment...")
-    print("Goal: Map stiffness anisotropy to emergent curvature/torsion.")
+    print("Goal: Map stiffness anisotropy & BCs to emergent curvature/torsion.")
 
     # Experiment parameters
-    anisotropies = [0.1, 0.5, 1.0, 2.0, 5.0, 10.0]
+    # High anisotropy = Cluster 0 (Tension Rods), Low = Cluster 1 (Signaling Blocks)
+    anisotropies = [1.0, 10.0]
+    boundary_conditions = ["fixed", "pinned"]
 
     # Rod parameters (approximate spine scale)
     length = 0.5  # meters
     radius = 0.01 # meters
-    n_elements = 50
+    n_elements = 30 # Reduced for speed
     E0 = 1e6      # Pa (soft tissue/cartilage range)
     rho = 1000.0  # kg/m^3
     gravity = 9.81
 
     # Time parameters
-    final_time = 2.0
-    dt = 1e-5 # Stable time step
+    final_time = 1.0 # Reduced for speed
+    dt = 4e-5 # Larger step, checked for stability with n=30
 
-    # Results storage
-    results_table = []
+    print("-" * 130)
+    print(f"{'Context':<25} | {'BC':<6} | {'Aniso':<6} | {'Max Curv':<10} | {'Max Tor':<10} | {'S_lat':<8} | {'Cobb':<6} | {'Time (s)':<8} | {'Mem (MB)':<8}")
+    print("-" * 130)
 
-    print("-" * 110)
-    print(f"{'Anisotropy':<12} | {'Max Curv':<10} | {'Max Torsion':<12} | {'Y Tip (m)':<10} | {'S_lat':<8} | {'Cobb (deg)':<10} | {'Time (s)':<10} | {'Mem (MB)':<10}")
-    print("-" * 110)
+    for bc in boundary_conditions:
+        for anisotropy in anisotropies:
+            # Determine biological label
+            if anisotropy < 2.0:
+                label = "Cluster 1 (Blocks)"
+            else:
+                label = "Cluster 0 (Rods)"
 
-    for anisotropy in anisotropies:
-        # Start tracking memory
-        tracemalloc.start()
-        t0 = time.time()
+            # Start tracking memory
+            tracemalloc.start()
+            t0 = time.time()
 
-        # 1. Setup Information Field
-        s = np.linspace(0, length, n_elements + 1)
-        I = 0.5 + 0.1 * np.exp(-0.5 * ((s - 0.6*length)/(0.1*length))**2)
-        dIds = np.gradient(I, s)
-        info = InfoField1D(s=s, I=I, dIds=dIds)
+            # 1. Setup Information Field
+            s = np.linspace(0, length, n_elements + 1)
+            # Gaussian bump info field representing localized signaling
+            I = 0.5 + 0.1 * np.exp(-0.5 * ((s - 0.6*length)/(0.1*length))**2)
+            dIds = np.gradient(I, s)
+            info = InfoField1D(s=s, I=I, dIds=dIds)
 
-        # 2. Setup Coupling Parameters
-        params = CounterCurvatureParams(
-            chi_kappa=5.0,
-            chi_E=0.0,
-            chi_M=0.0,
-            scale_length=length
-        )
+            # 2. Setup Coupling Parameters
+            params = CounterCurvatureParams(
+                chi_kappa=5.0, # Growth gain
+                chi_E=0.0,
+                chi_M=0.0,
+                scale_length=length
+            )
 
-        # 3. Setup Geometric Curvature (kappa_gen)
-        # Constant curvature about d1 to induce bending in Y-Z plane.
-        # Stiffness Anisotropy scales stiffness about d1.
-        kappa_gen = np.zeros((3, n_elements + 1))
-        kappa_gen[0, :] = 2.0 # 1/m
+            # 3. Setup Geometric Curvature (kappa_gen)
+            # Constant curvature about d1 to induce bending in Y-Z plane.
+            kappa_gen = np.zeros((3, n_elements + 1))
+            kappa_gen[0, :] = 2.0 # 1/m initial rest curvature preference
 
-        # 4. Create Rod System
-        rod_system = CounterCurvatureRodSystem.from_iec(
-            info=info,
-            params=params,
-            length=length,
-            n_elements=n_elements,
-            E0=E0,
-            rho=rho,
-            radius=radius,
-            kappa_gen=kappa_gen,
-            gravity=gravity,
-            base_position=(0.0, 0.0, 0.0),
-            base_direction=(0.0, 0.0, 1.0), # Vertical
-            normal=(1.0, 0.0, 0.0),         # Normal in X
-            stiffness_anisotropy=anisotropy
-        )
+            # 4. Create Rod System
+            rod_system = CounterCurvatureRodSystem.from_iec(
+                info=info,
+                params=params,
+                length=length,
+                n_elements=n_elements,
+                E0=E0,
+                rho=rho,
+                radius=radius,
+                kappa_gen=kappa_gen,
+                gravity=gravity,
+                base_position=(0.0, 0.0, 0.0),
+                base_direction=(0.0, 0.0, 1.0), # Vertical
+                normal=(1.0, 0.0, 0.0),         # Normal in X
+                stiffness_anisotropy=anisotropy
+            )
 
-        # 5. Run Simulation
-        result = rod_system.run_simulation(
-            final_time=final_time,
-            dt=dt,
-            save_every=5000,
-            gravity=gravity,
-            boundary_condition="fixed"
-        )
+            # 5. Run Simulation
+            result = rod_system.run_simulation(
+                final_time=final_time,
+                dt=dt,
+                save_every=2000,
+                gravity=gravity,
+                boundary_condition=bc
+            )
 
-        t1 = time.time()
-        current, peak = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
+            t1 = time.time()
+            current, peak = tracemalloc.get_traced_memory()
+            tracemalloc.stop()
 
-        runtime = t1 - t0
-        peak_mb = peak / (1024 * 1024)
+            runtime = t1 - t0
+            peak_mb = peak / (1024 * 1024)
 
-        # 6. Compute Metrics
-        metrics = result.compute_final_metrics()
+            # 6. Compute Metrics
+            metrics = result.compute_final_metrics()
 
-        # 7. Store and Print
-        res_row = {
-            "anisotropy": anisotropy,
-            "metrics": metrics,
-            "runtime": runtime,
-            "peak_memory_mb": peak_mb
-        }
-        results_table.append(res_row)
+            max_torsion = metrics.get('max_torsion', 0.0)
+            max_curvature = metrics.get('max_curvature', 0.0)
+            s_lat = metrics.get('S_lat', 0.0)
+            cobb = metrics.get('cobb_angle', 0.0)
 
-        y_tip = metrics.get('y_tip', 0.0)
-        max_torsion = metrics.get('max_torsion', 0.0)
-        max_curvature = metrics.get('max_curvature', 0.0)
-        s_lat = metrics.get('S_lat', 0.0)
-        cobb = metrics.get('cobb_angle', 0.0)
+            print(f"{label:<25} | {bc:<6} | {anisotropy:<6.1f} | {max_curvature:<10.4f} | {max_torsion:<10.4f} | {s_lat:<8.4f} | {cobb:<6.2f} | {runtime:<8.2f} | {peak_mb:<8.2f}")
 
-        print(f"{anisotropy:<12.2f} | {max_curvature:<10.4f} | {max_torsion:<12.4f} | {y_tip:<10.4f} | {s_lat:<8.4f} | {cobb:<10.4f} | {runtime:<10.4f} | {peak_mb:<10.2f}")
-
-    print("-" * 110)
+    print("-" * 130)
     print("Experiment complete.")
 
 if __name__ == "__main__":

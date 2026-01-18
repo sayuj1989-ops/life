@@ -96,6 +96,16 @@ $$ E_{nuc} = E_0 \left(1 + \gamma_N \frac{\sigma_{eff} - \sigma_0}{\sigma_0}\rig
 *   **Biological Mechanism**: This coupling is mediated by the phosphorylation and solubility of Lamin A, regulated by cytoskeletal tension (Swift et al., 2013).
 *   **Implication**: In microgravity ($\sigma_{eff} \to 0$), $E_{nuc}$ drops, increasing chromatin mobility and transcriptional noise (entropy).
 
+### 2.7. The Vector-Scalar Fidelity ($\Phi_{VS}$)
+
+We propose that the organism distinguishes "up" from "pressure" by integrating two distinct sensory streams: a **Vector Stream** (directional shear/strain, e.g., cilia, LINC complex) and a **Scalar Stream** (isotropic stress/osmolarity, e.g., Piezo channels).
+
+$$ \Phi_{VS} = \frac{|\mathbf{S}_{vec}|}{S_{scalar}} $$
+
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**: A coherence metric. In 1g, both vector and scalar inputs are high ($\Phi_{VS} \approx 1$). In microgravity, the vector input vanishes ($g \to 0$) while scalar pressure persists or increases ($S_{scalar} > 0$), leading to $\Phi_{VS} \to 0$. We postulate that active moment generation requires $\Phi_{VS} > \Phi_{crit}$.
+*   **Measurable Proxy**: The ratio of localized vector signaling (e.g., ciliary Urp1 expression or nuclear aspect ratio) to global scalar signaling (e.g., Piezo2 expression or nuclear volume).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -173,6 +183,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: 4D live-cell imaging of H3K9me3-labeled chromatin foci in cardiomyocytes or myoblasts during parabolic flight (varying $g$).
 *   **Refutation**: If chromatin compaction remains stable despite Lamin A/C downregulation in microgravity, the "Nuclear Stiffness Gauge" does not control genomic architecture. (Reference: Shao et al., 2025).
 
+### Test K: The Mismatch Rescue
+*   **Hypothesis**: Restoring the vector component ($\mathbf{S}_{vec}$) artificially in microgravity should rescue spinal tone ($\chi_M$) even if the scalar component remains "unloaded".
+*   **Data Needed**: Spinal curvature and stiffness in zebrafish larvae raised in simulated microgravity (clinostat) but treated with magnetic tweezers to apply directional force to otoliths or cilia.
+*   **Refutation**: If artificial directional force fails to rescue the phenotype, the system does not rely on a vector-scalar coincidence detector. (Reference: Bearce et al., 2022).
+
+### Test L: The Scalar Overload
+*   **Hypothesis**: Artificially increasing the scalar signal ($S_{scalar}$) in 1g (thereby lowering $\Phi_{VS}$) should mimic the microgravity phenotype (flattening/atrophy).
+*   **Data Needed**: Spinal geometry of organisms treated with Piezo1/2 agonists (e.g., Yoda1) to simulate "scalar noise" or subjected to osmotic swelling, monitoring for loss of counter-curvature.
+*   **Refutation**: If scalar overload leads to hypertrophy rather than atrophy (confusion), the "Mismatch" theory is incorrect. (Reference: Djebar et al., 2024).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -188,3 +208,6 @@ The theory makes specific predictions about the relationship between genetic ani
 11. **Burkhart, K., et al. (2019).** "Effects of long-duration spaceflight on paraspinal muscle quality." *Journal of Orthopaedic Research*, 37(10). (Fatty infiltration evidence).
 12. **Swift, J., et al. (2013).** "Nuclear lamin-A scales with tissue stiffness and enhances matrix-directed differentiation." *Science*, 341(6149). (Foundational paper for the Nuclear Stiffness Gauge).
 13. **Shao, Y., et al. (2025).** "Mitochondrial ROS production drives cytoskeletal collapse and nuclear softening in microgravity." *Cell Systems*, 12. (Links metabolic stress to nuclear mechanics).
+14. **Bearce, E. A., et al. (2022).** "Urotensin II-related peptides, Urp1 and Urp2, control zebrafish spine morphology." *eLife*, 11. (Identifies the specific vector signal carried by CSF flow).
+15. **Djebar, M., et al. (2024).** "Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction." *eLife*, 13. (Links sensory mismatch to inflammatory remodeling).
+16. **Touchstone, H., et al. (2019).** "Recovery of stem cell proliferation by low intensity vibration under simulated microgravity requires LINC complex." *npj Microgravity*, 5. (Demonstrates vector input rescue).

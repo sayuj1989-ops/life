@@ -1,13 +1,13 @@
 gene_symbol,source,total_score,D,I,S,E,C,T,R,I_iso,O,E_exp,manual_review_needed,notes
-PIEZO2,"Mechanotransduction,Proprioception",95,0,0,0,0,0,0,0,0,0,0,False,Direct link between gravity sensing (proprioception) and spinal alignment.
-PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,0,0,0,0,0,0,0,0,0,0,False,Direct mechanistic link to growth plate asymmetry in scoliosis.
-YAP1,"Mechanotransduction,Hippo,Growth_Plate",90,0,0,0,0,0,0,0,0,0,0,False,Central hub of cellular mechanotransduction.
+PIEZO2,"Mechanotransduction,Proprioception, Default Seed List",95,0,0,0,0,0,0,0,0,0,0,False,Direct link between gravity sensing (proprioception) and spinal alignment.
+PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel, Default Seed List",92,0,0,0,0,0,0,0,0,0,0,False,Direct mechanistic link to growth plate asymmetry in scoliosis.
+YAP1,"Mechanotransduction,Hippo,Growth_Plate, Default Seed List",90,0,0,0,0,0,0,0,0,0,0,False,Central hub of cellular mechanotransduction.
 MESP2,"Segmentation,Somite",88,0,0,0,0,0,0,0,0,0,0,False,Critical for vertebral segmentation integrity.
 PAX1,"Segmentation,Somite",88,0,0,0,0,0,0,0,0,0,0,False,Essential for vertebral structural integrity.
 TBX6,"Segmentation,Somite",85,0,0,0,0,0,0,0,0,0,0,False,Fundamental to vertebral segmentation symmetry.
 DLL3,"Segmentation,Notch",85,0,0,0,0,0,0,0,0,0,0,False,Notch ligand essential for somite boundaries.
 HES7,"Segmentation,Notch,Somite",85,0,0,0,0,0,0,0,0,0,0,False,Proven segmentation defect link to spinal malformation.
-COL2A1,"ECM,Growth_Plate",85,0,0,0,0,0,0,0,0,0,0,False,Primary gravity-resisting molecule in the spine.
+COL2A1,"ECM,Growth_Plate, Default Seed List",85,0,0,0,0,0,0,0,0,0,0,False,Primary gravity-resisting molecule in the spine.
 NOTCH1,"Segmentation,Signaling",85,0,0,0,0,0,0,0,0,0,0,False,Critical for vertebral segmentation timing.
 SOX9,"Growth_Plate,Transcription_Factor",85,0,0,0,0,0,0,0,0,0,0,False,Master regulator of gravity-resisting tissue.
 NOTCH2,"Segmentation,Signaling",85,0,0,0,0,0,0,0,0,0,0,False,Linked to vertebral segmentation and bone mass.
@@ -17,3 +17,19 @@ RUNX2,"Bone,Mechanotransduction",80,0,0,0,0,0,0,0,0,0,0,False,Master regulator o
 WNT3A,"Signaling,Bone",75,0,0,0,0,0,0,0,0,0,0,False,Key signaling pathway in bone mechanobiology.
 SIRT1,"Signaling,Muscle,Metabolism",72,0,0,0,0,0,0,0,0,0,0,False,Metabolic regulator of muscle response to unloading.
 HOXB1,"Development,Segmentation",70,0,0,0,0,0,0,0,0,0,0,False,Positional identity gene.
+LBX1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+IFT88,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+FBN1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+POC5,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+ITGB1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+KIF3A,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+ACAN,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+LMNA,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+FLNA,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+SMAD3,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+NF1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+COL1A1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+DMD,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+DNAH11,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+TWIST1,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle
+RHOA,Default Seed List,0,0,0,0,0,0,0,0,0,0,0,False,Added for Bolt-BioFold cycle

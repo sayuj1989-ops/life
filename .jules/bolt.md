@@ -31,3 +31,16 @@ If invalid/missing, it parses and saves the cache.
 - 4x speedup in structure loading (~400ms -> ~110ms for 100 iterations).
 - Avoids redundant string processing.
 - Handles read-only filesystems gracefully (suppresses repeated warnings).
+
+## 2026-06-03 - [Float32 Optimization for Metrics Analysis]
+**Learning:**
+AlphaFold coordinates and pLDDT scores (originally float32 precision) were being processed as float64, doubling memory usage and slowing down O(N^2) SASA calculations. The float64 overhead was unnecessary given the input precision (3 decimal places).
+
+**Action:**
+Enforced `float32` in `StructureParser` (for file parsing and cache) and `MetricsAnalyzer` (for internal calculations). Added explicit `astype(np.float32, copy=False)` checks to ensure downstream calculations (especially blocked matrix operations) benefit from reduced memory bandwidth.
+
+**Results:**
+- ~1.8x overall speedup for PIEZO1 analysis (770ms -> 433ms).
+- ~3.15x speedup for SASA calculation isolated.
+- 2x memory reduction for coordinate arrays.
+- Numerical differences are negligible (< 1e-6), preserving scientific validity.

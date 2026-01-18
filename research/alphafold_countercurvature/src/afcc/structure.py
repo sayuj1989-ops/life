@@ -90,8 +90,9 @@ class StructureParser:
             if not coords_list:
                 return None, None, None
 
-            coords_arr = np.array(coords_list)
-            plddt_arr = np.array(plddt_list)
+            # ⚡ Bolt Optimization: Use float32 to save memory and speed up calculations
+            coords_arr = np.array(coords_list, dtype=np.float32)
+            plddt_arr = np.array(plddt_list, dtype=np.float32)
             resnames_arr = np.array(resnames_list)
 
             # ⚡ Bolt Optimization: Save cache for next time
@@ -143,7 +144,7 @@ class StructureParser:
                             plddts.append(sum(bfactors) / len(bfactors))
                             resnames.append(residue.get_resname().upper())
 
-        return np.array(coords), np.array(plddts), np.array(resnames)
+        return np.array(coords, dtype=np.float32), np.array(plddts, dtype=np.float32), np.array(resnames)
 
     def parse_pae(self, pae_path: Path) -> Optional[np.ndarray]:
         """

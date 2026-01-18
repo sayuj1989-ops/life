@@ -25,6 +25,6 @@ Analyzed at: 2025-12-20
 ## Initial Classification
 
 - **Foundations:** `draft_theory_BCC.md`, `longevity_gravity_connection.md`, `LONGEVITY_FRAMEWORK.md`.
-- **Methods:** `src/spinalmodes`, `models/`, `alphafold_analysis/`.
+- **Methods:** `src/spinalmodes`. (Legacy: `archive/legacy_models/`, `archive/alphafold_analysis_legacy/`).
 - **Applications:** `outputs/`, `experiments/`.
 - **Summaries:** `MANUSCRIPT_SUMMARY.md`, `PEER_REVIEW_SUMMARY.md`, `STANCE_ON_LONGEVITY.md` (if exists).

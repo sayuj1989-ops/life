@@ -10,7 +10,7 @@ To build, formalize, test, and write the theory of **Biological Counter-Curvatur
 ### Phase 1: Concept & Toy Mathematical Models
 **Goal:** Establish the theoretical framework and mathematical language.
 - [ ] Create `docs/concept_map_countercurvature.md`: Define entities (cilia, HOX, PAX), processes, and mathematical objects.
-- [ ] Draft `models/toy_curvature_model.py`: Simple Python script demonstrating a "sagging" beam vs. a "counter-curving" beam.
+- [x] Draft `models/toy_curvature_model.py`: Simple Python script demonstrating a "sagging" beam vs. a "counter-curving" beam. (Moved to `archive/legacy_models/`)
 - [ ] Formulate the Energy Functional: Define $E[\kappa(s)]$ including gravity, bending, and cost terms.
 - [ ] Define Riemannian & Lorentzian metric analogies in LaTeX/Markdown.
 
@@ -45,7 +45,7 @@ To build, formalize, test, and write the theory of **Biological Counter-Curvatur
 
 ## Directory Structure
 - `docs/`: Concepts, plans, manuscript drafts.
-- `models/`: Python implementations of rod mechanics and growth.
+- `archive/legacy_models/`: Legacy Python implementations of rod mechanics and growth.
 - `notebooks/`: Exploratory analysis and figure generation.
 - `data_schemas/`: JSON/YAML definitions of expected data formats.
 - `figures/`: Output for manuscript.

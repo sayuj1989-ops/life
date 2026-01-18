@@ -76,12 +76,7 @@ The map categorizes the system into four layers:
 *   **Role**: Under normal conditions, this facilitates remodeling. However, in microgravity or pathological unloading, uncontrolled upregulation leads to rapid softening of the intervertebral discs.
 *   **Evidence**: Microgravity significantly upregulates `MMP1`, `MMP3`, and `TIMP1`, driving the degeneration of annulus fibrosus cells (*Chen et al., 2025*). This explains the "softening" observed in astronauts and bed-rest patients.
 
----
-
 ### 10. The Urotensin Relay (PKD2L1 / Urp1/2)
-
-**Arc Added**: `CILIA` $\rightarrow$ CSF Sensing $\rightarrow$ Urp1/2 $\rightarrow$ UTS2R $\rightarrow$ Muscle Tone.
-
 *   **Source**: `PKD2L1` (Sensor), `Urp1` / `Urp2` (Peptide Signal), `UTS2R` (Receptor).
 *   **Mechanism**: **CSF-Urotensin Signaling**.
     1.  Motile cilia generate CSF flow.
@@ -90,13 +85,28 @@ The map categorizes the system into four layers:
     4.  Urp1/2 bind to **UTS2R** receptors on paraspinal muscles.
 *   **Property**: **Muscle Tone Balance**. This pathway sets the "gain" for slow-twitch muscle fiber contraction, maintaining symmetric tension.
 *   **Role**: Acts as a "Gravitational Reference". The system requires this chemical signal to maintain straightness against gravity. Loss of Urp1/2 removes the "straightness command," leading to buckling.
-*   **Evidence**: Bearce et al. (2022) demonstrated that Urp1/2 are essential for spinal straightening. In microgravity, alteration of CSF hydrodynamics may downregulate this signal, explaining the loss of paraspinal tone.
+*   **Evidence**: Bearce et al. (2022) demonstrated that Urp1/2 are essential for spinal straightening.
 
-> **Hypothesis**: This is a "Hydro-Chemical" control loop where CSF flow serves as a proxy for gravitational orientation. The Reissner Fiber functions as a physical "plumb line," and Urp1/2 acts as the transmission signal to the muscle effectors.
+---
+
+### 11. The Neuro-Inflammatory Pathway (Reactive Astrogliosis)
+
+**Arc Added**: `CILIA` (or genetic defect) $\rightarrow$ Inflammation $\rightarrow$ Muscle Tone (Asymmetric Torque).
+
+*   **Source**: Genetic defects in Cilia/Transition Zone genes (`Rpgrip1l`, `Cep290`) or loss of flow sensing.
+*   **Mechanism**: **Reactive Astrogliosis**.
+    1.  Loss of ciliary function or flow sensing is interpreted as a "wound" or sensory failure.
+    2.  Ependymal cells and radial glia in the ventricular zone (especially the Subcommissural Organ) upregulate **GFAP** and **Annexin A2**.
+    3.  Recruitment of immune cells (macrophages/microglia).
+    4.  This "repair" response generates pathological torque, likely via fibrosis or asymmetric signaling to paraspinal muscles.
+*   **Property**: **Muscle Tone Balance / Asymmetry**. The inflammation acts as an active disruptor of symmetry.
+*   **Role**: A "Frustrated Repair" mechanism. In the **Counter-Curvature** framework, this represents the system trying to generate a restoring torque ($\tau_{bio}$) to fix a perceived geometric error. However, because the sensory input is faulty (or gravity is absent), this "corrective" torque becomes pathological, driving the spine into a spiral rather than straightening it. It is, effectively, a **runaway counter-curvature response**.
+*   **Evidence**: *Djebar et al. (2024)* showed that scoliosis in ciliary mutants is driven by this inflammatory response; treating with antioxidants (NACET) reduced both astrogliosis and curve penetrance.
+
+> **Hypothesis**: In microgravity, the loss of the gravitational vector might similarly trigger this "Astrogliosis Repair Mode," leading to inflammation-driven deformity even in genetically normal astronauts.
 
 **Citations**:
-*   *Grimes, D. T., Boswell, C. W., et al. (2016). Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature. Science, 352(6291), 1341-1344.* https://doi.org/10.1126/science.aaf6419
-*   *Bearce, E. A., et al. (2022). Urotensin II-related peptides (Urp1 and Urp2) control somitic muscle contraction to straighten the zebrafish body axis. eLife, 11, e78344.* https://doi.org/10.7554/eLife.78344
+*   *Djebar, M., et al. (2024). Reactive astrogliosis is a key driver of scoliosis in zebrafish ciliary mutants. eLife.* https://doi.org/10.7554/eLife.96831
 
 ---
 

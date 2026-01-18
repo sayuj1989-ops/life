@@ -27,6 +27,7 @@ graph TD
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
         Degradation[ECM Degradation<br/>Collagen Breakdown]
+        Inflammation[Reactive Astrogliosis<br/>GFAP/Immune Recruitment]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -92,6 +93,10 @@ graph TD
     MMP --> Degradation
     Degradation --> Stiffness
 
+    %% NEW ARC: Neuro-Inflammatory (Astrogliosis)
+    CILIA --> Inflammation
+    Inflammation --> Muscle_Tone
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -107,6 +112,6 @@ graph TD
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
     class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation process;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Inflammation process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

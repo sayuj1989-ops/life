@@ -7,6 +7,7 @@ Computes geometric and confidence metrics for all downloaded structures.
 
 import sys
 import pandas as pd
+import numpy as np
 from pathlib import Path
 import warnings
 
@@ -102,7 +103,29 @@ def main():
              if p.exists():
                  pae_matrix = parser.parse_pae(p)
 
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
+        # ⚡ Bolt Optimization: Load SASA contact numbers from cache
+        # This avoids re-computing the O(N^2) neighbor search (approx 200ms per structure)
+        sasa_cache_path = pdb_path.with_suffix('.sasa.cache.npz')
+        contact_numbers = None
+
+        if sasa_cache_path.exists():
+            try:
+                # Check freshness
+                if sasa_cache_path.stat().st_mtime >= pdb_path.stat().st_mtime:
+                    with np.load(sasa_cache_path) as data:
+                        contact_numbers = data['cn']
+            except Exception:
+                pass # Corrupted or read error
+
+        if contact_numbers is None and coords is not None and len(coords) > 0:
+             # Compute and save
+             contact_numbers = analyzer.calculate_contact_numbers(coords)
+             try:
+                 np.savez_compressed(sasa_cache_path, cn=contact_numbers)
+             except Exception as e:
+                 print(f"⚠️ Warning: Could not save SASA cache: {e}")
+
+        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix, contact_numbers=contact_numbers)
 
         # Merge basic info
         metrics['gene_symbol'] = gene

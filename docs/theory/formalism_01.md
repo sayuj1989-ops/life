@@ -106,6 +106,22 @@ $$ \Phi_{VS} = \frac{|\mathbf{S}_{vec}|}{S_{scalar}} $$
 *   **Physical Interpretation**: A coherence metric. In 1g, both vector and scalar inputs are high ($\Phi_{VS} \approx 1$). In microgravity, the vector input vanishes ($g \to 0$) while scalar pressure persists or increases ($S_{scalar} > 0$), leading to $\Phi_{VS} \to 0$. We postulate that active moment generation requires $\Phi_{VS} > \Phi_{crit}$.
 *   **Measurable Proxy**: The ratio of localized vector signaling (e.g., ciliary Urp1 expression or nuclear aspect ratio) to global scalar signaling (e.g., Piezo2 expression or nuclear volume).
 
+### 2.8. The Cytoskeletal Stability Criterion ($\Psi_{MT}$)
+
+We posit that the stability of the microtubule network ($\Psi_{MT}$), which provides the structural rigidity for the cell to exert torque ($\mathbf{M}_{bio}$), is actively controlled by a "kill-switch" coupled to the Vector-Scalar Fidelity ($\Phi_{VS}$).
+
+$$ \frac{d\Psi_{MT}}{dt} = \sigma_{poly} - \Psi_{MT} \left( \delta_{basal} + \delta_{active} \cdot \mathcal{S}(\Phi_{crit} - \Phi_{VS}) \right) $$
+
+*   **Symbols**:
+    *   $\Psi_{MT}$: Normalized microtubule linear density $[1]$ (relative to homeostatic baseline).
+    *   $\sigma_{poly}$: Constant polymerization rate $[T^{-1}]$.
+    *   $\delta_{basal}$: Natural turnover rate $[T^{-1}]$.
+    *   $\delta_{active}$: Enhanced depolymerization rate triggered by the "kill-switch" $[T^{-1}]$.
+    *   $\mathcal{S}(x)$: Sigmoid activation function, $\mathcal{S}(x) \approx 1$ if $x > 0$ (mismatch detected), $\mathcal{S}(x) \approx 0$ otherwise.
+    *   $\Phi_{crit}$: Critical fidelity threshold (dimensionless).
+*   **Physical Interpretation**: In 1g, $\Phi_{VS} \gg \Phi_{crit}$, so the switch is off. In microgravity, $\Phi_{VS} \to 0$, triggering the switch. The cilia, acting as vector sensors, detect the loss of gravity and actively signal for microtubule disassembly (Shi et al., 2020). This reduces the cell's effective stiffness ($E \propto \Psi_{MT}$) to "soften" the tissue in preparation for a new (lower) load state, inadvertently causing spinal collapse (Grimm et al., 2014).
+*   **Measurable Proxy**: The ratio of detyrosinated (stable) to tyrosinated (dynamic) tubulin in paraspinal muscles, or the count of primary cilia in osteoblasts/myoblasts.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -193,6 +209,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal geometry of organisms treated with Piezo1/2 agonists (e.g., Yoda1) to simulate "scalar noise" or subjected to osmotic swelling, monitoring for loss of counter-curvature.
 *   **Refutation**: If scalar overload leads to hypertrophy rather than atrophy (confusion), the "Mismatch" theory is incorrect. (Reference: Djebar et al., 2024).
 
+### Test M: The Stabilizer Rescue
+*   **Hypothesis**: If the cytoskeletal collapse is an active signaling event ($\delta_{active}$) rather than passive thermodynamic disassembly, pharmacologically stabilizing microtubules should prevent the atrophy phenotype even in microgravity ($\Phi_{VS} \approx 0$).
+*   **Data Needed**: Stiffness measurements and morphology of myotubes or osteoblasts cultured in simulated microgravity (clinostat) treated with Epothilone B (stabilizer) vs. vehicle.
+*   **Refutation**: If stabilization fails to preserve cellular stiffness and morphology, the "Active Kill-Switch" hypothesis is falsified in favor of a passive unloading model. (Reference: Shi et al., 2020).
+
+### Test N: The Threshold Titration
+*   **Hypothesis**: The switch from stable to collapsing cytoskeleton occurs at a specific gravity threshold $g_{crit}$ corresponding to $\Phi_{crit}$, rather than linearly.
+*   **Data Needed**: Polymerized tubulin fraction in cells cultured at fractional gravity levels (0g, 0.16g, 0.38g, 1g) using a centrifuge.
+*   **Refutation**: If $\Psi_{MT}$ scales linearly with $g$ rather than exhibiting a sigmoidal phase transition, the "Binary Switch" model is incorrect.
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -211,3 +237,5 @@ The theory makes specific predictions about the relationship between genetic ani
 14. **Bearce, E. A., et al. (2022).** "Urotensin II-related peptides, Urp1 and Urp2, control zebrafish spine morphology." *eLife*, 11. (Identifies the specific vector signal carried by CSF flow).
 15. **Djebar, M., et al. (2024).** "Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction." *eLife*, 13. (Links sensory mismatch to inflammatory remodeling).
 16. **Touchstone, H., et al. (2019).** "Recovery of stem cell proliferation by low intensity vibration under simulated microgravity requires LINC complex." *npj Microgravity*, 5. (Demonstrates vector input rescue).
+17. **Shi, W., et al. (2020).** "Primary cilia act as microgravity sensors by depolymerizing microtubules to inhibit osteoblastic differentiation and mineralization." *Bone*, 136. (Identifies the ciliary "kill-switch" mechanism).
+18. **Grimm, D., et al. (2014).** "The impact of microgravity on the cytoskeleton of the human cell." *BioMed Research International*, 2014. (General review of cytoskeletal collapse).

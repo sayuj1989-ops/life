@@ -13,9 +13,11 @@ graph TD
         MMP[MMP1/MMP3<br/>Matrix Metalloproteinases]
         URP[Urp1/2<br/>Urotensin Peptide]
         UTS2R[UTS2R<br/>Urotensin Receptor]
+        GFAP[GFAP<br/>Glial Activation]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
+        Astrogliosis[Reactive Astrogliosis<br/>Neuroinflammation]
         Region[Regionalization<br/>Segment Identity]
         ECM_Assembly[ECM Assembly<br/>Fibrillogenesis]
         Nucl_Shuttle[Nuclear Shuttling<br/>Transcriptional Switch]
@@ -92,6 +94,11 @@ graph TD
     MMP --> Degradation
     Degradation --> Stiffness
 
+    %% NEW ARC: Neuro-Inflammatory Pathway
+    CILIA --> Astrogliosis
+    GFAP --> Astrogliosis
+    Astrogliosis --> Muscle_Tone
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -106,7 +113,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

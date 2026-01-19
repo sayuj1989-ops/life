@@ -100,6 +100,26 @@ The map categorizes the system into four layers:
 
 ---
 
+### 11. The Neuro-Inflammatory Pathway (Astrogliosis)
+
+**Arc Added**: `CILIA` $\rightarrow$ Astrogliosis $\rightarrow$ Muscle Tone.
+
+*   **Source**: `GFAP` (Glial Fibrillary Acidic Protein).
+*   **Mechanism**: **Reactive Astrogliosis**.
+    1.  Ciliary dysfunction in the spinal cord triggers a stress response.
+    2.  Astrocytes become reactive (upregulation of `GFAP`) and secrete pro-inflammatory cytokines.
+    3.  This neuroinflammation disrupts the sensory integration circuits in the spinal cord.
+*   **Property**: **Muscle Tone Balance**.
+*   **Role**: **Signal Integrity**. The counter-curvature system relies on clean sensory data to maintain symmetric muscle tone. Astrogliosis introduces "noise" or distortion into this signal, causing the system to overcompensate with asymmetric torque.
+*   **Evidence**: Djebar et al. (2024) demonstrated that in ciliary mutants, astrogliosis is the primary driver of curvature. Crucially, blocking the inflammation (without restoring cilia) rescued the spinal straightness, proving that the inflammatory response—not the ciliary loss itself—is the direct cause of the deformity.
+
+> **Hypothesis**: This represents a "Frustrated Repair" mechanism. The system detects a fault (ciliary loss) and attempts to repair it via inflammation, but this response inadvertently destabilizes the mechanical control loop.
+
+**Citations**:
+*   *Djebar, M., et al. (2024). Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction. eLife, 13, RP96831.* https://doi.org/10.7554/eLife.96831
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

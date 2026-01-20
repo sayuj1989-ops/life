@@ -14,6 +14,8 @@ graph TD
         URP[Urp1/2<br/>Urotensin Peptide]
         UTS2R[UTS2R<br/>Urotensin Receptor]
         GFAP[GFAP<br/>Glial Activation]
+        VIM[Vimentin<br/>Tension Sensor]
+        LAMIN[LMNA<br/>Nuclear Stiffness]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -29,6 +31,8 @@ graph TD
         Disc_Maint[Disc Maintenance<br/>Annulus Fibrosis Fusion]
         PCP_Sig[PCP Signaling<br/>Wnt Pathway]
         Degradation[ECM Degradation<br/>Collagen Breakdown]
+        mtROS[Mitochondrial ROS<br/>Oxidative Signal]
+        Adipogenesis[Adipogenesis<br/>Fatty Infiltration]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -99,6 +103,12 @@ graph TD
     GFAP --> Astrogliosis
     Astrogliosis --> Muscle_Tone
 
+    %% NEW ARC: Vimentin-ROS Metabolic Switch
+    VIM --> mtROS
+    mtROS -- "Oxidizes" --> LAMIN
+    LAMIN -- "Softness" --> Adipogenesis
+    Adipogenesis --> Muscle_Tone
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -113,7 +123,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis process;
+    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis process;
     class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

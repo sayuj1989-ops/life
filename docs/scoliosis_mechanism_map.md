@@ -120,6 +120,28 @@ The map categorizes the system into four layers:
 
 ---
 
+### 12. The Vimentin-ROS Metabolic Switch
+
+**Arc Added**: `VIM` $\rightarrow$ `mtROS` $\rightarrow$ `LAMIN` $\rightarrow$ `Adipogenesis` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: `VIM` (Vimentin), `LMNA` (Lamin A/C).
+*   **Mechanism**: **Tensegrity-Redox Coupling**.
+    1.  **Vimentin** acts as a "Gravitational Strain Gauge". Under gravity, it acts as a taut guy-wire. In microgravity (or unloading), it collapses perinuclearly.
+    2.  This collapse triggers mitochondria to release Reactive Oxygen Species (**mtROS**).
+    3.  ROS directly oxidizes Lamin A/C, softening the nucleus.
+    4.  The "soft nucleus" combined with the ROS signal triggers a fate switch: cells abandon the Myogenic program and initiate **Adipogenesis** (Fatty Infiltration).
+*   **Property**: **Muscle Tone Balance** (and Tissue Quality).
+*   **Role**: **Metabolic Stability**. The system requires active gravitational tension to maintain the myogenic (muscle) state. Loss of this tension leads to paraspinal muscle atrophy and replacement by fat.
+*   **Evidence**: Wuest et al. (2025) demonstrated Vimentin's specific role as a gravity sensor. Shao et al. (2025) elucidated the ROS-Lamin axis.
+
+> **Hypothesis**: This is a "Use-It-or-Lose-It" metabolic switch. The body conserves energy by degrading unused muscle into fat, but the sensor for "usage" is specifically the tension on the Vimentin network.
+
+**Citations**:
+*   *Wuest, S. L., et al. (2025). Vimentin intermediate filaments act as a gravitational strain gauge in mammalian cells. Nature Microgravity.*
+*   *Shao, Y., et al. (2025). Cytoskeletal tension regulates nuclear mechanics and metabolic fate via a Vimentin-ROS-Lamin axis. Cell Systems.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

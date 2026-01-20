@@ -231,7 +231,88 @@ class MetricsAnalyzer:
         blockiness = mean_inter / mean_intra
         return {'pae_mean': float(pae_mean), 'pae_blockiness': float(blockiness), 'predicted_domain_segments': predicted_domain_segments}
 
-    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None, pae_matrix: np.ndarray = None) -> Dict[str, Any]:
+    def calculate_contact_numbers(self, coords: np.ndarray, threshold: float = 10.0) -> np.ndarray:
+        """
+        Calculates contact numbers (number of neighbors within threshold) for each residue.
+        Uses blocked matrix algebra with bounding box pruning.
+
+        Args:
+            coords: (N, 3) coordinates
+            threshold: distance threshold (default 10.0)
+
+        Returns:
+            cn: (N,) integer array of contact counts (excluding self)
+        """
+        if len(coords) == 0:
+            return np.array([], dtype=int)
+
+        n = len(coords)
+        cn = np.zeros(n, dtype=int)
+        sq_norms = np.sum(coords**2, axis=1)
+        threshold_sq = threshold**2
+
+        # Smaller block size (500) allows better spatial pruning granularity
+        block_size = 500
+
+        # Pre-calculate block bounds
+        num_blocks = (n + block_size - 1) // block_size
+        block_bounds = []
+
+        # First pass: compute bounds for all blocks
+        for k in range(num_blocks):
+            start = k * block_size
+            end = min(start + block_size, n)
+            b = coords[start:end]
+            if len(b) > 0:
+                b_min = np.min(b, axis=0)
+                b_max = np.max(b, axis=0)
+                block_bounds.append((b_min, b_max))
+            else:
+                block_bounds.append((np.zeros(3), np.zeros(3)))
+
+        threshold_plus_margin = threshold
+
+        for i in range(num_blocks):
+            i_start = i * block_size
+            i_end = min(i_start + block_size, n)
+            if i_start >= n: continue
+
+            b_i = coords[i_start:i_end]
+            min_i, max_i = block_bounds[i]
+            sq_norms_i = sq_norms[i_start:i_end, np.newaxis]
+
+            for j in range(num_blocks):
+                # Pruning check: bounding box distance
+                min_j, max_j = block_bounds[j]
+
+                d_x = max(0, min_j[0] - max_i[0], min_i[0] - max_j[0])
+                if d_x > threshold_plus_margin: continue
+
+                d_y = max(0, min_j[1] - max_i[1], min_i[1] - max_j[1])
+                if d_y > threshold_plus_margin: continue
+
+                d_z = max(0, min_j[2] - max_i[2], min_i[2] - max_j[2])
+                if d_z > threshold_plus_margin: continue
+
+                j_start = j * block_size
+                j_end = min(j_start + block_size, n)
+                if j_start >= n: continue
+                b_j = coords[j_start:j_end]
+
+                # |A-B|^2 = |A|^2 + |B|^2 - 2A.B
+                block_dot = np.dot(b_i, b_j.T)
+
+                sq_norms_j = sq_norms[j_start:j_end]
+                dists_sq = sq_norms_i + sq_norms_j[np.newaxis, :] - 2 * block_dot
+
+                # Accumulate neighbors
+                cn[i_start:i_end] += np.sum(dists_sq < threshold_sq, axis=1)
+
+        # Subtract 1 to exclude self (since self distance is 0 < 100)
+        cn -= 1
+        return cn
+
+    def analyze_structure(self, structure: Structure = None, plddt_scores: np.ndarray = None, coords: np.ndarray = None, resnames: np.ndarray = None, pae_matrix: np.ndarray = None, contact_numbers: np.ndarray = None) -> Dict[str, Any]:
         """
         Runs all metrics on a structure.
         """
@@ -348,82 +429,18 @@ class MetricsAnalyzer:
             # Replaced cKDTree with pure NumPy for dependency compliance
             # Bolt Optimization 2024-03-24: Use blocked matrix algebra for pairwise distances.
             # Bolt Optimization 2026-01-15: Added bounding box pruning to skip distant blocks.
-            # This avoids O(N*N*3) broadcasting memory spikes and expensive np.linalg.norm loops.
-            # Speedup: ~2.5x for N=4500 (PIEZO1), ~2.5x for N=3000 (VANGL2).
+            # Bolt Optimization 2026-01-20: Refactored into separate method for caching.
 
-            n = len(coords)
-            cn = np.zeros(n, dtype=int)
-            sq_norms = np.sum(coords**2, axis=1)
-            threshold = 10.0
-            threshold_sq = threshold**2
-
-            # Smaller block size (500) allows better spatial pruning granularity
-            block_size = 500
-
-            # Pre-calculate block bounds
-            num_blocks = (n + block_size - 1) // block_size
-            block_bounds = []
-
-            # Use views to avoid copying data where possible, but list of blocks is convenient
-            # for the inner loop access.
-
-            # First pass: compute bounds for all blocks
-            # We iterate to find min/max for each block.
-            for k in range(num_blocks):
-                start = k * block_size
-                end = min(start + block_size, n)
-                # Compute min/max for pruning
-                b = coords[start:end]
-                b_min = np.min(b, axis=0)
-                b_max = np.max(b, axis=0)
-                block_bounds.append((b_min, b_max))
-
-            threshold_plus_margin = threshold
-
-            for i in range(num_blocks):
-                i_start = i * block_size
-                i_end = min(i_start + block_size, n)
-
-                # Get block i data
-                b_i = coords[i_start:i_end]
-                min_i, max_i = block_bounds[i]
-                sq_norms_i = sq_norms[i_start:i_end, np.newaxis]
-
-                for j in range(num_blocks):
-                    # Pruning check: bounding box distance
-                    min_j, max_j = block_bounds[j]
-
-                    # Distance between two AABBs is max(0, min_j - max_i, min_i - max_j) per dimension
-                    d_x = max(0, min_j[0] - max_i[0], min_i[0] - max_j[0])
-                    if d_x > threshold_plus_margin: continue
-
-                    d_y = max(0, min_j[1] - max_i[1], min_i[1] - max_j[1])
-                    if d_y > threshold_plus_margin: continue
-
-                    d_z = max(0, min_j[2] - max_i[2], min_i[2] - max_j[2])
-                    if d_z > threshold_plus_margin: continue
-
-                    # If blocks are close, compute pairwise distances
-                    j_start = j * block_size
-                    j_end = min(j_start + block_size, n)
-                    b_j = coords[j_start:j_end]
-
-                    # |A-B|^2 = |A|^2 + |B|^2 - 2A.B
-                    block_dot = np.dot(b_i, b_j.T)
-
-                    sq_norms_j = sq_norms[j_start:j_end]
-                    dists_sq = sq_norms_i + sq_norms_j[np.newaxis, :] - 2 * block_dot
-
-                    # Accumulate neighbors
-                    cn[i_start:i_end] += np.sum(dists_sq < threshold_sq, axis=1)
-
-            # Subtract 1 to exclude self (since self distance is 0 < 100)
-            cn -= 1
+            if contact_numbers is not None:
+                cn = contact_numbers
+            else:
+                cn = self.calculate_contact_numbers(coords)
 
             n_exposed = np.sum(cn < 15)
-            exposed_fraction = n_exposed / n
+            exposed_fraction = n_exposed / len(coords)
         else:
             exposed_fraction = 0.0
+            cn = np.array([], dtype=int)
 
         # Charged Patch Score
         charged_patch_score = 0.0

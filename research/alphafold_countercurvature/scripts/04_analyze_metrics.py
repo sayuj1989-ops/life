@@ -8,6 +8,7 @@ Computes geometric and confidence metrics for all downloaded structures.
 import sys
 import pandas as pd
 from pathlib import Path
+import numpy as np
 import warnings
 
 # Suppress Bio.PDB warnings
@@ -102,7 +103,40 @@ def main():
              if p.exists():
                  pae_matrix = parser.parse_pae(p)
 
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
+        # ⚡ Bolt Optimization: Cache Contact Numbers (SASA proxy)
+        # This calculation is O(N^2) or O(N log N) and takes significant time for large proteins.
+        # We cache it to avoid recomputation on re-runs or downstream analysis.
+        sasa_cache_path = pdb_path.with_suffix('.sasa.cache.npz')
+        contact_numbers = None
+
+        if sasa_cache_path.exists():
+            try:
+                # Check staleness
+                if sasa_cache_path.stat().st_mtime >= pdb_path.stat().st_mtime:
+                    with np.load(sasa_cache_path) as data:
+                        contact_numbers = data['cn']
+            except Exception:
+                pass # Fallback to compute
+
+        if contact_numbers is None:
+            # Compute and cache
+            if len(coords) > 0:
+                contact_numbers = analyzer.calculate_contact_numbers(coords)
+                try:
+                    np.savez_compressed(sasa_cache_path, cn=contact_numbers)
+                except Exception as e:
+                    print(f"⚠️ Warning: Could not save SASA cache {sasa_cache_path}: {e}")
+            else:
+                contact_numbers = np.array([], dtype=int)
+
+        metrics = analyzer.analyze_structure(
+            structure,
+            plddt,
+            coords=coords,
+            resnames=resnames,
+            pae_matrix=pae_matrix,
+            contact_numbers=contact_numbers
+        )
 
         # Merge basic info
         metrics['gene_symbol'] = gene

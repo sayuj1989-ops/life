@@ -12,7 +12,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Consolidate Legacy Folders**: Move `biology_research`, `life`, `life-1`, `life-paper`, `research_repo` into `archive/`. These appear to be duplicate or older versions of the project.
 - [x] **Fix Typos**: Rename any clearly typoed directories (e.g., `biology_research`) if they are kept or archived.
-- [ ] **Standardize Source Layout**:
+- [x] **Standardize Source Layout**:
     - [x] Decide on the canonical source location (likely `src/`).
     - [x] Move top-level packages (`alphafold_analysis`, `countercurvature`) into `src/` or `research/` as appropriate.
         - *Decision*: Moved to `archive/` as they were legacy versions. Active code is in `src/` and `research/alphafold_countercurvature`.
@@ -22,7 +22,9 @@ This document tracks the daily incremental refactor of the repository towards pu
     - [x] Move root-level python scripts (`02_validate_solvers.py`, `benchmark_analysis.py`, etc.) to `scripts/` or `tests/`.
     - [x] Consolidate configuration files where possible.
 - [x] **Data Organization**: Ensure `data/` has a clear structure and `README`.
-- [ ] **Archive Redundant Content**: Identify and move unused code to `archive/`.
+- [x] **Archive Redundant Content**: Identify and move unused code to `archive/`.
+    - *Action*: Moved `edited_sections/` (failed LLM drafts) to `archive/failed_generations/`.
+    - *Action*: Moved `models/` (legacy toy models) to `archive/legacy_models/`.
 
 ## Phase 2: Documentation (Medium Priority)
 

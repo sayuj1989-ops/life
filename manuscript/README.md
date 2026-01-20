@@ -93,10 +93,11 @@ Figure files are expected in the `figures/` directory, with LaTeX also checking 
 ## Version Notes
 
 ### Sections Evaluation
-The repository contains alternative section versions in `/edited_sections/` with `_v2` suffix. After evaluation:
-- Most v2 sections are empty placeholders or incomplete
-- Current sections in `manuscript/sections/` are complete and comprehensive
-- The existing sections have been retained as the authoritative versions
+The repository previously contained alternative section versions in `/edited_sections/` with `_v2` suffix. After evaluation:
+- Most v2 sections were empty placeholders or incomplete (failed LLM generations).
+- Current sections in `manuscript/sections/` are complete and comprehensive.
+- The existing sections have been retained as the authoritative versions.
+- The failed drafts have been archived to `archive/failed_generations/`.
 
 ### Bibliography Consolidation
 The bibliography has been consolidated from multiple sources to ensure:

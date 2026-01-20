@@ -1,11 +1,11 @@
 gene_symbol,source,total_score
 PIEZO2,Mechanotransduction,95
 LBX1,Somite,95
-IFT88,Cilia,92
 LMNA,Mechanotransduction,92
+IFT88,Cilia,92
 FBN1,ECM,92
-NF1,Signaling,92
 PIEZO1,Mechanotransduction,92
-POC5,Cilia,90
-ITGB1,Mechanotransduction,90
+NF1,Signaling,92
+FLNA,Cytoskeleton,90
 COL1A1,ECM,90
+CEP290,Cilia,90

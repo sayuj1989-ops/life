@@ -106,6 +106,19 @@ $$ \Phi_{VS} = \frac{|\mathbf{S}_{vec}|}{S_{scalar}} $$
 *   **Physical Interpretation**: A coherence metric. In 1g, both vector and scalar inputs are high ($\Phi_{VS} \approx 1$). In microgravity, the vector input vanishes ($g \to 0$) while scalar pressure persists or increases ($S_{scalar} > 0$), leading to $\Phi_{VS} \to 0$. We postulate that active moment generation requires $\Phi_{VS} > \Phi_{crit}$.
 *   **Measurable Proxy**: The ratio of localized vector signaling (e.g., ciliary Urp1 expression or nuclear aspect ratio) to global scalar signaling (e.g., Piezo2 expression or nuclear volume).
 
+### 2.8. The Cytoskeletal Stability Criterion ($\Psi_{MT}$)
+
+We model the stability of the cytoskeletal network (microtubules and intermediate filaments) as an active state maintained by the Vector-Scalar Fidelity, rather than a passive material property. This represents a "kill-switch" mechanism where loss of vector input triggers active depolymerization.
+
+$$ \Psi_{MT} = \Psi_0 \cdot \frac{1}{1 + e^{-k(\Phi_{VS} - \Phi_{crit})}} $$
+
+*   **Dimensions**: $[1]$ (Dimensionless probability of polymerization).
+*   **Physical Interpretation**: A sigmoid switch.
+    *   $\Psi_0$: Baseline stability in 1g.
+    *   $\Phi_{crit}$: Critical fidelity threshold below which the cell interprets the environment as "untenable" or "free-floating," triggering apoptosis or dedifferentiation.
+    *   $k$: The gain of the switch. A high $k$ implies an all-or-nothing response to microgravity.
+*   **Measurable Proxy**: The ratio of polymerized (pellet) to soluble (supernatant) tubulin/vimentin in cell lysates.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -193,6 +206,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal geometry of organisms treated with Piezo1/2 agonists (e.g., Yoda1) to simulate "scalar noise" or subjected to osmotic swelling, monitoring for loss of counter-curvature.
 *   **Refutation**: If scalar overload leads to hypertrophy rather than atrophy (confusion), the "Mismatch" theory is incorrect. (Reference: Djebar et al., 2024).
 
+### Test M: The Stabilizer Rescue
+*   **Hypothesis**: If cytoskeletal collapse in microgravity is a signaling event ($\Psi_{MT} \to 0$) rather than a thermodynamic inevitability, pharmacological stabilization should prevent the downstream "Metabolic Switch" (ROS production).
+*   **Data Needed**: ROS levels and mitochondrial membrane potential in cells cultured in microgravity treated with low-dose Taxol (microtubule stabilizer) or Epothilone B.
+*   **Refutation**: If chemically stabilized cytoskeletons still trigger high ROS and adipogenesis, the metabolic defect is primary, not secondary to cytoskeletal collapse. (Reference: Grimm et al., 2014).
+
+### Test N: The Threshold Titration
+*   **Hypothesis**: The switch behavior of $\Psi_{MT}$ predicts a non-linear response to gravity. There is a specific g-level (between 0g and 1g) where the cytoskeleton abruptly stabilizes.
+*   **Data Needed**: Tubulin polymerization quantification in cells exposed to graded gravity levels (0g, 0.16g, 0.38g, 0.6g, 1g) via centrifuge.
+*   **Refutation**: If polymerization scales linearly with $g$ ($R^2 > 0.95$ for linear fit), the "switch" hypothesis is incorrect. (Reference: Shi et al., 2020).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -211,3 +234,5 @@ The theory makes specific predictions about the relationship between genetic ani
 14. **Bearce, E. A., et al. (2022).** "Urotensin II-related peptides, Urp1 and Urp2, control zebrafish spine morphology." *eLife*, 11. (Identifies the specific vector signal carried by CSF flow).
 15. **Djebar, M., et al. (2024).** "Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction." *eLife*, 13. (Links sensory mismatch to inflammatory remodeling).
 16. **Touchstone, H., et al. (2019).** "Recovery of stem cell proliferation by low intensity vibration under simulated microgravity requires LINC complex." *npj Microgravity*, 5. (Demonstrates vector input rescue).
+17. **Grimm, D., et al. (2014).** "The impact of microgravity on human thyroid carcinoma cells." *Cellular Physiology and Biochemistry*, 33(3). (Evidence of cytoskeletal disruption and apoptosis in microgravity).
+18. **Shi, X., et al. (2020).** "Ciliary signaling in bone development." *Seminars in Cell & Developmental Biology*, 102. (Discusses the vector-sensing role of cilia).

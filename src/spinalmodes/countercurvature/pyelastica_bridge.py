@@ -47,6 +47,8 @@ except ImportError:
         class CallBacks: pass
         class PositionVerlet: pass
         class integrate: pass
+        class ConstraintBase:
+            def __init__(self, **kwargs): pass
 
 @dataclass
 class SimulationResult:
@@ -58,9 +60,6 @@ class SimulationResult:
     @property
     def curvature(self) -> ArrayF64:
         """Returns the bending curvature (norm of kappa[0,1])."""
-        # kappa is (time, n_nodes, 3).
-        # We assume d1, d2 are bending, d3 is torsion.
-        # Norm of first two components.
         return np.linalg.norm(self.kappa[..., :2], axis=-1)
 
     @property
@@ -69,42 +68,20 @@ class SimulationResult:
         return self.kappa[..., 2]
 
     def compute_final_metrics(self) -> Dict[str, float]:
-        """Compute scalar metrics for the final state of the simulation.
-
-        Returns:
-            Dict containing:
-                - max_curvature: Maximum curvature magnitude.
-                - max_torsion: Maximum torsion magnitude.
-                - end_to_end_distance: Distance between first and last node.
-                - S_lat: Lateral scoliosis index (from scoliosis_metrics).
-                - cobb_angle: Cobb-like angle (from scoliosis_metrics).
-                - z_tip: Tip deflection in Z (vertical).
-        """
+        """Compute scalar metrics for the final state of the simulation."""
         if len(self.time) == 0:
             return {}
 
-        # Use final state
         pos = self.centerline[-1] # (n_nodes, 3)
         kappa = self.kappa[-1]    # (n_nodes, 3)
-
-        # Basic geometry
         end_to_end = np.linalg.norm(pos[-1] - pos[0])
-
-        # Curvature/Torsion metrics
-        # kappa shape (n_nodes, 3). Bending is first two components.
         bending_mag = np.linalg.norm(kappa[:, :2], axis=1)
         max_curvature = float(np.max(bending_mag))
-
         torsion_mag = np.abs(kappa[:, 2])
         max_torsion = float(np.max(torsion_mag))
-
-        # Scoliosis metrics
-        # Assuming rod is vertical along Z.
-        # Longitudinal = Z (index 2).
-        # Lateral = X (index 0). Y (index 1) is sagittal depth.
         z_coord = pos[:, 2]
         x_coord = pos[:, 0]
-
+        y_coord = pos[:, 1]
         scol_metrics = compute_scoliosis_metrics(z_coord, x_coord)
 
         return {
@@ -136,27 +113,51 @@ class ActiveMuscleTorques(ea.NoForces):
         system.external_torques += self.torques
 
 class PinnedBC(ea.ConstraintBase):
-    """
-    Boundary Condition that pins the position of selected nodes (fixes position)
-    but allows free rotation (does not constrain directors).
-    """
+    """Boundary Condition that pins the position of selected nodes but allows free rotation."""
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
-        if not args:
-             raise ValueError("PinnedBC requires fixed position argument (passed via constrained_position_idx).")
-        self.fixed_position = np.array(args[0])
+        try:
+            super().__init__(**kwargs)
+            if 'fixed_position' in kwargs:
+                self.fixed_position = np.array(kwargs['fixed_position'])
+            elif len(args) > 0:
+                self.fixed_position = np.array(args[0])
+            else:
+                 # Last ditch: check if 'fixed_pos' or similar was passed?
+                 raise ValueError("PinnedBC requires 'fixed_position' arg or kwarg.")
+        except Exception as e:
+            print(f"PinnedBC Init Failed: {e}")
+            raise
 
-    def constrain_values(self, *args, **kwargs):
-        # Expecting rod as first arg from partial application, but we use *args to be safe
-        if args:
-            rod = args[0]
-            if hasattr(self, 'fixed_position'):
-                rod.position_collection[..., 0] = self.fixed_position
+    def constrain_values(self, system, time):
+        system.position_collection[..., 0] = self.fixed_position
 
-    def constrain_rates(self, *args, **kwargs):
-         if args:
-            rod = args[0]
-            rod.velocity_collection[..., 0] = 0.0
+    def constrain_rates(self, system, time):
+        system.velocity_collection[..., 0] = 0.0
+
+class FixedBC(ea.ConstraintBase):
+    """Boundary Condition that pins position and directors (clamped)."""
+    def __init__(self, *args, **kwargs):
+        try:
+            super().__init__(**kwargs)
+            if 'fixed_position' in kwargs and 'fixed_directors' in kwargs:
+                self.fixed_position = np.array(kwargs['fixed_position'])
+                self.fixed_directors = np.array(kwargs['fixed_directors'])
+            elif len(args) >= 2:
+                self.fixed_position = np.array(args[0])
+                self.fixed_directors = np.array(args[1])
+            else:
+                raise ValueError("FixedBC requires 'fixed_position' and 'fixed_directors'.")
+        except Exception as e:
+            print(f"FixedBC Init Failed: {e}")
+            raise
+
+    def constrain_values(self, system, time):
+        system.position_collection[..., 0] = self.fixed_position
+        system.director_collection[..., 0] = self.fixed_directors
+
+    def constrain_rates(self, system, time):
+        system.velocity_collection[..., 0] = 0.0
+        system.omega_collection[..., 0] = 0.0
 
 class CounterCurvatureRodSystem:
     def __init__(
@@ -172,6 +173,12 @@ class CounterCurvatureRodSystem:
         self.n_elements = rod.n_elems
         self.length = np.sum(rod.rest_lengths)
         self.active_torques = active_torques
+
+    def __repr__(self) -> str:
+        return (
+            f"<CounterCurvatureRodSystem L={self.length:.2f}, n={self.n_elements}, "
+            f"params={self.params}>"
+        )
 
     @classmethod
     def from_iec(
@@ -211,60 +218,40 @@ class CounterCurvatureRodSystem:
         E_eff = compute_effective_stiffness(info, params, E0)
 
         # Interpolate E_eff to element centers for shear matrix modification
-        # s_rod (nodes): [0, ..., L]
-        # s_elements (centers): midpoints of nodes
         s_rod = np.linspace(0, length, n_elements + 1)
         s_elements = 0.5 * (s_rod[:-1] + s_rod[1:])
         E_eff_elements = np.interp(s_elements, info.s, E_eff)
 
         # Scale shear matrix (3, 3, n_elements)
-        # Assuming isotropic scaling of shear modulus with Young's modulus
-        # shear_matrix ~ G ~ E. So we scale by E_eff_elements / E0
         scaling_shear = E_eff_elements / E0
         for k in range(n_elements):
             rod.shear_matrix[..., k] *= scaling_shear[k]
 
         # Interpolate E_eff to Voronoi domains (internal nodes) for bend matrix modification
-        # Voronoi domains are at s_rod[1:-1]
         s_internal = s_rod[1:-1]
         E_eff_internal = np.interp(s_internal, info.s, E_eff)
 
         # Scale bend matrix (3, 3, n_elements - 1)
-        # bend_matrix ~ E * I. So we scale by E_eff_internal / E0
         scaling_bend = E_eff_internal / E0
         for k in range(n_elements - 1):
             rod.bend_matrix[..., k] *= scaling_bend[k]
 
         # Apply stiffness anisotropy
-        # bend_matrix[0, 0] corresponds to lateral stiffness (rotation about d1)
-        # bend_matrix[1, 1] corresponds to sagittal stiffness (rotation about d2)
         if stiffness_anisotropy != 1.0:
             rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
 
         # Set rest curvature
-        # kappa_rest is now (3, n_points)
         kappa_rest = compute_rest_curvature(info, params, kappa_gen if kappa_gen is not None else 0.0)
-
-        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
-        # We need to map kappa_rest (defined on info.s) to s_internal
-        # We need to interpolate each component: (3, n_points) -> (3, n_elements-1)
-        
         rest_kappa = np.zeros((3, n_elements - 1))
         for i in range(3):
             rest_kappa[i, :] = np.interp(s_internal, info.s, kappa_rest[i, :])
-
         rod.rest_kappa[:] = rest_kappa
 
         # Compute active moments (scalar field on nodes) if chi_M != 0
         active_torques = None
         if params.chi_M != 0.0:
             M_active_nodes = compute_active_moments(info, params)
-
-            # Interpolate to elements (where external torques are applied)
             M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
-
-            # Create torque vector (3, n_elements)
-            # Bending in sagittal plane (x-z) with normal y: torque around y-axis (index 1)
             active_torques = np.zeros((3, n_elements))
             active_torques[1, :] = M_active_elems
 
@@ -295,19 +282,28 @@ class CounterCurvatureRodSystem:
             kwargs = bc_kwargs or {}
             system.constrain(self.rod).using(bc_cls, **kwargs)
         else:
-            # Configure based on string description
+            # Capture initial state for BCs
+            pos0 = self.rod.position_collection[..., 0].copy()
+            dirs0 = self.rod.director_collection[..., 0].copy()
+
+            # Use keyword arguments for robustness, since debug_bc.py showed it works.
+            # AND use custom FixedBC class to be safe.
+            # print(f"DEBUG: pos0 shape={pos0.shape}, dirs0 shape={dirs0.shape}")
+
             if boundary_condition == "fixed":
                 system.constrain(self.rod).using(
-                    ea.OneEndFixedBC,
+                    FixedBC,
                     constrained_position_idx=(0,),
-                    constrained_director_idx=(0,)
+                    constrained_director_idx=(0,),
+                    fixed_position=pos0,
+                    fixed_directors=dirs0
                 )
             elif boundary_condition == "pinned":
-                # Pinned: Position fixed at node 0, Directors free
                 system.constrain(self.rod).using(
                     PinnedBC,
                     constrained_position_idx=(0,),
-                    constrained_director_idx=()
+                    constrained_director_idx=(),
+                    fixed_position=pos0
                 )
             else:
                 raise ValueError(f"Unknown boundary_condition: {boundary_condition}. Use 'fixed' or 'pinned'.")
@@ -332,7 +328,6 @@ class CounterCurvatureRodSystem:
                 if current_step % self.every == 0:
                     self.results["time"].append(time)
                     self.results["centerline"].append(system.position_collection.copy().T)
-                    # Save full kappa vector (3, n_elems-1) -> transpose to (n_elems-1, 3)
                     self.results["kappa"].append(system.kappa.copy().T)
 
         results = {"time": [], "centerline": [], "kappa": []}
@@ -342,9 +337,6 @@ class CounterCurvatureRodSystem:
         timestepper = ea.PositionVerlet()
         ea.integrate(timestepper, system, final_time, int(final_time/dt))
 
-        # Pad kappa to match n_nodes (n_elems + 1)
-        # kappa is (time, n_elems-1, 3)
-        # We want (time, n_elems+1, 3)
         kappa_raw = np.array(results["kappa"])
         if len(kappa_raw) > 0:
             n_time, n_internal, n_dim = kappa_raw.shape
@@ -360,4 +352,4 @@ class CounterCurvatureRodSystem:
             info_field=self.info_field
         )
 
-__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques"]
+__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques", "PinnedBC", "FixedBC"]

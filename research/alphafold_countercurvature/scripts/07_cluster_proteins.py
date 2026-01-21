@@ -17,7 +17,7 @@ sys.path.append(str(repo_root))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
-METRICS_FILE = BASE_DIR.parent.parent / "outputs" / "afcc" / "2026-01-14" / "metrics.csv"
+METRICS_FILE = BASE_DIR.parent.parent / "outputs" / "afcc" / "2026-01-20" / "metrics.csv"
 
 def main():
     print("🧩 Running Protein Clustering Analysis...")
@@ -70,7 +70,7 @@ def main():
         # Check enrichment
         if 'source_category' in members.columns:
             sources = members['source_category'].fillna('').str.split(',').explode()
-            top_sources = sources.value_counts().head(3)
+            top_sources = sources.value_counts().head(5)
             print(f"  Top Sources: {top_sources.to_dict()}")
 
         print("  Members:", ", ".join(members['gene_symbol'].tolist()))

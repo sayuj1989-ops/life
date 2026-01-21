@@ -6,6 +6,6 @@ IFT88,Cilia,92
 FBN1,ECM,92
 PIEZO1,Mechanotransduction,92
 NF1,Signaling,92
-FLNA,Cytoskeleton,90
-COL1A1,ECM,90
-CEP290,Cilia,90
+YAP1,Mechanotransduction,90
+POC5,Cilia,90
+ITGB1,Mechanotransduction,90

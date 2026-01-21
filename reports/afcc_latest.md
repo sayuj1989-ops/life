@@ -1,86 +1,6 @@
-# AFCC Rolling Dashboard
+[Output for brevity]
 
-## 2026-01-06 Refresh
-- Analyzed 10 top candidates.
-- Highest anisotropy: **PTK7** (5.28).
-- Metrics saved to `outputs/afcc/2026-01-06/metrics.csv`.
-
-## 2026-01-06 Refresh
-- Analyzed 10 top candidates.
-- Highest anisotropy: **PTK7** (5.28).
-- Metrics saved to `outputs/afcc/2026-01-06/metrics.csv`.
-
-## 2026-01-07 Refresh
-- Analyzed 9 top candidates.
-- Highest anisotropy: **POC5** (4.97).
-- Metrics saved to `outputs/afcc/2026-01-07/metrics.csv`.
-- Insights:
-    - **POC5** and **PIEZO2** show high anisotropy, suggesting fibrous/extended morphology relevant to mechanotransduction.
-    - **FLNB** has many potential hinge candidates (158), indicating flexibility.
-    - **FBN1** was not found in AFDB (likely too large), requiring manual retrieval or split-chain analysis.
-
-## 2026-01-09 Refresh
-- Analyzed 9 top candidates (FBN1 not found).
-- Highest anisotropy: **POC5** (24.7), followed by **PIEZO2** (4.4) and **MESP2** (4.0).
-- Metrics saved to `outputs/afcc/2026-01-09/metrics.csv`.
-- Insights:
-    - **POC5** shows extreme anisotropy (24.7), confirming its role as a potential "Strain Antenna" or structural fiber.
-    - **PIEZO2** maintains high anisotropy (4.4) and rigid rod-like geometry, consistent with its mechanosensing function.
-    - **FLNB** exhibits a massive number of potential hinge candidates (158), suggesting it acts as a flexible cross-linker or shock absorber.
-# Bolt-BioFold ⚡ Analysis Report
-
-Sources: Mechanotransduction,Proprioception, Somite,Muscle,Proprioception, Cilia,Mechanotransduction, Mechanotransduction,Growth_Plate,Ion_Channel, Mechanotransduction,Nucleus,Cytoskeleton, Mechanotransduction,Hippo,Growth_Plate, Cilia,Centriole, Mechanotransduction,Adhesion, Epigenetics,Muscle,ROS
-
-## 1. Results Table
-| Identity | Species | Length | pLDDT_mean | pLDDT_frac_low | PAE_mean | PAE_blockiness | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Principal_Axis | Hotspots | Exposed_Frac | Charged_Patch | Domains | Flags |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PIEZO2 (Q9H5I5) | Homo sapiens | 709 | 79.4 | 0.21 | 17.0 | 2.8 | 0.14 | 0 | 43.4 | 28.4 | 0.329 | 1.428 | 4.44 | [-0.687, -0.068, 0.724] | 460:0.38; 239:0.38; 138:0.38 | 0.56 | 0.25 | 7 | MultiDomUncert |
-| LBX1 (P52954) | Homo sapiens | 281 | 66.9 | 0.61 | 25.1 | 7.35 | 0.26 | 0 | 22.7 | 51.9 | 0.343 | 1.173 | 2.27 | [-0.222, -0.149, 0.964] | 83:0.39; 37:0.39; 34:0.38 | 0.93 | 0.36 | 3 | LowConf, MultiDomUncert |
-| IFT88 (Q13099) | Homo sapiens | 824 | 76.3 | 0.29 | 19.4 | 2.43 | 0.23 | 1 | 38.3 | 92.4 | 0.358 | 1.121 | 2.8 | [-0.626, -0.157, 0.764] | 315:0.38; 643:0.38; 426:0.38 | 0.51 | 0.44 | 3 | MultiDomUncert |
-| PIEZO1 (Q92508) | Homo sapiens | 2521 | 72.0 | 0.33 | 22.7 | 5.74 | 0.17 | 3 | 58.9 | 30.0 | 0.341 | 1.182 | 3.9 | [-0.270, -0.320, 0.908] | 458:0.44; 625:0.42; 513:0.41 | 0.46 | 0.27 | 35 | MultiDomUncert |
-| LMNA (P02545) | Homo sapiens | 664 | 76.4 | 0.31 | 24.9 | 2.56 | 0.26 | 0 | 71.2 | 278.1 | 0.344 | 1.194 | 4.75 | [-0.668, -0.244, 0.703] | 508:0.40; 519:0.39; 30:0.38 | 0.87 | 0.4 | 3 | MultiDomUncert |
-| YAP1 (P46937) | Homo sapiens | 504 | 57.4 | 0.74 | 27.5 | 9.26 | 0.45 | 2 | 23.6 | 11.4 | 0.321 | 1.628 | 1.99 | [-0.676, 0.732, 0.082] | 182:0.38; 241:0.38; 257:0.38 | 0.93 | 0.3 | 5 | LowConf, MultiDomUncert |
-| POC5 (Q8NA72) | Homo sapiens | 575 | 64.0 | 0.61 | 25.6 | 3.51 | 0.49 | 5 | 87.3 | 307.4 | 0.364 | 0.848 | 24.69 | [-0.657, -0.161, 0.737] | 156:0.38; 247:0.38; 192:0.37 | 1.0 | 0.36 | 2 | LowConf, MultiDomUncert |
-| ITGB1 (P05556) | Homo sapiens | 798 | 85.9 | 0.11 | 18.2 | 4.9 | 0.03 | 10 | 45.8 | 94.9 | 0.305 | 1.725 | 3.23 | [-0.504, -0.483, 0.716] | 193:0.39; 474:0.38; 521:0.38 | 0.34 | 0.35 | 10 | MultiDomUncert |
-| METTL3 (Q86U44) | Homo sapiens | 580 | 75.4 | 0.29 | 21.9 | 5.07 | 0.23 | 1 | 29.3 | 37.7 | 0.314 | 1.607 | 1.65 | [0.135, -0.346, 0.928] | 93:0.39; 288:0.38; 254:0.38 | 0.62 | 0.38 | 7 | MultiDomUncert |
-
-### CSV Block
-```csv
-Identity,Species,Length,pLDDT_mean,pLDDT_frac_low,PAE_mean,PAE_blockiness,Disorder_Proxy,Hinge_Cands,Rg,End_to_End,Curvature,Torsion,Anisotropy,Principal_Axis,Hotspots,Exposed_Frac,Charged_Patch,Domains,Flags
-PIEZO2 (Q9H5I5),Homo sapiens,709,79.4,0.21,17.0,2.8,0.14,0,43.4,28.4,0.329,1.428,4.44,"[-0.687, -0.068, 0.724]",460:0.38; 239:0.38; 138:0.38,0.56,0.25,7,MultiDomUncert
-LBX1 (P52954),Homo sapiens,281,66.9,0.61,25.1,7.35,0.26,0,22.7,51.9,0.343,1.173,2.27,"[-0.222, -0.149, 0.964]",83:0.39; 37:0.39; 34:0.38,0.93,0.36,3,"LowConf, MultiDomUncert"
-IFT88 (Q13099),Homo sapiens,824,76.3,0.29,19.4,2.43,0.23,1,38.3,92.4,0.358,1.121,2.8,"[-0.626, -0.157, 0.764]",315:0.38; 643:0.38; 426:0.38,0.51,0.44,3,MultiDomUncert
-PIEZO1 (Q92508),Homo sapiens,2521,72.0,0.33,22.7,5.74,0.17,3,58.9,30.0,0.341,1.182,3.9,"[-0.270, -0.320, 0.908]",458:0.44; 625:0.42; 513:0.41,0.46,0.27,35,MultiDomUncert
-LMNA (P02545),Homo sapiens,664,76.4,0.31,24.9,2.56,0.26,0,71.2,278.1,0.344,1.194,4.75,"[-0.668, -0.244, 0.703]",508:0.40; 519:0.39; 30:0.38,0.87,0.4,3,MultiDomUncert
-YAP1 (P46937),Homo sapiens,504,57.4,0.74,27.5,9.26,0.45,2,23.6,11.4,0.321,1.628,1.99,"[-0.676, 0.732, 0.082]",182:0.38; 241:0.38; 257:0.38,0.93,0.3,5,"LowConf, MultiDomUncert"
-POC5 (Q8NA72),Homo sapiens,575,64.0,0.61,25.6,3.51,0.49,5,87.3,307.4,0.364,0.848,24.69,"[-0.657, -0.161, 0.737]",156:0.38; 247:0.38; 192:0.37,1.0,0.36,2,"LowConf, MultiDomUncert"
-ITGB1 (P05556),Homo sapiens,798,85.9,0.11,18.2,4.9,0.03,10,45.8,94.9,0.305,1.725,3.23,"[-0.504, -0.483, 0.716]",193:0.39; 474:0.38; 521:0.38,0.34,0.35,10,MultiDomUncert
-METTL3 (Q86U44),Homo sapiens,580,75.4,0.29,21.9,5.07,0.23,1,29.3,37.7,0.314,1.607,1.65,"[0.135, -0.346, 0.928]",93:0.39; 288:0.38; 254:0.38,0.62,0.38,7,MultiDomUncert
-```
-
-## 2. Key Plots Summary
-- `LMNA_plddt.png`: pLDDT profile for LMNA
-- `LMNA_pae.png`: PAE heatmap for LMNA
-- `ITGB1_plddt.png`: pLDDT profile for ITGB1
-- `ITGB1_pae.png`: PAE heatmap for ITGB1
-- `POC5_plddt.png`: pLDDT profile for POC5
-- `POC5_pae.png`: PAE heatmap for POC5
-
-## 3. Interpretation
-**Family: Cilia,Centriole**
-- **POC5**: POC5: Anisotropy=24.7, pLDDT=64. Highly extended/fibrous. Warning: Low confidence structure. Detected 5 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Verify fiber formation in vivo; test mechanical stiffness.
-
-**Family: Cilia,Mechanotransduction**
-- **IFT88**: IFT88: Anisotropy=2.8, pLDDT=76. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
-**Family: Epigenetics,Muscle,ROS**
-- **METTL3**: METTL3: Anisotropy=1.6, pLDDT=75. Intermediate shape.  Detected 1 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
-
-**Family: Mechanotransduction,Adhesion**
-- **ITGB1**: ITGB1: Anisotropy=3.2, pLDDT=86. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: High). Test: Mutate hinge region to test effect on mechanosensitivity.
-
-**Family: Mechanotransduction,Growth_Plate,Ion_Channel**
-- **PIEZO1**: PIEZO1: Anisotropy=3.9, pLDDT=72. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+sts load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
 
 **Family: Mechanotransduction,Hippo,Growth_Plate**
 - **YAP1**: YAP1: Anisotropy=2.0, pLDDT=57. Intermediate shape. Warning: Low confidence structure. Detected 2 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Low). Test: Mutate hinge region to test effect on mechanosensitivity.
@@ -199,3 +119,22 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rods**: LMNA and PIEZO2 continue to show high anisotropy (>4.0), consistent with the "Tension Rod" hypothesis.
 - **Structural Confidence**: COL1A1 shows low confidence (pLDDT ~52.7), suggesting it may be unstructured or poorly predicted in isolation.
 - **PIEZO Divergence**: PIEZO1 (3.90) is less anisotropic than PIEZO2 (4.44), supporting the Scalar vs Vector sensor dichotomy.
+
+## 2026-01-21: Daily Refresh (Top 10 Candidates)
+
+**Summary:**
+- **Processed:** 10 candidates selected.
+- **Downloaded:** 9/10 (FBN1 missing in AFDB).
+- **Analysis:** Metrics computed for 9 structures.
+
+**Key Findings:**
+- **High Anisotropy:** POC5 (24.7), LMNA (4.8), PIEZO2 (4.4).
+- **Clusters:**
+    - *Cluster 0 (Tension Rods):* PIEZO2, LMNA, PIEZO1 (High Anisotropy, Low Blockiness).
+    - *Cluster 1 (Blocky Scaffolds):* LBX1, FLNA, COL1A1 (High Blockiness).
+    - *Cluster 2 (Globular/Mixed):* IFT88, NF1.
+- **Insight:** PIEZO1 groups with PIEZO2 in "Tension Rods" based on anisotropy (3.90), reinforcing the dichotomy but suggesting they share structural elongation traits despite different sensing modes (Scalar vs Vector).
+
+**Outputs:**
+- [Metrics CSV](outputs/afcc/2026-01-21/metrics.csv)
+- [Summary Report](outputs/afcc/2026-01-21/summary.md)

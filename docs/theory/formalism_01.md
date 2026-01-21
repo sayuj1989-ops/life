@@ -106,6 +106,19 @@ $$ \Phi_{VS} = \frac{|\mathbf{S}_{vec}|}{S_{scalar}} $$
 *   **Physical Interpretation**: A coherence metric. In 1g, both vector and scalar inputs are high ($\Phi_{VS} \approx 1$). In microgravity, the vector input vanishes ($g \to 0$) while scalar pressure persists or increases ($S_{scalar} > 0$), leading to $\Phi_{VS} \to 0$. We postulate that active moment generation requires $\Phi_{VS} > \Phi_{crit}$.
 *   **Measurable Proxy**: The ratio of localized vector signaling (e.g., ciliary Urp1 expression or nuclear aspect ratio) to global scalar signaling (e.g., Piezo2 expression or nuclear volume).
 
+### 2.8. The Plumb-Line Number ($\Pi_{RF}$)
+
+We define the Reissner Fiber (RF) as a "heavy string" tension element that aligns the spine with the gravitational vector. $\Pi_{RF}$ is the ratio of the fiber's gravitational weight density to its intrinsic tension density.
+
+$$ \Pi_{RF} = \frac{(\rho_{RF} - \rho_{CSF}) A_{RF} g L_{seg}}{T_{intrinsic}} $$
+
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\Pi_{RF} \gg 1$: The fiber acts as a plumb line, dominated by gravity (high sensitivity to $g$-vector).
+    *   $\Pi_{RF} \ll 1$: The fiber acts as a taut string, dominated by intrinsic tension (insensitive to gravity).
+    *   **Slackening Condition**: If $g \to 0$ (microgravity), $\Pi_{RF} \to 0$. If $T_{intrinsic}$ is not actively maintained, the fiber loses its directional cue, potentially causing "sensory slack" and decoupling Pkd2l1 mechanotransduction.
+*   **Measurable Proxy**: The tortuosity ($\tau$) of the Reissner Fiber imaged in vivo. High $\Pi_{RF}$ corresponds to low tortuosity (straight line).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -193,6 +206,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal geometry of organisms treated with Piezo1/2 agonists (e.g., Yoda1) to simulate "scalar noise" or subjected to osmotic swelling, monitoring for loss of counter-curvature.
 *   **Refutation**: If scalar overload leads to hypertrophy rather than atrophy (confusion), the "Mismatch" theory is incorrect. (Reference: Djebar et al., 2024).
 
+### Test M: The Plumb-Line Density Shift
+*   **Hypothesis**: If the Reissner Fiber acts as a heavy plumb line ($\Pi_{RF} \propto \Delta\rho$), altering its density should bias spinal alignment. Increasing $\Delta\rho$ should straighten the spine; decreasing it (e.g., with lipid-binding dyes) should mimic microgravity slackening.
+*   **Data Needed**: 3D curvature analysis of zebrafish larvae with Reissner Fibers injected with high-density (gold nanoparticles) vs. low-density (lipid) tracers.
+*   **Refutation**: If spinal curvature is independent of the fiber's buoyant density, the "heavy string" hypothesis is falsified. (Reference: Troutwine et al., 2020).
+
+### Test N: The Artificial Tension Rescue
+*   **Hypothesis**: If microgravity scoliosis results from loss of RF tension ($\Pi_{RF} \to 0$), applying artificial axial tension to the organism should rescue the defect by restoring "tautness" and Pkd2l1 signaling.
+*   **Data Needed**: Spinal geometry and Pkd2l1 activity (GCaMP) in zebrafish larvae raised in a clinostat (simulated $\mu g$) with and without tail-attached magnetic tensioners.
+*   **Refutation**: If axial tension fails to rescue the scoliotic phenotype in the absence of gravity, the mechanism relies on the *vector* of gravity, not just the tension it generates. (Reference: Cantaut-Belarif et al., 2018).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -211,3 +234,5 @@ The theory makes specific predictions about the relationship between genetic ani
 14. **Bearce, E. A., et al. (2022).** "Urotensin II-related peptides, Urp1 and Urp2, control zebrafish spine morphology." *eLife*, 11. (Identifies the specific vector signal carried by CSF flow).
 15. **Djebar, M., et al. (2024).** "Astrogliosis and neuroinflammation underlie scoliosis upon cilia dysfunction." *eLife*, 13. (Links sensory mismatch to inflammatory remodeling).
 16. **Touchstone, H., et al. (2019).** "Recovery of stem cell proliferation by low intensity vibration under simulated microgravity requires LINC complex." *npj Microgravity*, 5. (Demonstrates vector input rescue).
+17. **Troutwine, B. R., et al. (2020).** "The Reissner fiber is critical for proper spinal alignment in zebrafish." *Current Biology*, 30(12). (Demonstrates RF tension role).
+18. **Cantaut-Belarif, Y., et al. (2018).** "The Reissner fiber in the cerebrospinal fluid controls morphogenesis of the body axis." *Current Biology*, 28(15). (Foundational RF paper).

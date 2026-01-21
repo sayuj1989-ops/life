@@ -22,7 +22,7 @@ This document tracks the daily incremental refactor of the repository towards pu
     - [x] Move root-level python scripts (`02_validate_solvers.py`, `benchmark_analysis.py`, etc.) to `scripts/` or `tests/`.
     - [x] Consolidate configuration files where possible.
 - [x] **Data Organization**: Ensure `data/` has a clear structure and `README`.
-- [ ] **Archive Redundant Content**: Identify and move unused code to `archive/`.
+- [x] Archive Redundant Content: Identify and move unused code to `archive/`.
 
 ## Phase 2: Documentation (Medium Priority)
 

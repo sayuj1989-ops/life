@@ -186,7 +186,7 @@ outputs/
 After generating figures, run the validation tool:
 
 ```bash
-poetry run python tools/validate_figures.py
+poetry run python scripts/validate_figures.py
 ```
 
 This checks:

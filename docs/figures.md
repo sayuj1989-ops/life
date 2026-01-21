@@ -196,7 +196,7 @@ plt.savefig("outputs/figs/custom_analysis.png", dpi=300)
 Always validate custom figures:
 
 ```bash
-poetry run python tools/validate_figures.py
+poetry run python scripts/validate_figures.py
 ```
 
 Fix any errors reported (DPI, width, alpha channel, sidecar JSON).
@@ -294,5 +294,5 @@ If PNG files are too large (>10 MB):
 
 - [CLI Reference](cli.md)
 - [Manuscript](manuscript/SpinalCountercurvature_IEC.md)
-- [Validation Tool](../tools/validate_figures.py)
+- [Validation Tool](../scripts/validate_figures.py)
 

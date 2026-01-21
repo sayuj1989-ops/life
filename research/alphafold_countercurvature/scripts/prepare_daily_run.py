@@ -36,7 +36,7 @@ def main():
     # Sort descending
     df_sorted = df.sort_values(by='priority_score', ascending=False)
 
-    top_n = 10
+    top_n = 20
     top_candidates = df_sorted.head(top_n)
 
     print(f"✅ Selected top {top_n} candidates:")

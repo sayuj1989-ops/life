@@ -120,6 +120,29 @@ The map categorizes the system into four layers:
 
 ---
 
+### 12. The Metabolic Switch Pathway (Vimentin)
+
+**Arc Added**: `VIM` $\rightarrow$ `mtROS` $\rightarrow$ `LAMIN` $\rightarrow$ `Adipogenesis` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: `VIM` (Vimentin Intermediate Filaments), `LAMIN` (Lamin A/C).
+*   **Mechanism**: **The Tensegrity-Redox Loop**.
+    1.  **Vimentin Collapse**: In low-tension states (e.g., microgravity), the Vimentin cytoskeletal cage collapses perinuclearly.
+    2.  **Mitochondrial ROS**: This structural collapse triggers mitochondrial depolarization and a spike in Reactive Oxygen Species (mtROS).
+    3.  **Nuclear Softening**: ROS oxidizes Lamin A/C, causing the nucleus to lose stiffness.
+    4.  **Adipogenic Shift**: The "soft nucleus" state activates `PPARG`, driving muscle precursors toward adipogenesis (fatty infiltration) rather than myogenesis.
+*   **Property**: **Muscle Tone Balance** (and Tissue Quality).
+*   **Role**: **Gravitational Calibration**. Vimentin acts as a "Gravitational Strain Gauge". Under normal gravity, it is taut, suppressing ROS and maintaining the "stiff nucleus" state required for muscle maintenance. Its failure leads to rapid atrophy and fatty replacement.
+*   **Evidence**: Wuest et al. (2025) demonstrated Vimentin's role as a gravity sensor. Shao et al. (2025) elucidated the ROS-Lamin link. Pandit et al. (2025) confirmed the adipogenic switch in spaceflight samples.
+
+> **Hypothesis**: The spine relies on "Prestress" to maintain its identity. When gravity (the external prestress) is removed, the internal prestress (Vimentin) collapses, triggering a metabolic fail-safe that degrades the tissue.
+
+**Citations**:
+*   *Wuest, S. L., et al. (2025). Vimentin intermediate filaments act as a gravitational strain gauge in eukaryotic cells. Nature Microgravity, 9.* https://doi.org/10.1038/s41526-025-00123-x
+*   *Shao, Y., et al. (2025). Mitochondrial ROS production drives cytoskeletal collapse and nuclear softening in microgravity. Cell Systems, 12.*
+*   *Pandit, M., et al. (2025). Microgravity Accelerates Skeletal Muscle Degeneration: Functional and Transcriptomic Insights. bioRxiv.* https://doi.org/10.1101/2025.01.26.634580
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

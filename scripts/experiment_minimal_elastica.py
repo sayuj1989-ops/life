@@ -10,29 +10,22 @@ Biological mappings:
 - Boundary Conditions: Represents pelvic anchoring (fixed vs pinned).
 """
 
-import sys
-import os
 import argparse
 import csv
+import os
+import sys
 import time
 import tracemalloc
-import numpy as np
 from datetime import datetime
 
-# Dependency check
-try:
-    import elastica as ea
-except ImportError:
-    print("Error: PyElastica is not installed.")
-    print("To install, run: pip install pyelastica")
-    print("Or refer to https://github.com/GazzolaLab/PyElastica")
-    sys.exit(1)
+import numpy as np
 
-# Imports after dependency check to avoid potential crashes if spinalmodes
-# modules assume elastica presence in their top-level scope (though bridge should handle it).
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
 
 
 def run_experiment(
@@ -47,6 +40,12 @@ def run_experiment(
     """
     Run the parameter sweep and save results.
     """
+    if not PYELASTICA_AVAILABLE:
+        print("Error: PyElastica is not installed.")
+        print("To install, run: pip install pyelastica")
+        print("Or refer to https://github.com/GazzolaLab/PyElastica")
+        sys.exit(1)
+
     print(f"Running PyElastica experiment...")
     print(f"Goal: Map stiffness anisotropy & chi_kappa to emergent curvature/torsion.")
     print(f"Boundary Condition: {boundary_condition}")
@@ -59,11 +58,11 @@ def run_experiment(
 
     # Rod parameters (approximate spine scale)
     length = 0.5  # meters
-    radius = 0.01 # meters
+    radius = 0.01  # meters
     E0 = 1e6      # Pa (soft tissue/cartilage range)
     rho = 1000.0  # kg/m^3
     gravity = 9.81
-    dt = 1e-5 # Stable time step for these parameters
+    dt = 1e-5  # Stable time step for these parameters
 
     # Prepare CSV
     fieldnames = [
@@ -102,7 +101,7 @@ def run_experiment(
                 # 1. Setup Information Field (Simulating a protein gradient)
                 s = np.linspace(0, length, n_elements + 1)
                 # Gaussian bump in information density
-                I = 0.5 + 0.1 * np.exp(-0.5 * ((s - 0.6*length)/(0.1*length))**2)
+                I = 0.5 + 0.1 * np.exp(-0.5 * ((s - 0.6 * length) / (0.1 * length))**2)
                 dIds = np.gradient(I, s)
                 info = InfoField1D(s=s, I=I, dIds=dIds)
 
@@ -118,7 +117,7 @@ def run_experiment(
                 # 3. Setup Geometric Curvature (kappa_gen)
                 # Constant intrinsic curvature about d1 (index 0) to induce bending in Y-Z plane.
                 kappa_gen = np.zeros((3, n_elements + 1))
-                kappa_gen[0, :] = 2.0 # 1/m
+                kappa_gen[0, :] = 2.0  # 1/m
 
                 # 4. Create Rod System
                 rod_system = CounterCurvatureRodSystem.from_iec(
@@ -132,7 +131,7 @@ def run_experiment(
                     kappa_gen=kappa_gen,
                     gravity=gravity,
                     base_position=(0.0, 0.0, 0.0),
-                    base_direction=(0.0, 0.0, 1.0), # Vertical
+                    base_direction=(0.0, 0.0, 1.0),  # Vertical
                     normal=(1.0, 0.0, 0.0),         # Normal in X
                     stiffness_anisotropy=anisotropy
                 )
@@ -173,7 +172,7 @@ def run_experiment(
                 }
 
                 writer.writerow(row_data)
-                csvfile.flush() # Ensure write
+                csvfile.flush()  # Ensure write
 
                 print(f"{anisotropy:<12.2f} | {chi_kappa:<10.2f} | {row_data['max_curvature']:<10.4f} | {row_data['max_torsion']:<10.4f} | {row_data['y_tip']:<10.4f} | {row_data['s_lat']:<8.4f} | {row_data['cobb_angle']:<8.4f} | {runtime:<10.4f} | {peak_mb:<8.2f}")
 

@@ -18,8 +18,12 @@ import sys
 import time
 import tracemalloc
 from datetime import datetime
+from pathlib import Path
 
 import numpy as np
+
+# Ensure src is in python path
+sys.path.append(str(Path(__file__).parent.parent / "src"))
 
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D

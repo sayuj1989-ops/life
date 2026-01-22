@@ -33,11 +33,14 @@ graph TD
         Degradation[ECM Degradation<br/>Collagen Breakdown]
         mtROS[mtROS<br/>Mitochondrial ROS]
         Adipogenesis[Adipogenesis<br/>Fatty Infiltration]
+        Hydraulic_Congestion[IVD Swelling<br/>Hydraulic Congestion]
+        Immune_Infilt[Immune Infiltration<br/>Macrophage Entry]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
         Rest_Kappa[Rest Curvature κ0<br/>Target Geometry]
         Stiffness[Stiffness EI<br/>Material Quality]
+        Torsional_Stiffness[Torsional Stiffness GJ<br/>Rotational Rigidity]
         Gain[Feedback Gain G_mech<br/>Adaptive Growth]
         Torsion[Chiral Torsion ε<br/>Initial Twist]
         Muscle_Tone[Proprioception &<br/>Muscle Tone Balance]
@@ -109,10 +112,17 @@ graph TD
     LAMIN --> Adipogenesis
     Adipogenesis --> Muscle_Tone
 
+    %% NEW ARC: Inflamed Torsion
+    Hydraulic_Congestion --> Immune_Infilt
+    Immune_Infilt --> MMP
+    Degradation --> Torsional_Stiffness
+    Torsional_Stiffness --> Stability
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
     Stiffness -- "Too Low" --> Scoliosis
+    Torsional_Stiffness -- "Too Low" --> Scoliosis
     Gain -- "Too Low" --> Scoliosis
     Torsion -- "Randomized" --> Scoliosis
     Muscle_Tone -- "Asymmetry" --> Scoliosis
@@ -124,6 +134,6 @@ graph TD
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
     class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis process;
-    class Rest_Kappa,Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt process;
+    class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

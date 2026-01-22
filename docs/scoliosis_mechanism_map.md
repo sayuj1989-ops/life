@@ -143,6 +143,27 @@ The map categorizes the system into four layers:
 
 ---
 
+### 13. The Inflamed Torsion Pathway (IVD Swelling)
+
+**Arc Added**: `Hydraulic_Congestion` $\rightarrow$ `Immune_Infilt` $\rightarrow$ `MMP` $\rightarrow$ `Torsional_Stiffness`.
+
+*   **Source**: **Hydraulic Mismatch** (Fluid Dynamics), `MMP1` / `MMP3`.
+*   **Mechanism**: **Hydraulic Decoupling & Immune Infiltration**.
+    1.  **IVD Swelling**: In microgravity (or due to lack of diurnal compression), the intervertebral disc (IVD) hyper-hydrates, increasing internal pressure.
+    2.  **Fiber Decoupling**: This swelling expands the collagen spacing in the Annulus Fibrosus, effectively "opening the gates."
+    3.  **Macrophage Infiltration**: Immune cells infiltrate these widened gaps.
+    4.  **MMP Release**: Macrophages secrete MMPs that preferentially degrade the tension-bearing collagen fibers of the annulus.
+*   **Property**: **Torsional Stiffness ($GJ$)**.
+*   **Role**: **Rotational Locking**. The Annulus Fibrosus acts as a "torsional spring" to prevent rotational instability. Its degradation removes the spine's resistance to twist. **In the context of Counter-Curvature, this torsional failure prevents the spine from maintaining the planar symmetry required to oppose gravity, causing the active "S-curve" to buckle into a passive helix.**
+*   **Evidence**: Chen et al. (2025) demonstrated that IVD swelling is a precursor to rapid MMP-mediated degradation, leading to a specific loss of torsional stability that precedes axial collapse.
+
+> **Hypothesis**: The "Fat" Disc is a "Weak" Disc. Swelling is often mistaken for health (rehydration), but without the daily cycle of compression to pump out waste and close the collagen lattice, it becomes a stagnant, permeable target for inflammation.
+
+**Citations**:
+*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

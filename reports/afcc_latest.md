@@ -138,3 +138,9 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 **Outputs:**
 - [Metrics CSV](outputs/afcc/2026-01-21/metrics.csv)
 - [Summary Report](outputs/afcc/2026-01-21/summary.md)
+
+## 2026-01-22
+- Processed 8/10 top candidates.
+- Highest anisotropy: **LMNA** (4.75).
+- Missing/Failed: FBN1, SELENON.
+- PIEZO Analysis: Found 2 PIEZO variants; confirmed extended geometry.

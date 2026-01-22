@@ -6,8 +6,8 @@ Computes geometric and confidence metrics for all downloaded structures.
 """
 
 import sys
-import pandas as pd
 from pathlib import Path
+import pandas as pd
 import warnings
 
 # Suppress Bio.PDB warnings
@@ -16,14 +16,15 @@ warnings.filterwarnings("ignore")
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
-from research.alphafold_countercurvature.src.afcc.structure import StructureParser
-from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+from research.alphafold_countercurvature.src.afcc.structure import StructureParser  # noqa: E402, E501
+from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer  # noqa: E402, E501
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 MANIFEST_FILE = DATA_DIR / "manifest.csv"
 OUTPUT_FILE = DATA_DIR / "processed" / "protein_metrics.csv"
 CANDIDATES_FILE = DATA_DIR / "processed" / "candidates.csv"
+
 
 def main():
     print("📏 Analyzing Structural Metrics...")
@@ -36,13 +37,17 @@ def main():
     downloaded = manifest[manifest['status'].isin(['downloaded', 'cached'])]
 
     # Load candidate info to get Source tags
-    candidates = pd.read_csv(CANDIDATES_FILE) if CANDIDATES_FILE.exists() else None
+    candidates = None
+    if CANDIDATES_FILE.exists():
+        candidates = pd.read_csv(CANDIDATES_FILE)
 
     # Bolt Optimization: Filter downloaded list to only include current candidates
     if candidates is not None:
         target_genes = set(candidates['gene_symbol'])
-        print(f"   Filtering manifest to {len(target_genes)} candidates from {CANDIDATES_FILE.name}")
-        downloaded = downloaded[downloaded['gene_symbol'].isin(target_genes)]
+        print(f"   Filtering manifest to {len(target_genes)} "
+              f"candidates from {CANDIDATES_FILE.name}")
+        downloaded = downloaded[
+            downloaded['gene_symbol'].isin(target_genes)]
 
     # ⚡ Bolt Optimization: Incremental Processing
     # Check for existing results to avoid re-processing
@@ -54,18 +59,25 @@ def main():
 
             # Normalize legacy columns if present
             rename_map = {}
-            if 'anisotropy' in existing_df.columns and 'anisotropy_index' not in existing_df.columns:
-                 rename_map['anisotropy'] = 'anisotropy_index'
-            if 'mean_plddt' in existing_df.columns and 'plddt_mean' not in existing_df.columns:
-                 rename_map['mean_plddt'] = 'plddt_mean'
+            if ('anisotropy' in existing_df.columns and
+                    'anisotropy_index' not in existing_df.columns):
+                rename_map['anisotropy'] = 'anisotropy_index'
+            if ('mean_plddt' in existing_df.columns and
+                    'plddt_mean' not in existing_df.columns):
+                rename_map['mean_plddt'] = 'plddt_mean'
 
             if rename_map:
-                print(f"   Migrating columns in existing file: {list(rename_map.keys())} -> {list(rename_map.values())}")
+                print(f"   Migrating columns in existing file: "
+                      f"{list(rename_map.keys())} -> "
+                      f"{list(rename_map.values())}")
                 existing_df.rename(columns=rename_map, inplace=True)
 
-            if 'gene_symbol' in existing_df.columns and 'uniprot' in existing_df.columns:
-                processed_keys = set(zip(existing_df['gene_symbol'], existing_df['uniprot']))
-            print(f"   Found {len(processed_keys)} existing records in {OUTPUT_FILE.name}")
+            if ('gene_symbol' in existing_df.columns and
+                    'uniprot' in existing_df.columns):
+                processed_keys = set(zip(existing_df['gene_symbol'],
+                                         existing_df['uniprot']))
+            print(f"   Found {len(processed_keys)} existing records in "
+                  f"{OUTPUT_FILE.name}")
         except Exception as e:
             print(f"⚠️ Error reading existing metrics: {e}. Starting fresh.")
 
@@ -75,7 +87,8 @@ def main():
         if (row['gene_symbol'], row['uniprot']) not in processed_keys:
             to_process.append(row)
 
-    print(f"   Processing {len(to_process)} new structures (skipped {len(downloaded) - len(to_process)})...")
+    print(f"   Processing {len(to_process)} new structures "
+          f"(skipped {len(downloaded) - len(to_process)})...")
 
     results = []
     parser = StructureParser()
@@ -96,7 +109,8 @@ def main():
             structure = parser.parse_pdb(pdb_path, gene)
             if not structure:
                 continue
-            coords, plddt, resnames = parser.extract_coords_and_plddt(structure)
+            coords, plddt, resnames = parser.extract_coords_and_plddt(
+                structure)
         else:
             structure = None
 
@@ -104,11 +118,13 @@ def main():
         pae_path = row.get('pae_path')
         pae_matrix = None
         if pae_path and isinstance(pae_path, str):
-             p = Path(pae_path)
-             if p.exists():
-                 pae_matrix = parser.parse_pae(p)
+            p = Path(pae_path)
+            if p.exists():
+                pae_matrix = parser.parse_pae(p)
 
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
+        metrics = analyzer.analyze_structure(
+            structure, plddt, coords=coords,
+            resnames=resnames, pae_matrix=pae_matrix)
 
         # Merge basic info
         metrics['gene_symbol'] = gene
@@ -116,10 +132,10 @@ def main():
 
         # Merge source info
         if candidates is not None:
-             cand_row = candidates[candidates['gene_symbol'] == gene]
-             if not cand_row.empty:
-                 metrics['source_category'] = cand_row.iloc[0]['source']
-                 metrics['dise_score'] = cand_row.iloc[0]['total_score']
+            cand_row = candidates[candidates['gene_symbol'] == gene]
+            if not cand_row.empty:
+                metrics['source_category'] = cand_row.iloc[0]['source']
+                metrics['dise_score'] = cand_row.iloc[0]['total_score']
 
         results.append(metrics)
 
@@ -140,8 +156,10 @@ def main():
 
     if not df.empty:
         # Reorder columns
-        cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
-                'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'n_residues', 'dise_score']
+        cols_preferred = ['gene_symbol', 'uniprot', 'source_category',
+                          'morphology', 'anisotropy_index',
+                          'radius_of_gyration', 'plddt_mean',
+                          'n_residues', 'dise_score']
 
         # Filter only columns that exist
         cols = [c for c in cols_preferred if c in df.columns]
@@ -159,15 +177,16 @@ def main():
         # Preview
         print("\nTop 5 High Anisotropy:")
         if 'anisotropy_index' in df.columns:
-             # Check which plddt column exists (legacy vs new)
-             plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
-             cols_to_show = ['gene_symbol', 'morphology', 'anisotropy_index']
-             if plddt_col in df.columns:
-                 cols_to_show.append(plddt_col)
+            # Check which plddt column exists (legacy vs new)
+            plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'  # noqa: E501
+            cols_to_show = ['gene_symbol', 'morphology', 'anisotropy_index']
+            if plddt_col in df.columns:
+                cols_to_show.append(plddt_col)
 
-             print(df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))
+            print(df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))  # noqa: E501
     else:
         print("\n⚠️ No metrics to save.")
+
 
 if __name__ == "__main__":
     main()

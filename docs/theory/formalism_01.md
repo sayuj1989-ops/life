@@ -119,6 +119,22 @@ $$ \Pi_{RF} = \frac{(\rho_{RF} - \rho_{CSF}) A_{RF} g L_{seg}}{T_{intrinsic}} $$
     *   **Slackening Condition**: If $g \to 0$ (microgravity), $\Pi_{RF} \to 0$. If $T_{intrinsic}$ is not actively maintained, the fiber loses its directional cue, potentially causing "sensory slack" and decoupling Pkd2l1 mechanotransduction.
 *   **Measurable Proxy**: The tortuosity ($\tau$) of the Reissner Fiber imaged in vivo. High $\Pi_{RF}$ corresponds to low tortuosity (straight line).
 
+### 2.9. The Cryptic Exposure Coefficient ($\xi_{crypto}$)
+
+High-blockiness proteins (Cluster 1: FLNA, TLN1) act as "Tension-Gated Signal Integrators." We define $\xi_{crypto}$ as the fraction of cryptic binding sites exposed for signaling.
+
+$$ \xi_{crypto} = \frac{1}{1 + e^{-(F_{tens} - F_{crit})/kT}} $$
+
+*   **Symbols**:
+    *   $F_{tens}$: Local cytoskeletal tension force $[MLT^{-2}]$.
+    *   $F_{crit}$: Critical unfolding force of the protein domain (function of blockiness $B$) $[MLT^{-2}]$.
+    *   $kT$: Thermal energy $[ML^2T^{-2}]$.
+*   **Physical Interpretation**:
+    *   **High Tension ($F_{tens} > F_{crit}$)**: Domains unfold, $\xi_{crypto} \to 1$. "Vector" signaling is active (e.g., Vinculin recruitment).
+    *   **Low Tension ($F_{tens} < F_{crit}$)**: Domains remain folded (globular), $\xi_{crypto} \to 0$. Signaling is silenced.
+*   **Microgravity Implication**: As $g \to 0$, $F_{tens}$ drops below $F_{crit}$ for high-threshold sensors, causing specific silencing of the "Vector" pathway while low-threshold "Scalar" sensors remain active.
+*   **Measurable Proxy**: FRET efficiency of tension sensor constructs (e.g., Talin-FRET) or ratio of antibody binding to cryptic vs. constitutive epitopes.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -216,6 +232,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal geometry and Pkd2l1 activity (GCaMP) in zebrafish larvae raised in a clinostat (simulated $\mu g$) with and without tail-attached magnetic tensioners.
 *   **Refutation**: If axial tension fails to rescue the scoliotic phenotype in the absence of gravity, the mechanism relies on the *vector* of gravity, not just the tension it generates. (Reference: Cantaut-Belarif et al., 2018).
 
+### Test O: The Blockiness-Tension Scaling
+*   **Hypothesis**: Proteins with high AlphaFold Blockiness scores (e.g., Filamin A) have a higher $F_{crit}$ and thus require higher gravitational load to signal than low-blockiness proteins.
+*   **Data Needed**: Single-molecule magnetic tweezers force-spectroscopy of "Blocky" (Cluster 1) vs. "Rod-like" (Cluster 0) protein domains, measuring the unfolding force distribution.
+*   **Refutation**: If "Blocky" proteins unfold at lower forces than "Rod" proteins, the structural proxy for mechanosensitivity is invalid. (Reference: del Rio et al., 2009).
+
+### Test P: The Microgravity Sequestration
+*   **Hypothesis**: In microgravity, $\xi_{crypto}$ drops effectively to zero for high-threshold integrators, sequestering downstream effectors (e.g., transcription factors) in the cytoplasm.
+*   **Data Needed**: Subcellular localization of cryptic-site binding partners (e.g., Vinculin, FilGAP) in cells cultured in bioreactors (simulated $\mu g$) vs. centrifuge (hypergravity).
+*   **Refutation**: If binding partners remain localized to focal adhesions despite loss of tension, the "Cryptic Exposure" gating mechanism is not the primary transducer. (Reference: Pentikäinen & Ylänne, 2009).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -236,3 +262,5 @@ The theory makes specific predictions about the relationship between genetic ani
 16. **Touchstone, H., et al. (2019).** "Recovery of stem cell proliferation by low intensity vibration under simulated microgravity requires LINC complex." *npj Microgravity*, 5. (Demonstrates vector input rescue).
 17. **Troutwine, B. R., et al. (2020).** "The Reissner fiber is critical for proper spinal alignment in zebrafish." *Current Biology*, 30(12). (Demonstrates RF tension role).
 18. **Cantaut-Belarif, Y., et al. (2018).** "The Reissner fiber in the cerebrospinal fluid controls morphogenesis of the body axis." *Current Biology*, 28(15). (Foundational RF paper).
+19. **Sun, J., et al. (2019).** "Piezo1 channels are inherently mechanosensitive." *eLife*, 8. (Scalar vs Vector sensing).
+20. **del Rio, A., et al. (2009).** "Stretching single talin rod molecules activates vinculin binding." *Science*, 323. (Tension-gated unfolding).

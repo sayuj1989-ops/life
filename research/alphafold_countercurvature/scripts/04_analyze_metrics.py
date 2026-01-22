@@ -38,6 +38,12 @@ def main():
     # Load candidate info to get Source tags
     candidates = pd.read_csv(CANDIDATES_FILE) if CANDIDATES_FILE.exists() else None
 
+    # Bolt Optimization: Filter downloaded list to only include current candidates
+    if candidates is not None:
+        target_genes = set(candidates['gene_symbol'])
+        print(f"   Filtering manifest to {len(target_genes)} candidates from {CANDIDATES_FILE.name}")
+        downloaded = downloaded[downloaded['gene_symbol'].isin(target_genes)]
+
     # ⚡ Bolt Optimization: Incremental Processing
     # Check for existing results to avoid re-processing
     processed_keys = set()

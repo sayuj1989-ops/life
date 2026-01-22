@@ -1,12 +1,13 @@
 """
 Reproducible experiment for PyElastica rod simulation mapping protein/ECM parameters.
 
-This script maps protein/ECM-inspired parameters (stiffness anisotropy, preferred curvature)
-to emergent curvature/torsion outputs using a vertical rod model (spine-like).
+This script maps protein/ECM-inspired parameters (stiffness anisotropy,
+preferred curvature) to emergent curvature/torsion outputs using a vertical
+rod model (spine-like).
 
 Biological mappings:
-- Stiffness Anisotropy: Represents ECM fiber alignment (e.g. collagen) or vertebral geometry.
-- Preferred Curvature (chi_kappa): Represents active growth/sensing driven by protein gradients.
+- Stiffness Anisotropy: Represents ECM fiber alignment or vertebral geometry.
+- Preferred Curvature (chi_kappa): Represents active growth/sensing.
 - Boundary Conditions: Represents pelvic anchoring (fixed vs pinned).
 """
 
@@ -37,17 +38,17 @@ def run_experiment(
     final_time: float = 2.0,
     save_every: int = 5000,
 ):
-    """
-    Run the parameter sweep and save results.
-    """
+    """Run the parameter sweep and save results."""
     if not PYELASTICA_AVAILABLE:
         print("Error: PyElastica is not installed.")
         print("To install, run: pip install pyelastica")
         print("Or refer to https://github.com/GazzolaLab/PyElastica")
         sys.exit(1)
 
-    print(f"Running PyElastica experiment...")
-    print(f"Goal: Map stiffness anisotropy & chi_kappa to emergent curvature/torsion.")
+    print("Running PyElastica experiment...")
+    print(
+        "Goal: Map stiffness anisotropy & chi_kappa to emergent curvature."
+    )
     print(f"Boundary Condition: {boundary_condition}")
     print(f"Results will be saved to: {out_file}")
 
@@ -89,7 +90,11 @@ def run_experiment(
             writer.writeheader()
 
         print("-" * 120)
-        print(f"{'Anisotropy':<12} | {'chi_kappa':<10} | {'Max Curv':<10} | {'Max Tor':<10} | {'Y Tip':<10} | {'S_lat':<8} | {'Cobb':<8} | {'Time (s)':<10} | {'Mem (MB)':<8}")
+        print(
+            f"{'Anisotropy':<12} | {'chi_kappa':<10} | {'Max Curv':<10} | "
+            f"{'Max Tor':<10} | {'Y Tip':<10} | {'S_lat':<8} | {'Cobb':<8} | "
+            f"{'Time (s)':<10} | {'Mem (MB)':<8}"
+        )
         print("-" * 120)
 
         for chi_kappa in chi_kappas:
@@ -101,12 +106,14 @@ def run_experiment(
                 # 1. Setup Information Field (Simulating a protein gradient)
                 s = np.linspace(0, length, n_elements + 1)
                 # Gaussian bump in information density
-                I = 0.5 + 0.1 * np.exp(-0.5 * ((s - 0.6 * length) / (0.1 * length))**2)
-                dIds = np.gradient(I, s)
-                info = InfoField1D(s=s, I=I, dIds=dIds)
+                info_density = 0.5 + 0.1 * np.exp(
+                    -0.5 * ((s - 0.6 * length) / (0.1 * length))**2
+                )
+                dIds = np.gradient(info_density, s)
+                info = InfoField1D(s=s, I=info_density, dIds=dIds)
 
                 # 2. Setup Coupling Parameters
-                # chi_kappa drives curvature correction based on information gradient
+                # chi_kappa drives curvature correction
                 params = CounterCurvatureParams(
                     chi_kappa=chi_kappa,
                     chi_E=0.0,
@@ -115,7 +122,7 @@ def run_experiment(
                 )
 
                 # 3. Setup Geometric Curvature (kappa_gen)
-                # Constant intrinsic curvature about d1 (index 0) to induce bending in Y-Z plane.
+                # Constant intrinsic curvature about d1 (index 0)
                 kappa_gen = np.zeros((3, n_elements + 1))
                 kappa_gen[0, :] = 2.0  # 1/m
 
@@ -166,7 +173,9 @@ def run_experiment(
                     "y_tip": metrics.get('y_tip', 0.0),
                     "s_lat": metrics.get('S_lat', 0.0),
                     "cobb_angle": metrics.get('cobb_angle', 0.0),
-                    "end_to_end_distance": metrics.get('end_to_end_distance', 0.0),
+                    "end_to_end_distance": metrics.get(
+                        'end_to_end_distance', 0.0
+                    ),
                     "runtime_sec": round(runtime, 4),
                     "peak_memory_mb": round(peak_mb, 2)
                 }
@@ -174,30 +183,63 @@ def run_experiment(
                 writer.writerow(row_data)
                 csvfile.flush()  # Ensure write
 
-                print(f"{anisotropy:<12.2f} | {chi_kappa:<10.2f} | {row_data['max_curvature']:<10.4f} | {row_data['max_torsion']:<10.4f} | {row_data['y_tip']:<10.4f} | {row_data['s_lat']:<8.4f} | {row_data['cobb_angle']:<8.4f} | {runtime:<10.4f} | {peak_mb:<8.2f}")
+                print(
+                    f"{anisotropy:<12.2f} | {chi_kappa:<10.2f} | "
+                    f"{row_data['max_curvature']:<10.4f} | "
+                    f"{row_data['max_torsion']:<10.4f} | "
+                    f"{row_data['y_tip']:<10.4f} | "
+                    f"{row_data['s_lat']:<8.4f} | "
+                    f"{row_data['cobb_angle']:<8.4f} | {runtime:<10.4f} | "
+                    f"{peak_mb:<8.2f}"
+                )
 
     print("-" * 120)
     print("Experiment complete.")
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="PyElastica Spinal Rod Experiment")
+    parser = argparse.ArgumentParser(
+        description="PyElastica Spinal Rod Experiment"
+    )
 
-    parser.add_argument("--out-file", type=str, default="outputs/minimal_experiment_results.csv",
-                        help="Path to output CSV file")
+    parser.add_argument(
+        "--out-file",
+        type=str,
+        default="outputs/minimal_experiment_results.csv",
+        help="Path to output CSV file"
+    )
 
-    parser.add_argument("--anisotropy-list", type=float, nargs="+", default=[0.1, 0.5, 1.0, 2.0, 5.0],
-                        help="List of stiffness anisotropy values to sweep")
+    parser.add_argument(
+        "--anisotropy-list",
+        type=float,
+        nargs="+",
+        default=[0.1, 0.5, 1.0, 2.0, 5.0],
+        help="List of stiffness anisotropy values to sweep"
+    )
 
-    parser.add_argument("--chi-kappa-list", type=float, nargs="+", default=[0.0, 5.0, 10.0],
-                        help="List of preferred curvature coupling (chi_kappa) values to sweep")
+    parser.add_argument(
+        "--chi-kappa-list",
+        type=float,
+        nargs="+",
+        default=[0.0, 5.0, 10.0],
+        help="List of preferred curvature coupling (chi_kappa) values to sweep"
+    )
 
-    parser.add_argument("--boundary-condition", type=str, default="fixed", choices=["fixed", "pinned"],
-                        help="Boundary condition at the base")
+    parser.add_argument(
+        "--boundary-condition",
+        type=str,
+        default="fixed",
+        choices=["fixed", "pinned"],
+        help="Boundary condition at the base"
+    )
 
-    parser.add_argument("--final-time", type=float, default=2.0, help="Simulation duration (s)")
+    parser.add_argument(
+        "--final-time", type=float, default=2.0, help="Simulation duration (s)"
+    )
 
-    parser.add_argument("--n-elements", type=int, default=50, help="Number of rod elements")
+    parser.add_argument(
+        "--n-elements", type=int, default=50, help="Number of rod elements"
+    )
 
     return parser.parse_args()
 

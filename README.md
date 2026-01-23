@@ -3,8 +3,7 @@
 **An Information-Cosserat Framework for Spinal Geometry**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://img.shields.io/badge/DOI-10.0000%2Fplaceholder-blue.svg)](https://doi.org/10.0000/placeholder-doi)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 ---
 
@@ -16,43 +15,39 @@ This repository contains the manuscript, reproducible analysis code, and dataset
 
 📄 **Manuscript:** [manuscript/main.tex](manuscript/main.tex)  
 📊 **Figures:** [figures/main/](figures/main/)  
-🔬 **Analysis Code:** [alphafold_analysis/](alphafold_analysis/)
+🔬 **Core Logic:** [src/spinalmodes/](src/spinalmodes/)
 
 ---
 
 ## Repository Structure
 
+The repository is organized into clear functional domains:
+
 ```
 .
-├── manuscript/                   # Camera-ready manuscript
-│   ├── main.tex                  # Main manuscript file
-│   ├── sections/                 # Individual sections
-│   ├── numbers/                  # Extracted numbers for claims
-│   ├── extended_data/            # Extended data tables & figures
-│   └── references.bib            # Complete bibliography
+├── src/                          # Core Python packages
+│   ├── spinalmodes/              # Main IEC model and Cosserat implementation
+│   └── alphafold/                # Protein structure utilities
 │
-├── figures/
-│   ├── main/                     # Final publication-ready figures (tracked)
-│   ├── extended_data/            # Supplementary figures (tracked)
-│   └── src/                      # Plotting scripts
+├── research/                     # Active research modules
+│   └── alphafold_countercurvature/ # Protein structure-mechanics mapping analysis
 │
-├── data/
-│   ├── derived/                  # Small derived datasets for claims (tracked)
-│   └── external/                 # Large downloads (NOT tracked)
+├── manuscript/                   # Camera-ready manuscript sources
+│   ├── main.tex                  # Main LaTeX file
+│   └── references.bib            # Bibliography
 │
-├── alphafold_analysis/           # AlphaFold DB structure analysis
-├── scripts/                      # CLI entry scripts
-├── src/                          # Core Python package
-├── tests/                        # Unit tests
+├── scripts/                      # Reproducible experiment runners
+│   ├── experiment_minimal_elastica.py  # Core simulation runner
+│   └── weekly_sim_anisotropy_growth.py # Parameter sweep wrapper
 │
-└── docs/
-    ├── notes/                    # Integration guides, setup docs
-    └── archive/                  # Historical drafts, reviews
+├── docs/                         # Project documentation and plans
+├── data/                         # Datasets (tracked and external)
+└── archive/                      # Legacy code and prior iterations
 ```
 
 ---
 
-## Quick Start: Reproducibility
+## Quick Start
 
 ### 1. Installation
 
@@ -61,7 +56,7 @@ This repository contains the manuscript, reproducible analysis code, and dataset
 git clone https://github.com/sayujks0071/life.git
 cd life
 
-# Create virtual environment
+# Create virtual environment (Python 3.10+ required)
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
@@ -69,71 +64,33 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run Complete Analysis Pipeline
+### 2. Run a Basic Simulation
 
-**One-command reproducibility:**
-
-```bash
-make alphafold-all
-```
-
-This executes:
-- `alphafold-data`: Build AlphaFold structure dataset index
-- `alphafold-analyze`: Analyze BCC-related protein structures
-- `alphafold-figs`: Generate publication figures
-- `alphafold-numbers`: Extract quantitative numbers for manuscript
-
-**Individual steps:**
+To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
 
 ```bash
-# Step 1: Build dataset index
-make alphafold-data
-
-# Step 2: Run structural analysis
-make alphafold-analyze
-
-# Step 3: Generate figures
-make alphafold-figs
-
-# Step 4: Extract manuscript numbers
-make alphafold-numbers
+python scripts/experiment_minimal_elastica.py
 ```
 
-### 3. Compile Manuscript
+### 3. AlphaFold Counter-Curvature Analysis
 
-```bash
-cd manuscript
-make all
-# Output: manuscript/main.pdf
-```
+For protein structure analysis steps, refer to `research/alphafold_countercurvature/README.md` (if available) or explore the module directly.
 
 ---
 
 ## Key Results
 
-### 1. S-Curve Emergence from Information Patterning
+### 1. S-Curve Emergence
+The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties via the Information-Elasticity Coupling (IEC).
 
-The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties.
-
-### 2. Phase Diagram of Countercurvature Regimes
-
-Three distinct regimes identified in (χ_κ, g) parameter space:
-
-| Regime | D̂_geo | Description |
-|--------|-------|-------------|
-| **Gravity-dominated** | < 0.1 | Structure follows passive gravitational geodesics |
-| **Cooperative** | 0.1–0.3 | Information and gravity balance (normal physiology) |
-| **Information-dominated** | > 0.3 | Strong geometric distortion (potential pathology) |
+### 2. Phase Diagram
+Three distinct regimes identified in the parameter space:
+- **Gravity-dominated**: Structure follows passive gravitational geodesics.
+- **Cooperative**: Information and gravity balance (normal physiology).
+- **Information-dominated**: Strong geometric distortion (potential pathology).
 
 ### 3. Microgravity Persistence
-
-Model predicts spinal curvature **persists in microgravity** (unlike passive structures):
-- D̂_geo remains >0.15 even as g → 0
-- Lumbar lordosis decreases <20% (vs >80% passive prediction)
-
-### 4. Scoliosis as Amplified Asymmetry
-
-Small information field asymmetries (ε_asym ~3-5%) **amplify into scoliotic deformities** in information-dominated regime.
+Model predicts spinal curvature **persists in microgravity**, identifying a "Stagnant Pool" effect driven by fluid shifts that may drive inflammatory scoliosis.
 
 ---
 
@@ -151,67 +108,8 @@ If you use this work, please cite:
 }
 ```
 
-See [CITATION.cff](CITATION.cff) for structured citation metadata.
-
----
-
-## Dependencies
-
-### Core Requirements
-- **Python:** 3.8+
-- **NumPy:** 1.20+
-- **SciPy:** 1.7+
-- **Matplotlib:** 3.4+
-- **PyElastica:** 0.3.0+ (Cosserat rod mechanics)
-
-See [requirements.txt](requirements.txt) for complete list.
-
-### LaTeX (for manuscript compilation)
-- **TeX Live** or **MikTeX**
-- Required packages: amsmath, tikz, natbib, booktabs, siunitx
-
----
-
-## Project Status
-
-**Current Status:** Research code and manuscript for publication
-
-**Key Features:**
-- ✅ Full theoretical framework (Information-Elasticity Coupling)
-- ✅ Numerical implementation (Cosserat rod solver)
-- ✅ Phase diagram analysis
-- ✅ Testable predictions
-- ✅ Reproducible analysis pipeline
-
----
-
-## Contributing
-
-This is an active research project. Contributions welcome in:
-1. **Experimental validation** — Connect model to real data
-2. **Parameter estimation** — Inverse problem solvers
-3. **Extensions** — Growth dynamics, patient-specific modeling
-4. **Documentation** — Tutorials, examples
-
-**Contact:** dr.sayujkrishnan@gmail.com
-
 ---
 
 ## License
 
-- **Code:** MIT License (see [LICENSE](LICENSE))
-- **Manuscript:** © 2025 Dr. Sayuj Krishnan S
-
----
-
-## Acknowledgments
-
-- **PyElastica Team** — Open-source Cosserat rod framework
-- **AlphaFold DB** — Protein structure data
-- **Yashoda Hospitals** — Institutional support
-
----
-
-**Last Updated:** December 29, 2025  
-**Version:** 1.0.0  
-**Status:** Publication-ready
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -164,6 +164,29 @@ The map categorizes the system into four layers:
 
 ---
 
+### 14. The Vector-Scalar Mismatch (Piezo1/Piezo2)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Stiffness` (via `Mech_Trans`); `PIEZO2` $\rightarrow$ `Proprioception` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: `PIEZO1` (Scalar Sensor), `PIEZO2` (Vector Sensor).
+*   **Mechanism**: **Dual-Channel Mechanotransduction**.
+    1.  **Scalar Channel (Piezo1)**: Expressed in osteoblasts/osteocytes. It senses the *magnitude* of strain (compression/fluid flow) regardless of direction. Activation drives bone formation and mineral density (Scalar Stiffness).
+    2.  **Vector Channel (Piezo2)**: Expressed in dorsal root ganglia (proprioceptors). It senses the *direction* and *stretch* of tissue. Activation drives reflex muscle tone adjustments to align the spine (Vector Alignment).
+*   **Property**: **Stiffness ($EI$)** vs **Alignment ($G_{mech}$/Muscle Tone)**.
+*   **Role**: **Coordinated Stabilization**. The spine requires both material hardening (Piezo1) and active alignment (Piezo2) to resist gravity.
+    *   *Piezo1 Failure*: "Soft Spine" (Osteopenia). The spine aligns but buckles due to weak material.
+    *   *Piezo2 Failure*: "Confused Spine" (Scoliosis). The spine is stiff enough but grows in the wrong direction due to lack of proprioceptive error correction.
+*   **Evidence**: Sun et al. (2019) identified Piezo1 as the key osteoblastic sensor. Assaraf et al. (2020) and Ramli et al. (2024) identified Piezo2 deficiency as a driver of scoliosis independent of bone density.
+
+> **Hypothesis**: Scoliosis is often a "Vector-Scalar Mismatch". If Piezo1 is active (High Stiffness) but Piezo2 is silent (No Alignment), the spine becomes a "Stiff Helix"—the most difficult deformity to treat.
+
+**Citations**:
+*   *Sun, W., et al. (2019). The mechanosensitive Piezo1 channel is required for bone formation. Elife, 8, e47454.* https://doi.org/10.7554/eLife.47454
+*   *Assaraf, E., et al. (2020). Piezo2 Mutations in PSNS Patients. Human Mutation.*
+*   *Ramli, et al. (2024). Piezo1 and Piezo2 in Zebrafish Scoliosis. Development.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

@@ -3,7 +3,8 @@ graph TD
     subgraph Genetics [Genetic & Molecular Layer]
         HOX[HOX Cluster<br/>HOXA10, HOXD11]
         COL[COL2A1<br/>Collagen Type II]
-        PIEZO[PIEZO1<br/>Mechanosensor]
+        PIEZO1[PIEZO1<br/>Scalar Stiffness]
+        PIEZO2[PIEZO2<br/>Vector Alignment]
         CILIA[DNAH5/PKD1L1<br/>Cilia Motility]
         LBX1[LBX1<br/>Transcription Factor]
         ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
@@ -35,6 +36,7 @@ graph TD
         Adipogenesis[Adipogenesis<br/>Fatty Infiltration]
         Hydraulic_Congestion[IVD Swelling<br/>Hydraulic Congestion]
         Immune_Infilt[Immune Infiltration<br/>Macrophage Entry]
+        Proprioception[Proprioception<br/>Positional Sense]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -62,9 +64,12 @@ graph TD
     ECM_Assembly --> Stiffness
     Stiffness --> Stability
 
-    PIEZO --> Mech_Trans
+    %% NEW ARC: Piezo Duality
+    PIEZO1 --> Mech_Trans
     Mech_Trans --> Gain
     Gain --> S_Curve
+    PIEZO2 --> Proprioception
+    Proprioception --> Muscle_Tone
 
     CILIA --> Sym_Break
     Sym_Break --> Torsion
@@ -133,7 +138,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt process;
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Proprioception process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

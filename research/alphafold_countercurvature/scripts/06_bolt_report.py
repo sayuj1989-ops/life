@@ -82,6 +82,20 @@ def main():
     df = pd.read_csv(METRICS_FILE)
     manifest = pd.read_csv(MANIFEST_FILE) if MANIFEST_FILE.exists() else None
 
+    # Filter by candidates.csv to focus the report
+    CANDIDATES_FILE = PROCESSED_DIR / "candidates.csv"
+    if CANDIDATES_FILE.exists():
+        try:
+            candidates_df = pd.read_csv(CANDIDATES_FILE)
+            if 'gene_symbol' in candidates_df.columns:
+                target_genes = set(candidates_df['gene_symbol'])
+                print(f"🎯 Filtering report for {len(target_genes)} active candidates...")
+                df = df[df['gene_symbol'].isin(target_genes)]
+                if df.empty:
+                    print("⚠️ Warning: No metrics found for the current candidate list.")
+        except Exception as e:
+            print(f"⚠️ Error reading candidates file for filtering: {e}")
+
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     parser = StructureParser()
 

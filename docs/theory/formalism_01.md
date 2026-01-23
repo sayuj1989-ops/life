@@ -135,6 +135,22 @@ $$ \xi_{crypto} = \frac{1}{1 + e^{-(F_{tens} - F_{crit})/kT}} $$
 *   **Microgravity Implication**: As $g \to 0$, $F_{tens}$ drops below $F_{crit}$ for high-threshold sensors, causing specific silencing of the "Vector" pathway while low-threshold "Scalar" sensors remain active.
 *   **Measurable Proxy**: FRET efficiency of tension sensor constructs (e.g., Talin-FRET) or ratio of antibody binding to cryptic vs. constitutive epitopes.
 
+### 2.10. The Glymphatic Péclet Number ($\text{Pe}_G$)
+
+We define the transport regime of the spinal glymphatic system by the ratio of advective clearance rate to diffusive stasis.
+
+$$ \text{Pe}_G = \frac{v_{flow} L_{seg}}{D_{eff}} $$
+
+*   **Symbols**:
+    *   $v_{flow}$: Mean glymphatic flow velocity $[LT^{-1}]$.
+    *   $L_{seg}$: Characteristic spinal segment length $[L]$.
+    *   $D_{eff}$: Effective diffusion coefficient of metabolic waste (e.g., Amyloid-$\beta$) in the parenchyma $[L^2T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\text{Pe}_G \gg 1$ (Healthy): Convection dominates; rapid flushing of inflammatory metabolites.
+    *   $\text{Pe}_G < 1$ (Stagnant): Diffusion dominates; local accumulation of toxins.
+*   **Microgravity Implication**: The loss of hydrostatic pressure gradients and sleep disruption in space reduces $v_{flow} \to 0$, driving $\text{Pe}_G$ below unity ("The Stagnant Pool"), triggering reactive astrogliosis.
+*   **Measurable Proxy**: Clearance half-life ($t_{1/2}$) of intrathecal gadolinium tracer measured via MRI.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -242,6 +258,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Subcellular localization of cryptic-site binding partners (e.g., Vinculin, FilGAP) in cells cultured in bioreactors (simulated $\mu g$) vs. centrifuge (hypergravity).
 *   **Refutation**: If binding partners remain localized to focal adhesions despite loss of tension, the "Cryptic Exposure" gating mechanism is not the primary transducer. (Reference: Pentikäinen & Ylänne, 2009).
 
+### Test Q: The Stagnant Pool Prediction
+*   **Hypothesis**: Microgravity reduces $\text{Pe}_G$ below 1 due to loss of pulsatile gravity-driven drainage.
+*   **Data Needed**: Intrathecal contrast MRI (gadobutrol) clearance rates in 60-day head-down tilt bed rest (HLS) subjects vs. upright controls.
+*   **Refutation**: If clearance rates remain unchanged or increase during unloading, the "Stagnant Pool" hypothesis is false. (Reference: Iliff et al., 2012).
+
+### Test R: The Flow-Curvature Link
+*   **Hypothesis**: Organisms with high solute diffusion ($D_{eff}$) but zero advective flow ($v_{flow} \approx 0$) will develop scoliotic curvature due to inflammatory accumulation.
+*   **Data Needed**: Spinal geometry of zebrafish mutants with motile cilia defects (no flow) but normal mechanotransduction, treated with anti-inflammatory agents to test rescue.
+*   **Refutation**: If restoration of flow is not required for rescue (e.g., chemical washout works), then flow provides the *vector*, not just the *cleaning*. (Reference: Grimes et al., 2016).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -264,3 +290,5 @@ The theory makes specific predictions about the relationship between genetic ani
 18. **Cantaut-Belarif, Y., et al. (2018).** "The Reissner fiber in the cerebrospinal fluid controls morphogenesis of the body axis." *Current Biology*, 28(15). (Foundational RF paper).
 19. **Sun, J., et al. (2019).** "Piezo1 channels are inherently mechanosensitive." *eLife*, 8. (Scalar vs Vector sensing).
 20. **del Rio, A., et al. (2009).** "Stretching single talin rod molecules activates vinculin binding." *Science*, 323. (Tension-gated unfolding).
+21. **Iliff, J. J., et al. (2012).** "A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes." *Science Translational Medicine*, 4(147). (Foundational Glymphatic paper).
+22. **Grimes, D. T., et al. (2016).** "Zebrafish model of idiopathic scoliosis link cerebrospinal fluid flow to defects in spine curvature." *Science*, 352. (Links Flow -> Curvature).

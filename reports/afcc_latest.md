@@ -138,3 +138,20 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 **Outputs:**
 - [Metrics CSV](outputs/afcc/2026-01-21/metrics.csv)
 - [Summary Report](outputs/afcc/2026-01-21/summary.md)
+
+
+## 2026-01-23: Daily Refresh (Top 10 Candidates)
+
+**Summary:**
+- **Processed:** 10 candidates selected.
+- **Downloaded:** 8/10 (2 missing/failed).
+- **Analysis:** Metrics computed for 8 structures.
+
+**Key Findings:**
+- **Top Anisotropy:** **LMNA** (4.75)
+- **High Anisotropy (>4.0):** PIEZO2, LMNA, EMD
+
+**Outputs:**
+- [Metrics CSV](research/alphafold_countercurvature/outputs/afcc/2026-01-23/metrics.csv)
+- [Summary Report](research/alphafold_countercurvature/outputs/afcc/2026-01-23/summary.md)
+- [Failure Log](research/alphafold_countercurvature/outputs/afcc/2026-01-23/failure.md)

@@ -36,7 +36,18 @@ def main():
     downloaded = manifest[manifest['status'].isin(['downloaded', 'cached'])]
 
     # Load candidate info to get Source tags
-    candidates = pd.read_csv(CANDIDATES_FILE) if CANDIDATES_FILE.exists() else None
+    # ⚡ Bolt Optimization: Pre-index candidates for O(1) lookup
+    candidates_dict = {}
+    if CANDIDATES_FILE.exists():
+        try:
+            cand_df = pd.read_csv(CANDIDATES_FILE)
+            if 'gene_symbol' in cand_df.columns:
+                # Deduplicate keeping first to match legacy behavior
+                cand_df = cand_df.drop_duplicates(subset=['gene_symbol'], keep='first')
+                candidates_dict = cand_df.set_index('gene_symbol')[['source', 'total_score']].to_dict('index')
+                print(f"   Loaded {len(candidates_dict)} candidates for fast lookup.")
+        except Exception as e:
+            print(f"⚠️ Error loading candidates file: {e}")
 
     # ⚡ Bolt Optimization: Incremental Processing
     # Check for existing results to avoid re-processing
@@ -109,11 +120,11 @@ def main():
         metrics['uniprot'] = uid
 
         # Merge source info
-        if candidates is not None:
-             cand_row = candidates[candidates['gene_symbol'] == gene]
-             if not cand_row.empty:
-                 metrics['source_category'] = cand_row.iloc[0]['source']
-                 metrics['dise_score'] = cand_row.iloc[0]['total_score']
+        # ⚡ Bolt Optimization: O(1) Dictionary Lookup
+        if gene in candidates_dict:
+            info = candidates_dict[gene]
+            metrics['source_category'] = info['source']
+            metrics['dise_score'] = info['total_score']
 
         results.append(metrics)
 

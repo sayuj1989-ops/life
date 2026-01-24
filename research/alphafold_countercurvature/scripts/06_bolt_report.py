@@ -82,19 +82,29 @@ def main():
     df = pd.read_csv(METRICS_FILE)
     manifest = pd.read_csv(MANIFEST_FILE) if MANIFEST_FILE.exists() else None
 
-    # Filter by candidates.csv to focus the report
+    # Filter by bolt_targets.csv (focused) or candidates.csv (general)
+    BOLT_TARGETS_FILE = PROCESSED_DIR / "bolt_targets.csv"
     CANDIDATES_FILE = PROCESSED_DIR / "candidates.csv"
-    if CANDIDATES_FILE.exists():
+
+    filtering_file = None
+    if BOLT_TARGETS_FILE.exists():
+        filtering_file = BOLT_TARGETS_FILE
+        print(f"🎯 Found focused target list: {BOLT_TARGETS_FILE.name}")
+    elif CANDIDATES_FILE.exists():
+        filtering_file = CANDIDATES_FILE
+        print(f"🎯 Using master candidate list: {CANDIDATES_FILE.name}")
+
+    if filtering_file:
         try:
-            candidates_df = pd.read_csv(CANDIDATES_FILE)
-            if 'gene_symbol' in candidates_df.columns:
-                target_genes = set(candidates_df['gene_symbol'])
-                print(f"🎯 Filtering report for {len(target_genes)} active candidates...")
+            filter_df = pd.read_csv(filtering_file)
+            if 'gene_symbol' in filter_df.columns:
+                target_genes = set(filter_df['gene_symbol'])
+                print(f"🎯 Filtering report for {len(target_genes)} candidates...")
                 df = df[df['gene_symbol'].isin(target_genes)]
                 if df.empty:
                     print("⚠️ Warning: No metrics found for the current candidate list.")
         except Exception as e:
-            print(f"⚠️ Error reading candidates file for filtering: {e}")
+            print(f"⚠️ Error reading filter file {filtering_file.name}: {e}")
 
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
     parser = StructureParser()

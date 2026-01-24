@@ -69,5 +69,37 @@ class TestAFCCPipeline(unittest.TestCase):
         fetcher = AlphaFoldFetcher(Path("."), Path("manifest.csv"), dry_run="full")
         self.assertEqual(fetcher.dry_run_mode, "full")
 
+    def test_pae_metrics(self):
+        # Create a synthetic case with 2 domains
+        N = 30
+        pae = np.zeros((N, N))
+        plddt = np.array([50]*N)
+
+        # Seg 1: 0-10 (10 residues) -> High confidence
+        plddt[0:10] = 90
+        # Seg 2: 20-30 (10 residues) -> High confidence
+        plddt[20:30] = 90
+
+        # Fill blocks
+        # Intra 1: 2.0
+        pae[0:10, 0:10] = 2.0
+        # Intra 2: 4.0
+        pae[20:30, 20:30] = 4.0
+
+        # Inter 1-2: 10.0
+        pae[0:10, 20:30] = 10.0
+        # Inter 2-1: 8.0
+        pae[20:30, 0:10] = 8.0
+
+        metrics = self.analyzer.calculate_pae_metrics(pae, plddt)
+
+        # Expected:
+        # Intra means: [2.0, 4.0] -> mean = 3.0
+        # Inter means: [10.0, 8.0] -> mean = 9.0
+        # Blockiness = 9.0 / 3.0 = 3.0
+
+        self.assertEqual(metrics['predicted_domain_segments'], 2)
+        self.assertAlmostEqual(metrics['pae_blockiness'], 3.0, places=5)
+
 if __name__ == '__main__':
     unittest.main()

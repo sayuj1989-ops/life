@@ -155,3 +155,20 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - [Metrics CSV](research/alphafold_countercurvature/outputs/afcc/2026-01-23/metrics.csv)
 - [Summary Report](research/alphafold_countercurvature/outputs/afcc/2026-01-23/summary.md)
 - [Failure Log](research/alphafold_countercurvature/outputs/afcc/2026-01-23/failure.md)
+
+
+## 2026-01-24: Daily Refresh (Top 24 Candidates)
+
+**Summary:**
+- **Processed:** 24 candidates selected.
+- **Downloaded:** 19/24 (5 missing/failed).
+- **Analysis:** Metrics computed for 8 structures.
+
+**Key Findings:**
+- **Top Anisotropy:** **POC5** (24.69)
+- **High Anisotropy (>4.0):** STOML3, PTK7, POC5, PIEZO2
+
+**Outputs:**
+- [Metrics CSV](research/alphafold_countercurvature/outputs/afcc/2026-01-24/metrics.csv)
+- [Summary Report](research/alphafold_countercurvature/outputs/afcc/2026-01-24/summary.md)
+- [Failure Log](research/alphafold_countercurvature/outputs/afcc/2026-01-24/failure.md)

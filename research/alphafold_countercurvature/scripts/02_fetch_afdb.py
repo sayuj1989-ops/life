@@ -40,10 +40,25 @@ def main():
 
     mapping = pd.read_csv(INPUT_MAPPING)
 
+    # ⚡ Bolt Optimization: Sort by Candidate Score
+    CANDIDATES_FILE = DATA_DIR / "processed" / "candidates.csv"
+    if CANDIDATES_FILE.exists():
+        print(f"   Merged with candidates from {CANDIDATES_FILE.name} for sorting.")
+        candidates = pd.read_csv(CANDIDATES_FILE)
+        # Merge to get score
+        # Note: mapping has 'gene_symbol', candidates has 'gene_symbol', 'total_score'
+        if 'total_score' in candidates.columns:
+            mapping = mapping.merge(candidates[['gene_symbol', 'total_score']], on='gene_symbol', how='left')
+            # Sort descending by score
+            mapping = mapping.sort_values('total_score', ascending=False)
+    else:
+        print("⚠️ Candidates file not found. Fetching in arbitrary mapping order.")
+
     # Filter for successfully mapped genes
     to_fetch = mapping[mapping['uniprot_accession'].notna()]
 
     if args.limit:
+        print(f"   Limiting to top {args.limit} candidates.")
         to_fetch = to_fetch.head(args.limit)
 
     print(f"   Targets: {len(to_fetch)} proteins")

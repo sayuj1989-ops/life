@@ -15,3 +15,4 @@
 | 2026-01-18 | weekly-sim-torsion-anisotropy | chi_tau, anisotropy | High anisotropy (R=10) reduces torsion-induced scoliosis by ~15%, providing partial stabilization. | [Report](../outputs/sim/2026-01-18_torsion_anisotropy/report.md) |
 | 2026-01-21 | weekly-sim-tilt        | tilt_deg  | Lateral tilt combined with anisotropy triggers significant lateral instability (S_lat > 0.3) | [Report](../outputs/sim/2026-01-21/report.md) |
 | 2026-07-15 | weekly-sim-anisotropy-growth | Anisotropy Ratio | High anisotropy (R=6) destabilizes spine via torsion (Cobb > 70 deg), contradicting simple Vector Chain protection. | [Report](../outputs/sim/2026-07-15/report.md) |
+| 2026-01-24 | weekly-sim-tilted-anisotropy | stiffness_anisotropy | Intermediate anisotropy (R=2.0) triggers maximal lateral S-shape (S_lat > 0.3); high anisotropy stabilizes. | [Report](../outputs/sim/2026-01-24/report.md) |

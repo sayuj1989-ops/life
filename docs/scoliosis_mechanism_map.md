@@ -164,6 +164,30 @@ The map categorizes the system into four layers:
 
 ---
 
+### 14. The Vector-Scalar Mismatch (Piezo Duality)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Mech_Trans` $\rightarrow$ `Gain` (Scalar) vs `PIEZO2` $\rightarrow$ `Proprioception` $\rightarrow$ `Muscle_Tone` (Vector).
+
+*   **Source**: `PIEZO1` (Scalar Sensor), `PIEZO2` (Vector Sensor).
+*   **Mechanism**: **Dual-Channel Mechanotransduction**.
+    1.  **Scalar Channel (Piezo1)**: Senses the *magnitude* of membrane tension (e.g., from cell swelling or stiffness). It regulates "Gain" (how much tissue to build).
+    2.  **Vector Channel (Piezo2)**: Senses the *direction* and *rate* of stretch (e.g., in Merkel cells and muscle spindles). It feeds into the proprioceptive body schema.
+*   **Property**: **Feedback Gain ($G_{mech}$)** vs **Muscle Tone Balance**.
+*   **Role**: **Information Sorting**. The spine must distinguish between "being heavy" (Scalar load) and "being crooked" (Vector error).
+    *   **Matched State**: High Stiffness + Good Alignment.
+    *   **Mismatched State**: High Stiffness + Bad Alignment (Rigid Deformity) or Low Stiffness + Good Alignment (Unstable Column).
+*   **Evidence**: Sun et al. (2019) showed Piezo1 is inherently mechanosensitive (Scalar). Assaraf et al. (2020) and Xie et al. (2023) proved Piezo2 is essential for proprioceptive spinal alignment (Vector). Ramli et al. (2024) showed Piezo1 deficiency causes low bone density (Scalar failure).
+
+> **Hypothesis**: Scoliosis often arises from a "Vector-Scalar Mismatch" where the body builds a stiff spine (High Piezo1 activity) based on a corrupt proprioceptive map (Piezo2 noise/failure), effectively "locking in" the curve.
+
+**Citations**:
+*   *Sun, J., et al. (2019). Piezo1 channels are inherently mechanosensitive. eLife, 8, e46856.* https://doi.org/10.7554/eLife.46856
+*   *Assaraf, E., et al. (2020). Piezo2 expressed in proprioceptive neurons is essential for skeletal integrity. Nature Communications, 11, 3168.* https://doi.org/10.1038/s41467-020-16971-6
+*   *Xie, J., et al. (2023). PIEZO2 regulates dorsal root ganglion neuron-mediated proprioception to guide spinal alignment. Nature, 615, 459-465.* https://doi.org/10.1038/s41586-023-05872-4
+*   *Ramli, et al. (2024). Piezo1 mutant zebrafish as a model of idiopathic scoliosis. Frontiers in Genetics, 14, 1321379.* https://doi.org/10.3389/fgene.2023.1321379
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

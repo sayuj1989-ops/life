@@ -135,6 +135,21 @@ $$ \xi_{crypto} = \frac{1}{1 + e^{-(F_{tens} - F_{crit})/kT}} $$
 *   **Microgravity Implication**: As $g \to 0$, $F_{tens}$ drops below $F_{crit}$ for high-threshold sensors, causing specific silencing of the "Vector" pathway while low-threshold "Scalar" sensors remain active.
 *   **Measurable Proxy**: FRET efficiency of tension sensor constructs (e.g., Talin-FRET) or ratio of antibody binding to cryptic vs. constitutive epitopes.
 
+### 2.10. The Glymphatic Péclet Number ($\text{Pe}_G$)
+
+The spinal cord relies on the "Glymphatic System" for waste clearance, driven by arterial pulsation and respiration-induced CSF flow. We define $\text{Pe}_G$ as the ratio of advective transport (pumping) to diffusive transport (stasis).
+
+$$ \text{Pe}_G = \frac{v_{flow} L_{seg}}{D_{eff}} $$
+
+*   **Symbols**:
+    *   $v_{flow}$: bulk flow velocity of CSF/ISF $[LT^{-1}]$.
+    *   $L_{seg}$: Characteristic length of a spinal segment $[L]$.
+    *   $D_{eff}$: Effective diffusion coefficient of solutes (e.g., Amyloid-$\beta$) in the tortuous ECM $[L^2T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\text{Pe}_G \gg 1$: Advection dominates. Rapid clearance of toxins (Healthy 1G state).
+    *   $\text{Pe}_G < 1$: Diffusion dominates. The "Stagnant Pool" regime. Metabolic waste accumulates faster than it clears, creating a toxic halo around the ependyma.
+*   **Microgravity Implication**: The loss of hydrostatic pressure gradients and sleep-cycle disruptions reduces $v_{flow}$, driving $\text{Pe}_G \to 0$, triggering inflammatory remodeling (e.g., reactive astrogliosis).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -242,6 +257,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Subcellular localization of cryptic-site binding partners (e.g., Vinculin, FilGAP) in cells cultured in bioreactors (simulated $\mu g$) vs. centrifuge (hypergravity).
 *   **Refutation**: If binding partners remain localized to focal adhesions despite loss of tension, the "Cryptic Exposure" gating mechanism is not the primary transducer. (Reference: Pentikäinen & Ylänne, 2009).
 
+### Test Q: The Stagnant Pool Prediction
+*   **Hypothesis**: In microgravity, the reduction in $\text{Pe}_G$ (clearance rate) correlates linearly with the upregulation of inflammatory markers (TNF-$\alpha$, IL-1$\beta$) in the CSF, preceding structural scoliotic changes.
+*   **Data Needed**: Correlation of intrathecal contrast clearance rates (MRI) with CSF proteomic markers in bed-rest subjects (60-day HLS) or astronauts.
+*   **Refutation**: If inflammation spikes despite maintained clearance ($\text{Pe}_G > 1$), or if low clearance occurs without inflammation, the "Toxic Stasis" model is incorrect. (Reference: Mader et al., 2026; Iliff et al., 2012).
+
+### Test R: The Flow-Curvature Link
+*   **Hypothesis**: Artificially inducing $\text{Pe}_G < 1$ in a 1G environment (e.g., via AQP4 inhibition or cisterna magna obstruction) is sufficient to induce scoliotic curvature even with normal mechanical loading.
+*   **Data Needed**: Spinal geometry tracking of AQP4-/- mice or animals with surgically reduced CSF flow, comparing convex vs. concave inflammatory profiles.
+*   **Refutation**: If flow stasis leads to generalized neurodegeneration but *not* asymmetric curvature, the glymphatic failure is a systemic stressor, not a morphogenetic driver. (Reference: Xie et al., 2013).
+
 ## 6. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -264,3 +289,5 @@ The theory makes specific predictions about the relationship between genetic ani
 18. **Cantaut-Belarif, Y., et al. (2018).** "The Reissner fiber in the cerebrospinal fluid controls morphogenesis of the body axis." *Current Biology*, 28(15). (Foundational RF paper).
 19. **Sun, J., et al. (2019).** "Piezo1 channels are inherently mechanosensitive." *eLife*, 8. (Scalar vs Vector sensing).
 20. **del Rio, A., et al. (2009).** "Stretching single talin rod molecules activates vinculin binding." *Science*, 323. (Tension-gated unfolding).
+21. **Iliff, J. J., et al. (2012).** "A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes." *Science Translational Medicine*, 4(147). (Foundational Glymphatics).
+22. **Xie, L., et al. (2013).** "Sleep drives metabolite clearance from the adult brain." *Science*, 342(6156). (Link to sleep/pumping and AQP4).

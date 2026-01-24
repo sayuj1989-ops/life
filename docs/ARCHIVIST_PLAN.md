@@ -12,7 +12,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Consolidate Legacy Folders**: Move `biology_research`, `life`, `life-1`, `life-paper`, `research_repo` into `archive/`. These appear to be duplicate or older versions of the project.
 - [x] **Fix Typos**: Rename any clearly typoed directories (e.g., `biology_research`) if they are kept or archived.
-- [ ] **Standardize Source Layout**:
+- [x] **Standardize Source Layout**:
     - [x] Decide on the canonical source location (likely `src/`).
     - [x] Move top-level packages (`alphafold_analysis`, `countercurvature`) into `src/` or `research/` as appropriate.
         - *Decision*: Moved to `archive/` as they were legacy versions. Active code is in `src/` and `research/alphafold_countercurvature`.
@@ -27,7 +27,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 ## Phase 2: Documentation (Medium Priority)
 
 - [x] **Create Repo-Level README**: Rewrite root `README.md` to point to correct components (`src`, `research`, `docs`).
-- [ ] **Documentation Index**: Ensure `docs/index.md` is up-to-date with new paths.
+- [x] **Documentation Index**: Ensure `docs/index.md` is up-to-date with new paths.
 - [ ] **Style Guide**: Create `docs/CONTRIBUTING.md` or `docs/STYLE_GUIDE.md`.
 - [ ] **Audit Docstrings**: Ensure public modules have docstrings.
 

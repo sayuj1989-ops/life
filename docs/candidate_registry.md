@@ -1,6 +1,6 @@
 # Candidate Registry
 
-****Last Updated:** Week 6 Cycle - Gravity Expansion III (Added NF1, COL1A1, DNAH11, etc.)
+****Last Updated:** Week 6 Cycle - Gravity Expansion III (Added DZIP1, BNC2, FAT4, FBLN5)
 **Focus:** Gravity, Mechanotransduction, and Spinal Curvature
 
 This registry tracks high-priority gene and protein candidates identified as relevant to the "Biological Counter-Curvature" hypothesis. Candidates are scored based on their relevance to:
@@ -102,6 +102,10 @@ This registry tracks high-priority gene and protein candidates identified as rel
 | 88 | **ILK** | 85 | **Adhesion**: Central hub for integrin-mediated force transduction. | Links integrins to actin cytoskeleton; central hub for force transduction. |
 | 89 | **CAPN3** | 85 | **Muscle**: Titin-associated protease linked to muscle maintenance. | Muscle-specific calpain; binds Titin and regulates sarcomere remodeling under stress. |
 | 90 | **TPM2** | 85 | **Muscle**: Regulatory contractile protein linked to congenital contractures. | Stabilizes actin filaments and regulates muscle contraction. |
+| 91 | **DZIP1** | 88 | **Cilia**: Zinc finger protein linking ciliary function directly to spinal alignment. | Essential for ciliary formation and trafficking; cilia sense fluid flow/gravity. |
+| 92 | **BNC2** | 88 | **Transcription**: Strongest GWAS evidence for AIS susceptibility; regulates matrix genes. | Regulates expression of ECM components required for tissue stiffness. |
+| 93 | **FAT4** | 85 | **PCP**: Hippo pathway member linked to syndromic scoliosis. | Atypical cadherin in Hippo pathway; regulates tissue polarity and growth under stress. |
+| 94 | **FBLN5** | 85 | **ECM**: Essential for elastic recoil properties of ECM. | Essential for elastic fiber assembly; provides tissue recoil against gravity. |
 
 ## Selection Methodology
 

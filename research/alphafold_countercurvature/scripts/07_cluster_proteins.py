@@ -17,7 +17,30 @@ sys.path.append(str(repo_root))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
-METRICS_FILE = BASE_DIR.parent.parent / "outputs" / "afcc" / "2026-01-20" / "metrics.csv"
+# Find latest metrics file
+try:
+    possible_roots = [
+        BASE_DIR / "outputs" / "afcc",             # Package local
+        BASE_DIR.parent.parent / "outputs" / "afcc" # Repo root
+    ]
+
+    all_runs = []
+    for root in possible_roots:
+        if root.exists():
+            runs = [d for d in root.iterdir() if d.is_dir() and d.name.startswith("20")]
+            all_runs.extend(runs)
+
+    if not all_runs:
+        raise FileNotFoundError("No AFCC output directories found in local or root paths.")
+
+    # Sort by directory name (YYYY-MM-DD)
+    LATEST_RUN_DIR = sorted(all_runs, key=lambda d: d.name)[-1]
+    METRICS_FILE = LATEST_RUN_DIR / "metrics.csv"
+    print(f"📂 Using metrics from: {METRICS_FILE}")
+
+except Exception as e:
+    print(f"❌ Error locating metrics file: {e}")
+    sys.exit(1)
 
 def main():
     print("🧩 Running Protein Clustering Analysis...")

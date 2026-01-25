@@ -21,6 +21,7 @@ DATA_DIR = BASE_DIR / "data" / "processed"
 INPUT_FILE = DATA_DIR / "candidates.csv"
 OUTPUT_FILE = DATA_DIR / "uniprot_mapping.csv"
 
+
 def main():
     parser = argparse.ArgumentParser(description="Map gene symbols to UniProt IDs")
     parser.add_argument("--dry-run", action="store_true", help="Skip network calls")
@@ -28,35 +29,39 @@ def main():
 
     print("🧬 Mapping Genes to UniProt...")
 
-    if not INPUT_FILE.exists():
-        print(f"❌ Input file not found: {INPUT_FILE}")
-        print("   Run 00_build_candidate_list.py first.")
-        sys.exit(1)
+    # Check for focused target list
+    bolt_targets = DATA_DIR / "bolt_targets.csv"
+    if bolt_targets.exists():
+        print(f"🎯 Bolt Focused Mode: Using targets from {bolt_targets.name}")
+        candidates = pd.read_csv(bolt_targets)
+    else:
+        if not INPUT_FILE.exists():
+            print(f"❌ Input file not found: {INPUT_FILE}")
+            print("   Run 00_build_candidate_list.py first.")
+            sys.exit(1)
+        candidates = pd.read_csv(INPUT_FILE)
 
-    candidates = pd.read_csv(INPUT_FILE)
-    genes = candidates['gene_symbol'].unique().tolist()
+    genes = candidates["gene_symbol"].unique().tolist()
 
     print(f"   Found {len(genes)} unique genes.")
 
-    mapper = UniProtMapper(
-        dry_run=args.dry_run,
-        cache_path=OUTPUT_FILE
-    )
+    mapper = UniProtMapper(dry_run=args.dry_run, cache_path=OUTPUT_FILE)
 
     # Run mapping (human = 9606)
     mapping_df = mapper.map_genes_to_uniprot(genes, organism_id="9606")
 
     # Merge back to verify coverage
-    merged = candidates.merge(mapping_df, on='gene_symbol', how='left')
+    merged = candidates.merge(mapping_df, on="gene_symbol", how="left")
 
-    missing = merged[merged['uniprot_accession'].isna()]
+    missing = merged[merged["uniprot_accession"].isna()]
     if not missing.empty:
         print(f"\n⚠️  {len(missing)} genes failed to map:")
-        print(missing['gene_symbol'].tolist())
+        print(missing["gene_symbol"].tolist())
 
     success = len(genes) - len(missing)
     print(f"\n✅ Successfully mapped {success}/{len(genes)} genes.")
     print(f"📄 Mapping stored in: {OUTPUT_FILE}")
+
 
 if __name__ == "__main__":
     main()

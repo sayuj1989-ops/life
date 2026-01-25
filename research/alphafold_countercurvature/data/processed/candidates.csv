@@ -1,25 +1,11 @@
-D,I,S,E,C,T,R,I_iso,O,E_exp,manual_review_needed,notes,gene_symbol,source,total_score
-2,0,0,0,0,0,0,0,0,0,True,,ADGRG6,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,AQP4,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,BNC2,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,CNNM2,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,COL11A2,seed_ECM,4.0
-2,0,0,0,0,0,0,0,0,0,True,,DZIP1,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,EMD,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,FAT4,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,FBLN5,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,GDF5,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,HES7,seed_Segmentation,4.0
-2,0,0,0,0,0,0,0,0,0,True,,LBX1,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,MESP2,seed_Segmentation,4.0
-2,0,0,0,0,0,0,0,0,0,True,,MYLK,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PANX3,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PIEZO2,seed_Mechanosensors,4.0
-2,0,0,0,0,0,0,0,0,0,True,,POC5,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PTK7,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,ROCK1,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,SELENON,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,SSPOP,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,STOML3,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,TTN,seed_Week6_Expansion,4.0
-0,0,0,0,0,0,0,0,0,0,False,,GAPDH,control,0.0
+gene_symbol,source,total_score,D,I,S,E,C,T,R,I_iso,O,E_exp,manual_review_needed,notes
+PIEZO2,"Mechanotransduction,Proprioception",95,0,0,0,0,0,0,0,0,0,0,False,Direct link between gravity sensing (proprioception) and spinal alignment.
+LBX1,"Somite,Muscle,Proprioception",95,0,0,0,0,0,0,0,0,0,0,False,Major genetic driver of AIS with clear mechanistic link to postural tone.
+RUNX3,"Proprioception,Signaling",95,0,0,0,0,0,0,0,0,0,0,False,Primary driver of proprioceptive-dependent spinal alignment.
+IFT88,"Cilia,Mechanotransduction",92,0,0,0,0,0,0,0,0,0,0,False,Direct link via PIEZO1-cilia axis.
+FBN1,"ECM,Mechanotransduction",92,0,0,0,0,0,0,0,0,0,0,False,Major structural determinant of spine elasticity.
+PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,0,0,0,0,0,0,0,0,0,0,False,Direct mechanistic link to growth plate asymmetry in scoliosis.
+NF1,"Signaling,Mechanotransduction,Development",92,0,0,0,0,0,0,0,0,0,0,False,Direct causative link to dystrophic scoliosis and mechanotransduction.
+SELENON,"ER,Redox,Muscle",92,0,0,0,0,0,0,0,0,0,0,False,Defining gene for 'Rigid Spine' phenotype; links ER stress to postural tone.
+LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,0,0,0,0,0,0,0,0,0,0,False,Direct link between nuclear mechanotransduction and spinal stability.
+EGR3,"Muscle,Proprioception,Transcription_Factor",92,0,0,0,0,0,0,0,0,0,0,False,Essential for the hardware of muscle proprioception.

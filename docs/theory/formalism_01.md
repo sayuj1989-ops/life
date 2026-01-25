@@ -165,7 +165,23 @@ Where $b$ is the bending axis and $t$ is the torsion axis.
     Where $\theta_k$ is the angle of the $k$-th fiber relative to the anatomical axis.
 *   **Biological Basis**: $\mathbf{\Lambda}$ is established by the non-canonical Wnt/PCP pathway (e.g., *VANGL2*, *PTK7*). Disruption of these genes introduces off-diagonal terms ($\lambda_{bt} \neq 0$).
 
-## 4. Operational Metric: Counter-Curvature Energy
+## 4. The Anisotropic Growth Tensor ($\mathbf{\Omega}$)
+
+We introduce $\mathbf{\Omega}$ as a rank-2 dimensionless tensor that determines the preferred directions of volumetric addition (growth) in response to scalar metabolic availability. This formalizes the Hueter-Volkmann law in a tensorial framework.
+
+$$ \dot{\boldsymbol{\varepsilon}}_g = \nu_{met} (\mathbf{I} + \gamma_{aniso} \mathbf{\Omega}) $$
+
+*   **Symbols**:
+    *   $\dot{\boldsymbol{\varepsilon}}_g$: Growth strain rate tensor $[T^{-1}]$.
+    *   $\nu_{met}$: Scalar metabolic growth potential (function of nutrition/hormones) $[T^{-1}]$.
+    *   $\mathbf{\Omega}$: Directionality tensor (Trace = 0 for pure shape change, or normalized).
+    *   $\gamma_{aniso}$: Sensitivity to anisotropy.
+*   **Physical Interpretation**:
+    *   **Isotropic Growth**: If $\gamma_{aniso} \to 0$ or $\mathbf{\Omega} \propto \mathbf{I}$, growth is spherical (e.g., "bloating").
+    *   **Anisotropic Elongation**: If $\Omega_{zz} \gg \Omega_{xx}$, the organism elongates against gravity. This aligns with the "Intermediate Anisotropy" simulation results where $\mathbf{\Omega}$ directs the growth vector.
+*   **Measurable Proxy**: The ratio of Longitudinal ($k_L$) to Radial ($k_R$) growth rates in the vertebral body, measured via fluorochrome labeling (calcein/alizarin) intervals.
+
+## 5. Operational Metric: Counter-Curvature Energy
 
 To operationalize the hypothesis, we define the **Counter-Curvature Energy** ($U_{CC}$) as the work done by the organism against the gravitational field to maintain its shape, normalized by the elastic energy.
 
@@ -173,7 +189,7 @@ $$ U_{CC} = \frac{\int_0^L \mathbf{M}_{bio}(s) \cdot (\boldsymbol{\kappa}(s) - \
 
 A higher $U_{CC}$ indicates a stronger "anti-gravity" response driven by information.
 
-## 5. Falsifiable Predictions & Tests
+## 6. Falsifiable Predictions & Tests
 
 The theory makes specific predictions about the relationship between genetic anisotropy, gravity, and spinal geometry.
 
@@ -267,7 +283,17 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal geometry tracking of AQP4-/- mice or animals with surgically reduced CSF flow, comparing convex vs. concave inflammatory profiles.
 *   **Refutation**: If flow stasis leads to generalized neurodegeneration but *not* asymmetric curvature, the glymphatic failure is a systemic stressor, not a morphogenetic driver. (Reference: Xie et al., 2013).
 
-## 6. References
+### Test S: The Isotropic Collapse
+*   **Hypothesis**: Disruption of PCP genes (*VANGL2*, *PTK7*) reduces the anisotropy of the growth tensor ($\mathbf{\Omega}$), leading to a reduction in the vertebral aspect ratio (height/width) towards unity (spherical).
+*   **Data Needed**: Vertebral aspect ratios measured from lateral X-rays or micro-CT in *Vangl2* or *Ptk7* mutant zebrafish/mice compared to WT siblings.
+*   **Refutation**: If mutants maintain normal vertebral elongation (high aspect ratio) despite loss of planar polarity, the growth directionality is independent of the PCP pathway. (Reference: Goriely, 2017).
+
+### Test T: The Metabolic-Geometric Decoupling
+*   **Hypothesis**: Increasing the scalar metabolic drive ($\nu_{met}$) via growth hormone without a corresponding increase in anisotropy ($\mathbf{\Omega}$) will amplify geometric errors (spherical deformity/buckling) rather than correcting them.
+*   **Data Needed**: Cobb angle progression and vertebral shape analysis in scoliotic animal models treated with Growth Hormone (GH) vs vehicle.
+*   **Refutation**: If GH treatment restores spinal linearity by "pushing" the spine straight, the hypothesis that scalar growth requires vector guidance is falsified. (Reference: Stokes, 2002).
+
+## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
 2.  **Hayes, M., et al. (2014).** "Ptk7 mutant zebrafish models of congenital and idiopathic scoliosis implicate dysregulated Wnt signalling." *Nature Communications*, 5. (Links PCP signaling to spinal alignment and torsion).
@@ -291,3 +317,5 @@ The theory makes specific predictions about the relationship between genetic ani
 20. **del Rio, A., et al. (2009).** "Stretching single talin rod molecules activates vinculin binding." *Science*, 323. (Tension-gated unfolding).
 21. **Iliff, J. J., et al. (2012).** "A paravascular pathway facilitates CSF flow through the brain parenchyma and the clearance of interstitial solutes." *Science Translational Medicine*, 4(147). (Foundational Glymphatics).
 22. **Xie, L., et al. (2013).** "Sleep drives metabolite clearance from the adult brain." *Science*, 342(6156). (Link to sleep/pumping and AQP4).
+23. **Goriely, A. (2017).** "The Mathematics and Mechanics of Biological Growth." *Springer*. (Foundational text on differential growth tensors).
+24. **Stokes, I. A. (2002).** "Mechanical modulation of spinal growth and progression of adolescent scoliosis." *Spine*, 27(22). (Hueter-Volkmann law application).

@@ -236,8 +236,10 @@ class CounterCurvatureRodSystem:
             rod.bend_matrix[..., k] *= scaling_bend[k]
 
         # Apply stiffness anisotropy
-        # bend_matrix[0, 0] corresponds to lateral stiffness (rotation about d1)
-        # bend_matrix[1, 1] corresponds to sagittal stiffness (rotation about d2)
+        # bend_matrix[0, 0] corresponds to stiffness about d1 (Normal).
+        # In this setup (d1=X), this resists Sagittal bending (Y-Z plane).
+        # bend_matrix[1, 1] corresponds to stiffness about d2 (Binormal).
+        # In this setup (d2=Y), this resists Lateral bending (X-Z plane).
         if stiffness_anisotropy != 1.0:
             rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
 
@@ -350,6 +352,9 @@ class CounterCurvatureRodSystem:
             n_time, n_internal, n_dim = kappa_raw.shape
             padded_kappa = np.zeros((n_time, n_internal + 2, n_dim))
             padded_kappa[:, 1:-1, :] = kappa_raw
+            # Edge padding: repeat first/last valid values to avoid zero artifacts
+            padded_kappa[:, 0, :] = kappa_raw[:, 0, :]
+            padded_kappa[:, -1, :] = kappa_raw[:, -1, :]
         else:
             padded_kappa = np.empty((0, self.n_elements + 1, 3))
 

@@ -68,6 +68,10 @@ def run_experiment(
     #   d1 (Normal): X-axis. Rotation about d1 = Sagittal bending (Y-Z plane).
     #   d2 (Binormal): Y-axis. Rotation about d2 = Lateral bending (X-Z plane).
     #   d3 (Tangent): Z-axis. Rotation about d3 = Torsion (X-Y plane).
+    #
+    # Stiffness Anisotropy (R):
+    #   Scales bend_matrix[0,0] (Stiffness about d1/Sagittal).
+    #   R > 1.0 implies Sagittal Stiffness > Lateral Stiffness.
     length = 0.5  # meters
     radius = 0.01  # meters
     E0 = 1e6      # Pa (soft tissue/cartilage range)
@@ -265,18 +269,59 @@ def parse_args():
         "--n-elements", type=int, default=50, help="Number of rod elements"
     )
 
+    parser.add_argument(
+        "--quick-test",
+        action="store_true",
+        help="Run a fast smoke test (short duration, few elements)."
+    )
+
+    parser.add_argument(
+        "--scenario",
+        type=str,
+        default="default",
+        choices=["default", "intermediate_anisotropy", "high_growth"],
+        help="Pre-configured scenarios."
+    )
+
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
 
+    # Handle presets
+    anisotropies = args.anisotropy_list
+    chi_kappas = args.chi_kappa_list
+    chi_taus = args.chi_tau_list
+    final_time = args.final_time
+    n_elements = args.n_elements
+
+    if args.quick_test:
+        print(">>> Quick Test Mode Activated")
+        anisotropies = [1.0]
+        chi_kappas = [0.0]
+        chi_taus = [0.0]
+        final_time = 0.1
+        n_elements = 20
+
+    elif args.scenario == "intermediate_anisotropy":
+        print(">>> Scenario: Intermediate Anisotropy")
+        anisotropies = [0.5, 1.0, 2.0, 4.0]
+        chi_kappas = [5.0]
+        chi_taus = [0.0]
+
+    elif args.scenario == "high_growth":
+         print(">>> Scenario: High Growth Drive")
+         anisotropies = [1.0, 5.0]
+         chi_kappas = [10.0, 15.0]
+         chi_taus = [0.0]
+
     run_experiment(
         out_file=args.out_file,
-        anisotropies=args.anisotropy_list,
-        chi_kappas=args.chi_kappa_list,
-        chi_taus=args.chi_tau_list,
+        anisotropies=anisotropies,
+        chi_kappas=chi_kappas,
+        chi_taus=chi_taus,
         boundary_condition=args.boundary_condition,
-        n_elements=args.n_elements,
-        final_time=args.final_time
+        n_elements=n_elements,
+        final_time=final_time
     )

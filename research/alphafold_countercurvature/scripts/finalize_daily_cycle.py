@@ -94,6 +94,15 @@ def main():
     if not filtered_metrics.empty and aniso_col in filtered_metrics.columns:
         high_aniso = filtered_metrics[filtered_metrics[aniso_col] > 4.0]['gene_symbol'].tolist()
 
+    # Top Hinge Candidate
+    top_hinge_str = "N/A"
+    if not filtered_metrics.empty and 'hinge_candidates' in filtered_metrics.columns:
+         sorted_h = filtered_metrics.sort_values(by='hinge_candidates', ascending=False)
+         if not sorted_h.empty:
+             top_h = sorted_h.iloc[0]
+             if top_h['hinge_candidates'] > 0:
+                 top_hinge_str = f"**{top_h['gene_symbol']}** ({top_h['hinge_candidates']} sites)"
+
     summary_block = f"""
 ## {today}: Daily Refresh (Top {n_processed} Candidates)
 
@@ -105,6 +114,7 @@ def main():
 **Key Findings:**
 - **Top Anisotropy:** {top_aniso_str}
 - **High Anisotropy (>4.0):** {', '.join(high_aniso) if high_aniso else 'None'}
+- **Top Hinge Candidate:** {top_hinge_str}
 
 **Outputs:**
 - [Metrics CSV](research/alphafold_countercurvature/outputs/afcc/{today}/metrics.csv)

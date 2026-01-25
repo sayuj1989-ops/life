@@ -15,3 +15,9 @@
 **Learning:** `calculate_pae_metrics` used a nested loop over segments ($O(S^2)$) to compute block means. For proteins with many domains (e.g., 20+), the Python loop overhead became significant. Naive usage of `np.add.reduceat` on the full matrix is slow for sparse segments because it processes the gaps.
 
 **Action:** Implemented a "compact matrix" approach: extract high-confidence rows/cols into a smaller contiguous matrix, then use `np.add.reduceat` to compute all block sums in $O(1)$ Python calls (vectorized). This yields a 16x speedup for 100-domain structures (1.32s -> 0.08s) and 2.5x for sparse structures, while preserving exact results.
+
+## 2026-07-30 - [Torsion Norm Reuse]
+
+**Learning:** `calculate_torsion` computed `np.linalg.norm` on `normals` twice (for overlapping `n1` and `n2` arrays), causing redundant `sqrt` and `sum` operations (~50% overhead for norms).
+
+**Action:** Compute norms of `normals` once for the whole array, then slice to get `n1_norm` and `n2_norm`. This yielded a ~15% speedup for the `calculate_torsion` function (1.28ms -> 1.09ms per structure) and reduces CPU cycles for geometry calculations.

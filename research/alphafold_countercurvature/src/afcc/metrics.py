@@ -162,8 +162,12 @@ class MetricsAnalyzer:
         # b1 corresponds to bond_vectors[:-2]
         b1 = bond_vectors[:-2]
 
-        n1_norm = np.linalg.norm(n1, axis=1)
-        n2_norm = np.linalg.norm(n2, axis=1)
+        # Bolt Optimization: Compute norms of normals once and reuse
+        # n1 is normals[:-1] and n2 is normals[1:]
+        # Instead of computing norms for overlapping segments twice, we compute once.
+        normals_norm = np.linalg.norm(normals, axis=1)
+        n1_norm = normals_norm[:-1]
+        n2_norm = normals_norm[1:]
 
         with np.errstate(divide='ignore', invalid='ignore'):
             cos_phi = np.einsum('ij,ij->i', n1, n2) / (n1_norm * n2_norm)

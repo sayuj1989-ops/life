@@ -13,8 +13,6 @@ classifiers = [
 ]
 packages = [
     {include = "spinalmodes", from = "src"},
-    # Legacy shim to preserve old `import model.*` code paths
-    {include = "model", from = "src"},
 ]
 
 [tool.poetry.dependencies]
@@ -76,7 +74,7 @@ addopts = "--cov=spinalmodes --cov-report=term-missing"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["spinalmodes*", "model*"]
+include = ["spinalmodes*"]
 
 [build-system]
 requires = ["poetry-core"]

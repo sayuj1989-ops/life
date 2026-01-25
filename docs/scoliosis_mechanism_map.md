@@ -30,11 +30,11 @@ The map categorizes the system into four layers:
 *   **Property**: **Bending Stiffness ($EI$)**.
 *   **Role**: Provides the material rigidity required to resist Euler buckling. Mutations here lead to "soft" spines that buckle under standard loads.
 
-### 3. The Feedback Pathway (Piezo)
-*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+### 3. The Feedback Pathway (Piezo1/2)
+*   **Source**: `PIEZO1` / `PIEZO2` (Mechanosensitive Ion Channels).
 *   **Mechanism**: Senses mechanical stress and triggers Calcium influx.
 *   **Property**: **Feedback Gain ($G_{mech}$)**.
-*   **Role**: Allows the spine to reinforce itself where stress is highest (Heuter-Volkmann law). Low gain leads to a failure to adapt, creating a vicious cycle of deformation.
+*   **Role**: Allows the spine to reinforce itself where stress is highest (Heuter-Volkmann law). **See Section 14 for the distinction between Scalar (Piezo1) and Vector (Piezo2) sensing.**
 
 ### 4. The Chirality Pathway (Cilia)
 *   **Source**: `DNAH5` / `PKD1L1`.
@@ -161,6 +161,30 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6
+
+---
+
+### 14. The Piezo Duality (Vector-Scalar Mismatch)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `ECM_Assembly`, `PIEZO2` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: `PIEZO1` (Scalar Stiffness), `PIEZO2` (Vector Alignment).
+*   **Mechanism**: **The Vector-Scalar Divergence**.
+    *   **Piezo1** acts as a **Scalar Sensor**, responding to membrane tension to regulate osteogenesis and ECM synthesis. Its activity determines *material quality*.
+    *   **Piezo2** acts as a **Vector Sensor** (in proprioceptive neurons), encoding the directionality of strain. Its activity determines *spatial alignment*.
+*   **Property**: **Stiffness ($EI$)** vs. **Muscle Tone Balance**.
+*   **Role**: **Coupled Stability**. The spine requires both a stiff column (Piezo1) and an active guidance system (Piezo2).
+    *   **Piezo1 Failure**: Leads to "Soft Buckling" (Osteopenia/Degeneration).
+    *   **Piezo2 Failure**: Leads to "Blind Drift" (Proprioceptive Deficit).
+*   **Evidence**: Ramli et al. (2024) showed Piezo1 mutants have low bone density (scalar defect). Assaraf et al. (2020) showed Piezo2 mutants have alignment defects without bone loss (vector defect).
+*   **Counter-Curvature Implication**: In microgravity, both signals are lost, creating a "Soft & Blind" spine that is uniquely vulnerable to deformation.
+
+> **Hypothesis**: Scoliosis is often a "Mismatch" where one system fails while the other persists. However, the "Double Hit" of microgravity (unloading both) leads to the most rapid degeneration.
+
+**Citations**:
+*   *Ramli, et al. (2024). Piezo1 mutant zebrafish as a model of idiopathic scoliosis. Frontiers in Genetics, 14, 1321379.* https://doi.org/10.3389/fgene.2023.1321379
+*   *Assaraf, E., et al. (2020). Piezo2 expressed in proprioceptive neurons is essential for skeletal integrity. Nature Communications, 11, 3168.* https://doi.org/10.1038/s41467-020-16971-6
+*   *Xie, J., et al. (2023). PIEZO2 regulates dorsal root ganglion neuron-mediated proprioception to guide spinal alignment. Nature, 615, 459–465.* https://doi.org/10.1038/s41586-023-05872-4
 
 ---
 

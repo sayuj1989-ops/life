@@ -3,7 +3,8 @@ graph TD
     subgraph Genetics [Genetic & Molecular Layer]
         HOX[HOX Cluster<br/>HOXA10, HOXD11]
         COL[COL2A1<br/>Collagen Type II]
-        PIEZO[PIEZO1<br/>Mechanosensor]
+        PIEZO1[PIEZO1<br/>Scalar Stiffness]
+        PIEZO2[PIEZO2<br/>Vector Alignment]
         CILIA[DNAH5/PKD1L1<br/>Cilia Motility]
         LBX1[LBX1<br/>Transcription Factor]
         ADGRG6[ADGRG6/GPR126<br/>Adhesion GPCR]
@@ -62,9 +63,14 @@ graph TD
     ECM_Assembly --> Stiffness
     Stiffness --> Stability
 
-    PIEZO --> Mech_Trans
+    PIEZO1 --> Mech_Trans
+    PIEZO2 --> Mech_Trans
     Mech_Trans --> Gain
     Gain --> S_Curve
+
+    %% NEW ARC: Piezo Duality (Vector-Scalar Mismatch)
+    PIEZO1 --> ECM_Assembly
+    PIEZO2 --> Muscle_Tone
 
     CILIA --> Sym_Break
     Sym_Break --> Torsion
@@ -133,7 +139,7 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
     class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

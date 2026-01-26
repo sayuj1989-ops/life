@@ -21,3 +21,9 @@
 **Learning:** `calculate_torsion` computed `np.linalg.norm` on `normals` twice (for overlapping `n1` and `n2` arrays), causing redundant `sqrt` and `sum` operations (~50% overhead for norms).
 
 **Action:** Compute norms of `normals` once for the whole array, then slice to get `n1_norm` and `n2_norm`. This yielded a ~15% speedup for the `calculate_torsion` function (1.28ms -> 1.09ms per structure) and reduces CPU cycles for geometry calculations.
+
+## 2026-01-26 - [Geometry Precomputation]
+
+**Learning:** Curvature calculation used Heron's formula (requiring `sqrt`), and Torsion calculation computed cross-products and norms separately. These operations were redundant because the Torsion cross-product norm is exactly twice the triangle Area used in Curvature.
+
+**Action:** Hoisted cross-product and norm calculations to `analyze_structure` and passed them to both functions. Used `0.5 * norm` for Area (skipping Heron's formula) and reused the precomputed arrays for Torsion. This yielded a ~17% speedup for the total metric analysis time (46ms -> 38ms per structure).

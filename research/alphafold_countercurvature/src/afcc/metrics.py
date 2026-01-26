@@ -85,7 +85,7 @@ class MetricsAnalyzer:
         else:
             return "Globular"
 
-    def calculate_curvature(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None, bond_lengths: Optional[np.ndarray] = None) -> np.ndarray:
+    def calculate_curvature(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None, bond_lengths: Optional[np.ndarray] = None, normals_norm: Optional[np.ndarray] = None) -> np.ndarray:
         """
         Calculates discrete curvature (kappa) for each residue (assigning to the middle of 3 points).
         Returns array of size len(coords), padded with NaNs at ends.
@@ -95,6 +95,7 @@ class MetricsAnalyzer:
             coords: (N, 3) CA coordinates
             bond_vectors: (N-1, 3) precomputed bond vectors (coords[i+1] - coords[i])
             bond_lengths: (N-1,) precomputed bond lengths
+            normals_norm: (N-2,) precomputed norms of cross products (Area * 2)
         """
         if len(coords) < 3:
             return np.full(len(coords), np.nan)
@@ -115,11 +116,16 @@ class MetricsAnalyzer:
         vec_ac = bv1 + bv2
         b_len = np.linalg.norm(vec_ac, axis=1)
 
-        # Heron's formula for area
-        s = (a_len + b_len + c_len) / 2
-        arg = s * (s - a_len) * (s - b_len) * (s - c_len)
-        arg = np.maximum(arg, 0)
-        area = np.sqrt(arg)
+        if normals_norm is not None:
+             # Bolt Optimization: Skip Heron's formula
+             # Area = 0.5 * |u x v| = 0.5 * normals_norm
+             area = 0.5 * normals_norm
+        else:
+             # Heron's formula for area
+             s = (a_len + b_len + c_len) / 2
+             arg = s * (s - a_len) * (s - b_len) * (s - c_len)
+             arg = np.maximum(arg, 0)
+             area = np.sqrt(arg)
 
         # R = abc / 4K
         # Kappa = 4K / abc
@@ -133,7 +139,7 @@ class MetricsAnalyzer:
         result[1:-1] = kappa
         return result
 
-    def calculate_torsion(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None) -> np.ndarray:
+    def calculate_torsion(self, coords: np.ndarray, bond_vectors: Optional[np.ndarray] = None, normals: Optional[np.ndarray] = None, normals_norm: Optional[np.ndarray] = None) -> np.ndarray:
         """
         Calculates discrete torsion (tau) for each residue.
         Returns array of size len(coords), padded with NaNs.
@@ -141,6 +147,8 @@ class MetricsAnalyzer:
         Args:
             coords: (N, 3) CA coordinates
             bond_vectors: (N-1, 3) precomputed bond vectors
+            normals: (N-2, 3) precomputed cross products (b_i x b_{i+1})
+            normals_norm: (N-2,) precomputed norms of normals
         """
         if len(coords) < 4:
             return np.full(len(coords), np.nan)
@@ -153,7 +161,8 @@ class MetricsAnalyzer:
         # Then n1 (b_i x b_{i+1}) is normals[:-1]
         # And n2 (b_{i+1} x b_{i+2}) is normals[1:]
         # This reduces cross product operations by ~50%
-        normals = np.cross(bond_vectors[:-1], bond_vectors[1:])
+        if normals is None:
+             normals = np.cross(bond_vectors[:-1], bond_vectors[1:])
 
         n1 = normals[:-1]
         n2 = normals[1:]
@@ -165,7 +174,9 @@ class MetricsAnalyzer:
         # Bolt Optimization: Compute norms of normals once and reuse
         # n1 is normals[:-1] and n2 is normals[1:]
         # Instead of computing norms for overlapping segments twice, we compute once.
-        normals_norm = np.linalg.norm(normals, axis=1)
+        if normals_norm is None:
+             normals_norm = np.linalg.norm(normals, axis=1)
+
         n1_norm = normals_norm[:-1]
         n2_norm = normals_norm[1:]
 
@@ -316,13 +327,22 @@ class MetricsAnalyzer:
         # Geometry Optimization: Precompute bond vectors and lengths
         bond_vectors = None
         bond_lengths = None
+        normals = None
+        normals_norm = None
+
         if len(coords) > 1:
             bond_vectors = coords[1:] - coords[:-1]
             bond_lengths = np.linalg.norm(bond_vectors, axis=1)
 
+        # Bolt Optimization: Precompute normals (cross products) and their norms
+        # Used by both curvature (area) and torsion calculations
+        if len(coords) >= 3 and bond_vectors is not None:
+             normals = np.cross(bond_vectors[:-1], bond_vectors[1:])
+             normals_norm = np.linalg.norm(normals, axis=1)
+
         # Geometry
-        kappa = self.calculate_curvature(coords, bond_vectors=bond_vectors, bond_lengths=bond_lengths)
-        tau = self.calculate_torsion(coords, bond_vectors=bond_vectors)
+        kappa = self.calculate_curvature(coords, bond_vectors=bond_vectors, bond_lengths=bond_lengths, normals_norm=normals_norm)
+        tau = self.calculate_torsion(coords, bond_vectors=bond_vectors, normals=normals, normals_norm=normals_norm)
 
         # High confidence mask for curvature/torsion
         strict_mask_kappa = np.zeros(len(coords), dtype=bool)

@@ -28,10 +28,10 @@ COL11A2 (P13942),Homo sapiens,1736,49.3,0.8,27.2,5.25,0.74,24,24.5,21.8,0.292,1.
 ```
 
 ## 2. Key Plots Summary
-- `PTK7_plddt.png`: pLDDT profile for PTK7
-- `PTK7_pae.png`: PAE heatmap for PTK7
 - `POC5_plddt.png`: pLDDT profile for POC5
 - `POC5_pae.png`: PAE heatmap for POC5
+- `PTK7_plddt.png`: pLDDT profile for PTK7
+- `PTK7_pae.png`: PAE heatmap for PTK7
 - `COL11A2_plddt.png`: pLDDT profile for COL11A2
 - `COL11A2_pae.png`: PAE heatmap for COL11A2
 
@@ -52,7 +52,7 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-01-24 19:13:56
-- Code Version: 3f22850
+- Date/Time: 2026-01-26 19:33:03
+- Code Version: 4690528
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 8 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

@@ -19,6 +19,7 @@ from research.alphafold_countercurvature.src.afcc.uniprot import UniProtMapper
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data" / "processed"
 INPUT_FILE = DATA_DIR / "candidates.csv"
+BOLT_FILE = DATA_DIR / "bolt_targets.csv"
 OUTPUT_FILE = DATA_DIR / "uniprot_mapping.csv"
 
 def main():
@@ -28,12 +29,17 @@ def main():
 
     print("🧬 Mapping Genes to UniProt...")
 
-    if not INPUT_FILE.exists():
+    if BOLT_FILE.exists():
+        print(f"⚡ Bolt Focused Mode: Using {BOLT_FILE.name}")
+        target_file = BOLT_FILE
+    elif INPUT_FILE.exists():
+        target_file = INPUT_FILE
+    else:
         print(f"❌ Input file not found: {INPUT_FILE}")
         print("   Run 00_build_candidate_list.py first.")
         sys.exit(1)
 
-    candidates = pd.read_csv(INPUT_FILE)
+    candidates = pd.read_csv(target_file)
     genes = candidates['gene_symbol'].unique().tolist()
 
     print(f"   Found {len(genes)} unique genes.")

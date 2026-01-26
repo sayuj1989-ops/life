@@ -49,6 +49,22 @@ def main():
         except Exception as e:
             print(f"⚠️ Error loading candidates file: {e}")
 
+    # Load Bolt targets to override/append
+    BOLT_TARGETS = DATA_DIR / "processed" / "bolt_targets.csv"
+    if BOLT_TARGETS.exists():
+        try:
+            bolt_df = pd.read_csv(BOLT_TARGETS)
+            if 'gene_symbol' in bolt_df.columns:
+                print(f"   Loaded {len(bolt_df)} focused targets from {BOLT_TARGETS.name}")
+                for _, row in bolt_df.iterrows():
+                     gene = row['gene_symbol']
+                     source = row.get('source', 'Bolt_Focused')
+                     # Default score to 100 for focused targets if missing
+                     score = row.get('total_score', 100)
+                     candidates_dict[gene] = {'source': source, 'total_score': score}
+        except Exception as e:
+             print(f"⚠️ Error loading bolt targets: {e}")
+
     # ⚡ Bolt Optimization: Incremental Processing
     # Check for existing results to avoid re-processing
     processed_keys = set()

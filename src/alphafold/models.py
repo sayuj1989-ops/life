@@ -51,6 +51,9 @@ class PredictionEntry(BaseModel):
 # --- Summary Endpoint Models ---
 
 class UniprotEntry(BaseModel):
+    """
+    Represents the UniProt entry details from a summary response.
+    """
     ac: str
     id: str
     uniprot_checksum: Optional[str] = None
@@ -59,6 +62,9 @@ class UniprotEntry(BaseModel):
     segment_end: Optional[int] = None
 
 class Entity(BaseModel):
+    """
+    Represents a molecular entity (e.g., polymer, chain) within a structure.
+    """
     entity_type: Optional[str] = None
     entity_poly_type: Optional[str] = None
     identifier: Optional[str] = None
@@ -67,6 +73,9 @@ class Entity(BaseModel):
     chain_ids: Optional[List[str]] = None
 
 class StructureSummary(BaseModel):
+    """
+    Detailed summary of a specific structure model.
+    """
     model_identifier: str
     model_category: Optional[str] = None
     model_url: Optional[str] = None
@@ -84,6 +93,9 @@ class StructureSummary(BaseModel):
     entities: Optional[List[Entity]] = None
 
 class StructureBlock(BaseModel):
+    """
+    Wrapper for a structure summary block.
+    """
     summary: StructureSummary
 
 class UniprotSummary(BaseModel):

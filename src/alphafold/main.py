@@ -13,6 +13,10 @@ import json
 from .ebi_client import AlphaFoldEbiClient
 
 def main():
+    """
+    Main entry point for the AlphaFold EBI API Client CLI.
+    Parses arguments and dispatches commands to the client.
+    """
     parser = argparse.ArgumentParser(description="AlphaFold EBI API Client CLI")
 
     subparsers = parser.add_subparsers(dest="command", help="Command to run")

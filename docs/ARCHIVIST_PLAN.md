@@ -29,7 +29,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Create Repo-Level README**: Rewrite root `README.md` to point to correct components (`src`, `research`, `docs`).
 - [x] **Documentation Index**: Ensure `docs/index.md` is up-to-date with new paths.
 - [x] **Style Guide**: Create `docs/CONTRIBUTING.md` or `docs/STYLE_GUIDE.md`.
-- [ ] **Audit Docstrings**: Ensure public modules have docstrings.
+- [x] **Audit Docstrings**: Ensure public modules have docstrings.
 
 ## Phase 3: Code Quality & Testing (Medium Priority)
 

@@ -15,6 +15,19 @@ class AlphaFoldEbiClient:
         self.session = requests.Session()
 
     def _get(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Any:
+        """
+        Internal helper to perform a GET request to the EBI API.
+
+        Args:
+            endpoint: The API endpoint (e.g. "/api/prediction/...").
+            params: Optional dictionary of query parameters.
+
+        Returns:
+            The JSON response body as a dictionary or list, or None if 404.
+
+        Raises:
+            requests.exceptions.RequestException: For network errors or non-404 HTTP errors.
+        """
         url = f"{self.BASE_URL}{endpoint}"
         try:
             response = self.session.get(url, params=params, timeout=self.timeout)

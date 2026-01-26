@@ -53,6 +53,7 @@ class SimulationResult:
     time: ArrayF64
     centerline: ArrayF64
     kappa: ArrayF64
+    elastic_energy: ArrayF64
     info_field: InfoField1D
 
     @property
@@ -75,6 +76,7 @@ class SimulationResult:
             Dict containing:
                 - max_curvature: Maximum curvature magnitude.
                 - max_torsion: Maximum torsion magnitude.
+                - max_elastic_energy: Maximum elastic energy recorded.
                 - end_to_end_distance: Distance between first and last node.
                 - S_lat: Lateral scoliosis index (from scoliosis_metrics).
                 - cobb_angle: Cobb-like angle (from scoliosis_metrics).
@@ -110,6 +112,7 @@ class SimulationResult:
         return {
             "max_curvature": max_curvature,
             "max_torsion": max_torsion,
+            "max_elastic_energy": float(np.max(self.elastic_energy)) if self.elastic_energy.size > 0 else 0.0,
             "end_to_end_distance": float(end_to_end),
             "S_lat": scol_metrics.S_lat,
             "cobb_angle": scol_metrics.cobb_like_deg,
@@ -336,8 +339,11 @@ class CounterCurvatureRodSystem:
                     self.results["centerline"].append(system.position_collection.copy().T)
                     # Save full kappa vector (3, n_elems-1) -> transpose to (n_elems-1, 3)
                     self.results["kappa"].append(system.kappa.copy().T)
+                    # Compute total elastic energy (bending + shear)
+                    total_energy = system.compute_bending_energy() + system.compute_shear_energy()
+                    self.results["elastic_energy"].append(total_energy)
 
-        results = {"time": [], "centerline": [], "kappa": []}
+        results = {"time": [], "centerline": [], "kappa": [], "elastic_energy": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
 
         system.finalize()
@@ -362,6 +368,7 @@ class CounterCurvatureRodSystem:
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
             kappa=padded_kappa,
+            elastic_energy=np.array(results["elastic_energy"]),
             info_field=self.info_field
         )
 

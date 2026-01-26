@@ -40,6 +40,8 @@ def run_experiment(
     chi_kappas: list[float],
     chi_taus: list[float],
     boundary_condition: str,
+    info_center: float = 0.6,
+    info_width: float = 0.1,
     n_elements: int = 50,
     final_time: float = 2.0,
     save_every: int = 5000,
@@ -88,6 +90,7 @@ def run_experiment(
         "boundary_condition",
         "max_curvature",
         "max_torsion",
+        "max_elastic_energy",
         "y_tip",
         "s_lat",
         "cobb_angle",
@@ -107,7 +110,7 @@ def run_experiment(
         print("-" * 120)
         print(
             f"{'Anisotropy':<12} | {'chi_kappa':<10} | {'chi_tau':<10} | {'Max Curv':<10} | "
-            f"{'Max Tor':<10} | {'Y Tip':<10} | {'S_lat':<8} | {'Cobb':<8} | "
+            f"{'Max Tor':<10} | {'Max E':<10} | {'Y Tip':<10} | {'S_lat':<8} | {'Cobb':<8} | "
             f"{'Time (s)':<10} | {'Mem (MB)':<8}"
         )
         print("-" * 120)
@@ -121,9 +124,10 @@ def run_experiment(
 
                     # 1. Setup Information Field (Simulating a protein gradient)
                     s = np.linspace(0, length, n_elements + 1)
-                    # Gaussian bump in information density
+                    # Gaussian bump in information density (configurable)
+                    # Maps to protein expression profile along the spine
                     info_density = 0.5 + 0.1 * np.exp(
-                        -0.5 * ((s - 0.6 * length) / (0.1 * length))**2
+                        -0.5 * ((s - info_center * length) / (info_width * length))**2
                     )
                     dIds = np.gradient(info_density, s)
                     info = InfoField1D(s=s, I=info_density, dIds=dIds)
@@ -190,6 +194,7 @@ def run_experiment(
                         "boundary_condition": boundary_condition,
                         "max_curvature": metrics.get('max_curvature', 0.0),
                         "max_torsion": metrics.get('max_torsion', 0.0),
+                        "max_elastic_energy": metrics.get('max_elastic_energy', 0.0),
                         "y_tip": metrics.get('y_tip', 0.0),
                         "s_lat": metrics.get('S_lat', 0.0),
                         "cobb_angle": metrics.get('cobb_angle', 0.0),
@@ -207,6 +212,7 @@ def run_experiment(
                         f"{anisotropy:<12.2f} | {chi_kappa:<10.2f} | {chi_tau:<10.2f} | "
                         f"{row_data['max_curvature']:<10.4f} | "
                         f"{row_data['max_torsion']:<10.4f} | "
+                        f"{row_data['max_elastic_energy']:<10.4f} | "
                         f"{row_data['y_tip']:<10.4f} | "
                         f"{row_data['s_lat']:<8.4f} | "
                         f"{row_data['cobb_angle']:<8.4f} | {runtime:<10.4f} | "
@@ -259,6 +265,20 @@ def parse_args():
         default="fixed",
         choices=["fixed", "pinned"],
         help="Boundary condition at the base"
+    )
+
+    parser.add_argument(
+        "--info-center",
+        type=float,
+        default=0.6,
+        help="Relative position of the protein density peak (0.0 to 1.0)"
+    )
+
+    parser.add_argument(
+        "--info-width",
+        type=float,
+        default=0.1,
+        help="Relative width of the protein density peak"
     )
 
     parser.add_argument(
@@ -322,6 +342,8 @@ if __name__ == "__main__":
         chi_kappas=chi_kappas,
         chi_taus=chi_taus,
         boundary_condition=args.boundary_condition,
+        info_center=args.info_center,
+        info_width=args.info_width,
         n_elements=n_elements,
         final_time=final_time
     )

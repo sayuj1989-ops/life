@@ -1,2 +1,2 @@
-timestamp,stiffness_anisotropy,chi_kappa,chi_tau,boundary_condition,max_curvature,max_torsion,y_tip,s_lat,cobb_angle,runtime_sec,peak_memory_mb,end_to_end_distance
-2026-01-25T14:23:04.088227,1.0,0.0,0.0,fixed,1.5840640476767436,0.0,-0.0071168882460451045,0.0,0.0,3.7415,14.58,0.49743294517909453
+timestamp,stiffness_anisotropy,chi_kappa,chi_tau,boundary_condition,max_curvature,max_torsion,max_elastic_energy,y_tip,s_lat,cobb_angle,runtime_sec,peak_memory_mb,end_to_end_distance
+2026-01-26T14:13:43.476588,1.0,0.0,0.0,fixed,1.5840640476767436,0.0,0.008097496301960647,-0.0071168882460451045,0.0,0.0,3.7485,14.6,0.49743294517909453

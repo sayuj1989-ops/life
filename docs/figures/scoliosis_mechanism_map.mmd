@@ -17,6 +17,7 @@ graph TD
         GFAP[GFAP<br/>Glial Activation]
         VIM[VIM<br/>Vimentin]
         LAMIN[LAMIN<br/>Lamin A/C]
+        BMAL1[BMAL1/CLOCK<br/>Circadian Rhythm]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -36,6 +37,7 @@ graph TD
         Adipogenesis[Adipogenesis<br/>Fatty Infiltration]
         Hydraulic_Congestion[IVD Swelling<br/>Hydraulic Congestion]
         Immune_Infilt[Immune Infiltration<br/>Macrophage Entry]
+        Circadian_Entrain[Circadian Entrainment<br/>Loading Zeitgeber]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -139,7 +141,12 @@ graph TD
     classDef tissue fill:#efe,stroke:#333,stroke-width:2px;
     classDef outcome fill:#ffd,stroke:#333,stroke-width:4px;
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt process;
+    %% NEW ARC: Spinal Jetlag
+    BMAL1 --> Circadian_Entrain
+    Mech_Trans --> Circadian_Entrain
+    Circadian_Entrain --> Disc_Maint
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

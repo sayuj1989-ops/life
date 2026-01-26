@@ -188,6 +188,27 @@ The map categorizes the system into four layers:
 
 ---
 
+### 15. The Spinal Jetlag Pathway (BMAL1)
+
+**Arc Added**: `BMAL1` $\rightarrow$ `Circadian_Entrain` $\rightarrow$ `Disc_Maint`.
+
+*   **Source**: `BMAL1` / `CLOCK` (Core Circadian Oscillators).
+*   **Mechanism**: **Mechanical Entrainment ("Zeitgeber")**.
+    1.  Intervertebral disc cells possess intrinsic circadian clocks (Dudek et al., 2017).
+    2.  These clocks are entrained by the daily cycle of gravitational loading and unloading (compression/recovery).
+    3.  In microgravity (or sedentary unloading), this "mechanical zeitgeber" is lost.
+    4.  The clocks desynchronize ("Spinal Jetlag"), leading to dampening of anabolic repair cycles.
+*   **Property**: **Disc Maintenance** (Homeostasis).
+*   **Role**: **Temporal Coordination**. The spine requires coordinated phases of "Work" (day) and "Repair" (night). Without the gravity signal to set the time, the repair phase is inefficient.
+*   **Evidence**: Dudek et al. (2017) demonstrated that the IVD clock regulates matrix homeostasis and is sensitive to inflammatory cytokines, which are upregulated in degeneration.
+
+> **Hypothesis**: Gravity is the "Timegiver" for the spine. Removal of gravity causes phase drift, similar to chronic jetlag, accelerating aging and degeneration.
+
+**Citations**:
+*   *Dudek, M., et al. (2017). The intervertebral disc contains intrinsic circadian clocks that are regulated by age and cytokines and linked to degeneration. Annals of the Rheumatic Diseases, 76(3), 576-584.* https://doi.org/10.1136/annrheumdis-2016-209428
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

@@ -150,6 +150,21 @@ $$ \text{Pe}_G = \frac{v_{flow} L_{seg}}{D_{eff}} $$
     *   $\text{Pe}_G < 1$: Diffusion dominates. The "Stagnant Pool" regime. Metabolic waste accumulates faster than it clears, creating a toxic halo around the ependyma.
 *   **Microgravity Implication**: The loss of hydrostatic pressure gradients and sleep-cycle disruptions reduces $v_{flow}$, driving $\text{Pe}_G \to 0$, triggering inflammatory remodeling (e.g., reactive astrogliosis).
 
+### 2.11. The Mechanical Entrainment Number ($\mathcal{E}_{mech}$)
+
+The Intervertebral Disc (IVD) possesses an intrinsic circadian clock that must be entrained to the 24-hour cycle. We posit that gravitational loading ($\dot{\varepsilon}$) acts as the primary Zeitgeber. $\mathcal{E}_{mech}$ is the ratio of the mechanical entrainment strength to the intrinsic phase diffusion (noise).
+
+$$ \mathcal{E}_{mech} = \frac{\kappa_Z \langle |\dot{\varepsilon}_{grav}| \rangle}{\sigma_{\phi}} $$
+
+*   **Symbols**:
+    *   $\kappa_Z$: **Zeitgeber Coupling Constant** $[1]$. Efficiency of mechanical strain in resetting the clock phase.
+    *   $\langle |\dot{\varepsilon}_{grav}| \rangle$: Mean magnitude of the daily gravitational strain rate cycle $[T^{-1}]$.
+    *   $\sigma_{\phi}$: Intrinsic phase diffusion coefficient (clock noise/drift rate) $[T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{E}_{mech} > 1$: Strong locking. The tissue clock is synchronized with the central SCN clock via activity/gravity.
+    *   $\mathcal{E}_{mech} < 1$: Weak locking. The "Spinal Jetlag" regime. The IVD clock free-runs and desynchronizes, impairing nocturnal repair cycles.
+*   **Measurable Proxy**: The ratio of the amplitude of BMAL1/CLOCK oscillations in loaded vs. unloaded disc explants (PER2::LUC bioluminescence).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -292,6 +307,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Hypothesis**: Increasing the scalar metabolic drive ($\nu_{met}$) via growth hormone without a corresponding increase in anisotropy ($\mathbf{\Omega}$) will amplify geometric errors (spherical deformity/buckling) rather than correcting them.
 *   **Data Needed**: Cobb angle progression and vertebral shape analysis in scoliotic animal models treated with Growth Hormone (GH) vs vehicle.
 *   **Refutation**: If GH treatment restores spinal linearity by "pushing" the spine straight, the hypothesis that scalar growth requires vector guidance is falsified. (Reference: Stokes, 2002).
+
+### Test U: The Desynchronization Drift
+*   **Hypothesis**: In the absence of gravitational loading ($\mathcal{E}_{mech} < 1$), IVD clocks will desynchronize from the central SCN clock, even if light/dark cycles are maintained.
+*   **Data Needed**: Real-time bioluminescence imaging of PER2::LUC mice spines in hindlimb suspension (unloaded) vs. ground controls, quantifying the phase lag relative to the SCN.
+*   **Refutation**: If IVD clocks remain phase-locked to the SCN despite mechanical unloading, the hypothesis that gravity is the primary Zeitgeber for the spine is falsified. (Reference: Dudek et al., 2017).
+
+### Test V: The Loading Rescue
+*   **Hypothesis**: Applying cyclic mechanical compression to unloaded spines (restoring $\mathcal{E}_{mech} > 1$) is sufficient to restore high-amplitude circadian oscillations and phase alignment.
+*   **Data Needed**: Clock gene expression (qPCR) or PER2::LUC amplitude in disc explants cultured in static conditions vs. dynamic compression bioreactors.
+*   **Refutation**: If dynamic loading fails to reset the clock phase or boost amplitude compared to static controls, the mechanical coupling $\kappa_Z$ is negligible. (Reference: Yang et al., 2017).
 
 ## 7. References
 

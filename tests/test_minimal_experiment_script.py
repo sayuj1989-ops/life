@@ -60,3 +60,36 @@ def test_run_experiment_integration(tmp_path):
 
     # Check for NaN (basic stability check)
     assert row["max_curvature"] != "nan"
+
+def test_run_experiment_custom_info(tmp_path):
+    """
+    Test that custom info field parameters are passed correctly and recorded.
+    """
+    out_file = tmp_path / "test_custom_info.csv"
+
+    experiment_minimal_elastica.run_experiment(
+        out_file=str(out_file),
+        anisotropies=[1.0],
+        chi_kappas=[0.0],
+        chi_taus=[0.0],
+        boundary_condition="fixed",
+        n_elements=10,
+        final_time=0.01,
+        info_center=0.5,
+        info_width=0.2,
+        info_amplitude=0.3,
+        save_every=100
+    )
+
+    assert out_file.exists()
+
+    with open(out_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows) == 1
+    row = rows[0]
+
+    assert float(row["info_center"]) == 0.5
+    assert float(row["info_width"]) == 0.2
+    assert float(row["info_amplitude"]) == 0.3

@@ -43,6 +43,9 @@ def run_experiment(
     n_elements: int = 50,
     final_time: float = 2.0,
     save_every: int = 5000,
+    info_center: float = 0.6,
+    info_width: float = 0.1,
+    info_amplitude: float = 0.1,
 ):
     """Run the parameter sweep and save results."""
     if not PYELASTICA_AVAILABLE:
@@ -86,6 +89,9 @@ def run_experiment(
         "chi_kappa",
         "chi_tau",
         "boundary_condition",
+        "info_center",
+        "info_width",
+        "info_amplitude",
         "max_curvature",
         "max_torsion",
         "y_tip",
@@ -122,8 +128,8 @@ def run_experiment(
                     # 1. Setup Information Field (Simulating a protein gradient)
                     s = np.linspace(0, length, n_elements + 1)
                     # Gaussian bump in information density
-                    info_density = 0.5 + 0.1 * np.exp(
-                        -0.5 * ((s - 0.6 * length) / (0.1 * length))**2
+                    info_density = 0.5 + info_amplitude * np.exp(
+                        -0.5 * ((s - info_center * length) / (info_width * length))**2
                     )
                     dIds = np.gradient(info_density, s)
                     info = InfoField1D(s=s, I=info_density, dIds=dIds)
@@ -188,6 +194,9 @@ def run_experiment(
                         "chi_kappa": chi_kappa,
                         "chi_tau": chi_tau,
                         "boundary_condition": boundary_condition,
+                        "info_center": info_center,
+                        "info_width": info_width,
+                        "info_amplitude": info_amplitude,
                         "max_curvature": metrics.get('max_curvature', 0.0),
                         "max_torsion": metrics.get('max_torsion', 0.0),
                         "y_tip": metrics.get('y_tip', 0.0),
@@ -283,6 +292,27 @@ def parse_args():
         help="Pre-configured scenarios."
     )
 
+    parser.add_argument(
+        "--info-center",
+        type=float,
+        default=0.6,
+        help="Center of information field bump (fraction of length)."
+    )
+
+    parser.add_argument(
+        "--info-width",
+        type=float,
+        default=0.1,
+        help="Width of information field bump (fraction of length)."
+    )
+
+    parser.add_argument(
+        "--info-amplitude",
+        type=float,
+        default=0.1,
+        help="Amplitude of information field bump."
+    )
+
     return parser.parse_args()
 
 
@@ -323,5 +353,8 @@ if __name__ == "__main__":
         chi_taus=chi_taus,
         boundary_condition=args.boundary_condition,
         n_elements=n_elements,
-        final_time=final_time
+        final_time=final_time,
+        info_center=args.info_center,
+        info_width=args.info_width,
+        info_amplitude=args.info_amplitude,
     )

@@ -1,0 +1,5 @@
+seed,42
+chi_kappa,10.0
+tilt_deg,5.0
+chi_tau,1.0
+variable,anisotropy,0.1,10.0,11

@@ -159,6 +159,9 @@ def main():
     col_map = {
         'mean_plddt': 'plddt_mean',
         'plddt_mean': 'plddt_mean',
+        'plddt_median': 'plddt_median',
+        'plddt_fraction_high': 'plddt_fraction_high',
+        'plddt_fraction_ok': 'plddt_fraction_ok',
         'fraction_low_plddt': 'plddt_fraction_low',
         'plddt_fraction_low': 'plddt_fraction_low',
         'pae_mean': 'PAE_mean',
@@ -193,6 +196,9 @@ def main():
         return None
 
     table_df['pLDDT_mean'] = get_col('plddt_mean', 1)
+    table_df['pLDDT_median'] = get_col('plddt_median', 1)
+    table_df['pLDDT_frac_high'] = get_col('plddt_fraction_high', 2)
+    table_df['pLDDT_frac_ok'] = get_col('plddt_fraction_ok', 2)
     table_df['pLDDT_frac_low'] = get_col('plddt_fraction_low', 2)
 
     pae_mean = get_col('PAE_mean', 1)

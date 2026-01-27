@@ -209,6 +209,27 @@ The map categorizes the system into four layers:
 
 ---
 
+### 16. The Proprioceptive Maintenance Pathway (RUNX3/EGR3)
+
+**Arc Added**: `RUNX3` $\rightarrow$ `Proprio_Maint` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: `RUNX3` (Runt-related transcription factor 3), `EGR3` (Early Growth Response 3).
+*   **Mechanism**: **Sensory Survival & Maintenance**.
+    1.  `RUNX3` is essential for the differentiation and survival of TrkC+ dorsal root ganglion (DRG) neurons, which are the primary proprioceptive sensors.
+    2.  `EGR3` acts downstream to maintain the specialized "Muscle Spindle" connection.
+    3.  Without these factors, the proprioceptive neurons undergo apoptosis or fail to innervate the muscle spindles.
+*   **Property**: **Muscle Tone Balance** (and Feedback Gain).
+*   **Role**: **The Active Guy-Wire System**. The spine is inherently unstable (Euler Column) and requires constant active stabilization by paraspinal muscles. This stabilization relies on high-fidelity feedback from muscle spindles.
+    *   **Blind Muscles**: Loss of RUNX3/EGR3 blinds the system to its own posture. The muscles cannot reflexively correct small deviations, leading to drift and eventual buckling.
+*   **Evidence**: Blecher et al. (2017) identified RUNX3 and EGR3 mechanosensory feedback loops as essential for spinal alignment, with knockouts developing severe scoliosis and ataxia.
+
+> **Hypothesis**: Scoliosis is a "Proprioceptive Collapse". The structure is mechanically sound (initially), but the control system drifts because the sensors have degraded.
+
+**Citations**:
+*   *Blecher, R., et al. (2017). New functions for the proprioceptive system in skeletal biology. Philosophical Transactions of the Royal Society B: Biological Sciences, 373(1759), 20170327.* https://doi.org/10.1098/rstb.2017.0327
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

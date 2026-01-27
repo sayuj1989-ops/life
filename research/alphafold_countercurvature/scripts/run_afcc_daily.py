@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+"""
+run_afcc_daily.py
+
+Orchestrates the daily AlphaFold Counter-Curvature pipeline cycle.
+1. Selects Top N candidates from master list.
+2. Refreshes data (Uniprot mapping, PDB fetching).
+3. Computes metrics (forcing re-computation for Top N).
+4. Generates summary report.
+5. Archives outputs to versioned directory.
+"""
+
+import sys
+import pandas as pd
+import subprocess
+import shutil
+import datetime
+from pathlib import Path
+
+# Paths
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent.parent.parent
+AFCC_DIR = REPO_ROOT / "research" / "alphafold_countercurvature"
+DATA_DIR = AFCC_DIR / "data"
+PROCESSED_DIR = DATA_DIR / "processed"
+
+MASTER_CANDIDATES = REPO_ROOT / "data" / "candidates_master.csv"
+PROCESSED_CANDIDATES = PROCESSED_DIR / "candidates.csv"
+BOLT_TARGETS = PROCESSED_DIR / "bolt_targets.csv"
+METRICS_FILE = PROCESSED_DIR / "protein_metrics.csv"
+REPORT_SOURCE = PROCESSED_DIR / "bolt_biofold_results.md"
+
+OUTPUTS_DIR = REPO_ROOT / "outputs" / "afcc"
+DASHBOARD_FILE = REPO_ROOT / "reports" / "afcc_latest.md"
+
+def run_step(script_name, description):
+    print(f"\n🚀 Running {script_name}: {description}...")
+    script_path = SCRIPT_DIR / script_name
+    try:
+        result = subprocess.run([sys.executable, str(script_path)], check=True)
+        print(f"✅ {script_name} completed.")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ {script_name} failed with exit code {e.returncode}.")
+        sys.exit(e.returncode)
+
+def main():
+    today = datetime.date.today().strftime("%Y-%m-%d")
+    print(f"=== AFCC Daily Run: {today} ===")
+
+    # 1. Select Top Candidates
+    print("\n🔍 Selecting Top 10 Candidates...")
+    if not MASTER_CANDIDATES.exists():
+        print(f"❌ Master candidates file not found: {MASTER_CANDIDATES}")
+        sys.exit(1)
+
+    df = pd.read_csv(MASTER_CANDIDATES)
+    # Sort by priority_score descending
+    df_sorted = df.sort_values('priority_score', ascending=False)
+    top_n = df_sorted.head(10).copy()
+
+    # Ensure 'source' column exists for pipeline compatibility (using 'source' tag)
+    # The pipeline scripts seem to use 'source' column in candidates.csv
+    # candidates_master.csv doesn't have 'source', but usually 'bolt_setup_candidates.py' adds it.
+    # We will add it manually.
+    top_n['source'] = 'Top_Priority_Run'
+
+    # We also need 'total_score' which maps to 'priority_score'
+    if 'total_score' not in top_n.columns and 'priority_score' in top_n.columns:
+        top_n['total_score'] = top_n['priority_score']
+
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Write to processed/candidates.csv (used by 01 and 04)
+    top_n.to_csv(PROCESSED_CANDIDATES, index=False)
+    print(f"📄 Wrote top 10 to {PROCESSED_CANDIDATES}")
+
+    # Write to processed/bolt_targets.csv (used by 06 to filter report)
+    # 06_bolt_report.py expects 'gene_symbol'
+    top_n[['gene_symbol', 'source']].to_csv(BOLT_TARGETS, index=False)
+    print(f"📄 Wrote targets to {BOLT_TARGETS}")
+
+    print("   Targets:", ", ".join(top_n['gene_symbol'].tolist()))
+
+    # 2. Map to Uniprot
+    run_step("01_map_to_uniprot.py", "Map Gene Symbols to UniProt IDs")
+
+    # 3. Fetch Structures
+    # 02_fetch_afdb.py
+    run_step("02_fetch_afdb.py", "Fetch PDBs from AlphaFold DB")
+
+    # 4. Force Recompute Metrics
+    print("\n🧹 Preparing Metrics Table (Forcing Refresh for Targets)...")
+    target_genes = top_n['gene_symbol'].tolist()
+
+    if METRICS_FILE.exists():
+        metrics_df = pd.read_csv(METRICS_FILE)
+        initial_len = len(metrics_df)
+        # Remove rows where gene_symbol is in our target list
+        metrics_df = metrics_df[~metrics_df['gene_symbol'].isin(target_genes)]
+        removed_count = initial_len - len(metrics_df)
+        metrics_df.to_csv(METRICS_FILE, index=False)
+        print(f"   Removed {removed_count} existing entries for targets to force re-computation.")
+    else:
+        print("   No existing metrics file found. proceeding.")
+
+    # 5. Analyze Metrics
+    run_step("04_analyze_metrics.py", "Compute Structural Metrics")
+
+    # 6. Generate Report
+    run_step("06_bolt_report.py", "Generate Summary Report")
+
+    # 7. Archive Outputs
+    daily_output_dir = OUTPUTS_DIR / today
+    daily_output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"\n📦 Archiving outputs to {daily_output_dir}...")
+
+    # Copy Summary
+    if REPORT_SOURCE.exists():
+        shutil.copy(REPORT_SOURCE, daily_output_dir / "summary.md")
+        print("   Saved summary.md")
+    else:
+        print(f"⚠️ Report not found at {REPORT_SOURCE}")
+
+    # Save Metrics subset
+    if METRICS_FILE.exists():
+        all_metrics = pd.read_csv(METRICS_FILE)
+        # Filter for our targets
+        target_metrics = all_metrics[all_metrics['gene_symbol'].isin(target_genes)]
+        target_metrics.to_csv(daily_output_dir / "metrics.csv", index=False)
+        print("   Saved metrics.csv")
+    else:
+        print("⚠️ Metrics file not found.")
+
+    # 8. Update Dashboard
+    print(f"\n📊 Updating Dashboard at {DASHBOARD_FILE}...")
+
+    # Read summary for insights (simple extraction)
+    # We'll just take the "Interpretation" section or make a simple bullet list
+
+    dashboard_entry = f"\n## {today}: Daily Refresh\n"
+    dashboard_entry += f"- **Targets**: {', '.join(target_genes)}\n"
+    dashboard_entry += f"- **Full Report**: [View Summary](outputs/afcc/{today}/summary.md)\n"
+    dashboard_entry += f"- **Metrics**: [Download CSV](outputs/afcc/{today}/metrics.csv)\n"
+
+    # Try to extract top anisotropy from metrics
+    if METRICS_FILE.exists() and not target_metrics.empty:
+        if 'anisotropy_index' in target_metrics.columns:
+            top_aniso = target_metrics.sort_values('anisotropy_index', ascending=False).iloc[0]
+            dashboard_entry += f"- **Top Anisotropy**: {top_aniso['gene_symbol']} ({top_aniso['anisotropy_index']:.2f})\n"
+
+    with open(DASHBOARD_FILE, "a") as f:
+        f.write(dashboard_entry)
+
+    print("✅ Dashboard updated.")
+    print("\n🎉 AFCC Daily Run Complete!")
+
+if __name__ == "__main__":
+    main()

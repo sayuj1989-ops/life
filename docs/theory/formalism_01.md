@@ -150,6 +150,21 @@ $$ \text{Pe}_G = \frac{v_{flow} L_{seg}}{D_{eff}} $$
     *   $\text{Pe}_G < 1$: Diffusion dominates. The "Stagnant Pool" regime. Metabolic waste accumulates faster than it clears, creating a toxic halo around the ependyma.
 *   **Microgravity Implication**: The loss of hydrostatic pressure gradients and sleep-cycle disruptions reduces $v_{flow}$, driving $\text{Pe}_G \to 0$, triggering inflammatory remodeling (e.g., reactive astrogliosis).
 
+### 2.11. The Mechanical Entrainment Number ($\mathcal{E}_{mech}$)
+
+We posit that gravitational loading acts as the primary Zeitgeber for the intervertebral disc circadian clock. We define $\mathcal{E}_{mech}$ as the ratio of the external mechanical forcing amplitude to the intrinsic phase diffusion of the biological oscillator.
+
+$$ \mathcal{E}_{mech} = \frac{K_{ent} \langle |\dot{\varepsilon}_{grav}| \rangle}{\sigma_{\phi}} $$
+
+*   **Symbols**:
+    *   $K_{ent}$: Entrainment coupling efficiency $[1]$ (Dimensionless).
+    *   $\langle |\dot{\varepsilon}_{grav}| \rangle$: Mean strain rate induced by diurnal gravitational loading $[T^{-1}]$.
+    *   $\sigma_{\phi}$: Intrinsic phase diffusion rate (clock noise) $[T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{E}_{mech} > 1$: The clock is phase-locked to the gravity vector (Entrained).
+    *   $\mathcal{E}_{mech} < 1$: The clock free-runs and desynchronizes (Spinal Jetlag).
+*   **Measurable Proxy**: The amplitude ratio of PER2::LUC bioluminescence oscillations in loaded vs. unloaded disc explants.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -293,6 +308,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Cobb angle progression and vertebral shape analysis in scoliotic animal models treated with Growth Hormone (GH) vs vehicle.
 *   **Refutation**: If GH treatment restores spinal linearity by "pushing" the spine straight, the hypothesis that scalar growth requires vector guidance is falsified. (Reference: Stokes, 2002).
 
+### Test U: The Desynchronization Drift
+*   **Hypothesis**: In the absence of gravitational loading ($g \to 0$, $\mathcal{E}_{mech} \to 0$), the circadian clocks of adjacent vertebral levels will drift out of phase, leading to discordant remodeling and "kinked" growth.
+*   **Data Needed**: Bioluminescence imaging of multi-level spine explants from PER2::LUC mice cultured in free-floating (microgravity) vs. cyclically loaded conditions.
+*   **Refutation**: If adjacent segments maintain phase coherence in the absence of mechanical cues (relying solely on chemical coupling), the "Gravity Zeitgeber" hypothesis is falsified. (Reference: Dudek et al., 2017).
+
+### Test V: The Loading Rescue
+*   **Hypothesis**: Application of cyclic compressive loading at the circadian frequency (24h period) can rescue clock amplitude and phase even in constant dark (DD) conditions.
+*   **Data Needed**: Amplitude of BMAL1 expression in disc cells subjected to cyclic strain in dark conditions compared to static controls.
+*   **Refutation**: If mechanical loading fails to reset the clock phase or boost amplitude, the coupling constant $K_{ent}$ is effectively zero. (Reference: Yang et al., 2017).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -319,3 +344,5 @@ The theory makes specific predictions about the relationship between genetic ani
 22. **Xie, L., et al. (2013).** "Sleep drives metabolite clearance from the adult brain." *Science*, 342(6156). (Link to sleep/pumping and AQP4).
 23. **Goriely, A. (2017).** "The Mathematics and Mechanics of Biological Growth." *Springer*. (Foundational text on differential growth tensors).
 24. **Stokes, I. A. (2002).** "Mechanical modulation of spinal growth and progression of adolescent scoliosis." *Spine*, 27(22). (Hueter-Volkmann law application).
+25. **Yang, N., et al. (2017).** "Mechanical strain regulates the circadian clock in the intervertebral disc." *Journal of Orthopaedic Research*. (Demonstrates mechanical entrainment).
+26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).

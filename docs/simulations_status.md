@@ -17,3 +17,4 @@
 | 2026-07-15 | weekly-sim-anisotropy-growth | Anisotropy Ratio | High anisotropy (R=6) destabilizes spine via torsion (Cobb > 70 deg), contradicting simple Vector Chain protection. | [Report](../outputs/sim/2026-07-15/report.md) |
 | 2026-01-24 | weekly-sim-tilted-anisotropy | stiffness_anisotropy | Intermediate anisotropy (R=2.0) triggers maximal lateral S-shape (S_lat > 0.3); high anisotropy stabilizes. | [Report](../outputs/sim/2026-01-24/report.md) |
 | 2026-01-25 | weekly-sim-torsion-drive | chi_tau | Critical coupling at chi_tau=1.0 maximizes Cobb Angle (80 deg) despite lower S_lat. | [Report](../outputs/sim/2026-01-25/report.md) |
+| 2026-01-27 | weekly-sim-tilt-torsion | tilt_deg, chi_tau | Torsion (chi_tau=1.0) reduces lateral deviation (S_lat) by 20% under high tilt (20 deg), despite similar Cobb angles. | [Report](../outputs/sim/2026-01-27/report.md) |

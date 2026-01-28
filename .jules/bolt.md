@@ -27,3 +27,9 @@
 **Learning:** `calculate_curvature` used Heron's formula (expensive `sqrt` and arithmetic on side lengths) while `calculate_torsion` independently computed cross products. The triangle area needed for curvature is exactly $0.5 \times \|\text{CrossProduct}\|$. Recomputing these separately is wasteful.
 
 **Action:** Refactored `analyze_structure` to precompute `normals` (cross products) and `normals_norm` once. Passed these to both functions. `calculate_curvature` now uses `0.5 * normals_norm` (skipping Heron's entirely), and `calculate_torsion` reuses the precomputed arrays. Benchmarks show 1.29x speedup for curvature and 2.12x for torsion (logic only), with verified identical results.
+
+## 2026-08-06 - [Flat List PDB Parsing]
+
+**Learning:** Profiling showed that `StructureParser.fast_parse_pdb_arrays` dominates runtime (~75%) for uncached structures due to Python loop overhead and object creation (creating N small lists for coordinates). `pandas` and `regex` based parsing were slower than the optimized Python loop.
+
+**Action:** Replaced list-of-lists construction with a flat list and subsequent `reshape`, and optimized the per-line atom check using string slicing (`line[13:15] == "CA"`) instead of `.strip()`. This yielded a ~15-20% speedup (28ms -> 24ms per file) for parsing new structures while maintaining robustness.

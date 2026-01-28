@@ -49,7 +49,7 @@ class StructureParser:
             except Exception:
                 pass # Fallback to parsing if cache corrupted/stale
 
-        coords_list = []
+        coords_flat = []
         plddt_list = []
         resnames_list = []
 
@@ -57,40 +57,42 @@ class StructureParser:
             with open(pdb_path, 'r') as f:
                 for line in f:
                     if line.startswith("ATOM"):
-                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
-                        # PDB format (1-based index in documentation, 0-based slice here):
-                        # 12-16: Atom name
-                        # 16: AltLoc (Alternate location indicator)
-                        # 17-20: Residue name
-                        # 21: Chain identifier
-                        # 30-38: X
-                        # 38-46: Y
-                        # 46-54: Z
-                        # 60-66: Temperature factor (pLDDT)
+                        # Bolt Optimization: Fast check for standard ' CA '
+                        # Standard PDB has " CA " at 12:16 (0-indexed).
+                        # line[13] == 'C', line[14] == 'A' is the most common case (AlphaFold standard).
+                        # This avoids .strip() on every line which is slow.
+                        is_ca = (line[13:15] == "CA")
+                        if not is_ca:
+                            # Fallback for non-standard alignment (e.g. "CA  " or "  CA")
+                            if line[12:16].strip() == "CA":
+                                is_ca = True
 
-                        atom_name = line[12:16].strip()
+                        if is_ca:
+                            # Only handle primary conformations (' ' or 'A')
+                            alt_loc = line[16]
+                            if alt_loc == ' ' or alt_loc == 'A':
+                                try:
+                                    res_name = line[17:20].strip()
+                                    x = float(line[30:38])
+                                    y = float(line[38:46])
+                                    z = float(line[46:54])
+                                    b_factor = float(line[60:66])
 
-                        # Only handle primary conformations (' ' or 'A')
-                        # AF structures usually don't have altlocs, but we check for safety.
-                        alt_loc = line[16]
-                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
-                            try:
-                                res_name = line[17:20].strip()
-                                x = float(line[30:38])
-                                y = float(line[38:46])
-                                z = float(line[46:54])
-                                b_factor = float(line[60:66])
+                                    # Bolt Optimization: Flat list append (faster than list of lists)
+                                    coords_flat.append(x)
+                                    coords_flat.append(y)
+                                    coords_flat.append(z)
 
-                                coords_list.append([x, y, z])
-                                plddt_list.append(b_factor)
-                                resnames_list.append(res_name)
-                            except ValueError:
-                                continue # Skip malformed lines
+                                    plddt_list.append(b_factor)
+                                    resnames_list.append(res_name)
+                                except ValueError:
+                                    continue # Skip malformed lines
 
-            if not coords_list:
+            if not coords_flat:
                 return None, None, None
 
-            coords_arr = np.array(coords_list)
+            # Bolt Optimization: Reshape flat list to (N, 3)
+            coords_arr = np.array(coords_flat).reshape(-1, 3)
             plddt_arr = np.array(plddt_list)
             resnames_arr = np.array(resnames_list)
 

@@ -42,6 +42,7 @@ except ImportError:
         class AnalyticalLinearDamper: pass
         class BaseSystemCollection: pass
         class Constraints: pass
+        class ConstraintBase: pass
         class Forcing: pass
         class Damping: pass
         class CallBacks: pass

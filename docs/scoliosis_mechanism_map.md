@@ -230,6 +230,26 @@ The map categorizes the system into four layers:
 
 ---
 
+### 17. The Lymphatic Pump Pathway
+
+**Arc Added**: `PROX1` $\rightarrow$ `Lymphatic_Drainage` $\rightarrow$ `Hydraulic_Congestion`.
+
+*   **Source**: `PROX1` (Lymphatic Identity), `Muscle_Tone` (The Pump).
+*   **Mechanism**: **Gravity-Assisted Lymphatic Drainage**.
+    1.  The spine possesses a dedicated drainage system: the **Vertebral Column Lymphatic (VCL)** network (Jacob et al., 2019).
+    2.  Unlike the brain's glymphatic system, VCL flow is hypothesized to be driven by the **Paraspinal Muscle Pump** and **Gravitational Hydrostatic Pressure**.
+    3.  In microgravity (or sedentary unloading), this pump fails.
+*   **Property**: **Fluid Homeostasis** (Prevention of Congestion).
+*   **Role**: **Waste Clearance**. The system requires active pumping to clear inflammatory cytokines (IL-1$\beta$, TNF-$\alpha$) and metabolic waste (Lactate) from the spinal interstitium. Failure leads to "Spinal Congestion," triggering the inflammatory cascade (MMP activation).
+*   **Evidence**: Jacob et al. (2019) mapped the VCL. Recent evidence links venous/lymphatic stasis to intervertebral disc degeneration and inflammation.
+
+> **Hypothesis**: Gravity acts as the "prime mover" for spinal hygiene. Without the gravity-assist, the lymphatic valves fail to close, leading to reflux and toxic accumulation.
+
+**Citations**:
+*   *Jacob, L., et al. (2019). Anatomy and function of the vertebral column lymphatic network in mice. Nature Communications, 10, 4594.* https://doi.org/10.1038/s41467-019-12568-w
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

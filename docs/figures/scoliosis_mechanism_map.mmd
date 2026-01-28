@@ -19,6 +19,7 @@ graph TD
         LAMIN[LAMIN<br/>Lamin A/C]
         BMAL1[BMAL1/CLOCK<br/>Circadian Rhythm]
         RUNX3[RUNX3/EGR3<br/>Proprioceptive Identity]
+        PROX1[PROX1<br/>Lymphatic Identity]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -40,6 +41,7 @@ graph TD
         Immune_Infilt[Immune Infiltration<br/>Macrophage Entry]
         Circadian_Entrain[Circadian Entrainment<br/>Loading Zeitgeber]
         Proprio_Maint[Proprioceptive Maint.<br/>Sensory Survival]
+        Lymphatic_Drainage[Lymphatic Drainage<br/>VCL Pump]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -152,7 +154,12 @@ graph TD
     Mech_Trans --> Circadian_Entrain
     Circadian_Entrain --> Disc_Maint
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint process;
+    %% NEW ARC: Lymphatic Pump
+    PROX1 --> Lymphatic_Drainage
+    Muscle_Tone -- "Muscle Pump" --> Lymphatic_Drainage
+    Lymphatic_Drainage -- "Clears" --> Hydraulic_Congestion
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,PROX1 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,Lymphatic_Drainage process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

@@ -29,6 +29,9 @@ ArrayF64 = NDArray[np.float64]
 # Try to import PyElastica, but make it optional
 try:
     import elastica as ea
+    # Check if key components exist (handling namespace packages or partial installs)
+    if not hasattr(ea, "CosseratRod") or not hasattr(ea, "NoForces"):
+        raise ImportError("Elastica package incomplete")
     PYELASTICA_AVAILABLE = True
 except ImportError:
     PYELASTICA_AVAILABLE = False
@@ -47,6 +50,7 @@ except ImportError:
         class CallBacks: pass
         class PositionVerlet: pass
         class integrate: pass
+        class ConstraintBase: pass
 
 @dataclass
 class SimulationResult:

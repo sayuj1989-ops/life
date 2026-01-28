@@ -165,6 +165,17 @@ $$ \mathcal{E}_{mech} = \frac{K_{ent} \langle |\dot{\varepsilon}_{grav}| \rangle
     *   $\mathcal{E}_{mech} < 1$: The clock free-runs and desynchronizes (Spinal Jetlag).
 *   **Measurable Proxy**: The amplitude ratio of PER2::LUC bioluminescence oscillations in loaded vs. unloaded disc explants.
 
+### 2.12. The Proprioceptive Stiffness ($\chi_P$)
+
+We decompose the active biological moment into a gravitropic term (sensing angle relative to gravity) and a proprioceptive term (sensing local curvature). $\chi_P$ represents the gain of the curvature-sensing feedback loop, analogous to the "Bastien Proprioception" term in plant gravitropism.
+
+$$ \mathbf{M}_{bio} \approx \chi_G \sin(\theta) - \chi_P \boldsymbol{\kappa} $$
+
+*   **Dimensions**: $[ML^3T^{-2}]$ (Equivalent to Flexural Rigidity $EI$).
+*   **Physical Interpretation**: $\chi_P$ is the "active stiffness" of the system. Unlike passive stiffness $EI$, $\chi_P$ requires metabolic energy and sensory feedback (e.g., muscle spindles, Piezo2).
+*   **Stability Condition**: For a vertical column to be stable without oscillations, the ratio $B = \frac{\chi_P L}{\chi_G}$ must satisfy specific bounds (Bastien et al., 2013).
+*   **Measurable Proxy**: The "Restoring Rate" vs "Overshoot" dynamic during postural recovery experiments. A low $\chi_P$ leads to excessive overshoot (hunting).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -318,6 +329,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Amplitude of BMAL1 expression in disc cells subjected to cyclic strain in dark conditions compared to static controls.
 *   **Refutation**: If mechanical loading fails to reset the clock phase or boost amplitude, the coupling constant $K_{ent}$ is effectively zero. (Reference: Yang et al., 2017).
 
+### Test W: The Proprioceptive Gain Failure
+*   **Hypothesis**: Scoliosis is a "low-gain" instability where $\chi_P$ drops below the critical value required to damp gravitational perturbations, leading to "hunting" behavior (buckling).
+*   **Data Needed**: Motion capture of postural recovery in *Egr3* knockout mice (defective muscle spindles) compared to WT, fitting the trajectory to a damped oscillator model to extract $\chi_P$.
+*   **Refutation**: If spindle-deficient mice show *increased* stiffness or normal damping, the proprioceptive gain hypothesis is falsified. (Reference: Blecher et al., 2017).
+
+### Test X: The Active Stiffness Collapse
+*   **Hypothesis**: The measured stiffness of the spine in vivo ($\chi_{total} = EI + \chi_P$) is significantly higher than the passive stiffness ex vivo ($EI$). Anesthesia or death should cause an immediate drop in stiffness equal to $\chi_P$.
+*   **Data Needed**: Bending stiffness measurements of the zebrafish axis in live (awake), anesthetized, and post-mortem states.
+*   **Refutation**: If stiffness remains constant across states, then $\chi_P \approx 0$, and stability is purely passive. (Reference: Alford et al., 2011).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -346,3 +367,6 @@ The theory makes specific predictions about the relationship between genetic ani
 24. **Stokes, I. A. (2002).** "Mechanical modulation of spinal growth and progression of adolescent scoliosis." *Spine*, 27(22). (Hueter-Volkmann law application).
 25. **Yang, N., et al. (2017).** "Mechanical strain regulates the circadian clock in the intervertebral disc." *Journal of Orthopaedic Research*. (Demonstrates mechanical entrainment).
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
+27. **Bastien, R., et al. (2013).** "Unifying model of shoot gravitropism reveals proprioception as a central feature of posture control." *PNAS*, 110(2). (Foundational Proprioception Model).
+28. **Blecher, R., et al. (2017).** "New functions for the proprioceptive system in skeletal biology." *Philosophical Transactions of the Royal Society B*. (Links spindles to bone mass/alignment).
+29. **Alford, P. W., et al. (2011).** "Cellular mechanics and mechanotransduction." *Handbook of Physiology*. (Active vs Passive stiffness).

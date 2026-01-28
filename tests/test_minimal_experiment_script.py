@@ -13,7 +13,9 @@ if str(SCRIPTS_DIR) not in sys.path:
 # Import the module unconditionally.
 # It should be importable since we added scripts to sys.path
 import experiment_minimal_elastica
+from experiment_minimal_elastica import PYELASTICA_AVAILABLE
 
+@pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not installed")
 def test_run_experiment_integration(tmp_path):
     """
     Test that the minimal experiment script runs and produces expected output.
@@ -61,6 +63,7 @@ def test_run_experiment_integration(tmp_path):
     # Check for NaN (basic stability check)
     assert row["max_curvature"] != "nan"
 
+@pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not installed")
 def test_run_experiment_custom_info(tmp_path):
     """
     Test that custom info field parameters are passed correctly and recorded.

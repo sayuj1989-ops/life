@@ -14,6 +14,12 @@ if str(SCRIPTS_DIR) not in sys.path:
 # It should be importable since we added scripts to sys.path
 import experiment_minimal_elastica
 
+# Skip all tests in this module if PyElastica is not available
+pytestmark = pytest.mark.skipif(
+    not experiment_minimal_elastica.PYELASTICA_AVAILABLE,
+    reason="PyElastica not installed"
+)
+
 def test_run_experiment_integration(tmp_path):
     """
     Test that the minimal experiment script runs and produces expected output.

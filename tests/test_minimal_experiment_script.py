@@ -26,6 +26,7 @@ def test_run_experiment_integration(tmp_path):
     anisotropies = [1.0]
     chi_kappas = [0.0]
     chi_taus = [1.0] # Test non-zero torsion
+    chi_Ms = [0.0]
     boundary_condition = "fixed"
     n_elements = 10
     final_time = 0.01 # Very short time
@@ -35,6 +36,7 @@ def test_run_experiment_integration(tmp_path):
         anisotropies=anisotropies,
         chi_kappas=chi_kappas,
         chi_taus=chi_taus,
+        chi_Ms=chi_Ms,
         boundary_condition=boundary_condition,
         n_elements=n_elements,
         final_time=final_time,
@@ -54,6 +56,10 @@ def test_run_experiment_integration(tmp_path):
     assert "chi_tau" in row
     assert float(row["chi_tau"]) == 1.0
 
+    # Check if chi_M column exists
+    assert "chi_M" in row
+    assert float(row["chi_M"]) == 0.0
+
     # Check if metrics are present
     assert "max_curvature" in row
     assert "max_torsion" in row
@@ -72,6 +78,7 @@ def test_run_experiment_custom_info(tmp_path):
         anisotropies=[1.0],
         chi_kappas=[0.0],
         chi_taus=[0.0],
+        chi_Ms=[0.0],
         boundary_condition="fixed",
         n_elements=10,
         final_time=0.01,
@@ -93,3 +100,34 @@ def test_run_experiment_custom_info(tmp_path):
     assert float(row["info_center"]) == 0.5
     assert float(row["info_width"]) == 0.2
     assert float(row["info_amplitude"]) == 0.3
+
+def test_run_experiment_active_moment(tmp_path):
+    """
+    Test that the active moment parameter (chi_M) is passed correctly and recorded.
+    """
+    out_file = tmp_path / "test_active_moment.csv"
+
+    experiment_minimal_elastica.run_experiment(
+        out_file=str(out_file),
+        anisotropies=[1.0],
+        chi_kappas=[0.0],
+        chi_taus=[0.0],
+        chi_Ms=[0.5], # Non-zero active moment
+        boundary_condition="fixed",
+        n_elements=10,
+        final_time=0.01,
+        save_every=100
+    )
+
+    assert out_file.exists()
+
+    with open(out_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows) == 1
+    row = rows[0]
+
+    assert "chi_M" in row
+    assert float(row["chi_M"]) == 0.5
+    assert row["max_curvature"] != "nan"

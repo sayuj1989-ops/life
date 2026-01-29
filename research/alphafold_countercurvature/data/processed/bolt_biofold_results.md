@@ -28,12 +28,12 @@ PTK7 (Q13308),Homo sapiens,1070,82.7,89.6,0.48,0.38,0.14,22.5,4.53,0.09,20,62.9,
 ```
 
 ## 2. Key Plots Summary
-- `POC5_plddt.png`: pLDDT profile for POC5
-- `POC5_pae.png`: PAE heatmap for POC5
 - `PTK7_plddt.png`: pLDDT profile for PTK7
 - `PTK7_pae.png`: PAE heatmap for PTK7
 - `COL11A2_plddt.png`: pLDDT profile for COL11A2
 - `COL11A2_pae.png`: PAE heatmap for COL11A2
+- `POC5_plddt.png`: pLDDT profile for POC5
+- `POC5_pae.png`: PAE heatmap for POC5
 
 ## 3. Interpretation
 **Family: seed_ECM**
@@ -54,11 +54,11 @@ PTK7 (Q13308),Homo sapiens,1070,82.7,89.6,0.48,0.38,0.14,22.5,4.53,0.09,20,62.9,
 
 
 ## 4. Best Next Move
-Cluster by geometry and correlate curvature metrics with known phenotype genes.
+Cluster by geometry and correlate curvature metrics with known phenotype genes (e.g., LBX1, PIEZO2).
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-01-27 19:27:28
-- Code Version: b3f2832
+- Date/Time: 2026-01-29 19:16:01
+- Code Version: cca4b4b
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 8 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

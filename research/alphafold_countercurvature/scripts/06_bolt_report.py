@@ -304,7 +304,7 @@ def main():
     if avg_plddt < 60:
         best_move = "Prioritize high-confidence structured proteins; current set is too disordered."
     elif high_aniso_count > 2:
-        best_move = "Cluster by geometry and correlate curvature metrics with known phenotype genes."
+        best_move = "Cluster by geometry and correlate curvature metrics with known phenotype genes (e.g., LBX1, PIEZO2)."
     else:
         best_move = "Add proteins: Expand search to include more cytoskeletal linkers."
 

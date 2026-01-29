@@ -8,8 +8,13 @@ from pathlib import Path
 # Adjusted path to point to legacy archive where the script resides
 sys.path.append(str(Path(__file__).parent.parent / "archive/alphafold_analysis_legacy"))
 
-from analyze_bcc_structures import calculate_backbone_curvature
+try:
+    import Bio
+    from analyze_bcc_structures import calculate_backbone_curvature
+except ImportError:
+    Bio = None
 
+@unittest.skipIf(Bio is None, "Biopython not installed")
 class TestCurvatureOptimization(unittest.TestCase):
     def test_calculate_backbone_curvature(self):
         # Setup data

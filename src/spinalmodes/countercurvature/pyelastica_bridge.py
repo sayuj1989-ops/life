@@ -36,6 +36,7 @@ except ImportError:
     class ea:
         class CosseratRod: pass
         class NoForces: pass
+        class ConstraintBase: pass
         class CallBackBaseClass: pass
         class OneEndFixedBC: pass
         class GravityForces: pass

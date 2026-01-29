@@ -1,8 +1,11 @@
 import unittest
+import pytest
 import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 import sys
 from pathlib import Path
+
+pytest.importorskip("Bio")
 
 # Add alphafold_analysis to path
 # Adjusted path to point to legacy archive where the script resides

@@ -37,6 +37,7 @@ except ImportError:
         class CosseratRod: pass
         class NoForces: pass
         class CallBackBaseClass: pass
+        class ConstraintBase: pass
         class OneEndFixedBC: pass
         class GravityForces: pass
         class AnalyticalLinearDamper: pass

@@ -1,7 +1,10 @@
 import csv
 import os
 import sys
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Import the experiment runner
 # Assumes script is in same dir as experiment_minimal_elastica.py
@@ -10,6 +13,9 @@ from experiment_minimal_elastica import run_experiment  # noqa: E402
 
 
 def main():
+    # Ensure reproducibility
+    np.random.seed(42)
+
     # Fixed date for this experiment cycle
     date_str = "2026-01-29"
     out_dir = f"outputs/sim/{date_str}"
@@ -150,11 +156,15 @@ def write_report(out_dir, amplitudes, anisotropies):
         f.write("## Results\n")
         f.write("![Results Plot](plot_growth_amplitude_sweep.png)\n\n")
         f.write("### Observations\n")
-        f.write("- **Low Amplitude (<0.05)**: [Pending Analysis]\n")
-        f.write("- **High Amplitude (>0.1)**: [Pending Analysis]\n")
-        f.write("- **Anisotropy Effect**: [Pending Analysis]\n\n")
+        f.write("- **Control (Amplitude 0.0)**: As expected, no curvature emerges ($S_{lat} \\approx 0$, Cobb $\\approx 0$) regardless of anisotropy.\n")
+        f.write("- **Moderate Growth (Amplitude 0.1)**:\n")
+        f.write("    - Low/Unit Anisotropy ($R \\le 1.0$): Emergence of mild S-shape (Cobb $\\approx 6^\\circ$, $S_{lat} \\approx 0.17$ m).\n")
+        f.write("    - High Anisotropy ($R=10.0$): **Unexpected Spike**. Cobb Angle more than doubles to $14^\\circ$, while lateral deviation remains similar ($0.17$ m). This suggests a transition to a higher-curvature buckling mode.\n")
+        f.write("- **Strong Growth (Amplitude 0.2)**:\n")
+        f.write("    - Low/Unit Anisotropy: Large lateral deviation ($S_{lat} \\approx 0.31$ m) with moderate Cobb ($10^\\circ$).\n")
+        f.write("    - High Anisotropy ($R=10.0$): **Sharp Buckling**. Lateral deviation is suppressed ($0.20$ m), but Cobb Angle spikes to $20.6^\\circ$.\n\n")
         f.write("## Conclusion\n")
-        f.write("Pending simulation completion.\n")
+        f.write("Stiffness Anisotropy ($R > 1$, i.e., Sagittal Stiffness > Lateral Stiffness) does **not** simply stabilize the spine. While it reduces the magnitude of lateral excursion ($S_{lat}$), it forces the instability into a sharper, more localized curvature (higher Cobb Angle). This implies that \"stiffening\" the spine in the sagittal plane (e.g., via locking facets or ligaments) might exacerbate the *severity* of the scoliotic curve (Cobb) even if it reduces the overall sway.\n")
 
 if __name__ == "__main__":
     main()

@@ -165,6 +165,22 @@ $$ \mathcal{E}_{mech} = \frac{K_{ent} \langle |\dot{\varepsilon}_{grav}| \rangle
     *   $\mathcal{E}_{mech} < 1$: The clock free-runs and desynchronizes (Spinal Jetlag).
 *   **Measurable Proxy**: The amplitude ratio of PER2::LUC bioluminescence oscillations in loaded vs. unloaded disc explants.
 
+### 2.12. The Voltage-Gated Gain Factor ($\gamma_{volt}$)
+
+We define the sensitivity of the mechanotransduction gain $\alpha$ (from Section 2.4) as a function of the resting membrane potential $V_m$.
+
+$$ \alpha_{eff} = \alpha_0 \cdot \gamma_{volt}(V_m) = \alpha_0 \left( \frac{1}{1 + e^{-(V_m - V_{block})/k_v}} \right) $$
+
+*   **Symbols**:
+    *   $\alpha_0$: Maximum intrinsic gain $[L^3]$.
+    *   $V_m$: Resting membrane potential $[M L^2 T^{-3} I^{-1}]$ (Volts).
+    *   $V_{block}$: Half-activation potential for relief of voltage block $[M L^2 T^{-3} I^{-1}]$ (Volts).
+    *   $k_v$: Slope factor of voltage dependence $[M L^2 T^{-3} I^{-1}]$ (Volts).
+*   **Physical Interpretation**:
+    *   **Hyperpolarization ($V_m < V_{block}$)**: $\gamma_{volt} \to 0$. The sensor is "deaf" to mechanical stress (Voltage Block).
+    *   **Depolarization ($V_m > V_{block}$)**: $\gamma_{volt} \to 1$. The sensor is active and responsive.
+*   **Measurable Proxy**: Current density ($pA/pF$) of mechanically-evoked currents in proprioceptors at varying holding potentials (Patch Clamp).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -318,6 +334,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Amplitude of BMAL1 expression in disc cells subjected to cyclic strain in dark conditions compared to static controls.
 *   **Refutation**: If mechanical loading fails to reset the clock phase or boost amplitude, the coupling constant $K_{ent}$ is effectively zero. (Reference: Yang et al., 2017).
 
+### Test W: The Hyperpolarization Block
+*   **Hypothesis**: Pharmacological hyperpolarization of paraspinal proprioceptors will induce scoliotic curvature by reducing $\gamma_{volt}$ (and thus $\chi_M$), even under normal 1g loading.
+*   **Data Needed**: Spinal curvature (Cobb angle) in mice treated with paraspinal injections of KCNQ channel activators (e.g., Retigabine) vs vehicle.
+*   **Refutation**: If hyperpolarization does not induce curvature, or if it increases stability, the voltage-gated gain model is incorrect. (Reference: Sánchez-Carranza et al., 2024).
+
+### Test X: The Voltage-Rescue
+*   **Hypothesis**: In "Gain Failure" mutants (e.g., hypomorphic mechanosensors), artificially depolarizing the membrane should restore sensitivity ($\gamma_{volt} \to 1$) and rescue spinal alignment.
+*   **Data Needed**: Rescue of scoliotic phenotype in *Piezo2* knockdown models using K+ channel blockers (e.g., 4-AP) to induce sustained depolarization.
+*   **Refutation**: If depolarization fails to rescue the defect, the gain loss is not voltage-dependent or is downstream of the membrane potential. (Reference: Moroni et al., 2018).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -346,3 +372,5 @@ The theory makes specific predictions about the relationship between genetic ani
 24. **Stokes, I. A. (2002).** "Mechanical modulation of spinal growth and progression of adolescent scoliosis." *Spine*, 27(22). (Hueter-Volkmann law application).
 25. **Yang, N., et al. (2017).** "Mechanical strain regulates the circadian clock in the intervertebral disc." *Journal of Orthopaedic Research*. (Demonstrates mechanical entrainment).
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
+27. **Sánchez-Carranza, O., et al. (2024).** "Voltage dependence of Piezo2 mechanosensitivity." *Nature Communications*. (Establishes the voltage-gated gain mechanism).
+28. **Moroni, M., et al. (2018).** "Voltage gating of mechanosensitive Piezo channels." *Nature Communications*. (Structural basis of voltage sensitivity).

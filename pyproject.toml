@@ -23,7 +23,25 @@ matplotlib = "^3.7.0"
 typer = "^0.9.0"
 pydantic = "^2.0.0"
 pandas = "^2.0.0"
-lifelines = "^0.27.8"
+
+# Optional dependencies
+pyelastica = { version = ">=0.3.3", optional = true }
+biopython = { version = ">=1.85", optional = true }
+lifelines = { version = ">=0.27.8", optional = true }
+seaborn = { version = ">=0.13.0", optional = true }
+transformers = { version = ">=4.37.0", optional = true }
+torch = { version = ">=2.0.0", optional = true }
+accelerate = { version = ">=0.25.0", optional = true }
+langchain = { version = ">=0.1.0", optional = true }
+chromadb = { version = ">=0.4.0", optional = true }
+pyyaml = { version = ">=6.0", optional = true }
+
+
+[tool.poetry.extras]
+mechanics = ["pyelastica"]
+bio = ["biopython"]
+analysis = ["lifelines", "seaborn"]
+manuscript = ["transformers", "torch", "accelerate", "langchain", "chromadb", "pyyaml"]
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.2"
@@ -33,11 +51,6 @@ ruff = ">=0.6"
 mypy = ">=1.11"
 mkdocs = "^1.5.0"
 mkdocs-material = "^9.2.0"
-
-# [tool.poetry.extras]
-# dev = ["pytest>=8.2", "pytest-cov>=4.1", "ruff>=0.6", "black>=24.8", "mypy>=1.11", "lifelines>=0.27"]
-# cosserat = ["pyelastica>=0.0.7"]
-# docs = ["pandoc>=3.1"]
 
 [tool.poetry.scripts]
 spinalmodes = "spinalmodes.cli:app"
@@ -59,7 +72,7 @@ python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 warn_unused_ignores = true
-disallow_untyped_defs = false # Legacy mypy.ini had this as True, but set false to avoid breaking build
+disallow_untyped_defs = false
 check_untyped_defs = true
 ignore_missing_imports = true
 

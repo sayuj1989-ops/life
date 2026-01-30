@@ -52,6 +52,7 @@ results/
 logs/
 *.log
 cloudflared*.log
+figures/
 
 # LaTeX (Manuscript build artifacts)
 manuscript/*.aux

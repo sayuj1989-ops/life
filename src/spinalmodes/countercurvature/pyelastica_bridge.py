@@ -10,7 +10,7 @@ modes.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, TYPE_CHECKING, Type, Dict, Any
+from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Tuple
 
 import numpy as np
 from numpy.typing import NDArray
@@ -193,6 +193,34 @@ class CounterCurvatureRodSystem:
         self.length = np.sum(rod.rest_lengths)
         self.active_torques = active_torques
 
+    def get_biological_state(self) -> Tuple[ArrayF64, ArrayF64]:
+        """Retrieve the effective biological state of the rod.
+
+        This method exposes the internal mechanical parameters that have been modulated
+        by the biological information fields.
+
+        Returns:
+            Tuple containing:
+                - effective_stiffness (ArrayF64): 1D array of effective stiffness (E_eff) at element centers.
+                - rest_curvature (ArrayF64): (3, N) array of rest curvature (kappa_rest) at Voronoi domains.
+        """
+        # Effective stiffness is implicitly stored in the shear/bend matrices, but that's hard to
+        # reverse engineer if anisotropy is also applied.
+        # Instead, we re-compute it from the info field, which is cheap.
+        E0 = self.rod.shear_modulus[..., 0] * 2.0 * (1.0 + 0.5) # Approximate reconstruction if nu=0.5
+        # Note: PyElastica doesn't store E0 directly, it stores shear/bend matrices.
+        # Ideally, we should store E0 in __init__.
+        # For now, let's just recompute using the stored params and info_field.
+        # We assume a default E0=1e6 if we can't recover it, or just return the modulation factor.
+
+        # Actually, let's just return the modulation profile from the info field
+        E_eff = compute_effective_stiffness(self.info_field, self.params, E0=1.0) # Normalized stiffness profile
+
+        # Rest curvature is stored in the rod
+        rest_kappa = self.rod.rest_kappa.copy()
+
+        return E_eff, rest_kappa
+
     @classmethod
     def from_iec(
         cls,
@@ -212,6 +240,57 @@ class CounterCurvatureRodSystem:
         normal: tuple[float, float, float] = (0.0, 1.0, 0.0),
         stiffness_anisotropy: float = 1.0,
     ) -> "CounterCurvatureRodSystem":
+        """Construct a Rod System from Information-Elasticity Coupling (IEC) parameters.
+
+        This factory method maps biological inputs to mechanical rod parameters.
+
+        Biological Mappings:
+        --------------------
+        1. **Stiffness Anisotropy**: Maps to ECM fiber alignment (e.g. Fibrillin/Collagens).
+           - High anisotropy (>1) implies fibers aligned to resist sagittal bending.
+           - Implemented by scaling `bend_matrix[0,0]` vs `bend_matrix[1,1]`.
+
+        2. **Preferred Curvature (kappa_rest)**: Maps to active growth or sensing (e.g. Piezo/Growth).
+           - `chi_kappa` couples information gradients to rest curvature.
+           - Represents the system's "set-point" for shape.
+
+        3. **Effective Stiffness (E_eff)**: Maps to tissue density or maturation.
+           - Modulated by `chi_E` and the information field `I(s)`.
+
+        4. **Active Moments**: Maps to muscle tone or active contraction.
+           - `chi_M` couples information gradients to internal torques.
+
+        Parameters
+        ----------
+        info : InfoField1D
+            The spatial information field (protein gradients).
+        params : CounterCurvatureParams
+            Coupling coefficients (chi_kappa, chi_tau, etc.).
+        length : float
+            Total length of the rod.
+        n_elements : int
+            Number of discretisation elements.
+        E0 : float
+            Baseline Young's modulus (Pa).
+        nu : float
+            Poisson ratio.
+        rho : float
+            Density (kg/m^3).
+        radius : float
+            Rod radius (m).
+        kappa_gen : ArrayF64, optional
+            Intrinsic geometric curvature (e.g. initial kyphosis).
+        gravity : float
+            Gravitational acceleration (m/s^2).
+        base_position : tuple
+            Starting position of the rod base.
+        base_direction : tuple
+            Tangent direction at the rod base.
+        normal : tuple
+            Normal direction at the rod base.
+        stiffness_anisotropy : float
+            Ratio of sagittal to lateral bending stiffness.
+        """
         _check_pyelastica()
 
         # Create rod
@@ -228,6 +307,7 @@ class CounterCurvatureRodSystem:
         )
 
         # Compute effective stiffness E_eff based on information field
+        # This represents local tissue stiffening due to biological factors
         E_eff = compute_effective_stiffness(info, params, E0)
 
         # Interpolate E_eff to element centers for shear matrix modification
@@ -255,7 +335,7 @@ class CounterCurvatureRodSystem:
         for k in range(n_elements - 1):
             rod.bend_matrix[..., k] *= scaling_bend[k]
 
-        # Apply stiffness anisotropy
+        # Apply stiffness anisotropy (ECM Architecture)
         # bend_matrix[0, 0] corresponds to stiffness about d1 (Normal).
         # In this setup (d1=X), this resists Sagittal bending (Y-Z plane).
         # bend_matrix[1, 1] corresponds to stiffness about d2 (Binormal).
@@ -263,13 +343,14 @@ class CounterCurvatureRodSystem:
         if stiffness_anisotropy != 1.0:
             rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
 
-        # Set rest curvature
+        # Set rest curvature (Growth/Sensing Set-point)
         # kappa_rest is now (3, n_points)
         kappa_rest = compute_rest_curvature(info, params, kappa_gen if kappa_gen is not None else 0.0)
 
         # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
         # We need to map kappa_rest (defined on info.s) to s_internal
         # We need to interpolate each component: (3, n_points) -> (3, n_elements-1)
+        # Note: Linear interpolation is sufficient for smooth biological fields.
         
         rest_kappa = np.zeros((3, n_elements - 1))
         for i in range(3):

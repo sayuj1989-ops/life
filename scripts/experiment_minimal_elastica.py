@@ -7,7 +7,11 @@ rod model (spine-like).
 
 Biological mappings:
 - Stiffness Anisotropy: Represents ECM fiber alignment or vertebral geometry.
-- Preferred Curvature (chi_kappa): Represents active growth/sensing.
+  - Low (<1.0): Disorganized ECM / Weak annulus.
+  - High (>1.0): Strongly aligned ECM (e.g. Fibrillin/Collagen).
+- Preferred Curvature (chi_kappa): Represents active growth/sensing gain.
+  - Low (0.0): Passive spine.
+  - High (>10.0): Strong active growth response (e.g. Piezo/Growth factors).
 - Torsion Coupling (chi_tau): Represents anisotropic tissue organization.
 - Boundary Conditions: Represents pelvic anchoring (fixed vs pinned).
 """
@@ -285,7 +289,7 @@ def parse_args():
         "--scenario",
         type=str,
         default="default",
-        choices=["default", "intermediate_anisotropy", "high_growth"],
+        choices=["default", "intermediate_anisotropy", "high_growth", "bio_scan"],
         help="Pre-configured scenarios."
     )
 
@@ -342,6 +346,16 @@ if __name__ == "__main__":
          anisotropies = [1.0, 5.0]
          chi_kappas = [10.0, 15.0]
          chi_taus = [0.0]
+
+    elif args.scenario == "bio_scan":
+        print(">>> Scenario: Bio-Scan (ECM vs. Growth)")
+        print("  Scanning: Anisotropy [0.5, 1.0, 2.0, 5.0] x Growth Gain [0.0, 5.0, 10.0, 20.0]")
+        print("  - Anisotropy < 1.0: Degenerated/Weak Annulus")
+        print("  - Anisotropy > 1.0: Healthy/Aligned Fibers")
+        print("  - Growth Gain > 10.0: Hyperactive sensing (e.g. Inflamed)")
+        anisotropies = [0.5, 1.0, 2.0, 5.0]
+        chi_kappas = [0.0, 5.0, 10.0, 20.0]
+        chi_taus = [0.0]
 
     run_experiment(
         out_file=args.out_file,

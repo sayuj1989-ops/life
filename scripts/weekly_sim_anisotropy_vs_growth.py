@@ -12,8 +12,13 @@ if scripts_dir not in sys.path:
     sys.path.append(scripts_dir)
 
 from experiment_minimal_elastica import run_experiment
+from spinalmodes.utils.seeds import set_seed
 
 def main():
+    # Set seed for reproducibility
+    seed = 42
+    set_seed(seed)
+
     # Setup Date and Output Directory
     today = datetime.date.today().isoformat()
     out_dir = f"outputs/sim/{today}"
@@ -39,6 +44,7 @@ def main():
     # Save Parameters
     with open(params_path, 'w') as f:
         f.write("parameter,values\n")
+        f.write(f"seed,{seed}\n")
         f.write(f"anisotropies,{anisotropies}\n")
         f.write(f"chi_kappas,{chi_kappas}\n")
         f.write(f"chi_taus,{chi_taus}\n")

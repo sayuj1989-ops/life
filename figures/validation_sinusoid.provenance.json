@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-01-30 19:29:30",
+  "git_sha": "cca4b4ba0e78d43b6b1ca5e396ca5dee735429e7",
+  "seed": 1337,
+  "inputs": {
+    "k": 25.132741228718345,
+    "A": 0.01,
+    "n": 2001
+  },
+  "system": {
+    "python": "3.12.12",
+    "platform": "Linux-6.8.0-x86_64-with-glibc2.39"
+  }
+}

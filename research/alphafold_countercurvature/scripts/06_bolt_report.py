@@ -125,6 +125,7 @@ def main():
 
     print(f"📊 Generating detailed plots for: {', '.join(selected_genes)}")
 
+    missing_artifacts = []
     for gene in selected_genes:
         if manifest is not None:
             row = manifest[manifest['gene_symbol'] == gene]
@@ -139,12 +140,19 @@ def main():
                          p_path = FIGURES_DIR / f"{gene}_plddt.png"
                          plot_plddt_profile(plddt, gene, p_path)
                          plot_summary.append(f"- `{p_path.name}`: pLDDT profile for {gene}")
+                else:
+                    missing_artifacts.append(f"{gene} (PDB)")
 
                 # Load PAE
                 if pae_path and pae_path.exists():
                     p_path = FIGURES_DIR / f"{gene}_pae.png"
                     if plot_pae_heatmap(pae_path, gene, p_path):
                         plot_summary.append(f"- `{p_path.name}`: PAE heatmap for {gene}")
+                else:
+                     missing_artifacts.append(f"{gene} (PAE)")
+
+    if missing_artifacts:
+        print(f"⚠️  Missing artifacts for: {', '.join(missing_artifacts)}")
 
 
     # --- Generate Table ---
@@ -354,9 +362,14 @@ def main():
         f.write("\n## 5. Quality & Reproducibility Checklist\n")
         f.write(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)\n")
         f.write(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"- Code Version: {commit_hash}\n")
+        f.write(f"- Code Version: Bolt-BioFold v1.0 ({commit_hash})\n")
         f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
-        f.write(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml\n")
+
+        notes = f"{len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml"
+        if missing_artifacts:
+            notes += f". Missing artifacts: {', '.join(missing_artifacts)}"
+
+        f.write(f"- Notes: {notes}\n")
 
     print("✅ Report generated successfully.")
 

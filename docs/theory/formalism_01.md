@@ -165,6 +165,23 @@ $$ \mathcal{E}_{mech} = \frac{K_{ent} \langle |\dot{\varepsilon}_{grav}| \rangle
     *   $\mathcal{E}_{mech} < 1$: The clock free-runs and desynchronizes (Spinal Jetlag).
 *   **Measurable Proxy**: The amplitude ratio of PER2::LUC bioluminescence oscillations in loaded vs. unloaded disc explants.
 
+### 2.12. The Voltage-Gated Gain Factor ($\gamma_{volt}$)
+
+We posit that the mechanotransduction gain $\alpha$ (defined in Section 2.4) is not a constant scalar but is gated by the resting membrane potential ($V_m$) of the mechanosensory cell (e.g., CSF-contacting neuron or osteocyte). We define $\gamma_{volt}$ as a dimensionless modulation factor.
+
+$$ \alpha(V_m) = \alpha_{max} \cdot \gamma_{volt}(V_m) $$
+$$ \gamma_{volt}(V_m) = \frac{1}{1 + e^{-(V_m - V_{1/2})/k_v}} $$
+
+*   **Symbols**:
+    *   $V_m$: Resting membrane potential $[ML^2T^{-3}I^{-1}]$ (Volts).
+    *   $V_{1/2}$: Half-activation potential $[ML^2T^{-3}I^{-1}]$.
+    *   $k_v$: Slope factor representing voltage sensitivity $[ML^2T^{-3}I^{-1}]$.
+*   **Physical Interpretation**:
+    *   **Depolarized State ($V_m > V_{1/2}$)**: $\gamma_{volt} \to 1$. The cell is "listening" to mechanical signals (High Gain).
+    *   **Hyperpolarized State ($V_m \ll V_{1/2}$)**: $\gamma_{volt} \to 0$. The cell is "deaf" to mechanical signals (Gain Block), even if stress $\sigma_{mech}$ is high.
+*   **Biological Mechanism**: This gating is mediated by voltage-dependent block or inactivation of Piezo2 channels (Sánchez-Carranza et al., 2024; Moroni et al., 2018).
+*   **Implication**: If microgravity induces systemic hyperpolarization (e.g., via ion shift), $\alpha \to 0$, causing $\chi_M$ to decay purely due to the $\beta$ term (disuse atrophy).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -318,6 +335,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Amplitude of BMAL1 expression in disc cells subjected to cyclic strain in dark conditions compared to static controls.
 *   **Refutation**: If mechanical loading fails to reset the clock phase or boost amplitude, the coupling constant $K_{ent}$ is effectively zero. (Reference: Yang et al., 2017).
 
+### Test W: The Hyperpolarization Block
+*   **Hypothesis**: Artificially hyperpolarizing mechanosensory cells (e.g., via optogenetic ARCH or Kir2.1 overexpression) will mimic the microgravity phenotype ($\chi_M$ decay) even in a 1g environment.
+*   **Data Needed**: Spinal stiffness and curvature in zebrafish larvae expressing Kir2.1 specifically in Pkd2l1+ neurons.
+*   **Refutation**: If hyperpolarized larvae maintain normal spinal tone and straightness, the voltage-gating hypothesis is falsified. (Reference: Sánchez-Carranza et al., 2024).
+
+### Test X: The Voltage Rescue
+*   **Hypothesis**: Depolarizing mechanosensory cells (e.g., via ChR2 or high [K+]) in a microgravity environment (clinostat) will restore $\gamma_{volt} \to 1$, allowing the cell to detect even the weak residual mechanical signals and maintain $\chi_M$.
+*   **Data Needed**: Rescue of paraspinal muscle atrophy in clinostat-raised zebrafish via optogenetic depolarization of CSF-cNs.
+*   **Refutation**: If depolarization fails to prevent atrophy/curvature in unloading, the gain loss is not voltage-mediated. (Reference: Moroni et al., 2018).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -346,3 +373,5 @@ The theory makes specific predictions about the relationship between genetic ani
 24. **Stokes, I. A. (2002).** "Mechanical modulation of spinal growth and progression of adolescent scoliosis." *Spine*, 27(22). (Hueter-Volkmann law application).
 25. **Yang, N., et al. (2017).** "Mechanical strain regulates the circadian clock in the intervertebral disc." *Journal of Orthopaedic Research*. (Demonstrates mechanical entrainment).
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
+27. **Sánchez-Carranza, O., et al. (2024).** "Piezo2 voltage-block regulates mechanical pain sensitivity." *Brain*. (Demonstrates voltage-dependent gain control).
+28. **Moroni, M., et al. (2018).** "Voltage gating of mechanosensitive Piezo channels." *Nature Communications*. (Foundational paper on Piezo voltage sensitivity).

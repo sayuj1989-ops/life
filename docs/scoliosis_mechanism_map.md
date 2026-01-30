@@ -230,6 +230,27 @@ The map categorizes the system into four layers:
 
 ---
 
+### 17. The Elastic Scaffold Pathway (FBN2)
+
+**Arc Added**: `FBN2` $\rightarrow$ `ECM_Assembly` $\rightarrow$ `Stiffness`.
+
+*   **Source**: `FBN2` (Fibrillin-2).
+*   **Mechanism**: **Elastic Scaffold Assembly**.
+    1.  Fibrillin-2 regulates the early assembly of microfibrils.
+    2.  These microfibrils serve as the scaffold for Elastin deposition in the ECM.
+    3.  This creates the "elastic recoil" capacity of the connective tissue.
+*   **Property**: **Stiffness ($EI$)** and **Torsional Stiffness ($GJ$)**.
+*   **Role**: **Elastic Recoil & Torsional Resilience**. While Collagen provides tensile strength (preventing stretch), Fibrillin/Elastin provides the restoring force (returning to shape).
+    *   **Loss of Recoil**: Without this scaffold, the spine becomes "plastic" rather than "elastic," accumulating deformation over time without bouncing back.
+*   **Evidence**: Buchan et al. (2014) identified rare variants in FBN1 and FBN2 associated with severe adolescent idiopathic scoliosis (AIS).
+
+> **Hypothesis**: FBN2 acts as the "Spring Constant" of the spinal ligament system. If the springs are weak, the system cannot passively correct small deviations.
+
+**Citations**:
+*   *Buchan, J. G., et al. (2014). Rare variants in FBN1 and FBN2 are associated with severe adolescent idiopathic scoliosis. Human Molecular Genetics, 23(19), 5271-5282.* https://doi.org/10.1093/hmg/ddu224
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

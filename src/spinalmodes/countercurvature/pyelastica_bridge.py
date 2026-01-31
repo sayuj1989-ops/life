@@ -5,6 +5,11 @@ curvature, stiffness and active moments are modulated by information fields.  Th
 follows the biological countercurvature hypothesis: information gradients act as local
 corrections to the mechanical metric, effectively biasing the rod against gravity-driven
 modes.
+
+Key Concepts:
+- Vector Signal: Stiffness Anisotropy (ECM alignment).
+- Scalar Signal: Active Growth/Curvature (Piezo/Ion flux).
+- Mismatch: When Vector and Scalar signals dissociate (e.g. Microgravity).
 """
 
 from __future__ import annotations
@@ -143,8 +148,17 @@ class SimulationResult:
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
-        import warnings
-        warnings.warn("PyElastica is not installed. Using mock objects for testing.", RuntimeWarning)
+        msg = (
+            "PyElastica is not installed but is required for this module.\n"
+            "Please install it using:\n"
+            "  pip install pyelastica\n"
+            "Or visit: https://github.com/GazzolaLab/PyElastica"
+        )
+        raise ImportError(msg)
+    else:
+        # Consistency check with scripts/check_pyelastica.py
+        # Ensure we can access basic attributes to verify full load
+        _ = getattr(ea, "__version__", "unknown")
 
 class ActiveMuscleTorques(ea.NoForces):
     """Applies a static distributed active moment (muscle torque)."""
@@ -291,6 +305,25 @@ class CounterCurvatureRodSystem:
             active_torques[1, :] = M_active_elems
 
         return cls(rod=rod, info_field=info, params=params, active_torques=active_torques)
+
+    def __repr__(self) -> str:
+        """Return a string representation of the rod system configuration."""
+        # Estimate anisotropy from first element's bend matrix if possible
+        anisotropy = 1.0
+        if hasattr(self.rod, "bend_matrix") and self.rod.bend_matrix.shape[2] > 0:
+            # bend_matrix[0,0] / bend_matrix[1,1]
+            # Avoid division by zero
+            b00 = self.rod.bend_matrix[0, 0, 0]
+            b11 = self.rod.bend_matrix[1, 1, 0]
+            if b11 != 0:
+                anisotropy = b00 / b11
+
+        return (
+            f"<CounterCurvatureRodSystem elements={self.n_elements} "
+            f"length={self.length:.2f} "
+            f"chi_kappa={self.params.chi_kappa:.2f} "
+            f"anisotropy={anisotropy:.2f}>"
+        )
 
     def run_simulation(
         self,

@@ -231,7 +231,7 @@ def parse_args():
     parser.add_argument(
         "--out-file",
         type=str,
-        default="outputs/minimal_experiment_results.csv",
+        default="outputs/minimal_experiment_results_v2.csv",
         help="Path to output CSV file"
     )
 
@@ -285,7 +285,7 @@ def parse_args():
         "--scenario",
         type=str,
         default="default",
-        choices=["default", "intermediate_anisotropy", "high_growth"],
+        choices=["default", "intermediate_anisotropy", "high_growth", "vector_scalar_mismatch"],
         help="Pre-configured scenarios."
     )
 
@@ -341,6 +341,16 @@ if __name__ == "__main__":
          print(">>> Scenario: High Growth Drive")
          anisotropies = [1.0, 5.0]
          chi_kappas = [10.0, 15.0]
+         chi_taus = [0.0]
+
+    elif args.scenario == "vector_scalar_mismatch":
+         print(">>> Scenario: Vector-Scalar Mismatch (Microgravity Simulation)")
+         # Vector: Anisotropy (Structural Alignment) - Decreasing implies loss of directional cue
+         # Scalar: Chi_Kappa (Growth/Sensing Gain) - Increasing implies compensatory gain increase (Senescence)
+         # High Anisotropy (10.0) ~ Healthy Fibrillin/Collagen
+         # Low Anisotropy (1.0) ~ Isotropic/Degraded Matrix
+         anisotropies = [10.0, 5.0, 2.0, 1.0]
+         chi_kappas = [0.0, 5.0, 10.0, 20.0]
          chi_taus = [0.0]
 
     run_experiment(

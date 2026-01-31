@@ -27,3 +27,9 @@
 **Learning:** `calculate_curvature` used Heron's formula (expensive `sqrt` and arithmetic on side lengths) while `calculate_torsion` independently computed cross products. The triangle area needed for curvature is exactly $0.5 \times \|\text{CrossProduct}\|$. Recomputing these separately is wasteful.
 
 **Action:** Refactored `analyze_structure` to precompute `normals` (cross products) and `normals_norm` once. Passed these to both functions. `calculate_curvature` now uses `0.5 * normals_norm` (skipping Heron's entirely), and `calculate_torsion` reuses the precomputed arrays. Benchmarks show 1.29x speedup for curvature and 2.12x for torsion (logic only), with verified identical results.
+
+## 2026-08-06 - [Uncompressed Coordinate Cache]
+
+**Learning:** `np.savez_compressed` adds significant CPU overhead (~3ms per file) when saving small arrays like PDB coordinates (N x 3 floats), with negligible disk space savings compared to uncompressed `np.savez`. For 20k+ structures, this adds up.
+
+**Action:** Switched to `np.savez` (uncompressed) for coordinate caches in `StructureParser`. This yields a ~3x speedup in writing and ~1.7x in reading these specific caches. Loading remains compatible with legacy compressed files.

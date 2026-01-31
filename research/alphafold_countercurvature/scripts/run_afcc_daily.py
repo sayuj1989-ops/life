@@ -33,7 +33,7 @@ REPORT_SOURCE = PROCESSED_DIR / "bolt_biofold_results.md"
 OUTPUTS_DIR = REPO_ROOT / "outputs" / "afcc"
 DASHBOARD_FILE = REPO_ROOT / "reports" / "afcc_latest.md"
 
-def run_step(script_name, description):
+def run_step(script_name, description, output_dir):
     print(f"\n🚀 Running {script_name}: {description}...")
     script_path = SCRIPT_DIR / script_name
     try:
@@ -41,10 +41,23 @@ def run_step(script_name, description):
         print(f"✅ {script_name} completed.")
     except subprocess.CalledProcessError as e:
         print(f"❌ {script_name} failed with exit code {e.returncode}.")
+
+        # Write failure.md
+        output_dir.mkdir(parents=True, exist_ok=True)
+        failure_file = output_dir / "failure.md"
+        with open(failure_file, "w") as f:
+            f.write(f"# Failure Report\n\n")
+            f.write(f"**Step Failed:** {script_name}\n")
+            f.write(f"**Description:** {description}\n")
+            f.write(f"**Exit Code:** {e.returncode}\n")
+            f.write(f"**Timestamp:** {datetime.datetime.now().isoformat()}\n")
+
+        print(f"📝 Failure note written to {failure_file}")
         sys.exit(e.returncode)
 
 def main():
     today = datetime.date.today().strftime("%Y-%m-%d")
+    daily_output_dir = OUTPUTS_DIR / today
     print(f"=== AFCC Daily Run: {today} ===")
 
     # 1. Select Top Candidates
@@ -82,11 +95,11 @@ def main():
     print("   Targets:", ", ".join(top_n['gene_symbol'].tolist()))
 
     # 2. Map to Uniprot
-    run_step("01_map_to_uniprot.py", "Map Gene Symbols to UniProt IDs")
+    run_step("01_map_to_uniprot.py", "Map Gene Symbols to UniProt IDs", daily_output_dir)
 
     # 3. Fetch Structures
     # 02_fetch_afdb.py
-    run_step("02_fetch_afdb.py", "Fetch PDBs from AlphaFold DB")
+    run_step("02_fetch_afdb.py", "Fetch PDBs from AlphaFold DB", daily_output_dir)
 
     # 4. Force Recompute Metrics
     print("\n🧹 Preparing Metrics Table (Forcing Refresh for Targets)...")
@@ -104,13 +117,12 @@ def main():
         print("   No existing metrics file found. proceeding.")
 
     # 5. Analyze Metrics
-    run_step("04_analyze_metrics.py", "Compute Structural Metrics")
+    run_step("04_analyze_metrics.py", "Compute Structural Metrics", daily_output_dir)
 
     # 6. Generate Report
-    run_step("06_bolt_report.py", "Generate Summary Report")
+    run_step("06_bolt_report.py", "Generate Summary Report", daily_output_dir)
 
     # 7. Archive Outputs
-    daily_output_dir = OUTPUTS_DIR / today
     daily_output_dir.mkdir(parents=True, exist_ok=True)
     print(f"\n📦 Archiving outputs to {daily_output_dir}...")
 

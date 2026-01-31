@@ -12,6 +12,30 @@ class MetricsAnalyzer:
     def __init__(self):
         pass
 
+    def smooth_backbone(self, coords: np.ndarray, window: int = 5) -> np.ndarray:
+        """
+        Smooths backbone coordinates using a moving average window.
+        """
+        if len(coords) < window:
+            return coords
+
+        # Simple moving average using numpy only (no scipy.signal)
+        res = np.empty_like(coords)
+        pad = window // 2
+
+        # Calculate moving average for each coordinate (x, y, z)
+        # We handle edges by reducing window size or just clamping indices?
+        # A simple valid way is to average available points within the window range.
+
+        n = len(coords)
+        for i in range(n):
+            start = max(0, i - pad)
+            end = min(n, i + pad + 1)
+            # This is a variable window at edges, but safe and robust.
+            res[i] = np.mean(coords[start:end], axis=0)
+
+        return res
+
     def calculate_rg(self, coords: np.ndarray) -> float:
         """Calculates Radius of Gyration based on CA atoms."""
         if len(coords) == 0:
@@ -342,10 +366,28 @@ class MetricsAnalyzer:
              normals_norm = np.linalg.norm(normals, axis=1)
 
         # Geometry
+        # Bolt Improvement: Smooth backbone before computing curvature/torsion
+        # to reduce noise from minor atomic fluctuations.
+        coords_smoothed = self.smooth_backbone(coords, window=5)
+
+        # Recompute bond vectors for smoothed backbone
+        bond_vectors_s = None
+        bond_lengths_s = None
+        normals_s = None
+        normals_norm_s = None
+
+        if len(coords_smoothed) > 1:
+            bond_vectors_s = coords_smoothed[1:] - coords_smoothed[:-1]
+            bond_lengths_s = np.linalg.norm(bond_vectors_s, axis=1)
+
+        if len(coords_smoothed) >= 3 and bond_vectors_s is not None:
+             normals_s = np.cross(bond_vectors_s[:-1], bond_vectors_s[1:])
+             normals_norm_s = np.linalg.norm(normals_s, axis=1)
+
         # Pass normals_norm to curvature to skip Heron's formula
-        kappa = self.calculate_curvature(coords, bond_vectors=bond_vectors, bond_lengths=bond_lengths, normals_norm=normals_norm)
+        kappa = self.calculate_curvature(coords_smoothed, bond_vectors=bond_vectors_s, bond_lengths=bond_lengths_s, normals_norm=normals_norm_s)
         # Pass normals and normals_norm to torsion to skip recomputation
-        tau = self.calculate_torsion(coords, bond_vectors=bond_vectors, normals=normals, normals_norm=normals_norm)
+        tau = self.calculate_torsion(coords_smoothed, bond_vectors=bond_vectors_s, normals=normals_s, normals_norm=normals_norm_s)
 
         # High confidence mask for curvature/torsion
         strict_mask_kappa = np.zeros(len(coords), dtype=bool)

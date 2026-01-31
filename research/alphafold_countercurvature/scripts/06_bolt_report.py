@@ -355,7 +355,7 @@ def main():
         f.write(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)\n")
         f.write(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"- Code Version: {commit_hash}\n")
-        f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
+        f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = 5 residues\n")
         f.write(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml\n")
 
     print("✅ Report generated successfully.")

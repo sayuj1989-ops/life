@@ -20,3 +20,4 @@
 | 2026-01-26 | weekly-sim-anisotropy-torsion | Anisotropy Ratio | Torsional coupling (chi=1.0) flips anisotropy role: R>=1.0 triggers high Cobb (~80 deg) vs low R. | [Report](../outputs/sim/2026-01-26/report.md) |
 | 2026-01-27 | weekly-sim-tilt-torsion | tilt_deg, chi_tau | Torsion (chi_tau=1.0) reduces lateral deviation (S_lat) by 20% under high tilt (20 deg), despite similar Cobb angles. | [Report](../outputs/sim/2026-01-27/report.md) |
 | 2026-07-22 | weekly-sim-growth-location | Info Center | Growth location determines curve shape (C vs S); Interacts with anisotropy. | [Report](../outputs/sim/2026-07-22/report.md) |
+| 2026-01-31 | weekly-sim-growth-width | info_width | Localized growth (Width=0.1) triggers massive lateral S-shape (S_lat > 0.9), acting as a 'hinge' instability. | [Report](../outputs/sim/2026-01-31/report.md) |

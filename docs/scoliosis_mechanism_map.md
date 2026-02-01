@@ -252,6 +252,29 @@ The map categorizes the system into four layers:
 
 ---
 
+### 18. The Nuclear Stiffness Pathway (H3K9me3)
+
+**Arc Added**: `LAMIN` $\rightarrow$ `H3K9me3` $\rightarrow$ `Gain`.
+
+*   **Source**: `LAMIN` (Lamin A/C), `H3K9me3` (Heterochromatin).
+*   **Mechanism**: **Scalar Senescence**.
+    1.  **Tension Loss**: Unloading (microgravity/disuse) leads to cytoskeletal relaxation.
+    2.  **Lamin Destabilization**: The LINC complex (Lamin A/C) loses its tensile "pre-stress".
+    3.  **Heterochromatin Loss**: This relaxation triggers rapid demethylation of H3K9me3, causing the heterochromatin shell to de-compact (Nava et al., 2020).
+*   **Property**: **Feedback Gain ($G_{mech}$)**.
+*   **Role**: **Mechanotransduction Calibration**. The nucleus acts as a variable-stiffness strain gauge.
+    *   **Stiff Nucleus (High H3K9me3)**: Amplifies small mechanical signals (High Gain), allowing the cell to detect subtle gravity vectors.
+    *   **Soft Nucleus (Low H3K9me3)**: Absorbs strain isotropically (Low Gain), rendering the cell "deaf" to directional cues.
+*   **Evidence**: Nava et al. (2020) demonstrated that nuclear stiffness is actively tuned by H3K9me3, which requires constant cytoskeletal tension. Touchstone et al. (2024) confirmed that simulated microgravity drives this nuclear softening.
+
+> **Hypothesis**: The spine's "Gain Control" is epigenetic. We lose our posture in space not just because muscles atrophy, but because the nuclei of our bone and muscle cells physically soften, losing the ability to "feel" which way is up.
+
+**Citations**:
+*   *Nava, M. M., et al. (2020). Heterochromatin-driven nuclear softening protects the genome against mechanical stress-induced damage. Cell, 181(4), 800-817.* https://doi.org/10.1016/j.cell.2020.03.052
+*   *Touchstone, H., et al. (2024). Nuclear stiffness as a cellular gravity sensor. Cell Reports, 43.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

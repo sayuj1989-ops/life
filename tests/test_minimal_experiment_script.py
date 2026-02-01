@@ -101,3 +101,46 @@ def test_run_experiment_custom_info(tmp_path):
     assert float(row["info_center"]) == 0.5
     assert float(row["info_width"]) == 0.2
     assert float(row["info_amplitude"]) == 0.3
+
+@pytest.mark.skipif(
+    not experiment_minimal_elastica.PYELASTICA_AVAILABLE,
+    reason="PyElastica not installed"
+)
+def test_run_experiment_protein_profile(tmp_path):
+    """
+    Test that the protein profile scenario works and records the curvature profile type.
+    """
+    out_file = tmp_path / "test_protein_profile.csv"
+
+    # Use harmonic profile
+    curvature_profile = "harmonic"
+
+    experiment_minimal_elastica.run_experiment(
+        out_file=str(out_file),
+        anisotropies=[1.0],
+        chi_kappas=[0.0],
+        chi_taus=[0.0],
+        boundary_condition="fixed",
+        n_elements=10,
+        final_time=0.01,
+        curvature_profile=curvature_profile,
+        save_every=100
+    )
+
+    assert out_file.exists()
+
+    with open(out_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows) == 1
+    row = rows[0]
+
+    assert "curvature_profile" in row
+    assert row["curvature_profile"] == "harmonic"
+
+    # With harmonic profile, curvature should be non-zero even with chi_kappa=0
+    # because kappa_gen has a sine wave + constant.
+    # We can check if max_curvature is reasonable (e.g. > 0.1)
+    # Note: Short simulation time (0.01s) means it won't reach full rest curvature (2.0+)
+    assert float(row["max_curvature"]) > 0.1

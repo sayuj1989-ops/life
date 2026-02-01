@@ -34,6 +34,29 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
 )
 
 
+def _get_curvature_profile(profile_type: str, n_elements: int, length: float) -> np.ndarray:
+    """Generate a geometric curvature profile (kappa_gen)."""
+    # Initialize kappa_gen (3, n_elements + 1)
+    # Index 0: Sagittal curvature (intrinsic kyphosis/lordosis or protein bend)
+    kappa_gen = np.zeros((3, n_elements + 1))
+    s = np.linspace(0, length, n_elements + 1)
+
+    if profile_type == "constant":
+        kappa_gen[0, :] = 2.0  # 1/m (Constant intrinsic curvature)
+    elif profile_type == "harmonic":
+        # Sinusoidal curvature: 2.0 + 1.0 * sin(2*pi*s/L)
+        kappa_gen[0, :] = 2.0 + 1.0 * np.sin(2 * np.pi * s / length)
+    elif profile_type == "kink":
+        # Localized high curvature: 2.0 + 5.0 * Gaussian
+        sigma = 0.05 * length
+        center = 0.6 * length
+        kappa_gen[0, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
+    else:
+        raise ValueError(f"Unknown curvature_profile: {profile_type}")
+
+    return kappa_gen
+
+
 def run_experiment(
     out_file: str,
     anisotropies: list[float],
@@ -46,6 +69,7 @@ def run_experiment(
     info_center: float = 0.6,
     info_width: float = 0.1,
     info_amplitude: float = 0.1,
+    curvature_profile: str = "constant",
 ):
     """Run the parameter sweep and save results."""
     if not PYELASTICA_AVAILABLE:
@@ -96,7 +120,8 @@ def run_experiment(
         "cobb_angle",
         "runtime_sec",
         "peak_memory_mb",
-        "end_to_end_distance"
+        "end_to_end_distance",
+        "curvature_profile"
     ]
 
     # Check if file exists to write header
@@ -143,10 +168,8 @@ def run_experiment(
                     )
 
                     # 3. Setup Geometric Curvature (kappa_gen)
-                    # Constant intrinsic curvature about d1 (index 0) = Sagittal Plane (Kyphosis/Lordosis)
                     # Note: chi_kappa couples to index 1 (Lateral Plane/Scoliosis)
-                    kappa_gen = np.zeros((3, n_elements + 1))
-                    kappa_gen[0, :] = 2.0  # 1/m
+                    kappa_gen = _get_curvature_profile(curvature_profile, n_elements, length)
 
                     # 4. Create Rod System
                     rod_system = CounterCurvatureRodSystem.from_iec(
@@ -203,7 +226,8 @@ def run_experiment(
                             'end_to_end_distance', 0.0
                         ),
                         "runtime_sec": round(runtime, 4),
-                        "peak_memory_mb": round(peak_mb, 2)
+                        "peak_memory_mb": round(peak_mb, 2),
+                        "curvature_profile": curvature_profile
                     }
 
                     writer.writerow(row_data)
@@ -285,7 +309,7 @@ def parse_args():
         "--scenario",
         type=str,
         default="default",
-        choices=["default", "intermediate_anisotropy", "high_growth", "vector_scalar_mismatch"],
+        choices=["default", "intermediate_anisotropy", "high_growth", "vector_scalar_mismatch", "protein_profile"],
         help="Pre-configured scenarios."
     )
 
@@ -308,6 +332,14 @@ def parse_args():
         type=float,
         default=0.1,
         help="Amplitude of information field bump."
+    )
+
+    parser.add_argument(
+        "--curvature-profile",
+        type=str,
+        default="constant",
+        choices=["constant", "harmonic", "kink"],
+        help="Type of intrinsic curvature profile."
     )
 
     return parser.parse_args()
@@ -353,6 +385,14 @@ if __name__ == "__main__":
          chi_kappas = [0.0, 5.0, 10.0, 20.0]
          chi_taus = [0.0]
 
+    elif args.scenario == "protein_profile":
+         print(">>> Scenario: Protein Profile (Harmonic Curvature)")
+         # Simulating a protein with varying intrinsic curvature and high stiffness
+         anisotropies = [5.0]
+         chi_kappas = [5.0]
+         chi_taus = [0.0]
+         args.curvature_profile = "harmonic"
+
     run_experiment(
         out_file=args.out_file,
         anisotropies=anisotropies,
@@ -364,4 +404,5 @@ if __name__ == "__main__":
         info_center=args.info_center,
         info_width=args.info_width,
         info_amplitude=args.info_amplitude,
+        curvature_profile=args.curvature_profile,
     )

@@ -34,7 +34,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 ## Phase 3: Code Quality & Testing (Medium Priority)
 
 - [x] **Unify Requirements**: Audit `requirements.txt` vs `pyproject.toml` vs `envs/`.
-- [ ] **CI/CD Fixes**: Update GitHub workflows to reflect path changes.
+- [x] **CI/CD Fixes**: Update GitHub workflows to reflect path changes.
 - [ ] **Linter Setup**: Ensure `flake8` or `ruff` config is valid and running.
 - [ ] **Test Discovery**: Ensure `pytest` can find all tests in the new structure.
 

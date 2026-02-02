@@ -20,10 +20,13 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -U pip
       - run: python -m pip install -e .
+      - name: Verify Installation
+        run: python -c "import spinalmodes; print(f'Spinalmodes installed at: {spinalmodes.__file__}')"
       - run: python -m pip install -U pytest pytest-cov
       - run: pytest -q --cov=spinalmodes
-      - name: Smoke figures
+      - name: Generate and Validate Figures
         run: |
+          # Generates artifacts in figures/
           python scripts/validation/validate_solvers.py
           ls -lh figures | sed -n '1,50p'
 

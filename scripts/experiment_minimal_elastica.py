@@ -79,20 +79,22 @@ def _get_curvature_profile(profile_type: str, n_elements: int, length: float) ->
           or torsional curvature components.
     """
     # Initialize kappa_gen (3, n_elements + 1)
-    # Index 0: Sagittal curvature (intrinsic kyphosis/lordosis or protein bend)
+    # Indexing convention (consistent with compute_rest_curvature):
+    #   0: Binormal curvature
+    #   1: Normal curvature in main plane (sagittal/lateral profile)
     kappa_gen = np.zeros((3, n_elements + 1))
     s = np.linspace(0, length, n_elements + 1)
 
     if profile_type == "constant":
-        kappa_gen[0, :] = 2.0  # 1/m (Constant intrinsic curvature)
+        kappa_gen[1, :] = 2.0  # 1/m (Constant intrinsic curvature in main plane)
     elif profile_type == "harmonic":
         # Sinusoidal curvature: 2.0 + 1.0 * sin(2*pi*s/L)
-        kappa_gen[0, :] = 2.0 + 1.0 * np.sin(2 * np.pi * s / length)
+        kappa_gen[1, :] = 2.0 + 1.0 * np.sin(2 * np.pi * s / length)
     elif profile_type == "kink":
         # Localized high curvature: 2.0 + 5.0 * Gaussian
         sigma = 0.05 * length
         center = 0.6 * length
-        kappa_gen[0, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
+        kappa_gen[1, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
     else:
         raise ValueError(f"Unknown curvature_profile: {profile_type}")
 

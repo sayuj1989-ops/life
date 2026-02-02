@@ -139,18 +139,8 @@ def test_run_experiment_protein_profile(tmp_path):
     assert "curvature_profile" in row
     assert row["curvature_profile"] == "harmonic"
 
-    # With the harmonic curvature profile, the *rest* curvature field contains
-    # a non-zero constant component (order 2.0) plus a sinusoidal term, so the
-    # intrinsic shape is significantly curved even when chi_kappa=0.
-    #
-    # However, this test uses a very short simulation time (final_time=0.01) and
-    # a coarse discretization (n_elements=10). In this regime the rod does not
-    # have time to dynamically relax anywhere near its full rest curvature; the
-    # observed curvature is only a small fraction of the intrinsic profile and
-    # can be strongly affected by the initial condition and damping.
-    #
-    # Consequently, we do *not* assert that max_curvature is close to the
-    # theoretical rest value (≈2.0). Instead, we use a deliberately conservative
-    # threshold just to confirm that the harmonic intrinsic profile is actually
-    # being applied and produces a clearly non-zero curvature signal.
+    # With harmonic profile, curvature should be non-zero even with chi_kappa=0
+    # because kappa_gen has a sine wave + constant.
+    # We can check if max_curvature is reasonable (e.g. > 0.1)
+    # Note: Short simulation time (0.01s) means it won't reach full rest curvature (2.0+)
     assert float(row["max_curvature"]) > 0.1

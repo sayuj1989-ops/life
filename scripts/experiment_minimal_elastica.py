@@ -35,68 +35,24 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
 
 
 def _get_curvature_profile(profile_type: str, n_elements: int, length: float) -> np.ndarray:
-    """
-    Generate a geometric curvature profile :math:`\\kappa_{\\text{gen}}` along the rod.
-
-    This helper constructs an intrinsic curvature field defined on the
-    material coordinates of the rod, discretized into ``n_elements + 1``
-    points along its length.
-
-    Parameters
-    ----------
-    profile_type :
-        String specifying the type of curvature profile to generate.
-        Supported options are:
-
-        * ``"constant"``:
-            Uniform curvature of magnitude ``2.0`` (1/m) along the entire rod.
-        * ``"harmonic"``:
-            Sinusoidal modulation around a baseline of ``2.0`` (1/m),
-            i.e. ``2.0 + 1.0 * sin(2*pi*s/length)``.
-        * ``"kink"``:
-            Localized Gaussian bump of additional curvature (amplitude ``5.0``)
-            centered at ``0.6 * length`` with width ``0.05 * length``,
-            added to a baseline of ``2.0`` (1/m).
-
-    n_elements :
-        Number of discretization elements used to represent the rod. The
-        generated profile is sampled at ``n_elements + 1`` material points.
-
-    length :
-        Total physical length of the rod (in meters) over which the curvature
-        profile is defined.
-
-    Returns
-    -------
-    numpy.ndarray
-        Array of shape ``(3, n_elements + 1)`` containing the intrinsic
-        curvature components in the rod's material frame:
-
-        * index ``0``: sagittal-plane curvature (e.g., intrinsic
-          kyphosis/lordosis or protein-induced bend), populated according
-          to ``profile_type``;
-        * indices ``1`` and ``2``: set to zero, reserved for out-of-plane
-          or torsional curvature components.
-    """
+    """Generate a geometric curvature profile (kappa_gen)."""
     # Initialize kappa_gen (3, n_elements + 1)
-    # Indexing convention (consistent with compute_rest_curvature):
-    #   0: Binormal curvature
-    #   1: Normal curvature in main plane (sagittal/lateral profile)
+    # Index 0: Sagittal curvature (intrinsic kyphosis/lordosis or protein bend)
     kappa_gen = np.zeros((3, n_elements + 1))
     s = np.linspace(0, length, n_elements + 1)
 
     if profile_type == "constant":
-        kappa_gen[1, :] = 2.0  # 1/m (Constant intrinsic curvature in main plane)
+        kappa_gen[0, :] = 2.0  # 1/m (Constant intrinsic curvature)
     elif profile_type == "harmonic":
         # Sinusoidal curvature: 2.0 + 1.0 * sin(2*pi*s/L)
-        kappa_gen[1, :] = 2.0 + 1.0 * np.sin(2 * np.pi * s / length)
+        kappa_gen[0, :] = 2.0 + 1.0 * np.sin(2 * np.pi * s / length)
     elif profile_type == "kink":
         # Localized high curvature: 2.0 + 5.0 * Gaussian
         sigma = 0.05 * length
         center = 0.6 * length
-        kappa_gen[1, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
+        kappa_gen[0, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
     else:
-        raise ValueError(f"Unknown curvature profile type: {profile_type}")
+        raise ValueError(f"Unknown curvature_profile: {profile_type}")
 
     return kappa_gen
 

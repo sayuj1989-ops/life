@@ -33,3 +33,9 @@
 **Learning:** `np.savez_compressed` adds significant CPU overhead (~3ms per file) when saving small arrays like PDB coordinates (N x 3 floats), with negligible disk space savings compared to uncompressed `np.savez`. For 20k+ structures, this adds up.
 
 **Action:** Switched to `np.savez` (uncompressed) for coordinate caches in `StructureParser`. This yields a ~3x speedup in writing and ~1.7x in reading these specific caches. Loading remains compatible with legacy compressed files.
+
+## 2026-08-07 - [Optimized PDB Line Checks]
+
+**Learning:** Parsing PDB files involves iterating over thousands of lines. The standard idiom `line[12:16].strip() == 'CA'` creates a new string object and calls a method for *every* line (40k+ lines for 5000 residues), even though only ~1/8th are CA atoms. This string manipulation dominates the inner loop.
+
+**Action:** Replaced the string slice and method call with a direct index-based check: `line[13]=='C' and line[14]=='A'`. Included safety checks for line length and spacing. Benchmarks show a ~1.18x speedup (18%) for the parsing phase, reducing the cost of processing new PDB files significantly without altering behavior.

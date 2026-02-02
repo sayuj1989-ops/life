@@ -57,23 +57,11 @@ class StructureParser:
             with open(pdb_path, 'r') as f:
                 for line in f:
                     if line.startswith("ATOM"):
-                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
-                        # PDB format (1-based index in documentation, 0-based slice here):
-                        # 12-16: Atom name
-                        # 16: AltLoc (Alternate location indicator)
-                        # 17-20: Residue name
-                        # 21: Chain identifier
-                        # 30-38: X
-                        # 38-46: Y
-                        # 46-54: Z
-                        # 60-66: Temperature factor (pLDDT)
-
-                        atom_name = line[12:16].strip()
-
-                        # Only handle primary conformations (' ' or 'A')
-                        # AF structures usually don't have altlocs, but we check for safety.
-                        alt_loc = line[16]
-                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
+                        # ⚡ Bolt Optimization: Fast Check for " CA "
+                        # Avoids string slice creation and strip() for every line.
+                        # PDB " CA " is indices 12=' ', 13='C', 14='A', 15=' '.
+                        # Length check ensures safety against malformed lines.
+                        if len(line) > 20 and line[13] == 'C' and line[14] == 'A' and line[12] == ' ' and line[15] == ' ' and (line[16] == ' ' or line[16] == 'A'):
                             try:
                                 res_name = line[17:20].strip()
                                 x = float(line[30:38])

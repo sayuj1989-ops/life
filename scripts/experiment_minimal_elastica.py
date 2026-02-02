@@ -96,7 +96,7 @@ def _get_curvature_profile(profile_type: str, n_elements: int, length: float) ->
         center = 0.6 * length
         kappa_gen[1, :] = 2.0 + 5.0 * np.exp(-0.5 * ((s - center) / sigma)**2)
     else:
-        raise ValueError(f"Unknown curvature_profile: {profile_type}")
+        raise ValueError(f"Unknown curvature profile type: {profile_type}")
 
     return kappa_gen
 

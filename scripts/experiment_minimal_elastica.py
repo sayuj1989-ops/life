@@ -35,7 +35,49 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
 
 
 def _get_curvature_profile(profile_type: str, n_elements: int, length: float) -> np.ndarray:
-    """Generate a geometric curvature profile (kappa_gen)."""
+    """
+    Generate a geometric curvature profile :math:`\\kappa_{\\text{gen}}` along the rod.
+
+    This helper constructs an intrinsic curvature field defined on the
+    material coordinates of the rod, discretized into ``n_elements + 1``
+    points along its length.
+
+    Parameters
+    ----------
+    profile_type :
+        String specifying the type of curvature profile to generate.
+        Supported options are:
+
+        * ``"constant"``:
+            Uniform curvature of magnitude ``2.0`` (1/m) along the entire rod.
+        * ``"harmonic"``:
+            Sinusoidal modulation around a baseline of ``2.0`` (1/m),
+            i.e. ``2.0 + 1.0 * sin(2*pi*s/length)``.
+        * ``"kink"``:
+            Localized Gaussian bump of additional curvature (amplitude ``5.0``)
+            centered at ``0.6 * length`` with width ``0.05 * length``,
+            added to a baseline of ``2.0`` (1/m).
+
+    n_elements :
+        Number of discretization elements used to represent the rod. The
+        generated profile is sampled at ``n_elements + 1`` material points.
+
+    length :
+        Total physical length of the rod (in meters) over which the curvature
+        profile is defined.
+
+    Returns
+    -------
+    numpy.ndarray
+        Array of shape ``(3, n_elements + 1)`` containing the intrinsic
+        curvature components in the rod's material frame:
+
+        * index ``0``: sagittal-plane curvature (e.g., intrinsic
+          kyphosis/lordosis or protein-induced bend), populated according
+          to ``profile_type``;
+        * indices ``1`` and ``2``: set to zero, reserved for out-of-plane
+          or torsional curvature components.
+    """
     # Initialize kappa_gen (3, n_elements + 1)
     # Index 0: Sagittal curvature (intrinsic kyphosis/lordosis or protein bend)
     kappa_gen = np.zeros((3, n_elements + 1))

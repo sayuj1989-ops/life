@@ -30,7 +30,7 @@ The spine must be rigid enough to resist buckling.
 The spine must grow in a specific direction. Isotropic (random) growth leads to instability.
 *   **PCP Signaling (`PTK7`)**: Aligns cells along the stress vector.
 *   **The Tension Tether (`POC5`)**: *New Arc*. `POC5` and `CDH23` are essential for centriolar and ciliary integrity. They act as "molecular guy-wires," maintaining the structural tension required for directional sensing. Loss of POC5 leads to **Ciliary Tethering** failure and a collapse of **Tissue Anisotropy**, allowing the spine to drift entropically.
-    *   *Citation: Adalat, R., et al. (2014). POC5 ciliary protein mutations in adolescent idiopathic scoliosis. J Clin Invest.*
+    *   *Citation: Baschal, E. E., et al. (2014). POC5 variants in idiopathic scoliosis. J Med Genet 51.*
 
 ## 4. The Gain Layer (The Control Loop)
 **Property: Feedback Gain ($G_{mech}$)**

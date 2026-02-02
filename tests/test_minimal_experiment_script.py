@@ -101,3 +101,38 @@ def test_run_experiment_custom_info(tmp_path):
     assert float(row["info_center"]) == 0.5
     assert float(row["info_width"]) == 0.2
     assert float(row["info_amplitude"]) == 0.3
+
+@pytest.mark.skipif(
+    not experiment_minimal_elastica.PYELASTICA_AVAILABLE,
+    reason="PyElastica not installed"
+)
+def test_run_experiment_curvature_profiles(tmp_path):
+    """
+    Test that the curvature profile argument is accepted and recorded.
+    """
+    out_file = tmp_path / "test_profiles.csv"
+
+    # Use harmonic profile
+    experiment_minimal_elastica.run_experiment(
+        out_file=str(out_file),
+        anisotropies=[1.0],
+        chi_kappas=[0.0],
+        chi_taus=[0.0],
+        boundary_condition="fixed",
+        n_elements=10,
+        final_time=0.01,
+        save_every=100,
+        curvature_profile="harmonic"
+    )
+
+    assert out_file.exists()
+
+    with open(out_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows) == 1
+    row = rows[0]
+
+    assert "curvature_profile" in row
+    assert row["curvature_profile"] == "harmonic"

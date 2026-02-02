@@ -46,6 +46,7 @@ def run_experiment(
     info_center: float = 0.6,
     info_width: float = 0.1,
     info_amplitude: float = 0.1,
+    curvature_profile: str = "constant",
 ):
     """Run the parameter sweep and save results."""
     if not PYELASTICA_AVAILABLE:
@@ -86,6 +87,7 @@ def run_experiment(
         "chi_kappa",
         "chi_tau",
         "boundary_condition",
+        "curvature_profile",
         "info_center",
         "info_width",
         "info_amplitude",
@@ -143,10 +145,11 @@ def run_experiment(
                     )
 
                     # 3. Setup Geometric Curvature (kappa_gen)
-                    # Constant intrinsic curvature about d1 (index 0) = Sagittal Plane (Kyphosis/Lordosis)
+                    # Intrinsic curvature about d1 (index 0) = Sagittal Plane (Kyphosis/Lordosis)
                     # Note: chi_kappa couples to index 1 (Lateral Plane/Scoliosis)
-                    kappa_gen = np.zeros((3, n_elements + 1))
-                    kappa_gen[0, :] = 2.0  # 1/m
+                    kappa_gen = _get_curvature_profile(
+                        curvature_profile, 2.0, n_elements, length
+                    )
 
                     # 4. Create Rod System
                     rod_system = CounterCurvatureRodSystem.from_iec(
@@ -191,6 +194,7 @@ def run_experiment(
                         "chi_kappa": chi_kappa,
                         "chi_tau": chi_tau,
                         "boundary_condition": boundary_condition,
+                        "curvature_profile": curvature_profile,
                         "info_center": info_center,
                         "info_width": info_width,
                         "info_amplitude": info_amplitude,
@@ -221,6 +225,45 @@ def run_experiment(
 
     print("-" * 120)
     print("Experiment complete.")
+
+
+def _get_curvature_profile(
+    profile_type: str, kappa_mag: float, n_elements: int, length: float
+) -> np.ndarray:
+    """Generate a curvature profile (3, n_elements + 1).
+
+    Args:
+        profile_type: "constant", "harmonic", or "kink".
+        kappa_mag: Magnitude of the curvature.
+        n_elements: Number of elements in the rod.
+        length: Length of the rod.
+
+    Returns:
+        kappa_gen: Intrinsic curvature array (3, n_elements + 1).
+    """
+    s = np.linspace(0, length, n_elements + 1)
+    kappa_gen = np.zeros((3, n_elements + 1))
+
+    # Index 0 is curvature about d1 (Sagittal bending in this setup)
+    if profile_type == "constant":
+        kappa_gen[0, :] = kappa_mag
+
+    elif profile_type == "harmonic":
+        # Sinusoidal profile (e.g., somite segmentation)
+        # 2 full periods along length
+        kappa_gen[0, :] = kappa_mag * np.sin(2 * np.pi * 2 * s / length)
+
+    elif profile_type == "kink":
+        # Sharp transition at midpoint (e.g., LBX1/NTRK3 blocks)
+        mid_idx = n_elements // 2
+        kappa_gen[0, :mid_idx] = kappa_mag
+        kappa_gen[0, mid_idx:] = -kappa_mag
+
+    else:
+        # Default to constant
+        kappa_gen[0, :] = kappa_mag
+
+    return kappa_gen
 
 
 def parse_args():
@@ -285,8 +328,22 @@ def parse_args():
         "--scenario",
         type=str,
         default="default",
-        choices=["default", "intermediate_anisotropy", "high_growth", "vector_scalar_mismatch"],
+        choices=[
+            "default",
+            "intermediate_anisotropy",
+            "high_growth",
+            "vector_scalar_mismatch",
+            "protein_profile",
+        ],
         help="Pre-configured scenarios."
+    )
+
+    parser.add_argument(
+        "--curvature-profile",
+        type=str,
+        default="constant",
+        choices=["constant", "harmonic", "kink"],
+        help="Intrinsic curvature profile type."
     )
 
     parser.add_argument(
@@ -322,6 +379,7 @@ if __name__ == "__main__":
     chi_taus = args.chi_tau_list
     final_time = args.final_time
     n_elements = args.n_elements
+    curvature_profile = args.curvature_profile
 
     if args.quick_test:
         print(">>> Quick Test Mode Activated")
@@ -330,6 +388,14 @@ if __name__ == "__main__":
         chi_taus = [0.0]
         final_time = 0.1
         n_elements = 20
+
+    elif args.scenario == "protein_profile":
+        print(">>> Scenario: Protein Profile (Harmonic Curvature)")
+        # Simulates somite-like segmentation effects
+        curvature_profile = "harmonic"
+        anisotropies = [1.0, 5.0]
+        chi_kappas = [0.0, 5.0]
+        chi_taus = [0.0]
 
     elif args.scenario == "intermediate_anisotropy":
         print(">>> Scenario: Intermediate Anisotropy")
@@ -364,4 +430,5 @@ if __name__ == "__main__":
         info_center=args.info_center,
         info_width=args.info_width,
         info_amplitude=args.info_amplitude,
+        curvature_profile=curvature_profile,
     )

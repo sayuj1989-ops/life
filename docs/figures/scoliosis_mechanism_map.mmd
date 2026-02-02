@@ -21,6 +21,8 @@ graph TD
         RUNX3[RUNX3/EGR3<br/>Proprioceptive Identity]
         METTL3[METTL3<br/>m6A Methyltransferase]
         ESR1[ESR1<br/>Estrogen Receptor Alpha]
+        POC5[POC5<br/>Centriolar Integrity]
+        CDH23[CDH23<br/>Tip Link Tension]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -43,6 +45,7 @@ graph TD
         Circadian_Entrain[Circadian Entrainment<br/>Loading Zeitgeber]
         Proprio_Maint[Proprioceptive Maint.<br/>Sensory Survival]
         H3K9me3[H3K9me3<br/>Heterochromatin Compaction]
+        Tethering[Ciliary Tethering<br/>Basal Body Anchor]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -164,7 +167,12 @@ graph TD
     LAMIN --> H3K9me3
     H3K9me3 --> Gain
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3 process;
+    %% NEW ARC: Tension Tether Pathway (POC5)
+    POC5 --> Tethering
+    CDH23 --> Tethering
+    Tethering --> Anisotropy
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,POC5,CDH23 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,Tethering process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

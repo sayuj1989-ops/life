@@ -30,12 +30,12 @@ PLOD1 (Q02809),Homo sapiens,727,92.7,96.1,0.88,0.08,0.05,7.7,2.31,0.03,1,34.7,81
 ```
 
 ## 2. Key Plots Summary
-- `LMNA_plddt.png`: pLDDT profile for LMNA
-- `LMNA_pae.png`: PAE heatmap for LMNA
-- `PIEZO2_plddt.png`: pLDDT profile for PIEZO2
-- `PIEZO2_pae.png`: PAE heatmap for PIEZO2
 - `RUNX3_plddt.png`: pLDDT profile for RUNX3
 - `RUNX3_pae.png`: PAE heatmap for RUNX3
+- `PIEZO2_plddt.png`: pLDDT profile for PIEZO2
+- `PIEZO2_pae.png`: PAE heatmap for PIEZO2
+- `LMNA_plddt.png`: pLDDT profile for LMNA
+- `LMNA_pae.png`: PAE heatmap for LMNA
 
 ## 3. Interpretation
 **Family: Top_Priority_Run**
@@ -55,7 +55,7 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-02-02 21:53:38
+- Date/Time: 2026-02-02 22:16:50
 - Code Version: 646c850
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 9 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

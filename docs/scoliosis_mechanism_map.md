@@ -4,7 +4,7 @@
 
 The **Scoliosis Mechanism Map** (`docs/figures/scoliosis_mechanism_map.mmd`) visualizes the spine not as a passive column, but as an active, information-processing structure. Its primary goal is to generate **Counter-Curvature** (e.g., lordosis) to neutralize gravitational moments. Scoliosis is defined here as a failure of this active stabilization system—a "loss of control" rather than a simple material failure.
 
-The map traces the causal flow from genetic actors to macroscopic mechanics across four layers.
+The map traces the causal flow from genetic actors to macroscopic mechanics across five layers.
 
 ---
 

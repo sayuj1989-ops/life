@@ -154,6 +154,7 @@ def run_experiment():
 
     plt.tight_layout()
     plt.savefig(output_dir / "plot_anisotropy_stability.png")
+    plt.close()
 
     print("Experiment Complete.")
 

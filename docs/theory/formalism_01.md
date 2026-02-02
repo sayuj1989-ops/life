@@ -179,6 +179,21 @@ $$ E_{nuc} = E_{basal} + \Gamma_{CS} \cdot [\text{H3K9me3}] $$
 *   **Microgravity Implication**: If gravity is required to maintain $[\text{H3K9me3}]$ (via mechanotransduction to methyltransferases), then $g \to 0$ leads to a drop in $[\text{H3K9me3}]$, causing $E_{nuc} \to E_{basal}$ (softening).
 *   **Measurable Proxy**: The slope of the regression line between Nuclear stiffness (measured via AFM) and H3K9me3 immunofluorescence intensity across a population of cells.
 
+### 2.13. The Vestibular Precision Ratio ($\Omega_{VP}$)
+
+Drawing from Active Inference, we model spinal alignment as a belief updating process. $\Omega_{VP}$ represents the relative confidence (precision) of the global vestibular reference frame versus local proprioceptive feedback.
+
+$$ \Omega_{VP} = \frac{\pi_{vest}}{\pi_{prop}} = \frac{\sigma^2_{prop}}{\sigma^2_{vest}} $$
+
+*   **Symbols**:
+    *   $\pi_{vest}$: Precision (inverse variance) of the otolithic gravity vector signal $[1]$.
+    *   $\pi_{prop}$: Precision of paraspinal muscle spindle afferents $[1]$.
+    *   $\sigma^2$: Variance of the respective sensory prediction errors.
+*   **Physical Interpretation**:
+    *   **$\Omega_{VP} \gg 1$**: "Global Capture". The organism anchors its geometry to the gravity vector. Local proprioceptive drift is corrected.
+    *   **$\Omega_{VP} \ll 1$**: "Sensory Autonomy" (or Drift). In microgravity ($g \to 0$), the signal-to-noise ratio of the otoliths crashes ($\sigma^2_{vest} \to \infty$), causing $\Omega_{VP} \to 0$. The spine aligns to local proprioceptive priors, which may be asymmetric or noisy ("Geometric Hallucinations").
+*   **Measurable Proxy**: The ratio of **Body Sway Area** (Vestibular dominant) to **Inter-segmental Cobb Angle Variance** (Proprioceptive dominant) under visual occlusion. Alternatively, the weighting factor of Galvanic Vestibular Stimulation (GVS) on EMG responses.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -342,6 +357,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: H3K9me3 ChIP-Seq or IF in spaceflown samples vs ground controls.
 *   **Refutation**: If H3K9me3 levels are stable or increase in microgravity, the "Scalar Senescence" model is falsified. (Reference: Stephens et al., 2017).
 
+### Test Y: The Geometric Hallucination
+*   **Hypothesis**: Selectively degrading vestibular precision ($\pi_{vest}$) in 1g using Noisy Galvanic Vestibular Stimulation (nGVS) will lower $\Omega_{VP}$ and induce curvature drift similar to microgravity, even if muscle strength is maintained.
+*   **Data Needed**: 3D spinal kinematics of subjects standing/sitting with nGVS applied over 60 minutes, compared to sham stimulation.
+*   **Refutation**: If nGVS causes increased sway but the mean spinal curvature remains straight (robust integration), the "Precision Ratio" model is falsified. (Reference: T. Oppenheim et al., 2024).
+
+### Test Z: The Stochastic Resonance Rescue
+*   **Hypothesis**: If microgravity scoliotic drift is due to low $\pi_{vest}$ (sub-threshold signal), applying Stochastic Resonance (broad-spectrum mechanical vibration or electrical noise) should boost $\Omega_{VP}$ and restore alignment.
+*   **Data Needed**: Spinal linearity in zebrafish or mice raised in levitation/clinostat with superimposed sub-threshold white noise vibration.
+*   **Refutation**: If noise worsens the curvature (destabilizing) rather than correcting it (resonance), the loss of precision is not the driver. (Reference: W. Collins et al., 2003).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -372,3 +397,5 @@ The theory makes specific predictions about the relationship between genetic ani
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
 27. **Nava, M. M., et al. (2020).** "Heterochromatin-driven nuclear softening protects the genome against mechanical stress-induced damage." *Cell*, 181(4). (Establishes the link between H3K9me3 and nuclear stiffness).
 28. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(14). (Separates chromatin contribution from Lamin A/C).
+29. **Friston, K. J., et al. (2010).** "Action and behavior: a free-energy formulation." *Biological Cybernetics*. (Active Inference foundation).
+30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle tone." *Physiological Reviews*. (Proprioception foundation).

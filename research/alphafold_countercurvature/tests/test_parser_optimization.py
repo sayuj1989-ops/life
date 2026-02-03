@@ -71,5 +71,38 @@ class TestParserOptimization(unittest.TestCase):
         np.testing.assert_array_equal(plddt_read, plddt)
         np.testing.assert_array_equal(resnames_read, resnames)
 
+    def test_fast_parse_atom_name_variations(self):
+        # Test various atom name formats
+        # " CA " (Standard) -> Should parse
+        # "CA  " (Left-aligned) -> Should parse
+        # "  CA" (Right-aligned) -> Should parse
+        # " C A" (Space in middle) -> Should NOT parse
+        # "XC A" (Garbage) -> Should NOT parse
+        # "XCAY" (4 chars) -> Should NOT parse
+
+        lines = [
+            "ATOM      1  CA  ALA A   1      11.000  11.000  11.000  1.00 90.00           C", # " CA "
+            "ATOM      2 CA   ALA A   2      12.000  12.000  12.000  1.00 90.00           C", # "CA  "
+            "ATOM      3   CA ALA A   3      13.000  13.000  13.000  1.00 90.00           C", # "  CA"
+            "ATOM      4  C A ALA A   4      14.000  14.000  14.000  1.00 90.00           C", # " C A" - Fail
+            "ATOM      5 XCAY ALA A   5      15.000  15.000  15.000  1.00 90.00           C", # "XCAY" - Fail
+            "ATOM      6  N   ALA A   6      16.000  16.000  16.000  1.00 90.00           N"  # " N  " - Fail
+        ]
+
+        pdb_path = Path(self.tmp_dir.name) / "variations.pdb"
+        with open(pdb_path, "w") as f:
+            f.write("\n".join(lines))
+
+        coords, plddt, resnames = self.parser.fast_parse_pdb_arrays(pdb_path)
+
+        # We expect 3 atoms (1, 2, 3)
+        self.assertEqual(len(coords), 3)
+        np.testing.assert_array_almost_equal(coords[0], [11.0, 11.0, 11.0]) # " CA "
+        np.testing.assert_array_almost_equal(coords[1], [12.0, 12.0, 12.0]) # "CA  "
+        np.testing.assert_array_almost_equal(coords[2], [13.0, 13.0, 13.0]) # "  CA"
+
+        # Verify residue names
+        self.assertEqual(resnames[0], 'ALA')
+
 if __name__ == '__main__':
     unittest.main()

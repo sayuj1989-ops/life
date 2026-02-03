@@ -68,12 +68,26 @@ class StructureParser:
                         # 46-54: Z
                         # 60-66: Temperature factor (pLDDT)
 
-                        atom_name = line[12:16].strip()
+                        # Bolt Optimization: Fast CA check avoiding string slicing
+                        # Standard PDB "ATOM  " records place Atom Name in cols 13-16 (1-based), i.e., indices 12-15 (0-based).
+                        # " CA " (standard) -> 12=' ', 13='C', 14='A', 15=' '
+                        # "CA  " (left-aligned) -> 12='C', 13='A', 14=' ', 15=' '
+                        is_ca = False
+                        # Check most discriminative chars first (13, 14)
+                        if line[13] == 'C' and line[14] == 'A':
+                             if line[12] == ' ' and line[15] == ' ':
+                                 is_ca = True
+                        elif line[12] == 'C' and line[13] == 'A':
+                             if line[14] == ' ' and line[15] == ' ':
+                                 is_ca = True
+                        elif line[14] == 'C' and line[15] == 'A':
+                             if line[12] == ' ' and line[13] == ' ':
+                                 is_ca = True
 
                         # Only handle primary conformations (' ' or 'A')
                         # AF structures usually don't have altlocs, but we check for safety.
                         alt_loc = line[16]
-                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
+                        if is_ca and (alt_loc == ' ' or alt_loc == 'A'):
                             try:
                                 res_name = line[17:20].strip()
                                 x = float(line[30:38])

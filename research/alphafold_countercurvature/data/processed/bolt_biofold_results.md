@@ -22,12 +22,12 @@ COL12A1 (Q99715),Homo sapiens,1899,75.6,84.3,0.22,0.54,0.24,25.7,6.27,0.18,41,63
 ```
 
 ## 2. Key Plots Summary
-- `PIEZO2_plddt.png`: pLDDT profile for PIEZO2
-- `PIEZO2_pae.png`: PAE heatmap for PIEZO2
 - `LMNA_plddt.png`: pLDDT profile for LMNA
 - `LMNA_pae.png`: PAE heatmap for LMNA
 - `COL12A1_plddt.png`: pLDDT profile for COL12A1
 - `COL12A1_pae.png`: PAE heatmap for COL12A1
+- `PIEZO2_plddt.png`: pLDDT profile for PIEZO2
+- `PIEZO2_pae.png`: PAE heatmap for PIEZO2
 
 ## 3. Interpretation
 **Family: Cilia**
@@ -51,7 +51,7 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 
 ## 5. Quality & Reproducibility Checklist
 - Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-02-01 19:44:31
-- Code Version: 801e00a
+- Date/Time: 2026-02-03 19:23:38
+- Code Version: 646c850
 - Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
 - Notes: 5 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml

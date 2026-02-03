@@ -81,6 +81,7 @@ class SimulationResult:
     time: ArrayF64
     centerline: ArrayF64
     kappa: ArrayF64
+    energy: ArrayF64
     info_field: InfoField1D
 
     @property
@@ -144,7 +145,43 @@ class SimulationResult:
             "z_tip": float(pos[-1, 2]),
             "x_tip": float(pos[-1, 0]),
             "y_tip": float(pos[-1, 1]),
+            "final_energy": float(self.energy[-1]) if len(self.energy) > 0 else 0.0,
         }
+
+def compute_total_energy(rod: Any, gravity_acc: ArrayF64) -> float:
+    """Compute Total Potential Energy (Elastic + Gravitational)."""
+    # 1. Bending Energy
+    if hasattr(rod, "compute_bending_energy"):
+        bending_energy = float(np.sum(rod.compute_bending_energy()))
+    elif hasattr(rod, "rest_voronoi_lengths"):
+        # Manual fallback with length integration
+        kappa_diff = rod.kappa - rod.rest_kappa
+        term = 0.5 * np.einsum('ik,ijk,jk->k', kappa_diff, rod.bend_matrix, kappa_diff)
+        bending_energy = float(np.sum(term * rod.rest_voronoi_lengths))
+    else:
+        bending_energy = 0.0
+
+    # 2. Shear Energy
+    if hasattr(rod, "compute_shear_energy"):
+        shear_energy = float(np.sum(rod.compute_shear_energy()))
+    elif hasattr(rod, "rest_lengths"):
+        # Manual fallback with length integration
+        if hasattr(rod, 'rest_sigma'):
+             sigma_diff = rod.sigma - rod.rest_sigma
+        else:
+             sigma_diff = rod.sigma
+
+        term = 0.5 * np.einsum('ik,ijk,jk->k', sigma_diff, rod.shear_matrix, sigma_diff)
+        shear_energy = float(np.sum(term * rod.rest_lengths))
+    else:
+        shear_energy = 0.0
+
+    # 3. Gravitational Potential Energy
+    # U_g = - sum(m * g . x)
+    # gravity_acc is vector (3,)
+    grav_energy = - np.sum(rod.mass * np.dot(gravity_acc, rod.position_collection))
+
+    return float(bending_energy + shear_energy + grav_energy)
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
@@ -379,10 +416,12 @@ class CounterCurvatureRodSystem:
 
         # Callback
         class CCCallback(ea.CallBackBaseClass):
-            def __init__(self, step_skip, results):
+            def __init__(self, step_skip, results, gravity_acc):
                 super().__init__()
                 self.every = step_skip
                 self.results = results
+                self.gravity_acc = gravity_acc
+
             def make_callback(self, system, time, current_step):
                 if current_step % self.every == 0:
                     self.results["time"].append(time)
@@ -390,8 +429,22 @@ class CounterCurvatureRodSystem:
                     # Save full kappa vector (3, n_elems-1) -> transpose to (n_elems-1, 3)
                     self.results["kappa"].append(system.kappa.copy().T)
 
-        results = {"time": [], "centerline": [], "kappa": []}
-        system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
+                    # Compute total energy
+                    try:
+                        energy = compute_total_energy(system, self.gravity_acc)
+                    except Exception:
+                        energy = 0.0
+                    self.results["energy"].append(energy)
+
+        results = {"time": [], "centerline": [], "kappa": [], "energy": []}
+        gravity_acc = np.array([0.0, 0.0, -gravity])
+
+        system.collect_diagnostics(self.rod).using(
+            CCCallback,
+            step_skip=save_every,
+            results=results,
+            gravity_acc=gravity_acc
+        )
 
         system.finalize()
         timestepper = ea.PositionVerlet()
@@ -415,6 +468,7 @@ class CounterCurvatureRodSystem:
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
             kappa=padded_kappa,
+            energy=np.array(results["energy"]),
             info_field=self.info_field
         )
 

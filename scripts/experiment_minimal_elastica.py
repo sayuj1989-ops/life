@@ -96,6 +96,7 @@ def run_experiment(
         "y_tip",
         "s_lat",
         "cobb_angle",
+        "final_energy",
         "runtime_sec",
         "peak_memory_mb",
         "end_to_end_distance"
@@ -109,13 +110,13 @@ def run_experiment(
         if not file_exists:
             writer.writeheader()
 
-        print("-" * 120)
+        print("-" * 135)
         print(
             f"{'Anisotropy':<12} | {'chi_kappa':<10} | {'chi_tau':<10} | {'Max Curv':<10} | "
             f"{'Max Tor':<10} | {'Y Tip':<10} | {'S_lat':<8} | {'Cobb':<8} | "
-            f"{'Time (s)':<10} | {'Mem (MB)':<8}"
+            f"{'Energy':<10} | {'Time (s)':<10} | {'Mem (MB)':<8}"
         )
-        print("-" * 120)
+        print("-" * 135)
 
         for chi_kappa in chi_kappas:
             for chi_tau in chi_taus:
@@ -203,6 +204,7 @@ def run_experiment(
                         "y_tip": metrics.get('y_tip', 0.0),
                         "s_lat": metrics.get('S_lat', 0.0),
                         "cobb_angle": metrics.get('cobb_angle', 0.0),
+                        "final_energy": metrics.get('final_energy', 0.0),
                         "end_to_end_distance": metrics.get(
                             'end_to_end_distance', 0.0
                         ),
@@ -219,11 +221,13 @@ def run_experiment(
                         f"{row_data['max_torsion']:<10.4f} | "
                         f"{row_data['y_tip']:<10.4f} | "
                         f"{row_data['s_lat']:<8.4f} | "
-                        f"{row_data['cobb_angle']:<8.4f} | {runtime:<10.4f} | "
+                        f"{row_data['cobb_angle']:<8.4f} | "
+                        f"{row_data['final_energy']:<10.4e} | "
+                        f"{runtime:<10.4f} | "
                         f"{peak_mb:<8.2f}"
                     )
 
-    print("-" * 120)
+    print("-" * 135)
     print("Experiment complete.")
 
 

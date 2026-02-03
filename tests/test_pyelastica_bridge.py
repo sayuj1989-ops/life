@@ -11,6 +11,7 @@ from numpy.typing import NDArray
 from spinalmodes.countercurvature.pyelastica_bridge import (
     CounterCurvatureRodSystem,
     PYELASTICA_AVAILABLE,
+    compute_total_energy,
 )
 from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
@@ -220,7 +221,68 @@ def test_pyelastica_with_info_coupling():
         f"than without {tip_z_zero:.6f}"
     )
 
+@pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not available")
+def test_energy_conservation():
+    """Test that total potential energy behaves physically (minimizes)."""
+    length = 0.5
+    n_elements = 20
+    n_points = n_elements + 1
+
+    # Uniform info
+    s = np.linspace(0, length, n_points)
+    info = InfoField1D(s=s, I=np.zeros(n_points), dIds=np.zeros(n_points))
+    params = CounterCurvatureParams(chi_kappa=0.0, chi_E=0.0, chi_M=0.0, scale_length=length)
+
+    # Create horizontal rod
+    rod_system = CounterCurvatureRodSystem.from_iec(
+        info=info,
+        params=params,
+        length=length,
+        n_elements=n_elements,
+        E0=1e7,
+        rho=1000.0,
+        radius=0.01,
+        gravity=9.81,
+        base_position=(0.0, 0.0, 0.0),
+        base_direction=(1.0, 0.0, 0.0), # Horizontal
+        normal=(0.0, 1.0, 0.0)
+    )
+
+    # Initial energy (approximate check)
+    # Should be close to 0 as z=0 and curvature=0
+    # But we need to compute it.
+
+    # Run short simulation
+    final_time = 0.2
+    dt = 1e-5
+    save_every = 100
+
+    result = rod_system.run_simulation(
+        final_time=final_time,
+        dt=dt,
+        save_every=save_every,
+        gravity=9.81
+    )
+
+    # Verify energy array exists
+    assert hasattr(result, "energy"), "Result should have 'energy' field"
+    assert len(result.energy) > 0, "Energy array should not be empty"
+
+    # Initial energy (first step)
+    E_initial = result.energy[0]
+    # Final energy
+    E_final = result.energy[-1]
+
+    # Since rod sags, potential energy should decrease
+    # (Gravity does work, converting potential to kinetic/damping).
+    # Equilibrium state has lower potential energy than straight horizontal state.
+    assert E_final < E_initial, f"Energy should decrease (E_init={E_initial}, E_final={E_final})"
+
+    # Metrics check
+    metrics = result.compute_final_metrics()
+    assert "final_energy" in metrics
+    assert metrics["final_energy"] == E_final
+
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
-

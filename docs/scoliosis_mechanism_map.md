@@ -275,6 +275,28 @@ The map categorizes the system into four layers:
 
 ---
 
+### 19. The Lymphatic Drainage Pathway (VCL)
+
+**Arc Added**: `Muscle_Tone` $\rightarrow$ `VCL` $\rightarrow$ `Disc_Maint`.
+
+*   **Source**: **Vertebral Column Lymphatics (VCL)**, Paraspinal Muscles.
+*   **Mechanism**: **Gravity-Assisted Clearance**.
+    1.  The VCL network acts as the primary drainage route for cerebrospinal fluid (CSF) and interstitial fluid (ISF) from the spine (Jacob et al., 2019).
+    2.  This drainage relies on the hydrostatic pressure gradient (Gravity) and the "muscle pump" effect of paraspinal muscles.
+    3.  **Failure**: In microgravity or sedentary states, flow stagnates. This "Spinal Congestion" allows inflammatory cytokines (IL-1$\beta$, TNF-$\alpha$) to accumulate in the Annulus Fibrosus.
+    4.  **Degeneration**: Cytokine accumulation triggers MMP upregulation, degrading the disc matrix.
+*   **Property**: **Disc Maintenance** (and Stiffness).
+*   **Role**: **The Hydraulic Janitor**. The spine produces metabolic waste that must be actively cleared. Gravity and movement provide the energy for this clearance. Without it, the tissue stews in its own waste.
+*   **Evidence**: Jacob et al. (2019) identified the VCL as the key clearance route. Chen et al. (2025) linked fluid stagnation/swelling to MMP-driven degradation.
+
+> **Hypothesis**: Gravity is not just a load; it is a pump. The VCL system converts gravitational potential energy into fluid flow, maintaining the biochemical hygiene of the spine.
+
+**Citations**:
+*   *Jacob, L., et al. (2019). Anatomy and function of the vertebral column lymphatic network in mice. Nature Communications, 10, 4594.* https://doi.org/10.1038/s41467-019-12568-w
+*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

@@ -92,7 +92,8 @@ def main():
     top_n[['gene_symbol', 'source']].to_csv(BOLT_TARGETS, index=False)
     print(f"📄 Wrote targets to {BOLT_TARGETS}")
 
-    print("   Targets:", ", ".join(top_n['gene_symbol'].tolist()))
+    target_genes = top_n['gene_symbol'].tolist()
+    print("   Targets:", ", ".join(target_genes))
 
     # 2. Map to Uniprot
     run_step("01_map_to_uniprot.py", "Map Gene Symbols to UniProt IDs", daily_output_dir)
@@ -101,9 +102,38 @@ def main():
     # 02_fetch_afdb.py
     run_step("02_fetch_afdb.py", "Fetch PDBs from AlphaFold DB", daily_output_dir)
 
+    # 3.5 Check for Failures in Manifest
+    manifest_path = DATA_DIR / "manifest.csv"
+    if manifest_path.exists():
+        try:
+            manifest_df = pd.read_csv(manifest_path)
+            # Check status for our target genes
+            failures = []
+            for gene in target_genes:
+                row = manifest_df[manifest_df['gene_symbol'] == gene]
+                if not row.empty:
+                    status = row.iloc[0]['status']
+                    if status not in ['downloaded', 'cached']:
+                        failures.append({'gene': gene, 'status': status})
+                else:
+                     failures.append({'gene': gene, 'status': 'missing_from_manifest'})
+
+            if failures:
+                print(f"⚠️  Found {len(failures)} failures/missing in manifest.")
+                daily_output_dir.mkdir(parents=True, exist_ok=True)
+                failure_file = daily_output_dir / "failure.md"
+                with open(failure_file, "w") as f:
+                    f.write("# AFCC Failure Report\n")
+                    f.write(f"**Date:** {today}\n\n")
+                    f.write("| Gene | Status |\n|---|---|\n")
+                    for item in failures:
+                        f.write(f"| {item['gene']} | {item['status']} |\n")
+                print(f"📝 Written failure report to {failure_file}")
+        except Exception as e:
+            print(f"⚠️ Error checking manifest: {e}")
+
     # 4. Force Recompute Metrics
     print("\n🧹 Preparing Metrics Table (Forcing Refresh for Targets)...")
-    target_genes = top_n['gene_symbol'].tolist()
 
     if METRICS_FILE.exists():
         metrics_df = pd.read_csv(METRICS_FILE)

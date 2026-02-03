@@ -47,7 +47,8 @@ def main():
     mapping_df = mapper.map_genes_to_uniprot(genes, organism_id="9606")
 
     # Merge back to verify coverage
-    merged = candidates.merge(mapping_df, on='gene_symbol', how='left')
+    # Use suffixes to handle case where input already has uniprot_accession
+    merged = candidates.merge(mapping_df, on='gene_symbol', how='left', suffixes=('_input', ''))
 
     missing = merged[merged['uniprot_accession'].isna()]
     if not missing.empty:

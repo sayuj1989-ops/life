@@ -48,3 +48,13 @@ alphafold-all: alphafold-data alphafold-analyze alphafold-figs alphafold-numbers
 clean:
 	rm -rf results/*.csv figures/*.png
 	rm -rf results/ .cache/afdb/
+
+lint:
+	ruff check .
+
+format:
+	ruff format .
+
+check:
+	ruff check .
+	ruff format --check .

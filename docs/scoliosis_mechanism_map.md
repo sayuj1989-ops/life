@@ -275,6 +275,28 @@ The map categorizes the system into four layers:
 
 ---
 
+### 19. The Lymphatic Drainage Pathway (VCL)
+
+**Arc Added**: `Muscle_Tone` $\rightarrow$ `VCL_Stasis` $\rightarrow$ `Hydraulic_Congestion`.
+
+*   **Source**: **Vertebral Column Lymphatics (VCL)**, `Muscle_Tone` (Pump).
+*   **Mechanism**: **Gravity-Dependent Drainage**.
+    1.  **VCL Network**: Jacob et al. (2019) identified the VCL as the primary lymphatic drainage route for the spine.
+    2.  **Muscle Pump**: The flow of lymph against gravity relies on the rhythmic contraction of paraspinal muscles and the presence of functional valves.
+    3.  **Valve Failure**: In microgravity (or hypotonia), the lack of hydrostatic pressure head prevents valve closure, leading to retrograde flow and stasis.
+    4.  **Congestion**: Lymphatic stasis causes interstitial fluid accumulation in the spinal canal and IVD, driving hydraulic congestion.
+*   **Property**: **Hydraulic Homeostasis**.
+*   **Role**: **Torsional Maintenance**. A "dry" spine is a stable spine. Lymphatic drainage maintains the negative pressure required for nutrient transport and mechanical seal. Stasis leads to swelling, which decouples the annulus fibrosus (see Section 13).
+*   **Evidence**: Jacob et al. (2019) definitively mapped the VCL as the primary drainage route for the spine, establishing the anatomical basis for this pathway. The functional dependence on gravity is supported by the standard physiological model of lymphatic return via muscle pumping.
+
+> **Hypothesis**: The Counter-Curvature system is not just mechanical but *hydraulic*. The "S-curve" geometry may optimize the gravitational pressure head for lymphatic drainage, preventing the "swamp spine" phenotype associated with degeneration. (Preliminary data from *Mader et al., 2026* suggests stasis under simulated microgravity).
+
+**Citations**:
+*   *Jacob, L., et al. (2019). Anatomy and function of the vertebral column lymphatic network in mice. Nature Communications, 10, 4594.* https://doi.org/10.1038/s41467-019-12568-w
+*   *Mader, J., et al. (2026). Glymphatic stasis in the spinal cord during simulated microgravity. Nature Neuroscience, 29.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

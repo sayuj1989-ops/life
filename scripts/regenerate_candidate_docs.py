@@ -26,7 +26,7 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 8 Cycle - Gravity Expansion IV (Added NTRK3, OTOP1, GPX4, etc.)\n")
+        f.write("****Last Updated:** Week 10 Cycle - Gravity Expansion V (Added ITGA11, LOXL2, MMP14, etc.)\n")
         f.write("**Focus:** Gravity, Mechanotransduction, and Spinal Curvature\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")

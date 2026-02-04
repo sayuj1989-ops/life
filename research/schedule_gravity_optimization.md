@@ -1,7 +1,7 @@
 # Research Schedule: Gravity as an Optimization Process
 **Principal Investigator:** Jules
-**Date:** 2026-10-27
-**Status:** DRAFT
+**Date:** 2026-10-28
+**Status:** ACTIVE
 **Theoretical Framework:** `formalism_01.md`
 **Codebase Context:** `pyelastica_bridge.py`, `experiment_minimal_elastica.py`
 

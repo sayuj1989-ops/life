@@ -54,38 +54,52 @@ class StructureParser:
         resnames_list = []
 
         try:
+            # ⚡ Bolt Optimization: Use readlines() for faster bulk read
             with open(pdb_path, 'r') as f:
-                for line in f:
-                    if line.startswith("ATOM"):
-                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
-                        # PDB format (1-based index in documentation, 0-based slice here):
-                        # 12-16: Atom name
-                        # 16: AltLoc (Alternate location indicator)
-                        # 17-20: Residue name
-                        # 21: Chain identifier
-                        # 30-38: X
-                        # 38-46: Y
-                        # 46-54: Z
-                        # 60-66: Temperature factor (pLDDT)
+                lines = f.readlines()
 
-                        atom_name = line[12:16].strip()
+            for line in lines:
+                if not line.startswith("ATOM"):
+                    continue
 
-                        # Only handle primary conformations (' ' or 'A')
-                        # AF structures usually don't have altlocs, but we check for safety.
-                        alt_loc = line[16]
-                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
-                            try:
-                                res_name = line[17:20].strip()
-                                x = float(line[30:38])
-                                y = float(line[38:46])
-                                z = float(line[46:54])
-                                b_factor = float(line[60:66])
+                if len(line) < 66:
+                    continue  # Skip short/malformed lines early
 
-                                coords_list.append([x, y, z])
-                                plddt_list.append(b_factor)
-                                resnames_list.append(res_name)
-                            except ValueError:
-                                continue # Skip malformed lines
+                # ⚡ Bolt Optimization: Direct index check for 'CA'
+                # Avoids string slicing/stripping overhead.
+                # PDB Atom Name cols 12-16 (0-indexed 12-15).
+                # Common variations: " CA ", "CA  ", "  CA"
+
+                is_ca = False
+                # " CA " (most common) -> 13='C', 14='A'
+                if line[13] == 'C' and line[14] == 'A':
+                    is_ca = True
+                # "CA  " -> 12='C', 13='A'
+                elif line[12] == 'C' and line[13] == 'A':
+                    is_ca = True
+                # "  CA" -> 14='C', 15='A'
+                elif line[14] == 'C' and line[15] == 'A':
+                    is_ca = True
+
+                if not is_ca:
+                    continue
+
+                # AltLoc check (col 16)
+                if line[16] not in (' ', 'A'):
+                    continue
+
+                try:
+                    res_name = line[17:20].strip()
+                    x = float(line[30:38])
+                    y = float(line[38:46])
+                    z = float(line[46:54])
+                    b_factor = float(line[60:66])
+
+                    coords_list.append([x, y, z])
+                    plddt_list.append(b_factor)
+                    resnames_list.append(res_name)
+                except ValueError:
+                    continue  # Skip malformed lines
 
             if not coords_list:
                 return None, None, None

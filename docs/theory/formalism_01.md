@@ -179,6 +179,21 @@ $$ E_{nuc} = E_{basal} + \Gamma_{CS} \cdot [\text{H3K9me3}] $$
 *   **Microgravity Implication**: If gravity is required to maintain $[\text{H3K9me3}]$ (via mechanotransduction to methyltransferases), then $g \to 0$ leads to a drop in $[\text{H3K9me3}]$, causing $E_{nuc} \to E_{basal}$ (softening).
 *   **Measurable Proxy**: The slope of the regression line between Nuclear stiffness (measured via AFM) and H3K9me3 immunofluorescence intensity across a population of cells.
 
+### 2.13. The Vestibular Precision Ratio ($\Omega_{VP}$)
+
+We define the organism's orientation state estimate as a precision-weighted average of global vestibular cues and local proprioceptive cues. $\Omega_{VP}$ quantifies the relative reliability of the vestibular stream.
+
+$$ \Omega_{VP} = \frac{\pi_V}{\pi_P} $$
+
+*   **Symbols**:
+    *   $\pi_V$: Precision (inverse variance, $1/\sigma_V^2$) of the vestibular gravity vector signal $[1]$.
+    *   $\pi_P$: Precision (inverse variance, $1/\sigma_P^2$) of the proprioceptive body schema signal $[1]$.
+*   **Physical Interpretation**:
+    *   $\Omega_{VP} \gg 1$: "Gravitropic Mode". The organism ignores local curvature errors to align with the global vertical (Plumb Line strategy).
+    *   $\Omega_{VP} \ll 1$: "Proprioceptive Mode". The organism ignores gravity to minimize local strain energies (Internal Consistency strategy).
+    *   **The Hallucination Regime**: If $\Omega_{VP}$ remains high while $\pi_V$ drops (e.g., vestibular noise or gain asymmetry), the organism aligns to a phantom vertical, inducing curvature.
+*   **Measurable Proxy**: The ratio of the gain of Vestibular-Evoked Myogenic Potentials (VEMPs) to the gain of the Hoffman Reflex (H-Reflex) in paraspinal muscles.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -342,6 +357,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: H3K9me3 ChIP-Seq or IF in spaceflown samples vs ground controls.
 *   **Refutation**: If H3K9me3 levels are stable or increase in microgravity, the "Scalar Senescence" model is falsified. (Reference: Stephens et al., 2017).
 
+### Test Y: The Sensory Reweighting
+*   **Hypothesis**: In healthy subjects, $\Omega_{VP}$ decreases when vestibular input is noisy (closed eyes, unstable surface). In scoliosis patients, $\Omega_{VP}$ remains maladaptively high ("Stuck" precision).
+*   **Data Needed**: Correlation between the amplitude of Stochastic Vestibular Stimulation (SVS) induced sway (vestibular gain) and paraspinal EMG asymmetry during quiet standing in AIS vs Control groups.
+*   **Refutation**: If AIS patients show *lower* vestibular weighting ($\Omega_{VP} \to 0$) than controls, the "Vestibular Over-reliance" hypothesis is falsified. (Reference: Pialasse et al., 2015).
+
+### Test Z: The Hallucination Trigger
+*   **Hypothesis**: Artificially lowering proprioceptive precision $\pi_P$ (via high-frequency tendon vibration) while maintaining high vestibular gain $\pi_V$ will induce a "Geometric Hallucination" and temporary scoliotic curvature in healthy subjects.
+*   **Data Needed**: 3D spinal kinematics of healthy volunteers subjected to unilateral multifidus vibration (80Hz) with and without concurrent Galvanic Vestibular Stimulation (GVS).
+*   **Refutation**: If vibration induces sway but not axial curvature (scoliosis-like torsion), the sensory mismatch is insufficient to drive geometric remodeling. (Reference: Proske & Gandevia, 2012).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -372,3 +397,5 @@ The theory makes specific predictions about the relationship between genetic ani
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
 27. **Nava, M. M., et al. (2020).** "Heterochromatin-driven nuclear softening protects the genome against mechanical stress-induced damage." *Cell*, 181(4). (Establishes the link between H3K9me3 and nuclear stiffness).
 28. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(14). (Separates chromatin contribution from Lamin A/C).
+29. **Pialasse, J. P., et al. (2015).** "Vestibular-somatosensory interactions in idiopathic scoliosis: adolescents with scoliosis overweigh vestibular information." *PLOS ONE*, 10(5). (Evidence for sensory reweighting failure).
+30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*, 92(4). (Foundational review of proprioception).

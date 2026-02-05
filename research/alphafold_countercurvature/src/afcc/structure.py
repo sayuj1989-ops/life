@@ -55,31 +55,24 @@ class StructureParser:
 
         try:
             with open(pdb_path, 'r') as f:
-                for line in f:
-                    if line.startswith("ATOM"):
-                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
-                        # PDB format (1-based index in documentation, 0-based slice here):
-                        # 12-16: Atom name
-                        # 16: AltLoc (Alternate location indicator)
-                        # 17-20: Residue name
-                        # 21: Chain identifier
-                        # 30-38: X
-                        # 38-46: Y
-                        # 46-54: Z
-                        # 60-66: Temperature factor (pLDDT)
+                lines = f.readlines()
 
-                        atom_name = line[12:16].strip()
-
-                        # Only handle primary conformations (' ' or 'A')
-                        # AF structures usually don't have altlocs, but we check for safety.
-                        alt_loc = line[16]
-                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
+            for line in lines:
+                if line.startswith("ATOM"):
+                    # Check for CA atom. PDB format: ATOM (0-3), Atom Name (12-15).
+                    # "ATOM      2  CA  MET" -> line[13] == 'C', line[14] == 'A'
+                    # Faster than line[12:16].strip() == 'CA'
+                    if line[13:15] == "CA":
+                        # Only handle primary conformations (' ' or 'A') at col 16
+                        if line[16] in (' ', 'A'):
                             try:
-                                res_name = line[17:20].strip()
+                                # PDB format fixed width:
+                                # 30-38: X, 38-46: Y, 46-54: Z, 60-66: pLDDT
                                 x = float(line[30:38])
                                 y = float(line[38:46])
                                 z = float(line[46:54])
                                 b_factor = float(line[60:66])
+                                res_name = line[17:20].strip()
 
                                 coords_list.append([x, y, z])
                                 plddt_list.append(b_factor)

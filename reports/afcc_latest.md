@@ -168,8 +168,8 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Metrics**: [Download CSV](outputs/afcc/2026-01-31/metrics.csv)
 - **Top Anisotropy**: LMNA (4.75)
 
-## 2026-02-05: Daily Refresh
+## 2026-02-06: Daily Refresh
 - **Targets**: PIEZO2, LBX1, RUNX3, NTRK3, LMNA, NF1, SELENON, EGR3, OTOP1, PLOD1
-- **Full Report**: [View Summary](outputs/afcc/2026-02-05/summary.md)
-- **Metrics**: [Download CSV](outputs/afcc/2026-02-05/metrics.csv)
+- **Full Report**: [View Summary](outputs/afcc/2026-02-06/summary.md)
+- **Metrics**: [Download CSV](outputs/afcc/2026-02-06/metrics.csv)
 - **Top Anisotropy**: LMNA (4.75)

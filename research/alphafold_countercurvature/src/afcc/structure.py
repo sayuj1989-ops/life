@@ -55,19 +55,15 @@ class StructureParser:
 
         try:
             with open(pdb_path, 'r') as f:
-                lines = f.readlines()
-
-            for line in lines:
-                if line.startswith("ATOM"):
-                    # Check for CA atom. PDB format: ATOM (0-3), Atom Name (12-15).
-                    # "ATOM      2  CA  MET" -> line[13] == 'C', line[14] == 'A'
-                    # Faster than line[12:16].strip() == 'CA'
-                    if line[13:15] == "CA":
-                        # Only handle primary conformations (' ' or 'A') at col 16
-                        if line[16] in (' ', 'A'):
+                for line in f:
+                    # Bolt Optimization: specialized CA check avoiding strip() and allocs
+                    # Check "ATOM" (start) and " CA " (cols 12-16 => indices 12-15 match " CA ")
+                    if line.startswith("ATOM") and line[13:15] == "CA" and line[12] == " ":
+                        # Only handle primary conformations (' ' or 'A') at index 16
+                        if line[16] == ' ' or line[16] == 'A':
                             try:
-                                # PDB format fixed width:
-                                # 30-38: X, 38-46: Y, 46-54: Z, 60-66: pLDDT
+                                # Residue name 17:20 (3 chars). Skip strip() for speed.
+                                res_name = line[17:20]
                                 x = float(line[30:38])
                                 y = float(line[38:46])
                                 z = float(line[46:54])

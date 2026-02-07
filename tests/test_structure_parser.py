@@ -1,64 +1,66 @@
-
-import unittest
+import pytest
 import numpy as np
 from pathlib import Path
-import tempfile
 import sys
 
-# Add repo root to path
+# Add src to path if not installed
 repo_root = Path(__file__).resolve().parent.parent
 sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 
-class TestStructureParser(unittest.TestCase):
-    def setUp(self):
-        self.parser = StructureParser()
+def test_fast_parse_pdb_arrays_standard(tmp_path):
+    """Test fast parsing of standard ATOM records."""
+    pdb_content = """
+ATOM      1  N   MET A   1     -48.324 -15.228   4.203  1.00 31.92           N
+ATOM      2  CA  MET A   1     -49.692 -14.663   4.267  1.00 31.92           C
+ATOM      3  C   MET A   1     -49.650 -13.259   3.682  1.00 31.92           C
+ATOM      4  O   MET A   1     -48.567 -12.692   3.614  1.00 31.92           O
+ATOM      5  N   ALA A   2     -50.768 -12.807   3.126  1.00 35.28           N
+ATOM      6  CA  ALA A   2     -50.888 -11.781   2.071  1.00 35.28           C
+"""
+    pdb_file = tmp_path / "test.pdb"
+    pdb_file.write_text(pdb_content.strip())
 
-    def test_fast_parse_pdb_ca_detection(self):
-        """Test that fast_parse_pdb_arrays correctly identifies CA atoms and ignores others."""
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.pdb', delete=False) as tmp:
-            tmp_path = Path(tmp.name)
-            # 1. Valid CA (Index 12=' ', 13='C', 14='A', 15=' ')
-            tmp.write("ATOM      1  CA  ALA A   1      10.000  10.000  10.000  1.00 90.00           C  \n")
-            # 2. Calcium (CA element, but usually HETATM, let's say it's ATOM for stress test)
-            # "CA  " starts at col 13 (Index 12='C', 13='A', 14=' ', 15=' ')
-            tmp.write("ATOM      2 CA   CAL A   2      20.000  20.000  20.000  1.00 90.00           Ca \n")
-            # 3. Carbon Beta " CB " (Index 12=' ', 13='C', 14='B')
-            tmp.write("ATOM      3  CB  ALA A   1      12.000  12.000  12.000  1.00 90.00           C  \n")
-            # 4. Carbon " C  " (Index 12=' ', 13='C', 14=' ')
-            tmp.write("ATOM      4  C   ALA A   1      13.000  13.000  13.000  1.00 90.00           C  \n")
-            # 5. Nitrogen " N  "
-            tmp.write("ATOM      5  N   ALA A   1      14.000  14.000  14.000  1.00 90.00           N  \n")
-            # 6. Another valid CA
-            tmp.write("ATOM      6  CA  GLY A   3      30.000  30.000  30.000  1.00 80.00           C  \n")
+    parser = StructureParser()
+    coords, plddt, resnames = parser.fast_parse_pdb_arrays(pdb_file)
 
-        try:
-            # We must bypass cache reading by ensuring cache doesn't exist
-            # But the parser tries to read cache.
-            # If we just created the file, cache won't exist.
+    assert coords is not None
+    assert len(coords) == 2
+    assert len(plddt) == 2
+    assert len(resnames) == 2
 
-            coords, plddt, resnames = self.parser.fast_parse_pdb_arrays(tmp_path)
+    # Check MET
+    assert np.allclose(coords[0], [-49.692, -14.663, 4.267])
+    assert plddt[0] == 31.92
+    assert resnames[0] == "MET"
 
-            # Expecting 2 atoms (1 and 6)
-            self.assertEqual(len(coords), 2, f"Expected 2 CA atoms, got {len(coords)}")
-            self.assertEqual(len(plddt), 2)
-            self.assertEqual(len(resnames), 2)
+    # Check ALA
+    assert np.allclose(coords[1], [-50.888, -11.781, 2.071])
+    assert plddt[1] == 35.28
+    assert resnames[1] == "ALA"
 
-            self.assertEqual(resnames[0], 'ALA')
-            self.assertEqual(resnames[1], 'GLY')
+def test_fast_parse_pdb_arrays_altloc(tmp_path):
+    """Test handling of alternate locations (should keep ' ' or 'A')."""
+    pdb_content = """
+ATOM      1  CA  MET A   1      10.000  10.000  10.000  1.00 50.00           C
+ATOM      2  CA AMET A   2      20.000  20.000  20.000  0.50 60.00           C
+ATOM      3  CA BMET A   2      21.000  21.000  21.000  0.50 60.00           C
+"""
+    # Note: AltLoc is col 17 (index 16). ' ' for atom 1. 'A' for atom 2. 'B' for atom 3.
+    # We expect to keep 1 and 2, drop 3.
 
-            # Check coords
-            np.testing.assert_array_equal(coords[0], [10.0, 10.0, 10.0])
-            np.testing.assert_array_equal(coords[1], [30.0, 30.0, 30.0])
+    pdb_file = tmp_path / "test_alt.pdb"
+    pdb_file.write_text(pdb_content.strip())
 
-        finally:
-            if tmp_path.exists():
-                tmp_path.unlink()
-            # Cleanup cache if created
-            cache_path = tmp_path.with_suffix('.pdb.cache.npz')
-            if cache_path.exists():
-                cache_path.unlink()
+    parser = StructureParser()
+    coords, plddt, resnames = parser.fast_parse_pdb_arrays(pdb_file)
 
-if __name__ == '__main__':
-    unittest.main()
+    assert len(coords) == 2
+    assert coords[0][0] == 10.0
+    assert coords[1][0] == 20.0
+
+def test_fast_parse_pdb_arrays_missing_file(tmp_path):
+    parser = StructureParser()
+    coords, _, _ = parser.fast_parse_pdb_arrays(tmp_path / "nonexistent.pdb")
+    assert coords is None

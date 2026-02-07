@@ -26,50 +26,41 @@ The blueprint for the vertebrate body plan is encoded in the HOX gene clusters, 
 
 We propose \textbf{Morphomechanical Coupling} as the missing link. Genetic information actively tunes the local constitutive properties of the tissue—specifically the ``Neuro-Fluidic Gain''—creating a direct link between the genome and the tissue manifold~\cite{humphrey2002constrained,tabin2007rethinking}. This coupling allows the system to generate an internal torque that opposes gravity, a phenomenon we formalize as ``Biological Counter-Curvature.''
 
-\subsection{Biological Counter-Curvature: An Organizing Hypothesis}
-The central thesis of this work is that ``Biological Counter-Curvature'' is not merely a description of spinal shape, but a fundamental organizing principle that bridges the discrete, digital world of genetics and the continuous, analog world of tissue mechanics.
+\subsection{Biological Counter-Curvature as Active Inference}
+The central thesis of this work is that ``Biological Counter-Curvature'' is not merely a static description of spinal shape, but the dynamic output of an \textbf{Active Inference Machine} that continuously minimizes a geometric prediction error. Drawing on the Free Energy Principle~\cite{friston2010free, clark2013whatever}, we propose that the vertebrate spine operates as a hierarchical control system where the genome encodes a Top-Down \textbf{Generative Model} of the body's expected shape in gravity.
 
-\subsubsection{The Translation Problem: From Digital Code to Analog Shape}
-A longstanding challenge in developmental biology is the ``Translation Problem'': How is the discrete, digital code of the genome (e.g., the integers of the HOX code~\cite{wellik2007hox,burke1995hox}) translated into the smooth, continuous curvature of the adult spine? We propose that the genome does not encode the final shape directly, akin to the reaction-diffusion models of Turing~\cite{turing1952chemical}. Instead, it encodes a \textbf{Reference Metric} ($\bar{g}$)---a preferred local geometry that the tissue strives to achieve~\cite{levin2012morphogenetic}. Developmental information, formalized here as a scalar field $I(s)$, acts as a \textbf{Geometric Operator} that locally warps this reference metric, effectively ``dilating'' or ``contracting'' the material manifold.
+\subsubsection{The Reference Metric as a Generative Model}
+A longstanding challenge in developmental biology is the ``Translation Problem'': How is the discrete, digital code of the genome (e.g., the integers of the HOX code~\cite{wellik2007hox,burke1995hox}) translated into the smooth, continuous curvature of the adult spine? We propose that the genome does not encode the final shape directly. Instead, it encodes a \textbf{Reference Metric} ($\bar{g}$)---a preferred local geometry or ``prior'' that the tissue strives to maintain~\cite{levin2012morphogenetic}. This reference metric acts as the Generative Model, predicting the sensory states (proprioceptive and vestibular inputs) that should ideally be encountered.
 
-\subsubsection{Gravity as the Constant Interrogator}
-In this framework, gravity is not a passive load, but a constant ``interrogator'' or ``tuning fork'' for the biological system. The physical spine exists in the ``Actual Metric'' ($g$), which is deformed by gravitational stress. The biological control system operates by constantly comparing this Actual Metric $g$ against the genetically encoded Reference Metric $\bar{g}$. This comparison relies on the ``mechanobiological ground state'' defined by cellular pre-stress~\cite{alford2011cellular, guilak2014biomechanics}.
-
-The difference between these two metrics constitutes an \textbf{Error Signal} ($\mathcal{E} = g - \bar{g}$). The goal of the system is to minimize this error. This minimization drives:
-\begin{itemize}
-    \item \textbf{Short-term}: Postural adjustments via muscle tone (proprioception), governed by gain parameters similar to the ``Sine Law'' of plant gravitropism~\cite{moulia2009gravitropic, bastien2013unifying}.
-    \item \textbf{Long-term}: Tissue remodeling (Wolff's Law), where cells secrete or degrade matrix to restore the reference geometry~\cite{lecuit2007cell}.
-\end{itemize}
-
-
-\subsubsection{The Counter-Curvature Mechanism}
-``Counter-Curvature'' is the emergent result of this error minimization process. To maintain an upright posture against gravity (which induces a forward sag), the system must actively generate an internal moment that curves the spine in the opposite direction. The Information Field $I(s)$ encodes this requirement.
-
-We introduce the \textit{Bio-Gravitational Number} ($\mathcal{B}_g$) to quantify the dominance of this information-driven restoration over the passive gravitational sag:
+\subsubsection{Gravity as Sensory Evidence}
+In this framework, gravity is not a passive load, but the source of \textbf{Sensory Evidence} (Bottom-Up). The physical spine exists in the ``Actual Metric'' ($g$), deformed by gravitational stress. Proprioceptors (muscle spindles, Golgi tendon organs) and vestibular organs constantly sample this actual state. The difference between the Generative Model ($\bar{g}$) and the Sensory Evidence ($g$) constitutes the \textbf{Prediction Error} or ``Surprisal'':
 \begin{equation}
-\mathcal{B}_g = \frac{\chi_\kappa \langle |\nabla I| \rangle}{\rho A g L^2}
+\mathcal{E} \approx (g - \bar{g})^2
 \end{equation}
-When $\mathcal{B}_g$ is tuned correctly (the ``Cooperative Regime''), the active biological moment exactly cancels the passive gravitational moment, resulting in the stable S-shape.
+The goal of the system is to minimize this error (or Free Energy).
 
-\subsubsection{Spinal Jetlag: Gravity as the Zeitgeber}
-While the Error Signal $\mathcal{E}$ drives instantaneous correction via mechanotransduction, the maintenance of the sensing apparatus itself is time-dependent. We propose that gravitational loading acts as the primary \textbf{Zeitgeber} for the intervertebral disc (IVD) circadian clock~\cite{dudek2017clock, yang2017circadian, roche2015clock}. The ``Vector Sensors'' (e.g., Piezo2) are not merely spatial detectors but temporal synchronizers.
-
-In microgravity, or in the sedentary ``stagnant spine,'' this Zeitgeber is lost. The result is \textbf{Spinal Jetlag}: a desynchronization between the central clock and the peripheral spinal clock. This leads to a breakdown in matrix maintenance and a downregulation of the proprioceptive spindle apparatus (RUNX3/EGR3)~\cite{blecher2017new}, a phenomenon we term \textbf{Proprioceptive Collapse}. Without the daily ``gravitational reset,'' the spine loses its ability to distinguish signal from noise, and the Counter-Curvature mechanism fails.
-
-\subsubsection{Unifying Failure Modes}
-This organizing hypothesis unifies two seemingly distinct pathologies:
+\subsubsection{Minimizing Free Energy: Action and Perception}
+The system can minimize this error in two ways, consistent with Active Inference~\cite{pezzulo2018active}:
 \begin{enumerate}
-    \item \textbf{Microgravity (Loss of Interrogator)}: When $g \to 0$, the ``Actual Metric'' relaxes. The error signal $\mathcal{E}$ vanishes. Without the gravitational ``tuning fork,'' the system loses its external reference. Vector Sensors go silent, leading to the \textbf{Vector-Scalar Mismatch}. Furthermore, the loss of the gravitational Zeitgeber induces \textit{Spinal Jetlag}, causing the downregulation of spindle-maintenance genes (RUNX3/EGR3)~\cite{blecher2017new}. The system drifts, resulting in spinal elongation and muscle atrophy driven by \textit{informational deprivation}~\cite{green2018spinal, pandit2025muscle}.
-    \item \textbf{Scoliosis (Loss of Reference)}: In conditions like AIS, genetic defects in matrix chaperones (e.g., FBN2, SERPINH1~\cite{buchan2014fbn2, christiansen2010serpinh1}) or in ciliary signaling corrupt the Information Field $I(s)$. The ``Reference Metric'' $\bar{g}$ becomes distorted. The system effectively ``minimizes the wrong error,'' actively driving the spine into a curved, scoliotic configuration because it perceives straightness as an error~\cite{djebar2024astrogliosis, chen2025mmp, stokes2002mechanical}.
+    \item \textbf{Action (Counter-Curvature)}: The system generates internal forces (muscle tone, differential growth) to change the Actual Metric $g$ until it matches the Reference Metric $\bar{g}$. This is ``Biological Counter-Curvature''---the active work done to fulfill the genetic prediction against the gravitational disturbance.
+    \item \textbf{Perception (Gain Control)}: The system adjusts the precision (gain) of its sensory channels. If the external environment changes (e.g., microgravity), the system must update its confidence in the sensory evidence.
 \end{enumerate}
 
-\subsection{Testable Predictions and Paper Overview}
-This framework moves beyond qualitative description to make specific, falsifiable predictions:
+\subsubsection{The Vector-Scalar Mismatch as Inference Failure}
+We hypothesize that this inference process relies on two coupled sensory channels:
+\begin{itemize}
+    \item \textbf{Vector Sensors} (e.g., Piezo2, Lamin A/C): These anisotropic structures measure the alignment and tension of the tissue, effectively checking if the ``Vector'' of the spine matches the gravitational vertical~\cite{haliloglu2017piezo2, swift2013nuclear}. They provide the error signal for *alignment*.
+    \item \textbf{Scalar Sensors} (e.g., Piezo1, SLYM): These isotropic sensors measure tissue volume and hydrostatic pressure~\cite{sun2019piezo1, mollgard2023slym}. They provide the error signal for *density*.
+\end{itemize}
+In microgravity, or in the ``stagnant spine,'' the Vector Sensors go silent (loss of directional cues), while Scalar Sensors remain active (osmotic pressure persists). This creates a \textbf{Vector-Scalar Mismatch}. The system, facing high uncertainty in the vector channel, may paradoxically increase its gain to compensate, amplifying noise into ``Geometric Hallucinations''---a mechanism we propose underlies the progression of Adolescent Idiopathic Scoliosis (AIS)~\cite{pialasse2015vestibular, badcock2019evolutionarily}.
+
+\subsection{Testable Predictions}
+This framework moves beyond qualitative description to make specific, falsifiable predictions regarding the failure modes of this Active Inference machine:
 
 \begin{enumerate}
-    \item \textbf{The Gain Mismatch Prediction}: We predict that Adolescent Idiopathic Scoliosis (AIS) is driven by a failure in sensory integration: a \textbf{Vestibular-Proprioceptive Gain Mismatch}. Specifically, the ratio of proprioceptive gain to vestibular gain ($\Omega_{VP}$) exceeds a critical stability threshold ($\Omega_{VP} > 1.5$), leading to ``sensory re-weighting'' errors where the spine corrects for phantom vestibular drifts~\cite{pialasse2015vestibular, peterka2002sensorimotor}.
-    \item \textbf{The Dark Curve Prediction}: We predict that rearing vestibular-deficient models in total darkness will exacerbate spinal curvature. By removing visual error correction (the ``third leg'' of the sensory stool), the system is forced to rely entirely on the corrupted Proprioceptive/Vestibular ratio, amplifying the deformity.
-    \item \textbf{The Urotensin-Tone Coupling (Chemical)}: We predict that spinal muscle tone is maintained by a fluid-to-chemical relay. CSF flow shear stress, detected by ciliary mechanotransduction~\cite{choi2019cilia}, drives the expression of Urotensin-related peptides (Urp1/2). In microgravity, the loss of this shear stress downregulates the Urotensin pathway, leading to a specific loss of paraspinal tone independent of atrophy~\cite{bearce2022urp, wang2020uts2r}.
+    \item \textbf{The Vestibular-Proprioceptive Gain Mismatch}: We predict that spinal curvature in AIS is driven by a mismatch in sensory precision. Specifically, if the Vestibular Precision ($\pi_V$) exceeds Proprioceptive Precision ($\pi_P$), the system will "hallucinate" a vertical error where none exists. This can be quantified by the ratio $\Omega_{VP} = \text{Gain}_{VEMP} / \text{Gain}_{H-Reflex}$. We predict $\Omega_{VP} > 1.5$ in progressive AIS patients compared to controls~\cite{pialasse2015vestibular}.
+    \item \textbf{Dark Rearing Exacerbation}: Since vision acts as a secondary error-correction loop (reducing prediction error), we predict that rearing vestibular-deficient models in total darkness will exacerbate spinal curvature, unmasking the pure geometric hallucination~\cite{manzoni2002vestibular}.
+    \item \textbf{The Chemical Tone Coupling}: We predict that the "Action" component (muscle tone) is maintained by a fluid-to-chemical relay. CSF flow shear stress, detected by ciliary mechanotransduction~\cite{choi2019cilia}, drives the expression of Urotensin-related peptides (Urp1/2). In microgravity, the loss of this shear stress downregulates the Urotensin pathway, leading to a specific loss of paraspinal tone independent of atrophy~\cite{bearce2022urp}.
 \end{enumerate}
 
 In the following sections, we formalize this theory using Cosserat rod mechanics~\cite{gazzola2018forward, vasquez2019mechanics}, simulate the spine under varying information and gravity conditions, and demonstrate how this mechanism explains spinal morphogenesis and pathology.

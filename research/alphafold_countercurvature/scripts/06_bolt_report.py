@@ -256,12 +256,12 @@ def main():
 
             # Check if aniso is NaN (low conf structure)
             if pd.isna(aniso):
-                what_we_see = f"{gene}: pLDDT={plddt:.0f}. **Unstructured/Disordered**. "
+                what_we_see = f"pLDDT={plddt:.0f}. **Unstructured/Disordered**. "
                 why_matters = "Lack of high-confidence structure prevents geometric analysis."
                 next_test = "Investigate IDR function or wait for complex structure."
                 conf_level = "Low"
             else:
-                what_we_see = f"{gene}: Anisotropy={aniso:.1f}, pLDDT={plddt:.0f}. "
+                what_we_see = f"Anisotropy={aniso:.1f}, pLDDT={plddt:.0f}. "
                 if aniso > 3.0:
                     what_we_see += "Highly extended/fibrous. "
                 elif aniso < 1.5:

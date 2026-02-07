@@ -43,6 +43,7 @@ graph TD
         Circadian_Entrain[Circadian Entrainment<br/>Loading Zeitgeber]
         Proprio_Maint[Proprioceptive Maint.<br/>Sensory Survival]
         H3K9me3[H3K9me3<br/>Heterochromatin Compaction]
+        Glymphatic_Stasis[Glymphatic Stasis<br/>Waste Accumulation]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -135,6 +136,10 @@ graph TD
     Degradation --> Torsional_Stiffness
     Torsional_Stiffness --> Stability
 
+    %% NEW ARC: Glymphatic Stasis
+    Hydraulic_Congestion --> Glymphatic_Stasis
+    Glymphatic_Stasis --> Astrogliosis
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -165,6 +170,6 @@ graph TD
     H3K9me3 --> Gain
 
     class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3 process;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,Glymphatic_Stasis process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

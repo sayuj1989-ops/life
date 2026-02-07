@@ -4,7 +4,7 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig_gene_to_geometry.pdf}
-    \caption{\textbf{The Biological Counter-Curvature Mechanism: Bridging Digital Code and Analog Geometry.} (A) \textbf{Digital Inputs}: Discrete HOX gene expression domains (colored bars) define positional identity, creating a digital ``map'' of the body plan. (B) \textbf{Analog Conversion}: This digital code is smoothed into a continuous scalar information field $I(s)$ (blue curve). We conceptualize $I(s)$ as a \textbf{Geometric Operator} that specifies the ``Reference Metric'' ($\bar{g}$) of the tissue. (C) \textbf{Metric Distortion and Error Correction}: The information field warps the material manifold, creating a target geometry (dashed line) distinct from the passive gravitational shape (solid line). Mechanosensors act as ``Metric Error Detectors,'' sensing the deviation $\mathcal{E} = g - \bar{g}$. Vector Sensors (e.g., Piezo2) detect alignment errors, while Scalar Sensors (e.g., Piezo1) detect volumetric/density errors. The system generates active moments to minimize this error, resulting in the stable S-shaped counter-curvature. In microgravity, the loss of external load removes the ``tuning fork'' and the primary \textbf{Zeitgeber}, causing \textbf{Spinal Jetlag} (desynchronization of IVD clocks) and silencing the vector sensors, leading to system drift.}
+    \caption{\textbf{The Biological Counter-Curvature Mechanism as Active Inference.} (A) \textbf{The Generative Model}: Discrete HOX gene expression domains (colored bars) encode a digital ``prior'' that is smoothed into a continuous \textbf{Reference Metric} $\bar{g}$ (blue curve). This serves as the Top-Down prediction of the body's geometry in gravity. (B) \textbf{Sensory Evidence and Prediction Error}: Gravity acts as the ``Interrogator,'' creating a passive sag (solid line, Actual Metric $g$). Mechanosensors (Vector: Piezo2/Lamin A/C; Scalar: Piezo1) measure the divergence between the prediction ($\bar{g}$) and reality ($g$), computing the \textbf{Free Energy} or Error Signal $\mathcal{E} \approx (g - \bar{g})^2$. (C) \textbf{Active Minimization}: The system minimizes this Free Energy via \textbf{Action} (generating counter-curvature moments) and \textbf{Perception} (adjusting sensory gain). In microgravity, the loss of Vector input (alignment) creates a \textbf{Vector-Scalar Mismatch}, leading to gain-driven hallucinations and spinal drift (Spinal Jetlag).}
     \label{fig:iec_landscape}
 \end{figure}
 
@@ -45,11 +45,11 @@
         \caption{Microgravity adaptation: $\widehat{D}_{\mathrm{geo}}$ vs $g$.}
     \end{subfigure}
 
-    \caption{\textbf{Information-driven countercurvature in 3D Cosserat simulations.}
-    (A) Curvature profiles showing the transition from passive gravitational sag (blue) to active S-shaped counter-curvature (orange).
+    \caption{\textbf{Information-driven Counter-Curvature as Active Inference.}
+    (A) Curvature profiles showing the transition from the passive gravitational ``prior'' (blue) to the active S-shaped posterior (orange), achieved by minimizing the total potential energy $U_{CC}$ (analogous to Free Energy).
     (B) The countercurvature metric $g_{\mathrm{eff}}(s)$ highlights regions where the Bio-Gravitational Number ($\mathcal{B}_g$) is maximized to resist deformation.
-    (C) Geodesic deviation $\widehat{D}_{\mathrm{geo}}$ scales with coupling strength; stability requires $\chi_\kappa$ to exceed a critical threshold dependent on $\Lambda_{\mathrm{crit}}$.
-    (D) Microgravity adaptation ($g \to 0$). The system relaxes towards the information reference state. The reduced mechanical strain $\gEff$ shown here corresponds to the unloading predicted to trigger the "Nuclear Stiffness Gauge" downregulation and subsequent adipogenic switch.}
+    (C) Geodesic deviation $\widehat{D}_{\mathrm{geo}}$ (representing the prediction error $\mathcal{E}$) scales with coupling strength; stability requires the gain $\chi_\kappa$ to exceed a critical threshold.
+    (D) Microgravity adaptation ($g \to 0$). The system relaxes towards the information reference state. The reduced mechanical strain $\gEff$ shown here corresponds to the unloading predicted to trigger the ``Nuclear Stiffness Gauge'' downregulation (Active Inference failure), leading to the adipogenic switch.}
     \label{fig:countercurvature_main}
 \end{figure}
 

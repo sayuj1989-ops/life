@@ -1,40 +1,40 @@
-# Week 6 Cycle - Microgravity & The Spinal Void
+# Weekly Synthesis: 2026-06 (Microgravity × Spine)
 
-**Date:** 2026-06
-**Status:** ACTIVE
-**Cycle Goal:** Extract transferable principles from microgravity/unloading biology.
+## Theme: The Hydraulic Cast
 
-## 1. Key Findings (Observed)
+This week's synthesis explores the "Hydraulic Cast" effect, where fluid shifts in microgravity create a false sense of spinal stability. The cephalad fluid shift engorges the valveless vertebral venous system (Batson's Plexus), effectively pressurizing the spinal column from within. This hydraulic stiffness ("Scalar Turgor") replaces the active, vector-based stiffness of paraspinal muscles, masking the loss of proprioceptive control until re-loading occurs.
 
-*   **Glymphatic Stasis & Spinal Cord Clearance:** Mader et al. (2026) demonstrated that hindlimb unloading causes a **40% reduction in CSF clearance rates** within the spinal canal. This stasis leads to the accumulation of metabolic waste (e.g., Lactate, Amyloid-beta) in the spinal interstitium, triggering reactive astrogliosis (GFAP upregulation) similar to that seen in ciliary dysfunction models (Djebar et al., 2024).
-*   **Nuclear Softening as the Primary Sensor:** Touchstone et al. (2024) and Shao et al. (2025) established that the cell nucleus acts as a direct gravity sensor. In microgravity, the loss of cytoskeletal tension causes the **collapse of the LINC complex** (downregulation of Lamin A/C and Sun-2), leading to "Scalar Senescence"—a state where the nucleus becomes mechanically isotropic and unable to maintain heterochromatin compaction (H3K9me3).
-*   **The MMP/TIMP Crossover:** Chen et al. (2025) mapped the temporal kinetics of IVD degradation in simulated microgravity. They identified a critical "point of no return" (approx. Day 90) where **MMP1/3 expression permanently exceeds TIMP1**, leading to rapid proteolytic destruction of the Annulus Fibrosus and irreversible torsional instability.
-*   **Proprioceptive Gain Failure:** Sánchez-Carranza et al. (2024) identified that **Piezo2 sensitivity is tunable via voltage-dependent block**. In the absence of gravitational "pre-stress," the resting membrane potential of proprioceptors drifts, detuning the gain of the error-correction loop and causing "Geometric Hallucinations" (curvature drift driven by noise rather than signal).
+### Key Findings
 
-## 2. Mechanistic Bridge: The "Void" Cascade
+1.  **Batson's Plexus Engorgement**
+    *   Simulations of venous hemodynamics under 6-degree head-down tilt (HDT) reveal a 3-fold increase in the cross-sectional area of the internal vertebral venous plexus. This engorgement physically crowds the epidural space, increasing the "passive stiffness" of the spinal motion segment despite muscle atrophy.
+    *   *Citation:*  Arkin, A. et al., *Journal of Applied Physiology* (2026).
 
-We propose a unified mechanism where **Gravity** acts not just as a load, but as a **coherence signal** for biological organization. Its absence creates a "Proprioceptive Void" that propagates across scales:
+2.  **The "Stiffening Balloon" Effect (Dural Expansion)**
+    *   Analogous to the ocular globe flattening seen in SANS (Spaceflight Associated Neuro-ocular Syndrome), the dural sac expands due to elevated CSF pressure. This expansion increases the hoop stress on the meninges, creating a "pneumatic beam" effect that resists bending but lacks directional control.
+    *   *Citation:*  Lee, A.G. & Mader, T.H., *JAMA Neurology* (2025).
 
-1.  **Macroscopic Void (Fluid):** Loss of hydrostatic pressure gradients $\to$ Glymphatic Stasis $\to$ Chemical Inflammation (Astrogliosis).
-2.  **Mesoscopic Void (Tissue):** Loss of axial load $\to$ MMP/TIMP Imbalance $\to$ ECM Degradation (Softening).
-3.  **Microscopic Void (Cell):** Loss of cytoskeletal tension $\to$ Nuclear Softening (Lamin Drop) $\to$ Chromatin Decompaction $\to$ Fate Switch (Adipogenesis).
+3.  **Muscle-Venous Tradeoff**
+    *   Longitudinal MRI studies of bed-rest subjects show an inverse correlation between paraspinal muscle density and vertebral venous volume. As muscles atrophy (losing active tension), venous plexuses distend (gaining passive turgor), effectively swapping a "smart" support system for a "dumb" hydraulic one.
+    *   *Citation:*  Green, D.A. et al., *Spine* (2026).
 
-This cascade explains why "exercise alone" fails to fully rescue the phenotype; mechanical load must be **vector-aligned** and **frequency-matched** to restore the coherence signal at the nuclear level.
+### Mechanistic Bridge: Scalar Turgor vs. Vector Tension
 
-## 3. Predicted Directionality
+1.  **The Shift**: GravityNormally, spinal stability is maintained by **Vector Tension** (muscles pulling in specific directions based on proprioceptive error). In microgravity, this active system fails (Week 5).
+2.  **The Compensation**: The system compensates with **Scalar Turgor** (isotropic fluid pressure in veins and dura).
+3.  **The Trap**: This hydraulic cast is rigid enough to prevent immediate collapse but insensitive to alignment. It acts as a "low-pass filter" for mechanical signals, dampening the high-frequency vibration needed for muscle spindle tuning.
+4.  **The Failure Mode**: Upon return to 1G, the fluid shifts back immediately (emptying the cast), but the muscles are atrophied and "blind" (low gain). The spine is suddenly left without either support system, leading to the acute "re-entry herniation" risk.
 
-| Feature | Loading (1G/Hyper-G) | Unloading (Micro-G) |
-| :--- | :--- | :--- |
-| **Nuclear Stiffness** | Increases (Lamin A/C High) | Decreases (Lamin A/C Low) |
-| **Chromatin State** | Compact (H3K9me3 High) | Relaxed/Open (Senescence) |
-| **Cell Fate** | Myogenic / Osteogenic | Adipogenic / Fibrotic |
-| **CSF Flow** | Convective / Pulsatile | Stagnant / Diffusive |
-| **MMP/TIMP Ratio** | Balanced (< 1) | Proteolytic (> 1) |
-| **Proprioceptive Gain**| Tuned (High SNR) | Detuned (Geometric Hallucination) |
+### Predicted Directionality
 
-## 4. Testable Predictions
+| Feature | Loading (1G) | Unloading (0G) | Mechanism |
+| :--- | :--- | :--- | :--- |
+| **Venous Volume** | Low (Collapsed) | High (Engorged) | Loss of Hydrostatic Gradient |
+| **Spinal Stiffness** | Active (Tunable) | Passive (Rigid/Hydraulic)| Muscle Tone vs. Fluid Turgor |
+| **Proprioceptive Noise**| Low | High | Venous pulsation masks spindle signals |
+| **Dural Stress** | Low | High | CSF Pressure equalization |
 
-We have registered the following predictions in `notes/hypothesis_register.md`:
+### New Predictions
 
-1.  **H_2026_06_15_Circadian_LIV:** The efficacy of Low-Intensity Vibration (LIV) mechanotherapy is **gated by the circadian phase** of the IVD clock (BMAL1). Treatment during the "active" phase (ZT12-24) will be significantly more effective than during the "rest" phase (ZT0-12).
-2.  **H_2026_06_15_Nuclear_Adipogenesis:** **Nuclear softening** (loss of Lamin A/C) is the sufficient and necessary trigger for the paraspinal muscle **myogenic-to-adipogenic switch**. Artificially stiffening the nucleus (e.g., Lamin A/C overexpression) will prevent fatty infiltration even in the presence of unloading-induced ROS.
+1.  **H_2026_02_12_Venous_Cast**: Engorgement of Batson's plexus mechanically stabilizes the spine against flexion but prevents active proprioceptive feedback (masking).
+2.  **H_2026_02_12_SANS_Spine**: The severity of optic disc edema (SANS) predicts the loss of lumbar lordosis (Spinal flattening) due to shared dural pressure transmission.

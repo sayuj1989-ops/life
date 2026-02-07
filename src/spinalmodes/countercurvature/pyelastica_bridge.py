@@ -325,6 +325,26 @@ class CounterCurvatureRodSystem:
             f"anisotropy={anisotropy:.2f}>"
         )
 
+    def get_configuration(self) -> Dict[str, Any]:
+        """Return a dictionary of the system configuration for logging."""
+        # Calculate anisotropy again for the dict
+        anisotropy = 1.0
+        if hasattr(self.rod, "bend_matrix") and self.rod.bend_matrix.shape[2] > 0:
+            b00 = self.rod.bend_matrix[0, 0, 0]
+            b11 = self.rod.bend_matrix[1, 1, 0]
+            if b11 != 0:
+                anisotropy = b00 / b11
+
+        return {
+            "n_elements": self.n_elements,
+            "length": self.length,
+            "chi_kappa": self.params.chi_kappa,
+            "chi_tau": self.params.chi_tau,
+            "chi_E": self.params.chi_E,
+            "chi_M": self.params.chi_M,
+            "stiffness_anisotropy": anisotropy
+        }
+
     def run_simulation(
         self,
         final_time: float,

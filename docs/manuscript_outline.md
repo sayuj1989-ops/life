@@ -61,7 +61,7 @@
 ## 9. Conclusion & Discussion
 *   Summary of the Unified Theory.
 *   Implications for clinical treatment (bracing, surgery, genetic screening).
-*   Future work: Microgravity experiments (SpaceX/ISS).
+*   Future work: Microgravity experiments (SpaceX/ISS) and validation of the "Spinal Jetlag" hypothesis (see `docs/research_schedule_gravity_optimization.md`).
 
 ---
 

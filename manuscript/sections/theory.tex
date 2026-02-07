@@ -79,3 +79,30 @@ where $w(s) = g_{\mathrm{eff}}(s)$ is an optional weighting function reflecting 
 \label{eq:dgeo_normalized}
 \end{equation}
 where $D_{\mathrm{geo,max}}$ is computed over the explored $(\chi_\kappa, g)$ domain. Physically, $\widehat{D}_{\mathrm{geo}} \approx 0$ indicates the system follows gravitational geodesics (passive regime), while $\widehat{D}_{\mathrm{geo}} \sim 1$ indicates strong information-driven geometric distortion. We classify regimes as: \emph{gravity-dominated} ($\widehat{D}_{\mathrm{geo}} < 0.1$), \emph{cooperative} ($0.1 \leq \widehat{D}_{\mathrm{geo}} \leq 0.3$), and \emph{information-dominated} ($\widehat{D}_{\mathrm{geo}} > 0.3$), with thresholds chosen to separate qualitatively distinct curvature morphologies observed in simulations.
+
+\subsection{Thermodynamic cost of countercurvature}
+
+The energy functional $\mathcal{E}_{\mathrm{total}}$ (Eq.~\ref{eq:iec_energy}) describes the potential energy landscape of the spine at equilibrium. However, the biological spine is not a conservative system: it is a \emph{dissipative structure}~\cite{prigogine1977self} that requires continuous metabolic expenditure to maintain its S-shaped counter-curvature against gravitational loading and entropic degradation. The atoms composing vertebral bone, disc matrix, and paraspinal muscle are chemically identical to those in passive geological structures---what distinguishes life is the continuous investment of free energy to organize these atoms against gravitational geodesics~\cite{friston2013life}.
+
+We formalize this by defining a \emph{metabolic power density} $\dot{\mathcal{F}}$ that quantifies the rate of free energy dissipation required to sustain the counter-curvature:
+
+\begin{equation}
+\dot{\mathcal{F}} = \int_0^L \left[ \eta_p \left|\frac{\partial \kappa}{\partial t}\right|^2 + \eta_a \left(\kappa(s) - \kappa_{\mathrm{passive}}(s)\right)^2 + \Gamma_m(s) \right] ds,
+\label{eq:dissipation}
+\end{equation}
+where:
+\begin{itemize}
+    \item $\eta_p$ is the proprioceptive feedback dissipation coefficient, representing the metabolic cost of sensory error correction (muscle spindle activity, neural processing).
+    \item $\eta_a$ is the active moment maintenance coefficient, capturing the cost of tonic paraspinal muscle contraction required to hold the spine away from its passive C-shaped equilibrium.
+    \item $\Gamma_m(s)$ is the basal tissue maintenance cost density, encompassing matrix turnover (collagen synthesis/MMP degradation cycles), hormonal signaling (GH/IGF-1 axis), and circadian clock maintenance.
+\end{itemize}
+
+The second term is the central quantity: it represents the standing metabolic cost of countercurvature---proportional to the squared deviation from the passive gravitational shape. For a passive beam, $\kappa = \kappa_{\mathrm{passive}}$ and this term vanishes; the S-curve imposes a non-zero ``thermodynamic tax'' at every point along the rod.
+
+\paragraph{Scaling with spinal length.} The gravitational moment acting on the spine scales as $M_g \sim \rho A g L^2$. The active biological moment must match this to maintain counter-curvature, so the metabolic power required to sustain the S-shape scales as:
+
+\begin{equation}
+P_{\mathrm{counter}} \sim \eta_a \rho A g L^2 \cdot \langle |\kappa_{\mathrm{IEC}} - \kappa_{\mathrm{passive}}|^2 \rangle,
+\label{eq:metabolic_scaling}
+\end{equation}
+where $\langle \cdot \rangle$ denotes the spatial average over the rod length. If the tissue column participates volumetrically in maintaining tone, the scaling steepens to $L^3$. During the adolescent growth spurt, $L$ increases from approximately 0.35~m to 0.45~m over 2--3 years, implying a $(0.45/0.35)^2 \approx 1.65$-fold increase in required metabolic power under $L^2$ scaling, or $(0.45/0.35)^3 \approx 2.13$-fold under $L^3$ scaling~\cite{rolfe1997cellular}. Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.

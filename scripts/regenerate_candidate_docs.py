@@ -26,7 +26,7 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 8 Cycle - Gravity Expansion IV (Added NTRK3, OTOP1, GPX4, etc.)\n")
+        f.write("****Last Updated:** Week 13 Cycle - Gravity Expansion V (Added PCDH15, USH1C, TMC1, etc.)\n")
         f.write("**Focus:** Gravity, Mechanotransduction, and Spinal Curvature\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
@@ -57,9 +57,9 @@ def main():
         f.write("    *   **70-79**: Pathway member with experimental links to spine development or gravity response.\n\n")
 
         f.write("## Next Steps\n\n")
-        f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (NF1, COL1A1) to assess structural anisotropy.\n")
+        f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (PCDH15, USH1C) to assess structural anisotropy.\n")
         f.write("2.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.\n")
-        f.write("3.  **Literature Review**: Deep dive into the \"Cilia Motility\" mechanism for DNAH11 and GAS8.\n")
+        f.write("3.  **Literature Review**: Deep dive into the \"Cilia Motility\" mechanism for RSPH1 and DNAI1.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

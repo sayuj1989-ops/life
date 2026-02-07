@@ -1,57 +1,47 @@
 # Bolt-BioFold ⚡ Analysis Report
 
-Sources: Mechanotransduction, Proprioception, Nucleus, Cilia, ECM
+**Date:** 2026-02-06 19:36
+**Source:** Default Seed List
+**Code Version:** Bolt-BioFold v1.0
 
-## 1. Results Table
-| Identity | Species | Length | pLDDT_mean | pLDDT_median | pLDDT_frac_high | pLDDT_frac_ok | pLDDT_frac_low | PAE_mean | PAE_blockiness | Disorder_Proxy | Hinge_Cands | Rg | End_to_End | Curvature | Torsion | Anisotropy | Principal_Axis | Hotspots | Exposed_Frac | Charged_Patch | Domains | Flags |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| PIEZO2 (Q9H5I5) | Homo sapiens | 709 | 79.4 | 88.4 | 0.42 | 0.37 | 0.21 | 17.0 | 2.8 | 0.14 | 0 | 43.4 | 28.4 | 0.329 | 1.428 | 4.44 | [-0.687, -0.068, 0.724] | 460:0.38; 239:0.38; 138:0.38 | 0.56 | 0.25 | 7 | MultiDomUncert |
-| LBX1 (P52954) | Homo sapiens | 281 | 66.9 | 60.2 | 0.23 | 0.16 | 0.61 | 25.1 | 7.35 | 0.26 | 0 | 22.7 | 51.9 | 0.343 | 1.173 | 2.27 | [-0.222, -0.149, 0.964] | 83:0.39; 37:0.39; 34:0.38 | 0.93 | 0.36 | 3 | LowConf, MultiDomUncert |
-| LMNA (P02545) | Homo sapiens | 664 | 76.4 | 93.1 | 0.58 | 0.11 | 0.31 | 24.9 | 2.56 | 0.26 | 0 | 71.2 | 278.1 | 0.344 | 1.194 | 4.75 | [-0.668, -0.244, 0.703] | 508:0.40; 519:0.39; 30:0.38 | 0.87 | 0.4 | 3 | MultiDomUncert |
-| KIF3A (Q9Y496) | Homo sapiens | 699 | 75.4 | 83.1 | 0.21 | 0.52 | 0.27 | 20.0 | 4.44 | 0.15 | 4 | 31.6 | 40.6 | 0.328 | 1.461 | 2.9 | [-0.608, -0.163, 0.777] | 359:0.38; 43:0.38; 88:0.38 | 0.54 | 0.51 | 12 | MultiDomUncert |
-| COL12A1 (Q99715) | Homo sapiens | 1899 | 75.6 | 84.3 | 0.22 | 0.54 | 0.24 | 25.7 | 6.27 | 0.18 | 41 | 63.1 | 6.0 | 0.279 | 2.024 | 4.14 | [-0.633, -0.197, 0.749] | 1310:0.43; 979:0.39; 1205:0.39 | 0.4 | 0.4 | 29 | MultiDomUncert |
+## Results Table
 
-### CSV Block
-```csv
-Identity,Species,Length,pLDDT_mean,pLDDT_median,pLDDT_frac_high,pLDDT_frac_ok,pLDDT_frac_low,PAE_mean,PAE_blockiness,Disorder_Proxy,Hinge_Cands,Rg,End_to_End,Curvature,Torsion,Anisotropy,Principal_Axis,Hotspots,Exposed_Frac,Charged_Patch,Domains,Flags
-PIEZO2 (Q9H5I5),Homo sapiens,709,79.4,88.4,0.42,0.37,0.21,17.0,2.8,0.14,0,43.4,28.4,0.329,1.428,4.44,"[-0.687, -0.068, 0.724]",460:0.38; 239:0.38; 138:0.38,0.56,0.25,7,MultiDomUncert
-LBX1 (P52954),Homo sapiens,281,66.9,60.2,0.23,0.16,0.61,25.1,7.35,0.26,0,22.7,51.9,0.343,1.173,2.27,"[-0.222, -0.149, 0.964]",83:0.39; 37:0.39; 34:0.38,0.93,0.36,3,"LowConf, MultiDomUncert"
-LMNA (P02545),Homo sapiens,664,76.4,93.1,0.58,0.11,0.31,24.9,2.56,0.26,0,71.2,278.1,0.344,1.194,4.75,"[-0.668, -0.244, 0.703]",508:0.40; 519:0.39; 30:0.38,0.87,0.4,3,MultiDomUncert
-KIF3A (Q9Y496),Homo sapiens,699,75.4,83.1,0.21,0.52,0.27,20.0,4.44,0.15,4,31.6,40.6,0.328,1.461,2.9,"[-0.608, -0.163, 0.777]",359:0.38; 43:0.38; 88:0.38,0.54,0.51,12,MultiDomUncert
-COL12A1 (Q99715),Homo sapiens,1899,75.6,84.3,0.22,0.54,0.24,25.7,6.27,0.18,41,63.1,6.0,0.279,2.024,4.14,"[-0.633, -0.197, 0.749]",1310:0.43; 979:0.39; 1205:0.39,0.4,0.4,29,MultiDomUncert
-```
+| protein_id | uniprot | species | length | pLDDT_mean | pLDDT_median | pLDDT_fraction_high | pLDDT_fraction_ok | pLDDT_fraction_low | PAE_mean | PAE_domain_blockiness_score | predicted_domain_segments | disorder_fraction_proxy | hinge_candidates | backbone_principal_axis | radius_of_gyration | end_to_end_distance | curvature_summary | torsion_summary | anisotropy_index | bending_hotspots | exposed_surface_proxy | charged_patch_score | low_confidence_warning | multi_domain_uncertain | likely_IDR_heavy | confidence_level | interpretation |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PIEZO2 | Q92508 | human | 2521 | 72.05 | 79.19 | 0.12 | 0.55 | 0.33 | 22.74 | 5.74 | 35 | 0.17 | 3 | [-0.270, -0.320, 0.908] | 58.85 | 29.95 | 0.34 | 1.18 | 3.90 | 458:0.44; 625:0.42; 513:0.41 | 0.46 | 0.27 | False | True | False | Medium | High anisotropy (3.90) indicates fibrous/extended morphology. Potential tension element or structural scaffold. Detected 3 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (5.74) suggests distinct dynamic domains. |
+| LMNA | P02545 | human | 664 | 76.37 | 93.12 | 0.58 | 0.11 | 0.31 | 24.87 | 2.56 | 3 | 0.26 | 0 | [-0.668, -0.244, 0.703] | 71.25 | 278.06 | 0.34 | 1.19 | 4.75 | 508:0.40; 519:0.39; 30:0.38 | 0.87 | 0.40 | False | True | False | Medium | High anisotropy (4.75) indicates fibrous/extended morphology. Potential tension element or structural scaffold. High PAE blockiness (2.56) suggests distinct dynamic domains. |
+| COL1A1 | P02452 | human | 1464 | 52.73 | 44.22 | 0.15 | 0.05 | 0.80 | 27.40 | 6.55 | 3 | 0.67 | 16 | [-0.475, 0.297, 0.828] | 23.46 | 48.98 | 0.30 | 1.86 | 2.80 | 1315:0.39; 1258:0.38; 1431:0.38 | 0.87 | 0.30 | True | True | True | Low | ⚠️ Low confidence (pLDDT mean 52.7). Structure may be unreliable. Detected 16 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (6.55) suggests distinct dynamic domains. |
+| RUNX3 | Q13761 | human | 415 | 60.56 | 46.34 | 0.28 | 0.04 | 0.68 | 25.59 | 0.00 | 1 | 0.56 | 12 | [-0.510, 0.008, 0.860] | 15.81 | 52.97 | 0.28 | 1.96 | 2.06 | 159:0.39; 69:0.38; 54:0.38 | 0.78 | 0.37 | True | False | True | Low | ⚠️ Low confidence (pLDDT mean 60.6). Structure may be unreliable. Detected 12 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. |
 
-## 2. Key Plots Summary
-- `PIEZO2_plddt.png`: pLDDT profile for PIEZO2
-- `PIEZO2_pae.png`: PAE heatmap for PIEZO2
-- `LMNA_plddt.png`: pLDDT profile for LMNA
-- `LMNA_pae.png`: PAE heatmap for LMNA
-- `COL12A1_plddt.png`: pLDDT profile for COL12A1
-- `COL12A1_pae.png`: PAE heatmap for COL12A1
+## Key Plots Summary
+*   Generated pLDDT profiles for all proteins.
+*   Generated PAE heatmaps for proteins with available PAE data.
 
-## 3. Interpretation
-**Family: Cilia**
-- **KIF3A**: KIF3A: Anisotropy=2.9, pLDDT=75. Intermediate shape.  Detected 4 potential flexible hinges; may act as mechanical sensor/switch. (Conf: Medium). Test: Mutate hinge region to test effect on mechanosensitivity.
+## Interpretations
 
-**Family: ECM**
-- **COL12A1**: COL12A1: Anisotropy=4.1, pLDDT=76. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
+### PIEZO2 (Q92508)
+*   **What we see:** pLDDT 72.0, Anisotropy 3.90. High anisotropy (3.90) indicates fibrous/extended morphology. Potential tension element or structural scaffold. Detected 3 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (5.74) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Medium
+*   **Next Test:** Compare curvature under stress in simulation.
 
-**Family: Mechanotransduction**
-- **PIEZO2**: PIEZO2: Anisotropy=4.4, pLDDT=79. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
+### LMNA (P02545)
+*   **What we see:** pLDDT 76.4, Anisotropy 4.75. High anisotropy (4.75) indicates fibrous/extended morphology. Potential tension element or structural scaffold. High PAE blockiness (2.56) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Medium
+*   **Next Test:** Check expression gradients in spine.
 
-**Family: Nucleus**
-- **LMNA**: LMNA: Anisotropy=4.8, pLDDT=76. Highly extended/fibrous.  Rigid rod-like geometry suggests load-bearing capacity or long-range connectivity. (Conf: Medium). Test: Verify fiber formation in vivo; test mechanical stiffness.
+### COL1A1 (P02452)
+*   **What we see:** pLDDT 52.7, Anisotropy 2.80. ⚠️ Low confidence (pLDDT mean 52.7). Structure may be unreliable. Detected 16 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (6.55) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Low
+*   **Next Test:** Compare curvature under stress in simulation.
 
-**Family: Proprioception**
-- **LBX1**: LBX1: Anisotropy=2.3, pLDDT=67. Intermediate shape. Warning: Low confidence structure. Standard globular domain, likely biochemical role or node in network. (Conf: Low). Test: Check expression timing relative to spine straightening.
+### RUNX3 (Q13761)
+*   **What we see:** pLDDT 60.6, Anisotropy 2.06. ⚠️ Low confidence (pLDDT mean 60.6). Structure may be unreliable. Detected 12 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Low
+*   **Next Test:** Compare curvature under stress in simulation.
 
-
-## 4. Best Next Move
-Cluster by geometry and correlate curvature metrics with known phenotype genes.
-
-## 5. Quality & Reproducibility Checklist
-- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)
-- Date/Time: 2026-02-01 19:44:31
-- Code Version: 801e00a
-- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default
-- Notes: 5 structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml
+## Best Next Move
+🚀 **Simulate mechanical load on high-anisotropy candidates: PIEZO2, LMNA**

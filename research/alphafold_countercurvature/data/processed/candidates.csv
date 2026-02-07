@@ -1,3 +1,9 @@
+gene_symbol,uniprot_id,source,total_score
+PIEZO2,Q9H5I5,DefaultSeed_Proprioception,95
+LMNA,P02545,DefaultSeed_NuclearStiffness,92
+COL1A1,P02452,DefaultSeed_ECM_Gravity,90
+DNAH11,Q96DT5,DefaultSeed_Cilia_Flow,88
+RUNX3,Q13761,DefaultSeed_Proprioception_Dev,95
 gene_symbol,uniprot_id,organism,pathway_tags,gravity_link,spine_curvature_link,priority_score,justification,source,total_score
 PIEZO2,Q9H5I5,Homo sapiens,"Mechanotransduction,Proprioception","Essential for proprioception, which provides the gravity reference frame for posture control.",Loss of function mutations cause congenital scoliosis; asymmetric expression in paraspinal muscles in AIS. (DOI: 10.1056/NEJMoa1602812),95,Direct link between gravity sensing (proprioception) and spinal alignment.,Top_Priority_Run,95
 LBX1,P52954,Homo sapiens,"Somite,Muscle,Proprioception",Regulates migration of muscle precursors and formation of dorsal horn neurons involved in proprioception/gravity sensing.,Top GWAS hit for Adolescent Idiopathic Scoliosis (AIS). (DOI: 10.1038/ng.814),95,Major genetic driver of AIS with clear mechanistic link to postural tone.,Top_Priority_Run,95

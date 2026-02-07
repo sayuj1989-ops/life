@@ -68,6 +68,7 @@ class StructureParser:
                                 y = float(line[38:46])
                                 z = float(line[46:54])
                                 b_factor = float(line[60:66])
+                                res_name = line[17:20].strip()
 
                                 coords_list.append([x, y, z])
                                 plddt_list.append(b_factor)

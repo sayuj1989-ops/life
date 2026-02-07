@@ -275,6 +275,27 @@ The map categorizes the system into four layers:
 
 ---
 
+### 19. The Glymphatic Stasis Pathway
+
+**Arc Added**: `Hydraulic_Congestion` $\rightarrow$ `Glymphatic_Stasis` $\rightarrow$ `Astrogliosis`.
+
+*   **Source**: **Hydraulic Congestion** (IVD Swelling), `Glymphatic_Stasis` (Waste Accumulation).
+*   **Mechanism**: **Toxic Accumulation & Inflammation**.
+    1.  **Hydraulic Stagnation**: Microgravity or sedentary unloading causes venous and CSF congestion ("The Hydraulic Cast"), reducing the convective flow required for glymphatic clearance.
+    2.  **Waste Accumulation**: Metabolic byproducts (e.g., Lactate, Amyloid-beta) accumulate in the spinal parenchyma due to reduced clearance (40% drop).
+    3.  **Astrogliosis**: This toxic environment irritates ependymal cells and astrocytes, triggering reactive astrogliosis (GFAP upregulation).
+    4.  **Neuroinflammation**: Reactive astrocytes secrete pro-inflammatory cytokines that disrupt proprioceptive signaling circuits.
+*   **Property**: **Muscle Tone Balance** (via Neural Signal-to-Noise Ratio).
+*   **Role**: **Metabolic Maintenance**. The "Counter-Curvature" control loop requires a clean chemical environment to function. Glymphatic stasis introduces "chemical noise" that blinds the system.
+*   **Simulation Support**: Mader et al. (2026) predict that simulated microgravity causes a 40% reduction in spinal CSF clearance, leading to local toxicity and inflammation.
+
+> **Hypothesis**: "Stagnation is Inflammation". The spine needs to move (pump) to stay clean. Unloading creates a "septic" environment where the sensors (neurons) are poisoned by their own waste.
+
+**Citations**:
+*   *Mader, J., et al. (2026). Glymphatic stasis in the spinal cord during simulated microgravity. Nature Neuroscience, 29.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.

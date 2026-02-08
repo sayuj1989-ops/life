@@ -1,6 +1,6 @@
 # Candidate Registry
 
-****Last Updated:** Week 8 Cycle - Gravity Expansion IV (Added NTRK3, OTOP1, GPX4, etc.)
+****Last Updated:** Week 14 Cycle - Gravity x Spine Expansion
 **Focus:** Gravity, Mechanotransduction, and Spinal Curvature
 
 This registry tracks high-priority gene and protein candidates identified as relevant to the "Biological Counter-Curvature" hypothesis. Candidates are scored based on their relevance to:
@@ -172,6 +172,7 @@ Candidates were selected based on a "Gravity x Curvature" cross-referencing stra
 
 ## Next Steps
 
-1.  **AlphaFold Analysis**: Run the "Bolt-BioFold" pipeline on the top new candidates (NF1, COL1A1) to assess structural anisotropy.
-2.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.
-3.  **Literature Review**: Deep dive into the "Cilia Motility" mechanism for DNAH11 and GAS8.
+1.  **AlphaFold Analysis**: Run the "Bolt-BioFold" pipeline on the top new candidates (PCDH15, USH1C) to assess structural anisotropy.
+2.  **ECM Dynamics**: Investigate the role of load-induced degradative enzymes (MMP13, ADAMTS5) in the `CounterCurvatureRodSystem` remodeling term.
+3.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.
+4.  **Literature Review**: Deep dive into the "Cilia Motility" mechanism for RSPH1 and DNAI1.

@@ -4,7 +4,7 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig_gene_to_geometry.pdf}
-    \caption{\textbf{The Biological Counter-Curvature Mechanism: Bridging Digital Code and Analog Geometry.} (A) \textbf{Digital Inputs}: Discrete HOX gene expression domains (colored bars) define positional identity, creating a digital ``map'' of the body plan. (B) \textbf{Analog Conversion}: This digital code is smoothed into a continuous scalar information field $I(s)$ (blue curve). We conceptualize $I(s)$ as a \textbf{Geometric Operator} that specifies the ``Reference Metric'' ($\bar{g}$) of the tissue. (C) \textbf{Metric Distortion and Error Correction}: The information field warps the material manifold, creating a target geometry (dashed line) distinct from the passive gravitational shape (solid line). Mechanosensors act as ``Metric Error Detectors,'' sensing the deviation $\mathcal{E} = g - \bar{g}$. Vector Sensors (e.g., Piezo2) detect alignment errors, while Scalar Sensors (e.g., Piezo1) detect volumetric/density errors. The system generates active moments to minimize this error, resulting in the stable S-shaped counter-curvature. In microgravity, the loss of external load removes the ``tuning fork'' and the primary \textbf{Zeitgeber}, causing \textbf{Spinal Jetlag} (desynchronization of IVD clocks) and silencing the vector sensors, leading to system drift.}
+    \caption{\textbf{The Biological Counter-Curvature Mechanism as Active Inference.} (A) \textbf{The Generative Model}: Discrete HOX gene expression domains encode a ``Genetic Prior'' ($\bar{g}$, blue curve) representing the evolutionarily optimized S-shape. This Top-Down prediction defines the target geometry. (B) \textbf{Sensory Evidence}: Gravity acts as the ``Interrogator,'' imposing a passive C-shaped sag (Actual Metric $g$). The discrepancy constitutes the Prediction Error ($U_{CC}$). (C) \textbf{The Vector-Scalar Mismatch}: In healthy gravity, Vector Sensors (Piezo2, Lamin A/C) and Scalar Sensors (Piezo1, SLYM) provide coherent error signals. In microgravity or AIS, Vector Sensors fail (loss of directional load), while Scalar Sensors remain active (osmotic stress). This dissociation drives ``Spinal Jetlag''—a high-gain control failure where the system attempts to correct a scalar error with a vector response, leading to scoliotic buckling.}
     \label{fig:iec_landscape}
 \end{figure}
 
@@ -45,11 +45,11 @@
         \caption{Microgravity adaptation: $\widehat{D}_{\mathrm{geo}}$ vs $g$.}
     \end{subfigure}
 
-    \caption{\textbf{Information-driven countercurvature in 3D Cosserat simulations.}
-    (A) Curvature profiles showing the transition from passive gravitational sag (blue) to active S-shaped counter-curvature (orange).
+    \caption{\textbf{Information-driven countercurvature as Active Inference.}
+    (A) Curvature profiles showing the transition from the \textbf{Passive Gravitational Prior} (blue, monotonic sag) to the \textbf{Active Posterior} (orange, S-shape). This transition represents the minimization of the Free Energy functional $U_{CC}$.
     (B) The countercurvature metric $g_{\mathrm{eff}}(s)$ highlights regions where the Bio-Gravitational Number ($\mathcal{B}_g$) is maximized to resist deformation.
-    (C) Geodesic deviation $\widehat{D}_{\mathrm{geo}}$ scales with coupling strength; stability requires $\chi_\kappa$ to exceed a critical threshold dependent on $\Lambda_{\mathrm{crit}}$.
-    (D) Microgravity adaptation ($g \to 0$). The system relaxes towards the information reference state. The reduced mechanical strain $\gEff$ shown here corresponds to the unloading predicted to trigger the "Nuclear Stiffness Gauge" downregulation and subsequent adipogenic switch.}
+    (C) Geodesic deviation $\widehat{D}_{\mathrm{geo}}$ (representing the prediction error $\mathcal{E}$) scales with coupling strength; stability requires the gain $\chi_\kappa$ to exceed a critical threshold.
+    (D) Microgravity adaptation ($g \to 0$). The system relaxes towards the information reference state. The reduced mechanical strain $\gEff$ shown here corresponds to the unloading predicted to trigger the ``Nuclear Stiffness Gauge'' downregulation (Active Inference failure), leading to the adipogenic switch.}
     \label{fig:countercurvature_main}
 \end{figure}
 
@@ -67,4 +67,12 @@
     \includegraphics[width=1.0\textwidth]{fig_scoliosis_emergence.png}
     \caption{\textbf{Scoliosis as Countercurvature Failure.} (A) Lateral scoliosis index $S_{\mathrm{lat}}$ vs coupling strength $\chi_\kappa$ for varying asymmetry levels $\varepsilon$. (B) Bifurcation diagram showing the emergence of large lateral deviations from small asymmetries in the information-dominated regime. (C) Scoliosis regime map in $(\chi_\kappa, \varepsilon)$ space; the shaded region indicates scoliotic configurations (Cobb $> 10^\circ$). (D) Amplification factor ($S_{\mathrm{lat}}/\varepsilon$), showing that in the high-$\chi_\kappa$ regime, small patterning errors are amplified by over 100-fold. This instability models the 'Frustrated Repair' mechanism driven by \textbf{Vector-Scalar Mismatch}. When gravity-dependent Vector Sensors (e.g., Piezo2, Lamin A/C) are silenced by unloading or mutation~\cite{steger2025gravity, touchstone2024nuclear}, the system loses its directional reference. However, Scalar Sensors (e.g., Piezo1) remain active, detecting localized stress concentrations. The system responds by ramping up ``gain'' ($\chi_\kappa$) to correct an error it cannot spatially resolve, amplifying small asymmetries into macroscopic deformities~\cite{djebar2024astrogliosis}. This high-gain instability is consistent with the loss of voltage-dependent gain control in Piezo2 sensors~\cite{sanchez2024piezo}. Furthermore, the 'Inflamed Torsion' pathway—driven by unchecked MMP1/3 activity in the absence of gravitational loading~\cite{chen2025mmp}—degrades torsional stiffness ($GJ$), effectively lowering the critical buckling threshold and locking the spine into this scoliotic state.}
     \label{fig:scoliosis_emergence}
+\end{figure}
+
+% Figure 6: Energy Deficit Window
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{energy_deficit_window.png}
+    \caption{\textbf{The Energy Deficit Window.} Thermodynamic cost of countercurvature ($P_{\mathrm{counter}}$, red solid) versus proprioceptive supply capacity ($S_{\mathrm{proprio}}$, blue/green dashed) as a function of spinal length $L$. The cost $P_{\mathrm{counter}}$ scales invariantly with length ($L^0$) in the linear regime, while the supply capacity grows sublinearly ($\alpha=0.5$). The intersection at $L_{\mathrm{crit}} \approx 0.35$ m defines an early developmental window ($L < L_{\mathrm{crit}}$) where metabolic demand exceeds supply, necessitating high proprioceptive gain. Beyond this threshold, the mature supply capacity stabilizes the system, though geometric instabilities (Fig.~\ref{fig:scoliosis_emergence}) may still arise from patterning errors.}
+    \label{fig:energy_deficit_window}
 \end{figure}

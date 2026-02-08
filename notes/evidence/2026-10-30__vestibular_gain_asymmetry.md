@@ -1,4 +1,7 @@
 # Evidence Note: Vestibular Gain Asymmetry as a Driver of Scoliosis
+**Date:** 2026-10-30  
+**Topic:** Vestibular Gain Asymmetry as a Driver of Scoliosis  
+**References:** Pialasse et al. 2015; Lambert et al. 2009; H_2025_02_20_Active_Inference
 
 ## Claim
 Idiopathic Scoliosis represents a form of "Geometric Hallucination" where the spine curves to minimize prediction error relative to a tilted or noisy vestibular reference frame. This is driven by **Vestibular Gain Asymmetry** in the descending vestibulospinal tracts (specifically the Lateral Vestibulospinal Tract, LVST), which causes persistent asymmetric paraspinal muscle tone.

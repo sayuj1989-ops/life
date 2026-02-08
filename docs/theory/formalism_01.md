@@ -179,7 +179,7 @@ $$ E_{nuc} = E_{basal} + \Gamma_{CS} \cdot [\text{H3K9me3}] $$
 *   **Microgravity Implication**: If gravity is required to maintain $[\text{H3K9me3}]$ (via mechanotransduction to methyltransferases), then $g \to 0$ leads to a drop in $[\text{H3K9me3}]$, causing $E_{nuc} \to E_{basal}$ (softening).
 *   **Measurable Proxy**: The slope of the regression line between Nuclear stiffness (measured via AFM) and H3K9me3 immunofluorescence intensity across a population of cells.
 
-### 2.13. The Vestibular Precision Ratio ($\Omega_{VP}$)
+### 2.13. The Vestibular-to-Proprioceptive Precision Ratio ($\Omega_{VP}$)
 
 We model the spine's alignment controller as a Bayesian integrator combining two noisy inputs: Global Gravity ($g$) detected by the Vestibular system, and Local Curvature ($\kappa$) detected by Proprioception.
 

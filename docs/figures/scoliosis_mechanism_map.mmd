@@ -21,6 +21,7 @@ graph TD
         RUNX3[RUNX3/EGR3<br/>Proprioceptive Identity]
         METTL3[METTL3<br/>m6A Methyltransferase]
         ESR1[ESR1<br/>Estrogen Receptor Alpha]
+        AQP4[AQP4<br/>Aquaporin-4]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -135,6 +136,10 @@ graph TD
     Immune_Infilt --> MMP
     Degradation --> Torsional_Stiffness
     Torsional_Stiffness --> Stability
+
+    %% NEW ARC: Glymphatic Stasis
+    AQP4 --> Glymphatic_Stasis
+    Glymphatic_Stasis --> Astrogliosis
 
     %% Cross-Talk and Failures
     Stability --> S_Curve

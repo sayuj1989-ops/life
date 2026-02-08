@@ -300,3 +300,26 @@ The map categorizes the system into four layers:
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.
+
+---
+
+### 20. The Melatonin Gain Control Pathway
+
+**Arc Added**: `MELATONIN` $\rightarrow$ `MT2` $\rightarrow$ `Gi_cAMP` $\rightarrow$ `Gain`.
+
+*   **Source**: `MELATONIN` (Pineal Hormone), `MT2` (Melatonin Receptor 1B).
+*   **Mechanism**: **Circadian Sensitivity Switching**.
+    1.  **Night-Time Signal**: Melatonin levels peak at night.
+    2.  **Gi Activation**: Binding to MT2 receptors activates $G_i$ proteins.
+    3.  **cAMP Suppression**: This inhibits Adenylyl Cyclase, reducing intracellular cAMP levels.
+    4.  **Gain Reduction**: Lower cAMP reduces PKA activity, effectively dampening the cell's mechanosensitivity (turning down the "Gain").
+*   **Property**: **Feedback Gain ($G_{mech}$)**.
+*   **Role**: **Constitutive Day Prevention**. The spine must be "sensitive" during the day (loaded) to adapt, but "quiet" at night (unloaded) to grow symmetrically. Melatonin acts as the "Off Switch" for mechanotransduction.
+    *   **The Defect**: In AIS, this signaling pathway is broken (Moreau et al., 2004). The cells remain in a high-sensitivity "Day Mode" 24/7. When the patient lies down (unloaded), the hypersensitive system detects "phantom" errors and drives asymmetric growth.
+*   **Evidence**: Moreau et al. (2004) identified a functional defect in Gi-protein signaling in AIS osteoblasts. Azeddine et al. (2007) linked this to high calmodulin levels.
+
+> **Hypothesis**: Scoliosis is a "Nightmare of the Spine". It grows crookedly at night because it cannot "sleep" (mechanically speaking). It remains awake and reactive to noise.
+
+**Citations**:
+*   *Moreau, A., et al. (2004). Melatonin signaling dysfunction in adolescent idiopathic scoliosis. Spine, 29(16), 1772-1781.* https://doi.org/10.1097/01.brs.0000134567.89481.54
+*   *Azeddine, B., et al. (2007). Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis. Clinical Orthopaedics and Related Research, 462, 45-52.*

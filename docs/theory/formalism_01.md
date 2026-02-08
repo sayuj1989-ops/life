@@ -179,6 +179,41 @@ $$ E_{nuc} = E_{basal} + \Gamma_{CS} \cdot [\text{H3K9me3}] $$
 *   **Microgravity Implication**: If gravity is required to maintain $[\text{H3K9me3}]$ (via mechanotransduction to methyltransferases), then $g \to 0$ leads to a drop in $[\text{H3K9me3}]$, causing $E_{nuc} \to E_{basal}$ (softening).
 *   **Measurable Proxy**: The slope of the regression line between Nuclear stiffness (measured via AFM) and H3K9me3 immunofluorescence intensity across a population of cells.
 
+### 2.13. The Vestibular Precision Ratio ($\Omega_{VP}$)
+
+In the Active Inference framework, the spine integrates global gravitational cues (Vestibular) and local strain cues (Proprioceptive) weighted by their respective precisions (inverse variances). We define $\Omega_{VP}$ as the ratio of these precisions.
+
+$$ \Omega_{VP} = \frac{\pi_V}{\pi_P} = \frac{\sigma_P^2}{\sigma_V^2} $$
+
+*   **Symbols**:
+    *   $\pi_V, \pi_P$: Precision of Vestibular and Proprioceptive signals $[1]$.
+    *   $\sigma_V^2, \sigma_P^2$: Variance (noise) of the respective sensory channels $[1]$.
+*   **Physical Interpretation**:
+    *   $\Omega_{VP} \gg 1$: The system relies on the Global Gravity Vector (Vestibular Dominance). Stable but rigid.
+    *   $\Omega_{VP} \ll 1$: The system relies on Local Strain (Proprioceptive Dominance). Flexible but prone to "geometric hallucinations" (drifting without a vertical reference).
+    *   **Scoliosis Mechanism**: We hypothesize scoliosis begins when $\Omega_{VP}$ drops below a critical threshold (e.g., due to vestibular noise or proprioceptive hypersensitivity), causing the spine to optimize for a local "phantom" curvature.
+*   **Measurable Proxy**: The ratio of the gain of the Vestibulo-Spinal Reflex (VSR) to the gain of the Proprioceptive H-Reflex.
+
+### 2.14. The Circadian Gain Modulation ($\Gamma_{circ}$)
+
+We define a dimensionless scalar function representing the suppression of mechanosensitivity during the rest phase, mediated by Melatonin-MT2-Gi signaling.
+
+$$ \chi_{M}(t) = \chi_{M,0} \cdot \Gamma_{circ}(t) $$
+
+Where the gain modulation follows a Hill function of systemic melatonin concentration:
+
+$$ \Gamma_{circ}(t) = \frac{1}{1 + (\frac{[Mel](t)}{K_{d,mel}})^n} $$
+
+*   **Symbols**:
+    *   $[Mel](t)$: Circulating melatonin concentration $[ML^{-3}]$.
+    *   $K_{d,mel}$: Effective dissociation constant for MT2-mediated suppression $[ML^{-3}]$.
+    *   $n$: Hill coefficient (cooperativity of the signaling cascade) $[1]$.
+*   **Physical Interpretation**:
+    *   **Day ($\Gamma_{circ} \approx 1$)**: High stiffness/sensitivity. The spine actively fights gravity.
+    *   **Night ($\Gamma_{circ} \to 0$)**: Melatonin rises, suppressing cAMP/PKA. The spine relaxes to allow passive growth and remodeling ("Maintenance Mode").
+    *   **Pathology (AIS)**: If the Gi pathway is defective (e.g., *Gi* uncoupling), $\Gamma_{circ}$ remains near 1 even at night ("Constitutive Day"). The system continues to correct for "phantom" gravitational errors while unloaded, driving asymmetric growth.
+*   **Measurable Proxy**: The ratio of night-time to day-time paraspinal EMG amplitude or stiffness (measured via shear wave elastography).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -342,6 +377,26 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: H3K9me3 ChIP-Seq or IF in spaceflown samples vs ground controls.
 *   **Refutation**: If H3K9me3 levels are stable or increase in microgravity, the "Scalar Senescence" model is falsified. (Reference: Stephens et al., 2017).
 
+### Test Y: The Sensory Reweighting
+*   **Hypothesis**: Increasing vestibular precision ($\pi_V$) via Stochastic Vestibular Stimulation (SVS) will increase $\Omega_{VP}$ and reduce paraspinal EMG asymmetry in scoliotic patients.
+*   **Data Needed**: Paraspinal EMG coherence and Cobb angle measurements in AIS patients during active SVS treatment vs. sham.
+*   **Refutation**: If SVS fails to reduce asymmetry, the vestibular input is not the limiting factor in the precision ratio. (Reference: Pialasse et al., 2015).
+
+### Test Z: The Hallucination Trigger
+*   **Hypothesis**: Artificially reducing proprioceptive precision ($\pi_P$) via tendon vibration (inducing noise $\sigma_P^2$) will force a shift to vestibular dominance ($\Omega_{VP} \uparrow$), temporarily straightening the spine if the curvature was driven by bad proprioceptive priors.
+*   **Data Needed**: Real-time curvature tracking of scoliotic mice/zebrafish during high-frequency tendon vibration.
+*   **Refutation**: If "jamming" proprioception does not alter the curvature, the deformity is structural (fixed) rather than actively maintained by sensory loops. (Reference: Proske & Gandevia, 2012).
+
+### Test AA: The Night-Time Suppression Failure
+*   **Hypothesis**: AIS patients exhibit a specific failure of night-time muscle tone suppression due to "Constitutive Day" signaling.
+*   **Data Needed**: 24-hour continuous EMG monitoring of paraspinal muscles in AIS adolescents vs. healthy controls, specifically analyzing the Amplitude Root Mean Square (RMS) during Stage 3/4 sleep.
+*   **Refutation**: If AIS patients show normal deep-sleep atonia (silence) comparable to controls, the "Constitutive Day" hypothesis is falsified. (Reference: Moreau et al., 2004).
+
+### Test AB: The Gi-Rescue
+*   **Hypothesis**: Pharmacological activation of Gi proteins (bypassing the melatonin receptor) can restore night-time suppression and halt curvature in melatonin-deficient or clock-disrupted models.
+*   **Data Needed**: Cobb angle progression in pinealectomized chickens or *Per2* mutant mice treated with a Gi-biased agonist (e.g., Adenosine A1 agonist) vs. Vehicle during the dark phase.
+*   **Refutation**: If Gi-agonists fail to reduce curvature progression despite lowering intracellular cAMP, the pathway is not the primary driver of the deformity. (Reference: Azeddine et al., 2007).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -372,3 +427,5 @@ The theory makes specific predictions about the relationship between genetic ani
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
 27. **Nava, M. M., et al. (2020).** "Heterochromatin-driven nuclear softening protects the genome against mechanical stress-induced damage." *Cell*, 181(4). (Establishes the link between H3K9me3 and nuclear stiffness).
 28. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(14). (Separates chromatin contribution from Lamin A/C).
+29. **Pialasse, J. P., et al. (2015).** "Vestibulospinal control in idiopathic scoliosis." *Journal of Vestibular Research*. (Vestibular role).
+30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*. (Proprioceptive noise).

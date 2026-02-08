@@ -1,11 +1,9 @@
-gene_symbol,source,total_score,justification
-PIEZO2,"Mechanotransduction,Proprioception",95,Direct link between gravity sensing (proprioception) and spinal alignment.
-NTRK3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
-RUNX3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
-LBX1,"Somite,Muscle,Proprioception",95,Major genetic driver of AIS with clear mechanistic link to postural tone.
-SELENON,"ER,Redox,Muscle",92,Defining gene for 'Rigid Spine' phenotype; links ER stress to postural tone.
-PLOD1,"ECM,Enzyme",92,Defining gene for Kyphoscoliotic EDS; major structural determinant.
-OTOP1,"Gravity_Sensing,Ion_Channel",92,Essential for the hardware of vestibular gravity sensing.
-LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,Direct link between nuclear mechanotransduction and spinal stability.
-EGR3,"Muscle,Proprioception,Transcription_Factor",92,Essential for the hardware of muscle proprioception.
-NF1,"Signaling,Mechanotransduction,Development",92,Direct causative link to dystrophic scoliosis and mechanotransduction.
+gene_symbol,uniprot_accession,source,total_score,priority_score,justification
+PIEZO2,Q9H5I5,Mechanotransduction,95,95,Default Seed List
+LBX1,P52954,Proprioception,95,95,Default Seed List
+LMNA,P02545,Nucleus,92,92,Default Seed List
+KIF3A,Q9Y496,Cilia,88,88,Default Seed List
+COL12A1,Q99715,ECM,88,88,Default Seed List
+PCDH15,Q96QU1,Mechanotransduction,90,90,Default Seed List
+USH1C,Q9Y6N9,Mechanotransduction,90,90,Default Seed List
+TMC1,Q8TDI8,Mechanotransduction,90,90,Default Seed List

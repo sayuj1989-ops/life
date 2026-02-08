@@ -20,7 +20,7 @@ import pandas as pd
 from pathlib import Path
 
 # Default path to latest metrics
-DEFAULT_METRICS_PATH = Path("outputs/afcc/2026-01-31/metrics.csv")
+DEFAULT_METRICS_PATH = Path("outputs/afcc/current_metrics.csv")
 OUTPUT_DIR = Path("reports/structure_clusters")
 OUTPUT_FILE = OUTPUT_DIR / "latest_clusters.md"
 
@@ -32,11 +32,23 @@ def cluster_proteins(csv_path):
         print(f"Error: File not found at {csv_path}")
         sys.exit(1)
 
+    # Column mapping for flexibility
+    col_map = {
+        "Identity": "gene_symbol",
+        "Anisotropy": "anisotropy_index",
+        "PAE_blockiness": "PAE_domain_blockiness_score"
+    }
+    df.rename(columns=col_map, inplace=True)
+
+    # Parse Identity if needed (e.g. "PIEZO2 (Q9H5I5)" -> "PIEZO2")
+    if "gene_symbol" in df.columns and df["gene_symbol"].astype(str).str.contains(r"\(").any():
+        df["gene_symbol"] = df["gene_symbol"].astype(str).apply(lambda x: x.split(" (")[0] if " (" in x else x)
+
     # Ensure required columns exist
     required_cols = ["gene_symbol", "anisotropy_index", "PAE_domain_blockiness_score"]
     for col in required_cols:
         if col not in df.columns:
-            print(f"Error: Missing column '{col}' in CSV.")
+            print(f"Error: Missing column '{col}' in CSV. Available: {list(df.columns)}")
             sys.exit(1)
 
     # Cluster Logic

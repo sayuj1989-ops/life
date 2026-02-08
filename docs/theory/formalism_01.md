@@ -194,6 +194,26 @@ $$ \Omega_{VP} = \frac{G_{VSR}}{G_{H}} $$
     *   $\Omega_{VP} > 1.5$: Vestibular dominance. The system prioritizes "verticality" over local curvature, potentially driving a "Geometric Hallucination" where the spine curves to satisfy a false vertical reference.
 *   **Measurable Proxy**: The ratio of Vestibular Evoked Myogenic Potential (VEMP) amplitude to H-Reflex amplitude in paraspinal muscles.
 
+### 2.14. The Circadian Gain Modulation ($\Gamma_{circ}$)
+
+We define a dimensionless scalar function representing the suppression of mechanosensitivity during the rest phase, mediated by Melatonin-MT2-Gi signaling.
+
+$$ \chi_{M}(t) = \chi_{M,0} \cdot \Gamma_{circ}(t) $$
+
+Where the gain modulation follows a Hill function of systemic melatonin concentration:
+
+$$ \Gamma_{circ}(t) = \frac{1}{1 + (\frac{[Mel](t)}{K_{d,mel}})^n} $$
+
+*   **Symbols**:
+    *   $[Mel](t)$: Circulating melatonin concentration $[ML^{-3}]$.
+    *   $K_{d,mel}$: Effective dissociation constant for MT2-mediated suppression $[ML^{-3}]$.
+    *   $n$: Hill coefficient (cooperativity of the signaling cascade) $[1]$.
+*   **Physical Interpretation**:
+    *   **Day ($\Gamma_{circ} \approx 1$)**: High stiffness/sensitivity. The spine actively fights gravity.
+    *   **Night ($\Gamma_{circ} \to 0$)**: Melatonin rises, suppressing cAMP/PKA. The spine relaxes to allow passive growth and remodeling ("Maintenance Mode").
+    *   **Pathology (AIS)**: If the Gi pathway is defective (e.g., *Gi* uncoupling), $\Gamma_{circ}$ remains near 1 even at night ("Constitutive Day"). The system continues to correct for "phantom" gravitational errors while unloaded, driving asymmetric growth.
+*   **Measurable Proxy**: The ratio of night-time to day-time paraspinal EMG amplitude or stiffness (measured via shear wave elastography).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -367,6 +387,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Center of Pressure (CoP) displacement measurements during sub-threshold GVS in AIS patients, correlated with $\Omega_{VP}$.
 *   **Refutation**: If GVS sensitivity is uniform across the population regardless of the VEMP/H-Reflex ratio, the gain mismatch does not translate to functional instability. (Reference: Pialasse et al., 2015).
 
+### Test AA: The Night-Time Suppression Failure
+*   **Hypothesis**: AIS patients exhibit a specific failure of night-time muscle tone suppression due to "Constitutive Day" signaling.
+*   **Data Needed**: 24-hour continuous EMG monitoring of paraspinal muscles in AIS adolescents vs. healthy controls, specifically analyzing the Amplitude Root Mean Square (RMS) during Stage 3/4 sleep.
+*   **Refutation**: If AIS patients show normal deep-sleep atonia (silence) comparable to controls, the "Constitutive Day" hypothesis is falsified. (Reference: Moreau et al., 2004).
+
+### Test AB: The Gi-Rescue
+*   **Hypothesis**: Pharmacological activation of Gi proteins (bypassing the melatonin receptor) can restore night-time suppression and halt curvature in melatonin-deficient or clock-disrupted models.
+*   **Data Needed**: Cobb angle progression in pinealectomized chickens or *Per2* mutant mice treated with a Gi-biased agonist (e.g., Adenosine A1 agonist) vs. Vehicle during the dark phase.
+*   **Refutation**: If Gi-agonists fail to reduce curvature progression despite lowering intracellular cAMP, the pathway is not the primary driver of the deformity. (Reference: Azeddine et al., 2007).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -399,3 +429,5 @@ The theory makes specific predictions about the relationship between genetic ani
 28. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(14). (Separates chromatin contribution from Lamin A/C).
 29. **Pialasse, J. P., et al. (2015).** "Vestibulospinal function is altered in adolescents with idiopathic scoliosis." *Clinical Neurophysiology*, 126(10). (Evidence for vestibular gain alteration).
 30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*, 92(4). (Foundational proprioception text).
+31. **Moreau, A., et al. (2004).** "Melatonin signaling dysfunction in adolescent idiopathic scoliosis." *Spine*, 29(16). (Demonstrates the Gi-signaling defect).
+32. **Azeddine, B., et al. (2007).** "Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis." *Clinical Orthopaedics and Related Research*, 462. (Mechanistic follow-up).

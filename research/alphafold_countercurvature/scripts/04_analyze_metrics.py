@@ -6,6 +6,8 @@ Computes geometric and confidence metrics for all downloaded structures.
 """
 
 import sys
+import json
+import numpy as np
 import pandas as pd
 from pathlib import Path
 import warnings
@@ -18,6 +20,18 @@ sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, np.bool_):
+            return bool(obj)
+        return super(NumpyEncoder, self).default(obj)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -91,31 +105,67 @@ def main():
         gene = row['gene_symbol']
         uid = row['uniprot']
 
-        # ⚡ Bolt Optimization: Use fast parser (skips Bio.PDB Structure build)
-        # This reduces parse time from ~1.2s to ~0.05s for large structures.
-        coords, plddt, resnames = parser.fast_parse_pdb_arrays(pdb_path)
+        # ⚡ Bolt Optimization: Persistent JSON Cache for Metrics
+        # Checks for {pdb_path}.metrics.json to avoid re-parsing and re-calculating geometry.
+        # This persists even if protein_metrics.csv is deleted.
+        metrics_cache_path = pdb_path.with_suffix('.metrics.json')
+        metrics = None
 
-        if coords is None:
-            # Fallback (or just skip if file missing/empty)
-            print(f"⚠️ Failed to fast-parse {pdb_path}, trying legacy...")
-            structure = parser.parse_pdb(pdb_path, gene)
-            if not structure:
-                continue
-            coords, plddt, resnames = parser.extract_coords_and_plddt(structure)
-        else:
-            structure = None
+        # Check freshness
+        is_fresh = False
+        if metrics_cache_path.exists():
+            try:
+                m_time = metrics_cache_path.stat().st_mtime
+                pdb_time = pdb_path.stat().st_mtime
 
-        # Load PAE if available
-        pae_path = row.get('pae_path')
-        pae_matrix = None
-        if pae_path and isinstance(pae_path, str):
-             p = Path(pae_path)
-             if p.exists():
-                 pae_matrix = parser.parse_pae(p)
+                pae_fresh = True
+                pae_path_str = row.get('pae_path')
+                if pae_path_str and isinstance(pae_path_str, str):
+                    p_pae = Path(pae_path_str)
+                    if p_pae.exists() and p_pae.stat().st_mtime > m_time:
+                        pae_fresh = False
 
-        metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
+                if m_time >= pdb_time and pae_fresh:
+                    with open(metrics_cache_path, 'r') as f:
+                        metrics = json.load(f)
+                    is_fresh = True
+            except Exception:
+                pass # Corrupt cache or error reading
 
-        # Merge basic info
+        if not is_fresh:
+            # Compute fresh metrics
+            # ⚡ Bolt Optimization: Use fast parser (skips Bio.PDB Structure build)
+            # This reduces parse time from ~1.2s to ~0.05s for large structures.
+            coords, plddt, resnames = parser.fast_parse_pdb_arrays(pdb_path)
+
+            if coords is None:
+                # Fallback (or just skip if file missing/empty)
+                print(f"⚠️ Failed to fast-parse {pdb_path}, trying legacy...")
+                structure = parser.parse_pdb(pdb_path, gene)
+                if not structure:
+                    continue
+                coords, plddt, resnames = parser.extract_coords_and_plddt(structure)
+            else:
+                structure = None
+
+            # Load PAE if available
+            pae_path = row.get('pae_path')
+            pae_matrix = None
+            if pae_path and isinstance(pae_path, str):
+                 p = Path(pae_path)
+                 if p.exists():
+                     pae_matrix = parser.parse_pae(p)
+
+            metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)
+
+            # Save cache
+            try:
+                with open(metrics_cache_path, 'w') as f:
+                    json.dump(metrics, f, cls=NumpyEncoder)
+            except Exception as e:
+                print(f"⚠️ Warning: Could not save metrics cache {metrics_cache_path}: {e}")
+
+        # Merge basic info (Always merge, as it's not in the cached structural metrics)
         metrics['gene_symbol'] = gene
         metrics['uniprot'] = uid
 

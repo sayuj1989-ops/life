@@ -364,7 +364,7 @@ The theory makes specific predictions about the relationship between genetic ani
 ### Test Y: The Geometric Hallucination
 *   **Hypothesis**: If $\Omega_{VP}$ falls below a critical threshold due to vestibular ablation (e.g., labyrinthectomy), the spine will develop a curvature determined by the *variance* of local proprioception, not just mechanical load.
 *   **Data Needed**: 3D spinal tracking of bilateral vestibular-deficient mice compared to controls in the dark (removing visual compensation).
-*   **Refutation**: If vestibular loss causes random swaying but time-averaged straightness (i.e., noise averages out), the "Hallucination" (structural drift) hypothesis is false. (Reference: Adams et al., 2013).
+*   **Refutation**: If vestibular loss causes only transient postural instability that averages to zero over time (i.e., random swaying with preserved time-averaged straightness, without permanent structural changes), the Geometric Hallucination (structural drift) hypothesis is falsified. (Reference: Adams et al., 2013).
 
 ### Test Z: The Stochastic Resonance Rescue
 *   **Hypothesis**: If microgravity scoliotic drift is due to high vestibular noise ($\sigma_V^2$), adding sub-threshold broad-spectrum vibration (Stochastic Resonance) should restore the signal detectability, effectively increasing $\pi_V$ and restoring $\Omega_{VP}$.

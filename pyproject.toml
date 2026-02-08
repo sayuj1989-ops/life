@@ -77,7 +77,7 @@ check_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "research/alphafold_countercurvature/tests"]
 python_files = "test_*.py"
 python_functions = "test_*"
 addopts = "--cov=spinalmodes --cov-report=term-missing"

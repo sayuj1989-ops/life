@@ -26,7 +26,7 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 12 Cycle - Gravity x Spine Expansion\n")
+        f.write("****Last Updated:** Week 14 Cycle - Gravity x Spine Expansion\n")
         f.write("**Focus:** Gravity, Mechanotransduction, and Spinal Curvature\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
@@ -58,8 +58,9 @@ def main():
 
         f.write("## Next Steps\n\n")
         f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (PCDH15, USH1C) to assess structural anisotropy.\n")
-        f.write("2.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.\n")
-        f.write("3.  **Literature Review**: Deep dive into the \"Cilia Motility\" mechanism for RSPH1 and DNAI1.\n")
+        f.write("2.  **ECM Dynamics**: Investigate the role of load-induced degradative enzymes (MMP13, ADAMTS5) in the `CounterCurvatureRodSystem` remodeling term.\n")
+        f.write("3.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.\n")
+        f.write("4.  **Literature Review**: Deep dive into the \"Cilia Motility\" mechanism for RSPH1 and DNAI1.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

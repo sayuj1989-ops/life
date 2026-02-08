@@ -21,7 +21,7 @@ graph TD
         RUNX3[RUNX3/EGR3<br/>Proprioceptive Identity]
         METTL3[METTL3<br/>m6A Methyltransferase]
         ESR1[ESR1<br/>Estrogen Receptor Alpha]
-        SELENON[SELENON<br/>Selenoprotein N]
+        AQP4[AQP4<br/>Aquaporin-4]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -44,7 +44,7 @@ graph TD
         Circadian_Entrain[Circadian Entrainment<br/>Loading Zeitgeber]
         Proprio_Maint[Proprioceptive Maint.<br/>Sensory Survival]
         H3K9me3[H3K9me3<br/>Heterochromatin Compaction]
-        ER_Ca[ER Calcium<br/>Redox Handling]
+        Glymphatic_Stasis[Glymphatic Stasis<br/>Toxic Accumulation]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -138,7 +138,7 @@ graph TD
     Torsional_Stiffness --> Stability
 
     %% NEW ARC: Glymphatic Stasis
-    Hydraulic_Congestion --> Glymphatic_Stasis
+    AQP4 --> Glymphatic_Stasis
     Glymphatic_Stasis --> Astrogliosis
 
     %% Cross-Talk and Failures
@@ -170,11 +170,7 @@ graph TD
     LAMIN --> H3K9me3
     H3K9me3 --> Gain
 
-    %% NEW ARC: Rigid Spine Pathway
-    SELENON --> ER_Ca
-    ER_Ca --> Muscle_Tone
-
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,SELENON gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,ER_Ca process;
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,AQP4 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,Glymphatic_Stasis process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

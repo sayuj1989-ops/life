@@ -48,12 +48,6 @@ except ImportError:
             self.position_collection = np.zeros((3, n_elements + 1))
             self.velocity_collection = np.zeros((3, n_elements + 1))
             self.kappa = np.zeros((3, n_elements - 1))
-            self.mass = np.ones(n_elements + 1) # Dummy mass
-
-        def compute_bending_energy(self): return 0.0
-        def compute_shear_energy(self): return 0.0
-        def compute_translational_energy(self): return 0.0
-        def compute_rotational_energy(self): return 0.0
 
     class ea:
         class CosseratRod:
@@ -88,7 +82,6 @@ class SimulationResult:
     centerline: ArrayF64
     kappa: ArrayF64
     info_field: InfoField1D
-    final_energies: Optional[Dict[str, float]] = None
 
     @property
     def curvature(self) -> ArrayF64:
@@ -114,7 +107,6 @@ class SimulationResult:
                 - S_lat: Lateral scoliosis index (from scoliosis_metrics).
                 - cobb_angle: Cobb-like angle (from scoliosis_metrics).
                 - z_tip: Tip deflection in Z (vertical).
-                - ... energies ...
         """
         if len(self.time) == 0:
             return {}
@@ -143,7 +135,7 @@ class SimulationResult:
 
         scol_metrics = compute_scoliosis_metrics(z_coord, x_coord)
 
-        metrics = {
+        return {
             "max_curvature": max_curvature,
             "max_torsion": max_torsion,
             "end_to_end_distance": float(end_to_end),
@@ -153,11 +145,6 @@ class SimulationResult:
             "x_tip": float(pos[-1, 0]),
             "y_tip": float(pos[-1, 1]),
         }
-
-        if self.final_energies:
-            metrics.update(self.final_energies)
-
-        return metrics
 
 def _check_pyelastica() -> None:
     if not PYELASTICA_AVAILABLE:
@@ -206,13 +193,6 @@ class PinnedBC(ea.ConstraintBase):
             rod.velocity_collection[..., 0] = 0.0
 
 class CounterCurvatureRodSystem:
-    """
-    A PyElastica-based rod system configured for biological counter-curvature simulations.
-
-    This class bridges the information-field theory (IEC) to the Cosserat rod physics engine.
-    It maps biological inputs (protein concentrations, ECM organization) to mechanical
-    properties like stiffness anisotropy and rest curvature.
-    """
     def __init__(
         self,
         rod: ea.CosseratRod,
@@ -345,26 +325,6 @@ class CounterCurvatureRodSystem:
             f"anisotropy={anisotropy:.2f}>"
         )
 
-    def get_configuration(self) -> Dict[str, Any]:
-        """Return a dictionary of the system configuration for logging."""
-        # Calculate anisotropy again for the dict
-        anisotropy = 1.0
-        if hasattr(self.rod, "bend_matrix") and self.rod.bend_matrix.shape[2] > 0:
-            b00 = self.rod.bend_matrix[0, 0, 0]
-            b11 = self.rod.bend_matrix[1, 1, 0]
-            if b11 != 0:
-                anisotropy = b00 / b11
-
-        return {
-            "n_elements": self.n_elements,
-            "length": self.length,
-            "chi_kappa": self.params.chi_kappa,
-            "chi_tau": self.params.chi_tau,
-            "chi_E": self.params.chi_E,
-            "chi_M": self.params.chi_M,
-            "stiffness_anisotropy": anisotropy
-        }
-
     def run_simulation(
         self,
         final_time: float,
@@ -451,30 +411,11 @@ class CounterCurvatureRodSystem:
         else:
             padded_kappa = np.empty((0, self.n_elements + 1, 3))
 
-        # Compute final energies
-        final_energies = {}
-        if hasattr(self.rod, "compute_bending_energy"):
-            final_energies["bending_energy"] = float(self.rod.compute_bending_energy())
-        if hasattr(self.rod, "compute_shear_energy"):
-            final_energies["shear_energy"] = float(self.rod.compute_shear_energy())
-        if hasattr(self.rod, "compute_translational_energy"):
-            final_energies["translational_energy"] = float(self.rod.compute_translational_energy())
-        if hasattr(self.rod, "compute_rotational_energy"):
-            final_energies["rotational_energy"] = float(self.rod.compute_rotational_energy())
-
-        # Gravitational Potential Energy
-        if hasattr(self.rod, "mass") and hasattr(self.rod, "position_collection"):
-            # Potential Energy = m * g * h
-            # Gravity is in -Z direction usually for gravity vector (0,0,-g), so U = m*g*z
-            z_pos = self.rod.position_collection[2, :]
-            final_energies["gravitational_energy"] = float(np.sum(self.rod.mass * gravity * z_pos))
-
         return SimulationResult(
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),
             kappa=padded_kappa,
-            info_field=self.info_field,
-            final_energies=final_energies
+            info_field=self.info_field
         )
 
 __all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques"]

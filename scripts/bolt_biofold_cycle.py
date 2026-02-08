@@ -26,11 +26,9 @@ SEED_LIST = [
     {"gene_symbol": "PIEZO2", "uniprot_accession": "Q9H5I5", "source": "Mechanotransduction", "total_score": 95, "priority_score": 95},
     {"gene_symbol": "LBX1",   "uniprot_accession": "P52954", "source": "Proprioception", "total_score": 95, "priority_score": 95},
     {"gene_symbol": "LMNA",   "uniprot_accession": "P02545", "source": "Nucleus", "total_score": 92, "priority_score": 92},
+    {"gene_symbol": "FBN1",   "uniprot_accession": "P35555", "source": "ECM", "total_score": 92, "priority_score": 92},
     {"gene_symbol": "KIF3A",  "uniprot_accession": "Q9Y496", "source": "Cilia", "total_score": 88, "priority_score": 88},
     {"gene_symbol": "COL12A1","uniprot_accession": "Q99715", "source": "ECM", "total_score": 88, "priority_score": 88},
-    {"gene_symbol": "PCDH15", "uniprot_accession": "Q96QU1", "source": "Mechanotransduction", "total_score": 90, "priority_score": 90},
-    {"gene_symbol": "USH1C",  "uniprot_accession": "Q9Y6N9", "source": "Mechanotransduction", "total_score": 90, "priority_score": 90},
-    {"gene_symbol": "TMC1",   "uniprot_accession": "Q8TDI8", "source": "Mechanotransduction", "total_score": 90, "priority_score": 90},
 ]
 
 def setup_inputs():

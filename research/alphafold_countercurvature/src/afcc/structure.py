@@ -56,19 +56,30 @@ class StructureParser:
         try:
             with open(pdb_path, 'r') as f:
                 for line in f:
-                    # Bolt Optimization: specialized CA check avoiding strip() and allocs
-                    # Check "ATOM" (start) and " CA " (cols 12-16 => indices 12-15 match " CA ")
-                    if line.startswith("ATOM") and line[13:15] == "CA" and line[12] == " ":
-                        # Only handle primary conformations (' ' or 'A') at index 16
-                        if line[16] == ' ' or line[16] == 'A':
+                    if line.startswith("ATOM"):
+                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
+                        # PDB format (1-based index in documentation, 0-based slice here):
+                        # 12-16: Atom name
+                        # 16: AltLoc (Alternate location indicator)
+                        # 17-20: Residue name
+                        # 21: Chain identifier
+                        # 30-38: X
+                        # 38-46: Y
+                        # 46-54: Z
+                        # 60-66: Temperature factor (pLDDT)
+
+                        atom_name = line[12:16].strip()
+
+                        # Only handle primary conformations (' ' or 'A')
+                        # AF structures usually don't have altlocs, but we check for safety.
+                        alt_loc = line[16]
+                        if atom_name == 'CA' and (alt_loc == ' ' or alt_loc == 'A'):
                             try:
-                                # Residue name 17:20 (3 chars). Skip strip() for speed.
-                                res_name = line[17:20]
+                                res_name = line[17:20].strip()
                                 x = float(line[30:38])
                                 y = float(line[38:46])
                                 z = float(line[46:54])
                                 b_factor = float(line[60:66])
-                                res_name = line[17:20].strip()
 
                                 coords_list.append([x, y, z])
                                 plddt_list.append(b_factor)

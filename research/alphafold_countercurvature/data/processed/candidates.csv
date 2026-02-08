@@ -2,8 +2,6 @@ gene_symbol,uniprot_accession,source,total_score,priority_score,justification
 PIEZO2,Q9H5I5,Mechanotransduction,95,95,Default Seed List
 LBX1,P52954,Proprioception,95,95,Default Seed List
 LMNA,P02545,Nucleus,92,92,Default Seed List
+FBN1,P35555,ECM,92,92,Default Seed List
 KIF3A,Q9Y496,Cilia,88,88,Default Seed List
 COL12A1,Q99715,ECM,88,88,Default Seed List
-PCDH15,Q96QU1,Mechanotransduction,90,90,Default Seed List
-USH1C,Q9Y6N9,Mechanotransduction,90,90,Default Seed List
-TMC1,Q8TDI8,Mechanotransduction,90,90,Default Seed List

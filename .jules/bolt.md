@@ -39,9 +39,3 @@
 **Learning:** The `exposed_surface_proxy` calculation was consuming >90% of geometry processing time because `cKDTree.query_ball_point` ran sequentially on a single core for every structure. For N=1000-2000 residues, this took ~0.66s.
 
 **Action:** Tuned `cKDTree` parameters: set `leafsize=64` (up from 16) to improve traversal efficiency for dense protein coordinates, and set `workers=-1` to parallelize the query using all available cores. This reduced execution time to ~0.22s (~3x speedup) for the SASA component, and reduced total per-structure analysis time to < 10ms for N=2000 in benchmarks.
-
-## 2026-11-01 - [Optimized PDB Parsing Loop]
-
-**Learning:** The `StructureParser.fast_parse_pdb_arrays` method used a Python `for line in f` loop with repeated string slicing (`line[12:16].strip()`) and checks for every line. For large datasets, the iterator overhead and string operations became a bottleneck.
-
-**Action:** Optimized the parser to use `readlines()` (bulk read) and direct index-based character checks (`line[13:15] == "CA"`) instead of slicing/stripping. This yielded a ~1.5x speedup (7ms -> 5ms) for medium structures like PIEZO2, improving throughput for the initial analysis pass.

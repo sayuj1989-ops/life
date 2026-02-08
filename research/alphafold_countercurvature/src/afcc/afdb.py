@@ -186,28 +186,12 @@ class AlphaFoldFetcher:
         # Remove old entry
         self.manifest = self.manifest[self.manifest['uniprot'] != uniprot]
 
-        # Convert to relative paths
-        # Assume data_dir is research/alphafold_countercurvature/data/raw
-        # Repo root is 4 levels up
-        repo_root = self.data_dir.parent.parent.parent.parent
-        # print(f"DEBUG: data_dir={self.data_dir}, repo_root={repo_root}")
-
-        def make_relative(p_str):
-            if not p_str: return None
-            try:
-                p = Path(p_str)
-                if p.is_absolute():
-                    return str(p.relative_to(repo_root))
-            except ValueError:
-                pass
-            return p_str
-
         new_row = {
             'uniprot': uniprot,
             'gene_symbol': gene,
             'status': status,
-            'pdb_path': make_relative(pdb_path),
-            'pae_path': make_relative(pae_path),
+            'pdb_path': pdb_path,
+            'pae_path': pae_path,
             'sha256_pdb': sha,
             'retrieved_at': time.strftime('%Y-%m-%d %H:%M:%S'),
             'notes': ''

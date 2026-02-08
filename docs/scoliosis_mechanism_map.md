@@ -275,51 +275,6 @@ The map categorizes the system into four layers:
 
 ---
 
-### 19. The Rigid Spine Pathway (SELENON)
-
-**Arc Added**: `SELENON` $\rightarrow$ `ER_Ca` $\rightarrow$ `Muscle_Tone`.
-
-*   **Source**: `SELENON` (Selenoprotein N).
-*   **Mechanism**: **ER-Sarcomere Coupling**.
-    1.  **Redox Sensing**: SELENON is an Endoplasmic Reticulum (ER) resident protein that senses luminal redox state.
-    2.  **Calcium Handling**: It regulates the SERCA pumps and Ryanodine Receptors (RyR1), essential for controlling calcium flux.
-    3.  **Excitation-Contraction**: This calcium handling is critical for maintaining the "resting tone" and contraction dynamics of slow-twitch paraspinal muscles.
-*   **Property**: **Muscle Tone Balance** (and Dynamic Stiffness).
-*   **Role**: **Dynamic Adaptation**. The spine requires muscles that can adaptively relax and contract to maintain posture.
-    *   **Rigidity**: Loss of SELENON leads to a failure of this dynamic control, resulting in the "Rigid Spine" phenotype (RSMD1), where the spine becomes stiff and unable to counter-curve effectively against gravity.
-*   **Evidence**: Moghadaszadeh et al. (2001) identified SELENON mutations as the cause of Rigid Spine Muscular Dystrophy.
-*   **Counter-Curvature Implication**: A "Frozen" spine is as dangerous as a "Floppy" one. The Counter-Curvature mechanism requires *active* compliance, not passive rigidity.
-
-> **Hypothesis**: The ER acts as the "Engine Room" for postural tone. While the Nucleus sets the *gain* (sensitivity), the ER provides the *fuel* (Calcium) for the corrective torque.
-
-**Citations**:
-*   *Moghadaszadeh, B., et al. (2001). Identification of a new locus for a peculiar form of congenital muscular dystrophy with early rigidity of the spine, on chromosome 1p35-36. The American Journal of Human Genetics, 69(1), 137-147.* https://doi.org/10.1086/321271
-
----
-
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.
-
----
-
-### 20. The Melatonin Gain Control Pathway
-
-**Arc Added**: `MELATONIN` $\rightarrow$ `MT2` $\rightarrow$ `Gi_cAMP` $\rightarrow$ `Gain`.
-
-*   **Source**: `MELATONIN` (Pineal Hormone), `MT2` (Melatonin Receptor 1B).
-*   **Mechanism**: **Circadian Sensitivity Switching**.
-    1.  **Night-Time Signal**: Melatonin levels peak at night.
-    2.  **Gi Activation**: Binding to MT2 receptors activates $G_i$ proteins.
-    3.  **cAMP Suppression**: This inhibits Adenylyl Cyclase, reducing intracellular cAMP levels.
-    4.  **Gain Reduction**: Lower cAMP reduces PKA activity, effectively dampening the cell's mechanosensitivity (turning down the "Gain").
-*   **Property**: **Feedback Gain ($G_{mech}$)**.
-*   **Role**: **Constitutive Day Prevention**. The spine must be "sensitive" during the day (loaded) to adapt, but "quiet" at night (unloaded) to grow symmetrically. Melatonin acts as the "Off Switch" for mechanotransduction.
-    *   **The Defect**: In AIS, this signaling pathway is broken (Moreau et al., 2004). The cells remain in a high-sensitivity "Day Mode" 24/7. When the patient lies down (unloaded), the hypersensitive system detects "phantom" errors and drives asymmetric growth.
-*   **Evidence**: Moreau et al. (2004) identified a functional defect in Gi-protein signaling in AIS osteoblasts. Azeddine et al. (2007) linked this to high calmodulin levels.
-
-> **Hypothesis**: Scoliosis is a "Nightmare of the Spine". It grows crookedly at night because it cannot "sleep" (mechanically speaking). It remains awake and reactive to noise.
-
-**Citations**:
-*   *Moreau, A., et al. (2004). Melatonin signaling dysfunction in adolescent idiopathic scoliosis. Spine, 29(16), 1772-1781.* https://doi.org/10.1097/01.brs.0000134567.89481.54
-*   *Azeddine, B., et al. (2007). Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis. Clinical Orthopaedics and Related Research, 462, 45-52.*

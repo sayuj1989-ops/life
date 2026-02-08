@@ -95,14 +95,31 @@ class TestParserOptimization(unittest.TestCase):
 
         coords, plddt, resnames = self.parser.fast_parse_pdb_arrays(pdb_path)
 
-        # We expect 3 atoms (1, 2, 3)
+        # We expect 3 atoms (1, 2, 3). The check verifies that invalid atoms (4, 5, 6) were correctly rejected.
         self.assertEqual(len(coords), 3)
         np.testing.assert_array_almost_equal(coords[0], [11.0, 11.0, 11.0]) # " CA "
         np.testing.assert_array_almost_equal(coords[1], [12.0, 12.0, 12.0]) # "CA  "
         np.testing.assert_array_almost_equal(coords[2], [13.0, 13.0, 13.0]) # "  CA"
 
-        # Verify residue names
-        self.assertEqual(resnames[0], 'ALA')
+        # Verify residue names for ALL residues as requested by review
+        np.testing.assert_array_equal(resnames, ['ALA', 'ALA', 'ALA'])
+
+    def test_short_line_safety(self):
+        # Verify that short lines do not crash the parser
+        lines = [
+            "ATOM      1  CA  ALA A   1      11.000  11.000  11.000  1.00 90.00           C",
+            "ATOM_TRUNCATED_LINE", # Short line, should be skipped
+            "ATOM      2  CA"       # Another short line
+        ]
+        pdb_path = Path(self.tmp_dir.name) / "short.pdb"
+        with open(pdb_path, "w") as f:
+            f.write("\n".join(lines))
+
+        coords, plddt, resnames = self.parser.fast_parse_pdb_arrays(pdb_path)
+
+        # Only the first line is valid
+        self.assertEqual(len(coords), 1)
+        np.testing.assert_array_equal(resnames, ['ALA'])
 
 if __name__ == '__main__':
     unittest.main()

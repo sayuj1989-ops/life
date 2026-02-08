@@ -57,32 +57,27 @@ class StructureParser:
             with open(pdb_path, 'r') as f:
                 for line in f:
                     if line.startswith("ATOM"):
-                        # Check for CA atom (Atom name is cols 12-16, 0-indexed: 12-15 usually)
-                        # PDB format (1-based index in documentation, 0-based slice here):
-                        # 12-16: Atom name
-                        # 16: AltLoc (Alternate location indicator)
-                        # 17-20: Residue name
-                        # 21: Chain identifier
-                        # 30-38: X
-                        # 38-46: Y
-                        # 46-54: Z
-                        # 60-66: Temperature factor (pLDDT)
+                        # Safety: Ensure line has enough characters for both CA check (16) and coordinates (66)
+                        if len(line) < 67:
+                            continue
 
                         # Bolt Optimization: Fast CA check avoiding string slicing
                         # Standard PDB "ATOM  " records place Atom Name in cols 13-16 (1-based), i.e., indices 12-15 (0-based).
                         # " CA " (standard) -> 12=' ', 13='C', 14='A', 15=' '
                         # "CA  " (left-aligned) -> 12='C', 13='A', 14=' ', 15=' '
                         is_ca = False
-                        # Check most discriminative chars first (13, 14)
+
+                        # Check most discriminative chars first (13, 14) because they are 'C' and 'A' in the standard
+                        # alignment " CA ", which is the most common case in PDBs.
                         if line[13] == 'C' and line[14] == 'A':
-                            if line[12] == ' ' and line[15] == ' ':
-                                is_ca = True
+                             if line[12] == ' ' and line[15] == ' ':
+                                 is_ca = True
                         elif line[12] == 'C' and line[13] == 'A':
-                            if line[14] == ' ' and line[15] == ' ':
-                                is_ca = True
+                             if line[14] == ' ' and line[15] == ' ':
+                                 is_ca = True
                         elif line[14] == 'C' and line[15] == 'A':
-                            if line[12] == ' ' and line[13] == ' ':
-                                is_ca = True
+                             if line[12] == ' ' and line[13] == ' ':
+                                 is_ca = True
 
                         # Only handle primary conformations (' ' or 'A')
                         # AF structures usually don't have altlocs, but we check for safety.

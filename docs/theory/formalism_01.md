@@ -188,8 +188,8 @@ $$ \Omega_{VP} = \frac{\pi_V}{\pi_P} = \frac{\sigma_P^2}{\sigma_V^2} $$
 *   **Symbols**:
     *   $\pi_V$: Precision of the global vestibular error signal (inverse variance) $[1]$.
     *   $\pi_P$: Precision of the local proprioceptive error signal $[1]$.
-    *   $\sigma_V^2$: Variance of vestibular noise.
-    *   $\sigma_P^2$: Variance of proprioceptive noise.
+    *   $\sigma_V^2$: Variance of vestibular noise on a normalized estimate of global tilt/posture (dimensionless).
+    *   $\sigma_P^2$: Variance of proprioceptive noise on the same normalized latent posture/curvature estimate (dimensionless), so that their ratio $\sigma_P^2 / \sigma_V^2$ is itself dimensionless.
 *   **Physical Interpretation**:
     *   **High Ratio ($\Omega_{VP} \gg 1$)**: The organism minimizes global error (Gravity). The spine aligns vertically.
     *   **Low Ratio ($\Omega_{VP} \ll 1$)**: The organism minimizes local error (Proprioception). The spine conforms to intrinsic muscle tone priors, ignoring gravity.

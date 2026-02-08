@@ -1,6 +1,7 @@
 # Evidence Note: Vestibular Gain Asymmetry as a Driver of Scoliosis
-**Date:** 2026-10-30  
-**Topic:** Vestibular Gain Asymmetry as a Driver of Scoliosis  
+
+**Date:** 2026-10-30
+**Topic:** Vestibular Gain Asymmetry as a Driver of Scoliosis
 **References:** Pialasse et al. 2015; Lambert et al. 2009; H_2025_02_20_Active_Inference
 
 ## Claim

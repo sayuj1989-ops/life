@@ -275,24 +275,25 @@ The map categorizes the system into four layers:
 
 ---
 
-### 19. The Glymphatic Stasis Pathway
+### 19. The Rigid Spine Pathway (SELENON)
 
-**Arc Added**: `Hydraulic_Congestion` $\rightarrow$ `Glymphatic_Stasis` $\rightarrow$ `Astrogliosis`.
+**Arc Added**: `SELENON` $\rightarrow$ `ER_Ca` $\rightarrow$ `Muscle_Tone`.
 
-*   **Source**: **Hydraulic Congestion** (IVD Swelling), `Glymphatic_Stasis` (Waste Accumulation).
-*   **Mechanism**: **Toxic Accumulation & Inflammation**.
-    1.  **Hydraulic Stagnation**: Microgravity or sedentary unloading causes venous and CSF congestion ("The Hydraulic Cast"), reducing the convective flow required for glymphatic clearance.
-    2.  **Waste Accumulation**: Metabolic byproducts (e.g., Lactate, Amyloid-beta) accumulate in the spinal parenchyma due to reduced clearance (40% drop).
-    3.  **Astrogliosis**: This toxic environment irritates ependymal cells and astrocytes, triggering reactive astrogliosis (GFAP upregulation).
-    4.  **Neuroinflammation**: Reactive astrocytes secrete pro-inflammatory cytokines that disrupt proprioceptive signaling circuits.
-*   **Property**: **Muscle Tone Balance** (via Neural Signal-to-Noise Ratio).
-*   **Role**: **Metabolic Maintenance**. The "Counter-Curvature" control loop requires a clean chemical environment to function. Glymphatic stasis introduces "chemical noise" that blinds the system.
-*   **Simulation Support**: Mader et al. (2026) predict that simulated microgravity causes a 40% reduction in spinal CSF clearance, leading to local toxicity and inflammation.
+*   **Source**: `SELENON` (Selenoprotein N).
+*   **Mechanism**: **ER-Sarcomere Coupling**.
+    1.  **Redox Sensing**: SELENON is an Endoplasmic Reticulum (ER) resident protein that senses luminal redox state.
+    2.  **Calcium Handling**: It regulates the SERCA pumps and Ryanodine Receptors (RyR1), essential for controlling calcium flux.
+    3.  **Excitation-Contraction**: This calcium handling is critical for maintaining the "resting tone" and contraction dynamics of slow-twitch paraspinal muscles.
+*   **Property**: **Muscle Tone Balance** (and Dynamic Stiffness).
+*   **Role**: **Dynamic Adaptation**. The spine requires muscles that can adaptively relax and contract to maintain posture.
+    *   **Rigidity**: Loss of SELENON leads to a failure of this dynamic control, resulting in the "Rigid Spine" phenotype (RSMD1), where the spine becomes stiff and unable to counter-curve effectively against gravity.
+*   **Evidence**: Moghadaszadeh et al. (2001) identified SELENON mutations as the cause of Rigid Spine Muscular Dystrophy.
+*   **Counter-Curvature Implication**: A "Frozen" spine is as dangerous as a "Floppy" one. The Counter-Curvature mechanism requires *active* compliance, not passive rigidity.
 
-> **Hypothesis**: "Stagnation is Inflammation". The spine needs to move (pump) to stay clean. Unloading creates a "septic" environment where the sensors (neurons) are poisoned by their own waste.
+> **Hypothesis**: The ER acts as the "Engine Room" for postural tone. While the Nucleus sets the *gain* (sensitivity), the ER provides the *fuel* (Calcium) for the corrective torque.
 
 **Citations**:
-*   *Mader, J., et al. (2026). Glymphatic stasis in the spinal cord during simulated microgravity. Nature Neuroscience, 29.*
+*   *Moghadaszadeh, B., et al. (2001). Identification of a new locus for a peculiar form of congenital muscular dystrophy with early rigidity of the spine, on chromosome 1p35-36. The American Journal of Human Genetics, 69(1), 137-147.* https://doi.org/10.1086/321271
 
 ---
 

@@ -368,7 +368,7 @@ The theory makes specific predictions about the relationship between genetic ani
 
 ### Test Z: The Stochastic Resonance Rescue
 *   **Hypothesis**: If microgravity scoliotic drift is due to high vestibular noise ($\sigma_V^2$), adding sub-threshold broad-spectrum vibration (Stochastic Resonance) should restore the signal detectability, effectively increasing $\pi_V$ and restoring $\Omega_{VP}$.
-*   **Data Needed**: Curvature progression in tail-suspended mice with vs. without imperceptible mechanical vibration (30-100Hz) applied to the skull/mastoid.
+*   **Data Needed**: Curvature progression in tail-suspended mice with vs. without imperceptible mechanical vibration applied to the skull/mastoid, using a candidate frequency band for stochastic resonance whose optimal range must be determined experimentally.
 *   **Refutation**: If vibration worsens the drift (increases noise) rather than stabilizing it (resonance), the precision-weighted model is incorrect. (Reference: Proske & Gandevia, 2012; Friston, 2010).
 
 ## 7. References

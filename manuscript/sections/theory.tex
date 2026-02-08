@@ -4,7 +4,23 @@ We propose that the robust S-shaped geometry of the spine arises not from passiv
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
+We model the spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s) \in \mathbb{R}^3$ and an orthonormal director triad $\{\mathbf{d}_1(s), \mathbf{d}_2(s), \mathbf{d}_3(s)\}$ attached to each cross-section, where $s \in [0, L]$ is the arclength coordinate in the reference configuration. The director $\mathbf{d}_3$ is normal to the cross-section, while $\mathbf{d}_1$ and $\mathbf{d}_2$ define the principal axes of the vertebral body.
+
+The kinematics of the rod are described by the strain vector $\mathbf{v}(s)$ and the curvature vector $\boldsymbol{\kappa}(s)$, related to the spatial derivatives of the configuration variables:
+\begin{equation}
+\mathbf{r}'(s) = \mathbf{v}(s), \quad \mathbf{d}_i'(s) = \boldsymbol{\kappa}(s) \times \mathbf{d}_i(s),
+\label{eq:kinematics}
+\end{equation}
+where $(\cdot)' \equiv \partial_s$. In the reference configuration (stress-free state), these fields take values $\mathbf{v}^0 = \mathbf{d}_3$ (inextensible, shear-free) and $\boldsymbol{\kappa}^0(s)$. The difference between the current and reference states defines the elastic strains: shear/extension $\boldsymbol{\varepsilon} = \mathbf{v} - \mathbf{v}^0$ and bending/twist $\boldsymbol{\omega} = \boldsymbol{\kappa} - \boldsymbol{\kappa}^0$.
+
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
+
+The scalar information field $I(s) \in [0, 1]$ represents the normalized concentration of anterior-posterior patterning morphogens (e.g., HOX proteins) that dictate vertebral identity. We construct $I(s)$ as a superposition of localized Gaussian functions centered at the cervical ($s_C$) and lumbar ($s_L$) lordotic peaks:
+\begin{equation}
+I(s) = A_C \exp\left(-\frac{(s - s_C)^2}{2\sigma_C^2}\right) + A_L \exp\left(-\frac{(s - s_L)^2}{2\sigma_L^2}\right) + I_{\mathrm{base}},
+\label{eq:info_field}
+\end{equation}
+where $A_{C,L}$ and $\sigma_{C,L}$ control the amplitude and width of the morphogenetic domains. This field serves as a "geometric instruction," modulating the rod's resting curvature $\boldsymbol{\kappa}^0(s)$ and local stiffness tensors (Eq.~\ref{eq:iec_energy}). Regions of high information density ($I(s) \approx 1$) correspond to rigid, highly specified vertebral segments, while low-information regions are more susceptible to gravitational deformation.
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{ab}$ is determined by the mass-energy distribution $T_{ab}$. in our context, the information field acts as a source of \emph{information-matter density} $\rho_{I}(s)$ that dictates the target curvature $\kappa_{\mathrm{rest}}(s)$, effectively "shaping" the biological spacetime in which the musculoskeletal system must equilibrate. This field is physically anchored by the structural specificity of developmental transcription factors; for instance, AlphaFold 3 analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) reveals highly conserved amino acid domains (avg. pLDDT $\sim 64.1$) whose structural rigidity provides the necessary binding affinity landscapes to generate the segmented information profiles used in our model.

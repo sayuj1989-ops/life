@@ -39,3 +39,37 @@ Equilibrium criterion & $v_{\max} < 10^{-6}$ & m/s & Kinetic energy threshold \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Thermodynamic cost proteins grouped by dissipation term. Metrics derived from AlphaFold structural analysis.}
+\label{tab:thermo_proteins}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Dissipation Term} & \textbf{Gene} & \textbf{Key Metric} & \textbf{Structural Role/Note} \\
+\midrule
+\multicolumn{4}{l}{\textit{Proprioceptive Feedback ($\eta_p$)}} \\
+ & PIEZO2 & Aniso: 4.44 & Vector mechanosensor \\
+ & PIEZO1 & Aniso: 3.90 & Scalar mechanosensor \\
+ & EGR3 & Aniso: 3.76 & Spindle maintenance TF \\
+ & RUNX3 & Disordered: 56\% & Master regulator (12 hinges) \\
+ & NTRK3 & Hinges: 9 & Survival receptor \\
+\midrule
+\multicolumn{4}{l}{\textit{Active Moment ($\eta_a$)}} \\
+ & VIM & Aniso: 7.47 & Intermediate filament \\
+ & LMNA & Aniso: 4.75 & Nuclear stiffness \\
+ & CAV1 & Aniso: 3.98 & Membrane curvature \\
+ & FLNA & Hinges: 116 & Actin cross-linker \\
+ & LBX1 & Disordered: 61\% & AIS-associated TF \\
+\midrule
+\multicolumn{4}{l}{\textit{Basal Maintenance ($\Gamma_m$)}} \\
+ & COL1A1 & Disordered: 67\% & Type I Collagen (monomer) \\
+ & COMP & pLDDT: 88.1 & Disc matrix protein \\
+ & SIRT1 & Disordered: 47\% & Metabolic sensor \\
+ & SOX9 & -- & Growth plate driver \\
+ & SHH & -- & Morphogen \\
+ & CDKN1A & -- & Growth arrest signal (p21) \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -194,7 +194,9 @@ $$ \Omega_{VP} = \frac{\pi_V}{\pi_P} = \frac{\sigma_P^2}{\sigma_V^2} $$
     *   **High Ratio ($\Omega_{VP} \gg 1$)**: The organism minimizes global error (Gravity). The spine aligns vertically.
     *   **Low Ratio ($\Omega_{VP} \ll 1$)**: The organism minimizes local error (Proprioception). The spine conforms to intrinsic muscle tone priors, ignoring gravity.
     *   **Microgravity Limit**: As $g \to 0$, the vestibular signal-to-noise ratio plummets ($\sigma_V^2 \to \infty$), causing $\Omega_{VP} \to 0$. The spine effectively "hallucinates" a geometry based on noisy local sensors (Geometric Hallucination).
-*   **Measurable Proxy**: The ratio of Vestibulo-Ocular Reflex (VOR) gain to H-reflex slope (Proprioceptive gain).
+*   **Measurable Proxy (hypothesis-generating only)**:
+    *   A coarse, circuit-level heuristic is the ratio of Vestibulo-Ocular Reflex (VOR) gain to H-reflex slope. This compares a predominantly vestibular brainstem reflex to a predominantly proprioceptive spinal reflex and thus only **indirectly** tracks $\Omega_{VP}$; it does **not** assume that VOR and H-reflex operate in the same control loop as spinal alignment.
+    *   More direct experimental proxies for $\Omega_{VP}$ would relate specifically to postural control, e.g. the ratio of vestibular vs proprioceptive perceptual thresholds or gains during controlled perturbation paradigms (galvanic/rotational vestibular stimulation vs muscle/tendon vibration or joint angle perturbation).
 
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 

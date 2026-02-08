@@ -13,6 +13,8 @@ Biological mappings:
   High chi_kappa -> Hyper-growth/High Gain (Adolescent Spurt/AIS).
   Low chi_kappa -> Homeostatic.
 - Torsion Coupling (chi_tau): Represents anisotropic tissue organization.
+- Stiffness Modulation (chi_E): Represents ECM density/crosslinking gradients.
+- Active Moments (chi_M): Represents muscle tone/effort.
 - Boundary Conditions: Represents pelvic anchoring (fixed vs pinned).
 """
 
@@ -100,6 +102,8 @@ def run_experiment(
     anisotropies: list[float],
     chi_kappas: list[float],
     chi_taus: list[float],
+    chi_es: list[float],
+    chi_ms: list[float],
     boundary_condition: str,
     n_elements: int = 50,
     final_time: float = 2.0,
@@ -140,6 +144,8 @@ def run_experiment(
         "stiffness_anisotropy",
         "chi_kappa",
         "chi_tau",
+        "chi_e",
+        "chi_m",
         "boundary_condition",
         "curvature_profile",
         "info_center",
@@ -352,6 +358,22 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--chi-e-list",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="List of stiffness modulation coupling (chi_E) values to sweep"
+    )
+
+    parser.add_argument(
+        "--chi-m-list",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="List of active moment coupling (chi_M) values to sweep"
+    )
+
+    parser.add_argument(
         "--boundary-condition",
         type=str,
         default="fixed",
@@ -427,6 +449,8 @@ if __name__ == "__main__":
     anisotropies = args.anisotropy_list
     chi_kappas = args.chi_kappa_list
     chi_taus = args.chi_tau_list
+    chi_es = args.chi_e_list
+    chi_ms = args.chi_m_list
     final_time = args.final_time
     n_elements = args.n_elements
     curvature_profile = args.curvature_profile
@@ -436,6 +460,8 @@ if __name__ == "__main__":
         anisotropies = [1.0]
         chi_kappas = [0.0]
         chi_taus = [0.0]
+        chi_es = [0.0]
+        chi_ms = [0.0]
         final_time = 0.1
         n_elements = 20
 
@@ -477,6 +503,8 @@ if __name__ == "__main__":
         anisotropies=anisotropies,
         chi_kappas=chi_kappas,
         chi_taus=chi_taus,
+        chi_es=chi_es,
+        chi_ms=chi_ms,
         boundary_condition=args.boundary_condition,
         n_elements=n_elements,
         final_time=final_time,

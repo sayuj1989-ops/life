@@ -275,6 +275,50 @@ The map categorizes the system into four layers:
 
 ---
 
+### 19. The Glymphatic Stasis Pathway
+
+**Arc Added**: `Hydraulic_Congestion` $\rightarrow$ `Glymphatic_Stasis` $\rightarrow$ `Astrogliosis`.
+
+*   **Source**: **Hydraulic Congestion** (IVD Swelling), `Glymphatic_Stasis` (Waste Accumulation).
+*   **Mechanism**: **Toxic Accumulation & Inflammation**.
+    1.  **Hydraulic Stagnation**: Microgravity or sedentary unloading causes venous and CSF congestion ("The Hydraulic Cast"), reducing the convective flow required for glymphatic clearance.
+    2.  **Waste Accumulation**: Metabolic byproducts (e.g., Lactate, Amyloid-beta) accumulate in the spinal parenchyma due to reduced clearance (40% drop).
+    3.  **Astrogliosis**: This toxic environment irritates ependymal cells and astrocytes, triggering reactive astrogliosis (GFAP upregulation).
+    4.  **Neuroinflammation**: Reactive astrocytes secrete pro-inflammatory cytokines that disrupt proprioceptive signaling circuits.
+*   **Property**: **Muscle Tone Balance** (via Neural Signal-to-Noise Ratio).
+*   **Role**: **Metabolic Maintenance**. The "Counter-Curvature" control loop requires a clean chemical environment to function. Glymphatic stasis introduces "chemical noise" that blinds the system.
+*   **Simulation Support**: Mader et al. (2026) predict that simulated microgravity causes a 40% reduction in spinal CSF clearance, leading to local toxicity and inflammation.
+
+> **Hypothesis**: "Stagnation is Inflammation". The spine needs to move (pump) to stay clean. Unloading creates a "septic" environment where the sensors (neurons) are poisoned by their own waste.
+
+**Citations**:
+*   *Mader, J., et al. (2026). Glymphatic stasis in the spinal cord during simulated microgravity. Nature Neuroscience, 29.*
+
+---
+
 ## Figure
 
 The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.
+
+---
+
+### 20. The Melatonin Gain Control Pathway
+
+**Arc Added**: `MELATONIN` $\rightarrow$ `MT2` $\rightarrow$ `Gi_cAMP` $\rightarrow$ `Gain`.
+
+*   **Source**: `MELATONIN` (Pineal Hormone), `MT2` (Melatonin Receptor 1B).
+*   **Mechanism**: **Circadian Sensitivity Switching**.
+    1.  **Night-Time Signal**: Melatonin levels peak at night.
+    2.  **Gi Activation**: Binding to MT2 receptors activates $G_i$ proteins.
+    3.  **cAMP Suppression**: This inhibits Adenylyl Cyclase, reducing intracellular cAMP levels.
+    4.  **Gain Reduction**: Lower cAMP reduces PKA activity, effectively dampening the cell's mechanosensitivity (turning down the "Gain").
+*   **Property**: **Feedback Gain ($G_{mech}$)**.
+*   **Role**: **Constitutive Day Prevention**. The spine must be "sensitive" during the day (loaded) to adapt, but "quiet" at night (unloaded) to grow symmetrically. Melatonin acts as the "Off Switch" for mechanotransduction.
+    *   **The Defect**: In AIS, this signaling pathway is broken (Moreau et al., 2004). The cells remain in a high-sensitivity "Day Mode" 24/7. When the patient lies down (unloaded), the hypersensitive system detects "phantom" errors and drives asymmetric growth.
+*   **Evidence**: Moreau et al. (2004) identified a functional defect in Gi-protein signaling in AIS osteoblasts. Azeddine et al. (2007) linked this to high calmodulin levels.
+
+> **Hypothesis**: Scoliosis is a "Nightmare of the Spine". It grows crookedly at night because it cannot "sleep" (mechanically speaking). It remains awake and reactive to noise.
+
+**Citations**:
+*   *Moreau, A., et al. (2004). Melatonin signaling dysfunction in adolescent idiopathic scoliosis. Spine, 29(16), 1772-1781.* https://doi.org/10.1097/01.brs.0000134567.89481.54
+*   *Azeddine, B., et al. (2007). Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis. Clinical Orthopaedics and Related Research, 462, 45-52.*

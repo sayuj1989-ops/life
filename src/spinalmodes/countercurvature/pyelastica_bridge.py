@@ -193,6 +193,13 @@ class PinnedBC(ea.ConstraintBase):
             rod.velocity_collection[..., 0] = 0.0
 
 class CounterCurvatureRodSystem:
+    """
+    A PyElastica-based rod system configured for biological counter-curvature simulations.
+
+    This class bridges the information-field theory (IEC) to the Cosserat rod physics engine.
+    It maps biological inputs (protein concentrations, ECM organization) to mechanical
+    properties like stiffness anisotropy and rest curvature.
+    """
     def __init__(
         self,
         rod: ea.CosseratRod,

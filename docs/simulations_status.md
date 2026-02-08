@@ -23,3 +23,4 @@
 | 2026-01-31 | weekly-sim-growth-width | info_width | Localized growth (Width=0.1) triggers massive lateral S-shape (S_lat > 0.9), acting as a 'hinge' instability. | [Report](../outputs/sim/2026-01-31/report.md) |
 | 2026-02-01 | weekly-sim-critical-anisotropy | stiffness_anisotropy | High growth (chi=10) with weak torsion (chi=0.2) remained stable (Dev < 8mm) across all anisotropy levels. | [Report](../outputs/sim/2026-02-01/report.md) |
 | 2026-02-06 | weekly-sim-tilt-location | tilt_deg, info_center | Growth at 0.4L (Thoracolumbar) + 30 deg tilt triggers massive Cobb (84 deg). Mid-thoracic (0.6L) is surprisingly stable. | [Report](../outputs/sim/2026-02-06/report.md) |
+| 2026-02-08 | weekly-sim-growth-torsion-interact | chi_kappa, chi_tau | High torsion (chi=5) destabilizes moderate growth (chi=10) but suppresses high growth (chi=20). | [Report](../outputs/sim/2026-02-08/report.md) |

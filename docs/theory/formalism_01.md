@@ -181,18 +181,18 @@ $$ E_{nuc} = E_{basal} + \Gamma_{CS} \cdot [\text{H3K9me3}] $$
 
 ### 2.13. The Vestibular Precision Ratio ($\Omega_{VP}$)
 
-We define the Vestibular Precision Ratio as the ratio of the global vestibular sensory gain to the local proprioceptive sensory gain.
+In the Active Inference framework, the spine integrates global gravitational cues (Vestibular) and local strain cues (Proprioceptive) weighted by their respective precisions (inverse variances). We define $\Omega_{VP}$ as the ratio of these precisions.
 
-$$ \Omega_{VP} = \frac{G_{VSR}}{G_{H}} $$
+$$ \Omega_{VP} = \frac{\pi_V}{\pi_P} = \frac{\sigma_P^2}{\sigma_V^2} $$
 
 *   **Symbols**:
-    *   $G_{VSR}$: Gain of the Vestibulo-Spinal Reflex (global verticality reference).
-    *   $G_{H}$: Gain of the H-Reflex (local muscle length reference).
-*   **Dimensions**: $[1]$ (Dimensionless).
+    *   $\pi_V, \pi_P$: Precision of Vestibular and Proprioceptive signals $[1]$.
+    *   $\sigma_V^2, \sigma_P^2$: Variance (noise) of the respective sensory channels $[1]$.
 *   **Physical Interpretation**:
-    *   $\Omega_{VP} \approx 1$: Balanced integration of global and local cues (Healthy).
-    *   $\Omega_{VP} > 1.5$: Vestibular dominance. The system prioritizes "verticality" over local curvature, potentially driving a "Geometric Hallucination" where the spine curves to satisfy a false vertical reference.
-*   **Measurable Proxy**: The ratio of Vestibular Evoked Myogenic Potential (VEMP) amplitude to H-Reflex amplitude in paraspinal muscles.
+    *   $\Omega_{VP} \gg 1$: The system relies on the Global Gravity Vector (Vestibular Dominance). Stable but rigid.
+    *   $\Omega_{VP} \ll 1$: The system relies on Local Strain (Proprioceptive Dominance). Flexible but prone to "geometric hallucinations" (drifting without a vertical reference).
+    *   **Scoliosis Mechanism**: We hypothesize scoliosis begins when $\Omega_{VP}$ drops below a critical threshold (e.g., due to vestibular noise or proprioceptive hypersensitivity), causing the spine to optimize for a local "phantom" curvature.
+*   **Measurable Proxy**: The ratio of the gain of the Vestibulo-Spinal Reflex (VSR) to the gain of the Proprioceptive H-Reflex.
 
 ### 2.14. The Circadian Gain Modulation ($\Gamma_{circ}$)
 
@@ -377,15 +377,15 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: H3K9me3 ChIP-Seq or IF in spaceflown samples vs ground controls.
 *   **Refutation**: If H3K9me3 levels are stable or increase in microgravity, the "Scalar Senescence" model is falsified. (Reference: Stephens et al., 2017).
 
-### Test Y: The Gain Mismatch Prediction
-*   **Hypothesis**: AIS progression is driven by a sensory re-weighting where $\Omega_{VP}$ significantly exceeds unity ($\Omega_{VP} > 1.5$), causing the system to ignore local proprioceptive error signals ($G_H$ suppression) in favor of a biased vestibular reference.
-*   **Data Needed**: Simultaneous recording of VEMP and H-Reflex gains in paraspinal muscles of AIS adolescents vs. healthy controls, correlated with Cobb angle.
-*   **Refutation**: If AIS patients exhibit normal or depressed $\Omega_{VP}$ ratios (e.g., low vestibular gain), the "Vestibular Dominance" hypothesis is falsified. (Reference: Pialasse et al., 2015).
+### Test Y: The Sensory Reweighting
+*   **Hypothesis**: Increasing vestibular precision ($\pi_V$) via Stochastic Vestibular Stimulation (SVS) will increase $\Omega_{VP}$ and reduce paraspinal EMG asymmetry in scoliotic patients.
+*   **Data Needed**: Paraspinal EMG coherence and Cobb angle measurements in AIS patients during active SVS treatment vs. sham.
+*   **Refutation**: If SVS fails to reduce asymmetry, the vestibular input is not the limiting factor in the precision ratio. (Reference: Pialasse et al., 2015).
 
-### Test Z: The Galvanic Sensitivity
-*   **Hypothesis**: If $\Omega_{VP} > 1$, the organism is hypersensitive to vestibular noise. Application of Galvanic Vestibular Stimulation (GVS) should induce a larger postural sway amplitude in high-$\Omega_{VP}$ subjects compared to low-$\Omega_{VP}$ controls.
-*   **Data Needed**: Center of Pressure (CoP) displacement measurements during sub-threshold GVS in AIS patients, correlated with $\Omega_{VP}$.
-*   **Refutation**: If GVS sensitivity is uniform across the population regardless of the VEMP/H-Reflex ratio, the gain mismatch does not translate to functional instability. (Reference: Pialasse et al., 2015).
+### Test Z: The Hallucination Trigger
+*   **Hypothesis**: Artificially reducing proprioceptive precision ($\pi_P$) via tendon vibration (inducing noise $\sigma_P^2$) will force a shift to vestibular dominance ($\Omega_{VP} \uparrow$), temporarily straightening the spine if the curvature was driven by bad proprioceptive priors.
+*   **Data Needed**: Real-time curvature tracking of scoliotic mice/zebrafish during high-frequency tendon vibration.
+*   **Refutation**: If "jamming" proprioception does not alter the curvature, the deformity is structural (fixed) rather than actively maintained by sensory loops. (Reference: Proske & Gandevia, 2012).
 
 ### Test AA: The Night-Time Suppression Failure
 *   **Hypothesis**: AIS patients exhibit a specific failure of night-time muscle tone suppression due to "Constitutive Day" signaling.
@@ -427,7 +427,5 @@ The theory makes specific predictions about the relationship between genetic ani
 26. **Dudek, M., et al. (2017).** "The intervertebral disc contains a functional circadian clock that regulates matrix homeostasis." *Nature Communications*. (Foundational IVD clock paper).
 27. **Nava, M. M., et al. (2020).** "Heterochromatin-driven nuclear softening protects the genome against mechanical stress-induced damage." *Cell*, 181(4). (Establishes the link between H3K9me3 and nuclear stiffness).
 28. **Stephens, A. D., et al. (2017).** "Chromatin histone modifications and rigidity affect nuclear morphology independent of lamins." *Molecular Biology of the Cell*, 28(14). (Separates chromatin contribution from Lamin A/C).
-29. **Pialasse, J. P., et al. (2015).** "Vestibulospinal function is altered in adolescents with idiopathic scoliosis." *Clinical Neurophysiology*, 126(10). (Evidence for vestibular gain alteration).
-30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*, 92(4). (Foundational proprioception text).
-31. **Moreau, A., et al. (2004).** "Melatonin signaling dysfunction in adolescent idiopathic scoliosis." *Spine*, 29(16). (Demonstrates the Gi-signaling defect).
-32. **Azeddine, B., et al. (2007).** "Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis." *Clinical Orthopaedics and Related Research*, 462. (Mechanistic follow-up).
+29. **Pialasse, J. P., et al. (2015).** "Vestibulospinal control in idiopathic scoliosis." *Journal of Vestibular Research*. (Vestibular role).
+30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*. (Proprioceptive noise).

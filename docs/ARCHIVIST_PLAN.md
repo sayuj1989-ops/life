@@ -36,7 +36,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Unify Requirements**: Audit `requirements.txt` vs `pyproject.toml` vs `envs/`.
 - [x] **CI/CD Fixes**: Update GitHub workflows to reflect path changes.
 - [x] **Linter Setup**: Ensure `flake8` or `ruff` config is valid and running.
-- [x] **Test Discovery**: Ensure `pytest` can find all tests in the new structure.
+- [ ] **Test Discovery**: Ensure `pytest` can find all tests in the new structure.
 
 ## Phase 4: Final Polish (Low Priority)
 

@@ -150,11 +150,11 @@ The map categorizes the system into four layers:
 *   **Source**: **Hydraulic Mismatch** (Fluid Dynamics), `MMP1` / `MMP3`.
 *   **Mechanism**: **Hydraulic Decoupling & Immune Infiltration**.
     1.  **IVD Swelling**: In microgravity (or due to lack of diurnal compression), the intervertebral disc (IVD) hyper-hydrates, increasing internal pressure.
-    2.  **Fiber Decoupling**: This swelling expands the collagen spacing in the Annulus Fibrosus, effectively "opening the gates."
+    2.  **Fiber Decoupling**: This swelling expands the collagen spacing in the annulus fibrosus, effectively "opening the gates."
     3.  **Macrophage Infiltration**: Immune cells infiltrate these widened gaps.
     4.  **MMP Release**: Macrophages secrete MMPs that preferentially degrade the tension-bearing collagen fibers of the annulus.
 *   **Property**: **Torsional Stiffness ($GJ$)**.
-*   **Role**: **Rotational Locking**. The Annulus Fibrosus acts as a "torsional spring" to prevent rotational instability. Its degradation removes the spine's resistance to twist. **In the context of Counter-Curvature, this torsional failure prevents the spine from maintaining the planar symmetry required to oppose gravity, causing the active "S-curve" to buckle into a passive helix.**
+*   **Role**: **Rotational Locking**. The annulus fibrosus acts as a "torsional spring" to prevent rotational instability. Its degradation removes the spine's resistance to twist. **In the context of Counter-Curvature, this torsional failure prevents the spine from maintaining the planar symmetry required to oppose gravity, causing the active "S-curve" to buckle into a passive helix.**
 *   **Evidence**: Chen et al. (2025) demonstrated that IVD swelling is a precursor to rapid MMP-mediated degradation, leading to a specific loss of torsional stability that precedes axial collapse.
 
 > **Hypothesis**: The "Fat" Disc is a "Weak" Disc. Swelling is often mistaken for health (rehydration), but without the daily cycle of compression to pump out waste and close the collagen lattice, it becomes a stagnant, permeable target for inflammation.
@@ -283,7 +283,7 @@ The map categorizes the system into four layers:
 *   **Mechanism**: **Gravity-Assisted Clearance**.
     1.  The VCL network acts as the primary drainage route for cerebrospinal fluid (CSF) and interstitial fluid (ISF) from the spine (Jacob et al., 2019).
     2.  This drainage relies on the hydrostatic pressure gradient (Gravity) and the "muscle pump" effect of paraspinal muscles.
-    3.  **Failure**: In microgravity or sedentary states, flow stagnates. This "Spinal Congestion" allows inflammatory cytokines (IL-1$\beta$, TNF-$\alpha$) to accumulate in the Annulus Fibrosus.
+    3.  **Failure**: In microgravity or sedentary states, flow stagnates. This "Spinal Congestion" allows inflammatory cytokines (IL-1$\beta$, TNF-$\alpha$) to accumulate in the annulus fibrosus.
     4.  **Degeneration**: Cytokine accumulation triggers MMP upregulation, degrading the disc matrix.
 *   **Property**: **Disc Maintenance** (and Stiffness).
 *   **Role**: **The Hydraulic Janitor**. The spine produces metabolic waste that must be actively cleared. Gravity and movement provide the energy for this clearance. Without it, the tissue stews in its own waste.
@@ -293,7 +293,7 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Jacob, L., et al. (2019). Anatomy and function of the vertebral column lymphatic network in mice. Nature Communications, 10, 4594.* https://doi.org/10.1038/s41467-019-12568-w
-*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6
+*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.*
 
 ---
 

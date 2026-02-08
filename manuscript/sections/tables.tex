@@ -42,34 +42,31 @@ Equilibrium criterion & $v_{\max} < 10^{-6}$ & m/s & Kinetic energy threshold \\
 
 \begin{table}[h!]
 \centering
-\caption{Thermodynamic cost proteins grouped by dissipation term. Metrics derived from AlphaFold structural analysis.}
-\label{tab:thermo_proteins}
-\small
-\begin{tabular}{llll}
+\caption{Thermodynamic cost proteins across three dissipation terms, characterized by AlphaFold structural metrics. The anisotropy ratio and morphology indicate the structural cost of maintaining orientation (vector sensing) vs. volume (scalar maintenance). See Eq.~\ref{eq:dissipation} for term definitions.}
+\label{tab:thermodynamic_cost_proteins}
+\scriptsize
+\begin{tabular}{llcclllc}
 \toprule
-\textbf{Dissipation Term} & \textbf{Gene} & \textbf{Key Metric} & \textbf{Structural Role/Note} \\
+\textbf{Gene} & \textbf{UniProt} & \textbf{Term} & \textbf{Anisotropy} & \textbf{Morphology} & \textbf{pLDDT} & \textbf{Residues} & \textbf{L-Scaling} \\
 \midrule
-\multicolumn{4}{l}{\textit{Proprioceptive Feedback ($\eta_p$)}} \\
- & PIEZO2 & Aniso: 4.44 & Vector mechanosensor \\
- & PIEZO1 & Aniso: 3.90 & Scalar mechanosensor \\
- & EGR3 & Aniso: 3.76 & Spindle maintenance TF \\
- & RUNX3 & Disordered: 56\% & Master regulator (12 hinges) \\
- & NTRK3 & Hinges: 9 & Survival receptor \\
+PIEZO2 & Q9H5I5 & $\eta_p$ & 4.44 & Fibrous/Extended & 79.4 & 709 & $L$ \\
+PIEZO1 & Q92508 & $\eta_p$ & 3.90 & Fibrous/Extended & 72.0 & 2521 & $L^2$ \\
+EGR3 & Q06889 & $\eta_p$ & 3.76 & Fibrous/Extended & 50.0 & 387 & $L$ \\
+RUNX3 & Q13761 & $\eta_p$ & 2.06 & Intermediate & 60.6 & 415 & $L$ \\
+NTRK3 & Q16288 & $\eta_p$ & 1.94 & Intermediate & 76.8 & 839 & $L$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Active Moment ($\eta_a$)}} \\
- & VIM & Aniso: 7.47 & Intermediate filament \\
- & LMNA & Aniso: 4.75 & Nuclear stiffness \\
- & CAV1 & Aniso: 3.98 & Membrane curvature \\
- & FLNA & Hinges: 116 & Actin cross-linker \\
- & LBX1 & Disordered: 61\% & AIS-associated TF \\
+VIM & P08670 & $\eta_a$ & 7.47 & Fibrous/Extended & 77.1 & 466 & $L^3$ \\
+LMNA & P02545 & $\eta_a$ & 4.75 & Fibrous/Extended & 76.4 & 664 & $L^2$ \\
+CAV1 & Q03135 & $\eta_a$ & 3.98 & Fibrous/Extended & 78.4 & 178 & $L^2$ \\
+FLNA & P21333 & $\eta_a$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
+LBX1 & P52954 & $\eta_a$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Basal Maintenance ($\Gamma_m$)}} \\
- & COL1A1 & Disordered: 67\% & Type I Collagen (monomer) \\
- & COMP & pLDDT: 88.1 & Disc matrix protein \\
- & SIRT1 & Disordered: 47\% & Metabolic sensor \\
- & SOX9 & -- & Growth plate driver \\
- & SHH & -- & Morphogen \\
- & CDKN1A & -- & Growth arrest signal (p21) \\
+COL1A1 & P02452 & $\Gamma_m$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
+SOX9 & P48436 & $\Gamma_m$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
+CDKN1A & P38936 & $\Gamma_m$ & 2.14 & Intermediate & 69.0 & 164 & Switch \\
+SHH & Q15465 & $\Gamma_m$ & 2.12 & Intermediate & 78.4 & 462 & $L$ \\
+SIRT1 & Q96EB6 & $\Gamma_m$ & 1.73 & Intermediate & 65.0 & 747 & Const. \\
+COMP & P49747 & $\Gamma_m$ & 1.72 & Intermediate & 88.1 & 757 & $L$ \\
 \bottomrule
 \end{tabular}
 \end{table}

@@ -293,7 +293,7 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Jacob, L., et al. (2019). Anatomy and function of the vertebral column lymphatic network in mice. Nature Communications, 10, 4594.* https://doi.org/10.1038/s41467-019-12568-w
-*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.*
+*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6
 
 ---
 

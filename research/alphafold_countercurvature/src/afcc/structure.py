@@ -75,14 +75,14 @@ class StructureParser:
                         is_ca = False
                         # Check most discriminative chars first (13, 14)
                         if line[13] == 'C' and line[14] == 'A':
-                             if line[12] == ' ' and line[15] == ' ':
-                                 is_ca = True
+                            if line[12] == ' ' and line[15] == ' ':
+                                is_ca = True
                         elif line[12] == 'C' and line[13] == 'A':
-                             if line[14] == ' ' and line[15] == ' ':
-                                 is_ca = True
+                            if line[14] == ' ' and line[15] == ' ':
+                                is_ca = True
                         elif line[14] == 'C' and line[15] == 'A':
-                             if line[12] == ' ' and line[13] == ' ':
-                                 is_ca = True
+                            if line[12] == ' ' and line[13] == ' ':
+                                is_ca = True
 
                         # Only handle primary conformations (' ' or 'A')
                         # AF structures usually don't have altlocs, but we check for safety.

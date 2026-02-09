@@ -199,3 +199,39 @@ UNCX,"Segmentation,Somite",80,Transcription factor defining the structural unit 
 RUNX2,"Bone,Mechanotransduction",80,Master regulator of bone response to load.
 MEOX1,"Segmentation,Somite",80,Transcription factor for vertebral somites.
 LFNG,"Segmentation,Notch",80,Notch modulator essential for vertebral segmentation.
+EZR,"Cytoskeleton,Adhesion",80,Membrane-cytoskeleton linker.
+SHH,"Development,Notochord",80,Morphogen establishing the gravity axis.
+PAPPA2,"Signaling,Growth,Enzyme",80,Regulator of local IGF bioavailability and bone dimensions.
+PKD1L1,"Cilia,Ion_Channel",80,Links CSF flow sensing to spine straightness.
+ZYX,"Mechanotransduction,Cytoskeleton",80,Mechanosensitive protein at focal adhesions.
+GDF3,"Development,Signaling",80,Linked to vertebral fusion.
+WNT5A,"Signaling,PCP",80,Mechanotransduction signaling mediator.
+BMP4,"Signaling,Mechanotransduction",80,Shear stress modulates expression.
+ROCK1,"Cytoskeleton,Signaling,Contraction",80,Key regulator of cytoskeletal tension and contraction.
+AQP4,"Fluid_Flow,Glymphatic,Membrane",80,The 'Gatekeeper' of the Glymphatic-Spine link; fluid dynamics.
+CDH1,"Adhesion,Mechanotransduction",80,Adherens junction force transmission.
+COMP,"ECM,Mechanotransduction",80,Critical for matrix integrity under load.
+SOD2,"Metabolism,ROS",80,Mitochondrial antioxidant defending against unloading-induced ROS.
+WNT10B,"Signaling,Bone",80,Regulator of bone mass under Wnt control.
+ATP2A2,"Ion_Channel,Mechanotransduction,Skin",80,Calcium pump interacting with Piezo channels.
+KIF6,"Cilia,Motor_Protein",78,Ciliary motor protein linked to scoliosis.
+PRICKLE1,"PCP,Signaling",78,PCP pathway member.
+CAV1,"Mechanotransduction,Membrane,Notochord",78,Membrane tension sensor linked to notochord mechanics.
+PTGS2,"Inflammation,Mechanotransduction",78,Inflammatory mediator in mechanotransduction.
+AXIN2,"Signaling,Wnt",78,Negative regulator of Wnt mechanosignaling.
+CNNM2,"Ion_Transport,Magnesium,Membrane",78,Magnesium transporter linked to skeletal integrity.
+TRPC1,"Mechanotransduction,Ion_Channel",78,Mechanosensory channel distinct from Piezo.
+KCNK2,"Ion_Channel,Mechanotransduction",78,Classic mechanosensitive K+ channel regulating neuronal excitability.
+WNT3A,"Signaling,Bone",75,Key signaling pathway in bone mechanobiology.
+HSPG2,"ECM,Mechanotransduction",75,Key mechanosensory ECM component.
+SLC9A3R1,"Cytoskeleton,Signaling",75,Scaffold protein linking signaling to structure.
+TMEM63A,"Ion_Channel,Mechanotransduction",75,New class of mechanosensitive channel; relevance to spine emerging.
+TP53,"Signaling,Senescence",75,Marker of mechanical stress-induced senescence.
+CDKN2A,"Signaling,Senescence",75,Senescence marker in loaded tissues.
+MATN1,"ECM,Cartilage",75,Structural component of cartilage matrix.
+GREM1,"Signaling,Growth_Plate",72,Regulates growth plate sensitivity.
+SIRT1,"Signaling,Muscle,Metabolism",72,Metabolic regulator of muscle response to unloading.
+VIM,"Cytoskeleton,Mechanotransduction",72,Intermediate filament responsive to gravity loading.
+HOXB1,"Development,Segmentation",70,Positional identity gene.
+SCUBE3,"ECM,Signaling",70,Emerging candidate in bone morphogenesis.
+CDKN1A,"Signaling,Microgravity_Response",70,Key marker of microgravity-induced cell cycle arrest.

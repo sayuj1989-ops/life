@@ -24,15 +24,17 @@ def test_prepare_inputs(tmp_path):
         df = pd.DataFrame(data)
 
         # Run prepare_inputs
-        afcc_daily_refresh.prepare_inputs(df)
+        # Test splitting: top N (1) vs all (2)
+        df_top = df.head(1)
+        afcc_daily_refresh.prepare_inputs(df_top, df)
 
-        # Check uniprot_mapping.csv
+        # Check uniprot_mapping.csv - should only have top N
         mapping_path = afcc_daily_refresh.DATA_PROCESSED / "uniprot_mapping.csv"
         assert mapping_path.exists()
         mapping_df = pd.read_csv(mapping_path)
         assert 'gene_symbol' in mapping_df.columns
         assert 'uniprot_accession' in mapping_df.columns
-        assert len(mapping_df) == 2
+        assert len(mapping_df) == 1
         assert mapping_df.iloc[0]['uniprot_accession'] == 'P12345'
 
         # Check candidates.csv

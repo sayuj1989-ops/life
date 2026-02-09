@@ -41,23 +41,27 @@ def load_and_filter_candidates(n=10):
     df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce').fillna(0)
 
     # Sort and take top N
-    df_sorted = df.sort_values('priority_score', ascending=False).head(n)
-    print(f"   Selected top {len(df_sorted)} candidates (Score range: {df_sorted['priority_score'].min()}-{df_sorted['priority_score'].max()})")
-    return df_sorted
+    df_sorted = df.sort_values('priority_score', ascending=False)
 
-def prepare_inputs(df):
+    df_top = df_sorted.head(n)
+
+    print(f"   Selected top {len(df_top)} candidates (Score range: {df_top['priority_score'].min()}-{df_top['priority_score'].max()})")
+
+    return df_top, df_sorted # Return both top and all
+
+def prepare_inputs(df_top, df_all):
     print(f"⚙️  Preparing input files in {DATA_PROCESSED}...")
 
-    # 1. uniprot_mapping.csv (gene_symbol, uniprot_accession)
+    # 1. uniprot_mapping.csv (gene_symbol, uniprot_accession) - TOP N ONLY
     # Map 'uniprot_id' from master to 'uniprot_accession'
-    mapping_df = df[['gene_symbol', 'uniprot_id']].copy()
+    mapping_df = df_top[['gene_symbol', 'uniprot_id']].copy()
     mapping_df.rename(columns={'uniprot_id': 'uniprot_accession'}, inplace=True)
     mapping_path = DATA_PROCESSED / "uniprot_mapping.csv"
     mapping_df.to_csv(mapping_path, index=False)
-    print(f"   -> Wrote {mapping_path.name}")
+    print(f"   -> Wrote {mapping_path.name} (Top {len(mapping_df)})")
 
-    # 2. candidates.csv (gene_symbol, source, total_score, justification)
-    cand_df = df.copy()
+    # 2. candidates.csv (gene_symbol, source, total_score, justification) - ALL CANDIDATES
+    cand_df = df_all.copy()
     cand_df['source'] = cand_df['pathway_tags']
     cand_df['total_score'] = cand_df['priority_score']
     # Select columns
@@ -185,8 +189,8 @@ def main():
 
     setup_directories()
 
-    candidates = load_and_filter_candidates(args.top_n)
-    prepare_inputs(candidates)
+    df_top, df_all = load_and_filter_candidates(args.top_n)
+    prepare_inputs(df_top, df_all)
 
     run_pipeline()
 

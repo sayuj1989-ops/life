@@ -4,11 +4,6 @@ import tempfile
 import os
 import zipfile
 from pathlib import Path
-import sys
-
-# Add repo root to path
-repo_root = Path(__file__).resolve().parent.parent.parent.parent
-sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 

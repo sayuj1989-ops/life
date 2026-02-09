@@ -1,11 +1,6 @@
 import unittest
 import numpy as np
-import sys
 from pathlib import Path
-
-# Add repo root to path
-repo_root = Path(__file__).resolve().parent.parent.parent.parent
-sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
 

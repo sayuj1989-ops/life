@@ -4,21 +4,9 @@ Integration tests for the protein mechanics simulation module.
 
 import pytest
 import numpy as np
-import sys
 from pathlib import Path
 
-# Add src to path for import
-# Assuming test is run from root or from tests/ dir
-src_path = Path(__file__).parent.parent / "src"
-if str(src_path) not in sys.path:
-    sys.path.append(str(src_path))
-
-try:
-    from afcc.simulation import simulate_protein_mechanics
-except ImportError:
-    # If standard import fails, try relative or full path fallback
-    # But usually sys.path hack covers it
-    raise
+from research.alphafold_countercurvature.src.afcc.simulation import simulate_protein_mechanics
 
 from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE
 

@@ -57,8 +57,10 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 | **VIM** | P08670 | 7.47 | Fibrous/Extended | 65.7 | 77.1 | 466 | 1 | L^3 (cell volume) | Vimentin; gravitational strain gauge in cells |
 | **LMNA** | P02545 | 4.75 | Fibrous/Extended | 71.2 | 76.4 | 664 | 0 | L^2 (load-bearing cross-section) | Lamin A/C; nuclear mechanostat scaling with tissue stiffness |
 | **CAV1** | Q03135 | 3.98 | Fibrous/Extended | 33.4 | 78.4 | 178 | 0 | L^2 (membrane area) | Caveolin-1; membrane curvature sensor and mechanotransducer |
+| **DMD** | P11532 | 1.32 | Globular | 22.8 | 76.3 | 525 | 1 | L^3 (muscle volume) | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle |
+| **MYLK** | Q15746 | 1.46 | Globular | 41.5 | 65.8 | 1914 | 31 | L^2 (contractile force) | Myosin light chain kinase; tonic contraction regulator |
 
-**Structural summary:** Mean anisotropy = **4.19**, Rg range = 23–71 Å, Mean pLDDT = 75.0, Total residues = 4236, Total hinges = 117
+**Structural summary:** Mean anisotropy = **3.39**, Rg range = 23–71 Å, Mean pLDDT = 73.9, Total residues = 6675, Total hinges = 149
 
 ### Thermodynamic Predictions
 
@@ -81,8 +83,12 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **SOX9** | P48436 | 2.19 | Intermediate | 16.6 | 56.0 | 509 | 2 | L (growth plate activity) | Master chondrogenic TF; growth plate cartilage specification |
 | **SHH** | Q15465 | 2.12 | Intermediate | 24.5 | 78.4 | 462 | 6 | L (gradient length) | Sonic Hedgehog; morphogen gradient for vertebral patterning |
 | **CDKN1A** | P38936 | 2.14 | Intermediate | 23.9 | 69.0 | 164 | 2 | threshold (binary switch) | p21; cell cycle inhibitor activated by mechanical unloading |
+| **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
+| **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
+| **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
+| **PPARGC1A** | Q9UBK2 | 2.19 | Intermediate | 31.2 | 52.7 | 798 | 0 | L (mitochondrial volume) | Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity |
 
-**Structural summary:** Mean anisotropy = **2.11**, Rg range = 17–32 Å, Mean pLDDT = 68.2, Total residues = 4103, Total hinges = 35
+**Structural summary:** Mean anisotropy = **2.47**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
 ### Thermodynamic Predictions
 

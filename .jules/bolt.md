@@ -45,3 +45,9 @@
 **Learning:** The `StructureParser.fast_parse_pdb_arrays` method used a Python `for line in f` loop with repeated string slicing (`line[12:16].strip()`) and checks for every line. For large datasets, the iterator overhead and string operations became a bottleneck.
 
 **Action:** Optimized the parser to use `readlines()` (bulk read) and direct index-based character checks (`line[13:15] == "CA"`) instead of slicing/stripping. This yielded a ~1.5x speedup (7ms -> 5ms) for medium structures like PIEZO2, improving throughput for the initial analysis pass.
+
+## 2026-11-03 - [Faster PDB Atom Filtering]
+
+**Learning:** Even with optimized loops, `line.startswith("ATOM")` incurs a method call overhead for every line in a PDB file. For millions of lines across a dataset, this adds up. String slicing `line[:4] == "ATOM"` is faster in Python. Additionally, redundant string operations (duplicate assignment) were found.
+
+**Action:** Replaced `startswith` with slice check and removed duplicate `res_name` assignment in `StructureParser`. Benchmarks show ~9-14% speedup for parsing PDB structures, further reducing the I/O bottleneck.

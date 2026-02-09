@@ -45,9 +45,18 @@ def simulate_protein_mechanics(
     scale_factor_kappa: float = 5.0,
     scale_factor_tau: float = 5.0,
     scale_factor_E: float = 0.5,
+    show_progress: bool = True,
 ) -> Dict[str, Any]:
     """
     Run a mechanical simulation based on protein metrics.
+
+    This function bridges the gap between protein structure (AlphaFold) and tissue mechanics (PyElastica).
+    It maps structural metrics to parameters of the Biological Counter-Curvature theory:
+
+    - **Anisotropy Index** -> **Stiffness Anisotropy**: Represents the "Vector" cue strength (e.g., Fibrillin alignment).
+    - **Curvature Summary** -> **Chi_Kappa**: Represents the "Scalar" active drive (e.g., Piezo2 gain).
+    - **Torsion Summary** -> **Chi_Tau**: Represents twist coupling (e.g., Planar Cell Polarity defects).
+    - **PAE Blockiness** -> **Chi_E**: Represents stiffness modulation (e.g., segmentation).
 
     Args:
         metrics: Dictionary of protein metrics (from afcc.metrics.MetricsAnalyzer).
@@ -60,6 +69,7 @@ def simulate_protein_mechanics(
         scale_factor_kappa: Scaling factor for curvature summary -> chi_kappa.
         scale_factor_tau: Scaling factor for torsion summary -> chi_tau.
         scale_factor_E: Scaling factor for PAE blockiness -> chi_E.
+        show_progress: Whether to show the PyElastica progress bar.
 
     Returns:
         Dictionary containing simulation results (max curvature, max torsion, scoliosis index)
@@ -149,7 +159,8 @@ def simulate_protein_mechanics(
             final_time=duration,
             dt=dt,
             save_every=max(1, int(duration/dt/10)), # Save ~10 frames, ensure >= 1
-            boundary_condition=boundary_condition
+            boundary_condition=boundary_condition,
+            progress_bar=show_progress
         )
 
         sim_metrics = result.compute_final_metrics()

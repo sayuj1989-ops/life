@@ -376,6 +376,7 @@ class CounterCurvatureRodSystem:
         bc_cls: Optional[Type] = None,
         bc_kwargs: Optional[Dict[str, Any]] = None,
         boundary_condition: str = "fixed",
+        progress_bar: bool = True,
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -435,7 +436,7 @@ class CounterCurvatureRodSystem:
 
         system.finalize()
         timestepper = ea.PositionVerlet()
-        ea.integrate(timestepper, system, final_time, int(final_time/dt))
+        ea.integrate(timestepper, system, final_time, int(final_time/dt), progress_bar=progress_bar)
 
         # Pad kappa to match n_nodes (n_elems + 1)
         # kappa is (time, n_elems-1, 3)

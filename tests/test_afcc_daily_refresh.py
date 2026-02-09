@@ -1,13 +1,8 @@
-import sys
 import os
 import pandas as pd
 import pytest
 from pathlib import Path
 import datetime
-
-# Add scripts to path
-REPO_ROOT = Path(__file__).resolve().parent.parent
-sys.path.append(str(REPO_ROOT / "scripts"))
 
 import afcc_daily_refresh
 

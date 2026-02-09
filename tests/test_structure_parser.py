@@ -1,11 +1,6 @@
 import pytest
 import numpy as np
 from pathlib import Path
-import sys
-
-# Add src to path if not installed
-repo_root = Path(__file__).resolve().parent.parent
-sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 

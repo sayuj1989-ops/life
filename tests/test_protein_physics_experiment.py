@@ -1,14 +1,8 @@
 
-import sys
 import os
 import pytest
 import csv
 from pathlib import Path
-
-# Add scripts directory to path to allow importing the script as a module
-SCRIPTS_DIR = Path(__file__).parent.parent / "scripts"
-if str(SCRIPTS_DIR) not in sys.path:
-    sys.path.append(str(SCRIPTS_DIR))
 
 # Import the module unconditionally
 import experiment_protein_physics

@@ -323,3 +323,25 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 **Citations**:
 *   *Moreau, A., et al. (2004). Melatonin signaling dysfunction in adolescent idiopathic scoliosis. Spine, 29(16), 1772-1781.* https://doi.org/10.1097/01.brs.0000134567.89481.54
 *   *Azeddine, B., et al. (2007). Molecular determinants of melatonin signaling dysfunction in adolescent idiopathic scoliosis. Clinical Orthopaedics and Related Research, 462, 45-52.*
+
+---
+
+### 21. The Glymphatic-MMP Axis
+
+**Arc Added**: `Glymphatic_Stasis` $\rightarrow$ `MMP`.
+
+*   **Source**: `AQP4` (Aquaporin-4), `Glymphatic_Stasis` (Clearance Failure).
+*   **Mechanism**: **Toxic Clearance Failure**.
+    1.  **Stagnation**: In the absence of gravity-assisted drainage (VCL) or active movement, the glymphatic/interstitial flow stagnates.
+    2.  **Accumulation**: Inflammatory cytokines (IL-1$\beta$, TNF-$\alpha$) and metabolic waste (Lactate) accumulate in the Annulus Fibrosus.
+    3.  **MMP Trigger**: This toxic microenvironment triggers the upregulation of Matrix Metalloproteinases (`MMP1`, `MMP3`).
+    4.  **Degradation**: Upregulated MMPs degrade the collagen matrix, leading to "Inflammatory Softening".
+*   **Property**: **Stiffness ($EI$)** and **Torsional Stiffness ($GJ$)**.
+*   **Role**: **The Sanitation System**. The **Counter-Curvature** mechanism relies on a "Clean" material environment to maintain the stiffness required for active stabilization. Glymphatic stasis leads to "Material Softening" ($EI$ reduction), making the spine too weak to execute the counter-curvature growth program.
+    *   **The Link**: This pathway connects the *physical* environment (Gravity/Movement) to the *molecular* degradation machinery (MMPs). It explains why sedentary behavior or microgravity rapidly leads to disc degeneration.
+*   **Evidence**: Chen et al. (2025) demonstrated that simulated microgravity and overload conditions significantly upregulate MMP1, MMP3, and TIMP1 in intervertebral discs, linking mechanical unloading to chemical degradation.
+
+> **Hypothesis**: "Spinal Congestion" precedes "Spinal Collapse". The failure to clear waste turns the disc into an inflammatory reactor.
+
+**Citations**:
+*   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6

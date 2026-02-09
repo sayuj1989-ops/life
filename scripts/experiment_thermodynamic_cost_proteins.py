@@ -127,6 +127,20 @@ TARGETS: List[ProteinTarget] = [
                    "membrane area; connects to YAP/TAZ nuclear translocation",
         scaling="L^2 (membrane area)"
     ),
+    ProteinTarget(
+        gene="DMD", uniprot="P11532", term="eta_a",
+        role="Dystrophin; costamere anchor protecting muscle from contraction damage",
+        prediction="Massive rod-like protein (only fragment modeled); essential for force transmission "
+                   "lateral to the muscle fiber axis; loss causes immediate muscle necrosis under load",
+        scaling="L^3 (muscle volume)"
+    ),
+    ProteinTarget(
+        gene="MYLK", uniprot="Q15746", term="eta_a",
+        role="Myosin Light Chain Kinase; regulator of smooth/non-muscle contractility",
+        prediction="Globular kinase domain; regulates the 'catch bond' property of actin-myosin "
+                   "interaction; essential for maintaining tonic tension with low energy cost",
+        scaling="L^2 (cross-sectional tension)"
+    ),
 
     # ===== Gamma_m: Basal tissue maintenance =====
     ProteinTarget(
@@ -170,6 +184,34 @@ TARGETS: List[ProteinTarget] = [
         prediction="Small, compact; upregulated in microgravity to halt proliferation; "
                    "its activation = signal that energy supply is insufficient for growth",
         scaling="threshold (binary switch)"
+    ),
+    ProteinTarget(
+        gene="PPARGC1A", uniprot="Q9UBK2", term="Gamma_m",
+        role="PGC-1alpha; master regulator of mitochondrial biogenesis",
+        prediction="High disorder (IDR); integrates metabolic signals to drive mitochondrial "
+                   "density; its failure leads to the 'energy crash' in fast-growing muscle",
+        scaling="L^3 (mitochondrial density)"
+    ),
+    ProteinTarget(
+        gene="IGF1R", uniprot="P08069", term="Gamma_m",
+        role="IGF-1 Receptor; sets the metabolic pace of growth",
+        prediction="Large transmembrane receptor; activation scales with systemic growth factor "
+                   "levels; drives the demand side of the equation",
+        scaling="dL/dt (growth velocity)"
+    ),
+    ProteinTarget(
+        gene="GHR", uniprot="P10912", term="Gamma_m",
+        role="Growth Hormone Receptor; systemic regulator of growth velocity",
+        prediction="High anisotropy (fibrous extracellular domain); directly translates "
+                   "pituitary signals into local tissue growth rates",
+        scaling="dL/dt (growth velocity)"
+    ),
+    ProteinTarget(
+        gene="ARNTL", uniprot="O00327", term="Gamma_m",
+        role="BMAL1; core circadian clock component",
+        prediction="Transcription factor; temporally gates ECM repair to sleep cycles; "
+                   "misalignment (spinal jetlag) increases metabolic cost of maintenance",
+        scaling="constant (temporal gating)"
     ),
 ]
 

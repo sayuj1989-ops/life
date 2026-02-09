@@ -1,11 +1,21 @@
 gene_symbol,source,total_score,justification
-PIEZO2,"Mechanotransduction,Proprioception",95,Direct link between gravity sensing (proprioception) and spinal alignment.
-LBX1,"Somite,Muscle,Proprioception",95,Major genetic driver of AIS with clear mechanistic link to postural tone.
+ARNTL,"Circadian,Metabolism,Signaling",96,Core clock component linking time to metabolic capacity.
+DMD,"Muscle,Mechanotransduction,Cytoskeleton",96,Essential for maintenance of muscle tone against gravity; loss leads to collapse.
+GHR,"Signaling,Growth,Receptor",96,Systemic driver of the growth spurt.
+IGF1R,"Signaling,Growth,Receptor",96,Primary growth regulator determining the rate of structure formation.
+PPARGC1A,"Metabolism,Mitochondria,Signaling",96,Key metabolic regulator defining the energy supply limit.
+MYLK,"Muscle,Contraction,Signaling",96,Regulator of myosin contractility.
 NTRK3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
 RUNX3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
+LBX1,"Somite,Muscle,Proprioception",95,Major genetic driver of AIS with clear mechanistic link to postural tone.
+PIEZO2,"Mechanotransduction,Proprioception",95,Direct link between gravity sensing (proprioception) and spinal alignment.
+IFT88,"Cilia,Mechanotransduction",92,Direct link via PIEZO1-cilia axis.
+FBN1,"ECM,Mechanotransduction",92,Major structural determinant of spine elasticity.
 PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,Direct mechanistic link to growth plate asymmetry in scoliosis.
 SELENON,"ER,Redox,Muscle",92,Defining gene for 'Rigid Spine' phenotype; links ER stress to postural tone.
-LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,Direct link between nuclear mechanotransduction and spinal stability.
-OTOP1,"Gravity_Sensing,Ion_Channel",92,Essential for the hardware of vestibular gravity sensing.
-IFT88,"Cilia,Mechanotransduction",92,Direct link via PIEZO1-cilia axis.
 EGR3,"Muscle,Proprioception,Transcription_Factor",92,Essential for the hardware of muscle proprioception.
+NF1,"Signaling,Mechanotransduction,Development",92,Direct causative link to dystrophic scoliosis and mechanotransduction.
+OTOP1,"Gravity_Sensing,Ion_Channel",92,Essential for the hardware of vestibular gravity sensing.
+PLOD1,"ECM,Enzyme",92,Defining gene for Kyphoscoliotic EDS; major structural determinant.
+LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,Direct link between nuclear mechanotransduction and spinal stability.
+TGFBR2,"Signaling,ECM,Development",90,Key signaling receptor for load-dependent tissue maintenance.

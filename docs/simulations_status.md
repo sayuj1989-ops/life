@@ -23,3 +23,4 @@
 | 2026-01-31 | weekly-sim-growth-width | info_width | Localized growth (Width=0.1) triggers massive lateral S-shape (S_lat > 0.9), acting as a 'hinge' instability. | [Report](../outputs/sim/2026-01-31/report.md) |
 | 2026-02-01 | weekly-sim-critical-anisotropy | stiffness_anisotropy | High growth (chi=10) with weak torsion (chi=0.2) remained stable (Dev < 8mm) across all anisotropy levels. | [Report](../outputs/sim/2026-02-01/report.md) |
 | 2026-07-28 | weekly-sim-tilt-growth | tilt_deg, chi_kappa | High growth (chi=15) amplifies Cobb angle (75 deg) under tilt (30 deg) but reduces lateral deviation, suggesting tighter curling. | [Report](../outputs/sim/2026-07-28/report.md) |
+| 2026-08-01 | weekly-sim-gravity-anisotropy | Gravity, Anisotropy | High gravity (2g) combined with high anisotropy (R=10) and sagittal growth (chi=10) maintained perfect stability (Cobb=0) in a vertical setup. | [Report](../outputs/sim/2026-08-01/report.md) |

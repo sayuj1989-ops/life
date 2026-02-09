@@ -1,3 +1,19 @@
+"""
+Experiment: Energy Deficit Window Simulation
+
+This script simulates the thermodynamic cost of counter-curvature (P_counter)
+as a function of spinal length (L) using the IEC beam solver.
+
+It compares P_counter against a hypothetical proprioceptive supply capacity (S_proprio)
+that scales sublinearly with length. The crossover point defines the "Energy Deficit Window"
+during early development.
+
+Outputs:
+- outputs/thermodynamic_cost/energy_deficit_window.csv: Simulation data
+- manuscript/figures/energy_deficit_window.png: Figure visualizing the deficit window
+
+Reference: Manuscript Section 4.6
+"""
 import sys
 import os
 import numpy as np
@@ -163,7 +179,8 @@ def run_simulation():
     print(f"Saved results to {csv_path}")
 
     # Plotting
-    fig_dir = 'outputs/figures'
+    # Updated to save directly to manuscript figures
+    fig_dir = 'manuscript/figures'
     os.makedirs(fig_dir, exist_ok=True)
     fig_path = os.path.join(fig_dir, 'energy_deficit_window.png')
 

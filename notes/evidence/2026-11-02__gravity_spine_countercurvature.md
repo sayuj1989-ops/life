@@ -20,3 +20,22 @@ Does the "down" side in sleeping posture correspond to the concave or convex sid
 
 ## Proposed Test
 Correlate self-reported sleeping position (Right vs Left side) with the direction of the primary thoracic curve (Convexity) in a cohort of early-onset AIS patients. Use PET-MRI tracers to map spinal glymphatic flow in supine vs lateral positions.
+
+## Metabolic Supply & Mechanical Integrity (Update 2026-02-10)
+Analysis of metabolic and structural candidates via the AFCC pipeline reveals potential mechanosensitive gating of energy supply and growth pathways, supporting the Energy Deficit model.
+
+### Structural Metrics
+| Gene | Anisotropy | Morphology | Description |
+|------|------------|------------|-------------|
+| **GHR** | 5.13 | Fibrous/Extended | Growth Hormone Receptor. High anisotropy suggests it may function as a 'Tension Rod', mechanically gating systemic growth signals based on local tissue strain. |
+| **ARNTL** | 3.32 | Fibrous/Extended | BMAL1 (Clock). High anisotropy in this core clock component implies circadian timekeeping in the IVD could be sensitive to mechanical deformation. |
+| **PPARGC1A** | 2.19 | Intermediate | PGC-1alpha. Intermediate shape fits its role as a flexible transcriptional co-activator, regulating mitochondrial biogenesis (Energy Supply). |
+| **MYLK** | 1.46 | Globular | Myosin Light Chain Kinase. Globular catalytic domain; regulates contractility (Energy Demand). |
+| **IGF1R** | 1.43 | Globular | IGF-1 Receptor. Globular ligand-binding/kinase domains; mediates local growth response. |
+| **DMD** | 1.32 | Globular | Dystrophin. *Note: AFDB entry likely represents a globular fragment, not the full-length rod-like protein.* |
+
+### Implications for Energy Deficit
+The high anisotropy of **GHR** and **ARNTL** provides a structural basis for the hypothesis that **Growth** (Energy Demand) and **Timing** (Circadian Repair) are directly coupled to **Gravity Loading**.
+- **GHR as a Tension Rod**: If GHR signaling is modulated by tension, unloading (microgravity/bedrest) would mis-regulate growth, potentially uncoupling it from the mechanical environment.
+- **ARNTL/Clock Mechanics**: Mechanical gating of the circadian clock would explain why IVD health depends on daily load cycles (convective transport + phase synchronization).
+- **Supply-Demand Mismatch**: The disconnect between globular supply regulators (IGF1R, MYLK) and tension-sensitive gates (GHR, ARNTL) in scoliotic spines may drive the "Energy Deficit" that prevents error correction.

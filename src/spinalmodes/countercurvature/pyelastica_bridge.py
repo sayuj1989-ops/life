@@ -16,6 +16,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Optional, TYPE_CHECKING, Type, Dict, Any
+import time
+import tracemalloc
 
 import numpy as np
 from numpy.typing import NDArray
@@ -478,4 +480,144 @@ class CounterCurvatureRodSystem:
             final_energies=final_energies
         )
 
-__all__ = ["CounterCurvatureRodSystem", "SimulationResult", "PYELASTICA_AVAILABLE", "ActiveMuscleTorques"]
+
+def run_protein_simulation(
+    anisotropy: float,
+    active_curvature: float,
+    torsion_drive: float = 0.0,
+    stiffness_modulation: float = 0.0,
+    length: float = 1.0,
+    n_elements: int = 50,
+    duration: float = 2.0,
+    dt: float = 1e-4,
+    gravity: float = 9.81,
+    boundary_condition: str = "fixed",
+    show_progress: bool = True,
+    scale_factor_kappa: float = 5.0,
+    scale_factor_tau: float = 5.0,
+    scale_factor_E: float = 0.5,
+) -> Dict[str, Any]:
+    """
+    Run a mechanical simulation driven by protein-derived metrics.
+
+    This function serves as a high-level entry point for simulating "virtual proteins" or
+    tissue patches. It maps abstract structural metrics to concrete mechanical parameters
+    of the CounterCurvatureRodSystem.
+
+    Args:
+        anisotropy: Degree of stiffness anisotropy (1.0 = isotropic).
+        active_curvature: Magnitude of active curvature drive (scalar signal).
+        torsion_drive: Magnitude of active torsion drive.
+        stiffness_modulation: Degree of stiffness modulation (blockiness).
+        length: Length of the rod (m).
+        n_elements: Number of elements in the rod.
+        duration: Simulation duration (s).
+        dt: Time step (s).
+        gravity: Gravitational acceleration (m/s^2).
+        boundary_condition: "fixed" or "pinned".
+        show_progress: Whether to show the PyElastica progress bar.
+        scale_factor_kappa: Scaling factor for active_curvature -> chi_kappa.
+        scale_factor_tau: Scaling factor for torsion_drive -> chi_tau.
+        scale_factor_E: Scaling factor for stiffness_modulation -> chi_E.
+
+    Returns:
+        Dictionary containing simulation results (geometry, scoliosis metrics)
+        and performance metrics (runtime, memory).
+    """
+    if not PYELASTICA_AVAILABLE:
+        return {
+            "error": "PyElastica not available.",
+            "success": False
+        }
+
+    # Map inputs to model parameters
+    chi_kappa = active_curvature * scale_factor_kappa
+    chi_tau = torsion_drive * scale_factor_tau
+    chi_E = stiffness_modulation * scale_factor_E
+
+    tracemalloc.start()
+    t0 = time.time()
+
+    try:
+        if n_elements < 2:
+            raise ValueError("n_elements must be at least 2")
+
+        # 1. Setup Information Field
+        # Use a generic Gaussian info field representing a localized signal
+        s = np.linspace(0, length, n_elements + 1)
+        # Center bump
+        info_center = 0.5 * length
+        info_width = 0.1 * length
+        I = 0.5 + 0.5 * np.exp(-0.5 * ((s - info_center) / info_width)**2)
+        dIds = np.gradient(I, s)
+        info = InfoField1D(s=s, I=I, dIds=dIds)
+
+        # 2. Setup Parameters
+        params = CounterCurvatureParams(
+            chi_kappa=chi_kappa,
+            chi_tau=chi_tau,
+            chi_E=chi_E,
+            chi_M=0.0,
+            scale_length=length
+        )
+
+        # 3. Create System with constant intrinsic curvature base
+        kappa_gen = np.zeros((3, n_elements + 1))
+        kappa_gen[0, :] = 2.0  # Constant sagittal curvature (e.g. natural kyphosis)
+
+        rod_system = CounterCurvatureRodSystem.from_iec(
+            info=info,
+            params=params,
+            length=length,
+            n_elements=n_elements,
+            E0=1e6,  # 1 MPa generic tissue stiffness
+            radius=0.01,
+            kappa_gen=kappa_gen,
+            gravity=gravity,
+            stiffness_anisotropy=anisotropy
+        )
+
+        # 4. Run Simulation
+        result = rod_system.run_simulation(
+            final_time=duration,
+            dt=dt,
+            save_every=max(1, int(duration/dt/10)),
+            boundary_condition=boundary_condition,
+            progress_bar=show_progress
+        )
+
+        sim_metrics = result.compute_final_metrics()
+        success = True
+        error_msg = ""
+
+    except Exception as e:
+        success = False
+        error_msg = str(e)
+        sim_metrics = {}
+
+    t1 = time.time()
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    output = {
+        "input_anisotropy": anisotropy,
+        "input_active_curvature": active_curvature,
+        "mapped_chi_kappa": chi_kappa,
+        "mapped_chi_tau": chi_tau,
+        "runtime_sec": t1 - t0,
+        "peak_memory_mb": peak / (1024 * 1024),
+        "success": success,
+        "error": error_msg,
+    }
+    output.update(sim_metrics)
+
+    return output
+
+
+__all__ = [
+    "CounterCurvatureRodSystem",
+    "SimulationResult",
+    "PYELASTICA_AVAILABLE",
+    "ActiveMuscleTorques",
+    "run_protein_simulation",
+]

@@ -59,7 +59,8 @@ class StructureParser:
                     # Bolt Optimization: specialized CA check avoiding strip() and allocs
                     # Check "ATOM" (start) and " CA " (cols 12-16 => indices 12-15 match " CA ")
                     # Bolt 2026-11-03: Use line[:4] == "ATOM" instead of startswith() for ~14% speedup
-                    if line[:4] == "ATOM" and line[13:15] == "CA" and line[12] == " ":
+                    # Bolt 2026-11-04: Re-optimized: startswith() is faster + char check avoids slice allocs.
+                    if line.startswith("ATOM") and len(line) > 66 and line[13] == 'C' and line[14] == 'A' and line[12] == " ":
                         # Only handle primary conformations (' ' or 'A') at index 16
                         if line[16] == ' ' or line[16] == 'A':
                             try:
@@ -68,7 +69,11 @@ class StructureParser:
                                 y = float(line[38:46])
                                 z = float(line[46:54])
                                 b_factor = float(line[60:66])
-                                res_name = line[17:20].strip()
+
+                                # Conditional strip: only strip if padding exists (rare for standard AA)
+                                res_name = line[17:20]
+                                if res_name[0] == ' ' or res_name[-1] == ' ':
+                                    res_name = res_name.strip()
 
                                 coords_list.append([x, y, z])
                                 plddt_list.append(b_factor)

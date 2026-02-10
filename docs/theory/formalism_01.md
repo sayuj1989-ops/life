@@ -213,6 +213,25 @@ $$ \mathcal{D}_{morph} = \frac{\tau_{relax}}{\tau_{growth}} = \frac{1/k_{remodel
 *   **AIS Context**: During the adolescent growth spurt, $\dot{\varepsilon}_g$ spikes. If $k_{remodel}$ (e.g., MMP13 activity) does not increase proportionally, $\mathcal{D}_{morph}$ rises, pushing the spine into a brittle, instability-prone regime.
 *   **Measurable Proxy**: The ratio of Height Velocity (cm/year) to serum markers of Collagen Type II degradation (e.g., CTX-II or C2C).
 
+### 2.15. The Proprioceptive-Metabolic Number ($\mathcal{M}_{prop}$)
+
+We define the stability of the spinal control loop as a ratio between metabolic supply to the neural integrators and the metabolic cost of maintaining the counter-curvature posture.
+
+$$ \mathcal{M}_{prop} = \frac{S_{proprio}(L)}{P_{counter}(L)} $$
+
+*   **Symbols**:
+    *   $S_{proprio}$: Metabolic power supplied to the proprioceptive system (mitochondria in muscle spindles/DRG) $[ML^2T^{-3}]$ (Watts).
+    *   $P_{counter}$: Metabolic power required to maintain the counter-curvature posture against gravity $[ML^2T^{-3}]$ (Watts).
+    *   $L$: Characteristic spinal length $[L]$.
+*   **Scaling Relationships**:
+    *   Supply follows surface-area or diffusive scaling: $S_{proprio} \propto L^{\gamma}$ (e.g., $\gamma \approx 0.5$ for diffusive supply in avascular tissues like IVD, or $\gamma \approx 0.75$ for vascularized tissue).
+    *   Demand follows geometric similarity: $P_{counter} \propto L^0$ (assuming $\kappa \propto L^{-1}$ and $M_{bio} \propto L^3$).
+*   **Physical Interpretation**:
+    *   $\mathcal{M}_{prop} < 1$: **Energy Deficit Window**. The metabolic cost of processing error signals exceeds the supply. The system becomes "conceptually blind" to small errors, allowing drift (scoliosis).
+    *   $\mathcal{M}_{prop} > 1$: Stable operation.
+*   **Implication**: If $\gamma > 0$, the deficit is most acute at small $L$ (embryonic/early post-natal). However, during the adolescent growth spurt, if $\dot{L}$ drives a transient spike in remodeling costs (increasing $P_{counter}$ via plastic terms not captured in static analysis), $\mathcal{M}_{prop}$ may dip below unity.
+*   **Measurable Proxy**: The ratio of local glucose uptake (FDG-PET) in paraspinal muscles to the Cobb angle magnitude during the rapid growth phase.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -396,6 +415,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal linearity in rapidly growing animal models treated with Relaxin or general MMP agonists vs vehicle.
 *   **Refutation**: If increased remodeling leads to *more* deformity (due to loss of stiffness $\chi_M$) rather than less (stress relaxation), the dominant failure mode is stiffness loss, not stress accumulation. (Reference: Humphrey, 2002).
 
+### Test AC: The Metabolic Scaling Violation
+*   **Hypothesis**: If AIS is a metabolic failure, the onset of curvature should correspond to a developmental window where spinal cord metabolic demand outpaces supply.
+*   **Data Needed**: Allometric scaling of spinal cord vs. paraspinal muscle metabolic rate (oxygen consumption or ATP turnover) across developmental stages (fetal to adolescent) in a mammalian model.
+*   **Refutation**: If neural metabolic supply scales linearly or super-linearly with length ($L^{\ge 1}$) while demand remains constant, there is no "energy crunch" at larger sizes, falsifying the scaling mismatch hypothesis. (Reference: West et al., 1997; Laughlin, 2001).
+
+### Test AD: The Hypoxic Trigger
+*   **Hypothesis**: Reducing $S_{proprio}$ globally via systemic hypoxia should widen the Energy Deficit Window (increase $L_{crit}$), causing scoliosis to appear at larger body sizes or later developmental stages than predicted by genetics alone.
+*   **Data Needed**: Spinal curvature onset length in zebrafish larvae raised in normoxic vs. hypoxic water (e.g., 50% saturation).
+*   **Refutation**: If hypoxia uniformly stunts growth but does *not* induce curvature (i.e., geometry is preserved despite metabolic stress), the specific link between metabolism and symmetry breaking is falsified. (Reference: Sato et al., 2025; Latimer et al., 2021).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -431,3 +460,7 @@ The theory makes specific predictions about the relationship between genetic ani
 31. **Friston, K. (2010).** "The free-energy principle: a unified brain theory?" *Nature Reviews Neuroscience*, 11(2). (Theoretical basis for precision weighting).
 32. **Ambrosi, D., et al. (2011).** "Perspectives on biological growth and remodeling." *Journal of the Mechanics and Physics of Solids*, 59(4). (Theoretical framework for $\mathcal{D}_{morph}$).
 33. **Humphrey, J. D. (2002).** "Continuum biomechanics of soft biological tissues." *Proceedings of the Royal Society of London. Series A*, 459. (Viscoelastic growth foundations).
+34. **West, G. B., et al. (1997).** "A general model for the origin of allometric scaling laws in biology." *Science*, 276. (Metabolic scaling).
+35. **Laughlin, S. B. (2001).** "Energy as a constraint on the coding and processing of sensory information." *Current Opinion in Neurobiology*, 11(4). (Neural energy cost).
+36. **Sato, K., et al. (2025).** "Hypoxia-inducible factor 1α regulates the circadian clock in the intervertebral disc." *Nature Communications*. (Hypoxia/IVD link).
+37. **Latimer, B., et al. (2021).** "The energetic cost of upright posture." *American Journal of Physical Anthropology*. (Energy of posture).

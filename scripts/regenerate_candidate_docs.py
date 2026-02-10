@@ -26,8 +26,8 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 15 Cycle - Thermodynamic Cost Analysis\n")
-        f.write("**Focus:** Energy Metabolism, Mechanotransduction, and Spinal Curvature\n\n")
+        f.write("****Last Updated:** Week 16 Cycle - Gravity x Spine Expansion\n")
+        f.write("**Focus:** Mechanotransduction, Cilia/PCP, and Somite Segmentation\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
         f.write("2.  **Spinal Curvature**: Genetic or experimental links to scoliosis or vertebral defects.\n")
@@ -64,10 +64,10 @@ def main():
         f.write("    *   **70-79**: Pathway member with experimental links to spine development or gravity response.\n\n")
 
         f.write("## Next Steps\n\n")
-        f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (PPARGC1A, GHR) to assess structural anisotropy.\n")
-        f.write("2.  **Thermodynamic Cost**: Calculate the energy dissipation terms (Gamma_m, eta_a) for the supply-side proteins.\n")
-        f.write("3.  **Simulation**: Investigate the role of FLNA/Actin-mediated cytoskeletal stiffness in the `pyelastica` rod models.\n")
-        f.write("4.  **Literature Review**: Deep dive into the \"Cilia Motility\" mechanism for RSPH1 and DNAI1.\n")
+        f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (ITGAV, LATS1/2, DVL2) to assess structural anisotropy.\n")
+        f.write("2.  **Mechanotransduction Map**: Integrate the new integrin/Hippo candidates into the force transmission model.\n")
+        f.write("3.  **Simulation**: Investigate the role of somite segmentation defects (Notch/HES1) in the `pyelastica` rod models (local stiffness variations).\n")
+        f.write("4.  **Literature Review**: Deep dive into the \"PCP\" mechanism for WNT5B and RYK.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0] - 2026-02-10
+### Added
+- "Versioning" strategy documented in `docs/CONTRIBUTING.md`.
+- `archive/` directory for legacy code (`biology_research`, `life`, `life-1`, `ragflow`).
+- `research/` directory for exploratory code.
+- `src/` directory for core library code.
+
+### Changed
+- Refactored repository structure to separate core library (`src/`) from research (`research/`) and legacy (`archive/`).
+- Updated `pyproject.toml` and `src/spinalmodes/__init__.py` to version 0.4.0.
+- Consolidated root-level scripts into `scripts/`.
+
 ## [0.3.0] - 2025-11-19
 ### Added
 - New `spinalmodes` package layout with `model/{core,solvers}` + legacy shim.

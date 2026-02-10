@@ -5,7 +5,7 @@ import sys
 if sys.version_info < (3, 10):
     raise RuntimeError("spinalmodes requires Python >= 3.10")
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 from spinalmodes.iec import (
     IECParameters,

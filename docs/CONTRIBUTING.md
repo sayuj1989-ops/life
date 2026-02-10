@@ -98,6 +98,15 @@ We use **pytest**.
 *   **Coverage**: Aim for high coverage on `src/` modules.
 *   **Run**: `pytest`
 
+## Versioning
+
+We follow **Semantic Versioning (SemVer)** (e.g., `MAJOR.MINOR.PATCH`).
+*   **MAJOR**: Incompatible API changes.
+*   **MINOR**: Backwards-compatible functionality additions.
+*   **PATCH**: Backwards-compatible bug fixes.
+
+The single source of truth for the version number is **`pyproject.toml`**. This version is automatically mirrored in `src/spinalmodes/__init__.py`.
+
 ## Environment
 
 *   Manage dependencies via `requirements.txt` or `pyproject.toml`.

@@ -107,8 +107,8 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | Term | Mean Anisotropy | Structural Signature | Scaling |
 | :--- | ---: | :--- | :--- |
 | **η_p** (Sensing) | 3.22 | Extended sensors (PIEZO1/2) + disordered TFs (EGR3, RUNX3) | L to L² |
-| **η_a** (Actuation) | 4.19 | Fibrous scaffolds (LMNA) + crosslinkers (FLNA) + strain gauges (VIM) | L² to L³ |
-| **Γ_m** (Maintenance) | 2.11 | Compact enzymes (SIRT1) + ECM (COL1A1) + morphogens (SHH) | L to L³ |
+| **η_a** (Actuation) | 3.39 | Fibrous scaffolds (LMNA) + crosslinkers (FLNA) + strain gauges (VIM) | L² to L³ |
+| **Γ_m** (Maintenance) | 2.47 | Compact enzymes (SIRT1) + ECM (COL1A1) + morphogens (SHH) | L to L³ |
 
 ### The Molecular Logic of the Energy Deficit Window
 

@@ -213,3 +213,8 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rods**: Found 2 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
 - **Structural Confidence**: 3 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
 - **Top Mover**: LMNA remains the most anisotropic structure in this batch.
+## 2026-02-09: Daily Refresh
+- **Targets**: ARNTL, DMD, GHR, IGF1R, PPARGC1A, MYLK, NTRK3, RUNX3, LBX1, PIEZO2
+- **Full Report**: [View Summary](outputs/afcc/2026-02-09/summary.md)
+- **Metrics**: [Download CSV](outputs/afcc/2026-02-09/metrics.csv)
+- **Top Anisotropy**: GHR (5.13)

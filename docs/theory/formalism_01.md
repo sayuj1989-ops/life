@@ -198,6 +198,21 @@ $$ \Omega_{VP} = \frac{\pi_V}{\pi_P} = \frac{\sigma_P^2}{\sigma_V^2} $$
     *   A coarse, circuit-level heuristic is the ratio of Vestibulo-Ocular Reflex (VOR) gain to H-reflex slope. This compares a predominantly vestibular brainstem reflex to a predominantly proprioceptive spinal reflex and thus only **indirectly** tracks $\Omega_{VP}$; it does **not** assume that VOR and H-reflex operate in the same control loop as spinal alignment.
     *   More direct experimental proxies for $\Omega_{VP}$ would relate specifically to postural control, e.g. the ratio of vestibular vs proprioceptive perceptual thresholds or gains during controlled perturbation paradigms (galvanic/rotational vestibular stimulation vs muscle/tendon vibration or joint angle perturbation).
 
+### 2.14. The Morphogenetic Deborah Number ($\mathcal{D}_{morph}$)
+
+We propose that spinal morphogenesis operates in a viscoelastic regime defined by the competition between volumetric growth and stress relaxation via ECM remodeling. We define $\mathcal{D}_{morph}$ as the ratio of the characteristic stress relaxation time ($\tau_{relax}$) to the characteristic growth time ($\tau_{growth}$).
+
+$$ \mathcal{D}_{morph} = \frac{\tau_{relax}}{\tau_{growth}} = \frac{1/k_{remodel}}{1/\dot{\varepsilon}_g} = \frac{\dot{\varepsilon}_g}{k_{remodel}} $$
+
+*   **Symbols**:
+    *   $\dot{\varepsilon}_g$: Volumetric growth strain rate $[T^{-1}]$.
+    *   $k_{remodel}$: Rate constant of ECM turnover (e.g., MMP-mediated collagen degradation) $[T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{D}_{morph} \ll 1$ (Fluid Limit): Remodeling is fast relative to growth. The tissue relaxes growth-induced stress, conforming plastically to the target geometry specified by $I(s)$.
+    *   $\mathcal{D}_{morph} \gg 1$ (Solid Limit): Growth is faster than remodeling. The tissue accumulates residual stress, behaving elastically. If this stress exceeds critical buckling loads, geometric instability occurs.
+*   **AIS Context**: During the adolescent growth spurt, $\dot{\varepsilon}_g$ spikes. If $k_{remodel}$ (e.g., MMP13 activity) does not increase proportionally, $\mathcal{D}_{morph}$ rises, pushing the spine into a brittle, instability-prone regime.
+*   **Measurable Proxy**: The ratio of Height Velocity (cm/year) to serum markers of Collagen Type II degradation (e.g., CTX-II or C2C).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -371,6 +386,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Curvature progression in tail-suspended mice with vs. without imperceptible mechanical vibration applied to the skull/mastoid, using a candidate frequency band for stochastic resonance whose optimal range must be determined experimentally.
 *   **Refutation**: If vibration worsens the drift (increases noise) rather than stabilizing it (resonance), the precision-weighted model is incorrect. (Reference: Proske & Gandevia, 2012; Friston, 2010).
 
+### Test AA: The Remodeling Lag
+*   **Hypothesis**: High $\mathcal{D}_{morph}$ predicts curvature progression. Patients with rapid growth ($\dot{\varepsilon}_g \uparrow$) but low ECM turnover ($k_{remodel} \downarrow$) are at highest risk.
+*   **Data Needed**: Longitudinal serum analysis of MMP activity/degradation products vs. height velocity in AIS cohorts.
+*   **Refutation**: If curvature progression is independent of the ratio $\dot{\varepsilon}_g / k_{remodel}$, or if rapid remodelers (low $\mathcal{D}_{morph}$) are *more* unstable (due to softening), the "stress accumulation" model is incorrect. (Reference: Ambrosi et al., 2011).
+
+### Test AB: The Pharmacological Relaxation
+*   **Hypothesis**: Increasing $k_{remodel}$ exogenously (e.g., via Relaxin or MMP upregulation) during the growth spurt should rescue the stability of the spine by lowering $\mathcal{D}_{morph}$.
+*   **Data Needed**: Spinal linearity in rapidly growing animal models treated with Relaxin or general MMP agonists vs vehicle.
+*   **Refutation**: If increased remodeling leads to *more* deformity (due to loss of stiffness $\chi_M$) rather than less (stress relaxation), the dominant failure mode is stiffness loss, not stress accumulation. (Reference: Humphrey, 2002).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -404,3 +429,5 @@ The theory makes specific predictions about the relationship between genetic ani
 29. **Adams, R. A., et al. (2013).** "Predictions not commands: active inference in the motor system." *Brain Structure and Function*, 218(3). (Active Inference foundation).
 30. **Proske, U., & Gandevia, S. C. (2012).** "The proprioceptive senses: their roles in signaling body shape, body position and movement, and muscle force." *Physiological Reviews*, 92(4). (Proprioceptive gain).
 31. **Friston, K. (2010).** "The free-energy principle: a unified brain theory?" *Nature Reviews Neuroscience*, 11(2). (Theoretical basis for precision weighting).
+32. **Ambrosi, D., et al. (2011).** "Perspectives on biological growth and remodeling." *Journal of the Mechanics and Physics of Solids*, 59(4). (Theoretical framework for $\mathcal{D}_{morph}$).
+33. **Humphrey, J. D. (2002).** "Continuum biomechanics of soft biological tissues." *Proceedings of the Royal Society of London. Series A*, 459. (Viscoelastic growth foundations).

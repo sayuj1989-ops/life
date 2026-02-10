@@ -345,3 +345,25 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 
 **Citations**:
 *   *Chen, X., Li, Z., et al. (2025). Expression of MMP1, MMP3, and TIMP1 in intervertebral discs under simulated overload and microgravity conditions. Journal of Orthopaedic Surgery and Research, 20, 71.* https://doi.org/10.1186/s13018-025-05508-6
+
+---
+
+### 22. The Vestibular Asymmetry Pathway
+
+**Arc Added**: `Vestibular_Input` $\rightarrow$ `Muscle_Tone`.
+
+*   **Source**: **Vestibular System** (Otoliths/Semicircular Canals).
+*   **Mechanism**: **Geometric Hallucination**.
+    1.  **Sensory Integration**: The brain integrates Proprioceptive (Body) and Vestibular (Gravity) signals to define "Vertical".
+    2.  **Asymmetry**: In AIS, there is a documented asymmetry in vestibular signal processing (gain) or integration (weighting) in the Lateral Vestibulospinal Tract (LVST).
+    3.  **Virtual Tilt**: This asymmetry creates a "Virtual Tilt" or "Geometric Hallucination" where the brain perceives vertical as tilted.
+    4.  **Compensation**: To align the head/body with this false vertical, the paraspinal muscles are activated asymmetrically, actively driving the spine into a curve.
+*   **Property**: **Muscle Tone Balance**.
+*   **Role**: **Gravitational Reference Frame**. The spine requires an accurate "Plumb Line" to maintain straightness. If the plumb line is broken (vestibular asymmetry), the "correct" shape becomes a curve.
+*   **Evidence**: Pialasse et al. (2015) demonstrated that AIS patients fail to reweight sensory inputs when proprioception is perturbed, relying on faulty vestibular cues. Lambert et al. (2009) showed that unilateral vestibular damage in *Xenopus* causes immediate scoliotic curvature.
+
+> **Hypothesis**: The spine is not "collapsing" under gravity; it is "reaching" for a hallucinated gravity vector.
+
+**Citations**:
+*   *Pialasse, J. P., et al. (2015). Vestibular dysfunction in adolescent idiopathic scoliosis. Journal of Neurophysiology.*
+*   *Lambert, F. M., et al. (2009). Vestibular asymmetry as the cause of idiopathic scoliosis: a possible answer from Xenopus. Journal of Neuroscience, 29(40), 12477-12483.* https://doi.org/10.1523/JNEUROSCI.3392-09.2009

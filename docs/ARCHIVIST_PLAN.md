@@ -41,5 +41,5 @@ This document tracks the daily incremental refactor of the repository towards pu
 ## Phase 4: Final Polish (Low Priority)
 
 - [x] **Version Bump**: Establish versioning strategy.
-- [ ] **Citation**: Ensure `CITATION.cff` is accurate.
+- [x] **Citation**: Ensure `CITATION.cff` is accurate.
 - [ ] **License**: Verify `LICENSE` applicability to all components.

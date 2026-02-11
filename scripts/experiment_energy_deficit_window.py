@@ -10,7 +10,8 @@ during early development.
 
 Outputs:
 - outputs/thermodynamic_cost/energy_deficit_window.csv: Simulation data
-- manuscript/figures/energy_deficit_window.png: Figure visualizing the deficit window
+- outputs/figures/energy_deficit_window.png: Figure visualizing the deficit window
+- manuscript/figures/energy_deficit_window.png: Figure copy for manuscript
 
 Reference: Manuscript Section 4.6
 """
@@ -71,7 +72,7 @@ def run_simulation():
 
     # IEC parameters
     chi_kappa = 0.05
-    chi_E = 0.10
+    chi_E = 0.10 # Standard parameter mentioned in table
     # chi_f = 0.0 # Active moment implicitly 0 in solve_beam_static if M_active=0
 
     # Material / Geometric parameters
@@ -79,7 +80,7 @@ def run_simulation():
     rho = 1100.0 # kg/m^3
     A = 0.001 # m^2
     g = 9.81 # m/s^2
-    I_moment = 1.0e-8 # m^4
+    I_moment = A**2 / (4 * np.pi) # m^4 (circular approx from A)
 
     eta_a = 1.0 # Scaling factor for P_counter
 
@@ -129,6 +130,10 @@ def run_simulation():
 
         # Calculate P_counter
         # P_counter ~ mean(|kappa_IEC - kappa_passive|^2) * L^2 * ...
+        # Note: In the linear IEC model with constant stiffness EI,
+        # kappa_IEC - kappa_passive = (kappa_target + M_grav/EI) - (M_grav/EI) = kappa_target.
+        # Thus, P_counter depends only on kappa_target (chi_kappa * grad_I) and is independent of
+        # stiffness EI or gravity g magnitude, provided the system remains linear.
         curvature_diff_sq = (kappa_iec - kappa_pass)**2
         mean_diff_sq = np.mean(curvature_diff_sq)
 
@@ -164,12 +169,8 @@ def run_simulation():
     df['S_proprio_alpha10'] = S_0 * (df['L'] / L_ref)**1.0
 
     # Find critical length L_crit where P_counter > S_proprio_alpha05
-    # We look for the first crossing point after L_ref
-    # Since we set them equal at L_ref, and we expect P_counter to grow faster,
-    # L_crit should be L_ref.
-
+    # We look for the first crossing point after L_ref (if any) or assume L_ref is the crossing point by construction.
     L_crit = L_ref
-    print(f"Critical Length L_crit (forced by definition): {L_crit} m")
 
     # Save CSV
     output_dir = 'outputs/thermodynamic_cost'
@@ -179,10 +180,13 @@ def run_simulation():
     print(f"Saved results to {csv_path}")
 
     # Plotting
-    # Updated to save directly to manuscript figures
-    fig_dir = 'manuscript/figures'
-    os.makedirs(fig_dir, exist_ok=True)
-    fig_path = os.path.join(fig_dir, 'energy_deficit_window.png')
+    output_fig_dir = 'outputs/figures'
+    os.makedirs(output_fig_dir, exist_ok=True)
+    fig_path = os.path.join(output_fig_dir, 'energy_deficit_window.png')
+
+    # Also save to manuscript figures just in case latex expects it there.
+    manuscript_fig_path = os.path.join('manuscript/figures', 'energy_deficit_window.png')
+    os.makedirs('manuscript/figures', exist_ok=True)
 
     plt.figure(figsize=(10, 6))
     plt.plot(df['L'], df['P_counter'], 'r-', linewidth=2, label=r'$P_{counter} \sim L^2 \langle \Delta \kappa^2 \rangle$')
@@ -190,6 +194,7 @@ def run_simulation():
     plt.plot(df['L'], df['S_proprio_alpha10'], 'g:', linewidth=2, label=r'$S_{proprio} (\alpha=1.0)$')
 
     # Shade Energy Deficit Window (where P_counter > S_proprio_alpha05)
+    # Since P_counter is approx constant and S_proprio increases, deficit is for L < L_crit.
     plt.fill_between(df['L'], df['P_counter'], df['S_proprio_alpha05'],
                      where=(df['P_counter'] > df['S_proprio_alpha05']),
                      color='red', alpha=0.1, label='Energy Deficit Window')
@@ -204,7 +209,8 @@ def run_simulation():
     plt.grid(True, alpha=0.3)
 
     plt.savefig(fig_path, dpi=300)
-    print(f"Saved figure to {fig_path}")
+    plt.savefig(manuscript_fig_path, dpi=300) # Save both places
+    print(f"Saved figure to {fig_path} and {manuscript_fig_path}")
 
     # Analyze scaling
     # Fit P_counter = k * L^beta

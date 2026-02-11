@@ -232,6 +232,23 @@ $$ \mathcal{M}_{prop} = \frac{S_{proprio}(L)}{P_{counter}(L)} $$
 *   **Implication**: If $\gamma > 0$, the deficit is most acute at small $L$ (embryonic/early post-natal). However, during the adolescent growth spurt, if $\dot{L}$ drives a transient spike in remodeling costs (increasing $P_{counter}$ via plastic terms not captured in static analysis), $\mathcal{M}_{prop}$ may dip below unity.
 *   **Measurable Proxy**: The ratio of local glucose uptake (FDG-PET) in paraspinal muscles to the Cobb angle magnitude during the rapid growth phase.
 
+### 2.16. The Disc Pumping Number ($\mathcal{P}_{disc}$)
+
+We define the ratio of convective solute transport (driven by cyclic compression) to diffusive transport in the intervertebral disc.
+
+$$ \mathcal{P}_{disc} = \frac{f_{load} \cdot \varepsilon_{vol} \cdot H_{disc}^2}{D_{solute}} $$
+
+*   **Symbols**:
+    *   $f_{load}$: Frequency of diurnal/locomotor loading cycles $[T^{-1}]$.
+    *   $\varepsilon_{vol}$: Volumetric strain per cycle (fluid exchange fraction) $[1]$.
+    *   $H_{disc}$: Characteristic height of the disc (diffusion path) $[L]$.
+    *   $D_{solute}$: Effective diffusivity of large solutes (e.g., Glucose, Lactate) in the ECM $[L^2T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{P}_{disc} > 1$: Convection-dominated transport. The "pump" is active, maintaining high $O_2$ and glucose levels deep in the Nucleus Pulposus.
+    *   $\mathcal{P}_{disc} < 1$: Diffusion-dominated transport. The "Convective Shutdown". Solute transport relies on slow diffusion, leading to a hypoxic/acidic core that stabilizes HIF-1$\alpha$ and upregulates MMPs.
+*   **Microgravity Implication**: In $\mu g$, $f_{load}$ decreases and static swelling occurs ($\varepsilon_{vol} \to 0$). $\mathcal{P}_{disc}$ drops, triggering the "Hypoxic Remodeling" cascade.
+*   **Measurable Proxy**: The enhancement of Gadolinium contrast uptake in the IVD Nucleus Pulposus post-exercise vs. resting (Dynamic Contrast-Enhanced MRI).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -425,6 +442,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal curvature onset length in zebrafish larvae raised in normoxic vs. hypoxic water (e.g., 50% saturation).
 *   **Refutation**: If hypoxia uniformly stunts growth but does *not* induce curvature (i.e., geometry is preserved despite metabolic stress), the specific link between metabolism and symmetry breaking is falsified. (Reference: Sato et al., 2025; Latimer et al., 2021).
 
+### Test AE: The Frequency-Hypoxia Coupling
+*   **Hypothesis**: The stabilization of HIF-1$\alpha$ in the nucleus pulposus is inversely proportional to the loading frequency $f_{load}$, even if the time-averaged magnitude of load is constant.
+*   **Data Needed**: Nuclear HIF-1$\alpha$ accumulation (immunofluorescence) in IVD explants subjected to static ($f=0$) vs. cyclic ($f=1$ Hz) compression at identical mean stress.
+*   **Refutation**: If HIF-1$\alpha$ levels are determined solely by mean stress magnitude (static compression) and are insensitive to the *rate* of fluid exchange, the convective pumping hypothesis is falsified. (Reference: Huang et al., 2014).
+
+### Test AF: The Small-Molecule Rescue
+*   **Hypothesis**: If the core defect in microgravity is hypoxic upregulation of MMPs due to low $\mathcal{P}_{disc}$, treating unloaded discs with HIF-1$\alpha$ inhibitors (e.g., Digoxin, Echinomycin) should prevent matrix degradation.
+*   **Data Needed**: Aggrecan/Collagen II content in tail-suspended mouse IVDs treated with systemic HIF-1$\alpha$ inhibitors vs. vehicle.
+*   **Refutation**: If MMP upregulation and matrix loss persist despite HIF-1$\alpha$ blockade, the degradation pathway is hypoxia-independent (e.g., purely mechanically gated). (Reference: Sato et al., 2025).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -464,3 +491,5 @@ The theory makes specific predictions about the relationship between genetic ani
 35. **Laughlin, S. B. (2001).** "Energy as a constraint on the coding and processing of sensory information." *Current Opinion in Neurobiology*, 11(4). (Neural energy cost).
 36. **Sato, K., et al. (2025).** "Hypoxia-inducible factor 1α regulates the circadian clock in the intervertebral disc." *Nature Communications*. (Hypoxia/IVD link).
 37. **Latimer, B., et al. (2021).** "The energetic cost of upright posture." *American Journal of Physical Anthropology*. (Energy of posture).
+38. **Urban, J. P., et al. (2004).** "Nutrition of the intervertebral disc." *Spine*, 29(23). (Foundational transport theory).
+39. **Huang, C. Y., et al. (2014).** "Effects of cyclic compression on the biological properties of the intervertebral disc." *The Spine Journal*, 14(9). (Frequency dependence).

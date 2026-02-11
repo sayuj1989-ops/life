@@ -57,8 +57,10 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 | **VIM** | P08670 | 7.47 | Fibrous/Extended | 65.7 | 77.1 | 466 | 1 | L^3 (cell volume) | Vimentin; gravitational strain gauge in cells |
 | **LMNA** | P02545 | 4.75 | Fibrous/Extended | 71.2 | 76.4 | 664 | 0 | L^2 (load-bearing cross-section) | Lamin A/C; nuclear mechanostat scaling with tissue stiffness |
 | **CAV1** | Q03135 | 3.98 | Fibrous/Extended | 33.4 | 78.4 | 178 | 0 | L^2 (membrane area) | Caveolin-1; membrane curvature sensor and mechanotransducer |
+| **DMD** | P11532 | 1.32 | Globular | 22.8 | 76.3 | 525 | 1 | L^3 (muscle volume) | Costamere tension transmission; protects against contraction damage |
+| **MYLK** | Q15746 | 1.46 | Globular | 41.5 | 65.8 | 1914 | 31 | L^3 (muscle volume) | Regulator of myosin contractility and smooth muscle tone |
 
-**Structural summary:** Mean anisotropy = **4.19**, Rg range = 23–71 Å, Mean pLDDT = 75.0, Total residues = 4236, Total hinges = 117
+**Structural summary:** Mean anisotropy = **3.39**, Rg range = 23–71 Å, Mean pLDDT = 73.9, Total residues = 6675, Total hinges = 149
 
 ### Thermodynamic Predictions
 
@@ -67,6 +69,8 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 - **VIM** (L^3 (cell volume)): Intermediate filament; collapses in microgravity triggering ROS cascade; the 'first domino' in energy deficit — its failure triggers metabolic switch
 - **LMNA** (L^2 (load-bearing cross-section)): Highest anisotropy (4.75) among TFs; nuclear stiffness must scale with gravitational load during growth; failure = Scalar Senescence
 - **CAV1** (L^2 (membrane area)): Membrane-embedded sensor; cost of maintaining caveolar pits scales with membrane area; connects to YAP/TAZ nuclear translocation
+- **DMD** (L^3): Globular but massive integrator (costamere); connects cytoskeleton to ECM; failure leads to muscle damage under load (Duchenne scoliosis)
+- **MYLK** (L^3): Globular enzyme regulating contractility; maintains basal tone; energy cost scales with muscle mass and tone requirement
 
 ---
 ## Basal Tissue Maintenance (Γ_m)
@@ -81,8 +85,12 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **SOX9** | P48436 | 2.19 | Intermediate | 16.6 | 56.0 | 509 | 2 | L (growth plate activity) | Master chondrogenic TF; growth plate cartilage specification |
 | **SHH** | Q15465 | 2.12 | Intermediate | 24.5 | 78.4 | 462 | 6 | L (gradient length) | Sonic Hedgehog; morphogen gradient for vertebral patterning |
 | **CDKN1A** | P38936 | 2.14 | Intermediate | 23.9 | 69.0 | 164 | 2 | threshold (binary switch) | p21; cell cycle inhibitor activated by mechanical unloading |
+| **PPARGC1A** | Q9UBK2 | 2.19 | Intermediate | 31.2 | 52.7 | 798 | 0 | Supply Limit | Mitochondrial biogenesis master regulator; sets energy budget |
+| **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | Supply Limit | Growth Hormone Receptor; high anisotropy implies high cost to maintain signaling competence |
+| **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | Temporal Limit | BMAL1; circadian clock factor with surprisingly high anisotropy |
+| **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | Supply Limit | IGF-1 Receptor; mediates growth signal; massive globular domain |
 
-**Structural summary:** Mean anisotropy = **2.11**, Rg range = 17–32 Å, Mean pLDDT = 68.2, Total residues = 4103, Total hinges = 35
+**Structural summary:** Mean anisotropy = **2.48**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
 ### Thermodynamic Predictions
 
@@ -92,6 +100,10 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 - **SOX9** (L (growth plate activity)): SOX9 drives growth plate proliferation; its activity rate determines dL/dt; higher SOX9 = faster growth = steeper metabolic demand curve
 - **SHH** (L (gradient length)): Compact signaling molecule; maintains the information field I(s) itself; gradient maintenance cost scales with rod length
 - **CDKN1A** (threshold (binary switch)): Small, compact; upregulated in microgravity to halt proliferation; its activation = signal that energy supply is insufficient for growth
+- **PPARGC1A** (Supply Limit): Intermediate anisotropy, low pLDDT (53%); master regulator of mitochondrial biogenesis; its expression defines the energy ceiling ($\dot{E}_{max}$)
+- **GHR** (Supply Limit): Extremely high anisotropy (5.13); receptor density must scale with surface area; high structural cost suggests growth signaling is expensive
+- **ARNTL** (Temporal Limit): High anisotropy (3.32) for a TF; implies the circadian clock has a mechanical component or high turnover cost; misalignment with load cycles breaks the clock
+- **IGF1R** (Supply Limit): Massive globular domain (1367 res); captures circulating IGF-1; receptor density determines local growth rate sensitivity
 
 ---
 ## Synthesis: The Energy Deficit Window — A Molecular View
@@ -101,8 +113,8 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | Term | Mean Anisotropy | Structural Signature | Scaling |
 | :--- | ---: | :--- | :--- |
 | **η_p** (Sensing) | 3.22 | Extended sensors (PIEZO1/2) + disordered TFs (EGR3, RUNX3) | L to L² |
-| **η_a** (Actuation) | 4.19 | Fibrous scaffolds (LMNA) + crosslinkers (FLNA) + strain gauges (VIM) | L² to L³ |
-| **Γ_m** (Maintenance) | 2.11 | Compact enzymes (SIRT1) + ECM (COL1A1) + morphogens (SHH) | L to L³ |
+| **η_a** (Actuation) | 3.39 | Fibrous scaffolds (LMNA) + crosslinkers (FLNA) + strain gauges (VIM) | L² to L³ |
+| **Γ_m** (Maintenance) | 2.48 | Compact enzymes (SIRT1) + extended receptors (GHR) + clock factors (ARNTL) | L to L³ |
 
 ### The Molecular Logic of the Energy Deficit Window
 
@@ -129,6 +141,11 @@ The AlphaFold structural data reveal a clear hierarchy of vulnerability:
    *after* the deficit has already begun. This lag — between structural
    demand and metabolic sensing — is the molecular basis of the
    Energy Deficit Window.
+
+5. **Supply-side Cost**: The high anisotropy of GHR (5.13) and ARNTL (3.32)
+   indicates that the "supply" system itself has a significant structural
+   maintenance cost, potentially exacerbating the deficit when these
+   pathways are upregulated during growth.
 
 ### Testable Prediction
 

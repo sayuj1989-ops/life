@@ -135,3 +135,25 @@ The \emph{active moment term} $\eta_a$ is borne by the molecular machines that g
 The \emph{basal maintenance term} $\Gamma_m$ is borne by structurally more compact proteins: Type~I collagen (COL1A1; 67\% disordered in monomeric prediction, reflecting the triple-helix assembly requirement), the disc matrix protein COMP (pLDDT~88.1, the most confidently predicted), the metabolic sensor SIRT1 (47\% disordered), the growth plate driver SOX9, the morphogen SHH, and the growth arrest signal p21/CDKN1A. Their mean anisotropy of 2.11---significantly lower than the demand-side proteins---confirms that the energy supply apparatus is structurally cheaper than the mechanotransduction apparatus it must power.
 
 This structural asymmetry (demand anisotropy $\gg$ supply anisotropy) provides the molecular basis for the energy deficit window: the most expensive proteins to maintain are precisely those whose function must scale with $L$, while the supply-side regulators that must detect and respond to this increasing demand are compact sensors operating near their detection limits.
+
+\subsection{The Spinal Clock and Convective Shutdown}
+
+The IEC framework described above treats the information field $I(s)$ and the metabolic supply $\Gamma_m(s)$ as time-independent parameters. However, biological tissues are dynamic, oscillating systems. Recent evidence demonstrates that the intervertebral disc (IVD) possesses an autonomous circadian clock driven by the BMAL1/CLOCK transcriptional loop, which regulates the synthesis of proteoglycans and the degradation of the extracellular matrix~\cite{dudek2017clock, takahashi2017clock}. This internal clock is not free-running; it requires a daily mechanical "Zeitgeber" (time-giver) to maintain phase coherence with the external world.
+
+\paragraph{Gravity as the Zeitgeber.} In the spine, gravity provides this synchronization signal through the daily cycle of axial loading. During the day (upright posture), gravitational compression forces fluid out of the nucleus pulposus (convective outflow), reducing disc height by 10-20\%. At night (recumbent posture), the load is removed, and the hydrophilic proteoglycan matrix draws fluid back in (diffusive/osmotic inflow), restoring height~\cite{urban2004nutrition, setton2004ivd}.
+
+This "tidal" fluid exchange is not merely structural; it is the primary transport mechanism for large solutes (glucose, oxygen, cytokines) into the avascular nucleus pulposus. Sato et al. (2025) demonstrated that in the absence of this convective pumping, diffusive transport alone is insufficient to meet the metabolic demands of the disc cells~\cite{sato2025convective}.
+
+\paragraph{Spinal Jetlag and the Convective Shutdown.} Under microgravity conditions (or prolonged bed rest), the daily loading cycle vanishes ($g \to 0$). The spine enters a state of "Convective Shutdown," where the fluid pump arrests. The disc remains in a perpetually swollen, "permanent night" state. Without the convective flush, waste products (lactate) accumulate, and oxygen tension drops, creating a hypoxic core.
+
+This hypoxia stabilizes HIF-1$\alpha$, which in turn upregulates catabolic enzymes like MMP1 and MMP3~\cite{chen2025mmp, roughley2004biology}. The matrix degrades, and the effective bending stiffness $B_{\mathrm{eff}}(s)$ (Eq.~\ref{eq:iec_energy}) drops precipitously. We term this state \emph{Spinal Jetlag}: a desynchronization between the internal molecular clock (which expects a rhythm) and the static external mechanical environment.
+
+In the IEC language, Spinal Jetlag manifests as a time-dependent decay in the metabolic supply term $\Gamma_m(s, t)$ and a degradation of the stiffness anisotropy $\chi_E$. The energy deficit window (Fig.~\ref{fig:energy_deficit_window}) widens, and the critical buckling load decreases, making the spine susceptible to spontaneous scoliotic curvature even in the absence of heavy loads.
+
+\paragraph{Predictions.}
+This chronobiological extension of the IEC framework yields three falsifiable predictions:
+\begin{enumerate}
+    \item \textbf{Clock Desynchronization:} Mice subjected to hindlimb unloading (simulated microgravity) will exhibit a flattening and phase-shift of core clock gene expression (Per2, Bmal1) in IVD tissues within 72 hours, preceding structural degradation.
+    \item \textbf{Hypoxic Trigger:} The onset of scoliotic curvature in unloading models will be preceded by a distinct hypoxic signature (HIF-1$\alpha$ stabilization) in the nucleus pulposus, and treatment with HIF-1$\alpha$ inhibitors will delay curvature onset.
+    \item \textbf{Chronotherapeutic Rescue:} The application of pulsatile axial compression (mimicking the daily gravity cycle) at the appropriate circadian phase will be significantly more effective at preserving spinal geometry than static compression or random loading, restoring the convective pump and re-entraining the spinal clock.
+\end{enumerate}

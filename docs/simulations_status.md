@@ -25,3 +25,4 @@
 | 2026-07-28 | weekly-sim-tilt-growth | tilt_deg, chi_kappa | High growth (chi=15) amplifies Cobb angle (75 deg) under tilt (30 deg) but reduces lateral deviation, suggesting tighter curling. | [Report](../outputs/sim/2026-07-28/report.md) |
 | 2026-08-01 | weekly-sim-gravity-anisotropy | Gravity, Anisotropy | High gravity (2g) combined with high anisotropy (R=10) and sagittal growth (chi=10) maintained perfect stability (Cobb=0) in a vertical setup. | [Report](../outputs/sim/2026-08-01/report.md) |
 | 2026-08-08 | weekly-sim-anisotropy-s-curve | Anisotropy Ratio | Optimal stability at R~3.6 (Cobb ~10 deg); High Anisotropy (R=10) destabilizes (Cobb ~68 deg) while Low R causes collapse. | [Report](../outputs/sim/2026-08-08/report.md) |
+| 2026-02-11 | weekly-sim-torsion-high-anisotropy | chi_tau (0.0-2.0) | High anisotropy (R=10) remains unstable (Cobb ~68 deg) with minimal effect from torsion (chi_tau up to 2.0). | [Report](../outputs/sim/2026-02-11/report.md) |

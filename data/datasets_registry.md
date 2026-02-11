@@ -13,3 +13,4 @@
 | **DS_012** | Spinal Cord Glymphatic MRI (Human Bed Rest) | Homo sapiens | Spinal Cord | OSD-1005 / ESA Bed Rest | MRI-based tracking of intrathecal tracers during 60-day bed rest (AGBRESA-2). |
 | **DS_013** | Human Batson's Plexus MRI | Homo sapiens | Spinal Venous Plexus | OSD-1008 / ESA Bed Rest | MRI volumetric analysis of the vertebral venous plexus during 60-day head-down tilt bed rest. Key for assessing 'congestive' back pain and spinal fluid dynamics. |
 | **DS_014** | Mouse Vestibular Epithelium | Mus musculus | Utricle/Saccule | RR-1 / NASA GeneLab (OSD-1200) | Transcriptomic profiling of vestibular hair cells from spaceflight mice to assess sensory plasticity and Otolith loss. |
+| **DS_015** | Mouse IVD Transcriptomics (Simulated) | Mus musculus | Intervertebral Disc | Simulated Microgravity (HLS) / NASA GeneLab | Single-cell transcriptomics of IVD cells (NP and AF) under hindlimb suspension (HLS) to study convective failure and hypoxic signatures. |

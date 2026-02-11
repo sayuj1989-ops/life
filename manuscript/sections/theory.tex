@@ -4,17 +4,22 @@ We propose that the robust S-shaped geometry of the spine arises not from passiv
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s), \mathbf{d}_2(s), \mathbf{d}_3(s)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The kinematics are governed by the following evolution equations:
+We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s), \mathbf{d}_2(s), \mathbf{d}_3(s)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s)$ and $\mathbf{d}_2(s)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
 \begin{align}
 \mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
 \mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
 \label{eq:cosserat_kinematics}
 \end{align}
-where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the curvature components $\kappa_{1,2}$ and twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
+where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-We introduce a scalar information field $I(s) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). The spatial gradient of this field, $\nabla I$, acts as a "curvature generator," driving the resting geometry of the rod away from the straight configuration. This posits that morphogenetic information encodes a target metric for the developing spine, where high rates of change in identity (transition zones) correspond to high intrinsic curvature.
+We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes, SHH/BMP gradients). The spatial gradient of this field, $\nabla I$, acts as a "curvature generator," driving the resting geometry of the rod away from the straight configuration. Formally, we define the intrinsic rest curvature $\boldsymbol{\kappa}_{\mathrm{rest}}$ as a function of the information gradient:
+\begin{equation}
+\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
+\label{eq:kappa_rest}
+\end{equation}
+where $\chi_\kappa$ is a dimensionless geometric coupling constant. This posits that morphogenetic information encodes a target metric for the developing spine, where high rates of change in identity (transition zones) correspond to high intrinsic curvature.
 
 Following the parameterization in Eq.~\ref{eq:info_field}, $I(s)$ is modeled as a bimodal Gaussian distribution with peaks corresponding to the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) regions of high vertebral identity specification. AlphaFold analysis of key HOX proteins (e.g., HOXC8, HOXB13) reveals distinct structural rigidities that may underpin this spatial specificity.
 

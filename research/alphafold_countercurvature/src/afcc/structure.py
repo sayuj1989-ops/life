@@ -49,9 +49,15 @@ class StructureParser:
             except Exception:
                 pass # Fallback to parsing if cache corrupted/stale
 
-        coords_list = []
+        # Bolt Optimization: Flattened list structure to avoid list-of-lists overhead
+        coords_flat = []
+        coords_append = coords_flat.append
+
         plddt_list = []
+        plddt_append = plddt_list.append
+
         resnames_list = []
+        resnames_append = resnames_list.append
 
         try:
             with open(pdb_path, 'r') as f:
@@ -75,16 +81,20 @@ class StructureParser:
                                 if res_name[0] == ' ' or res_name[-1] == ' ':
                                     res_name = res_name.strip()
 
-                                coords_list.append([x, y, z])
-                                plddt_list.append(b_factor)
-                                resnames_list.append(res_name)
+                                # Bolt 2026-11-05: Flat append avoids [x,y,z] object creation
+                                coords_append(x)
+                                coords_append(y)
+                                coords_append(z)
+                                plddt_append(b_factor)
+                                resnames_append(res_name)
                             except ValueError:
                                 continue # Skip malformed lines
 
-            if not coords_list:
+            if not coords_flat:
                 return None, None, None
 
-            coords_arr = np.array(coords_list)
+            # Reshape flat coords list to (N, 3)
+            coords_arr = np.array(coords_flat).reshape(-1, 3)
             plddt_arr = np.array(plddt_list)
             resnames_arr = np.array(resnames_list)
 

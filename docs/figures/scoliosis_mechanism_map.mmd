@@ -24,6 +24,7 @@ graph TD
         AQP4[AQP4<br/>Aquaporin-4]
         MELATONIN[MELATONIN<br/>Pineal Hormone]
         MT2[MTNR1B<br/>Melatonin Receptor]
+        HIF1A[HIF1A<br/>Hypoxia Inducible Factor]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -50,6 +51,7 @@ graph TD
         Glymphatic_Stasis[Glymphatic Stasis<br/>Toxic Clearance Failure]
         Vestibular_Input[Vestibular Input<br/>Graviception]
         Gi_cAMP[Gi/cAMP Signaling<br/>Gain Suppression]
+        Hypoxia[Hypoxia<br/>Oxygen Starvation]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -157,6 +159,11 @@ graph TD
     %% NEW ARC: Vestibular Asymmetry
     Vestibular_Input --> Muscle_Tone
 
+    %% NEW ARC: The Convective Shutdown
+    Hydraulic_Congestion --> Hypoxia
+    Hypoxia --> HIF1A
+    HIF1A --> MMP
+
     %% Cross-Talk and Failures
     Stability --> S_Curve
     S_Curve -- "Loss of Control" --> Scoliosis
@@ -190,7 +197,7 @@ graph TD
     Muscle_Tone -- "Pump Failure" --> VCL_Stasis
     VCL_Stasis --> Hydraulic_Congestion
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP process;
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Hypoxia process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
     class S_Curve,Stability,Scoliosis outcome;

@@ -26,8 +26,8 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 16 Cycle - Gravity x Spine Expansion\n")
-        f.write("**Focus:** Mechanotransduction, Cilia/PCP, and Somite Segmentation\n\n")
+        f.write("****Last Updated:** Week 17 Cycle - Gravity x Spine Expansion\n")
+        f.write("**Focus:** Hypoxia, Circadian Rhythm, and Vertebral Segmentation\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
         f.write("2.  **Spinal Curvature**: Genetic or experimental links to scoliosis or vertebral defects.\n")
@@ -41,13 +41,6 @@ def main():
             # Parse tags to find primary mechanism
             tags = c['pathway_tags'].split(',')
             mechanism = tags[0].strip() if tags else "Unknown"
-
-            # Clean up mechanism if it's "Thermodynamic_Cost" (it might be the last tag, but I want it to look good)
-            # Actually, the loop takes the first tag. For new proteins, I put "Thermodynamic_Cost" as first or only tag?
-            # In update_candidates.py: 'pathway_tags': 'Thermodynamic_Cost' for new ones.
-            # For DMD/MYLK, I appended it. So it's last.
-            # DMD has "Muscle,Mechanotransduction...". "Muscle" is first.
-            # That's fine.
 
             # Format rationale with mechanism bolded
             rationale_text = f"**{mechanism}**: {c['justification']}"
@@ -64,10 +57,10 @@ def main():
         f.write("    *   **70-79**: Pathway member with experimental links to spine development or gravity response.\n\n")
 
         f.write("## Next Steps\n\n")
-        f.write("1.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (ITGAV, LATS1/2, DVL2) to assess structural anisotropy.\n")
-        f.write("2.  **Mechanotransduction Map**: Integrate the new integrin/Hippo candidates into the force transmission model.\n")
-        f.write("3.  **Simulation**: Investigate the role of somite segmentation defects (Notch/HES1) in the `pyelastica` rod models (local stiffness variations).\n")
-        f.write("4.  **Literature Review**: Deep dive into the \"PCP\" mechanism for WNT5B and RYK.\n")
+        f.write("1.  **Hypoxia Analysis**: Investigate HIF1A targets (MMP1, MMP3) in the \"Convective Shutdown\" model.\n")
+        f.write("2.  **Circadian Clock**: Assess the role of NR1D1 and CLOCK/BMAL1 in maintaining IVD height/stiffness cycles.\n")
+        f.write("3.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (HIF1A, TEAD1, KANK1) to assess structural anisotropy.\n")
+        f.write("4.  **Mechanotransduction Map**: Integrate KANK1 and DLC1 into the microtubule-focal adhesion force transmission model.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

@@ -214,6 +214,13 @@ class CounterCurvatureRodSystem:
     This class bridges the information-field theory (IEC) to the Cosserat rod physics engine.
     It maps biological inputs (protein concentrations, ECM organization) to mechanical
     properties like stiffness anisotropy and rest curvature.
+
+    Coordinate System (Vertical Rod):
+    - Rod aligns with Z-axis (d3 = Tangent = Z).
+    - Normal (d1) aligns with Y-axis. Bending about d1 is in X-Z plane (Lateral Bending).
+      Therefore, kappa[0] (d1 curvature) corresponds to Lateral Curvature (Scoliosis).
+    - Binormal (d2) aligns with -X-axis. Bending about d2 is in Y-Z plane (Sagittal Bending).
+      Therefore, kappa[1] (d2 curvature) corresponds to Sagittal Curvature (Kyphosis/Lordosis).
     """
     def __init__(
         self,
@@ -486,6 +493,8 @@ def run_protein_simulation(
     active_curvature: float,
     torsion_drive: float = 0.0,
     stiffness_modulation: float = 0.0,
+    initial_lateral_defect: float = 0.0,
+    natural_kyphosis: float = 2.0,
     length: float = 1.0,
     n_elements: int = 50,
     duration: float = 2.0,
@@ -509,6 +518,8 @@ def run_protein_simulation(
         active_curvature: Magnitude of active curvature drive (scalar signal).
         torsion_drive: Magnitude of active torsion drive.
         stiffness_modulation: Degree of stiffness modulation (blockiness).
+        initial_lateral_defect: Magnitude of initial lateral curvature (perturbation).
+        natural_kyphosis: Magnitude of natural sagittal curvature (kyphosis).
         length: Length of the rod (m).
         n_elements: Number of elements in the rod.
         duration: Simulation duration (s).
@@ -563,7 +574,11 @@ def run_protein_simulation(
 
         # 3. Create System with constant intrinsic curvature base
         kappa_gen = np.zeros((3, n_elements + 1))
-        kappa_gen[0, :] = 2.0  # Constant sagittal curvature (e.g. natural kyphosis)
+        # Sagittal Kyphosis (Index 1: Normal curvature, Y-Z plane bending)
+        kappa_gen[1, :] = natural_kyphosis
+        # Lateral Defect (Index 0: Binormal curvature, X-Z plane bending)
+        if initial_lateral_defect != 0.0:
+            kappa_gen[0, :] = initial_lateral_defect
 
         rod_system = CounterCurvatureRodSystem.from_iec(
             info=info,
@@ -595,9 +610,11 @@ def run_protein_simulation(
         error_msg = str(e)
         sim_metrics = {}
 
+    finally:
+        current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
+
     t1 = time.time()
-    current, peak = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
 
     output = {
         "input_anisotropy": anisotropy,

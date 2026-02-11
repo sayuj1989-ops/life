@@ -76,6 +76,10 @@ def run_experiment():
     print(f"{'Profile':<30} | {'Aniso':<6} | {'Curv':<6} | {'S_lat':<8} | {'Cobb':<8} | {'Time (s)':<8}")
     print("-" * 100)
 
+    # Use a small lateral curvature defect to test stability (perturbation)
+    # A perfectly straight spine (in X-Z) is an unstable equilibrium if not perturbed.
+    lateral_defect = 0.05  # 1/m
+
     for name, params in profiles.items():
         # Handle Microgravity scenario by checking name or adding param to profile
         gravity = 9.81
@@ -84,6 +88,7 @@ def run_experiment():
 
         sim_out = run_protein_simulation(
             **params,
+            initial_lateral_defect=lateral_defect,
             length=0.5,
             n_elements=50,
             duration=2.0,

@@ -15,14 +15,17 @@ import argparse
 import csv
 import math
 import sys
+import time
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any
 
 import numpy as np
 import matplotlib.pyplot as plt
-from Bio.PDB import PDBParser
-from Bio.PDB.Structure import Structure
+
+# Add research module to path to import StructureParser
+sys.path.append(str(Path(__file__).parent.parent / "research" / "alphafold_countercurvature" / "src"))
+from afcc.structure import StructureParser
 
 # Constants
 TARGET_PROTEINS = [
@@ -31,29 +34,6 @@ TARGET_PROTEINS = [
 ]
 DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
 DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")
-
-def get_calpha_and_plddt(structure: Structure) -> Tuple[np.ndarray, np.ndarray, List[int]]:
-    """
-    Extracts C-alpha coordinates and pLDDT scores (from B-factors).
-    Returns:
-        coords: (N, 3) float array
-        plddt: (N,) float array
-        res_indices: (N,) int list of residue numbers
-    """
-    coords = []
-    plddts = []
-    indices = []
-
-    for model in structure:
-        for chain in model:
-            for residue in chain:
-                if 'CA' in residue:
-                    ca = residue['CA']
-                    coords.append(ca.get_coord())
-                    plddts.append(ca.get_bfactor())
-                    indices.append(residue.get_id()[1])
-
-    return np.array(coords), np.array(plddts), indices
 
 def compute_geometry_metrics(coords: np.ndarray) -> Dict[str, float]:
     """
@@ -240,16 +220,20 @@ def find_bending_hotspots(curvature: np.ndarray, plddts: np.ndarray, top_n: int 
 
 def analyze_protein(pdb_path: Path) -> Dict:
     """
-    Analyzes a single PDB file.
+    Analyzes a single PDB file using fast StructureParser with caching.
     """
-    parser = PDBParser(QUIET=True)
-    try:
-        structure = parser.get_structure(pdb_path.stem, pdb_path)
-    except Exception as e:
-        print(f"Error parsing {pdb_path}: {e}")
+    t0 = time.time()
+    parser = StructureParser()
+
+    # ⚡ Bolt Optimization: Use fast parser + cache
+    coords, plddts, resnames = parser.fast_parse_pdb_arrays(pdb_path)
+
+    if coords is None:
+        print(f"Error parsing {pdb_path}")
         return None
 
-    coords, plddts, indices = get_calpha_and_plddt(structure)
+    dt = time.time() - t0
+    print(f"  Parsed {pdb_path.name} in {dt:.4f}s")
 
     # pLDDT Statistics
     plddt_mean = np.mean(plddts)

@@ -367,3 +367,24 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 **Citations**:
 *   *Pialasse, J. P., et al. (2015). Vestibular dysfunction in adolescent idiopathic scoliosis. Journal of Neurophysiology.*
 *   *Lambert, F. M., et al. (2009). Vestibular asymmetry as the cause of idiopathic scoliosis: a possible answer from Xenopus. Journal of Neuroscience, 29(40), 12477-12483.* https://doi.org/10.1523/JNEUROSCI.3392-09.2009
+
+---
+
+### 23. The Tunable Antenna (Circadian Cilia)
+
+**Arc Added**: `BMAL1` $\rightarrow$ `Ciliary_Tuning` $\rightarrow$ `Mech_Trans`.
+
+*   **Source**: `BMAL1` (Circadian Clock), `Ciliary_Tuning` (Antenna Gain).
+*   **Mechanism**: **Circadian Oscillation of Primary Cilia**.
+    1.  **Clock Control**: The core clock protein `BMAL1` regulates the expression and accumulation of pericentriolar material (e.g., Pericentrin) and IFT transport machinery.
+    2.  **Length Oscillation**: This drives a circadian rhythm in primary cilium length, with cilia being longer (more sensitive) during the rest phase and shorter (less sensitive) during the active phase.
+    3.  **Gain Tuning**: Since cilium length determines the magnitude of mechanotransduction (leverage arm), the cell effectively tunes its "Mechanical Gain" to the anticipated load cycle.
+*   **Property**: **Feedback Gain ($G_{mech}$)** (via Mechanotransduction).
+*   **Role**: **Temporal Sensitivity Optimization**. The cell anticipates when to listen to gravity.
+    *   **Spinal Jetlag**: In microgravity or clock-disrupted states, this oscillation dampens or drifts. A "Long Cilium" (High Gain) exposed to "High Load" (Day) causes toxic Calcium overload. A "Short Cilium" (Low Gain) during "Rest" fails to detect the subtle recovery signals.
+*   **Evidence**: Miyoshi et al. (2024) demonstrated that the circadian clock regulates primary cilium length to control fibroblast migration speed. Disruption of the clock abolishes this rhythm and impairs cellular function.
+
+> **Hypothesis**: Gravity is not just a force; it is a *frequency*. The spine's antenna must be tuned to the 24h frequency of gravitational loading.
+
+**Citations**:
+*   *Miyoshi, K. et al. (2024). Circadian oscillation in primary cilium length by clock genes regulates fibroblast cell migration. EMBO Reports, 25(3), 1171-1195.* https://doi.org/10.1038/s44319-024-00076-w

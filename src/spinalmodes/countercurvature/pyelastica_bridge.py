@@ -162,6 +162,7 @@ class SimulationResult:
         return metrics
 
 def _check_pyelastica() -> None:
+    """Internal check for PyElastica availability."""
     if not PYELASTICA_AVAILABLE:
         msg = (
             "PyElastica is not installed but is required for this module.\n"
@@ -174,6 +175,28 @@ def _check_pyelastica() -> None:
         # Consistency check with scripts/check_pyelastica.py
         # Ensure we can access basic attributes to verify full load
         _ = getattr(ea, "__version__", "unknown")
+
+
+def verify_pyelastica_installation(exit_on_fail: bool = True) -> bool:
+    """
+    Public utility to verify PyElastica installation for scripts.
+
+    Args:
+        exit_on_fail: If True, prints error and exits with sys.exit(1).
+                      If False, returns False on failure.
+
+    Returns:
+        bool: True if installed, False otherwise.
+    """
+    try:
+        _check_pyelastica()
+        return True
+    except ImportError as e:
+        if exit_on_fail:
+            print(f"ERROR: {e}")
+            import sys
+            sys.exit(1)
+        return False
 
 class ActiveMuscleTorques(ea.NoForces):
     """Applies a static distributed active moment (muscle torque)."""

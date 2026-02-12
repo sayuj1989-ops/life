@@ -11,7 +11,6 @@ during early development.
 Outputs:
 - outputs/thermodynamic_cost/energy_deficit_window.csv: Simulation data
 - outputs/figures/energy_deficit_window.png: Figure visualizing the deficit window
-- manuscript/figures/energy_deficit_window.png: Figure copy for manuscript
 
 Reference: Manuscript Section 4.6
 """
@@ -44,7 +43,7 @@ def generate_bimodal_gaussian_field(s, L):
 
     s_norm = s / L
 
-    # Parameters
+    # Parameters from prompt
     A_c = 0.5
     s_c = 0.80
     sigma_c = 0.08
@@ -130,10 +129,6 @@ def run_simulation():
 
         # Calculate P_counter
         # P_counter ~ mean(|kappa_IEC - kappa_passive|^2) * L^2 * ...
-        # Note: In the linear IEC model with constant stiffness EI,
-        # kappa_IEC - kappa_passive = (kappa_target + M_grav/EI) - (M_grav/EI) = kappa_target.
-        # Thus, P_counter depends only on kappa_target (chi_kappa * grad_I) and is independent of
-        # stiffness EI or gravity g magnitude, provided the system remains linear.
         curvature_diff_sq = (kappa_iec - kappa_pass)**2
         mean_diff_sq = np.mean(curvature_diff_sq)
 
@@ -144,7 +139,6 @@ def run_simulation():
 
         # Geodesic deviation D_geo: difference between IEC shape and passive shape
         # We approximate using L2 norm of angle difference (dimensionless)
-        # Normalized by length is implicit if we look at angle.
         D_geo = np.sqrt(np.mean((theta_iec - theta_pass)**2))
 
         results.append({
@@ -172,11 +166,12 @@ def run_simulation():
     # We look for the first crossing point after L_ref (if any) or assume L_ref is the crossing point by construction.
     L_crit = L_ref
 
-    # Save CSV
+    # Save CSV with explicit column order
     output_dir = 'outputs/thermodynamic_cost'
     os.makedirs(output_dir, exist_ok=True)
     csv_path = os.path.join(output_dir, 'energy_deficit_window.csv')
-    df.to_csv(csv_path, index=False)
+    df_out = df[['L', 'P_counter', 'S_proprio_alpha05', 'S_proprio_alpha10', 'Cobb_angle', 'D_geo']]
+    df_out.to_csv(csv_path, index=False)
     print(f"Saved results to {csv_path}")
 
     # Plotting
@@ -194,7 +189,6 @@ def run_simulation():
     plt.plot(df['L'], df['S_proprio_alpha10'], 'g:', linewidth=2, label=r'$S_{proprio} (\alpha=1.0)$')
 
     # Shade Energy Deficit Window (where P_counter > S_proprio_alpha05)
-    # Since P_counter is approx constant and S_proprio increases, deficit is for L < L_crit.
     plt.fill_between(df['L'], df['P_counter'], df['S_proprio_alpha05'],
                      where=(df['P_counter'] > df['S_proprio_alpha05']),
                      color='red', alpha=0.1, label='Energy Deficit Window')

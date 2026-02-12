@@ -42,4 +42,4 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Version Bump**: Establish versioning strategy.
 - [x] **Citation**: Ensure `CITATION.cff` is accurate.
-- [ ] **License**: Verify `LICENSE` applicability to all components.
+- [x] **License**: Verify `LICENSE` applicability to all components.

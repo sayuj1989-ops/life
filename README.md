@@ -112,4 +112,8 @@ If you use this work, please cite:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project adopts a dual-licensing model:
+- **Source Code**: Licensed under the **MIT License**.
+- **Manuscript & Documentation**: Licensed under **CC BY 4.0**.
+
+See [docs/LICENSING.md](docs/LICENSING.md) for full details on component licensing, including third-party and legacy code in `archive/`.

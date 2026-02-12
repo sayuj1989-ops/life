@@ -25,7 +25,10 @@ from Bio.PDB import PDBParser
 from Bio.PDB.Structure import Structure
 
 # Constants
-TARGET_PROTEINS = ["PIEZO1", "PIEZO2", "COL1A1", "YAP1", "TRPV4", "COL2A1"]
+TARGET_PROTEINS = [
+    "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
+    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN"
+]
 DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
 DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")
 
@@ -87,11 +90,17 @@ def compute_geometry_metrics(coords: np.ndarray) -> Dict[str, float]:
     else:
         anisotropy = 1000.0
 
+    # Principal Axis (Eigenvector for lambda_max)
+    # eigvals are sorted, so lambda_max is the last one (index 2)
+    principal_axis = eigvecs[:, 2]
+    principal_axis_str = f"[{principal_axis[0]:.3f}, {principal_axis[1]:.3f}, {principal_axis[2]:.3f}]"
+
     return {
         "radius_of_gyration": float(rg),
         "end_to_end_distance": float(end_to_end),
         "anisotropy_index": float(anisotropy),
-        "max_eigenvalue": float(lambda_max)
+        "max_eigenvalue": float(lambda_max),
+        "backbone_principal_axis": principal_axis_str
     }
 
 def compute_curvature_torsion(coords: np.ndarray, window: int = 5) -> Tuple[np.ndarray, np.ndarray]:
@@ -165,16 +174,69 @@ def find_domains(plddts: np.ndarray, threshold: float = 70.0, min_len: int = 10)
 
     return domains
 
-def find_hinges(plddts: np.ndarray, curvature: np.ndarray) -> int:
+def find_hinges(plddts: np.ndarray, curvature: np.ndarray) -> str:
     """
     Heuristic: Positions where confidence drops (local min) AND curvature is high.
-    Returns count of hinge candidates.
+    Returns formatted string of regions.
     """
-    # Simple threshold based
-    # Low confidence but not disordered (50 < pLDDT < 70) + High Curvature
-    hinge_mask = (plddts > 50) & (plddts < 80) & (curvature > 0.3)
-    # Count distinct regions
-    return find_domains(hinge_mask, threshold=0.5, min_len=1) # Reuse find_domains for boolean mask
+    # 50 < pLDDT < 70 (Low confidence but structured) AND Curvature > 0.1
+    hinge_mask = (plddts > 50) & (plddts < 80) & (curvature > 0.1)
+
+    regions = []
+    in_region = False
+    start = -1
+
+    for i, val in enumerate(hinge_mask):
+        if val:
+            if not in_region:
+                in_region = True
+                start = i
+        else:
+            if in_region:
+                if i - start >= 3:
+                     regions.append(f"{start}-{i-1}")
+                in_region = False
+
+    if in_region and len(hinge_mask) - start >= 3:
+        regions.append(f"{start}-{len(hinge_mask)-1}")
+
+    return "; ".join(regions) if regions else "None"
+
+def find_bending_hotspots(curvature: np.ndarray, plddts: np.ndarray, top_n: int = 3) -> str:
+    """
+    Identifies top N regions with high curvature in high-confidence segments.
+    Returns a string like '120-125 (k=0.55); 200-205 (k=0.48)'
+    """
+    mask = plddts >= 70
+    curv_copy = curvature.copy()
+    curv_copy[~mask] = -1.0
+
+    hotspots = []
+
+    for _ in range(top_n):
+        if np.max(curv_copy) <= 0:
+            break
+        idx = np.argmax(curv_copy)
+        val = curv_copy[idx]
+
+        # Define range around peak where curvature is high (e.g. > 80% of peak)
+        # scan left
+        start = idx
+        while start > 0 and curv_copy[start-1] > val * 0.8:
+            start -= 1
+        # scan right
+        end = idx
+        while end < len(curv_copy) - 1 and curv_copy[end+1] > val * 0.8:
+            end += 1
+
+        hotspots.append(f"{start}-{end} (k={val:.2f})")
+
+        # Mask out
+        mask_start = max(0, start - 5)
+        mask_end = min(len(curv_copy), end + 6)
+        curv_copy[mask_start:mask_end] = -1.0
+
+    return "; ".join(hotspots) if hotspots else "None"
 
 def analyze_protein(pdb_path: Path) -> Dict:
     """
@@ -213,27 +275,36 @@ def analyze_protein(pdb_path: Path) -> Dict:
 
     # Domains & Hinges
     domain_count = find_domains(plddts)
-    hinge_count = find_hinges(plddts, full_curvature)
+    hinge_regions = find_hinges(plddts, full_curvature)
+    bending_hotspots = find_bending_hotspots(full_curvature, plddts)
 
     # Flags
     low_confidence_warning = plddt_mean < 70
     likely_IDR_heavy = disorder_fraction > 0.3
+    multi_domain_uncertain = domain_count > 1 and low_confidence_warning
 
     return {
         "protein_id": pdb_path.stem,
+        "species": "Homo sapiens",
         "length": len(coords),
         "pLDDT_mean": plddt_mean,
         "pLDDT_median": plddt_median,
         "pLDDT_fraction_high": plddt_high_frac,
         "pLDDT_fraction_ok": plddt_ok_frac,
         "pLDDT_fraction_low": plddt_low_frac,
+        "PAE_mean": "N/A",
+        "PAE_domain_blockiness_score": "N/A",
         "disorder_fraction_proxy": disorder_fraction,
         "predicted_domain_segments": domain_count,
-        "hinge_candidates": hinge_count,
+        "hinge_candidates": hinge_regions,
         "mean_curvature_hc": mean_curvature_hc,
         "max_curvature_hc": max_curvature_hc,
         "mean_torsion_hc": mean_torsion_hc,
+        "bending_hotspots": bending_hotspots,
+        "exposed_surface_proxy": "Not computed",
+        "charged_patch_score": "Not computed",
         "low_confidence_warning": low_confidence_warning,
+        "multi_domain_uncertain": multi_domain_uncertain,
         "likely_IDR_heavy": likely_IDR_heavy,
         **geo_metrics,
         "coords": coords,
@@ -303,12 +374,14 @@ def main():
     with open(csv_path, 'w', newline='') as f:
         # Define field order
         fieldnames = [
-            "protein_id", "length",
+            "protein_id", "species", "length",
             "pLDDT_mean", "pLDDT_median", "pLDDT_fraction_high", "pLDDT_fraction_ok", "pLDDT_fraction_low",
-            "disorder_fraction_proxy", "predicted_domain_segments", "hinge_candidates",
-            "radius_of_gyration", "end_to_end_distance", "anisotropy_index",
-            "mean_curvature_hc", "max_curvature_hc", "mean_torsion_hc", "max_eigenvalue",
-            "low_confidence_warning", "likely_IDR_heavy"
+            "PAE_mean", "PAE_domain_blockiness_score",
+            "predicted_domain_segments", "disorder_fraction_proxy", "hinge_candidates",
+            "backbone_principal_axis", "radius_of_gyration", "end_to_end_distance",
+            "mean_curvature_hc", "mean_torsion_hc", "anisotropy_index", "max_eigenvalue",
+            "bending_hotspots", "exposed_surface_proxy", "charged_patch_score",
+            "low_confidence_warning", "multi_domain_uncertain", "likely_IDR_heavy"
         ]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -339,33 +412,52 @@ def main():
         f.write("\n## Interpretation\n\n")
         for r in results:
             f.write(f"### {r['protein_id']}\n")
-            f.write(f"- **Geometry:** Anisotropy {r['anisotropy_index']:.2f}. ")
-            if r['anisotropy_index'] > 3.0:
-                f.write("Highly anisotropic (rod-like/fibrous). Likely structural load bearing.\n")
-            else:
-                f.write("Globular or mixed geometry.\n")
 
-            f.write(f"- **Curvature:** Mean curvature {r['mean_curvature_hc']:.3f}. ")
+            # What we see
+            f.write(f"**What we see:**\n")
+            f.write(f"- Geometry: Anisotropy {r['anisotropy_index']:.2f}, Rg {r['radius_of_gyration']:.1f}A.\n")
             if r['mean_curvature_hc'] > 0.1:
-                f.write("High intrinsic curvature detected. Potential counter-curvature generator.\n")
+                f.write(f"- Curvature: High mean curvature ({r['mean_curvature_hc']:.3f}) with hotspots at {r['bending_hotspots']}.\n")
             else:
-                f.write("Relatively straight backbone.\n")
+                f.write(f"- Curvature: Low mean curvature ({r['mean_curvature_hc']:.3f}), rod-like or globular.\n")
+            if r['hinge_candidates'] != "None":
+                 f.write(f"- Flexibility: Potential hinges at {r['hinge_candidates']}.\n")
 
-            f.write(f"- **Domains:** {r['predicted_domain_segments']} predicted domains. ")
-            if r['hinge_candidates'] > 0:
-                f.write(f"**{r['hinge_candidates']} potential hinge regions** detected (flexible joints).\n")
+            # Why it matters
+            f.write(f"**Why it matters:**\n")
+            if r['anisotropy_index'] > 3.0:
+                f.write("- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.\n")
+            elif r['anisotropy_index'] < 1.5:
+                f.write("- Globular shape suggests a catalytic or signaling hub role rather than direct load bearing.\n")
             else:
-                f.write("No obvious hinge regions.\n")
+                 f.write("- Mixed geometry suggests a multifunctional role.\n")
 
-            f.write(f"- **Confidence:** Mean pLDDT {r['pLDDT_mean']:.1f}. ")
+            if "PIEZO" in r['protein_id'] or "TRPV" in r['protein_id']:
+                f.write("- Ion channel architecture critical for mechanotransduction.\n")
+            elif "COL" in r['protein_id'] or "FIBRONECTIN" in r['protein_id']:
+                f.write("- ECM component defining tissue stiffness and elasticity.\n")
+            elif "YAP" in r['protein_id'] or "RUNX" in r['protein_id'] or "SOX" in r['protein_id']:
+                f.write("- Nuclear factor whose transport/activity is regulated by mechanical signals.\n")
+
+            # Confidence
+            f.write(f"**Confidence:** ")
             if r['low_confidence_warning']:
-                f.write("WARNING: Low confidence structure.\n")
+                f.write("LOW. (Caution: IDRs or poor prediction).\n")
             else:
-                f.write("High confidence structure.\n")
+                f.write("HIGH. (Reliable backbone geometry).\n")
+
+            # Next test
+            f.write(f"**Next test:** ")
+            if r['hinge_candidates'] != "None":
+                f.write("Simulate dynamics of hinge regions under tensile load.\n")
+            elif r['anisotropy_index'] > 3.0:
+                f.write("Test alignment of fibers under cyclic strain.\n")
+            else:
+                f.write("Investigate binding partners in high-pLDDT surface patches.\n")
             f.write("\n")
 
         f.write("\n## Best Next Move\n")
-        f.write("Correlate Anisotropy with Scoliosis Risk Score in `candidates_master.csv`.\n")
+        f.write("Prioritize high-anisotropy candidates (Anisotropy > 3.0) for mechanical simulation of 'counter-curvature' generation.\n")
 
     print(f"Report saved to {md_path}")
 

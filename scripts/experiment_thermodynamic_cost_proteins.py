@@ -93,6 +93,20 @@ TARGETS: List[ProteinTarget] = [
 
     # ===== eta_a: Active moment maintenance =====
     ProteinTarget(
+        gene="DMD", uniprot="P11532", term="eta_a",
+        role="Dystrophin; cytoskeleton-ECM linker in paraspinal muscle",
+        prediction="Essential for maintenance of muscle tone against gravity; loss leads to collapse; "
+                   "connects contractile force to the load-bearing ECM.",
+        scaling="L^3 (muscle volume)"
+    ),
+    ProteinTarget(
+        gene="MYLK", uniprot="Q15746", term="eta_a",
+        role="Myosin light chain kinase; tonic contraction regulator",
+        prediction="Regulator of myosin contractility; sets the gain of the active moment; "
+                   "failure leads to inability to sustain postural tone.",
+        scaling="L^2 (contractile force)"
+    ),
+    ProteinTarget(
         gene="LBX1", uniprot="P52954", term="eta_a",
         role="Paraspinal muscle specification TF; top GWAS hit for AIS",
         prediction="Intermediate anisotropy, high disorder (61%); blocky structure sensitive "
@@ -170,6 +184,34 @@ TARGETS: List[ProteinTarget] = [
         prediction="Small, compact; upregulated in microgravity to halt proliferation; "
                    "its activation = signal that energy supply is insufficient for growth",
         scaling="threshold (binary switch)"
+    ),
+    ProteinTarget(
+        gene="PPARGC1A", uniprot="Q9UBK2", term="Gamma_m",
+        role="Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity",
+        prediction="Energy supply bottleneck during growth spurt contributes to AIS; failure to scale "
+                   "mitochondrial biogenesis with L^3 leads to metabolic burnout.",
+        scaling="L (mitochondrial volume)"
+    ),
+    ProteinTarget(
+        gene="IGF1R", uniprot="P08069", term="Gamma_m",
+        role="Insulin-like growth factor 1 receptor; mediates growth plate signaling",
+        prediction="Signaling receptor for growth spurt rate; rapid growth linked to curve progression; "
+                   "receptor density determines sensitivity to systemic growth signals.",
+        scaling="L (receptor density)"
+    ),
+    ProteinTarget(
+        gene="GHR", uniprot="P10912", term="Gamma_m",
+        role="Growth hormone receptor; master regulator of adolescent growth spurt rate",
+        prediction="Regulates the rate of spinal elongation; rapid growth is a risk factor for AIS; "
+                   "dictates the pace of demand increase.",
+        scaling="L (growth signal)"
+    ),
+    ProteinTarget(
+        gene="ARNTL", uniprot="O00327", term="Gamma_m",
+        role="BMAL1; circadian clock TF in intervertebral disc regulating metabolism",
+        prediction="Circadian rhythm disruption linked to disc degeneration and scoliosis; essential "
+                   "for temporal coordination of repair mechanisms.",
+        scaling="L (circadian entrainment)"
     ),
 ]
 

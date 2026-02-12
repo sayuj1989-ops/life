@@ -1,6 +1,6 @@
 # Thermodynamic Cost of Countercurvature: Molecular Mapping via AlphaFold
 
-**Date:** 2026-02-07
+**Date:** 2026-02-11
 **Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)
 **Framework:** Free energy dissipation functional (manuscript Eq. 7)
 
@@ -52,18 +52,20 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 
 | Gene | UniProt | Anisotropy | Morphology | Rg (Å) | pLDDT | Res | Hinges | L-Scaling | Role |
 | :--- | :--- | ---: | :--- | ---: | ---: | ---: | ---: | :--- | :--- |
+| **DMD** | P11532 | 1.32 | Globular | 22.8 | 76.3 | 525 | 1 | L^3 (muscle volume) | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle |
+| **MYLK** | Q15746 | 1.46 | Globular | 41.5 | 65.8 | 1914 | 31 | L^2 (contractile force) | Myosin light chain kinase; tonic contraction regulator |
 | **LBX1** | P52954 | 2.27 | Intermediate | 22.7 | 66.9 | 281 | 0 | L^2 (muscle cross-section x length) | Paraspinal muscle specification TF; top GWAS hit for AIS |
 | **FLNA** | P21333 | 2.50 | Intermediate | 56.9 | 76.5 | 2647 | 116 | L^3 (muscle volume) | Filamin A; cytoskeletal mechanosensor and crosslinker |
 | **VIM** | P08670 | 7.47 | Fibrous/Extended | 65.7 | 77.1 | 466 | 1 | L^3 (cell volume) | Vimentin; gravitational strain gauge in cells |
 | **LMNA** | P02545 | 4.75 | Fibrous/Extended | 71.2 | 76.4 | 664 | 0 | L^2 (load-bearing cross-section) | Lamin A/C; nuclear mechanostat scaling with tissue stiffness |
 | **CAV1** | Q03135 | 3.98 | Fibrous/Extended | 33.4 | 78.4 | 178 | 0 | L^2 (membrane area) | Caveolin-1; membrane curvature sensor and mechanotransducer |
-| **DMD** | P11532 | 1.32 | Globular | 22.8 | 76.3 | 525 | 1 | L^3 (muscle volume) | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle |
-| **MYLK** | Q15746 | 1.46 | Globular | 41.5 | 65.8 | 1914 | 31 | L^2 (contractile force) | Myosin light chain kinase; tonic contraction regulator |
 
 **Structural summary:** Mean anisotropy = **3.39**, Rg range = 23–71 Å, Mean pLDDT = 73.9, Total residues = 6675, Total hinges = 149
 
 ### Thermodynamic Predictions
 
+- **DMD** (L^3 (muscle volume)): Essential for maintenance of muscle tone against gravity; loss leads to collapse; connects contractile force to the load-bearing ECM.
+- **MYLK** (L^2 (contractile force)): Regulator of myosin contractility; sets the gain of the active moment; failure leads to inability to sustain postural tone.
 - **LBX1** (L^2 (muscle cross-section x length)): Intermediate anisotropy, high disorder (61%); blocky structure sensitive to nuclear stiffness; during energy deficit, LBX1 program fails first
 - **FLNA** (L^3 (muscle volume)): Tension-gated signal integrator; unfolding domains expose cryptic sites; maintenance cost proportional to cytoskeletal volume
 - **VIM** (L^3 (cell volume)): Intermediate filament; collapses in microgravity triggering ROS cascade; the 'first domino' in energy deficit — its failure triggers metabolic switch
@@ -83,10 +85,10 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **SOX9** | P48436 | 2.19 | Intermediate | 16.6 | 56.0 | 509 | 2 | L (growth plate activity) | Master chondrogenic TF; growth plate cartilage specification |
 | **SHH** | Q15465 | 2.12 | Intermediate | 24.5 | 78.4 | 462 | 6 | L (gradient length) | Sonic Hedgehog; morphogen gradient for vertebral patterning |
 | **CDKN1A** | P38936 | 2.14 | Intermediate | 23.9 | 69.0 | 164 | 2 | threshold (binary switch) | p21; cell cycle inhibitor activated by mechanical unloading |
-| **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
-| **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
-| **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
 | **PPARGC1A** | Q9UBK2 | 2.19 | Intermediate | 31.2 | 52.7 | 798 | 0 | L (mitochondrial volume) | Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity |
+| **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
+| **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
+| **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
 
 **Structural summary:** Mean anisotropy = **2.47**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
@@ -98,6 +100,10 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 - **SOX9** (L (growth plate activity)): SOX9 drives growth plate proliferation; its activity rate determines dL/dt; higher SOX9 = faster growth = steeper metabolic demand curve
 - **SHH** (L (gradient length)): Compact signaling molecule; maintains the information field I(s) itself; gradient maintenance cost scales with rod length
 - **CDKN1A** (threshold (binary switch)): Small, compact; upregulated in microgravity to halt proliferation; its activation = signal that energy supply is insufficient for growth
+- **PPARGC1A** (L (mitochondrial volume)): Energy supply bottleneck during growth spurt contributes to AIS; failure to scale mitochondrial biogenesis with L^3 leads to metabolic burnout.
+- **IGF1R** (L (receptor density)): Signaling receptor for growth spurt rate; rapid growth linked to curve progression; receptor density determines sensitivity to systemic growth signals.
+- **GHR** (L (growth signal)): Regulates the rate of spinal elongation; rapid growth is a risk factor for AIS; dictates the pace of demand increase.
+- **ARNTL** (L (circadian entrainment)): Circadian rhythm disruption linked to disc degeneration and scoliosis; essential for temporal coordination of repair mechanisms.
 
 ---
 ## Synthesis: The Energy Deficit Window — A Molecular View

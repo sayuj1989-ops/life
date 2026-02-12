@@ -249,6 +249,23 @@ $$ \mathcal{P}_{disc} = \frac{f_{load} \cdot \varepsilon_{vol} \cdot H_{disc}^2}
 *   **Microgravity Implication**: In $\mu g$, $f_{load}$ decreases and static swelling occurs ($\varepsilon_{vol} \to 0$). $\mathcal{P}_{disc}$ drops, triggering the "Hypoxic Remodeling" cascade.
 *   **Measurable Proxy**: The enhancement of Gadolinium contrast uptake in the IVD Nucleus Pulposus post-exercise vs. resting (Dynamic Contrast-Enhanced MRI).
 
+### 2.17. The Ciliary Gain Factor ($\mathcal{G}_{cil}$)
+
+We formalize the "Tunable Antenna" hypothesis, where the primary cilium oscillates in length (under circadian control) to maximize sensitivity during the active phase and minimize damage/noise during the rest phase.
+
+$$ \mathcal{G}_{cil} = \frac{1}{T} \int_0^T \left( \frac{L_{cil}(t)}{L_0} \right)^3 \cdot \frac{|\sigma_{load}(t)|}{\sigma_0} dt $$
+
+*   **Symbols**:
+    *   $L_{cil}(t)$: Instantaneous length of the primary cilium $[L]$, oscillating with circadian phase.
+    *   $L_0$: Reference (mean) cilium length $[L]$.
+    *   $\sigma_{load}(t)$: Instantaneous mechanical stress magnitude $[ML^{-1}T^{-2}]$.
+    *   $\sigma_0$: Reference physiological stress $[ML^{-1}T^{-2}]$.
+    *   $T$: Period of the circadian cycle (24h).
+*   **Physical Interpretation**:
+    *   $\mathcal{G}_{cil} > 1$: **Constructive Interference**. The cilium is longest when stress is highest, amplifying the signal-to-noise ratio.
+    *   $\mathcal{G}_{cil} < 1$: **Destructive Interference** (Ciliary Deafness). The cilium retracts during loading or extends during rest, leading to poor mechanotransduction efficiency.
+*   **Measurable Proxy**: The Pearson correlation coefficient between ciliary length (measured via Arl13b-GFP time-lapse) and the derivative of the sleep/wake activity cycle (actigraphy).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -452,6 +469,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Aggrecan/Collagen II content in tail-suspended mouse IVDs treated with systemic HIF-1$\alpha$ inhibitors vs. vehicle.
 *   **Refutation**: If MMP upregulation and matrix loss persist despite HIF-1$\alpha$ blockade, the degradation pathway is hypoxia-independent (e.g., purely mechanically gated). (Reference: Sato et al., 2025).
 
+### Test AG: The Ciliary Phase Shift
+*   **Hypothesis**: Shifting the loading phase by 12 hours relative to the ciliary clock (e.g., night-shift worker model) will reduce $\mathcal{G}_{cil}$ and suppress mechanotransductive gene expression (*COL1A1*, *ACAN*).
+*   **Data Needed**: RT-qPCR of anabolic markers in IVD explants loaded in-phase vs. anti-phase with their Bmal1 oscillations.
+*   **Refutation**: If gene expression is independent of the phase relationship between load and clock, the "Tunable Antenna" hypothesis is false. (Reference: Miyoshi et al., 2024).
+
+### Test AH: The Length-Locked Mutant
+*   **Hypothesis**: Mutants with fixed-length cilia (e.g., *Kif3a* overexpression or specific *Cep290* alleles that prevent resorption) will be hypersensitive to noise at rest and fail to adapt gain, leading to aberrant calcification or apoptosis.
+*   **Data Needed**: Stress response curves (Calcium imaging) of fixed-length vs. oscillating-length cilia under variable amplitude vibration.
+*   **Refutation**: If fixed-length cilia provide equivalent or superior signal-to-noise ratio compared to oscillating cilia, the dynamic tuning provides no advantage. (Reference: Spasic & Jacobs, 2017).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -493,3 +520,5 @@ The theory makes specific predictions about the relationship between genetic ani
 37. **Latimer, B., et al. (2021).** "The energetic cost of upright posture." *American Journal of Physical Anthropology*. (Energy of posture).
 38. **Urban, J. P., et al. (2004).** "Nutrition of the intervertebral disc." *Spine*, 29(23). (Foundational transport theory).
 39. **Huang, C. Y., et al. (2014).** "Effects of cyclic compression on the biological properties of the intervertebral disc." *The Spine Journal*, 14(9). (Frequency dependence).
+40. **Miyoshi, K., et al. (2024).** "Circadian oscillation in primary cilium length by clock genes regulates fibroblast cell migration." *EMBO Reports*, 25(3). (Demonstrates the tunable antenna mechanism).
+41. **Spasic, M., & Jacobs, C. R. (2017).** "Primary cilia: Cell and molecular mechanosensors of the skeleton." *Bone*, 97. (Review of ciliary mechanics).

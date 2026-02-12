@@ -26,8 +26,8 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 17 Cycle - Gravity x Spine Expansion\n")
-        f.write("**Focus:** Hypoxia, Circadian Rhythm, and Vertebral Segmentation\n\n")
+        f.write("****Last Updated:** Week 18 Cycle - Gravity x Spine Expansion\n")
+        f.write("**Focus:** Muscle Contractility, ECM Stiffness, and Ciliopathies\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
         f.write("2.  **Spinal Curvature**: Genetic or experimental links to scoliosis or vertebral defects.\n")
@@ -57,10 +57,10 @@ def main():
         f.write("    *   **70-79**: Pathway member with experimental links to spine development or gravity response.\n\n")
 
         f.write("## Next Steps\n\n")
-        f.write("1.  **Hypoxia Analysis**: Investigate HIF1A targets (MMP1, MMP3) in the \"Convective Shutdown\" model.\n")
-        f.write("2.  **Circadian Clock**: Assess the role of NR1D1 and CLOCK/BMAL1 in maintaining IVD height/stiffness cycles.\n")
-        f.write("3.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (HIF1A, TEAD1, KANK1) to assess structural anisotropy.\n")
-        f.write("4.  **Mechanotransduction Map**: Integrate KANK1 and DLC1 into the microtubule-focal adhesion force transmission model.\n")
+        f.write("1.  **Muscle Tone Analysis**: Investigate the role of Nemaline Myopathy genes (NEB, ACTA1) in paraspinal muscle asymmetry.\n")
+        f.write("2.  **ECM Stiffness**: Model the impact of COL1A2 and COL6 mutations on spinal column buckling load.\n")
+        f.write("3.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (COL1A2, NEB fragments, FGF23) to assess structural anisotropy.\n")
+        f.write("4.  **Ciliopathy Link**: Explore the connection between ciliary transition zone defects (MKS1, TMEM231) and proprioceptive signaling.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

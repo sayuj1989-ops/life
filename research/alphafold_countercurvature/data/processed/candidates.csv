@@ -1,51 +1,9 @@
-gene_symbol,source,total_score,justification
-MYLK,"Muscle,Contraction,Signaling,Thermodynamic_Cost",100,Regulator of myosin contractility.
-DMD,"Muscle,Mechanotransduction,Cytoskeleton,Thermodynamic_Cost",100,Essential for maintenance of muscle tone against gravity; loss leads to collapse.
-ARNTL,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
-GHR,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
-IGF1R,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
-PPARGC1A,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
-NTRK3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
-HIF1A,"Signaling,Metabolism,Nucleus",95,Master regulator of the Hypoxic trigger in IVD.
-LBX1,"Somite,Muscle,Proprioception",95,Major genetic driver of AIS with clear mechanistic link to postural tone.
-RUNX3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
-PIEZO2,"Mechanotransduction,Proprioception",95,Direct link between gravity sensing (proprioception) and spinal alignment.
-OTOP1,"Gravity_Sensing,Ion_Channel",92,Essential for the hardware of vestibular gravity sensing.
-SELENON,"ER,Redox,Muscle",92,Defining gene for 'Rigid Spine' phenotype; links ER stress to postural tone.
-NR1D1,"Circadian,Metabolism,Nucleus",92,Ligand-regulatable clock component linking rhythm to metabolism.
-IFT88,"Cilia,Mechanotransduction",92,Direct link via PIEZO1-cilia axis.
-FBN1,"ECM,Mechanotransduction",92,Major structural determinant of spine elasticity.
-NF1,"Signaling,Mechanotransduction,Development",92,Direct causative link to dystrophic scoliosis and mechanotransduction.
-PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,Direct mechanistic link to growth plate asymmetry in scoliosis.
-PLOD1,"ECM,Enzyme",92,Defining gene for Kyphoscoliotic EDS; major structural determinant.
-LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,Direct link between nuclear mechanotransduction and spinal stability.
-EGR3,"Muscle,Proprioception,Transcription_Factor",92,Essential for the hardware of muscle proprioception.
-CCDC57,"Cilia,PCP",90,Ependymal polarity regulator linking CSF flow to spine.
-TEAD1,"Mechanotransduction,Hippo,Transcription_Factor",90,The effector of the YAP/TAZ gravity sensor.
-CLOCK,"Circadian,Nucleus",90,The partner of BMAL1 in the core loop.
-SERPINH1,"ECM,Chaperone,ER",90,Crucial for collagen structural integrity.
-FBN2,"ECM,Development",90,Early developmental paralog of FBN1 causing similar but distinct spinal defects.
-FLNA,"Cytoskeleton,Mechanotransduction",90,Direct mechanosensor linking cytoskeletal tension to ECM signaling; strong genetic link.
-MYO7A,"Gravity_Sensing,Motor_Protein",90,Motor protein tuning the sensitivity of gravity sensors.
-ETV1,"Proprioception,Transcription_Factor",90,Transcription factor specifying the gravity-sensing reflex arc.
-CEP290,"Cilia,Astrogliosis,Inflammation",90,Novel astrogliosis mechanism linking ciliary defects to spine.
-TGFBR2,"Signaling,ECM,Development",90,Key signaling receptor for load-dependent tissue maintenance.
-FERMT2,"Mechanotransduction,Adhesion,Integrin",90,Direct skeletal defect + mechanotransduction core.
-CDH23,"Gravity_Sensing,Mechanotransduction",90,Primary mechanosensor of the vestibular gravity system.
-COL1A2,"ECM,Bone,Mechanotransduction",90,Primary structural failure against gravity in OI; partner of COL1A1.
-EMD,"Nucleus,Mechanotransduction,LINC",90,Direct link between nuclear mechanics and spinal rigidity.
-ROR2,"PCP,Wnt_Signaling,Receptor",90,Key PCP receptor directly linked to vertebral segmentation defects.
-COL1A1,"ECM,Bone,Mechanotransduction",90,Primary structural failure against gravity in OI.
-TGFBR1,"Signaling,Mechanotransduction",90,Primary transducer of the mechanically-regulated TGF-beta signal.
-POC5,"Cilia,Centriole",90,Direct genetic cause of scoliosis linked to ciliary geometry.
-ITGB1,"Mechanotransduction,Adhesion",90,Primary gravity sensor at cell-ECM interface.
-YAP1,"Mechanotransduction,Hippo,Growth_Plate",90,Central hub of cellular mechanotransduction.
-METTL3,"Epigenetics,Muscle,ROS",89,Key epigenetic regulator linking oxidative stress to muscle asymmetry.
-ADGRG6,"Mechanotransduction,Adhesion",88,Mechanosensitive receptor directly linked to spine integrity.
-WWTR1,"Mechanotransduction,Hippo",88,Key partner of YAP in mechanosensing.
-ACAN,"ECM,Cartilage",88,Primary structural resistor of gravity load.
-KIF7,"Cilia,Motor_Protein,Signaling",88,Ciliary motor protein with direct genetic implication in scoliosis.
-CCDC40,"Cilia,Motor_Protein",88,Strong recent evidence (2025) linking motile cilia dysfunction to AIS.
-KIF3A,"Cilia,Motor_Protein",88,Essential for ciliary structure and gravity sensing.
-SMAD3,"Signaling,Mechanotransduction",88,Key effector of the mechanically-regulated TGF-beta pathway; syndromic scoliosis link.
-TLN1,"Mechanotransduction,Adhesion",88,Fundamental force transmission molecule.
+gene_symbol,uniprot_accession,source,total_score,priority_score,justification
+PIEZO2,Q9H5I5,Mechanotransduction,95,95,Default Seed List
+LBX1,P52954,Proprioception,95,95,Default Seed List
+LMNA,P02545,Nucleus,92,92,Default Seed List
+KIF3A,Q9Y496,Cilia,88,88,Default Seed List
+COL12A1,Q99715,ECM,88,88,Default Seed List
+PCDH15,Q96QU1,Mechanotransduction,90,90,Default Seed List
+USH1C,Q9Y6N9,Mechanotransduction,90,90,Default Seed List
+TMC1,Q8TDI8,Mechanotransduction,90,90,Default Seed List

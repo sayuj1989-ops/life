@@ -266,6 +266,21 @@ $$ \mathcal{G}_{cil} = \frac{1}{T} \int_0^T \left( \frac{L_{cil}(t)}{L_0} \right
     *   $\mathcal{G}_{cil} < 1$: **Destructive Interference** (Ciliary Deafness). The cilium retracts during loading or extends during rest, leading to poor mechanotransduction efficiency.
 *   **Measurable Proxy**: The Pearson correlation coefficient between ciliary length (measured via Arl13b-GFP time-lapse) and the derivative of the sleep/wake activity cycle (actigraphy).
 
+### 2.18. The Enzymatic Anisotropy Factor ($\mathcal{A}_{enz}$)
+
+We formalize the "Tension-Gated Template Matcher" hypothesis, where high-aspect-ratio enzymes (like PLOD1) exhibit enhanced catalytic efficiency when their principal axis aligns with the substrate's fiber axis (e.g., tensioned collagen).
+
+$$ k_{cat}(\theta) = k_{iso} \left[ 1 + \mathcal{A}_{enz} (\lambda_{enz} - 1) \cos^2 \theta \right] $$
+
+*   **Symbols**:
+    *   $\mathcal{A}_{enz}$: Anisotropy coupling constant $[1]$ (Dimensionless).
+    *   $\lambda_{enz}$: Aspect ratio of the enzyme (Length/Width). For PLOD1, $\lambda_{enz} \approx 3.4$.
+    *   $\theta$: Angle between the enzyme's major axis and the substrate's fiber axis.
+*   **Physical Interpretation**:
+    *   $\mathcal{A}_{enz} > 0$: The enzyme acts as a geometric sensor, preferentially modifying load-bearing (aligned) fibers.
+    *   **Mechanism**: Anisotropic diffusion or "slot-docking" kinetics on the collagen triple helix.
+*   **Measurable Proxy**: The ratio of collagen crosslink density (pyridinoline/deoxypyridinoline) in tensed (tendon) vs. relaxed (skin) tissues, normalized by local PLOD1 concentration.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -479,6 +494,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Stress response curves (Calcium imaging) of fixed-length vs. oscillating-length cilia under variable amplitude vibration.
 *   **Refutation**: If fixed-length cilia provide equivalent or superior signal-to-noise ratio compared to oscillating cilia, the dynamic tuning provides no advantage. (Reference: Spasic & Jacobs, 2017).
 
+### Test AI: The Strain-Dependent Catalysis
+*   **Hypothesis**: PLOD1 activity ($k_{cat}$) increases with substrate strain (alignment) due to $\mathcal{A}_{enz}$.
+*   **Data Needed**: enzymatic activity of purified PLOD1 on collagen hydrogels under variable uniaxial strain ($0\%$ to $10\%$).
+*   **Refutation**: If activity is constant regardless of strain or alignment state ($\mathcal{A}_{enz} \approx 0$), the geometric sensing hypothesis is falsified. (Reference: Pinnell et al., 1972).
+
+### Test AJ: The Geometric Specificity
+*   **Hypothesis**: A truncated PLOD1 mutant with low aspect ratio ($\lambda \approx 1$) will lose its strain-sensitivity compared to Wild-Type.
+*   **Data Needed**: Comparative kinetics of WT vs. Globular-PLOD1 on aligned collagen substrates.
+*   **Refutation**: If the globular mutant shows the same alignment enhancement as the rod-like WT, the geometric anisotropy mechanism is incorrect. (Reference: Ugur et al., 2024).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -522,3 +547,5 @@ The theory makes specific predictions about the relationship between genetic ani
 39. **Huang, C. Y., et al. (2014).** "Effects of cyclic compression on the biological properties of the intervertebral disc." *The Spine Journal*, 14(9). (Frequency dependence).
 40. **Miyoshi, K., et al. (2024).** "Circadian oscillation in primary cilium length by clock genes regulates fibroblast cell migration." *EMBO Reports*, 25(3). (Demonstrates the tunable antenna mechanism).
 41. **Spasic, M., & Jacobs, C. R. (2017).** "Primary cilia: Cell and molecular mechanosensors of the skeleton." *Bone*, 97. (Review of ciliary mechanics).
+42. **Pinnell, S. R., et al. (1972).** "A heritable disorder of connective tissue: hydroxylysine-deficient collagen disease." *New England Journal of Medicine*, 286(19). (Establishes PLOD1 link to scoliosis).
+43. **Ugur, K., et al. (2024).** "Resolution of Scoliosis Following Treatment of Sleep-Disordered Breathing." *Children*, 11(9). (Supports metabolic/hypoxic driver of scoliosis).

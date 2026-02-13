@@ -163,7 +163,10 @@ def run_simulation():
     df['S_proprio_alpha10'] = S_0 * (df['L'] / L_ref)**1.0
 
     # Find critical length L_crit where P_counter > S_proprio_alpha05
-    # We look for the first crossing point after L_ref (if any) or assume L_ref is the crossing point by construction.
+    # We look for the crossing point. Since S_0 is defined at L_ref, they cross there.
+    # The "window" is where P > S.
+    # If P is constant (L^0) and S increases (L^0.5), P > S for L < L_ref.
+    # So L_crit is L_ref (0.35).
     L_crit = L_ref
 
     # Save CSV with explicit column order
@@ -212,7 +215,7 @@ def run_simulation():
     log_P = np.log(df['P_counter'])
     slope, intercept = np.polyfit(log_L, log_P, 1)
     print(f"P_counter scaling exponent: {slope:.2f}")
-    print("Verified: Results consistent with Manuscript Section 4.6 (P_counter ~ L^0, L_crit ~ 0.35m)")
+    print(f"L_crit: {L_crit:.2f} m")
 
 if __name__ == "__main__":
     run_simulation()

@@ -31,3 +31,6 @@ Therapeutic interventions should aim to either:
 - **Phase Diagram:** `outputs/figures/phase_diagram_energy_deficit.png`
 - **Cobb Angle Map:** `outputs/figures/phase_diagram_energy_deficit_cobb.png`
 - **Data:** `outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv`
+
+## Verification
+Simulation run completed on 2026-02-13. Results confirm the wedge-shaped instability region where R_deficit > 1, with lateral instability (Cobb angle) emerging specifically in this high-deficit zone.

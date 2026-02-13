@@ -43,3 +43,15 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Version Bump**: Establish versioning strategy.
 - [x] **Citation**: Ensure `CITATION.cff` is accurate.
 - [x] **License**: Verify `LICENSE` applicability to all components.
+
+## Phase 5: Scripts & Experiments Organization (Medium Priority)
+
+- [ ] **Organize `scripts/`**: Group scripts into logical subdirectories (`experiments/`, `pipeline/`, `data_management/`) to reduce clutter.
+- [ ] **Fix Script Imports**: Ensure moved scripts can still import `src` correctly (sys.path or package install).
+- [ ] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function.
+
+## Phase 6: Reproducibility & QA (High Priority)
+
+- [ ] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
+- [ ] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
+- [ ] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).

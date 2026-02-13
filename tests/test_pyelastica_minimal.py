@@ -1,0 +1,54 @@
+"""
+Test for the minimal PyElastica experiment script.
+"""
+
+import sys
+import os
+import pytest
+from pathlib import Path
+from unittest.mock import patch
+
+# Add scripts folder to python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+
+# Import the module under test
+import experiment_pyelastica_minimal as minimal_script
+from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE, run_protein_simulation
+
+def test_run_protein_simulation_args():
+    """Test that run_protein_simulation accepts new arguments radius and E0."""
+    if not PYELASTICA_AVAILABLE:
+        pytest.skip("PyElastica not installed, skipping test.")
+
+    # Run a very short simulation with custom radius and E0
+    result = run_protein_simulation(
+        anisotropy=1.0,
+        active_curvature=0.0,
+        radius=0.02,
+        E0=2e6,
+        n_elements=10,
+        duration=0.01,
+        dt=1e-4,
+        show_progress=False
+    )
+
+    assert result['success'] is True
+    assert 'S_lat' in result
+
+def test_minimal_experiment_script(tmp_path):
+    """Test that the script runs in quick-test mode."""
+    if not PYELASTICA_AVAILABLE:
+        pytest.skip("PyElastica not installed, skipping test.")
+
+    # Run the script's main function with quick_test=True
+    out_dir = tmp_path / "minimal_experiment"
+
+    try:
+        minimal_script.run_experiment(out_dir=str(out_dir), quick_test=True)
+    except SystemExit as e:
+        if e.code != 0:
+            pytest.fail(f"Script exited with error code {e.code}")
+
+    # Check output files
+    assert (out_dir / "results.csv").exists()
+    assert (out_dir / "report.md").exists()

@@ -519,6 +519,8 @@ def run_protein_simulation(
     initial_lateral_defect: float = 0.0,
     natural_kyphosis: float = 2.0,
     length: float = 1.0,
+    radius: float = 0.01,
+    E0: float = 1e6,
     n_elements: int = 50,
     duration: float = 2.0,
     dt: float = 1e-4,
@@ -608,8 +610,8 @@ def run_protein_simulation(
             params=params,
             length=length,
             n_elements=n_elements,
-            E0=1e6,  # 1 MPa generic tissue stiffness
-            radius=0.01,
+            E0=E0,
+            radius=radius,
             kappa_gen=kappa_gen,
             gravity=gravity,
             stiffness_anisotropy=anisotropy

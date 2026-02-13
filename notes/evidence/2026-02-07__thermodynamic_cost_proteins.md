@@ -90,7 +90,7 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
 | **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
 
-**Structural summary:** Mean anisotropy = **2.47**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
+**Structural summary:** Mean anisotropy = **2.48**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
 ### Thermodynamic Predictions
 
@@ -114,7 +114,7 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | :--- | ---: | :--- | :--- |
 | **η_p** (Sensing) | 3.22 | Extended sensors (PIEZO1/2) + disordered TFs (EGR3, RUNX3) | L to L² |
 | **η_a** (Actuation) | 3.39 | Fibrous scaffolds (LMNA) + crosslinkers (FLNA) + strain gauges (VIM) | L² to L³ |
-| **Γ_m** (Maintenance) | 2.47 | Compact enzymes (SIRT1) + ECM (COL1A1) + morphogens (SHH) | L to L³ |
+| **Γ_m** (Maintenance) | 2.48 | Compact enzymes (SIRT1) + ECM (COL1A1) + morphogens (SHH) | L to L³ |
 
 ### The Molecular Logic of the Energy Deficit Window
 

@@ -29,7 +29,7 @@ def setup_directories():
     DATA_PROCESSED.mkdir(parents=True, exist_ok=True)
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
-def load_and_filter_candidates(n=10):
+def load_candidates():
     print(f"📋 Loading candidates from {CANDIDATES_MASTER}...")
     if not CANDIDATES_MASTER.exists():
         print(f"❌ Candidate master file not found: {CANDIDATES_MASTER}")
@@ -40,23 +40,28 @@ def load_and_filter_candidates(n=10):
     # Ensure numeric priority_score
     df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce').fillna(0)
 
-    # Sort and take top N
-    df_sorted = df.sort_values('priority_score', ascending=False).head(n)
-    print(f"   Selected top {len(df_sorted)} candidates (Score range: {df_sorted['priority_score'].min()}-{df_sorted['priority_score'].max()})")
+    # Sort
+    df_sorted = df.sort_values('priority_score', ascending=False)
+    print(f"   Loaded {len(df_sorted)} candidates.")
     return df_sorted
 
-def prepare_inputs(df):
+def prepare_inputs(df, n=10):
     print(f"⚙️  Preparing input files in {DATA_PROCESSED}...")
+
+    # Filter top N for fetching
+    top_n_df = df.head(n)
+    print(f"   Selected top {len(top_n_df)} candidates for fetching (Score range: {top_n_df['priority_score'].min()}-{top_n_df['priority_score'].max()})")
 
     # 1. uniprot_mapping.csv (gene_symbol, uniprot_accession)
     # Map 'uniprot_id' from master to 'uniprot_accession'
-    mapping_df = df[['gene_symbol', 'uniprot_id']].copy()
+    mapping_df = top_n_df[['gene_symbol', 'uniprot_id']].copy()
     mapping_df.rename(columns={'uniprot_id': 'uniprot_accession'}, inplace=True)
     mapping_path = DATA_PROCESSED / "uniprot_mapping.csv"
     mapping_df.to_csv(mapping_path, index=False)
-    print(f"   -> Wrote {mapping_path.name}")
+    print(f"   -> Wrote {mapping_path.name} (Top {n})")
 
     # 2. candidates.csv (gene_symbol, source, total_score, justification)
+    # Write full list to prevent data loss
     cand_df = df.copy()
     cand_df['source'] = cand_df['pathway_tags']
     cand_df['total_score'] = cand_df['priority_score']
@@ -185,8 +190,8 @@ def main():
 
     setup_directories()
 
-    candidates = load_and_filter_candidates(args.top_n)
-    prepare_inputs(candidates)
+    candidates = load_candidates()
+    prepare_inputs(candidates, args.top_n)
 
     run_pipeline()
 

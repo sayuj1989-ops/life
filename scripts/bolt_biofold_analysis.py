@@ -16,6 +16,7 @@ import csv
 import math
 import sys
 import time
+import json
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any
@@ -27,6 +28,18 @@ import matplotlib.pyplot as plt
 sys.path.append(str(Path(__file__).parent.parent / "research" / "alphafold_countercurvature" / "src"))
 from afcc.structure import StructureParser
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, np.bool_):
+            return bool(obj)
+        return super(NumpyEncoder, self).default(obj)
+
 # Constants
 TARGET_PROTEINS = [
     "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
@@ -34,6 +47,58 @@ TARGET_PROTEINS = [
 ]
 DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
 DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")
+
+def load_cached_analysis(pdb_path: Path) -> Optional[Dict]:
+    """Loads cached analysis results if available."""
+    cache_json = pdb_path.with_suffix('.bolt_metrics.json')
+    cache_npz = pdb_path.with_suffix('.bolt_arrays.npz')
+
+    if not (cache_json.exists() and cache_npz.exists()):
+        return None
+
+    try:
+        # Check timestamps
+        pdb_time = pdb_path.stat().st_mtime
+        if cache_json.stat().st_mtime < pdb_time or cache_npz.stat().st_mtime < pdb_time:
+            return None
+
+        with open(cache_json, 'r') as f:
+            metrics = json.load(f)
+
+        with np.load(cache_npz) as data:
+            # Reconstruct arrays
+            metrics['coords'] = data['coords']
+            metrics['plddts'] = data['plddts']
+            metrics['curvature'] = data['curvature']
+
+        return metrics
+    except Exception as e:
+        print(f"Warning: Failed to load cache for {pdb_path}: {e}")
+        return None
+
+def save_cached_analysis(pdb_path: Path, results: Dict):
+    """Saves analysis results to cache."""
+    cache_json = pdb_path.with_suffix('.bolt_metrics.json')
+    cache_npz = pdb_path.with_suffix('.bolt_arrays.npz')
+
+    try:
+        # Separate arrays and scalars
+        arrays = {
+            'coords': results['coords'],
+            'plddts': results['plddts'],
+            'curvature': results['curvature']
+        }
+
+        # Filter out arrays from json
+        scalars = {k: v for k, v in results.items() if k not in arrays}
+
+        with open(cache_json, 'w') as f:
+            json.dump(scalars, f, indent=2, cls=NumpyEncoder)
+
+        np.savez_compressed(cache_npz, **arrays)
+
+    except Exception as e:
+        print(f"Warning: Failed to save cache for {pdb_path}: {e}")
 
 def compute_geometry_metrics(coords: np.ndarray) -> Dict[str, float]:
     """
@@ -51,14 +116,20 @@ def compute_geometry_metrics(coords: np.ndarray) -> Dict[str, float]:
     centroid = np.mean(coords, axis=0)
     centered = coords - centroid
 
-    # Radius of Gyration
-    rg = np.sqrt(np.sum(np.sum(centered**2, axis=1)) / len(coords))
+    # ⚡ Bolt Optimization: Single-pass geometry (Rg + Anisotropy)
+    # Replace 2 passes (sum-sq + cov) with 1 matrix multiplication
+    n = len(coords)
+    M = centered.T @ centered
+
+    # Radius of Gyration: Rg = sqrt(trace(M) / N)
+    rg = np.sqrt(np.trace(M) / n)
 
     # End-to-End Distance
     end_to_end = np.linalg.norm(coords[-1] - coords[0])
 
     # PCA Anisotropy
-    cov = np.cov(centered, rowvar=False)
+    # Use N-1 normalization to match np.cov default (unbiased)
+    cov = M / (n - 1)
     eigvals, eigvecs = np.linalg.eigh(cov)
     eigvals = np.sort(eigvals)
 
@@ -218,10 +289,17 @@ def find_bending_hotspots(curvature: np.ndarray, plddts: np.ndarray, top_n: int 
 
     return "; ".join(hotspots) if hotspots else "None"
 
-def analyze_protein(pdb_path: Path) -> Dict:
+def analyze_protein(pdb_path: Path, force: bool = False) -> Dict:
     """
     Analyzes a single PDB file using fast StructureParser with caching.
     """
+    # ⚡ Bolt Optimization: Check persistent analysis cache
+    if not force:
+        cached = load_cached_analysis(pdb_path)
+        if cached:
+            print(f"  Loaded analysis cache for {pdb_path.name}")
+            return cached
+
     t0 = time.time()
     parser = StructureParser()
 
@@ -267,7 +345,7 @@ def analyze_protein(pdb_path: Path) -> Dict:
     likely_IDR_heavy = disorder_fraction > 0.3
     multi_domain_uncertain = domain_count > 1 and low_confidence_warning
 
-    return {
+    results = {
         "protein_id": pdb_path.stem,
         "species": "Homo sapiens",
         "length": len(coords),
@@ -295,6 +373,10 @@ def analyze_protein(pdb_path: Path) -> Dict:
         "plddts": plddts,
         "curvature": full_curvature
     }
+
+    # Save to cache
+    save_cached_analysis(pdb_path, results)
+    return results
 
 def generate_plots(results: List[Dict], output_dir: Path):
     """
@@ -329,6 +411,7 @@ def main():
     parser = argparse.ArgumentParser(description="Bolt-BioFold Analysis")
     parser.add_argument("--pdb_dir", type=Path, default=DEFAULT_PDB_DIR, help="Directory containing PDB files")
     parser.add_argument("--output_dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Directory for output")
+    parser.add_argument("--force", action="store_true", help="Force re-computation ignoring cache")
     args = parser.parse_args()
 
     pdb_dir = args.pdb_dir
@@ -349,7 +432,7 @@ def main():
             continue
 
         print(f"Processing {pid}...")
-        res = analyze_protein(pdb_file)
+        res = analyze_protein(pdb_file, force=args.force)
         if res:
             results.append(res)
 

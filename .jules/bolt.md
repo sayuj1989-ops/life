@@ -63,3 +63,9 @@
 **Learning:** Constructing a list of lists (`coords_list.append([x, y, z])`) inside the parsing loop creates millions of small list objects for large datasets, adding memory allocation overhead. Additionally, looking up `list.append` on every iteration adds method call overhead.
 
 **Action:** Replaced list-of-lists with a flat list append (`coords_flat.append(x); ...`) and aliased `append` to a local variable. This yielded a ~10-15% speedup in the parsing loop (16ms -> 14ms per 2500 residues), further reducing the computational cost of the initial parse before caching.
+## 2026-08-20 - [Parser Line Reading Optimization Rejected]
+**Learning:** Benchmarked `StructureParser.fast_parse_pdb_arrays` (Python loop vs `readlines` vs `np.fromregex`) for 100k line PDBs.
+- `for line in f` (buffered): ~0.2s
+- `f.readlines()`: ~0.2s (no significant gain)
+- `np.fromregex`: Slower/Fragile due to complex PDB column alignment.
+**Action:** Rejected parsing optimization. Parsing is surprisingly efficient. The real bottleneck for repeated analysis is re-computing geometry metrics. Implemented persistent caching (`.npz`/`.json`) instead, yielding ~10x speedup on second run.

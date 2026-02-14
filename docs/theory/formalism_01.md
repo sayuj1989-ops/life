@@ -281,6 +281,22 @@ $$ k_{cat}(\theta) = k_{iso} \left[ 1 + \mathcal{A}_{enz} (\lambda_{enz} - 1) \c
     *   **Mechanism**: Anisotropic diffusion or "slot-docking" kinetics on the collagen triple helix.
 *   **Measurable Proxy**: The ratio of collagen crosslink density (pyridinoline/deoxypyridinoline) in tensed (tendon) vs. relaxed (skin) tissues, normalized by local PLOD1 concentration.
 
+### 2.19. The Mechanogenetic Coupling Tensor ($\mathbf{\Psi}_{Hox}$)
+
+We formalize the "Tension-Dependent Identity" hypothesis (Kang et al., 2025), where mechanical stress directly modulates the expression of Anterior-Posterior identity genes (HOX). We define $\mathbf{\Psi}_{Hox}$ as a rank-2 tensor mapping the local stress tensor $\boldsymbol{\sigma}$ to a shift in the effective morphogenetic coordinate $s_{eff}$.
+
+$$ s_{eff} = s + \mathbf{\Psi}_{Hox} : \boldsymbol{\sigma} $$
+$$ I(s) \to I(s_{eff}) $$
+
+*   **Symbols**:
+    *   $\boldsymbol{\sigma}$: Cauchy stress tensor $[ML^{-1}T^{-2}]$.
+    *   $\mathbf{\Psi}_{Hox}$: Sensitivity tensor $[M^{-1}L^2T^2]$. (Inverse stiffness * Length).
+*   **Physical Interpretation**:
+    *   **$\Psi_{Hox} \approx 0$**: Genetic identity is hard-coded (Robust).
+    *   **$\Psi_{Hox} > 0$**: High tension "posteriorizes" the cell (shifts identity towards tail).
+    *   **Mechanism**: Chromatin opening via LINC complex tension allowing access to HOX clusters.
+*   **Measurable Proxy**: The shift in the transition boundary between HOX paralogs (e.g., HOXB4/HOXB6) in fibroblasts cultured on soft vs. stiff substrates.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -504,6 +520,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Comparative kinetics of WT vs. Globular-PLOD1 on aligned collagen substrates.
 *   **Refutation**: If the globular mutant shows the same alignment enhancement as the rod-like WT, the geometric anisotropy mechanism is incorrect. (Reference: Ugur et al., 2024).
 
+### Test AK: The Stress-Shifted Boundary
+*   **Hypothesis**: Application of uniaxial stretch to a developing somite boundary should shift the HOX expression domain in the direction of tension if $\mathbf{\Psi}_{Hox} \neq 0$.
+*   **Data Needed**: In-situ hybridization of *Hoxc6* in chick embryos subjected to exogenous tensile loading.
+*   **Refutation**: If HOX boundaries are invariant to mechanical stress, the identity is purely chemical. (Reference: Kang et al., 2025).
+
+### Test AL: The Tension-Null Promoter
+*   **Hypothesis**: Deleting the tension-responsive enhancer element (e.g., specific YAP/TEAD binding sites) within the HOX cluster will abolish the stress sensitivity ($\mathbf{\Psi}_{Hox} \to 0$) without affecting basal expression.
+*   **Data Needed**: Expression levels of *HOXA* genes in fibroblasts from CRISPR-edited lines (enhancer deletion) vs WT under cyclic strain.
+*   **Refutation**: If strain-dependence persists despite enhancer deletion, the coupling is global (e.g., nuclear dilution) rather than specific. (Reference: Wang et al., 2009).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -549,3 +575,5 @@ The theory makes specific predictions about the relationship between genetic ani
 41. **Spasic, M., & Jacobs, C. R. (2017).** "Primary cilia: Cell and molecular mechanosensors of the skeleton." *Bone*, 97. (Review of ciliary mechanics).
 42. **Pinnell, S. R., et al. (1972).** "A heritable disorder of connective tissue: hydroxylysine-deficient collagen disease." *New England Journal of Medicine*, 286(19). (Establishes PLOD1 link to scoliosis).
 43. **Ugur, K., et al. (2024).** "Resolution of Scoliosis Following Treatment of Sleep-Disordered Breathing." *Children*, 11(9). (Supports metabolic/hypoxic driver of scoliosis).
+44. **Kang, M., et al. (2025).** "Tension-sensitive HOX gene expression in fibroblasts for differential scar formation." *Journal of Translational Medicine*, 23(1). (Demonstrates that mechanical tension modulates HOX gene expression).
+45. **Wang, N., et al. (2009).** "Mechanotransduction at a distance: mechanically coupling the extracellular matrix with the nucleus." *Nature Reviews Molecular Cell Biology*, 10(1). (Nuclear mechanotransduction mechanism).

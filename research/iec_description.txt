@@ -1,0 +1,12 @@
+The Information-Elasticity Coupling (IEC) framework models biological development as a coupling between a developmental information field and the mechanical properties of a growing structure. 
+
+Key components:
+1.  **Information Field (I(s))**: A scalar or vector field representing morphogen gradients (e.g., HOX genes) along the body axis 's'.
+2.  **Cosserat Rod**: The biological structure (e.g., spine) is modeled as a Cosserat rod with centerline position r(s) and orientation frame d_i(s).
+3.  **Coupling Parameters (χ)**:
+    -   **χ_κ (Chi-Kappa)**: Couples information to preferred curvature (growth direction).
+    -   **χ_τ (Chi-Tau)**: Couples information to preferred torsion (twist).
+    -   **χ_E (Chi-E)**: Modulates stiffness based on information (material properties).
+4.  **Energy Minimization**: The final shape emerges from minimizing the total elastic energy, which includes bending, twisting, and stretching terms modified by the information field.
+
+In the spinal context, this framework explains how subtle genetic information (I(s)) can drive the formation of complex 3D curves (e.g., the S-curve) against gravity by locally altering the "metric" or rest shape of the tissue. High gain on this coupling can lead to instabilities like Scoliosis.

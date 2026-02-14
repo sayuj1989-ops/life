@@ -1,36 +1,26 @@
 # Weekly Synthesis: Energy Deficit Phase Diagram
 **Date:** 2026-02-08
-**Topic:** Thermodynamic Vulnerability in Parameter Space
+**Related Experiment:** `scripts/weekly_sim_energy_deficit_bifurcation.py`
 
-## Overview
-The weekly simulation `scripts/weekly_sim_energy_deficit_bifurcation.py` performed a 2D parameter sweep of the Energy Deficit Window across the Information-Elasticity Coupling strength ($\chi_\kappa$) and Spinal Length ($L$). This experiment maps the "thermodynamic risk landscape" for Adolescent Idiopathic Scoliosis (AIS).
+## 1. The Wedge of Instability
+The 2D parameter sweep across IEC coupling strength ($\chi_\kappa$) and spinal length ($L$) has revealed a distinct **wedge-shaped instability region** in the phase diagram.
 
-## Key Findings
+- **Low Coupling ($\chi_\kappa < 0.03$):** The system remains energetically stable ($R_{deficit} < 1$) throughout the adolescent growth range ($L \in [0.25, 0.55]$ m). The metabolic cost of maintaining the target curvature is low enough that proprioceptive supply is never overwhelmed.
+- **High Coupling ($\chi_\kappa > 0.06$):** The system enters the **Energy Deficit Window** at significantly shorter spinal lengths ($L_{crit} \approx 0.30$ m).
+- **The Bifurcation:** As $L$ increases, the metabolic demand $P_{counter}$ scales as $\sim L^2$ (or higher depending on curvature intensity), while supply $S_{proprio}$ scales sub-linearly ($\sim L^{0.7}$). This creates a crossover point $L_{crit}$ that moves to the left (earlier in time) as $\chi_\kappa$ increases.
 
-### 1. The Wedge of Instability
-The phase diagram of the Energy Deficit Ratio ($R_{deficit} = P_{counter} / S_{proprio}$) reveals a distinct wedge-shaped instability region where $R_{deficit} > 1$.
-- **Dependency on $\chi_\kappa$:** The metabolic cost of counter-curvature ($P_{counter}$) scales roughly as $\chi_\kappa^2$. Consequently, higher coupling strengths drive the system into energy deficit at significantly shorter spinal lengths.
-- **Dependency on $L$:** As length increases, $P_{counter}$ grows faster ($~L^2$) than the proprioceptive supply ($~L^{0.7}$), eventually crossing the threshold.
+## 2. Clinical Risk Stratification
+These findings suggest a counter-intuitive risk factor: **"Stronger" genetic instructions for spinal curvature (high $\chi_\kappa$) increase vulnerability.**
 
-### 2. Clinical Stratification
-The results suggest a clear stratification mechanism for AIS onset:
-- **High $\chi_\kappa$ (Strong Driver):** Patients enter the deficit window early in adolescence (short $L$). This corresponds to early-onset or severe juvenile scoliosis.
-- **Moderate $\chi_\kappa$:** Patients enter the window during the peak growth spurt ($L \approx 0.35 - 0.45$ m). This matches the typical AIS demographic.
-- **Low $\chi_\kappa$:** The trajectory may remain below the $R=1$ contour entirely, explaining why some individuals with similar growth rates never develop scoliosis ("Resilient" phenotype).
+- **Early Onset:** Patients with high intrinsic drive for counter-curvature (high $\chi_\kappa$) will hit the energy ceiling earlier in their growth spurt. This correlates with the clinical observation that **Early Onset Scoliosis (EOS)** or early-adolescent onset is often more severe than late-onset cases.
+- **Wider Vulnerability Window:** High $\chi_\kappa$ patients not only enter the window earlier but spend a larger fraction of their total growth period in the deficit state, allowing more time for plastic deformation (Hueter-Volkmann remodeling) to lock in the scoliotic curve.
+- **Risk Prediction:** If $\chi_\kappa$ can be estimated from pre-symptomatic sagittal profiles (e.g., highly pronounced lordosis/kyphosis relative to vertebrae size), it could serve as a biomarker for high-risk progression.
 
-### 3. Lateral Instability (Cobb Angle)
-The Cobb angle heatmap (`outputs/figures/phase_diagram_energy_deficit_cobb.png`) confirms that significant lateral deviation emerges primarily within the high-deficit region. This supports the hypothesis that the energy deficit—specifically the failure to fuel the active counter-curvature correction—is the proximal cause of the geometric collapse.
+## 3. Mechanism of Collapse
+The simulation confirms that the onset of scoliosis in this model is a **metabolic bifurcation**, not a purely mechanical buckling event.
+- The loss of lateral stability is triggered when the thermodynamic cost of the sagittal S-curve exceeds the available proprioceptive bandwidth ($R_{deficit} > 1$).
+- In this regime, the system "sacrifices" lateral stiffness to maintain the sagittal primary curve, allowing small lateral asymmetries ($\epsilon_{asym} = 0.03$) to amplify into clinically significant Cobb angles ($> 10^\circ$).
 
-## Implication for Therapy
-Therapeutic interventions should aim to either:
-1.  **Reduce $\chi_\kappa$:** Dampen the intrinsic curvature drive (e.g., via localized inhibition of the specific signaling pathway).
-2.  **Boost $S_{proprio}$:** Increase the available metabolic supply or efficiency of the proprioceptive system (e.g., metabolic support, specific exercise).
-3.  **Delay Growth:** Slowing $\dot{L}$ might not help if the path eventually crosses the wedge, but it allows more time for $S_{proprio}$ to adapt if supply is rate-limited rather than capacity-limited.
-
-## Reference Artifacts
-- **Phase Diagram:** `outputs/figures/phase_diagram_energy_deficit.png`
-- **Cobb Angle Map:** `outputs/figures/phase_diagram_energy_deficit_cobb.png`
-- **Data:** `outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv`
-
-## Verification
-Simulation run completed on 2026-02-13. Results confirm the wedge-shaped instability region where R_deficit > 1, with lateral instability (Cobb angle) emerging specifically in this high-deficit zone.
+## 4. Next Steps
+- **Retrospective Validation:** We need to test the prediction that pre-onset sagittal curvature magnitude (proxy for $\chi_\kappa$) correlates with age at diagnosis in retrospective cohorts.
+- **Metabolic Rescue:** Simulations should test if boosting $S_{proprio}$ (e.g., via metabolic interventions or sensory training) can shift the $L_{crit}$ boundary to the right, closing the window for high-risk patients.

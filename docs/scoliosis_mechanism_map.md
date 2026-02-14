@@ -410,3 +410,24 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 **Citations**:
 *   *Ugur, M. B., et al. (2024). The effect of adenoidectomy on the scoliotic curve in children with sleep-disordered breathing. Children (Basel), 11(9), 1134.* https://doi.org/10.3390/children11091134
 *   *Adamovich, Y., et al. (2017). Oxygen availability adjusts the circadian rhythm. Cell Metabolism, 25(1), 83-100.* https://doi.org/10.1016/j.cmet.2016.09.015
+
+---
+
+### 25. The Tension-Dependent Identity (HOX)
+
+**Arc Added**: `Mech_Trans` $\rightarrow$ `HOX` $\rightarrow$ `ECM_Assembly`.
+
+*   **Source**: `Mech_Trans` (Mechanotransduction), `HOX` (Homeobox Genes).
+*   **Mechanism**: **Mechanical Assimilation**.
+    1.  **Tension Sensing**: Fibroblasts sense asymmetric mechanical tension via mechanotransduction pathways.
+    2.  **HOX Modulation**: This tension directly modulates the expression of `HOXA` and `HOXC` cluster genes.
+    3.  **Identity Shift**: The differential expression of HOX genes alters the positional identity and ECM secretion profile of the cells.
+    4.  **Structural Lock-In**: The altered ECM consolidates the asymmetric curvature, "locking in" the deformity.
+*   **Property**: **Rest Curvature ($\kappa_0$)** and **Stiffness ($EI$)**.
+*   **Role**: **Genetic Feedback Loop**. This pathway closes the loop between "Outcome" (Curvature/Stress) and "Source" (Genetics). It suggests that the *genetic* pattern of the spine is not fixed but is continuously updated by the *mechanical* state.
+*   **Evidence**: Kang et al. (2025) demonstrated that mechanical tension differentially regulates HOX gene expression in fibroblasts, linking the physical environment to morphogenetic identity.
+
+> **Hypothesis**: "Form follows Force". The spine's genetic blueprint is partially written by gravity itself.
+
+**Citations**:
+*   *Kang, M., et al. (2025). Tension-sensitive HOX gene expression in fibroblasts for differential scar formation. Journal of Translational Medicine, 23(1), 168.* https://doi.org/10.1186/s12967-025-06191-1

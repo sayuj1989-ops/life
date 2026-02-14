@@ -33,6 +33,8 @@ def cluster_proteins(csv_path):
         sys.exit(1)
 
     # Column mapping for flexibility
+    # The CSV has columns like "Identity", "Anisotropy", "PAE_blockiness"
+    # We want to use standard names internally
     col_map = {
         "Identity": "gene_symbol",
         "Anisotropy": "anisotropy_index",
@@ -43,20 +45,32 @@ def cluster_proteins(csv_path):
     # Parse Identity if needed (e.g. "PIEZO2 (Q9H5I5)" -> "PIEZO2")
     if "gene_symbol" in df.columns and df["gene_symbol"].astype(str).str.contains(r"\(").any():
         df["gene_symbol"] = df["gene_symbol"].astype(str).apply(lambda x: x.split(" (")[0] if " (" in x else x)
+    elif "gene_symbol" in df.columns and "," in str(df["gene_symbol"].iloc[0]):
+         # Handle "PIEZO2,Q9H5I5" format if present
+         df["gene_symbol"] = df["gene_symbol"].astype(str).apply(lambda x: x.split(",")[0])
 
     # Ensure required columns exist
     required_cols = ["gene_symbol", "anisotropy_index", "PAE_domain_blockiness_score"]
     for col in required_cols:
         if col not in df.columns:
             print(f"Error: Missing column '{col}' in CSV. Available: {list(df.columns)}")
-            sys.exit(1)
+            # Try to infer if names are different
+            if "Anisotropy" in df.columns:
+                df["anisotropy_index"] = df["Anisotropy"]
+            if "PAE_blockiness" in df.columns:
+                df["PAE_domain_blockiness_score"] = df["PAE_blockiness"]
+
+            # Recheck
+            if col not in df.columns:
+                 print(f"Critical Error: Could not map column '{col}'.")
+                 sys.exit(1)
 
     # Cluster Logic
     def assign_cluster(row):
         aniso = row["anisotropy_index"]
         block = row["PAE_domain_blockiness_score"]
 
-        # Handle missing values if any (though standard pandas float handles NaN)
+        # Handle missing values if any
         if pd.isna(aniso) or pd.isna(block):
             return "2: Globular/Mixed (Incomplete Data)"
 
@@ -88,10 +102,17 @@ def cluster_proteins(csv_path):
     df_sorted = df.sort_values(by=["Cluster", "anisotropy_index"], ascending=[True, False])
 
     for _, row in df_sorted.iterrows():
-        source = row.get("source_category", "Unknown")
-        line = f"| **{row['gene_symbol']}** | {row['Cluster']} | {row['anisotropy_index']:.2f} | {row['PAE_domain_blockiness_score']:.2f} | {source} |"
+        source = row.get("Identity", "Unknown") # Or use original column if available
+        # Try to find source category if available
+        source_cat = "Unknown"
+        if "pathway_tags" in df.columns:
+             source_cat = row["pathway_tags"]
+        elif "source_category" in df.columns:
+             source_cat = row["source_category"]
+
+        line = f"| **{row['gene_symbol']}** | {row['Cluster']} | {row['anisotropy_index']:.2f} | {row['PAE_domain_blockiness_score']:.2f} | {source_cat} |"
         report_lines.append(line)
-        print(line) # Print to stdout as well
+        print(line)
 
     # Write to file
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

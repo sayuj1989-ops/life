@@ -35,6 +35,32 @@ def test_run_protein_simulation_args():
     assert result['success'] is True
     assert 'S_lat' in result
 
+def test_run_protein_simulation_new_args():
+    """Test that run_protein_simulation accepts boundary_condition, stiffness_modulation, initial_lateral_defect."""
+    if not PYELASTICA_AVAILABLE:
+        pytest.skip("PyElastica not installed, skipping test.")
+
+    # Run a very short simulation with new parameters
+    result = run_protein_simulation(
+        anisotropy=1.0,
+        active_curvature=0.0,
+        boundary_condition="pinned",
+        stiffness_modulation=0.5,
+        initial_lateral_defect=0.05,
+        radius=0.02,
+        E0=2e6,
+        n_elements=10,
+        duration=0.01,
+        dt=1e-4,
+        show_progress=False
+    )
+
+    assert result['success'] is True
+    assert 'S_lat' in result
+    # Should have some curvature due to defect, even with 0 active curvature
+    # defect sets rest curvature, so the rod should bend towards it
+    assert result.get('max_curvature', 0.0) > 0
+
 def test_minimal_experiment_script(tmp_path):
     """Test that the script runs in quick-test mode."""
     if not PYELASTICA_AVAILABLE:

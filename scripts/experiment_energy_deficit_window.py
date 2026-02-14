@@ -77,15 +77,19 @@ def run_simulation():
     # Material / Geometric parameters
     E0 = 1.0e9 # Pa
     rho = 1100.0 # kg/m^3
-    A = 0.001 # m^2
+    A_ref = 0.001 # m^2 at L_ref
+    L_ref_geom = 0.4 # Reference length for geometric scaling
     g = 9.81 # m/s^2
-    I_moment = A**2 / (4 * np.pi) # m^4 (circular approx from A)
 
     eta_a = 1.0 # Scaling factor for P_counter
 
     results = []
 
     for L in L_values:
+        # Isometric scaling: Cross-sectional area scales as L^2
+        # This implies geometric similarity (thickness proportional to length)
+        A = A_ref * (L / L_ref_geom)**2
+        I_moment = A**2 / (4 * np.pi) # m^4 (circular approx from A)
         # Spatial grid
         n_nodes = 100
         s = np.linspace(0, L, n_nodes)

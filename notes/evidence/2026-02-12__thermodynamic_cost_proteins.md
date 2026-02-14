@@ -1,6 +1,6 @@
 # Thermodynamic Cost of Countercurvature: Molecular Mapping via AlphaFold
 
-**Date:** 2026-02-13
+**Date:** 2026-02-14
 **Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)
 **Framework:** Free energy dissipation functional (manuscript Eq. 7)
 

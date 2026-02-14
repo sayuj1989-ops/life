@@ -24,7 +24,7 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s), \mathbf{d}_2(s), \mathbf{d}_3(s)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s)$ and $\mathbf{d}_2(s)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
+We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
 \begin{align}
 \mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
 \mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
@@ -34,14 +34,33 @@ where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ repre
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes, SHH/BMP gradients). The spatial gradient of this field, $\nabla I$, acts as a "curvature generator," driving the resting geometry of the rod away from the straight configuration. Formally, we define the intrinsic rest curvature $\boldsymbol{\kappa}_{\mathrm{rest}}$ as a function of the information gradient:
+We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes, SHH/BMP gradients). The spatial gradient of this field, $\nabla I$, acts as a "curvature generator," driving the resting geometry of the rod away from the straight configuration. We define three key coupling constants that translate this information into mechanical action:
+
+\paragraph{Geometric Coupling ($\chi_\kappa$).}
+This dimensionless constant links the information gradient to the intrinsic rest curvature $\boldsymbol{\kappa}_{\mathrm{rest}}$ (the target shape):
 \begin{equation}
 \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
 \label{eq:kappa_rest}
 \end{equation}
-where $\chi_\kappa$ is a dimensionless geometric coupling constant. This posits that morphogenetic information encodes a target metric for the developing spine, where high rates of change in identity (transition zones) correspond to high intrinsic curvature.
+where $\boldsymbol{\kappa}_{\mathrm{gen}}$ is the generic curvature. A high $\chi_\kappa$ implies that sharp transitions in morphogen identity (e.g., cervicothoracic junction) correspond to high intrinsic curvature targets.
 
-Following the bimodal Gaussian parameterization already defined in Methods (Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks corresponding to the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) regions of high vertebral identity specification. Physically, these peaks represent zones where the specification of vertebral identity is most robust, driven by the combinatorial expression of HOX genes. The spatial gradient of this field, $\partial I/\partial s$, acts as the "curvature generator" that drives the intrinsic rest curvature away from the straight configuration. AlphaFold analysis of key HOX proteins (e.g., HOXC8, HOXB13) confirms distinct structural rigidities that may underpin this spatial specificity~\cite{jumper2021alphafold}.
+\paragraph{Morphomechanical Coupling ($\chi_M$).}
+This constant (dimensions $[ML^3T^{-2}]$) represents the "stiffness of the information field." It relates the information gradient to the active biological moment $\mathbf{M}_{bio}$ generated to oppose gravity:
+\begin{equation}
+\mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I),
+\label{eq:active_moment}
+\end{equation}
+where $\mathbf{\Lambda}$ is the tissue anisotropy tensor. This formalizes the idea that the organism must actively generate torque to maintain the S-shape.
+
+\paragraph{The Bio-Gravitational Number ($\mathcal{B}_g$).}
+To quantify stability, we introduce the dimensionless Bio-Gravitational Number, comparing the active biological moment to the passive gravitational moment:
+\begin{equation}
+\mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
+\label{eq:bg_number}
+\end{equation}
+When $\mathcal{B}_g > 1$, the organism dominates gravity (stable counter-curvature). When $\mathcal{B}_g < 1$, gravity dominates, leading to buckling (scoliosis).
+
+Following the bimodal Gaussian parameterization already defined in Methods (Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks corresponding to the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) regions of high vertebral identity specification.
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge builds upon recent theoretical proposals\footnote{A preliminary exploration of this concept, proposing a cosmological "Information Term" $I_{\mu\nu}$ in Einstein's field equations, was introduced in \cite{krishnan2025consciousness}. The present work translates this speculative cosmological hypothesis into a rigorous, experimentally testable framework for biological morphogenesis, where $I(s)$ modifies the effective material metric rather than the vacuum spacetime metric.} suggesting that information may play a geometric role in physical systems.
@@ -68,11 +87,11 @@ where:
 \begin{itemize}
     \item $B_{\mathrm{eff}}(s) = E_0 I_{\mathrm{area}} (1 + \chi_E I(s))$ is the information-modulated bending stiffness.
     \item $C_{\mathrm{eff}}(s) = G_0 J (1 + \chi_C I(s))$ is the torsional stiffness ($G_0$: shear modulus).
-    \item $K_{\mathrm{eff}}(s) = E_0 A (1 + \chi_M I(s))$ is the extensional stiffness.
+    \item $K_{\mathrm{eff}}(s) = E_0 A (1 + \chi_A I(s))$ is the extensional stiffness.
     \item $\kappa_{\mathrm{rest}}(s) = \kappa_0 + \chi_\kappa \partial_s I$ is the information-driven target curvature.
     \item $\tau$ and $\varepsilon$ are the local torsion and strain, respectively.
 \end{itemize}
-The weighting $w(I) = (1 + \chi_E I(s))$ penalizes deviations from the information-prescribed counter-curvature more heavily in high-identity regions (e.g., cervical/lumbar junctions).
+The weighting $w(I) = (1 + \chi_E I(s))$ penalizes deviations from the information-prescribed counter-curvature more heavily in high-identity regions (e.g., cervical/lumbar junctions). Note that we use $\chi_A$ for area stiffness modulation to distinguish it from the morphomechanical coupling $\chi_M$ defined earlier.
 
 \subsection{Cosserat force and moment balance}
 

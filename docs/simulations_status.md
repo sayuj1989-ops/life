@@ -28,3 +28,4 @@
 | 2026-02-11 | weekly-sim-torsion-high-anisotropy | chi_tau (0.0-2.0) | High anisotropy (R=10) remains unstable (Cobb ~68 deg) with minimal effect from torsion (chi_tau up to 2.0). | [Report](../outputs/sim/2026-02-11/report.md) |
 | 2026-02-12 | weekly-sim-tilted-growth-anisotropy | tilt_deg, Anisotropy | Intermediate anisotropy (R=1.0) maximizes lateral deviation (S_lat > 0.5) under tilt; Low R maximizes Cobb. | [Report](../outputs/sim/2026-02-12/report.md) |
 | 2026-08-19 | weekly-sim-growth-location-high-res | Info Center (0.1-0.9) | Cobb peaks at lower spine (0.3); Lateral Deviation peaks at apex (0.9). Apical defects maximize lateral shift. | [Report](../outputs/sim/2026-08-19/report.md) |
+| 2026-08-20 | weekly-sim-growth-width-transition | Info Width (0.02-0.8) | Instability peaks at intermediate width (Width~0.1-0.2, Cobb~58 deg); very sharp (0.02) and diffuse (0.8) defects are more stable. | [Report](../outputs/sim/2026-08-20/report.md) |

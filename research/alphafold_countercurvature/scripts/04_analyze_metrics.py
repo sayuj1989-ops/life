@@ -63,28 +63,48 @@ def main():
         except Exception as e:
             print(f"⚠️ Error loading candidates file: {e}")
 
-    # ⚡ Bolt Optimization: Incremental Processing
+    # ⚡ Bolt Optimization: Incremental Processing & Fast IO
     # Check for existing results to avoid re-processing
     processed_keys = set()
     existing_df = None
+    append_mode = False
+    file_cols = []
+
     if OUTPUT_FILE.exists():
         try:
-            existing_df = pd.read_csv(OUTPUT_FILE)
+            # First read only headers to check schema stability
+            headers = pd.read_csv(OUTPUT_FILE, nrows=0).columns.tolist()
 
-            # Normalize legacy columns if present
-            rename_map = {}
-            if 'anisotropy' in existing_df.columns and 'anisotropy_index' not in existing_df.columns:
-                 rename_map['anisotropy'] = 'anisotropy_index'
-            if 'mean_plddt' in existing_df.columns and 'plddt_mean' not in existing_df.columns:
-                 rename_map['mean_plddt'] = 'plddt_mean'
+            # Check for legacy columns needing migration
+            needs_migration = False
+            if 'anisotropy' in headers and 'anisotropy_index' not in headers: needs_migration = True
+            if 'mean_plddt' in headers and 'plddt_mean' not in headers: needs_migration = True
 
-            if rename_map:
-                print(f"   Migrating columns in existing file: {list(rename_map.keys())} -> {list(rename_map.values())}")
-                existing_df.rename(columns=rename_map, inplace=True)
+            if not needs_migration:
+                # ⚡ Bolt Optimization: Fast Read (Keys Only)
+                # Avoids parsing thousands of float columns for existing records
+                keys_df = pd.read_csv(OUTPUT_FILE, usecols=['gene_symbol', 'uniprot'])
+                processed_keys = set(zip(keys_df['gene_symbol'], keys_df['uniprot']))
+                file_cols = headers
+                append_mode = True
+                print(f"   Found {len(processed_keys)} existing records (Fast IO)")
+            else:
+                # Fallback to full read for migration
+                existing_df = pd.read_csv(OUTPUT_FILE)
+                rename_map = {}
+                if 'anisotropy' in existing_df.columns and 'anisotropy_index' not in existing_df.columns:
+                     rename_map['anisotropy'] = 'anisotropy_index'
+                if 'mean_plddt' in existing_df.columns and 'plddt_mean' not in existing_df.columns:
+                     rename_map['mean_plddt'] = 'plddt_mean'
 
-            if 'gene_symbol' in existing_df.columns and 'uniprot' in existing_df.columns:
-                processed_keys = set(zip(existing_df['gene_symbol'], existing_df['uniprot']))
-            print(f"   Found {len(processed_keys)} existing records in {OUTPUT_FILE.name}")
+                if rename_map:
+                    print(f"   Migrating columns in existing file: {list(rename_map.keys())} -> {list(rename_map.values())}")
+                    existing_df.rename(columns=rename_map, inplace=True)
+
+                if 'gene_symbol' in existing_df.columns and 'uniprot' in existing_df.columns:
+                    processed_keys = set(zip(existing_df['gene_symbol'], existing_df['uniprot']))
+                print(f"   Found {len(processed_keys)} existing records (Full Read)")
+
         except Exception as e:
             print(f"⚠️ Error reading existing metrics: {e}. Starting fresh.")
 
@@ -183,46 +203,80 @@ def main():
 
     new_df = pd.DataFrame(results)
 
-    # Combine with existing
-    if existing_df is not None and not new_df.empty:
-        df = pd.concat([existing_df, new_df], ignore_index=True)
-    elif not new_df.empty:
-        df = new_df
-    elif existing_df is not None:
-        df = existing_df
-    else:
-        df = pd.DataFrame()
+    # Handle Schema Evolution (New columns in results)
+    if append_mode and not new_df.empty:
+        new_cols = [c for c in new_df.columns if c not in file_cols]
+        if new_cols:
+            print(f"   ⚠️ New columns detected {new_cols}. Switching to full rewrite.")
+            try:
+                existing_df = pd.read_csv(OUTPUT_FILE)
+                append_mode = False
+            except Exception as e:
+                print(f"   Error reading file for rewrite: {e}")
 
-    if not df.empty:
-        # Reorder columns
-        cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
-                'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'n_residues', 'dise_score']
+    # Save logic
+    if append_mode and not new_df.empty:
+        # ⚡ Bolt Optimization: Append Mode
+        # Ensure correct column order matching file
+        for c in file_cols:
+            if c not in new_df.columns:
+                new_df[c] = np.nan
 
-        # Filter only columns that exist
-        cols = [c for c in cols_preferred if c in df.columns]
+        df_to_write = new_df[file_cols]
+        df_to_write.to_csv(OUTPUT_FILE, mode='a', header=False, index=False)
+        print(f"\n✅ Appended metrics for {len(new_df)} proteins to {OUTPUT_FILE}")
 
-        # Add remaining cols
-        remaining = [c for c in df.columns if c not in cols]
-        df = df[cols + remaining]
-
-        OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(OUTPUT_FILE, index=False)
-
-        print(f"\n✅ Metrics calculated for {len(df)} proteins.")
-        print(f"📄 Saved to: {OUTPUT_FILE}")
-
-        # Preview
-        print("\nTop 5 High Anisotropy:")
-        if 'anisotropy_index' in df.columns:
-             # Check which plddt column exists (legacy vs new)
-             plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
+        # Preview (New Batch)
+        print("\nPreview (New Batch - Top High Anisotropy):")
+        if 'anisotropy_index' in new_df.columns:
+             plddt_col = 'plddt_mean' if 'plddt_mean' in new_df.columns else 'mean_plddt'
              cols_to_show = ['gene_symbol', 'morphology', 'anisotropy_index']
-             if plddt_col in df.columns:
+             if plddt_col in new_df.columns:
                  cols_to_show.append(plddt_col)
+             print(new_df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))
 
-             print(df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))
     else:
-        print("\n⚠️ No metrics to save.")
+        # Full Rewrite Logic (Legacy/Fallback)
+        if existing_df is not None and not new_df.empty:
+            df = pd.concat([existing_df, new_df], ignore_index=True)
+        elif not new_df.empty:
+            df = new_df
+        elif existing_df is not None:
+            df = existing_df
+        else:
+            df = pd.DataFrame()
+
+        if not df.empty:
+            # Reorder columns
+            cols_preferred = ['gene_symbol', 'uniprot', 'source_category', 'morphology',
+                    'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'n_residues', 'dise_score']
+
+            # Filter only columns that exist
+            cols = [c for c in cols_preferred if c in df.columns]
+
+            # Add remaining cols
+            remaining = [c for c in df.columns if c not in cols]
+            df = df[cols + remaining]
+
+            OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+            df.to_csv(OUTPUT_FILE, index=False)
+
+            print(f"\n✅ Metrics calculated for {len(df)} proteins.")
+            print(f"📄 Saved to: {OUTPUT_FILE}")
+
+            # Preview
+            print("\nTop 5 High Anisotropy (All):")
+            if 'anisotropy_index' in df.columns:
+                 # Check which plddt column exists (legacy vs new)
+                 plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
+                 cols_to_show = ['gene_symbol', 'morphology', 'anisotropy_index']
+                 if plddt_col in df.columns:
+                     cols_to_show.append(plddt_col)
+
+                 print(df.sort_values('anisotropy_index', ascending=False)[cols_to_show].head().to_string(index=False))
+        else:
+            if not append_mode: # Only print if we expected to write but didn't
+                print("\n⚠️ No metrics to save.")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,13 @@
+The Information-Elasticity Coupling (IEC) framework models how developmental information shapes biological structures against gravity.
+
+1. **Input**: A Developmental Information Field I(s), representing genetic patterning (like HOX genes) along the body axis s. This field typically consists of Gaussian peaks.
+
+2. **Coupling**: The information field I(s) couples to the mechanics of the structure:
+   - Local Rest Curvature kappa_0(s) is determined by the gradient of I(s).
+   - Local Bending Stiffness E(s) is modulated by the amplitude of I(s).
+
+3. **Effective Metric**: These modifications create an "Effective Spacetime Metric" g_eff(s) for the biological structure. The rod perceives a curved geometry even in the absence of external forces.
+
+4. **Process**: The structure (modeled as a Cosserat Rod) minimizes its elastic energy within this effective metric, while simultaneously interacting with the external Gravitational Field g.
+
+5. **Output**: The equilibrium configuration is a robust S-curve (like the human spine) that effectively "counter-curves" against gravity to maintain stability.

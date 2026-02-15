@@ -29,3 +29,4 @@
 | 2026-02-12 | weekly-sim-tilted-growth-anisotropy | tilt_deg, Anisotropy | Intermediate anisotropy (R=1.0) maximizes lateral deviation (S_lat > 0.5) under tilt; Low R maximizes Cobb. | [Report](../outputs/sim/2026-02-12/report.md) |
 | 2026-08-19 | weekly-sim-growth-location-high-res | Info Center (0.1-0.9) | Cobb peaks at lower spine (0.3); Lateral Deviation peaks at apex (0.9). Apical defects maximize lateral shift. | [Report](../outputs/sim/2026-08-19/report.md) |
 | 2026-08-20 | weekly-sim-growth-width-transition | Info Width (0.02-0.8) | Instability peaks at intermediate width (Width~0.1-0.2, Cobb~58 deg); very sharp (0.02) and diffuse (0.8) defects are more stable. | [Report](../outputs/sim/2026-08-20/report.md) |
+| 2026-08-21 | weekly-sim-growth-anisotropy-map | chi_kappa, Anisotropy | Identified stability boundary: Anisotropy > 3.0 required to suppress scoliosis (Cobb < 10 deg) at high growth rates. | [Report](../outputs/sim/2026-08-21/report.md) |

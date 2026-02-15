@@ -46,8 +46,8 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 ## Phase 5: Scripts & Experiments Organization (Medium Priority)
 
-- [ ] **Organize `scripts/`**: Group scripts into logical subdirectories (`experiments/`, `pipeline/`, `data_management/`) to reduce clutter.
-- [ ] **Fix Script Imports**: Ensure moved scripts can still import `src` correctly (sys.path or package install).
+- [x] **Organize `scripts/`**: Group scripts into logical subdirectories (`experiments/`, `pipeline/`, `data_management/`, `visualization/`, `validation/`) to reduce clutter.
+- [x] **Fix Script Imports**: Ensure moved scripts can still import `src` correctly (sys.path or package install).
 - [ ] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function.
 
 ## Phase 6: Reproducibility & QA (High Priority)

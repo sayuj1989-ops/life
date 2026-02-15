@@ -21,7 +21,7 @@ import pandas as pd
 from pathlib import Path
 
 # Ensure src is in python path
-sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parents[2] / "src"))
 
 from spinalmodes.countercurvature.pyelastica_bridge import (
     CounterCurvatureRodSystem,

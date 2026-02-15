@@ -21,7 +21,7 @@ import time
 from itertools import product
 
 # Ensure src is in path
-sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../src'))
 
 try:
     import elastica

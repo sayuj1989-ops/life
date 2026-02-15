@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Setup Paths
 # This script is in scripts/ (repo root/scripts)
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 AFCC_DIR = REPO_ROOT / "research" / "alphafold_countercurvature"
 AFCC_SCRIPTS = AFCC_DIR / "scripts"
 DATA_PROCESSED = AFCC_DIR / "data" / "processed"

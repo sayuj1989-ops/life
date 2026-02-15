@@ -17,7 +17,7 @@ import datetime
 from pathlib import Path
 
 # Paths
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 AFCC_DIR = REPO_ROOT / "research" / "alphafold_countercurvature"
 AFCC_SCRIPTS = AFCC_DIR / "scripts"
 DATA_PROCESSED = AFCC_DIR / "data" / "processed"

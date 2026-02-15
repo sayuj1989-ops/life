@@ -28,7 +28,7 @@ from typing import Dict, List, Optional
 import numpy as np
 
 # Ensure src is in python path
-sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parents[2] / "src"))
 
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D

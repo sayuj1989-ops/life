@@ -114,7 +114,7 @@ def validate_csv(csv_path: Path, min_rows: int = 50) -> list:
 
 def main():
     """Run validation on all figures."""
-    project_root = Path(__file__).parent.parent
+    project_root = Path(__file__).parents[2]
     figs_dir = project_root / "outputs" / "figs"
     csv_dir = project_root / "outputs" / "csv"
 

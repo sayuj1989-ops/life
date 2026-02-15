@@ -18,7 +18,7 @@ import argparse
 # Ensure src is in python path
 # This handles execution from repo root or scripts/ dir
 current_file = Path(__file__).resolve()
-src_path = current_file.parent.parent / "src"
+src_path = current_file.parents[2] / "src"
 if str(src_path) not in sys.path:
     sys.path.append(str(src_path))
 

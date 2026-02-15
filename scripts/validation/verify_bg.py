@@ -24,7 +24,7 @@ import sys
 import os
 
 # Add src to path to import actual project classes if needed
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
 
 def calculate_bg(species_name, EI, Mass, Length, g=9.81):
     """

@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # Add src to path
-sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parents[2] / "src"))
 
 from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from spinalmodes.countercurvature.info_fields import InfoField1D

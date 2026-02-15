@@ -118,7 +118,7 @@ def compute_rest_curvature(
     elif kappa_gen.ndim == 2:
         if kappa_gen.shape != (3, n_points):
              raise ValueError(f"kappa_gen shape {kappa_gen.shape} mismatch with (3, {n_points})")
-        k_gen_arr = kappa_gen
+        k_gen_arr = kappa_gen.copy()
     else:
         raise ValueError("kappa_gen must be scalar, 1D array, or (3, N) array.")
 

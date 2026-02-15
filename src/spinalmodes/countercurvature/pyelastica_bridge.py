@@ -28,6 +28,18 @@ from .coupling import (
     compute_effective_stiffness,
     compute_rest_curvature,
 )
+
+@dataclass
+class CircadianParams:
+    """Parameters for circadian modulation of coupling strength."""
+    chi_0: float
+    amplitude: float
+    period: float
+    phase: float = 0.0
+
+    @property
+    def omega(self) -> float:
+        return 2.0 * np.pi / self.period
 from .info_fields import InfoField1D
 from .scoliosis_metrics import compute_scoliosis_metrics, ScoliosisMetrics
 
@@ -207,6 +219,69 @@ class ActiveMuscleTorques(ea.NoForces):
     def apply_torques(self, system, time: float = 0.0):
         system.external_torques += self.torques
 
+
+class TimeDependentGravity(ea.GravityForces):
+    """Applies a time-varying gravity force."""
+    def __init__(self, acc_gravity, period, phase_shift=0.0):
+        super().__init__(acc_gravity)
+        self.base_gravity = np.array(acc_gravity)
+        self.omega = 2.0 * np.pi / period
+        self.phase = phase_shift
+
+    def apply_forces(self, system, time: float = 0.0):
+        # Modulate gravity amplitude: g(t) = g0 * 0.5 * (1 + cos(omega * t + phi))
+        # This simulates a daily activity cycle (e.g. Upright vs Horizontal)
+        factor = 0.5 * (1.0 + np.cos(self.omega * time + self.phase))
+        # Ensure broadcasting: (3, 1) * (n_nodes,) -> (3, n_nodes)
+        gravity_vec = self.base_gravity.reshape(3, 1)
+        system.external_forces += gravity_vec * factor * system.mass
+
+
+class CircadianModulationCallback(ea.CallBackBaseClass):
+    """
+    Callback to modulate rest curvature based on circadian clock.
+    chi_kappa(t) = chi_0 * (1 + A * cos(omega * t + phi))
+    """
+    def __init__(self, step_skip, system, info_field, base_params, circadian_params, kappa_gen):
+        super().__init__()
+        self.every = step_skip
+        self.system = system
+        self.info = info_field
+        self.base_params = base_params
+        self.circadian = circadian_params
+        self.kappa_gen = kappa_gen if kappa_gen is not None else 0.0
+
+        # Pre-calculate interpolation indices
+        n_elem = system.n_elems
+        L = np.sum(system.rest_lengths)
+        s_rod = np.linspace(0, L, n_elem + 1)
+        # Voronoi domains (internal nodes)
+        self.s_internal = s_rod[1:-1]
+
+    def make_callback(self, system, time, current_step):
+        # Update every step if step_skip is small enough, otherwise modulation is step-wise
+        if current_step % self.every == 0:
+            # Calculate current coupling strength
+            modulation = 1.0 + self.circadian.amplitude * np.cos(
+                self.circadian.omega * time + self.circadian.phase
+            )
+            current_chi = self.circadian.chi_0 * modulation
+
+            # Update params (create a copy with new chi_kappa)
+            new_params = self.base_params._replace(chi_kappa=current_chi)
+
+            # Recompute rest curvature on info grid
+            kappa_rest = compute_rest_curvature(self.info, new_params, self.kappa_gen)
+
+            # Interpolate to rod internal nodes
+            rest_kappa = np.zeros((3, self.system.n_elems - 1))
+            for i in range(3):
+                rest_kappa[i, :] = np.interp(self.s_internal, self.info.s, kappa_rest[i, :])
+
+            # Apply to system
+            system.rest_kappa[:] = rest_kappa
+
+
 class PinnedBC(ea.ConstraintBase):
     """
     Boundary Condition that pins the position of selected nodes (fixes position)
@@ -250,7 +325,8 @@ class CounterCurvatureRodSystem:
         rod: ea.CosseratRod,
         info_field: InfoField1D,
         params: CounterCurvatureParams,
-        active_torques: Optional[ArrayF64] = None
+        active_torques: Optional[ArrayF64] = None,
+        kappa_gen: Optional[ArrayF64] = None,
     ):
         self.rod = rod
         self.info_field = info_field
@@ -258,6 +334,7 @@ class CounterCurvatureRodSystem:
         self.n_elements = rod.n_elems
         self.length = np.sum(rod.rest_lengths)
         self.active_torques = active_torques
+        self.kappa_gen = kappa_gen
 
     @classmethod
     def from_iec(
@@ -356,7 +433,7 @@ class CounterCurvatureRodSystem:
             active_torques = np.zeros((3, n_elements))
             active_torques[1, :] = M_active_elems
 
-        return cls(rod=rod, info_field=info, params=params, active_torques=active_torques)
+        return cls(rod=rod, info_field=info, params=params, active_torques=active_torques, kappa_gen=kappa_gen)
 
     def __repr__(self) -> str:
         """Return a string representation of the rod system configuration."""
@@ -409,6 +486,9 @@ class CounterCurvatureRodSystem:
         bc_kwargs: Optional[Dict[str, Any]] = None,
         boundary_condition: str = "fixed",
         progress_bar: bool = True,
+        circadian_params: Optional[CircadianParams] = None,
+        gravity_dynamic: bool = False,
+        gravity_period: Optional[float] = None,
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -441,7 +521,25 @@ class CounterCurvatureRodSystem:
                 raise ValueError(f"Unknown boundary_condition: {boundary_condition}. Use 'fixed' or 'pinned'.")
 
         # Gravity
-        system.add_forcing_to(self.rod).using(ea.GravityForces, acc_gravity=np.array([0.0, 0.0, -gravity]))
+        acc_gravity_vec = np.array([0.0, 0.0, -gravity])
+        if gravity_dynamic:
+            # Determine gravity period
+            g_period = gravity_period
+            if g_period is None and circadian_params is not None:
+                g_period = circadian_params.period
+
+            if g_period is not None:
+                system.add_forcing_to(self.rod).using(
+                    TimeDependentGravity,
+                    acc_gravity=acc_gravity_vec,
+                    period=g_period,
+                    phase_shift=0.0  # Gravity is the reference, so phase 0
+                )
+            else:
+                 # Fallback if no period provided but dynamic requested (should not happen in typical use)
+                 system.add_forcing_to(self.rod).using(ea.GravityForces, acc_gravity=acc_gravity_vec)
+        else:
+            system.add_forcing_to(self.rod).using(ea.GravityForces, acc_gravity=acc_gravity_vec)
 
         # Active Moments (if any)
         if self.active_torques is not None:
@@ -465,6 +563,20 @@ class CounterCurvatureRodSystem:
 
         results = {"time": [], "centerline": [], "kappa": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
+
+        # Circadian Modulation
+        if circadian_params is not None:
+            # Update more frequently than saving to ensure smooth dynamics
+            mod_step = max(1, int(save_every / 10))
+            system.collect_diagnostics(self.rod).using(
+                CircadianModulationCallback,
+                step_skip=mod_step,
+                system=self.rod,
+                info_field=self.info_field,
+                base_params=self.params,
+                circadian_params=circadian_params,
+                kappa_gen=self.kappa_gen
+            )
 
         system.finalize()
         timestepper = ea.PositionVerlet()

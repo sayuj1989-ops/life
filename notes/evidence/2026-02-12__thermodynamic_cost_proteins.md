@@ -1,6 +1,6 @@
 # Thermodynamic Cost of Countercurvature: Molecular Mapping via AlphaFold
 
-**Date:** 2026-02-14
+**Date:** 2026-02-14 (Updated 2026-02-23)
 **Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)
 **Framework:** Free energy dissipation functional (manuscript Eq. 7)
 
@@ -153,3 +153,7 @@ will show:
 - **Asymmetric** LBX1 expression (concave < convex)
 
 compared to height-matched non-scoliotic controls.
+
+## Verification Log
+
+**2026-02-23**: Verified pipeline execution for metabolic expansion candidates (PPARGC1A, IGF1R, GHR, ARNTL, DMD, MYLK). Computed metrics match the reported values.

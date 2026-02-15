@@ -53,6 +53,7 @@ graph TD
         Gi_cAMP[Gi/cAMP Signaling<br/>Gain Suppression]
         Ciliary_Tuning[Ciliary Tuning<br/>Antenna Gain]
         Hypoxia[Hypoxia<br/>O2 Deficit]
+        Osteogenesis[Osteogenesis<br/>Bone Formation]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -63,6 +64,7 @@ graph TD
         Torsion[Chiral Torsion ε<br/>Initial Twist]
         Muscle_Tone[Proprioception &<br/>Muscle Tone Balance]
         Anisotropy[Tissue Anisotropy<br/>Directional Order]
+        TMD[Tissue Mineral Density<br/>Bone Quality]
     end
 
     subgraph Outcome [Macroscopic Outcome]
@@ -206,7 +208,12 @@ graph TD
     Mech_Trans --> HOX
     HOX --> ECM_Assembly
 
+    %% NEW ARC: Bone Mineralization (Ramli et al., 2024)
+    PIEZO1 --> Osteogenesis
+    Osteogenesis --> TMD
+    TMD --> Stiffness
+
     class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia process;
-    class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy tissue;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis process;
+    class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD tissue;
     class S_Curve,Stability,Scoliosis outcome;

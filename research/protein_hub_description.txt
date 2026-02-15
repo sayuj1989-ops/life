@@ -1,0 +1,33 @@
+Protein Energy Balance Network: Growth Demand vs. Structural Support in the Spine
+
+This diagram categorizes key proteins involved in spinal stability into "Demand" (Energy Consumers/Growth Drivers) and "Supply/Support" (Energy Providers/Structure).
+
+**Category 1: Growth Demand (The Accelerators)**
+*   These proteins drive tissue expansion and increase the metabolic cost of maintaining geometry.
+*   **GHR (Growth Hormone Receptor)**: Systemic growth regulator.
+*   **IGF1R**: Local growth signaling.
+*   **MTOR**: Metabolic growth master switch.
+*   **MYC**: Proliferation driver.
+
+**Category 2: Energy Supply (The Power Plant)**
+*   These proteins provide the molecular fuel (ATP) and metabolic regulation to sustain the structure.
+*   **PPARGC1A**: Mitochondrial biogenesis (ATP supply).
+*   **ARNTL/CLOCK**: Circadian regulation of metabolism.
+*   **GAPDH**: Glycolysis (energy in hypoxic disc).
+*   **HIF1A**: Hypoxic response regulator.
+
+**Category 3: Structural Support & Control (The Cost Centers)**
+*   These proteins consume energy to maintain alignment and structural integrity.
+*   **Mechanosensors**: **PIEZO1**, **LBX1** (Proprioception).
+*   **Active Tension**: **MYH9** (Myosin), **ACTB** (Actin).
+*   **ECM Scaffolding**: **FBN1** (Fibrillin), **COL2A1** (Collagen II), **ACAN** (Aggrecan).
+
+**Relationships**:
+*   **Growth Demand** scales up the **Structural Support** requirements (more tissue to hold up).
+*   **Energy Supply** must meet the needs of **Structural Support**.
+*   **Imbalance**: If **Growth Demand** > **Energy Supply**, the **Structural Support** fails (Scoliosis).
+
+**Visual Style**:
+*   Network graph or Balance Scale metaphor.
+*   Group nodes by category with distinct colors (e.g., Red for Demand, Green for Supply, Blue for Structure).
+*   Edges showing dependencies (e.g., Structure *depends on* Supply; Demand *strains* Supply).

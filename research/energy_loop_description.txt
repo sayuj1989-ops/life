@@ -1,0 +1,32 @@
+The Mechanogenetic Energy Crisis Loop in Adolescent Idiopathic Scoliosis (AIS)
+
+This diagram illustrates the causal feedback loop driven by rapid adolescent growth that leads to spinal curvature.
+
+1.  **Growth Drivers (The Stressors)**:
+    *   **GHR (Growth Hormone Receptor)** and **IGF1 (Insulin-like Growth Factor 1)** drive the rapid increase in **Spinal Length ($L$)** during the adolescent growth spurt.
+    *   This rapid elongation increases the **Thermodynamic Cost ($P_{counter}$)** of maintaining spinal straightness against gravity.
+
+2.  **Energy Supply (The Constraint)**:
+    *   **PPARGC1A (PGC-1$\alpha$)** regulates mitochondrial biogenesis and ATP production.
+    *   **ARNTL (BMAL1)** regulates the circadian rhythm of intervertebral disc metabolism.
+    *   The **Energy Supply Rate ($S_{proprio}$)** is finite and cannot always keep up with the exponential demand of rapid growth ($L$).
+
+3.  **The Energy Deficit Bifurcation**:
+    *   When $P_{counter}$ exceeds $S_{proprio}$ (i.e., **Energy Deficit Ratio $R_{deficit} > 1$**), the system enters a metabolic crisis.
+    *   This deficit specifically impairs high-energy cost maintenance systems first.
+
+4.  **Mechanosensory Failure (The Victim)**:
+    *   **PIEZO1** and **LBX1** (proprioception) require significant metabolic energy to maintain resting membrane potentials and active cytoskeletal tension (**FBN1**, **ACTB**).
+    *   Under energy deficit, **Proprioceptive Tone** fails or becomes asymmetric.
+
+5.  **Outcome**:
+    *   Loss of accurate proprioceptive feedback leads to **Cortical/Spinal Asymmetry**.
+    *   This results in the onset of **Scoliosis (Cobb Angle Increase)**.
+    *   The curvature further increases mechanical stress, potentially creating a vicious cycle (not shown, but implied).
+
+**Visual Style**:
+*   Use a circular or feedback loop layout.
+*   "Growth Drivers" should push "Thermodynamic Cost".
+*   "Energy Supply" should oppose or balance "Thermodynamic Cost".
+*   Highlight the "Threshold" or "Deficit" point where Cost > Supply.
+*   Show distinct nodes for the proteins: **GHR**, **PPARGC1A**, **PIEZO1**.

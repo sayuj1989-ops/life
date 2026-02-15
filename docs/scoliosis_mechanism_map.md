@@ -431,3 +431,26 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 
 **Citations**:
 *   *Kang, M., et al. (2025). Tension-sensitive HOX gene expression in fibroblasts for differential scar formation. Journal of Translational Medicine, 23(1), 168.* https://doi.org/10.1186/s12967-025-06191-1
+
+---
+
+### 26. The Mineralization Pathway (TMD)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Osteogenesis` $\rightarrow$ `TMD` $\rightarrow$ `Stiffness`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+*   **Mechanism**: **Tension-Driven Mineralization**.
+    1.  **Strain Sensing**: Piezo1 channels on osteoblasts and osteocytes sense mechanical strain (loading).
+    2.  **Calcium Influx**: Activation triggers $Ca^{2+}$ influx, activating Calcineurin/NFAT signaling pathways.
+    3.  **Differentiation**: This signaling drives osteoblast differentiation and the secretion of mineralized matrix.
+*   **Property**: **Tissue Mineral Density (TMD)**.
+*   **Role**: **Material Hardening**. The spine increases its mineral density (and thus its Young's Modulus $E$) in regions of high stress.
+    *   **The Defect**: In Piezo1 mutants (or microgravity), this load-to-bone conversion fails. The tissue remains "soft" (Osteopenia), reducing the critical buckling load ($P_{crit} \propto EI$).
+*   **Evidence**: Ramli et al. (2024) demonstrated that Piezo1 mutants develop scoliosis due to a specific failure in bone mineralization, not just alignment. Zhu et al. (2021) linked Piezo1 expression to spinal degeneration.
+*   **Counter-Curvature Implication**: Gravity provides the "Pre-Stress" required to maintain bone density. Without it, the "Counter-Curvature" structure softens and collapses.
+
+> **Hypothesis**: "Soft Bones" buckle before they break. Scoliosis may start as a material failure (low $E$) before it becomes a geometric failure (high $\kappa$).
+
+**Citations**:
+*   *Ramli, et al. (2024). Piezo1 mutant zebrafish as a model of idiopathic scoliosis. Frontiers in Genetics, 14, 1321379.* https://doi.org/10.3389/fgene.2023.1321379
+*   *Zhu, et al. (2021). Piezo1 in nucleus pulposus and osteoblasts to spinal degeneration.*

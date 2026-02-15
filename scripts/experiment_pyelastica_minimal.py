@@ -76,8 +76,8 @@ def run_experiment(
     results = []
 
     # Header for console output
-    print(f"{'BC':<8} | {'Mod':<5} | {'Aniso':<6} | {'Active':<6} | {'S_lat':<8} | {'Cobb':<6} | {'Max K':<6} | {'Time':<6}")
-    print("-" * 80)
+    print(f"{'BC':<8} | {'Mod':<5} | {'Aniso':<6} | {'Active':<6} | {'S_lat':<8} | {'Cobb':<6} | {'Max K':<6} | {'Energy':<8} | {'Stress':<8} | {'Time':<6}")
+    print("-" * 100)
 
     start_time_all = time.time()
 
@@ -132,6 +132,8 @@ def run_experiment(
                         f"{bc:<8} | {mod:<5.1f} | {anisotropy:<6.1f} | {active_curvature:<6.1f} | "
                         f"{result.get('S_lat', 0.0):<8.4f} | {result.get('cobb_angle', 0.0):<6.1f} | "
                         f"{result.get('max_curvature', 0.0):<6.2f} | "
+                        f"{result.get('energy_density', 0.0):<8.1f} | "
+                        f"{result.get('max_von_mises_stress', 0.0):<8.1e} | "
                         f"{result.get('runtime_sec', 0.0):<6.2f}"
                     )
 
@@ -158,8 +160,8 @@ def generate_report(md_file, results, total_time):
         f.write("# Minimal PyElastica Experiment Report\n\n")
         f.write(f"**Total Time:** {total_time:.2f} s\n\n")
 
-        f.write("| BC | Mod | Anisotropy | Active Curv | S_lat | Cobb (deg) | Max Curv | Max Torsion | Runtime (s) |\n")
-        f.write("|---|---|---|---|---|---|---|---|---|\n")
+        f.write("| BC | Mod | Anisotropy | Active Curv | S_lat | Cobb (deg) | Max Curv | Max Torsion | Energy Den. | Max Stress | Runtime (s) |\n")
+        f.write("|---|---|---|---|---|---|---|---|---|---|---|\n")
 
         for r in results:
             f.write(
@@ -167,7 +169,10 @@ def generate_report(md_file, results, total_time):
                 f"{r['anisotropy']:.2f} | {r['active_curvature']:.2f} | "
                 f"{r.get('S_lat', 0.0):.4f} | {r.get('cobb_angle', 0.0):.2f} | "
                 f"{r.get('max_curvature', 0.0):.2f} | "
-                f"{r.get('max_torsion', 0.0):.4f} | {r.get('runtime_sec', 0.0):.4f} |\n"
+                f"{r.get('max_torsion', 0.0):.4f} | "
+                f"{r.get('energy_density', 0.0):.2f} | "
+                f"{r.get('max_von_mises_stress', 0.0):.2e} | "
+                f"{r.get('runtime_sec', 0.0):.4f} |\n"
             )
 
 if __name__ == "__main__":

@@ -502,6 +502,60 @@ class CounterCurvatureRodSystem:
             z_pos = self.rod.position_collection[2, :]
             final_energies["gravitational_energy"] = float(np.sum(self.rod.mass * gravity * z_pos))
 
+        # --- Compute emergent physical metrics ---
+
+        # 1. Total Volume (approximate as sum of cylindrical elements)
+        # rod.radius is defined on elements (n_elems). rod.rest_lengths is (n_elems).
+        if hasattr(self.rod, "radius") and hasattr(self.rod, "rest_lengths"):
+            volume = np.sum(np.pi * (self.rod.radius ** 2) * self.rod.rest_lengths)
+
+            # 2. Energy Density (Total Energy / Volume)
+            # Sum all computed energies (bending, shear, etc.)
+            total_energy = sum(v for k, v in final_energies.items() if "energy" in k)
+            if volume > 0:
+                final_energies["energy_density"] = float(total_energy / volume)
+            else:
+                final_energies["energy_density"] = 0.0
+
+            # 3. Max Von Mises Stress Proxy
+            # We approximate max stress based on bending and torsion moments.
+            # sigma_vm ~ (r / I) * sqrt(M_b^2 + 0.75 * M_t^2)
+            # where M_b is bending moment magnitude, M_t is torsion moment.
+            # I = pi * r^4 / 4.
+            # internal_torques is (3, n_elems-1) on Voronoi domains.
+            # We need r on Voronoi domains. Interpolate from elements.
+
+            if hasattr(self.rod, "internal_torques"):
+                # Radii at Voronoi domains (average of adjacent elements)
+                r_elem = self.rod.radius
+                r_voronoi = 0.5 * (r_elem[:-1] + r_elem[1:])
+
+                # Area Moment of Inertia I = pi * r^4 / 4
+                I_voronoi = np.pi * (r_voronoi ** 4) / 4.0
+
+                # Torques
+                torques = self.rod.internal_torques # (3, n_elems-1)
+                m_b = np.linalg.norm(torques[:2, :], axis=0) # Bending magnitude
+                m_t = np.abs(torques[2, :])                  # Torsion magnitude
+
+                # Von Mises Stress proxy (assuming circular cross section)
+                # This is a surface stress estimate.
+                # Use slice to handle shape mismatch if torques includes boundaries
+                n_v = r_voronoi.shape[0]
+                if m_b.shape[0] != n_v:
+                     # If torques has extra elements (e.g. boundaries), assume they are first/last or we take center
+                     # Usually internal_torques matches Voronoi. If not, crop.
+                     if m_b.shape[0] > n_v:
+                         diff = m_b.shape[0] - n_v
+                         # Assuming centered? Or left aligned?
+                         # Let's crop to match size for now to avoid crash
+                         m_b = m_b[:n_v]
+                         m_t = m_t[:n_v]
+
+                stress_vm = (r_voronoi / I_voronoi) * np.sqrt(m_b**2 + 0.75 * m_t**2)
+
+                final_energies["max_von_mises_stress"] = float(np.max(stress_vm)) if stress_vm.size > 0 else 0.0
+
         return SimulationResult(
             time=np.array(results["time"]),
             centerline=np.array(results["centerline"]),

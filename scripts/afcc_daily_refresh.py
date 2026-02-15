@@ -99,7 +99,7 @@ def run_pipeline():
         subprocess.check_call([sys.executable, str(script_analyze)])
     except subprocess.CalledProcessError as e:
         print(f"❌ Analysis script failed: {e}")
-        sys.exit(1)
+        # Continue to generate_outputs so we can write a failure note
 
 def generate_outputs():
     today = datetime.date.today().isoformat()

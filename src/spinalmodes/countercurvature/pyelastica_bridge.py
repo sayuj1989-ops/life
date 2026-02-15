@@ -656,10 +656,126 @@ def run_protein_simulation(
     return output
 
 
+def compute_U_CC(
+    result: SimulationResult,
+    info: InfoField1D,
+    params: CounterCurvatureParams,
+    gravity: float = 9.81,
+    rho: float = 1000.0,
+    E0: float = 1e6,
+) -> Dict[str, float]:
+    """Compute the Total Potential Energy cost function U_CC.
+
+    The organism minimises U_CC = U_gravity + U_elastic - U_info, where:
+
+    - U_gravity: gravitational potential energy (m * g * h, summed over nodes)
+    - U_elastic: stored elastic energy (bending + shear)
+    - U_info: information-driven energy reduction from active countercurvature
+
+    The information energy term U_info quantifies the energetic benefit of the
+    information-driven curvature programme.  It is computed as the integral of
+    the information field weighted by the curvature correction:
+
+        U_info = chi_kappa * integral( |grad I| * |kappa_info| ds )
+
+    This captures the idea that stronger information gradients coupled with
+    larger curvature corrections yield greater energetic benefit (i.e. the
+    organism "gains" energy by aligning its shape with the genetic programme).
+
+    Parameters
+    ----------
+    result : SimulationResult
+        Completed simulation result containing centerline, kappa, and energies.
+    info : InfoField1D
+        Information field used in the simulation.
+    params : CounterCurvatureParams
+        Coupling parameters (chi_kappa, chi_E, chi_M, etc.).
+    gravity : float
+        Gravitational acceleration (m/s^2).
+    rho : float
+        Rod density (kg/m^3).
+    E0 : float
+        Baseline Young's modulus (Pa).
+
+    Returns
+    -------
+    dict
+        Dictionary containing:
+        - U_gravity: Gravitational potential energy
+        - U_elastic: Total elastic energy (bending + shear)
+        - U_info: Information-driven energy reduction
+        - U_CC: Total cost function (U_gravity + U_elastic - U_info)
+        - U_kinetic: Translational + rotational kinetic energy
+        - info_gain_ratio: U_info / (U_gravity + U_elastic), dimensionless
+    """
+    if len(result.time) == 0:
+        return {
+            "U_gravity": 0.0, "U_elastic": 0.0, "U_info": 0.0,
+            "U_CC": 0.0, "U_kinetic": 0.0, "info_gain_ratio": 0.0,
+        }
+
+    energies = result.final_energies or {}
+
+    # --- U_gravity ---
+    U_gravity = energies.get("gravitational_energy", 0.0)
+
+    # --- U_elastic ---
+    U_bending = energies.get("bending_energy", 0.0)
+    U_shear = energies.get("shear_energy", 0.0)
+    U_elastic = U_bending + U_shear
+
+    # --- U_kinetic ---
+    U_trans = energies.get("translational_energy", 0.0)
+    U_rot = energies.get("rotational_energy", 0.0)
+    U_kinetic = U_trans + U_rot
+
+    # --- U_info ---
+    # The information energy benefit: integral of chi_kappa * |grad I| * |kappa|
+    # weighted by the effective stiffness scaling.
+    s = info.s
+    grad_I = np.abs(info.dIds)
+
+    # Final curvature magnitude (bending components)
+    kappa_final = result.kappa[-1]  # (n_nodes, 3)
+    # Bending magnitude at internal nodes
+    n_nodes = kappa_final.shape[0]
+    bending_mag = np.linalg.norm(kappa_final[:, :2], axis=1)
+
+    # Interpolate bending magnitude to match info field grid
+    s_kappa = np.linspace(s[0], s[-1], n_nodes)
+    bending_interp = np.interp(s, s_kappa, bending_mag)
+
+    # Effective stiffness modulation
+    E_eff = compute_effective_stiffness(info, params, E0)
+    E_ratio = E_eff / E0
+
+    # U_info = chi_kappa * integral( E_ratio * |grad I| * |kappa| ds )
+    # This represents the energy the organism "saves" by pre-programming curvature
+    integrand = E_ratio * grad_I * bending_interp
+    U_info = float(abs(params.chi_kappa) * np.trapz(integrand, s))
+
+    # --- U_CC ---
+    U_CC = U_gravity + U_elastic - U_info
+
+    # --- Info Gain Ratio ---
+    denom = abs(U_gravity) + abs(U_elastic)
+    info_gain_ratio = U_info / denom if denom > 1e-15 else 0.0
+
+    return {
+        "U_gravity": float(U_gravity),
+        "U_elastic": float(U_elastic),
+        "U_info": float(U_info),
+        "U_CC": float(U_CC),
+        "U_kinetic": float(U_kinetic),
+        "info_gain_ratio": float(info_gain_ratio),
+    }
+
+
 __all__ = [
     "CounterCurvatureRodSystem",
     "SimulationResult",
     "PYELASTICA_AVAILABLE",
     "ActiveMuscleTorques",
     "run_protein_simulation",
+    "compute_U_CC",
 ]

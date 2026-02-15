@@ -24,7 +24,7 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
+We model the human spine as a Cosserat rod defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. At each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the orientation of the cross-section~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
 \begin{align}
 \mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
 \mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
@@ -34,33 +34,22 @@ where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ repre
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes, SHH/BMP gradients). The spatial gradient of this field, $\nabla I$, acts as a "curvature generator," driving the resting geometry of the rod away from the straight configuration. We define three key coupling constants that translate this information into mechanical action:
-
-\paragraph{Geometric Coupling ($\chi_\kappa$).}
-This dimensionless constant links the information gradient to the intrinsic rest curvature $\boldsymbol{\kappa}_{\mathrm{rest}}$ (the target shape):
+We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks at the cervical ($s \approx 0.80$) and lumbar ($s \approx 0.25$) enlargements, corresponding to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a "curvature generator" via the geometric coupling $\chi_\kappa$:
 \begin{equation}
-\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
+\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
 \label{eq:kappa_rest}
 \end{equation}
-where $\boldsymbol{\kappa}_{\mathrm{gen}}$ is the generic curvature. A high $\chi_\kappa$ implies that sharp transitions in morphogen identity (e.g., cervicothoracic junction) correspond to high intrinsic curvature targets.
-
-\paragraph{Morphomechanical Coupling ($\chi_M$).}
-This constant (dimensions $[ML^3T^{-2}]$) represents the "stiffness of the information field." It relates the information gradient to the active biological moment $\mathbf{M}_{bio}$ generated to oppose gravity:
+Simultaneously, the field exerts a stiffness via the morphomechanical coupling $\chi_M$, generating the active biological moment $\mathbf{M}_{bio}$ to oppose gravity:
 \begin{equation}
-\mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I),
+\mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
 \label{eq:active_moment}
 \end{equation}
-where $\mathbf{\Lambda}$ is the tissue anisotropy tensor. This formalizes the idea that the organism must actively generate torque to maintain the S-shape.
-
-\paragraph{The Bio-Gravitational Number ($\mathcal{B}_g$).}
-To quantify stability, we introduce the dimensionless Bio-Gravitational Number, comparing the active biological moment to the passive gravitational moment:
+Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
 \begin{equation}
 \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
 \label{eq:bg_number}
 \end{equation}
-When $\mathcal{B}_g > 1$, the organism dominates gravity (stable counter-curvature). When $\mathcal{B}_g < 1$, gravity dominates, leading to buckling (scoliosis).
-
-Following the bimodal Gaussian parameterization already defined in Methods (Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks corresponding to the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) regions of high vertebral identity specification.
+When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically anchored by the structural specificity of HOX proteins; for instance, AlphaFold analysis of HOXC8 and HOXB13 confirms that these proteins possess rigid DNA-binding domains capable of enforcing the sharp identity boundaries necessary for this parameterization.
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge builds upon recent theoretical proposals\footnote{A preliminary exploration of this concept, proposing a cosmological "Information Term" $I_{\mu\nu}$ in Einstein's field equations, was introduced in \cite{krishnan2025consciousness}. The present work translates this speculative cosmological hypothesis into a rigorous, experimentally testable framework for biological morphogenesis, where $I(s)$ modifies the effective material metric rather than the vacuum spacetime metric.} suggesting that information may play a geometric role in physical systems.
@@ -165,7 +154,7 @@ P_{\mathrm{counter}} \sim \eta_a \rho A g L^2 \cdot \langle |\kappa_{\mathrm{IEC
 \end{equation}
 where $\langle \cdot \rangle$ denotes the spatial average over the rod length. If the tissue column participates volumetrically in maintaining tone, the scaling steepens to $L^3$. During the adolescent growth spurt, $L$ increases from approximately 0.35~m to 0.45~m over 2--3 years, implying a $(0.45/0.35)^2 \approx 1.65$-fold increase in required metabolic power under $L^2$ scaling, or $(0.45/0.35)^3 \approx 2.13$-fold under $L^3$ scaling~\cite{rolfe1997cellular}. Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.
 
-\paragraph{Molecular grounding via AlphaFold structural analysis.} The three dissipation terms are not abstract---each maps to specific molecular players whose AlphaFold-predicted structures reveal how they bear the thermodynamic cost of countercurvature. We analyzed 16 proteins across the three terms using structural metrics from the AlphaFold Protein Structure Database~\cite{jumper2021alphafold, varadi2022alphafold}, focusing on anisotropy ratio (shape elongation), radius of gyration, per-residue confidence (pLDDT), and hinge candidates (Table \ref{tab:thermodynamic_cost_proteins}).
+\paragraph{Molecular grounding via AlphaFold structural analysis.} The three dissipation terms are not abstract---each maps to specific molecular players whose AlphaFold-predicted structures reveal how they bear the thermodynamic cost of countercurvature. We analyzed 16 proteins across the three terms using structural metrics from the AlphaFold Protein Structure Database~\cite{jumper2021alphafold, varadi2022alphafold}, focusing on anisotropy ratio (shape elongation), radius of gyration, per-residue confidence (pLDDT), and hinge candidates (see Table \ref{tab:thermodynamic_cost_proteins}).
 
 The \emph{proprioceptive feedback term} $\eta_p$ is borne by five proteins: the vector mechanosensor PIEZO2 (anisotropy~4.44, fibrous/extended morphology), the scalar sensor PIEZO1 (anisotropy~3.90, 2521~residues), the spindle-maintenance transcription factor EGR3 (anisotropy~3.76, 64\% intrinsically disordered), the proprioceptive master regulator RUNX3 (56\% disordered, 12~hinge candidates), and the survival receptor NTRK3 (9~hinge candidates). Their mean anisotropy of 3.22 reflects the extended, orientation-dependent structures required for directional sensing---structures that are intrinsically expensive to maintain in proper alignment.
 

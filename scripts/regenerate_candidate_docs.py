@@ -26,8 +26,8 @@ def main():
     # Generate Markdown
     with open(DOC_FILE, 'w') as f:
         f.write("# Candidate Registry\n\n")
-        f.write("****Last Updated:** Week 19 Cycle - Gravity x Spine Expansion\n")
-        f.write("**Focus:** Mechanotransduction, Cilia, and Collagen Chaperones\n\n")
+        f.write("****Last Updated:** Week 20 Cycle - Gravity x Spine Expansion\n")
+        f.write("**Focus:** Mechanotransduction, Biomineralization, and Dystroglycan Complex\n\n")
         f.write("This registry tracks high-priority gene and protein candidates identified as relevant to the \"Biological Counter-Curvature\" hypothesis. Candidates are scored based on their relevance to:\n")
         f.write("1.  **Gravity/Mechanotransduction**: Ability to sense or resist physical forces.\n")
         f.write("2.  **Spinal Curvature**: Genetic or experimental links to scoliosis or vertebral defects.\n")
@@ -57,11 +57,11 @@ def main():
         f.write("    *   **70-79**: Pathway member with experimental links to spine development or gravity response.\n\n")
 
         f.write("## Next Steps\n\n")
-        f.write("1.  **Muscle Tone Analysis**: Investigate the role of Nemaline Myopathy genes (NEB, ACTA1) in paraspinal muscle asymmetry.\n")
-        f.write("2.  **ECM Stiffness**: Model the impact of COL1A2 and COL6 mutations on spinal column buckling load.\n")
-        f.write("3.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (COL1A2, NEB fragments, FGF23) to assess structural anisotropy.\n")
-        f.write("4.  **Ciliopathy Link**: Explore the connection between ciliary transition zone defects (MKS1, TMEM231) and proprioceptive signaling.\n")
-        f.write("5.  **ACVR1 Mechanosensing**: Investigate the stiffness-dependent activation of FOP mutants in paraspinal tissues.\n")
+        f.write("1.  **Dystroglycan Complex**: Model the mechanical failure of the DAG1-Laminin-Dystrophin axis under gravity loads.\n")
+        f.write("2.  **Biomineralization**: Investigate the role of ALPL and ENPP1 in vertebral bone stiffness regulation.\n")
+        f.write("3.  **Muscle Tone Analysis**: Investigate the role of Nemaline Myopathy genes (NEB, ACTA1) in paraspinal muscle asymmetry.\n")
+        f.write("4.  **ECM Stiffness**: Model the impact of COL1A2, COL6, and GAG synthesis enzymes (XYLT2, B3GALT6) on spinal column buckling load.\n")
+        f.write("5.  **AlphaFold Analysis**: Run the \"Bolt-BioFold\" pipeline on the top new candidates (COL22A1, FAM20C) to assess structural anisotropy.\n")
 
     print(f"Successfully regenerated {DOC_FILE}")
 

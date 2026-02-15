@@ -1,0 +1,9 @@
+Visual Abstract: Biological Countercurvature.
+A high-quality 3D scientific illustration showing a biological structure (like a vertebrate spine) maintaining an upright S-shape.
+The key concept is that the organism modifies the local spacetime metric to fight gravity.
+Visual elements:
+1. The Spine: Detailed, organic, glowing slightly.
+2. The Metric: A 3D grid or mesh surrounding the spine. This grid should be visibly curved or warped around the spine, representing the "countercurvature".
+3. Gravity: Represented as a uniform vertical field (faint lines).
+4. The warping of the grid should visually suggest it is supporting the spine against gravity.
+Style: Nature/Science journal cover art. Realistic but conceptual.

@@ -1,0 +1,10 @@
+A cyclic diagram illustrating the Information-Elasticity Coupling (IEC) feedback loop.
+The diagram should show a circular flow with the following nodes:
+1. Genetic Information I(s): Represented as a DNA helix or a signal wave.
+2. Effective Metric g_eff(s): Represented as a distorted grid or curved surface.
+3. Equilibrium Curvature kappa_eq: Represented as a curved rod or S-shape.
+4. Gravity g: Represented as a downward force vector.
+5. Final Shape & Energy: The resulting spinal geometry.
+
+Arrows connect them in a cycle: Information -> Metric -> Curvature -> Interaction with Gravity -> Shape/Energy.
+The style should be clean, scientific, and modern.

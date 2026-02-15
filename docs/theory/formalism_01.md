@@ -297,6 +297,22 @@ $$ I(s) \to I(s_{eff}) $$
     *   **Mechanism**: Chromatin opening via LINC complex tension allowing access to HOX clusters.
 *   **Measurable Proxy**: The shift in the transition boundary between HOX paralogs (e.g., HOXB4/HOXB6) in fibroblasts cultured on soft vs. stiff substrates.
 
+### 2.20. The Piezo-Osteogenic Gain ($\Gamma_{PO}$)
+
+We formalize the "Mineralization Pathway" (Ramli et al., 2024) where Piezo1 acts as a scalar stress sensor driving tissue mineralization. We define $\Gamma_{PO}$ as the sensitivity of Tissue Mineral Density (TMD) accretion to the time-averaged hydrostatic stress.
+
+$$ \frac{d(\text{TMD})}{dt} = \Gamma_{PO} \langle S_{scalar} \rangle - \delta \cdot \text{TMD} $$
+
+*   **Symbols**:
+    *   $\text{TMD}$: Tissue Mineral Density $[ML^{-3}]$.
+    *   $\langle S_{scalar} \rangle$: Time-averaged scalar stress (hydrostatic pressure/tension) $[ML^{-1}T^{-2}]$.
+    *   $\delta$: Basal resorption rate $[T^{-1}]$.
+    *   $\Gamma_{PO}$: Piezo-Osteogenic Gain $[L^{-2}T]$.
+*   **Physical Interpretation**:
+    *   **High Gain ($\Gamma_{PO} \gg \delta$)**: Bone density tracks mechanical load with high fidelity (Wolff's Law).
+    *   **Zero Gain ($\Gamma_{PO} \to 0$)**: Osteopenia occurs despite normal loading (e.g., Piezo1 mutation), leading to "Soft Buckling".
+*   **Measurable Proxy**: The slope of the regression line between local vertebral bone density (measured via micro-CT) and the estimated local Von Mises stress in a growing organism.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -530,6 +546,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Expression levels of *HOXA* genes in fibroblasts from CRISPR-edited lines (enhancer deletion) vs WT under cyclic strain.
 *   **Refutation**: If strain-dependence persists despite enhancer deletion, the coupling is global (e.g., nuclear dilution) rather than specific. (Reference: Wang et al., 2009).
 
+### Test AM: The Piezo-Density Uncoupling
+*   **Hypothesis**: In *Piezo1* mutants, the correlation between local mechanical load and TMD ($\Gamma_{PO}$) will drop to zero, leading to curvature onset without prior geometric asymmetry.
+*   **Data Needed**: Micro-CT density maps of *Piezo1* mutant zebrafish vertebrae correlated with finite-element stress estimates, compared to WT siblings.
+*   **Refutation**: If *Piezo1* mutants maintain load-aligned density gradients (normal $\Gamma_{PO}$) despite the mutation, the mineralization sensor is Piezo-independent. (Reference: Ramli et al., 2024).
+
+### Test AN: The Osteopenic Window
+*   **Hypothesis**: During the rapid adolescent growth spurt, if $\Gamma_{PO}$ fails to scale with the volumetric growth rate $\dot{V}$, a transient drop in TMD will precede the development of Cobb angle.
+*   **Data Needed**: Longitudinal TMD measurements (via QCT) and spinal curvature tracking in an adolescent cohort or animal model during peak height velocity.
+*   **Refutation**: If scoliotic curves initiate in spines with normal or elevated TMD, the "Soft Buckling" hypothesis is falsified. (Reference: Zhu et al., 2021).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -577,3 +603,5 @@ The theory makes specific predictions about the relationship between genetic ani
 43. **Ugur, K., et al. (2024).** "Resolution of Scoliosis Following Treatment of Sleep-Disordered Breathing." *Children*, 11(9). (Supports metabolic/hypoxic driver of scoliosis).
 44. **Kang, M., et al. (2025).** "Tension-sensitive HOX gene expression in fibroblasts for differential scar formation." *Journal of Translational Medicine*, 23(1). (Demonstrates that mechanical tension modulates HOX gene expression).
 45. **Wang, N., et al. (2009).** "Mechanotransduction at a distance: mechanically coupling the extracellular matrix with the nucleus." *Nature Reviews Molecular Cell Biology*, 10(1). (Nuclear mechanotransduction mechanism).
+46. **Ramli, R., et al. (2024).** "Piezo1 mutant zebrafish as a model of idiopathic scoliosis." *Frontiers in Genetics*, 14. (Demonstrates Piezo1 link to TMD and scoliosis).
+47. **Zhu, D., et al. (2021).** "A new hope in spinal degenerative diseases: piezo1." *Biomed Research International*, 2021. (Piezo1 in nucleus pulposus and bone).

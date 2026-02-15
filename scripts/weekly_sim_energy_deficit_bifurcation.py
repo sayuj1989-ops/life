@@ -9,7 +9,7 @@ Also computes the emergent Cobb angle to correlate energy deficit with scoliosis
 
 Scaling:
 - P_counter scales as L^2 (Isometric growth: A ~ L^2).
-- S_proprio scales as L^0.7 (Supply constraint).
+- S_proprio scales as L^0.5 (Supply constraint).
 """
 
 import sys
@@ -79,9 +79,10 @@ def run_experiment():
     g = 9.81
     E0 = 1.0e9
 
-    # Fixed Area Constraint
-    A_fixed = 0.001
-    radius_fixed = np.sqrt(A_fixed / np.pi)
+    # Isometric Scaling Reference (L_ref=0.5m -> A_ref=0.001 m^2)
+    L_ref_iso = 0.5
+    A_ref_iso = 0.001
+    radius_ref_iso = np.sqrt(A_ref_iso / np.pi)
 
     # Simulation settings (optimized for speed)
     n_elements = 50
@@ -101,9 +102,11 @@ def run_experiment():
         for L in L_values:
             t0 = time.time()
 
-            # 1. Scaling (Fixed Area per constraints)
-            A = A_fixed
-            radius = radius_fixed
+            # 1. Scaling (Isometric)
+            # Radius scales linearly with L to maintain slenderness ratio (geometric similarity)
+            # But here we scale Area as L^2, which implies Radius ~ L.
+            radius = radius_ref_iso * (L / L_ref_iso)
+            A = np.pi * radius**2
 
             # 2. Info Field
             s = np.linspace(0, L, n_elements + 1)
@@ -145,8 +148,6 @@ def run_experiment():
             # kappa is (time, n_nodes, 3). Take last time step.
             if len(res_pass.kappa) > 0:
                 kappa_pass_sagittal = res_pass.kappa[-1, :, 1]
-                theta_pass_sagittal = np.arctan(res_pass.centerline[-1, 1, 1:] - res_pass.centerline[-1, 1, :-1]) # Approx tangent angle?
-                # Actually PyElastica has directors. But let's use kappa directly.
             else:
                 kappa_pass_sagittal = np.zeros(n_elements + 1)
 
@@ -184,6 +185,7 @@ def run_experiment():
             # P ~ L^2 * mean((k_act - k_pass)^2)
             # P_counter factor: eta_a * rho * A * g
             # eta_a = 1.0 (from experiment_energy_deficit_window.py)
+            # Note: A scales as L^2 here, so P_counter ~ L^2 * L^2 * (1/L^2) ~ L^2.
             eta_a = 1.0
             sq_diff = (kappa_act_sagittal - kappa_pass_sagittal)**2
             mean_sq_diff = np.mean(sq_diff)
@@ -191,11 +193,6 @@ def run_experiment():
             P_counter = eta_a * rho * A * g * (L**2) * mean_sq_diff
 
             # 6. Compute D_geo (Geodesic Deviation)
-            # L2 norm of angle difference (dimensionless metric)
-            # We can approximate using curvature difference integrated?
-            # Or use Cobb angle difference?
-            # Let's use simple RMS of curvature difference scaled by L?
-            # D_geo ~ L * sqrt(mean_sq_diff)
             D_geo = L * np.sqrt(mean_sq_diff)
 
             runtime = time.time() - t0
@@ -218,8 +215,8 @@ def run_experiment():
     df = pd.DataFrame(results)
 
     # 7. Post-Processing: Compute R_deficit
-    # Supply: S_proprio = S_0 * (L/L_0)^0.7
-    # L_0 = 0.35
+    # Supply: S_proprio = S_0 * (L/L_0)^0.5  (Updated to 0.5 based on memory/hypothesis)
+    # L_0 = 0.35 (Pre-adolescent reference)
     # Calibrate S_0 such that R=1 at chi=0.05, L=0.35
 
     target_chi = 0.05
@@ -227,13 +224,6 @@ def run_experiment():
     L_0 = 0.35
 
     # Find closest point
-    # We can interpolate, or just take the nearest
-    # Since we have a grid, let's filter
-    # Tolerances
-    tol_chi = (chi_values[1] - chi_values[0]) / 2
-    tol_L = (L_values[1] - L_values[0]) / 2
-
-    # Find closest point by Euclidean distance in parameter space (normalized)
     # Normalize for distance calculation
     chi_norm = (df['chi_kappa'] - df['chi_kappa'].min()) / (df['chi_kappa'].max() - df['chi_kappa'].min())
     L_norm = (df['L'] - df['L'].min()) / (df['L'].max() - df['L'].min())
@@ -252,7 +242,8 @@ def run_experiment():
     print(f"Calibrated S_0 = {S_0:.4e} at closest point chi={found_chi:.3f}, L={found_L:.3f}")
 
     # Compute S_proprio and R_deficit
-    df['S_proprio'] = S_0 * (df['L'] / L_0)**0.7
+    # Using exponent 0.5
+    df['S_proprio'] = S_0 * (df['L'] / L_0)**0.5
     df['R_deficit'] = df['P_counter'] / df['S_proprio']
 
     # Save Results

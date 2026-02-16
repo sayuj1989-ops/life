@@ -264,3 +264,24 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rods**: Found 8 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
 - **Structural Confidence**: 24 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
 - **Top Mover**: POC5 remains the most anisotropic structure in this batch.
+
+
+# AFCC Daily Refresh: 2026-02-16
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| ACVR1 | 3.41 | 83.1 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 2 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 5 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.

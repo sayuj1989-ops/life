@@ -6,6 +6,9 @@ from pathlib import Path
 
 # Import the module unconditionally.
 # It should be importable since we added scripts to sys.path
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent / "scripts" / "experiments"))
 import experiment_minimal_elastica
 
 @pytest.mark.skipif(

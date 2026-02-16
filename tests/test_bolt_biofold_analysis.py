@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 # Add scripts directory to path to import the script as module
-sys.path.append(str(Path(__file__).parent.parent / "scripts"))
+sys.path.append(str(Path(__file__).parent.parent / "scripts" / "data_management"))
 
 from bolt_biofold_analysis import compute_geometry_metrics, find_bending_hotspots, find_hinges, find_domains, compute_curvature_torsion
 

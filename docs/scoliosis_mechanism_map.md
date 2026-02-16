@@ -297,12 +297,6 @@ The map categorizes the system into four layers:
 
 ---
 
-## Figure
-
-The visual representation of these pathways can be found in `docs/figures/scoliosis_mechanism_map.mmd`.
-
----
-
 ### 20. The Melatonin Gain Control Pathway
 
 **Arc Added**: `MELATONIN` $\rightarrow$ `MT2` $\rightarrow$ `Gi_cAMP` $\rightarrow$ `Gain`.
@@ -454,3 +448,25 @@ The visual representation of these pathways can be found in `docs/figures/scolio
 **Citations**:
 *   *Ramli, et al. (2024). Piezo1 mutant zebrafish as a model of idiopathic scoliosis. Frontiers in Genetics, 14, 1321379.* https://doi.org/10.3389/fgene.2023.1321379
 *   *Zhu, et al. (2021). Piezo1 in nucleus pulposus and osteoblasts to spinal degeneration.*
+
+---
+
+### 27. The Centriolar Splint Pathway (POC5)
+
+**Arc Added**: `POC5` $\rightarrow$ `Ciliary_Splint` $\rightarrow$ `Gain`.
+
+*   **Source**: `POC5` (Centriolar Protein).
+*   **Mechanism**: **Structural Stiffening of the Antenna**.
+    1.  **Scaffold Assembly**: POC5 is essential for the elongation and structural integrity of the distal portion of centrioles, which form the base of the primary cilium.
+    2.  **Antenna Stiffness**: A functional POC5 scaffold creates a rigid "splint" that allows the cilium to maintain its shape and stiffness.
+    3.  **Signal Transmission**: This stiffness enables the cilium to effectively transmit small gravitational shear forces to the cell body (Mechanotransduction).
+*   **Property**: **Feedback Gain ($G_{mech}$)**.
+*   **Role**: **Signal-to-Noise Ratio**. The spine's counter-curvature control loop requires a high-fidelity gravity signal. POC5 ensures the "antenna" is stiff enough to detect this signal above the noise floor.
+    *   **The Defect**: In POC5 mutants (AIS), the centriole is truncated or unstable. The cilium becomes "flaccid," failing to transmit the gravity vector. The control system perceives this as a loss of signal (Gain = 0) and drifts into instability.
+*   **Evidence**: Adalat et al. (2014) identified POC5 mutations in familial AIS cases and demonstrated that these mutations cause ciliary defects and scoliosis in zebrafish models.
+*   **Counter-Curvature Implication**: The body cannot grow *against* gravity if it cannot *feel* gravity. POC5 provides the physical rigidity required for that sensation.
+
+> **Hypothesis**: The "Splint" is the sensor. A soft sensor cannot detect a soft force.
+
+**Citations**:
+*   *Adalat, R., et al. (2014). POC5 ciliary protein mutations in adolescent idiopathic scoliosis. The Journal of Clinical Investigation, 124(11), 4899-4903.* https://doi.org/10.1172/JCI70597

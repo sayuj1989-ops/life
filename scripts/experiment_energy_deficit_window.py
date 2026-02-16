@@ -142,6 +142,20 @@ def run_experiment():
     df['S_proprio_alpha05'] = S_0 * (df['L'] / L_ref)**0.5
     df['S_proprio_alpha10'] = S_0 * (df['L'] / L_ref)**1.0
 
+    # Calculate deficit at specific points for manuscript reporting
+    # Specifically check L=0.45
+    L_check = 0.45
+    idx_check = (np.abs(df['L'] - L_check)).argmin()
+    P_check = df.loc[idx_check, 'P_counter']
+    S_check = df.loc[idx_check, 'S_proprio_alpha05']
+    deficit_ratio = P_check / S_check
+    print(f"\n--- Deficit Check at L ~ {L_check} ---")
+    print(f"L = {df.loc[idx_check, 'L']:.4f}")
+    print(f"P_counter = {P_check:.4f}")
+    print(f"S_proprio = {S_check:.4f}")
+    print(f"Ratio P/S = {deficit_ratio:.4f} (Deficit: {(deficit_ratio-1)*100:.1f}%)")
+    print("--------------------------------------\n")
+
     # Ensure output directories exist
     output_dir_cost = os.path.join(project_root, "outputs", "thermodynamic_cost")
     output_dir_figs = os.path.join(project_root, "outputs", "figures")

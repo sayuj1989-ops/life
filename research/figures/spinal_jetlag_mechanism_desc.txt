@@ -1,0 +1,5 @@
+A conceptual diagram explaining the 'Spinal Jetlag' mechanism.
+Top row: 'Entrained' state. A sine wave (representing the internal Circadian Clock) is perfectly aligned (in phase, phi=0) with a square wave (representing the external Gravity Load). The result is a healthy, aligned S-curve spine.
+Bottom row: 'Jetlagged' state. The sine wave is phase-shifted by 180 degrees (anti-phase, phi=pi) relative to the gravity load. The result is a scoliotic, twisted spine.
+Labels: 'Entrained (phi=0)' and 'Jetlagged (phi=pi)'.
+Visual style: Time-series alignment on the left, resulting spinal shape on the right.

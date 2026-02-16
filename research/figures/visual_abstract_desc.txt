@@ -1,0 +1,7 @@
+A schematic diagram illustrating the concept of Biological Countercurvature.
+The left panel shows a standard gravitational field (flat metric) where biological structures like plants droop under gravity.
+The right panel shows an 'Information Field' I(s) modifying the effective spacetime metric, adding 'countercurvature' that allows the structure to grow straight or into an S-curve against gravity.
+Key elements:
+1. Equation: d_ell_eff^2 = g_eff(s) ds^2 prominent in the center or top.
+2. Comparison: Drooping (Gravity-Dominated) vs Upright/S-Shaped (Information-Dominated).
+3. Visual style: Clean, scientific, vector-like quality.

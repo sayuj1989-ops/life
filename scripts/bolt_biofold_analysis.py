@@ -23,6 +23,7 @@ from typing import List, Dict, Tuple, Optional, Any
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.spatial import cKDTree
 
 # Add research module to path to import StructureParser
 sys.path.append(str(Path(__file__).parent.parent / "research" / "alphafold_countercurvature" / "src"))
@@ -115,14 +116,12 @@ def compute_surface_metrics(coords: np.ndarray, resnames: np.ndarray, plddts: np
             "charged_patch_score": 0.0
         }
 
-    # Compute distance matrix
-    # Optimization: Use broadcasting for small N
-    diff = coords[:, np.newaxis, :] - coords[np.newaxis, :, :]
-    dists = np.sqrt(np.sum(diff**2, axis=-1))
-
-    # Count neighbors (distance < 10.0)
-    # Subtract 1 to exclude self
-    neighbor_counts = np.sum(dists < 10.0, axis=1) - 1
+    # ⚡ Bolt Optimization: Use cKDTree for O(N log N) neighbor search
+    # Replaced O(N^2) broadcasting which was a major bottleneck for N > 2000
+    tree = cKDTree(coords)
+    # query_ball_point with return_length=True returns counts directly
+    # The counts include the point itself since distance is 0 < 10.0, so subtract 1
+    neighbor_counts = tree.query_ball_point(coords, r=10.0, return_length=True) - 1
 
     # Exposed mask: Neighbors < 20 AND pLDDT >= 70
     # We only trust surface predictions for high confidence regions

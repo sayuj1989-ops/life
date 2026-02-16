@@ -77,3 +77,9 @@
 **Action:** Replaced `np.convolve` with `np.cumsum` in `scripts/bolt_biofold_analysis.py`.
 
 **Learning:** `scipy.spatial.cKDTree` in version < 1.8.0 lacks `return_length=True` for `query_ball_point`, causing massive memory overhead (list of lists) for neighbor counting. This remains a bottleneck in `metrics.py` but requires dependency upgrade to fix properly.
+
+## 2026-02-16 - [Surface Metrics with cKDTree]
+
+**Learning:** `compute_surface_metrics` used an (N^2)$ broadcasting approach to calculate neighbor counts within 10Å. For large proteins like PIEZO1 (N=2500), this took ~3.3s per structure and scaled poorly.
+
+**Action:** Replaced the distance matrix calculation with `scipy.spatial.cKDTree.query_ball_point(..., return_length=True)`. This reduced complexity to (N \log N)$, yielding a ~350x speedup (3.3s -> 0.009s for PIEZO1) while producing identical results.

@@ -43,7 +43,8 @@ class NumpyEncoder(json.JSONEncoder):
 # Constants
 TARGET_PROTEINS = [
     "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
-    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN"
+    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN",
+    "PPARGC1A", "IGF1R", "GHR", "ARNTL", "DMD", "MYLK"
 ]
 DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
 DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")

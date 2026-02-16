@@ -45,6 +45,9 @@ TARGET_PROTEINS = [
     "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
     "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN"
 ]
+# Charged residues for surface metrics
+CHARGED_RESIDUES = {'ARG', 'LYS', 'ASP', 'GLU', 'HIS', 'R', 'K', 'D', 'E', 'H'}
+
 DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
 DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")
 
@@ -99,6 +102,47 @@ def save_cached_analysis(pdb_path: Path, results: Dict):
 
     except Exception as e:
         print(f"Warning: Failed to save cache for {pdb_path}: {e}")
+
+def compute_surface_metrics(coords: np.ndarray, resnames: np.ndarray, plddts: np.ndarray) -> Dict[str, Any]:
+    """
+    Computes surface metrics based on neighbor counts.
+    - Exposed: < 20 neighbors within 10.0 Angstroms AND pLDDT >= 70.
+    - Charged: R, K, D, E, H.
+    """
+    if len(coords) == 0:
+        return {
+            "exposed_surface_proxy": 0,
+            "charged_patch_score": 0.0
+        }
+
+    # Compute distance matrix
+    # Optimization: Use broadcasting for small N
+    diff = coords[:, np.newaxis, :] - coords[np.newaxis, :, :]
+    dists = np.sqrt(np.sum(diff**2, axis=-1))
+
+    # Count neighbors (distance < 10.0)
+    # Subtract 1 to exclude self
+    neighbor_counts = np.sum(dists < 10.0, axis=1) - 1
+
+    # Exposed mask: Neighbors < 20 AND pLDDT >= 70
+    # We only trust surface predictions for high confidence regions
+    exposed_mask = (neighbor_counts < 20) & (plddts >= 70.0)
+    exposed_count = np.sum(exposed_mask)
+
+    if exposed_count == 0:
+        return {
+            "exposed_surface_proxy": 0,
+            "charged_patch_score": 0.0
+        }
+
+    # Check charged
+    exposed_resnames = resnames[exposed_mask]
+    charged_count = sum(1 for r in exposed_resnames if str(r).upper() in CHARGED_RESIDUES)
+
+    return {
+        "exposed_surface_proxy": int(exposed_count),
+        "charged_patch_score": float(charged_count) / float(exposed_count)
+    }
 
 def compute_geometry_metrics(coords: np.ndarray) -> Dict[str, float]:
     """
@@ -340,6 +384,9 @@ def analyze_protein(pdb_path: Path, force: bool = False) -> Dict:
     hinge_regions = find_hinges(plddts, full_curvature)
     bending_hotspots = find_bending_hotspots(full_curvature, plddts)
 
+    # Surface Metrics
+    surface_metrics = compute_surface_metrics(coords, resnames, plddts)
+
     # Flags
     low_confidence_warning = plddt_mean < 70
     likely_IDR_heavy = disorder_fraction > 0.3
@@ -363,8 +410,8 @@ def analyze_protein(pdb_path: Path, force: bool = False) -> Dict:
         "max_curvature_hc": max_curvature_hc,
         "mean_torsion_hc": mean_torsion_hc,
         "bending_hotspots": bending_hotspots,
-        "exposed_surface_proxy": "Not computed",
-        "charged_patch_score": "Not computed",
+        "exposed_surface_proxy": surface_metrics['exposed_surface_proxy'],
+        "charged_patch_score": surface_metrics['charged_patch_score'],
         "low_confidence_warning": low_confidence_warning,
         "multi_domain_uncertain": multi_domain_uncertain,
         "likely_IDR_heavy": likely_IDR_heavy,
@@ -422,6 +469,10 @@ def main():
     figures_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Starting Bolt-BioFold Analysis on targets in {pdb_dir}...")
+    if not any(pdb_dir.iterdir()): # Crude check, but we are iterating specific targets anyway
+        print("Using Default Seed List as no input queue provided.")
+    else:
+        print("Using Default Seed List for targeted analysis.")
 
     results = []
 
@@ -468,13 +519,24 @@ def main():
 
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold Analysis Report\n\n")
-        f.write(f"**Date:** {date_str}\n\n")
+        f.write(f"**Date:** {date_str}\n")
+        f.write(f"**Source:** Local AlphaFold Predictions (Default Seed List)\n")
+        f.write(f"**Code Version:** Bolt-BioFold 2.0 (Surface Metrics Added)\n\n")
+
         f.write("## Results Summary\n\n")
-        f.write("| Protein | Anisotropy | Rg (A) | Curvature (Mean) | pLDDT (Mean) | Domains |\n")
-        f.write("|---|---|---|---|---|---|\n")
+        # Detailed Markdown Table with Key Metrics
+        f.write("| Protein | Anisotropy | Rg (A) | Curvature | pLDDT | Domains | Surface (Exposed) | Charge Score |\n")
+        f.write("|---|---|---|---|---|---|---|---|\n")
+
+        high_anisotropy_count = 0
+        hinge_count = 0
 
         for r in results:
-            f.write(f"| {r['protein_id']} | {r['anisotropy_index']:.2f} | {r['radius_of_gyration']:.1f} | {r['mean_curvature_hc']:.3f} | {r['pLDDT_mean']:.1f} | {r['predicted_domain_segments']} |\n")
+            f.write(f"| {r['protein_id']} | {r['anisotropy_index']:.2f} | {r['radius_of_gyration']:.1f} | {r['mean_curvature_hc']:.3f} | {r['pLDDT_mean']:.1f} | {r['predicted_domain_segments']} | {r['exposed_surface_proxy']} | {r['charged_patch_score']:.2f} |\n")
+            if r['anisotropy_index'] > 3.0:
+                high_anisotropy_count += 1
+            if r['hinge_candidates'] != "None":
+                hinge_count += 1
 
         f.write("\n## Interpretation\n\n")
         for r in results:
@@ -487,6 +549,9 @@ def main():
                 f.write(f"- Curvature: High mean curvature ({r['mean_curvature_hc']:.3f}) with hotspots at {r['bending_hotspots']}.\n")
             else:
                 f.write(f"- Curvature: Low mean curvature ({r['mean_curvature_hc']:.3f}), rod-like or globular.\n")
+
+            f.write(f"- Surface: {r['exposed_surface_proxy']} exposed residues with charge score {r['charged_patch_score']:.2f}.\n")
+
             if r['hinge_candidates'] != "None":
                  f.write(f"- Flexibility: Potential hinges at {r['hinge_candidates']}.\n")
 
@@ -506,6 +571,9 @@ def main():
             elif "YAP" in r['protein_id'] or "RUNX" in r['protein_id'] or "SOX" in r['protein_id']:
                 f.write("- Nuclear factor whose transport/activity is regulated by mechanical signals.\n")
 
+            if r['charged_patch_score'] > 0.4:
+                f.write("- High surface charge density suggests strong electrostatic interaction potential (e.g., with charged ECM components or DNA).\n")
+
             # Confidence
             f.write(f"**Confidence:** ")
             if r['low_confidence_warning']:
@@ -519,12 +587,19 @@ def main():
                 f.write("Simulate dynamics of hinge regions under tensile load.\n")
             elif r['anisotropy_index'] > 3.0:
                 f.write("Test alignment of fibers under cyclic strain.\n")
+            elif r['charged_patch_score'] > 0.4:
+                f.write("Test pH sensitivity or binding to charged matrices.\n")
             else:
                 f.write("Investigate binding partners in high-pLDDT surface patches.\n")
             f.write("\n")
 
         f.write("\n## Best Next Move\n")
-        f.write("Prioritize high-anisotropy candidates (Anisotropy > 3.0) for mechanical simulation of 'counter-curvature' generation.\n")
+        if high_anisotropy_count >= 3:
+            f.write("Prioritize high-anisotropy candidates (Anisotropy > 3.0) for mechanical simulation of 'counter-curvature' generation.\n")
+        elif hinge_count >= 3:
+             f.write("Focus on hinge region molecular dynamics to assess mechano-gating potential.\n")
+        else:
+             f.write("Expand candidate list to include more fibrous/ECM proteins.\n")
 
     print(f"Report saved to {md_path}")
 

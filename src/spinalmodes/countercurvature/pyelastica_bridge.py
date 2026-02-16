@@ -516,6 +516,8 @@ def run_protein_simulation(
     active_curvature: float,
     torsion_drive: float = 0.0,
     stiffness_modulation: float = 0.0,
+    info_location_rel: float = 0.5,
+    info_width_rel: float = 0.1,
     initial_lateral_defect: float = 0.0,
     natural_kyphosis: float = 2.0,
     length: float = 1.0,
@@ -543,6 +545,8 @@ def run_protein_simulation(
         active_curvature: Magnitude of active curvature drive (scalar signal).
         torsion_drive: Magnitude of active torsion drive.
         stiffness_modulation: Degree of stiffness modulation (blockiness).
+        info_location_rel: Relative location of info field center (0.0 to 1.0).
+        info_width_rel: Relative width of info field (0.0 to 1.0).
         initial_lateral_defect: Magnitude of initial lateral curvature (perturbation).
         natural_kyphosis: Magnitude of natural sagittal curvature (kyphosis).
         length: Length of the rod (m).
@@ -582,8 +586,13 @@ def run_protein_simulation(
         # Use a generic Gaussian info field representing a localized signal
         s = np.linspace(0, length, n_elements + 1)
         # Center bump
-        info_center = 0.5 * length
-        info_width = 0.1 * length
+        info_center = info_location_rel * length
+        info_width = info_width_rel * length
+
+        # Avoid division by zero
+        if info_width < 1e-9:
+             info_width = 1e-9
+
         I = 0.5 + 0.5 * np.exp(-0.5 * ((s - info_center) / info_width)**2)
         dIds = np.gradient(I, s)
         info = InfoField1D(s=s, I=I, dIds=dIds)
@@ -644,6 +653,8 @@ def run_protein_simulation(
     output = {
         "input_anisotropy": anisotropy,
         "input_active_curvature": active_curvature,
+        "input_info_location_rel": info_location_rel,
+        "input_info_width_rel": info_width_rel,
         "mapped_chi_kappa": chi_kappa,
         "mapped_chi_tau": chi_tau,
         "runtime_sec": t1 - t0,

@@ -53,16 +53,18 @@ def run_experiment(
     # Define sweep parameters
     if quick_test:
         anisotropies = [1.0, 5.0]
-        active_curvatures = [0.0, 5.0]
-        boundary_conditions = ["fixed", "pinned"]
-        stiffness_modulations = [0.0, 0.5]
+        active_curvatures = [5.0]
+        boundary_conditions = ["fixed"]
+        stiffness_modulations = [0.0]
+        info_locations = [0.5]
         n_elements = 20
         duration = 0.5
     else:
-        anisotropies = [1.0, 2.0, 5.0, 10.0]
-        active_curvatures = [0.0, 2.0, 5.0, 10.0, 20.0]
+        anisotropies = [1.0, 5.0]
+        active_curvatures = [5.0, 20.0]
         boundary_conditions = ["fixed", "pinned"]
         stiffness_modulations = [0.0, 0.5]
+        info_locations = [0.2, 0.5, 0.8]
         n_elements = 50
         duration = 2.0
 
@@ -76,64 +78,67 @@ def run_experiment(
     results = []
 
     # Header for console output
-    print(f"{'BC':<8} | {'Mod':<5} | {'Aniso':<6} | {'Active':<6} | {'S_lat':<8} | {'Cobb':<6} | {'Max K':<6} | {'Time':<6}")
-    print("-" * 80)
+    print(f"{'BC':<8} | {'Mod':<5} | {'Loc':<4} | {'Aniso':<6} | {'Active':<6} | {'S_lat':<8} | {'Cobb':<6} | {'Max K':<6} | {'Time':<6}")
+    print("-" * 90)
 
     start_time_all = time.time()
 
     for bc in boundary_conditions:
         for mod in stiffness_modulations:
-            for anisotropy in anisotropies:
-                for active_curvature in active_curvatures:
+            for loc in info_locations:
+                for anisotropy in anisotropies:
+                    for active_curvature in active_curvatures:
 
-                    # Map active_curvature (0-20) to chi_kappa via scale_factor
-                    # We use scale_factor_kappa=1.0 for direct control if we want,
-                    # or rely on the default mapping. Let's use the function's scaling.
-                    # run_protein_simulation uses: chi_kappa = active_curvature * scale_factor_kappa
-                    # Default scale_factor_kappa is 5.0.
-                    # So input 0.0 -> chi_kappa 0.0
-                    # Input 10.0 -> chi_kappa 50.0 (very strong)
+                        # Map active_curvature (0-20) to chi_kappa via scale_factor
+                        # We use scale_factor_kappa=1.0 for direct control if we want,
+                        # or rely on the default mapping. Let's use the function's scaling.
+                        # run_protein_simulation uses: chi_kappa = active_curvature * scale_factor_kappa
+                        # Default scale_factor_kappa is 5.0.
+                        # So input 0.0 -> chi_kappa 0.0
+                        # Input 10.0 -> chi_kappa 50.0 (very strong)
 
-                    # Let's assume active_curvature here is the "protein level" input.
+                        # Let's assume active_curvature here is the "protein level" input.
 
-                    result = run_protein_simulation(
-                        anisotropy=anisotropy,
-                        active_curvature=active_curvature,
-                        boundary_condition=bc,
-                        stiffness_modulation=mod,
-                        initial_lateral_defect=initial_lateral_defect,
-                        radius=radius,
-                        E0=E0,
-                        n_elements=n_elements,
-                        duration=duration,
-                        dt=dt,
-                        gravity=gravity,
-                        show_progress=False
-                    )
+                        result = run_protein_simulation(
+                            anisotropy=anisotropy,
+                            active_curvature=active_curvature,
+                            boundary_condition=bc,
+                            stiffness_modulation=mod,
+                            info_location_rel=loc,
+                            initial_lateral_defect=initial_lateral_defect,
+                            radius=radius,
+                            E0=E0,
+                            n_elements=n_elements,
+                            duration=duration,
+                            dt=dt,
+                            gravity=gravity,
+                            show_progress=False
+                        )
 
-                    if not result.get("success", False):
-                        print(f"Failed for A={anisotropy}, C={active_curvature}, BC={bc}, Mod={mod}: {result.get('error')}")
-                        continue
+                        if not result.get("success", False):
+                            print(f"Failed for A={anisotropy}, C={active_curvature}, BC={bc}, Mod={mod}, Loc={loc}: {result.get('error')}")
+                            continue
 
-                    # Store result
-                    row = {
-                        "boundary_condition": bc,
-                        "stiffness_modulation": mod,
-                        "anisotropy": anisotropy,
-                        "active_curvature": active_curvature,
-                        "initial_lateral_defect": initial_lateral_defect,
-                        "radius": radius,
-                        "E0": E0,
-                        **result
-                    }
-                    results.append(row)
+                        # Store result
+                        row = {
+                            "boundary_condition": bc,
+                            "stiffness_modulation": mod,
+                            "info_location_rel": loc,
+                            "anisotropy": anisotropy,
+                            "active_curvature": active_curvature,
+                            "initial_lateral_defect": initial_lateral_defect,
+                            "radius": radius,
+                            "E0": E0,
+                            **result
+                        }
+                        results.append(row)
 
-                    print(
-                        f"{bc:<8} | {mod:<5.1f} | {anisotropy:<6.1f} | {active_curvature:<6.1f} | "
-                        f"{result.get('S_lat', 0.0):<8.4f} | {result.get('cobb_angle', 0.0):<6.1f} | "
-                        f"{result.get('max_curvature', 0.0):<6.2f} | "
-                        f"{result.get('runtime_sec', 0.0):<6.2f}"
-                    )
+                        print(
+                            f"{bc:<8} | {mod:<5.1f} | {loc:<4.1f} | {anisotropy:<6.1f} | {active_curvature:<6.1f} | "
+                            f"{result.get('S_lat', 0.0):<8.4f} | {result.get('cobb_angle', 0.0):<6.1f} | "
+                            f"{result.get('max_curvature', 0.0):<6.2f} | "
+                            f"{result.get('runtime_sec', 0.0):<6.2f}"
+                        )
 
     total_time = time.time() - start_time_all
     print("-" * 70)
@@ -158,12 +163,12 @@ def generate_report(md_file, results, total_time):
         f.write("# Minimal PyElastica Experiment Report\n\n")
         f.write(f"**Total Time:** {total_time:.2f} s\n\n")
 
-        f.write("| BC | Mod | Anisotropy | Active Curv | S_lat | Cobb (deg) | Max Curv | Max Torsion | Runtime (s) |\n")
-        f.write("|---|---|---|---|---|---|---|---|---|\n")
+        f.write("| BC | Mod | Loc | Anisotropy | Active Curv | S_lat | Cobb (deg) | Max Curv | Max Torsion | Runtime (s) |\n")
+        f.write("|---|---|---|---|---|---|---|---|---|---|\n")
 
         for r in results:
             f.write(
-                f"| {r['boundary_condition']} | {r['stiffness_modulation']:.1f} | "
+                f"| {r['boundary_condition']} | {r['stiffness_modulation']:.1f} | {r['info_location_rel']:.1f} | "
                 f"{r['anisotropy']:.2f} | {r['active_curvature']:.2f} | "
                 f"{r.get('S_lat', 0.0):.4f} | {r.get('cobb_angle', 0.0):.2f} | "
                 f"{r.get('max_curvature', 0.0):.2f} | "

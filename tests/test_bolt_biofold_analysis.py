@@ -6,7 +6,41 @@ from pathlib import Path
 # Add scripts directory to path to import the script as module
 sys.path.append(str(Path(__file__).parent.parent / "scripts"))
 
-from bolt_biofold_analysis import compute_geometry_metrics, find_bending_hotspots, find_hinges, find_domains
+from bolt_biofold_analysis import compute_geometry_metrics, find_bending_hotspots, find_hinges, find_domains, compute_curvature_torsion
+
+def test_compute_curvature_torsion():
+    # Test linear chain (curvature 0)
+    coords = np.array([
+        [0, 0, 0],
+        [1, 0, 0],
+        [2, 0, 0],
+        [3, 0, 0],
+        [4, 0, 0],
+        [5, 0, 0],
+        [6, 0, 0],
+        [7, 0, 0],
+        [8, 0, 0],
+        [9, 0, 0]
+    ])
+    curv, tors = compute_curvature_torsion(coords, window=3)
+    # Curvature should be near 0
+    assert np.all(np.abs(curv) < 1e-6)
+
+    # Test bent chain
+    # 90 degree turn
+    coords_bent = np.array([
+        [0, 0, 0],
+        [1, 0, 0],
+        [2, 0, 0],
+        [3, 0, 0],
+        [3, 1, 0],
+        [3, 2, 0],
+        [3, 3, 0],
+        [3, 4, 0]
+    ])
+    curv, tors = compute_curvature_torsion(coords_bent, window=3)
+    # Peak curvature around index 3 or 4
+    assert np.max(curv) > 0.1
 
 def test_compute_geometry_metrics():
     # Create a simple linear chain

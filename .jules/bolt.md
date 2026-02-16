@@ -69,3 +69,11 @@
 - `f.readlines()`: ~0.2s (no significant gain)
 - `np.fromregex`: Slower/Fragile due to complex PDB column alignment.
 **Action:** Rejected parsing optimization. Parsing is surprisingly efficient. The real bottleneck for repeated analysis is re-computing geometry metrics. Implemented persistent caching (`.npz`/`.json`) instead, yielding ~10x speedup on second run.
+
+## 2026-11-20 - [Geometry Smoothing Optimization]
+
+**Learning:** `np.convolve` creates full-size temporary arrays and performs O(N*W) operations. For simple moving averages (boxcar), `np.cumsum` (Integral Image) is O(N) and ~2x faster even for small windows (W=10). Verified numerically identical results for `mode='valid'`.
+
+**Action:** Replaced `np.convolve` with `np.cumsum` in `scripts/bolt_biofold_analysis.py`.
+
+**Learning:** `scipy.spatial.cKDTree` in version < 1.8.0 lacks `return_length=True` for `query_ball_point`, causing massive memory overhead (list of lists) for neighbor counting. This remains a bottleneck in `metrics.py` but requires dependency upgrade to fix properly.

@@ -297,6 +297,21 @@ $$ I(s) \to I(s_{eff}) $$
     *   **Mechanism**: Chromatin opening via LINC complex tension allowing access to HOX clusters.
 *   **Measurable Proxy**: The shift in the transition boundary between HOX paralogs (e.g., HOXB4/HOXB6) in fibroblasts cultured on soft vs. stiff substrates.
 
+### 2.20. The Piezo-Osteogenic Gain ($\Gamma_{PO}$)
+
+We define $\Gamma_{PO}$ as the sensitivity of Tissue Mineral Density (TMD) accretion to time-averaged hydrostatic stress ($\langle S_{scalar} \rangle$), mediated by Piezo1 channels.
+
+$$ \frac{d(\text{TMD})}{dt} = \Gamma_{PO} \langle S_{scalar} \rangle - \delta \cdot \text{TMD} $$
+
+*   **Symbols**:
+    *   $\text{TMD}$: Tissue Mineral Density $[ML^{-3}]$.
+    *   $\langle S_{scalar} \rangle$: Time-averaged scalar stress (pressure) $[ML^{-1}T^{-2}]$.
+    *   $\delta$: Resorption/decay rate $[T^{-1}]$.
+*   **Dimensions**: $[L^{-2}T]$.
+*   **Physical Interpretation**: A high $\Gamma_{PO}$ means the organism efficiently converts mechanical pressure into structural stiffness (bone/mineral).
+*   **Mechanism**: Piezo1 activation $\to$ Ca2+ influx $\to$ Calcineurin/NFAT $\to$ Osteoblast differentiation (Ramli et al., 2024).
+*   **Measurable Proxy**: The slope of the regression line between local bone mineral density (BMD) and computationally estimated hydrostatic pressure in the vertebral centrum.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -530,6 +545,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Expression levels of *HOXA* genes in fibroblasts from CRISPR-edited lines (enhancer deletion) vs WT under cyclic strain.
 *   **Refutation**: If strain-dependence persists despite enhancer deletion, the coupling is global (e.g., nuclear dilution) rather than specific. (Reference: Wang et al., 2009).
 
+### Test AM: Load-Density Uncoupling
+*   **Hypothesis**: Blocking Piezo1 (e.g., GsMTx4 or KO) reduces $\Gamma_{PO}$ to zero. Even with high loads, TMD will not increase.
+*   **Data Needed**: Micro-CT of Piezo1-cKO mice vertebrae after exercise loading vs sedentary.
+*   **Refutation**: If Piezo1-KO mice still show load-induced cortical thickening (e.g., via LRP5/Wnt alone), then $\Gamma_{PO}$ is not primarily Piezo-dependent. (Reference: Ramli et al., 2024).
+
+### Test AN: The Osteopenic Window
+*   **Hypothesis**: In microgravity, $\langle S_{scalar} \rangle$ drops. If $\Gamma_{PO}$ remains constant, $d(\text{TMD})/dt$ becomes negative (dominated by $\delta$).
+*   **Data Needed**: Time course of TMD loss in astronauts (or tail-suspended rats) treated with Yoda1 (Piezo1 agonist).
+*   **Refutation**: If Yoda1 fails to rescue bone density in unloading, then stimulating the sensor is insufficient (downstream metabolic block). (Reference: Sun et al., 2019).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -577,3 +602,4 @@ The theory makes specific predictions about the relationship between genetic ani
 43. **Ugur, K., et al. (2024).** "Resolution of Scoliosis Following Treatment of Sleep-Disordered Breathing." *Children*, 11(9). (Supports metabolic/hypoxic driver of scoliosis).
 44. **Kang, M., et al. (2025).** "Tension-sensitive HOX gene expression in fibroblasts for differential scar formation." *Journal of Translational Medicine*, 23(1). (Demonstrates that mechanical tension modulates HOX gene expression).
 45. **Wang, N., et al. (2009).** "Mechanotransduction at a distance: mechanically coupling the extracellular matrix with the nucleus." *Nature Reviews Molecular Cell Biology*, 10(1). (Nuclear mechanotransduction mechanism).
+46. **Ramli, R., et al. (2024).** "Piezo1 mutant zebrafish as a model of idiopathic scoliosis." *Frontiers in Genetics*, 14. (Identifies Piezo1 as the scalar stiffness regulator).

@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 # Add scripts to path to import the function
-sys.path.append(str(Path(__file__).parent.parent / "scripts"))
+sys.path.append(str(Path(__file__).parent.parent / "scripts" / "data_management"))
 from bolt_biofold_analysis import compute_surface_metrics
 
 class TestSurfaceMetrics(unittest.TestCase):

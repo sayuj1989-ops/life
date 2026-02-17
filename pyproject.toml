@@ -27,6 +27,7 @@ lifelines = "^0.27.8"
 biopython = "^1.85"
 pyelastica = "^0.3.3"
 paperbanana = "^0.1.2"
+seaborn = "^0.13.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.2"

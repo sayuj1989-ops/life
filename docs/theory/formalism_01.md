@@ -312,6 +312,21 @@ $$ \frac{d(\text{TMD})}{dt} = \Gamma_{PO} \langle S_{scalar} \rangle - \delta \c
 *   **Mechanism**: Piezo1 activation $\to$ Ca2+ influx $\to$ Calcineurin/NFAT $\to$ Osteoblast differentiation (Ramli et al., 2024).
 *   **Measurable Proxy**: The slope of the regression line between local bone mineral density (BMD) and computationally estimated hydrostatic pressure in the vertebral centrum.
 
+### 2.21. The Bastien Number ($\mathcal{B}_{osc}$)
+
+We define a dimensionless number governing the bifurcation from stable straight growth to oscillatory (scoliotic) instability, derived from the Bastien et al. (2013) gravitropic oscillator model.
+
+$$ \mathcal{B}_{osc} = \frac{\beta L}{\gamma} $$
+
+*   **Symbols**:
+    *   $\beta$: Gravitropic sensitivity (rate of curvature change per unit angle) $[L^{-1}T^{-1}]$.
+    *   $\gamma$: Proprioceptive straightening gain (rate of curvature decay) $[T^{-1}]$.
+    *   $L$: Characteristic length $[L]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{B}_{osc} < \mathcal{B}_{crit}$: Stable convergence to vertical.
+    *   $\mathcal{B}_{osc} > \mathcal{B}_{crit}$: Spontaneous "hunting" oscillations (S-shape formation).
+*   **Measurable Proxy**: The ratio of the overshoot amplitude to the damping rate in a postural perturbation test (sway ratio).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -555,6 +570,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Time course of TMD loss in astronauts (or tail-suspended rats) treated with Yoda1 (Piezo1 agonist).
 *   **Refutation**: If Yoda1 fails to rescue bone density in unloading, then stimulating the sensor is insufficient (downstream metabolic block). (Reference: Sun et al., 2019).
 
+### Test AO: The Egr3 Bifurcation
+*   **Hypothesis**: Egr3-/- mice (low $\gamma$) should exhibit oscillatory curvature dynamics (wavy spine) that fits the Bastien solution for $\mathcal{B}_{osc} > \mathcal{B}_{crit}$.
+*   **Data Needed**: Longitudinal radiographic tracking of spinal curvature in Egr3-/- mice from P7 to P60, fitted to the Bastien oscillator equation.
+*   **Refutation**: If curvature is static/monotonic (buckling) rather than oscillatory (hunting), the proprioceptive gain hypothesis is falsified. (Reference: Blecher et al., 2017).
+
+### Test AP: The Frequency-Gain Lock
+*   **Hypothesis**: Artificially increasing $\beta$ (e.g., hyper-gravity via centrifuge) in a system with fixed $\gamma$ should induce oscillation (scoliosis) in wild-type organisms.
+*   **Data Needed**: Spinal geometry of zebrafish larvae raised in 3g centrifuge vs 1g.
+*   **Refutation**: If hyper-gravity causes only compression (shorter spine) without lateral oscillation, the graviceptive gain $\beta$ is not the driver of instability. (Reference: Bastien et al., 2013).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -603,3 +628,5 @@ The theory makes specific predictions about the relationship between genetic ani
 44. **Kang, M., et al. (2025).** "Tension-sensitive HOX gene expression in fibroblasts for differential scar formation." *Journal of Translational Medicine*, 23(1). (Demonstrates that mechanical tension modulates HOX gene expression).
 45. **Wang, N., et al. (2009).** "Mechanotransduction at a distance: mechanically coupling the extracellular matrix with the nucleus." *Nature Reviews Molecular Cell Biology*, 10(1). (Nuclear mechanotransduction mechanism).
 46. **Ramli, R., et al. (2024).** "Piezo1 mutant zebrafish as a model of idiopathic scoliosis." *Frontiers in Genetics*, 14. (Identifies Piezo1 as the scalar stiffness regulator).
+47. **Bastien, R., et al. (2013).** "Unifying model of shoot gravitropism reveals proprioception as a central feature of posture control." *PNAS*, 110(2). (Establishes the proprioceptive oscillator model).
+48. **Blecher, R., et al. (2017).** "New functions for the proprioceptive system in skeletal biology." *Philosophical Transactions B*, 373. (Identifies Egr3/proprioception defects in spinal alignment).

@@ -7,24 +7,35 @@ import sys
 
 # Ensure src is in path correctly regardless of execution context
 script_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(script_dir, '..'))
+project_root = os.path.abspath(os.path.join(script_dir, '..', '..')) # Adjusted for scripts/experiments/
 src_path = os.path.join(project_root, 'src')
 
 if src_path not in sys.path:
     sys.path.insert(0, src_path)
 
+# Ensure local scripts/experiments is in path for utils
+if script_dir not in sys.path:
+    sys.path.append(script_dir)
+
 try:
     from spinalmodes.iec import solve_beam_static
+    from experiment_utils import StandardExperimentParser, setup_experiment
 except ImportError:
     # Fallback for when running from root without src being a package root
-    # e.g. if 'src' is not a package but contains packages
     try:
         from src.spinalmodes.iec import solve_beam_static
+        from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
     except ImportError as e:
-        print(f"Error: Could not import solve_beam_static. Checked {src_path} and fallbacks. {e}")
+        print(f"Error: Could not import solve_beam_static or experiment_utils. {e}")
         sys.exit(1)
 
 def run_experiment():
+    parser = StandardExperimentParser(
+        description="Experiment: Energy Deficit Window (Isometric Scaling)"
+    )
+    args = parser.parse_args()
+    output_dir = setup_experiment(args)
+
     # Parameters
     rho = 1100.0  # kg/m^3
     g = 9.81      # m/s^2
@@ -44,7 +55,10 @@ def run_experiment():
     L_ref = 0.35  # m (pre-adolescent reference for crossing)
 
     # Setup L sweep
-    L_values = np.linspace(0.25, 0.55, 30)
+    if args.quick:
+        L_values = np.linspace(0.25, 0.55, 5)
+    else:
+        L_values = np.linspace(0.25, 0.55, 30)
 
     # Isometric scaling reference
     # Assuming A=0.001 corresponds to an adult-like spine or the 'standard' param
@@ -157,13 +171,13 @@ def run_experiment():
     print("--------------------------------------\n")
 
     # Ensure output directories exist
-    output_dir_cost = os.path.join(project_root, "outputs", "thermodynamic_cost")
-    output_dir_figs = os.path.join(project_root, "outputs", "figures")
-    os.makedirs(output_dir_cost, exist_ok=True)
-    os.makedirs(output_dir_figs, exist_ok=True)
+    # Using the standard output_dir from setup_experiment
+    output_dir_cost = output_dir
+    output_dir_figs = output_dir / "figures"
+    output_dir_figs.mkdir(exist_ok=True)
 
     # Save CSV
-    csv_path = os.path.join(output_dir_cost, "energy_deficit_window.csv")
+    csv_path = output_dir_cost / "energy_deficit_window.csv"
     df.to_csv(csv_path, index=False)
     print(f"Results saved to {csv_path}")
 
@@ -190,7 +204,7 @@ def run_experiment():
     plt.grid(True, alpha=0.3)
     plt.legend(fontsize=10)
 
-    fig_path = os.path.join(output_dir_figs, "energy_deficit_window.png")
+    fig_path = output_dir_figs / "energy_deficit_window.png"
     plt.savefig(fig_path, dpi=300)
     print(f"Figure saved to {fig_path}")
 

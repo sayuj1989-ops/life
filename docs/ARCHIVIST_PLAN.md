@@ -48,7 +48,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Organize `scripts/`**: Group scripts into logical subdirectories (`experiments/`, `pipeline/`, `data_management/`) to reduce clutter.
 - [x] **Fix Script Imports**: Ensure moved scripts can still import `src` correctly (sys.path or package install).
-- [ ] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function.
+- [x] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function. (Created `experiment_utils.py` and refactored key scripts).
 
 ## Phase 6: Reproducibility & QA (High Priority)
 

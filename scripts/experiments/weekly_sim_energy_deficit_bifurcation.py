@@ -22,28 +22,41 @@ from pathlib import Path
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
+# Ensure local scripts/experiments is in path
+sys.path.append(str(Path(__file__).parent))
 
 try:
     from spinalmodes.iec import solve_beam_static
+    from experiment_utils import StandardExperimentParser, setup_experiment
 except ImportError:
     # Fallback if running from root without package install
     try:
         from src.spinalmodes.iec import solve_beam_static
+        # If running from root, assume experiment_utils is available via scripts.experiments or relative
+        from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
     except ImportError:
-        print("Error: Could not import solve_beam_static from src.spinalmodes.iec")
+        print("Error: Could not import solve_beam_static or experiment_utils")
         sys.exit(1)
 
 def run_experiment():
-    output_dir = Path("outputs/thermodynamic_cost")
-    output_dir.mkdir(parents=True, exist_ok=True)
-    fig_dir = Path("outputs/figures")
+    parser = StandardExperimentParser(
+        description="Weekly Simulation: Energy Deficit Bifurcation Phase Diagram"
+    )
+    args = parser.parse_args()
+    output_dir = setup_experiment(args)
+
+    fig_dir = output_dir / "figures"
     fig_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Running Weekly Sim: Energy Deficit Bifurcation -> {output_dir}")
 
     # Sweep Parameters
-    chi_values = np.linspace(0.01, 0.10, 20)
-    L_values = np.linspace(0.25, 0.55, 30)
+    if args.quick:
+        chi_values = np.linspace(0.01, 0.10, 2)
+        L_values = np.linspace(0.25, 0.55, 3)
+    else:
+        chi_values = np.linspace(0.01, 0.10, 20)
+        L_values = np.linspace(0.25, 0.55, 30)
 
     # Fixed Parameters
     rho = 1100.0

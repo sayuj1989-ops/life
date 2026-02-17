@@ -4,31 +4,44 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import date
+from pathlib import Path
 
 # Import the experiment runner
 # Assumes script is in same dir as experiment_minimal_elastica.py
 sys.path.append(os.path.dirname(__file__))
 try:
     from experiment_minimal_elastica import run_experiment
+    from experiment_utils import StandardExperimentParser, setup_experiment
 except ImportError:
     # If running from repo root
     sys.path.append(os.path.join(os.getcwd(), 'scripts'))
     from experiment_minimal_elastica import run_experiment
+    # Fallback import might fail if experiment_utils is not in path
+    try:
+        from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
+    except ImportError:
+         # If script is run as module
+         from .experiment_utils import StandardExperimentParser, setup_experiment
 
 
 def main():
-    # Dynamic date for output directory
-    today = date.today().strftime("%Y-%m-%d")
-    out_dir = f"outputs/sim/{today}"
-    os.makedirs(out_dir, exist_ok=True)
+    parser = StandardExperimentParser(
+        description="Weekly Simulation: Growth Instability Sweep"
+    )
+    args = parser.parse_args()
+    out_dir = setup_experiment(args)
 
-    csv_path = os.path.join(out_dir, "results.csv")
-    params_path = os.path.join(out_dir, "params.csv")
+    csv_path = out_dir / "results.csv"
+    params_path = out_dir / "params.csv"
 
     # Define sweep parameters
     # Focusing on Growth Instability Transition at Intermediate Anisotropy
     anisotropy = 2.0  # Intermediate stability
-    chi_kappas = np.linspace(0.0, 20.0, 11).tolist()  # 0 to 20 in steps of 2.0
+
+    if args.quick:
+        chi_kappas = [0.0, 20.0]
+    else:
+        chi_kappas = np.linspace(0.0, 20.0, 11).tolist()  # 0 to 20 in steps of 2.0
 
     # Fixed parameters
     chi_taus = [0.0]
@@ -52,7 +65,7 @@ def main():
 
     # Run experiment
     run_experiment(
-        out_file=csv_path,
+        out_file=str(csv_path),
         anisotropies=[anisotropy],
         chi_kappas=chi_kappas,
         chi_taus=chi_taus,
@@ -73,7 +86,11 @@ def main():
 
 
 def process_results(csv_path, out_dir, nominal_chi_kappas, nominal_anisotropy):
-    if not os.path.exists(csv_path):
+    # Ensure inputs are Path objects
+    csv_path = Path(csv_path)
+    out_dir = Path(out_dir)
+
+    if not csv_path.exists():
         print("Error: Results file not found.")
         return
 
@@ -118,7 +135,7 @@ def process_results(csv_path, out_dir, nominal_chi_kappas, nominal_anisotropy):
         plt.axvline(x=first_unstable, color='red', linestyle='--', label=f'Critical Threshold ~{first_unstable:.1f}')
         plt.legend()
 
-    plot_cobb_path = os.path.join(out_dir, "plot_growth_cobb.png")
+    plot_cobb_path = out_dir / "plot_growth_cobb.png"
     plt.savefig(plot_cobb_path)
     plt.close()
     print(f"Saved Cobb plot to {plot_cobb_path}")
@@ -131,7 +148,7 @@ def process_results(csv_path, out_dir, nominal_chi_kappas, nominal_anisotropy):
     plt.title(f'S-Shape Emergence (Anisotropy={nominal_anisotropy})', fontsize=14)
     plt.grid(True, which='both', linestyle='--', alpha=0.7)
 
-    plot_slat_path = os.path.join(out_dir, "plot_growth_slat.png")
+    plot_slat_path = out_dir / "plot_growth_slat.png"
     plt.savefig(plot_slat_path)
     plt.close()
     print(f"Saved S_lat plot to {plot_slat_path}")
@@ -141,7 +158,7 @@ def process_results(csv_path, out_dir, nominal_chi_kappas, nominal_anisotropy):
 
 
 def write_report(out_dir, chi_kappas, cobbs, s_lats, max_curv, anisotropy):
-    report_path = os.path.join(out_dir, "report.md")
+    report_path = Path(out_dir) / "report.md"
     today = date.today().strftime("%Y-%m-%d")
 
     # Determine critical threshold (where Cobb > 10 deg)

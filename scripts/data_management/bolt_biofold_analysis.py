@@ -43,7 +43,8 @@ class NumpyEncoder(json.JSONEncoder):
 # Constants
 TARGET_PROTEINS = [
     "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
-    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN"
+    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN",
+    "PPARGC1A", "IGF1R", "GHR", "ARNTL", "DMD", "MYLK"
 ]
 # Charged residues for surface metrics
 CHARGED_RESIDUES = {'ARG', 'LYS', 'ASP', 'GLU', 'HIS', 'R', 'K', 'D', 'E', 'H'}
@@ -471,23 +472,49 @@ def main():
     figures_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Starting Bolt-BioFold Analysis on targets in {pdb_dir}...")
-    if not any(pdb_dir.iterdir()): # Crude check, but we are iterating specific targets anyway
-        print("Using Default Seed List as no input queue provided.")
-    else:
-        print("Using Default Seed List for targeted analysis.")
+
+    # Load mapping if exists
+    mapping_path = Path(__file__).parent.parent.parent / "research" / "alphafold_countercurvature" / "data" / "processed" / "uniprot_mapping.csv"
+    mapping = {}
+    if mapping_path.exists():
+        import pandas as pd
+        try:
+            df = pd.read_csv(mapping_path)
+            # mapping: gene -> uniprot
+            mapping = dict(zip(df['gene_symbol'], df['uniprot_accession']))
+        except Exception as e:
+            print(f"Warning: Failed to load uniprot mapping: {e}")
 
     results = []
 
     for pid in TARGET_PROTEINS:
+        # Strategy 1: Look for {pid}.pdb in pdb_dir
         pdb_file = pdb_dir / f"{pid}.pdb"
+
         if not pdb_file.exists():
-            print(f"Warning: {pdb_file} not found. Skipping.")
+            # Strategy 2: Look up UniProt ID and check {uniprot}.pdb or {uniprot}/{uniprot}.pdb
+            if pid in mapping:
+                uid = mapping[pid]
+                # Check flat structure
+                f1 = pdb_dir / f"{uid}.pdb"
+                if f1.exists():
+                    pdb_file = f1
+                else:
+                    # Check AFCC structure: {uid}/{uid}.pdb
+                    f2 = pdb_dir / uid / f"{uid}.pdb"
+                    if f2.exists():
+                        pdb_file = f2
+
+        if not pdb_file.exists():
+            print(f"Warning: {pid} (or mapped file) not found in {pdb_dir}. Skipping.")
             continue
 
         print(f"Processing {pid}...")
         res = analyze_protein(pdb_file, force=args.force)
+        # Fix protein_id to be the gene symbol if possible
         if res:
-            results.append(res)
+             res['protein_id'] = pid
+             results.append(res)
 
     # Write CSV
     csv_path = output_dir / "bolt_biofold_results.csv"

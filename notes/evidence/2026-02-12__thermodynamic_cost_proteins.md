@@ -52,8 +52,8 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 
 | Gene | UniProt | Anisotropy | Morphology | Rg (Å) | pLDDT | Res | Hinges | L-Scaling | Role |
 | :--- | :--- | ---: | :--- | ---: | ---: | ---: | ---: | :--- | :--- |
-| **DMD** | P11532 | 1.32 | Globular | 22.8 | 76.3 | 525 | 1 | L^3 (muscle volume) | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle |
-| **MYLK** | Q15746 | 1.46 | Globular | 41.5 | 65.8 | 1914 | 31 | L^2 (contractile force) | Myosin light chain kinase; tonic contraction regulator |
+| **DMD** | P11532 | 1.73 | Globular/Intermediate | 22.8 | 76.3 | 525 | 6 | L^3 (muscle volume) | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle |
+| **MYLK** | Q15746 | 2.14 | Intermediate | 41.5 | 65.8 | 1914 | 36 | L^2 (contractile force) | Myosin light chain kinase; tonic contraction regulator |
 | **LBX1** | P52954 | 2.27 | Intermediate | 22.7 | 66.9 | 281 | 0 | L^2 (muscle cross-section x length) | Paraspinal muscle specification TF; top GWAS hit for AIS |
 | **FLNA** | P21333 | 2.50 | Intermediate | 56.9 | 76.5 | 2647 | 116 | L^3 (muscle volume) | Filamin A; cytoskeletal mechanosensor and crosslinker |
 | **VIM** | P08670 | 7.47 | Fibrous/Extended | 65.7 | 77.1 | 466 | 1 | L^3 (cell volume) | Vimentin; gravitational strain gauge in cells |
@@ -85,10 +85,10 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **SOX9** | P48436 | 2.19 | Intermediate | 16.6 | 56.0 | 509 | 2 | L (growth plate activity) | Master chondrogenic TF; growth plate cartilage specification |
 | **SHH** | Q15465 | 2.12 | Intermediate | 24.5 | 78.4 | 462 | 6 | L (gradient length) | Sonic Hedgehog; morphogen gradient for vertebral patterning |
 | **CDKN1A** | P38936 | 2.14 | Intermediate | 23.9 | 69.0 | 164 | 2 | threshold (binary switch) | p21; cell cycle inhibitor activated by mechanical unloading |
-| **PPARGC1A** | Q9UBK2 | 2.19 | Intermediate | 31.2 | 52.7 | 798 | 0 | L (mitochondrial volume) | Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity |
-| **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
-| **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
-| **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
+| **PPARGC1A** | Q9UBK2 | 4.77 | Fibrous/Extended | 31.2 | 52.7 | 798 | 7 | L (mitochondrial volume) | Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity |
+| **IGF1R** | P08069 | 2.04 | Intermediate | 43.2 | 78.0 | 1367 | 19 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
+| **GHR** | P10912 | 26.34 | Fibrous/Extended | 31.4 | 58.7 | 638 | 4 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
+| **ARNTL** | O00327 | 11.02 | Fibrous/Extended | 32.1 | 65.5 | 626 | 4 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
 
 **Structural summary:** Mean anisotropy = **2.48**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 

@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Union
 import time
 import tracemalloc
+import math
 
 import numpy as np
 from numpy.typing import NDArray
@@ -83,6 +84,21 @@ except ImportError:
         class PositionVerlet: pass
         @staticmethod
         def integrate(*args, **kwargs): pass
+
+@dataclass
+class CircadianParams:
+    """Parameters for circadian modulation of curvature coupling.
+
+    Attributes:
+        period: Clock period in seconds (default 24h).
+        amplitude: Relative amplitude of oscillation A (0 to 1).
+        phase: Phase offset phi in radians.
+        gravity_period: External gravity cycle period. If None, matches `period`.
+    """
+    period: float = 24.0 * 3600.0
+    amplitude: float = 0.5
+    phase: float = 0.0
+    gravity_period: Optional[float] = None
 
 @dataclass
 class SimulationResult:
@@ -250,7 +266,8 @@ class CounterCurvatureRodSystem:
         rod: ea.CosseratRod,
         info_field: InfoField1D,
         params: CounterCurvatureParams,
-        active_torques: Optional[ArrayF64] = None
+        active_torques: Optional[ArrayF64] = None,
+        kappa_gen: Optional[ArrayF64] = None
     ):
         self.rod = rod
         self.info_field = info_field
@@ -258,6 +275,7 @@ class CounterCurvatureRodSystem:
         self.n_elements = rod.n_elems
         self.length = np.sum(rod.rest_lengths)
         self.active_torques = active_torques
+        self.kappa_gen = kappa_gen
 
     @classmethod
     def from_iec(
@@ -353,34 +371,40 @@ class CounterCurvatureRodSystem:
             # Apply array anisotropy to bend_matrix[0, 0, :]
             rod.bend_matrix[0, 0, :] *= anisotropy_arr
 
-        # Set rest curvature
-        # kappa_rest is now (3, n_points)
-        kappa_rest = compute_rest_curvature(info, params, kappa_gen if kappa_gen is not None else 0.0)
-
-        # PyElastica stores rest_kappa at Voronoi domains (internal nodes)
-        # We need to map kappa_rest (defined on info.s) to s_internal
-        # We need to interpolate each component: (3, n_points) -> (3, n_elements-1)
+        # Create instance to use update_rest_curvature
+        # We pass kappa_gen=None initially to constructor, then set it.
+        # But we need active_torques first.
         
-        rest_kappa = np.zeros((3, n_elements - 1))
-        for i in range(3):
-            rest_kappa[i, :] = np.interp(s_internal, info.s, kappa_rest[i, :])
-
-        rod.rest_kappa[:] = rest_kappa
-
         # Compute active moments (scalar field on nodes) if chi_M != 0
         active_torques = None
         if params.chi_M != 0.0:
             M_active_nodes = compute_active_moments(info, params)
-
-            # Interpolate to elements (where external torques are applied)
+            # Interpolate to elements
             M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
-
-            # Create torque vector (3, n_elements)
-            # Bending in sagittal plane (x-z) with normal y: torque around y-axis (index 1)
             active_torques = np.zeros((3, n_elements))
             active_torques[1, :] = M_active_elems
 
-        return cls(rod=rod, info_field=info, params=params, active_torques=active_torques)
+        system = cls(rod=rod, info_field=info, params=params, active_torques=active_torques, kappa_gen=kappa_gen)
+
+        # Initial setting of rest curvature
+        system.update_rest_curvature(params)
+
+        return system
+
+    def update_rest_curvature(self, params: CounterCurvatureParams) -> None:
+        """Update the rod's rest curvature based on current parameters."""
+        kappa_gen_val = self.kappa_gen if self.kappa_gen is not None else 0.0
+        kappa_rest = compute_rest_curvature(self.info_field, params, kappa_gen_val)
+
+        s_rod = np.linspace(0, self.length, self.n_elements + 1)
+        s_internal = s_rod[1:-1]
+
+        rest_kappa = np.zeros((3, self.n_elements - 1))
+        for i in range(3):
+            rest_kappa[i, :] = np.interp(s_internal, self.info_field.s, kappa_rest[i, :])
+
+        self.rod.rest_kappa[:] = rest_kappa
+        self.params = params
 
     def __repr__(self) -> str:
         """Return a string representation of the rod system configuration."""
@@ -447,6 +471,7 @@ class CounterCurvatureRodSystem:
         bc_kwargs: Optional[Dict[str, Any]] = None,
         boundary_condition: str = "fixed",
         progress_bar: bool = True,
+        circadian_params: Optional[CircadianParams] = None,
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -488,7 +513,7 @@ class CounterCurvatureRodSystem:
         # Damping
         system.dampen(self.rod).using(ea.AnalyticalLinearDamper, damping_constant=damping_constant, time_step=dt)
 
-        # Callback
+        # Callback for diagnostics
         class CCCallback(ea.CallBackBaseClass):
             def __init__(self, step_skip, results):
                 super().__init__()
@@ -503,6 +528,37 @@ class CounterCurvatureRodSystem:
 
         results = {"time": [], "centerline": [], "kappa": []}
         system.collect_diagnostics(self.rod).using(CCCallback, step_skip=save_every, results=results)
+
+        # Circadian Callback
+        if circadian_params:
+            class CircadianModulationCallback(ea.CallBackBaseClass):
+                def __init__(self, system_wrapper, c_params, step_skip=1):
+                    super().__init__()
+                    self.system_wrapper = system_wrapper
+                    self.c_params = c_params
+                    self.every = step_skip
+                    self.chi_0 = system_wrapper.params.chi_kappa
+
+                def make_callback(self, system, time, current_step):
+                    if current_step % self.every == 0:
+                        # chi_kappa(t) = chi_0 * (1 + A * cos(omega * t + phi))
+                        omega = 2 * math.pi / self.c_params.period
+                        modulation = 1.0 + self.c_params.amplitude * math.cos(omega * time + self.c_params.phase)
+
+                        # Apply to chi_kappa
+                        # We use _replace on named tuple to get new params
+                        new_chi_kappa = self.chi_0 * modulation
+                        new_params = self.system_wrapper.params._replace(chi_kappa=new_chi_kappa)
+
+                        self.system_wrapper.update_rest_curvature(new_params)
+
+            # Update every step for smooth physics
+            system.collect_diagnostics(self.rod).using(
+                CircadianModulationCallback,
+                system_wrapper=self,
+                c_params=circadian_params,
+                step_skip=1
+            )
 
         system.finalize()
         timestepper = ea.PositionVerlet()
@@ -821,4 +877,5 @@ __all__ = [
     "ActiveMuscleTorques",
     "run_protein_simulation",
     "compute_U_CC",
+    "CircadianParams",
 ]

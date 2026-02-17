@@ -15,7 +15,7 @@ Key Concepts:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, TYPE_CHECKING, Type, Dict, Any
+from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Union
 import time
 import tracemalloc
 
@@ -276,7 +276,7 @@ class CounterCurvatureRodSystem:
         base_position: tuple[float, float, float] = (0.0, 0.0, 0.0),
         base_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         normal: tuple[float, float, float] = (0.0, 1.0, 0.0),
-        stiffness_anisotropy: float = 1.0,
+        stiffness_anisotropy: Union[float, ArrayF64] = 1.0,
     ) -> "CounterCurvatureRodSystem":
         _check_pyelastica()
 
@@ -326,8 +326,32 @@ class CounterCurvatureRodSystem:
         # In this setup (d1=X), this resists Sagittal bending (Y-Z plane).
         # bend_matrix[1, 1] corresponds to stiffness about d2 (Binormal).
         # In this setup (d2=Y), this resists Lateral bending (X-Z plane).
-        if stiffness_anisotropy != 1.0:
-            rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
+        # Handle scalar or array anisotropy
+        anisotropy_arr = None
+        if isinstance(stiffness_anisotropy, (float, int)):
+            if stiffness_anisotropy != 1.0:
+                rod.bend_matrix[0, 0, :] *= stiffness_anisotropy
+        else:
+            # Assume array-like
+            aniso = np.asarray(stiffness_anisotropy, dtype=float)
+            if aniso.ndim != 1:
+                raise ValueError("Stiffness anisotropy array must be 1D.")
+
+            # Interpolate to internal nodes (Voronoi domains) if size mismatch
+            # bend_matrix is (3, 3, n_elements - 1)
+            target_size = n_elements - 1
+            if aniso.shape[0] != target_size:
+                # Map input grid (assumed 0 to L) to internal nodes
+                # s_internal defined earlier: midpoints of internal nodes
+                # s_rod is linspace(0, L, n_elements + 1)
+                # s_internal = s_rod[1:-1]
+                s_source = np.linspace(0, length, aniso.shape[0])
+                anisotropy_arr = np.interp(s_internal, s_source, aniso)
+            else:
+                anisotropy_arr = aniso
+
+            # Apply array anisotropy to bend_matrix[0, 0, :]
+            rod.bend_matrix[0, 0, :] *= anisotropy_arr
 
         # Set rest curvature
         # kappa_rest is now (3, n_points)
@@ -361,31 +385,45 @@ class CounterCurvatureRodSystem:
     def __repr__(self) -> str:
         """Return a string representation of the rod system configuration."""
         # Estimate anisotropy from first element's bend matrix if possible
-        anisotropy = 1.0
+        anisotropy_str = "1.0"
         if hasattr(self.rod, "bend_matrix") and self.rod.bend_matrix.shape[2] > 0:
-            # bend_matrix[0,0] / bend_matrix[1,1]
+            # Check if uniform
+            b00 = self.rod.bend_matrix[0, 0, :]
+            b11 = self.rod.bend_matrix[1, 1, :]
             # Avoid division by zero
-            b00 = self.rod.bend_matrix[0, 0, 0]
-            b11 = self.rod.bend_matrix[1, 1, 0]
-            if b11 != 0:
-                anisotropy = b00 / b11
+            ratio = np.zeros_like(b00)
+            mask = b11 != 0
+            ratio[mask] = b00[mask] / b11[mask]
+
+            if np.allclose(ratio, ratio[0]):
+                anisotropy_str = f"{ratio[0]:.2f}"
+            else:
+                anisotropy_str = f"Range[{np.min(ratio):.2f}-{np.max(ratio):.2f}]"
 
         return (
             f"<CounterCurvatureRodSystem elements={self.n_elements} "
             f"length={self.length:.2f} "
             f"chi_kappa={self.params.chi_kappa:.2f} "
-            f"anisotropy={anisotropy:.2f}>"
+            f"anisotropy={anisotropy_str}>"
         )
 
     def get_configuration(self) -> Dict[str, Any]:
         """Return a dictionary of the system configuration for logging."""
-        # Calculate anisotropy again for the dict
-        anisotropy = 1.0
+        # Calculate anisotropy
+        anisotropy_val = 1.0
         if hasattr(self.rod, "bend_matrix") and self.rod.bend_matrix.shape[2] > 0:
-            b00 = self.rod.bend_matrix[0, 0, 0]
-            b11 = self.rod.bend_matrix[1, 1, 0]
-            if b11 != 0:
-                anisotropy = b00 / b11
+            b00 = self.rod.bend_matrix[0, 0, :]
+            b11 = self.rod.bend_matrix[1, 1, :]
+            # Avoid division by zero
+            ratio = np.zeros_like(b00)
+            mask = b11 != 0
+            ratio[mask] = b00[mask] / b11[mask]
+
+            if np.allclose(ratio, ratio[0]):
+                anisotropy_val = float(ratio[0])
+            else:
+                # Return mean if varying, or keep as array? simpler to return mean for scalar field
+                anisotropy_val = float(np.mean(ratio))
 
         return {
             "n_elements": self.n_elements,
@@ -394,7 +432,7 @@ class CounterCurvatureRodSystem:
             "chi_tau": self.params.chi_tau,
             "chi_E": self.params.chi_E,
             "chi_M": self.params.chi_M,
-            "stiffness_anisotropy": anisotropy
+            "stiffness_anisotropy": anisotropy_val
         }
 
     def run_simulation(
@@ -512,7 +550,7 @@ class CounterCurvatureRodSystem:
 
 
 def run_protein_simulation(
-    anisotropy: float,
+    anisotropy: Union[float, ArrayF64],
     active_curvature: float,
     torsion_drive: float = 0.0,
     stiffness_modulation: float = 0.0,
@@ -641,8 +679,13 @@ def run_protein_simulation(
 
     t1 = time.time()
 
+    # Handle array input for anisotropy in output dict
+    anisotropy_out = anisotropy
+    if isinstance(anisotropy, np.ndarray):
+        anisotropy_out = f"Array(mean={np.mean(anisotropy):.2f})"
+
     output = {
-        "input_anisotropy": anisotropy,
+        "input_anisotropy": anisotropy_out,
         "input_active_curvature": active_curvature,
         "mapped_chi_kappa": chi_kappa,
         "mapped_chi_tau": chi_tau,

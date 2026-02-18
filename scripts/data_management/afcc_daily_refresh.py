@@ -96,7 +96,8 @@ def run_pipeline():
     script_analyze = AFCC_SCRIPTS / "04_analyze_metrics.py"
     print(f"\n🚀 Running analysis script: {script_analyze.name}...")
     try:
-        subprocess.check_call([sys.executable, str(script_analyze)])
+        # Pass --force to ensure re-calculation of proxies (Rg, Anisotropy)
+        subprocess.check_call([sys.executable, str(script_analyze), "--force"])
     except subprocess.CalledProcessError as e:
         print(f"❌ Analysis script failed: {e}")
         sys.exit(1)

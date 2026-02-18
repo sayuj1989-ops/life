@@ -6,6 +6,7 @@ Computes geometric and confidence metrics for all downloaded structures.
 """
 
 import sys
+import argparse
 import json
 import numpy as np
 import pandas as pd
@@ -40,7 +41,11 @@ OUTPUT_FILE = DATA_DIR / "processed" / "protein_metrics.csv"
 CANDIDATES_FILE = DATA_DIR / "processed" / "candidates.csv"
 
 def main():
-    print("📏 Analyzing Structural Metrics...")
+    parser = argparse.ArgumentParser(description="Analyze Structural Metrics")
+    parser.add_argument("--force", action="store_true", help="Force re-calculation of metrics (ignore cache)")
+    args = parser.parse_args()
+
+    print(f"📏 Analyzing Structural Metrics... (Force: {args.force})")
 
     if not MANIFEST_FILE.exists():
         print("❌ Manifest not found.")
@@ -70,7 +75,7 @@ def main():
     append_mode = False
     file_cols = []
 
-    if OUTPUT_FILE.exists():
+    if not args.force and OUTPUT_FILE.exists():
         try:
             # First read only headers to check schema stability
             headers = pd.read_csv(OUTPUT_FILE, nrows=0).columns.tolist()
@@ -133,7 +138,7 @@ def main():
 
         # Check freshness
         is_fresh = False
-        if metrics_cache_path.exists():
+        if not args.force and metrics_cache_path.exists():
             try:
                 m_time = metrics_cache_path.stat().st_mtime
                 pdb_time = pdb_path.stat().st_mtime

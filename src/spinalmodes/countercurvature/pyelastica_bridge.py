@@ -615,6 +615,7 @@ def run_protein_simulation(
     length: float = 1.0,
     radius: float = 0.01,
     E0: float = 1e6,
+    rho: float = 1000.0,
     n_elements: int = 50,
     duration: float = 2.0,
     dt: float = 1e-4,
@@ -640,6 +641,7 @@ def run_protein_simulation(
         initial_lateral_defect: Magnitude of initial lateral curvature (perturbation).
         natural_kyphosis: Magnitude of natural sagittal curvature (kyphosis).
         length: Length of the rod (m).
+        rho: Rod density (kg/m^3).
         n_elements: Number of elements in the rod.
         duration: Simulation duration (s).
         dt: Time step (s).
@@ -705,6 +707,7 @@ def run_protein_simulation(
             length=length,
             n_elements=n_elements,
             E0=E0,
+            rho=rho,
             radius=radius,
             kappa_gen=kappa_gen,
             gravity=gravity,
@@ -721,6 +724,13 @@ def run_protein_simulation(
         )
 
         sim_metrics = result.compute_final_metrics()
+
+        # Compute thermodynamic cost metrics
+        energy_metrics = compute_U_CC(
+            result, info, params, gravity=gravity, rho=rho, E0=E0
+        )
+        sim_metrics.update(energy_metrics)
+
         success = True
         error_msg = ""
 

@@ -73,8 +73,8 @@ def run_experiment():
     total_start_time = time.time()
 
     print("-" * 100)
-    print(f"{'Profile':<30} | {'Aniso':<6} | {'Curv':<6} | {'S_lat':<8} | {'Cobb':<8} | {'Time (s)':<8}")
-    print("-" * 100)
+    print(f"{'Profile':<30} | {'Aniso':<6} | {'Curv':<6} | {'S_lat':<8} | {'Cobb':<8} | {'U_CC (J)':<10} | {'Gain':<6} | {'Time (s)':<8}")
+    print("-" * 120)
 
     # Use a small lateral curvature defect to test stability (perturbation)
     # A perfectly straight spine (in X-Z) is an unstable equilibrium if not perturbed.
@@ -114,11 +114,13 @@ def run_experiment():
             f"{params['active_curvature']:<6.2f} | "
             f"{sim_out.get('S_lat', 0):<8.4f} | "
             f"{sim_out.get('cobb_angle', 0):<8.2f} | "
+            f"{sim_out.get('U_CC', 0):<10.2e} | "
+            f"{sim_out.get('info_gain_ratio', 0):<6.2f} | "
             f"{sim_out.get('runtime_sec', 0):<8.4f}"
         )
 
     total_time = time.time() - total_start_time
-    print("-" * 100)
+    print("-" * 120)
     print(f"Experiment completed in {total_time:.2f}s")
 
     # Save CSV
@@ -155,8 +157,8 @@ def generate_markdown_report(filepath, results, total_time):
         f.write(f"- **Peak Memory Usage:** {max_mem:.2f} MB\n\n")
 
         f.write("## Results\n\n")
-        f.write("| Profile | Anisotropy | Active Curvature | S_lat | Cobb Angle (deg) | Max Torsion |\n")
-        f.write("|---|---|---|---|---|---|\n")
+        f.write("| Profile | Anisotropy | Active Curvature | S_lat | Cobb Angle (deg) | Max Torsion | U_CC (J) | Info Gain |\n")
+        f.write("|---|---|---|---|---|---|---|---|\n")
 
         for r in results:
             name = r['profile_name']
@@ -165,8 +167,10 @@ def generate_markdown_report(filepath, results, total_time):
             s_lat = r.get('S_lat', 0.0)
             cobb = r.get('cobb_angle', 0.0)
             tor = r.get('max_torsion', 0.0)
+            u_cc = r.get('U_CC', 0.0)
+            gain = r.get('info_gain_ratio', 0.0)
 
-            f.write(f"| {name} | {aniso:.2f} | {curv:.2f} | {s_lat:.4f} | {cobb:.2f} | {tor:.4f} |\n")
+            f.write(f"| {name} | {aniso:.2f} | {curv:.2f} | {s_lat:.4f} | {cobb:.2f} | {tor:.4f} | {u_cc:.2e} | {gain:.2f} |\n")
 
 if __name__ == "__main__":
     run_experiment()

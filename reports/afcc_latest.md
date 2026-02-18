@@ -266,6 +266,11 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Top Mover**: POC5 remains the most anisotropic structure in this batch.
 
 
+# AFCC Daily Refresh: 2026-02-18
+
+## Run Summary
+- **Candidates Processed**: 58
+- **Top Candidate**: POC5 (Anisotropy: 24.69)
 # AFCC Daily Refresh: 2026-02-17
 
 ## Run Summary
@@ -275,6 +280,16 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 ## Top 5 High-Anisotropy Structures
 | Gene | Anisotropy | pLDDT (Mean) | Morphology |
 |------|------------|--------------|------------|
+| POC5 | 24.69 | 64.0 | Fibrous/Extended |
+| CDH23 | 11.93 | 76.7 | Fibrous/Extended |
+| ETV1 | 5.32 | 67.9 | Fibrous/Extended |
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| LMNA | 4.75 | 76.4 | Fibrous/Extended |
+
+## Key Observations
+- **Tension Rods**: Found 8 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 24 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: POC5 remains the most anisotropic structure in this batch.
 | GHR | 5.13 | 58.7 | Fibrous/Extended |
 | ARNTL | 3.32 | 65.5 | Fibrous/Extended |
 | DAG1 | 2.39 | 68.2 | Intermediate |

@@ -22,6 +22,7 @@ from datetime import datetime
 from typing import List, Dict, Tuple, Optional, Any
 
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.spatial import cKDTree
 import pandas as pd
@@ -44,6 +45,17 @@ class NumpyEncoder(json.JSONEncoder):
         return super(NumpyEncoder, self).default(obj)
 
 # Constants
+TARGET_PROTEINS = [
+    "PIEZO1", "PIEZO2", "COL1A1", "COL2A1", "YAP1", "TRPV4",
+    "RUNX2", "SOX9", "VINCULIN", "TALIN1", "NOTCH1", "FIBRONECTIN",
+    "PPARGC1A", "IGF1R", "GHR", "ARNTL", "DMD", "MYLK"
+]
+# Charged residues for surface metrics
+CHARGED_RESIDUES = {'ARG', 'LYS', 'ASP', 'GLU', 'HIS', 'R', 'K', 'D', 'E', 'H'}
+
+DEFAULT_PDB_DIR = Path("archive/alphafold_analysis_legacy/predictions")
+MANIFEST_PATH = Path("research/alphafold_countercurvature/data/manifest.csv")
+DEFAULT_OUTPUT_DIR = Path("outputs/bolt_biofold_analysis")
 DEFAULT_SEED_LIST = ["PIEZO1", "PIEZO2", "LBX1", "FBN1", "YAP1", "IFT88", "ITGB1"]
 CHARGED_RESIDUES = {'ARG', 'LYS', 'ASP', 'GLU', 'HIS', 'R', 'K', 'D', 'E', 'H'}
 
@@ -525,6 +537,54 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     figures_dir.mkdir(parents=True, exist_ok=True)
 
+    print(f"Starting Bolt-BioFold Analysis on targets in {pdb_dir}...")
+
+    # Load manifest if available to resolve paths
+    manifest_map = {}
+    if MANIFEST_PATH.exists():
+        print(f"Loading manifest from {MANIFEST_PATH}...")
+        try:
+            df = pd.read_csv(MANIFEST_PATH)
+            # Create map: gene_symbol -> pdb_path
+            # Filter for downloaded
+            downloaded = df[df['status'].isin(['downloaded', 'cached'])]
+            for _, row in downloaded.iterrows():
+                gene = row['gene_symbol']
+                path_str = row['pdb_path']
+                if gene and path_str:
+                     manifest_map[gene] = Path(path_str)
+            print(f"Loaded {len(manifest_map)} entries from manifest.")
+        except Exception as e:
+            print(f"Warning: Failed to load manifest: {e}")
+
+    if not any(pdb_dir.iterdir()) and not manifest_map: # Crude check
+        print("Using Default Seed List as no input queue provided.")
+    else:
+        print("Using Default Seed List for targeted analysis.")
+
+    results = []
+
+    for pid in TARGET_PROTEINS:
+        pdb_file = None
+
+        # Try manifest first
+        if pid in manifest_map:
+             pdb_file = manifest_map[pid]
+             # Ensure path is relative to CWD if it was relative in manifest
+             if not pdb_file.exists():
+                 print(f"Warning: Manifest path for {pid} does not exist: {pdb_file}")
+                 pdb_file = None
+
+        # Fallback to default dir
+        if not pdb_file:
+             pdb_file = pdb_dir / f"{pid}.pdb"
+
+        if not pdb_file.exists():
+            print(f"Warning: {pdb_file} not found (Manifest or Legacy). Skipping {pid}.")
+            continue
+
+        print(f"Processing {pid} from {pdb_file}...")
+        res = analyze_protein(pdb_file, force=args.force)
     # 1. Determine Targets
     targets = args.targets
     if not targets:

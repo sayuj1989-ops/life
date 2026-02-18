@@ -90,7 +90,7 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **COMP** | P49747 | 1.72 | Intermediate | 31.9 | 88.1 | 757 | 6 | L (disc height x number) | Cartilage oligomeric matrix protein; disc ECM maintenance |
 | **IGF1R** | P08069 | 1.43 | Globular | 43.2 | 78.0 | 1367 | 35 | L (receptor density) | Insulin-like growth factor 1 receptor; mediates growth plate signaling |
 
-**Structural summary:** Mean anisotropy = **2.47**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
+**Structural summary:** Mean anisotropy = **2.48**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
 ### Thermodynamic Predictions
 

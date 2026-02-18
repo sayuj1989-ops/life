@@ -42,34 +42,34 @@
 
 % Data source: outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv
 \begin{table}[h!]
-  \centering
-  \caption{List of thermodynamic cost proteins ($n=16$) grouped by dissipation term ($\eta_p, \eta_a, \Gamma_m$) and characterized by AlphaFold structural metrics. The anisotropy ratio and morphology indicate the structural cost of maintaining orientation (vector sensing) vs. volume (scalar maintenance). The free energy dissipation functional is defined in Eq.~\ref{eq:dissipation}.}
-  \label{tab:thermodynamic_cost_proteins}
-  \scriptsize
-  \begin{tabular}{llcclllc}
-    \toprule
-    \textbf{Gene} & \textbf{UniProt} & \textbf{Dissipation Term} & \textbf{Anisotropy} & \textbf{Morphology} & \textbf{pLDDT} & \textbf{Residues} & \textbf{L-Scaling} \\
-    \midrule
-    PIEZO2 & Q9H5I5 & $\eta_{p}$ & 4.44 & Fibrous/Extended & 79.4 & 709 & $L$ \\
-    PIEZO1 & Q92508 & $\eta_{p}$ & 3.90 & Fibrous/Extended & 72.0 & 2521 & $L^2$ \\
-    EGR3 & Q06889 & $\eta_{p}$ & 3.76 & Fibrous/Extended & 50.0 & 387 & $L$ \\
-    \midrule
-    VIM & P08670 & $\eta_{a}$ & 7.47 & Fibrous/Extended & 77.1 & 466 & $L^3$ \\
-    LMNA & P02545 & $\eta_{a}$ & 4.75 & Fibrous/Extended & 76.4 & 664 & $L^2$ \\
-    CAV1 & Q03135 & $\eta_{a}$ & 3.98 & Fibrous/Extended & 78.4 & 178 & $L^2$ \\
-    FLNA & P21333 & $\eta_{a}$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
-    LBX1 & P52954 & $\eta_{a}$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
-    MYLK & Q15746 & $\eta_{a}$ & 1.46 & Globular & 65.8 & 1914 & $L^2$ \\
-    DMD & P11532 & $\eta_{a}$ & 1.32 & Globular & 76.3 & 525 & $L^3$ \\
-    \midrule
-    GHR & P10912 & $\Gamma_{m}$ & 5.13 & Fibrous/Extended & 58.7 & 638 & $L$ \\
-    ARNTL & O00327 & $\Gamma_{m}$ & 3.32 & Fibrous/Extended & 65.5 & 626 & $L$ \\
-    COL1A1 & P02452 & $\Gamma_{m}$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
-    SOX9 & P48436 & $\Gamma_{m}$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
-    PPARGC1A & Q9UBK2 & $\Gamma_{m}$ & 2.19 & Intermediate & 52.7 & 798 & $L$ \\
-    IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & 1367 & $L$ \\
-    \bottomrule
-  \end{tabular}
+\centering
+\caption{List of thermodynamic cost proteins ($n=16$) grouped by dissipation term ($\eta_p, \eta_a, \Gamma_m$) and characterized by AlphaFold structural metrics. The anisotropy ratio and morphology indicate the structural cost of maintaining orientation (vector sensing) vs. volume (scalar maintenance). The free energy dissipation functional is defined in Eq.~\ref{eq:dissipation}. This table lists the 16 key proteins analyzed in this study, prioritizing high-confidence metabolic targets (Score 100) identified in the counter-curvature pipeline.}
+\label{tab:thermodynamic_cost_proteins}
+\scriptsize
+\begin{tabular}{llcclllc}
+\toprule
+\textbf{Gene} & \textbf{UniProt} & \textbf{Dissipation Term} & \textbf{Anisotropy} & \textbf{Morphology} & \textbf{pLDDT} & \textbf{Residues} & \textbf{L-Scaling} \\
+\midrule
+PIEZO2 & Q9H5I5 & $\eta_{p}$ & 4.44 & Fibrous/Extended & 79.4 & 709 & $L$ \\
+PIEZO1 & Q92508 & $\eta_{p}$ & 3.90 & Fibrous/Extended & 72.0 & 2521 & $L^2$ \\
+EGR3 & Q06889 & $\eta_{p}$ & 3.76 & Fibrous/Extended & 50.0 & 387 & $L$ \\
+RUNX3 & Q13761 & $\eta_{p}$ & 2.06 & Intermediate & 60.6 & 415 & $L$ \\
+NTRK3 & Q16288 & $\eta_{p}$ & 1.94 & Intermediate & 76.8 & 839 & $L$ \\
+\midrule
+LMNA & P02545 & $\eta_{a}$ & 4.75 & Fibrous/Extended & 76.4 & 664 & $L^2$ \\
+FLNA & P21333 & $\eta_{a}$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
+LBX1 & P52954 & $\eta_{a}$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
+MYLK & Q15746 & $\eta_{a}$ & 1.46 & Globular & 65.8 & 1914 & $L^2$ \\
+DMD & P11532 & $\eta_{a}$ & 1.32 & Globular & 76.3 & 525 & $L^3$ \\
+\midrule
+GHR & P10912 & $\Gamma_{m}$ & 5.13 & Fibrous/Extended & 58.7 & 638 & $L$ \\
+ARNTL & O00327 & $\Gamma_{m}$ & 3.32 & Fibrous/Extended & 65.5 & 626 & $L$ \\
+COL1A1 & P02452 & $\Gamma_{m}$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
+PPARGC1A & Q9UBK2 & $\Gamma_{m}$ & 2.19 & Intermediate & 52.7 & 798 & $L$ \\
+SOX9 & P48436 & $\Gamma_{m}$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
+IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & 1367 & $L$ \\
+\bottomrule
+\end{tabular}
 \end{table}
 
 \begin{table}[h!]

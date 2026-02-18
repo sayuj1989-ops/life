@@ -116,7 +116,8 @@ def run_simulation():
             )
 
             # Compute P_counter
-            # P_counter ~ eta_a * rho * A * g * L^2 * mean(|kappa_active - kappa_passive|^2)
+            # From IEC theory (Eq. 11): P_counter ~ eta_a * rho * A * g * L^2 * <|kappa_active - kappa_passive|^2>
+            # Here we assume eta_a = 1.0 (dimensionless coefficient)
             mse_kappa = np.mean((kappa_active - kappa_passive)**2)
             P_counter = 1.0 * RHO * A_val * G_GRAVITY * (L**2) * mse_kappa
 

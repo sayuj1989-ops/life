@@ -5,7 +5,7 @@
 **Hypothesis:** `H_2026_02_08_EnergyPhase`
 
 ## Summary
-We performed a 2D parameter sweep of the Information-Elasticity Coupling (IEC) strength ($\chi_\kappa$) and spinal length ($L$) to map the "Energy Deficit Window" where metabolic demand for posture maintenance ($P_{counter}$) exceeds the proprioceptive supply capacity ($S_{proprio}$).
+This weekly simulation performed a 2D parameter sweep of the Information-Elasticity Coupling (IEC) strength ($\chi_\kappa$) and spinal length ($L$) to map the "Energy Deficit Window" where metabolic demand for posture maintenance ($P_{counter}$) exceeds the proprioceptive supply capacity ($S_{proprio}$).
 
 ## Key Findings
 

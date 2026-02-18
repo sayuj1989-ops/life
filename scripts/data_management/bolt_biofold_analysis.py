@@ -538,6 +538,8 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     figures_dir.mkdir(parents=True, exist_ok=True)
 
+    pdb_dir = DEFAULT_PDB_DIR
+    pdb_dir.mkdir(parents=True, exist_ok=True)
     print(f"Starting Bolt-BioFold Analysis on targets in {pdb_dir}...")
 
     # Load manifest if available to resolve paths
@@ -563,29 +565,6 @@ def main():
     else:
         print("Using Default Seed List for targeted analysis.")
 
-    results = []
-
-    for pid in TARGET_PROTEINS:
-        pdb_file = None
-
-        # Try manifest first
-        if pid in manifest_map:
-             pdb_file = manifest_map[pid]
-             # Ensure path is relative to CWD if it was relative in manifest
-             if not pdb_file.exists():
-                 print(f"Warning: Manifest path for {pid} does not exist: {pdb_file}")
-                 pdb_file = None
-
-        # Fallback to default dir
-        if not pdb_file:
-             pdb_file = pdb_dir / f"{pid}.pdb"
-
-        if not pdb_file.exists():
-            print(f"Warning: {pdb_file} not found (Manifest or Legacy). Skipping {pid}.")
-            continue
-
-        print(f"Processing {pid} from {pdb_file}...")
-        res = analyze_protein(pdb_file, force=args.force)
     # 1. Determine Targets
     targets = args.targets
     if not targets:
@@ -660,7 +639,7 @@ def main():
     with open(csv_path, 'w', newline='') as f:
         # Define field order
         fieldnames = [
-            "gene_symbol", "uniprot_id", "length",
+            "protein_id", "gene_symbol", "uniprot_id", "species", "length",
             "pLDDT_mean", "pLDDT_median", "pLDDT_fraction_high", "pLDDT_fraction_ok", "pLDDT_fraction_low",
             "PAE_mean", "PAE_domain_blockiness_score",
             "predicted_domain_segments", "disorder_fraction_proxy", "hinge_candidates",

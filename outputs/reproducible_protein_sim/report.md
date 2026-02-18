@@ -1,10 +1,10 @@
 # Reproducible Protein-Driven Simulation Report
 
-**Date:** 2026-02-18 13:15:25
+**Date:** 2026-02-18 14:08:43
 
 ## Summary
-- **Total Experiment Time:** 30.25 s
-- **Average Simulation Time:** 6.0500 s
+- **Total Experiment Time:** 32.76 s
+- **Average Simulation Time:** 6.5510 s
 - **Peak Memory Usage:** 15.52 MB
 
 ## Results

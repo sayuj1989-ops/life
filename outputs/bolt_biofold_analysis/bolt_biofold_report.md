@@ -1,6 +1,6 @@
 # Bolt-BioFold Analysis Report
 
-**Date:** 2026-02-16 19:19:55
+**Date:** 2026-02-18 03:50:05
 **Source:** Local AlphaFold Predictions (Default Seed List)
 **Code Version:** Bolt-BioFold 2.0 (Surface Metrics Added)
 
@@ -8,11 +8,11 @@
 
 | Protein | Anisotropy | Rg (A) | Curvature | pLDDT | Domains | Surface (Exposed) | Charge Score |
 |---|---|---|---|---|---|---|---|
-| PIEZO1 | 15.18 | 58.9 | 0.135 | 72.0 | 35 | 1094 | 0.22 |
-| PIEZO2 | 19.72 | 43.4 | 0.132 | 79.4 | 7 | 459 | 0.22 |
-| COL1A1 | 7.82 | 23.5 | 0.226 | 52.7 | 3 | 181 | 0.30 |
+| Q92508 | 15.18 | 58.9 | 0.135 | 72.0 | 35 | 1094 | 0.22 |
+| Q9H5I5 | 19.72 | 43.4 | 0.132 | 79.4 | 7 | 459 | 0.22 |
+| P02452 | 7.82 | 23.5 | 0.226 | 52.7 | 3 | 181 | 0.30 |
 | COL2A1 | 7.02 | 25.0 | 0.226 | 52.1 | 3 | 187 | 0.30 |
-| YAP1 | 3.96 | 23.6 | 0.219 | 57.4 | 5 | 124 | 0.27 |
+| P46937 | 3.96 | 23.6 | 0.219 | 57.4 | 5 | 124 | 0.27 |
 | TRPV4 | 8.61 | 35.4 | 0.163 | 71.6 | 8 | 413 | 0.26 |
 | RUNX2 | 10.04 | 22.4 | 0.181 | 59.5 | 2 | 117 | 0.24 |
 | SOX9 | 4.79 | 16.6 | 0.121 | 56.0 | 1 | 70 | 0.46 |
@@ -20,42 +20,68 @@
 | TALIN1 | 4.18 | 56.9 | 0.133 | 75.9 | 51 | 950 | 0.36 |
 | NOTCH1 | 4.18 | 51.4 | 0.213 | 59.6 | 12 | 460 | 0.28 |
 | FIBRONECTIN | 5.98 | 55.1 | 0.182 | 69.7 | 49 | 1034 | 0.25 |
+| Q9UBK2 | 4.77 | 31.2 | 0.148 | 52.7 | 4 | 147 | 0.47 |
+| P08069 | 2.04 | 43.2 | 0.180 | 78.0 | 16 | 614 | 0.31 |
+| P10912 | 26.34 | 31.4 | 0.181 | 58.7 | 3 | 159 | 0.24 |
+| O00327 | 11.02 | 32.1 | 0.166 | 65.5 | 7 | 224 | 0.36 |
+| P11532 | 1.73 | 22.8 | 0.174 | 76.3 | 2 | 239 | 0.35 |
+| Q15746 | 2.14 | 41.5 | 0.184 | 65.8 | 28 | 819 | 0.31 |
 
 ## Interpretation
 
-### PIEZO1
+### Q92508
+**Date:** 2026-02-17 19:28:30
+**Source:** AlphaFold DB (Default Seed List)
+**Code Version:** Bolt-BioFold 2.1 (PAE Integration)
+
+## Results Summary
+
+| Gene | Anisotropy | Rg (A) | Curvature | pLDDT | Domains | PAE Blockiness | Surface | Charge |
+|---|---|---|---|---|---|---|---|---|
+| PIEZO1 | 15.18 | 58.9 | 0.135 | 72.0 | 24 | 14.6 | 1094 | 0.22 |
+| PIEZO2 | 19.72 | 43.4 | 0.132 | 79.4 | 5 | 9.5 | 459 | 0.22 |
+| LBX1 | 5.14 | 22.7 | 0.121 | 66.9 | 1 | 0.0 | 107 | 0.35 |
+| YAP1 | 3.96 | 23.6 | 0.219 | 57.4 | 3 | 22.1 | 124 | 0.27 |
+| IFT88 | 7.86 | 38.3 | 0.185 | 76.3 | 3 | 8.2 | 360 | 0.40 |
+| ITGB1 | 10.43 | 45.8 | 0.192 | 85.9 | 9 | 15.9 | 433 | 0.32 |
+
+## Interpretation
+
+### PIEZO1 (Q92508)
 **What we see:**
 - Geometry: Anisotropy 15.18, Rg 58.9A.
 - Curvature: High mean curvature (0.135) with hotspots at 2217-2217 (k=3.16); 2312-2312 (k=3.09); 2364-2364 (k=1.89).
 - Surface: 1094 exposed residues with charge score 0.22.
+- PAE: Mean 22.7, Blockiness 14.6.
 - Flexibility: Potential hinges at 2-7; 9-11; 23-30; 47-53; 55-58; 75-78; 81-88; 90-95; 98-104; 110-115; 118-120; 233-242; 266-272; 294-299; 306-309; 413-416; 430-432; 434-440; 453-460; 462-464; 486-488; 493-500; 509-513; 515-517; 560-563; 566-573; 593-596; 616-620; 648-654; 674-682; 684-686; 697-699; 707-709; 787-789; 875-877; 887-895; 922-925; 953-957; 1071-1075; 1133-1141; 1239-1245; 1259-1263; 1266-1273; 1445-1455; 1505-1517; 1554-1558; 1567-1570; 1721-1723; 1759-1761; 1763-1765; 1777-1780; 1920-1922; 1981-1984; 1987-1995; 2053-2055; 2289-2291; 2293-2295; 2311-2314; 2330-2344; 2395-2397; 2409-2414.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
-- Ion channel architecture critical for mechanotransduction.
 **Confidence:** HIGH. (Reliable backbone geometry).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
-### PIEZO2
+### Q9H5I5
+### PIEZO2 (Q9H5I5)
 **What we see:**
 - Geometry: Anisotropy 19.72, Rg 43.4A.
 - Curvature: High mean curvature (0.132) with hotspots at 403-403 (k=2.78); 498-498 (k=2.62); 551-552 (k=1.73).
 - Surface: 459 exposed residues with charge score 0.22.
+- PAE: Mean 17.0, Blockiness 9.5.
 - Flexibility: Potential hinges at 100-103; 173-183; 378-381; 498-500; 528-532; 578-582; 593-602; 616-618.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
-- Ion channel architecture critical for mechanotransduction.
 **Confidence:** HIGH. (Reliable backbone geometry).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
-### COL1A1
+### P02452
+### LBX1 (P52954)
 **What we see:**
-- Geometry: Anisotropy 7.82, Rg 23.5A.
-- Curvature: High mean curvature (0.226) with hotspots at 64-64 (k=2.94); 1280-1280 (k=2.51); 1293-1293 (k=2.48).
-- Surface: 181 exposed residues with charge score 0.30.
-- Flexibility: Potential hinges at 77-88; 1218-1220; 1222-1224; 1317-1319.
+- Geometry: Anisotropy 5.14, Rg 22.7A.
+- Curvature: High mean curvature (0.121) with hotspots at 159-159 (k=0.85); 195-195 (k=0.26); 143-144 (k=0.26).
+- Surface: 107 exposed residues with charge score 0.35.
+- PAE: Mean 25.1, Blockiness 0.0.
+- Flexibility: Potential hinges at 105-107; 197-199.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
-- ECM component defining tissue stiffness and elasticity.
 **Confidence:** LOW. (Caution: IDRs or poor prediction).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
@@ -71,15 +97,16 @@
 **Confidence:** LOW. (Caution: IDRs or poor prediction).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
-### YAP1
+### P46937
+### YAP1 (P46937)
 **What we see:**
 - Geometry: Anisotropy 3.96, Rg 23.6A.
 - Curvature: High mean curvature (0.219) with hotspots at 251-251 (k=2.60); 192-192 (k=2.53); 241-242 (k=1.79).
 - Surface: 124 exposed residues with charge score 0.27.
+- PAE: Mean 27.5, Blockiness 22.1.
 - Flexibility: Potential hinges at 49-51; 66-68; 70-78; 266-268; 330-332; 336-338.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
-- Nuclear factor whose transport/activity is regulated by mechanical signals.
 **Confidence:** LOW. (Caution: IDRs or poor prediction).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
@@ -107,36 +134,25 @@
 **Confidence:** LOW. (Caution: IDRs or poor prediction).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
-### SOX9
+### IFT88 (Q13099)
 **What we see:**
-- Geometry: Anisotropy 4.79, Rg 16.6A.
-- Curvature: High mean curvature (0.121) with hotspots at 124-125 (k=0.41); 166-166 (k=0.33); 131-131 (k=0.25).
-- Surface: 70 exposed residues with charge score 0.46.
-- Flexibility: Potential hinges at 73-78; 99-102; 269-275; 277-280.
-**Why it matters:**
-- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
-- Nuclear factor whose transport/activity is regulated by mechanical signals.
-- High surface charge density suggests strong electrostatic interaction potential (e.g., with charged ECM components or DNA).
-**Confidence:** LOW. (Caution: IDRs or poor prediction).
-**Next test:** Simulate dynamics of hinge regions under tensile load.
-
-### VINCULIN
-**What we see:**
-- Geometry: Anisotropy 3.03, Rg 33.2A.
-- Curvature: High mean curvature (0.138) with hotspots at 30-30 (k=0.73); 685-685 (k=0.65); 807-807 (k=0.64).
-- Surface: 578 exposed residues with charge score 0.38.
-- Flexibility: Potential hinges at 216-220; 862-866; 1005-1010; 1074-1081; 1117-1120.
+- Geometry: Anisotropy 7.86, Rg 38.3A.
+- Curvature: High mean curvature (0.185) with hotspots at 391-391 (k=1.48); 445-445 (k=0.70); 650-650 (k=0.65).
+- Surface: 360 exposed residues with charge score 0.40.
+- PAE: Mean 19.4, Blockiness 8.2.
+- Flexibility: Potential hinges at 28-34; 41-43; 183-186; 226-230; 347-353; 355-357.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
 **Confidence:** HIGH. (Reliable backbone geometry).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 
-### TALIN1
+### ITGB1 (P05556)
 **What we see:**
-- Geometry: Anisotropy 4.18, Rg 56.9A.
-- Curvature: High mean curvature (0.133) with hotspots at 362-362 (k=2.83); 10-10 (k=2.81); 333-333 (k=2.66).
-- Surface: 950 exposed residues with charge score 0.36.
-- Flexibility: Potential hinges at 10-12; 35-37; 40-45; 53-56; 117-123; 158-164; 185-187; 199-209; 224-228; 318-320; 340-344; 352-355; 361-363; 369-372; 522-531; 561-568; 598-602; 627-631; 655-659; 727-729; 784-787; 840-842; 844-853; 877-881; 948-950; 974-981; 1004-1006; 1008-1017; 1105-1114; 1142-1146; 1170-1182; 1200-1203; 1220-1224; 1232-1235; 1237-1239; 1259-1265; 1289-1298; 1321-1332; 1347-1349; 1358-1361; 1376-1378; 1382-1386; 1448-1452; 1466-1468; 1476-1488; 1509-1522; 1542-1555; 1573-1575; 1589-1593; 1620-1628; 1721-1724; 1750-1754; 1782-1790; 1815-1820; 1905-1910; 1937-1945; 2036-2042; 2068-2072; 2101-2112; 2161-2165; 2193-2199; 2224-2230; 2257-2264; 2288-2290; 2302-2304; 2367-2372; 2410-2417; 2439-2451.
+- Geometry: Anisotropy 10.43, Rg 45.8A.
+- Curvature: High mean curvature (0.192) with hotspots at 614-614 (k=2.81); 532-532 (k=2.71); 448-448 (k=2.69).
+- Surface: 433 exposed residues with charge score 0.32.
+- PAE: Mean 18.2, Blockiness 15.9.
+- Flexibility: Potential hinges at 54-57; 97-106; 207-209; 361-363; 505-509; 531-533; 540-544; 600-603; 680-685; 695-697; 707-710.
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
 **Confidence:** HIGH. (Reliable backbone geometry).
@@ -162,6 +178,73 @@
 **Why it matters:**
 - High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
 - ECM component defining tissue stiffness and elasticity.
+**Confidence:** LOW. (Caution: IDRs or poor prediction).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### Q9UBK2
+**What we see:**
+- Geometry: Anisotropy 4.77, Rg 31.2A.
+- Curvature: High mean curvature (0.148) with hotspots at 711-711 (k=1.92); 103-103 (k=0.44); 697-698 (k=0.43).
+- Surface: 147 exposed residues with charge score 0.47.
+- Flexibility: Potential hinges at 44-47; 100-105; 142-144; 381-385; 711-713; 736-742; 750-752.
+**Why it matters:**
+- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
+- High surface charge density suggests strong electrostatic interaction potential (e.g., with charged ECM components or DNA).
+**Confidence:** LOW. (Caution: IDRs or poor prediction).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### P08069
+**What we see:**
+- Geometry: Anisotropy 2.04, Rg 43.2A.
+- Curvature: High mean curvature (0.180) with hotspots at 1071-1071 (k=3.03); 871-871 (k=2.88); 501-501 (k=2.84).
+- Surface: 614 exposed residues with charge score 0.31.
+- Flexibility: Potential hinges at 64-68; 184-188; 196-199; 287-290; 314-316; 333-335; 342-344; 364-371; 513-517; 539-542; 586-591; 708-710; 723-725; 871-873; 954-956; 1005-1009; 1037-1041; 1095-1100; 1184-1186.
+**Why it matters:**
+- Mixed geometry suggests a multifunctional role.
+**Confidence:** HIGH. (Reliable backbone geometry).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### P10912
+**What we see:**
+- Geometry: Anisotropy 26.34, Rg 31.4A.
+- Curvature: High mean curvature (0.181) with hotspots at 199-199 (k=2.69); 164-164 (k=2.50); 235-235 (k=1.98).
+- Surface: 159 exposed residues with charge score 0.24.
+- Flexibility: Potential hinges at 89-94; 289-292; 312-315; 317-319.
+**Why it matters:**
+- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
+**Confidence:** LOW. (Caution: IDRs or poor prediction).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### O00327
+**What we see:**
+- Geometry: Anisotropy 11.02, Rg 32.1A.
+- Curvature: High mean curvature (0.166) with hotspots at 346-346 (k=3.16); 164-164 (k=1.97); 408-409 (k=1.91).
+- Surface: 224 exposed residues with charge score 0.36.
+- Flexibility: Potential hinges at 55-57; 146-148; 219-224; 328-332.
+**Why it matters:**
+- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.
+**Confidence:** LOW. (Caution: IDRs or poor prediction).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### P11532
+**What we see:**
+- Geometry: Anisotropy 1.73, Rg 22.8A.
+- Curvature: High mean curvature (0.174) with hotspots at 261-261 (k=2.08); 246-246 (k=1.76); 158-158 (k=0.72).
+- Surface: 239 exposed residues with charge score 0.35.
+- Flexibility: Potential hinges at 6-10; 293-300; 313-317; 350-355; 372-378; 495-500.
+**Why it matters:**
+- Mixed geometry suggests a multifunctional role.
+**Confidence:** HIGH. (Reliable backbone geometry).
+**Next test:** Simulate dynamics of hinge regions under tensile load.
+
+### Q15746
+**What we see:**
+- Geometry: Anisotropy 2.14, Rg 41.5A.
+- Curvature: High mean curvature (0.184) with hotspots at 491-491 (k=3.14); 1530-1530 (k=3.07); 1484-1484 (k=2.87).
+- Surface: 819 exposed residues with charge score 0.31.
+- Flexibility: Potential hinges at 57-60; 74-76; 83-86; 110-112; 185-188; 196-199; 201-204; 211-214; 235-239; 425-428; 453-455; 465-467; 538-541; 561-563; 587-589; 633-637; 665-667; 683-687; 699-701; 744-747; 757-765; 772-774; 798-800; 914-916; 1139-1142; 1273-1275; 1372-1374; 1470-1474; 1496-1501; 1595-1597; 1621-1623; 1664-1667; 1834-1836; 1859-1862; 1886-1888.
+**Why it matters:**
+- Mixed geometry suggests a multifunctional role.
 **Confidence:** LOW. (Caution: IDRs or poor prediction).
 **Next test:** Simulate dynamics of hinge regions under tensile load.
 

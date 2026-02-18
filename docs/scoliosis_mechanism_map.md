@@ -492,3 +492,25 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Sun, X., et al. (2020). Dstyk mutation leads to congenital scoliosis-like vertebral malformations in zebrafish via dysregulated mTORC1/TFEB pathway. Nature Communications, 11(1), 479.* https://doi.org/10.1038/s41467-019-14169-z
+
+---
+
+### 29. The Piezo-Cilia Stress Lock
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Ciliary_Tuning` (Disassembly) and `Ciliary_Tuning` $\rightarrow$ `Osteogenesis`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Channel), `Ciliary_Tuning` (Antenna Length/Stability).
+*   **Mechanism**: **Stress-Induced Disassembly**.
+    1.  **Overload**: High compressive stress activates Piezo1 channels localized to the primary cilium.
+    2.  **Calcium Flood**: This triggers a massive influx of Calcium ($Ca^{2+}$) into the ciliary compartment.
+    3.  **Disassembly**: The calcium surge destabilizes the axoneme, causing the primary cilium to shorten or disassemble completely.
+    4.  **Osteogenic Derepression**: The primary cilium normally represses osteogenic differentiation (via Gli3 repressor). Its loss "unlocks" the osteogenic program.
+*   **Property**: **Feedback Gain ($G_{mech}$)** and **Tissue Mineral Density (TMD)**.
+*   **Role**: **The Kill Switch**. This mechanism explains why "Compression leads to Bone." The sensor (cilium) is designed to be destroyed by high loads, converting a "Soft/Sensing" cell into a "Hard/Structural" cell.
+    *   **The Trap**: In scoliosis, asymmetric compression on the concave side constantly destroys cilia, locking those cells into a permanent bone-forming state (Heuter-Volkmann effect), while the convex side remains soft.
+*   **Evidence**: Chen et al. (2025) demonstrated that pharmacological blockade of Piezo1 (GsMTx4) prevents stress-induced ciliary disassembly and halts premature ossification in growth plate chondrocytes.
+
+> **Hypothesis**: The **Counter-Curvature** response fails because the concave side is deaf. Having lost its "ears" (cilia), it can only "harden" (scalar response) rather than "steer" (vector response), preventing the active realignment required to oppose gravity.
+
+**Citations**:
+*   *Chen, F., et al. (2025). PIEZO1-Primary Cilia Axis Mediates Compressive Stress-Induced Growth Plate Degeneration and Ossification in Adolescent Idiopathic Scoliosis. JOR Spine, 8(4), e70133.* https://doi.org/10.1002/jsp2.70133

@@ -53,5 +53,5 @@ This document tracks the daily incremental refactor of the repository towards pu
 ## Phase 6: Reproducibility & QA (High Priority)
 
 - [x] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
-- [ ] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
+- [x] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
 - [ ] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).

@@ -17,32 +17,34 @@ features (anisotropy, stiffness proxies) relevant to axial support in gravity en
 ## Usage
 
 ### 1. Setup
+Ensure you have activated the repository's virtual environment and installed dependencies:
+
 ```bash
-./setup_pipeline.sh
 source .venv/bin/activate
+pip install -r research/alphafold_countercurvature/requirements.txt
 ```
 
 ### 2. Run Pipeline
-The pipeline consists of numbered scripts in `scripts/`. You can run them sequentially:
+The pipeline consists of numbered scripts in `scripts/`. Run them sequentially from the **repository root**:
 
 ```bash
 # 1. Build candidate list
-python scripts/00_build_candidate_list.py
+python research/alphafold_countercurvature/scripts/00_build_candidate_list.py
 
 # 2. Map to UniProt
-python scripts/01_map_to_uniprot.py
+python research/alphafold_countercurvature/scripts/01_map_to_uniprot.py
 
 # 3. Fetch AlphaFold Data
-python scripts/02_fetch_afdb.py
+python research/alphafold_countercurvature/scripts/02_fetch_afdb.py
 
 # 4. Parse Structures
-python scripts/03_parse_structures.py
+python research/alphafold_countercurvature/scripts/03_parse_structures.py
 
 # 5. Analyze Metrics
-python scripts/04_analyze_metrics.py
+python research/alphafold_countercurvature/scripts/04_analyze_metrics.py
 
 # 6. Generate Report
-python scripts/05_generate_report.py
+python research/alphafold_countercurvature/scripts/05_generate_report.py
 ```
 
 ## Data Sources

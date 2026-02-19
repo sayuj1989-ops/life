@@ -42,6 +42,10 @@ CANDIDATES_FILE = DATA_DIR / "processed" / "candidates.csv"
 def main():
     print("📏 Analyzing Structural Metrics...")
 
+    force_refresh = "--force" in sys.argv
+    if force_refresh:
+        print("   ⚠️ Force refresh enabled: Ignoring cache.")
+
     if not MANIFEST_FILE.exists():
         print("❌ Manifest not found.")
         sys.exit(1)
@@ -133,7 +137,7 @@ def main():
 
         # Check freshness
         is_fresh = False
-        if metrics_cache_path.exists():
+        if metrics_cache_path.exists() and not force_refresh:
             try:
                 m_time = metrics_cache_path.stat().st_mtime
                 pdb_time = pdb_path.stat().st_mtime

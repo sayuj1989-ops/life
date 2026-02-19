@@ -343,6 +343,22 @@ $$ \mathcal{L}_{CO} = \frac{\Gamma_{Piezo} \cdot \sigma_{eff}}{K_{Cilia} \cdot L
     *   $\mathcal{L}_{CO} > 1$: **Locked Mode**. High stress shortens cilia ($L_{cil} \downarrow$) and activates Piezo1, driving a positive feedback loop of ossification and stiffening. This describes the "Stress-Lock" leading to vertebral wedging.
 *   **Measurable Proxy**: The ratio of nuclear YAP/TAZ intensity (osteogenic driver) to ciliary Arl13b intensity (repressive state) in chondrocytes at the vertebral growth plate.
 
+### 2.23. The Metabolic Gating Factor ($\Psi_{met}$)
+
+We define a dimensionless scaling factor representing the metabolic permissiveness for mechanotransduction. It modulates the effective Morphomechanical Stiffness $\chi_M$ based on local ATP availability.
+
+$$ \chi_M(t) = \Psi_{met}(t) \cdot \chi_{M,0} $$
+$$ \Psi_{met} = \frac{[ATP]}{K_m + [ATP]} $$
+
+*   **Symbols**:
+    *   $\Psi_{met}$: Metabolic gating efficiency $[1]$.
+    *   $[ATP]$: Local intracellular ATP concentration $[N L^{-3}]$.
+    *   $K_m$: Michaelis constant for Myosin II ATPase activity (critical threshold) $[N L^{-3}]$.
+*   **Physical Interpretation**:
+    *   **$\Psi_{met} \approx 1$**: High energy state. Cytoskeletal tension is maintained, and Piezo1 is sensitive to mechanical stress.
+    *   **$\Psi_{met} \to 0$**: Low energy state (Energy Deficit). Actomyosin cortex relaxes, membrane tension drops, and Piezo1 becomes "deaf" to external load, effectively breaking the feedback loop ($\chi_M \to 0$).
+*   **Measurable Proxy**: The ratio of cortical tension (measured via AFM or micropipette aspiration) to intracellular [ATP] (measured via PercevalHR biosensor).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -606,6 +622,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Vertebral growth plate explants under compression treated with Tubacin (HDAC6 inhibitor) vs GsMTx4 (Piezo1 blocker).
 *   **Refutation**: If Tubacin fails to prevent ossification while GsMTx4 does, the mechanism relies solely on Piezo1 activation, not ciliary retraction. (Reference: Chen et al., 2025).
 
+### Test AS: The ATP-Deafness Test
+*   **Hypothesis**: Depleting intracellular ATP (e.g., via oligomycin or 2-deoxyglucose) below a critical threshold ($K_m$) will silence Piezo1-mediated Ca2+ signaling even in the presence of high mechanical compression, effectively reducing $\chi_M$ to zero.
+*   **Data Needed**: Simultaneous high-speed imaging of [ATP] (PercevalHR) and Calcium influx (GCaMP6) in vertebral chondrocytes under cyclic compression with graded metabolic inhibition.
+*   **Refutation**: If mechanotransduction (Ca2+ spikes) persists at the same magnitude despite significant ATP depletion and loss of cortical tension, the "active gating" hypothesis is false. (Reference: Ridone et al., 2019).
+
+### Test AT: The Cortical Collapse
+*   **Hypothesis**: Specific inhibition of Myosin II (e.g., via Blebbistatin) should mimic the "Energy Deficit" phenotype even in high energy states, causing Piezo1 desensitization and loss of osteogenic gene expression.
+*   **Data Needed**: Piezo1 activation probability (patch clamp or Ca2+ imaging) in Blebbistatin-treated osteoblasts compared to controls under identical stretch.
+*   **Refutation**: If Piezo1 remains fully mechanosensitive despite the collapse of cortical tension, the sensor does not rely on the actomyosin cortex for gating. (Reference: Salbreux et al., 2012).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -658,3 +684,5 @@ The theory makes specific predictions about the relationship between genetic ani
 48. **Blecher, R., et al. (2017).** "New functions for the proprioceptive system in skeletal biology." *Philosophical Transactions B*, 373. (Identifies Egr3/proprioception defects in spinal alignment).
 49. **Chen, F., et al. (2025).** "PIEZO1-Primary Cilia Axis Mediates Compressive Stress-Induced Growth Plate Degeneration and Ossification in Adolescent Idiopathic Scoliosis." *JOR Spine*, 8(4). (Identifies the Piezo1-Primary Cilia axis as the mechanotransduction pathway converting compressive stress into premature ossification).
 50. **Li, X., et al. (2023).** "Piezo1-mediated mechanosensation in bone marrow mesenchymal stem cells regulates bone formation." *Journal of Bone and Mineral Research*, 38(10). (Demonstrates Piezo1 importance in osteogenesis).
+51. **Ridone, P., et al. (2019).** "Piezo1 mechanosensitivity is modulated by membrane cholesterol and tension." *Nature Communications*, 10. (Establish tension dependence of Piezo1).
+52. **Salbreux, G., et al. (2012).** "Actin cortex mechanics and cellular morphogenesis." *Trends in Cell Biology*, 22(10). (Links ATP/Myosin to cortical tension).

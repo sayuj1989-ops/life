@@ -24,7 +24,7 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We represent the human spine as a Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
+We model the human spine as an elastic Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
 
 \begin{align}
     \mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
@@ -36,7 +36,7 @@ where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ repre
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ as a bimodal Gaussian distribution with peaks centered at the cervical ($s_c=0.80$) and lumbar ($s_l=0.25$) enlargements, with normalized amplitudes $A_c=0.5$ and $A_l=0.7$, respectively. These peaks correspond to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a "curvature generator" via the geometric coupling $\chi_\kappa$:
+We define a time-dependent scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ as a bimodal Gaussian distribution with peaks centered at the cervical ($s_c=0.80$) and lumbar ($s_l=0.25$) enlargements, with normalized amplitudes $A_c=0.5$ and $A_l=0.7$, respectively. These peaks correspond to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a "curvature generator" via the geometric coupling $\chi_\kappa$:
 \begin{equation}
     \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
     \label{eq:kappa_rest}
@@ -192,5 +192,3 @@ This chronobiological extension of the IEC framework yields three falsifiable pr
     \item \textbf{Hypoxic Trigger:} The onset of scoliotic curvature in unloading models will be preceded by a distinct hypoxic signature (HIF-1$\alpha$ stabilization) in the nucleus pulposus, and treatment with HIF-1$\alpha$ inhibitors will delay curvature onset.
     \item \textbf{Chronotherapeutic Rescue:} The application of pulsatile axial compression (mimicking the daily gravity cycle) at the appropriate circadian phase will be significantly more effective at preserving spinal geometry than static compression or random loading, restoring the convective pump and re-entraining the spinal clock.
 \end{enumerate}
-
-% Verified by Jules

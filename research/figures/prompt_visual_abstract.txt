@@ -1,0 +1,6 @@
+A conceptual illustration of 'Biological Countercurvature'.
+Left panel: A passive beam sagging under gravity (Red) following a geodesic.
+Right panel: A biological spine curving *against* gravity (Blue), maintaining an S-shape by expending energy.
+Labels: 'Passive: Metric = Gravity' vs 'Active: Metric = Gravity + Information'.
+The active spine should look like an S-curve.
+Background: Faint grid representing spacetime curvature.

@@ -101,7 +101,7 @@ Females accumulate relatively more adipose tissue during puberty.
 
 ## 4. Protein Data Analysis — Quantitative Evidence for Energy Deficit
 
-A rigorous analysis of the 23-protein dataset (`thermodynamic_cost_proteins.csv`) confirms the metabolic uncoupling hypothesis.
+A rigorous analysis of the 22-protein dataset (`thermodynamic_cost_proteins.csv`) confirms the metabolic uncoupling hypothesis.
 
 ### 1. The Demand-Supply Anisotropy Gap
 - **Demand Mean Anisotropy ($\eta_p, \eta_a$):** **3.32**
@@ -133,7 +133,7 @@ Calculated as `Anisotropy × n_residues` (a proxy for folding and maintenance co
 ### 5. Supply-Side Fragility (PPARGC1A)
 - **pLDDT:** 52.7 (Lowest in dataset)
 - **Disorder:** 62% (Highest in dataset)
-- *Paradox:* The "Supply System" is arguably more structurally vulnerable (42% disorder) than the Demand system (35% disorder). The bottleneck (mitochondria) is controlled by an intrinsically disordered protein that degrades rapidly under stress.
+- *Paradox:* The "Supply System" is arguably more structurally vulnerable (**38%** disorder) than the Demand system (**26%** disorder). The bottleneck (mitochondria) is controlled by an intrinsically disordered protein that degrades rapidly under stress.
 
 ### 6. The VIM Cascade
 **VIM (7.47)** collapses $\to$ ROS cascade $\to$ **LMNA (4.75)** degrades $\to$ Nuclear softening $\to$ **LBX1 (2.27)** dysfunction $\to$ Paraspinal asymmetry $\to$ Scoliosis.

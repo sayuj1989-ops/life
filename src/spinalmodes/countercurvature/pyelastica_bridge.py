@@ -727,7 +727,8 @@ def run_protein_simulation(
 
         # Compute thermodynamic cost metrics
         energy_metrics = compute_U_CC(
-            result, info, params, gravity=gravity, rho=rho, E0=E0
+            result, info, params, gravity=gravity, rho=rho, E0=E0,
+            radius=radius, anisotropy=anisotropy
         )
         sim_metrics.update(energy_metrics)
 
@@ -772,24 +773,21 @@ def compute_U_CC(
     gravity: float = 9.81,
     rho: float = 1000.0,
     E0: float = 1e6,
+    radius: float = 0.01,
+    anisotropy: Union[float, ArrayF64] = 1.0,
 ) -> Dict[str, float]:
     """Compute the Total Potential Energy cost function U_CC.
 
-    The organism minimises U_CC = U_gravity + U_elastic - U_info, where:
+    The organism minimises U_CC = U_gravity + U_elastic_straight - U_info, where:
 
     - U_gravity: gravitational potential energy (m * g * h, summed over nodes)
-    - U_elastic: stored elastic energy (bending + shear)
-    - U_info: information-driven energy reduction from active countercurvature
+    - U_elastic_straight: elastic energy required to bend the rod from a straight
+      configuration to the current shape (penalizing deformation).
+    - U_info: energy reduction achieved by aligning curvature with the information field.
+      Specifically, the coupling term: integral( B * kappa * kappa_rest_info ds ).
 
-    The information energy term U_info quantifies the energetic benefit of the
-    information-driven curvature programme.  It is computed as the integral of
-    the information field weighted by the curvature correction:
-
-        U_info = chi_kappa * integral( |grad I| * |kappa_info| ds )
-
-    This captures the idea that stronger information gradients coupled with
-    larger curvature corrections yield greater energetic benefit (i.e. the
-    organism "gains" energy by aligning its shape with the genetic programme).
+    This formulation explicitly separates the "Cost of Deformation" (U_elastic_straight)
+    from the "Benefit of Alignment" (U_info).
 
     Parameters
     ----------
@@ -805,17 +803,22 @@ def compute_U_CC(
         Rod density (kg/m^3).
     E0 : float
         Baseline Young's modulus (Pa).
+    radius : float
+        Rod radius (m), used to compute area moment of inertia.
+    anisotropy : float or ArrayF64
+        Stiffness anisotropy factor applied to lateral bending mode.
 
     Returns
     -------
     dict
         Dictionary containing:
         - U_gravity: Gravitational potential energy
-        - U_elastic: Total elastic energy (bending + shear)
-        - U_info: Information-driven energy reduction
-        - U_CC: Total cost function (U_gravity + U_elastic - U_info)
+        - U_elastic: PyElastica's computed elastic energy (relative to rest curvature)
+        - U_elastic_straight: Elastic energy relative to straight configuration
+        - U_info: Information alignment energy benefit
+        - U_CC: Total cost function (U_gravity + U_elastic_straight - U_info)
         - U_kinetic: Translational + rotational kinetic energy
-        - info_gain_ratio: U_info / (U_gravity + U_elastic), dimensionless
+        - info_gain_ratio: U_info / (U_gravity + U_elastic_straight), dimensionless
     """
     if len(result.time) == 0:
         return {
@@ -828,52 +831,89 @@ def compute_U_CC(
     # --- U_gravity ---
     U_gravity = energies.get("gravitational_energy", 0.0)
 
-    # --- U_elastic ---
-    U_bending = energies.get("bending_energy", 0.0)
-    U_shear = energies.get("shear_energy", 0.0)
-    U_elastic = U_bending + U_shear
+    # --- U_elastic (PyElastica) ---
+    U_pyelastica = energies.get("bending_energy", 0.0) + energies.get("shear_energy", 0.0)
 
     # --- U_kinetic ---
     U_trans = energies.get("translational_energy", 0.0)
     U_rot = energies.get("rotational_energy", 0.0)
     U_kinetic = U_trans + U_rot
 
-    # --- U_info ---
-    # The information energy benefit: integral of chi_kappa * |grad I| * |kappa|
-    # weighted by the effective stiffness scaling.
+    # --- Construct Stiffness Field ---
     s = info.s
-    grad_I = np.abs(info.dIds)
 
-    # Final curvature magnitude (bending components)
-    kappa_final = result.kappa[-1]  # (n_nodes, 3)
-    # Bending magnitude at internal nodes
-    n_nodes = kappa_final.shape[0]
-    bending_mag = np.linalg.norm(kappa_final[:, :2], axis=1)
+    # 1. Effective Young's Modulus
+    E_eff = compute_effective_stiffness(info, params, E0) # (n_nodes,)
 
-    # Interpolate bending magnitude to match info field grid
-    s_kappa = np.linspace(s[0], s[-1], n_nodes)
-    bending_interp = np.interp(s, s_kappa, bending_mag)
+    # 2. Area Moment of Inertia I = pi * r^4 / 4
+    I_area = np.pi * (radius**4) / 4.0
 
-    # Effective stiffness modulation
-    E_eff = compute_effective_stiffness(info, params, E0)
-    E_ratio = E_eff / E0
+    # 3. Base Bending Stiffness B = E_eff * I_area
+    B_base = E_eff * I_area # (n_nodes,)
 
-    # U_info = chi_kappa * integral( E_ratio * |grad I| * |kappa| ds )
-    # This represents the energy the organism "saves" by pre-programming curvature
-    integrand = E_ratio * grad_I * bending_interp
-    U_info = float(abs(params.chi_kappa) * np.trapz(integrand, s))
+    # 4. Handle Anisotropy
+    anisotropy_arr = np.ones_like(B_base)
+    if isinstance(anisotropy, (float, int)):
+        anisotropy_arr[:] = float(anisotropy)
+    else:
+        # Interpolate array anisotropy if needed
+        aniso_input = np.asarray(anisotropy, dtype=float)
+        if aniso_input.shape != s.shape:
+             # simple linear interp if sizes differ
+             s_input = np.linspace(s[0], s[-1], aniso_input.shape[0])
+             anisotropy_arr = np.interp(s, s_input, aniso_input)
+        else:
+             anisotropy_arr = aniso_input
+
+    # Stiffness Matrix Components (Diagonal approximation)
+    # B_11 (about d1, Lateral bending) = B_base * anisotropy
+    B_11 = B_base * anisotropy_arr
+    # B_22 (about d2, Sagittal bending) = B_base
+    B_22 = B_base
+    # B_33 (torsion) = GJ = E*I/(1+nu). Assuming nu=0.5
+    nu = 0.5
+    B_33 = B_base / (1.0 + nu)
+
+    # 5. Get Curvature (n_nodes, 3)
+    kappa = result.kappa[-1] # Final step
+
+    # 6. Compute U_elastic_straight (Energy relative to straight rod)
+    # Integral 0.5 * (B11*k0^2 + B22*k1^2 + B33*k2^2) ds
+    # kappa indices: 0=Lateral(d1), 1=Sagittal(d2), 2=Torsion(d3)
+    energy_density_straight = 0.5 * (
+        B_11 * kappa[:, 0]**2 +
+        B_22 * kappa[:, 1]**2 +
+        B_33 * kappa[:, 2]**2
+    )
+    U_elastic_straight = np.trapz(energy_density_straight, s)
+
+    # 7. Compute U_info_coupling
+    # Need kappa_rest_info (rest curvature due solely to information)
+    # compute_rest_curvature returns (3, n_nodes). We need (n_nodes, 3)
+    kappa_rest_info_arr = compute_rest_curvature(info, params, kappa_gen=0.0)
+    kappa_rest_info = kappa_rest_info_arr.T
+
+    # Energy density = B * kappa * kappa_rest (interaction term)
+    energy_density_info = (
+        B_11 * kappa[:, 0] * kappa_rest_info[:, 0] +
+        B_22 * kappa[:, 1] * kappa_rest_info[:, 1] +
+        B_33 * kappa[:, 2] * kappa_rest_info[:, 2]
+    )
+    U_info_coupling = np.trapz(energy_density_info, s)
 
     # --- U_CC ---
-    U_CC = U_gravity + U_elastic - U_info
+    # U_CC = U_gravity + U_elastic_straight - U_info_coupling
+    U_CC = U_gravity + U_elastic_straight - U_info_coupling
 
     # --- Info Gain Ratio ---
-    denom = abs(U_gravity) + abs(U_elastic)
-    info_gain_ratio = U_info / denom if denom > 1e-15 else 0.0
+    denom = abs(U_gravity) + abs(U_elastic_straight)
+    info_gain_ratio = U_info_coupling / denom if denom > 1e-15 else 0.0
 
     return {
         "U_gravity": float(U_gravity),
-        "U_elastic": float(U_elastic),
-        "U_info": float(U_info),
+        "U_elastic": float(U_pyelastica),
+        "U_elastic_straight": float(U_elastic_straight),
+        "U_info": float(U_info_coupling),
         "U_CC": float(U_CC),
         "U_kinetic": float(U_kinetic),
         "info_gain_ratio": float(info_gain_ratio),

@@ -514,3 +514,25 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Chen, F., et al. (2025). PIEZO1-Primary Cilia Axis Mediates Compressive Stress-Induced Growth Plate Degeneration and Ossification in Adolescent Idiopathic Scoliosis. JOR Spine, 8(4), e70133.* https://doi.org/10.1002/jsp2.70133
+
+---
+
+### 30. The BMSC Fate Switch (Beta-Catenin)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Beta_Catenin` $\rightarrow$ `Osteogenesis`, `Beta_Catenin` $\rightarrow$ `Adipogenesis` (Inhibition).
+
+*   **Source**: `PIEZO1` (Gravity Sensor), `Beta_Catenin` (Wnt Effector).
+*   **Mechanism**: **Material-First Collapse**.
+    1.  **Gravity Sensing**: Piezo1 channels in Gli1+ Bone Marrow Stromal Cells (BMSCs) act as the primary sensors for gravitational load.
+    2.  **Effector Stabilization**: Activation triggers $Ca^{2+}$ influx which stabilizes **Beta-Catenin**, preventing its degradation.
+    3.  **Fate Switch**:
+        *   **High Load (High Beta-Catenin)**: Promotes **Osteogenesis** (Bone Formation), maintaining spinal column stiffness.
+        *   **Unloading (Low Beta-Catenin)**: Absence of Piezo1 signaling leads to Beta-Catenin degradation. This derepresses **Adipogenesis**, causing BMSCs to differentiate into fat cells.
+*   **Property**: **Stiffness ($EI$)** and **Muscle Tone Balance** (via Adipogenic Infiltration).
+*   **Role**: **Material Quality Control**. The spine must be "Hard" to resist gravity. This pathway ensures that progenitor cells only build bone when gravity is present. Loss of this signal (microgravity or Piezo1 mutation) causes the spine to turn to fat ("Material Softening") before it even begins to curve.
+*   **Evidence**: Li et al. (2023) demonstrated that Piezo1 in Gli1+ BMSCs is essential for maintaining bone mass, and its deletion mimics the osteopenic phenotype of unloading. (Note: Some internal documentation attributes this mechanism to "Hu et al. (2023)", but `Li et al. (2023)` is the verified source in the bibliography).
+
+> **Hypothesis**: The spine softens before it buckles. The "Material-First" collapse occurs because the cells "forget" to be bone when they stop feeling gravity.
+
+**Citations**:
+*   *Li, X., et al. (2023). Piezo1-mediated mechanosensation in bone marrow mesenchymal stem cells regulates bone formation. Journal of Bone and Mineral Research, 38(10).*

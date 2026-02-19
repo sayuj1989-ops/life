@@ -501,6 +501,7 @@ def generate_plots(results: List[Dict], output_dir: Path):
     """
     Generates summary plots.
     """
+    pae_count = 0
     for res in results:
         pid = res['gene_symbol']
 
@@ -525,6 +526,19 @@ def generate_plots(results: List[Dict], output_dir: Path):
         fig.tight_layout()
         plt.savefig(output_dir / f"{pid}_profile.png")
         plt.close()
+
+        # PAE Plot (Top 3 only)
+        if 'pae' in res and res['pae'] is not None and pae_count < 3:
+            plt.figure(figsize=(8, 8))
+            plt.imshow(res['pae'], cmap='bwr', vmin=0, vmax=30)
+            plt.colorbar(label='Predicted Aligned Error (Å)')
+            plt.title(f"PAE Matrix: {pid}")
+            plt.xlabel("Scored Residue")
+            plt.ylabel("Aligned Residue")
+            plt.tight_layout()
+            plt.savefig(output_dir / f"{pid}_pae.png")
+            plt.close()
+            pae_count += 1
 
 def main():
     parser = argparse.ArgumentParser(description="Bolt-BioFold Analysis")

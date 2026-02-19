@@ -190,7 +190,10 @@ def _check_pyelastica() -> None:
     else:
         # Consistency check with scripts/check_pyelastica.py
         # Ensure we can access basic attributes to verify full load
-        _ = getattr(ea, "__version__", "unknown")
+        try:
+            _ = getattr(ea, "__version__", "unknown")
+        except AttributeError:
+            pass # Older versions or specific builds might not expose this
 
 
 def verify_pyelastica_installation(exit_on_fail: bool = True) -> bool:
@@ -929,3 +932,34 @@ __all__ = [
     "compute_U_CC",
     "CircadianParams",
 ]
+
+if __name__ == "__main__":
+    print(">>> PyElastica Bridge: Running Self-Test...")
+    if not PYELASTICA_AVAILABLE:
+        print("SKIPPED: PyElastica not available.")
+    else:
+        try:
+            # Run a quick, low-res simulation
+            print("    Initializing minimal protein simulation (N=20, T=0.1s)...")
+            res = run_protein_simulation(
+                anisotropy=2.0,
+                active_curvature=1.0,
+                n_elements=20,
+                duration=0.1,
+                show_progress=False
+            )
+
+            if res.get("success"):
+                print("PASSED: Simulation completed successfully.")
+                print(f"    Metrics: Cobb={res.get('cobb_angle',0):.2f}, MaxCurv={res.get('max_curvature',0):.4f}")
+                print(f"    Runtime: {res.get('runtime_sec',0):.4f}s")
+            else:
+                print(f"FAILED: {res.get('error')}")
+                import sys
+                sys.exit(1)
+        except Exception as e:
+            print(f"CRITICAL FAILURE: {e}")
+            import traceback
+            traceback.print_exc()
+            import sys
+            sys.exit(1)

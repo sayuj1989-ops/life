@@ -32,3 +32,4 @@
 | 2026-02-16 | weekly-sim-growth-instability | chi_kappa | S-shape instability emerges at chi > 14.0 (low resolution simulation). | [Report](../outputs/sim/2026-02-16/report.md) |
 | 2026-02-17 | weekly-sim-growth-anisotropy-phase | Anisotropy, Active Curvature | Anisotropy (R=3) stabilizes moderate growth (10.0), but high growth (15.0+) triggers complex re-entrant instability at high R. | [Report](../outputs/sim/2026-02-17/report.md) |
 | 2026-02-18 | weekly-sim-focal-anisotropy-defect | Defect Location (0.1-0.9) | Basal anisotropy defects (0.2-0.3) cause severe instability (Cobb ~43 deg), while Apical/Thoracic defects (0.6-0.8) remain stable. | [Report](../outputs/sim/2026-02-18/report.md) |
+| 2026-02-19 | weekly-sim-anisotropy-rescue | Stiffness Anisotropy | High growth (chi=15) failed to trigger instability (Cobb < 0.2 deg); Anisotropy had no effect as baseline was stable. | [Report](../reports/simulations/2026-02-19/report.md) |

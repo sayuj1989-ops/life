@@ -1,30 +1,383 @@
-D,I,S,E,C,T,R,I_iso,O,E_exp,manual_review_needed,notes,gene_symbol,source,total_score
-2,0,0,0,0,0,0,0,0,0,True,,ADGRG6,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,AQP4,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,ARNTL,seed_Metabolic_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,BNC2,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,CNNM2,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,COL11A2,seed_ECM,4.0
-2,0,0,0,0,0,0,0,0,0,True,,DMD,seed_Metabolic_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,DZIP1,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,EMD,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,FAT4,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,FBLN5,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,GDF5,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,GHR,seed_Metabolic_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,HES7,seed_Segmentation,4.0
-2,0,0,0,0,0,0,0,0,0,True,,IGF1R,seed_Metabolic_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,LBX1,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,MESP2,seed_Segmentation,4.0
-2,0,0,0,0,0,0,0,0,0,True,,MYLK,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PANX3,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PIEZO2,seed_Mechanosensors,4.0
-2,0,0,0,0,0,0,0,0,0,True,,POC5,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PPARGC1A,seed_Metabolic_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,PTK7,seed_Scoliosis_Drivers,4.0
-2,0,0,0,0,0,0,0,0,0,True,,ROCK1,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,SELENON,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,SSPOP,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,STOML3,seed_Week6_Expansion,4.0
-2,0,0,0,0,0,0,0,0,0,True,,TTN,seed_Week6_Expansion,4.0
-0,0,0,0,0,0,0,0,0,0,False,,GAPDH,control,0.0
+gene_symbol,source,total_score,justification
+DMD,"Muscle,Mechanotransduction,Cytoskeleton,Thermodynamic_Cost",100,Essential for maintenance of muscle tone against gravity; loss leads to collapse.
+DAG1,"ECM,Cytoskeleton,Muscle",100,Critical muscle-ECM link; similar to DMD.
+ARNTL,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
+GHR,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
+MYLK,"Muscle,Contraction,Signaling,Thermodynamic_Cost",100,Regulator of myosin contractility.
+IGF1R,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
+PPARGC1A,Thermodynamic_Cost,100,Essential for Gamma_m supply side.
+NTRK3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
+ACVR1,"Signaling,Mechanotransduction,Bone",95,Direct causative mutation linking mechanosensing failure to catastrophic spinal ossification.
+ALPL,"Bone,Mineralization",95,Critical enzyme for bone mineralization.
+HIF1A,"Signaling,Metabolism,Nucleus",95,Master regulator of the Hypoxic trigger in IVD.
+RUNX3,"Proprioception,Signaling",95,Primary driver of proprioceptive-dependent spinal alignment.
+PIEZO2,"Mechanotransduction,Proprioception",95,Direct link between gravity sensing (proprioception) and spinal alignment.
+LBX1,"Somite,Muscle,Proprioception",95,Major genetic driver of AIS with clear mechanistic link to postural tone.
+FBN1,"ECM,Mechanotransduction",92,Major structural determinant of spine elasticity.
+IFT88,"Cilia,Mechanotransduction",92,Direct link via PIEZO1-cilia axis.
+PIEZO1,"Mechanotransduction,Growth_Plate,Ion_Channel",92,Direct mechanistic link to growth plate asymmetry in scoliosis.
+NF1,"Signaling,Mechanotransduction,Development",92,Direct causative link to dystrophic scoliosis and mechanotransduction.
+LMNA,"Mechanotransduction,Nucleus,Cytoskeleton",92,Direct link between nuclear mechanotransduction and spinal stability.
+ENPP1,"Bone,Mineralization",92,Regulates mineralization balance.
+NR1D1,"Circadian,Metabolism,Nucleus",92,Ligand-regulatable clock component linking rhythm to metabolism.
+EGR3,"Muscle,Proprioception,Transcription_Factor",92,Essential for the hardware of muscle proprioception.
+SELENON,"ER,Redox,Muscle",92,Defining gene for 'Rigid Spine' phenotype; links ER stress to postural tone.
+PLOD1,"ECM,Enzyme",92,Defining gene for Kyphoscoliotic EDS; major structural determinant.
+OTOP1,"Gravity_Sensing,Ion_Channel",92,Essential for the hardware of vestibular gravity sensing.
+DSTYK,"Signaling,Development,Kinase",92,Zebrafish scoliosis model; novel kinase link.
+ROR2,"PCP,Wnt_Signaling,Receptor",90,Key PCP receptor directly linked to vertebral segmentation defects.
+TGFBR2,"Signaling,ECM,Development",90,Key signaling receptor for load-dependent tissue maintenance.
+TEAD1,"Mechanotransduction,Hippo,Transcription_Factor",90,The effector of the YAP/TAZ gravity sensor.
+POC5,"Cilia,Centriole",90,Direct genetic cause of scoliosis linked to ciliary geometry.
+BMP1,"ECM,Enzyme,Bone",90,Enzyme defining collagen stiffness and mechanical integrity.
+ITGB1,"Mechanotransduction,Adhesion",90,Primary gravity sensor at cell-ECM interface.
+WNT1,"Signaling,Bone,Mechanotransduction",90,Direct bone mass regulator; high relevance to bone fragility/mechanics.
+TGFBR1,"Signaling,Mechanotransduction",90,Primary transducer of the mechanically-regulated TGF-beta signal.
+COL1A2,"ECM,Bone,Mechanotransduction",90,Primary structural failure against gravity in OI; partner of COL1A1.
+CEP290,"Cilia,Astrogliosis,Inflammation",90,Novel astrogliosis mechanism linking ciliary defects to spine.
+CLOCK,"Circadian,Nucleus",90,The partner of BMAL1 in the core loop.
+FBN2,"ECM,Development",90,Early developmental paralog of FBN1 causing similar but distinct spinal defects.
+SERPINH1,"ECM,Chaperone,ER",90,Crucial for collagen structural integrity.
+YAP1,"Mechanotransduction,Hippo,Growth_Plate",90,Central hub of cellular mechanotransduction.
+TGFB1,"Signaling,Mechanotransduction",90,Major susceptibility gene; mechanically regulated.
+MTOR,"Signaling,Mechanotransduction",90,Central signaling hub for growth and mechanics.
+CDH23,"Gravity_Sensing,Mechanotransduction",90,Primary mechanosensor of the vestibular gravity system.
+MYO7A,"Gravity_Sensing,Motor_Protein",90,Motor protein tuning the sensitivity of gravity sensors.
+ETV1,"Proprioception,Transcription_Factor",90,Transcription factor specifying the gravity-sensing reflex arc.
+CCDC57,"Cilia,PCP",90,Ependymal polarity regulator linking CSF flow to spine.
+COL1A1,"ECM,Bone,Mechanotransduction",90,Primary structural failure against gravity in OI.
+FERMT2,"Mechanotransduction,Adhesion,Integrin",90,Direct skeletal defect + mechanotransduction core.
+FLNA,"Cytoskeleton,Mechanotransduction",90,Direct mechanosensor linking cytoskeletal tension to ECM signaling; strong genetic link.
+EMD,"Nucleus,Mechanotransduction,LINC",90,Direct link between nuclear mechanics and spinal rigidity.
+METTL3,"Epigenetics,Muscle,ROS",89,Key epigenetic regulator linking oxidative stress to muscle asymmetry.
+KANK1,"Mechanotransduction,Cytoskeleton,Adhesion",88,Direct genetic link to spasticity/scoliosis and mechanotransduction.
+COL6A2,"ECM,Muscle,Adhesion",88,Critical for muscle-matrix coupling and spinal stability.
+PER2,"Circadian,Bone",88,Links circadian rhythm directly to bone mass regulation.
+ADAMTSL2,"ECM,Signaling",88,Regulates microfibril tension and signaling in AIS.
+VCL,"Mechanotransduction,Adhesion,Cytoskeleton",88,Strong mechanotransduction link via focal adhesion tension.
+COL6A3,"ECM,Muscle,Adhesion",88,Critical for muscle-matrix coupling and spinal stability.
+NEB,"Muscle,Cytoskeleton,Mechanotransduction",88,Regulator of sarcomere structure and muscle tone.
+ACTA1,"Muscle,Cytoskeleton,Contractility",88,Core contractile protein essential for postural muscle function.
+ITGA7,"Adhesion,Muscle,Mechanotransduction",88,Primary mechanolink between muscle cytoskeleton and ECM.
+KLHL40,"Muscle,Ubiquitination,Stability",88,Master stabilizer of the thin filament complex.
+CFAP298,"Cilia,Motility",88,Strong zebrafish evidence linking ciliary motility to curvature.
+COL12A1,"ECM,Muscle,Mechanotransduction",88,Structural interface between muscle and ECM; critical for load transmission.
+FGF23,"Bone,Signaling,Metabolism",88,Major systemic regulator of bone mineral content and stiffness.
+KIF7,"Cilia,Motor_Protein,Signaling",88,Ciliary motor protein with direct genetic implication in scoliosis.
+CCDC39,"Cilia,Motility",88,Essential component of the ciliary motility machinery linked to curvature.
+DST,"Cytoskeleton,Mechanotransduction,Neuron",88,Strong neural/cytoskeletal tensegrity link.
+TLN1,"Mechanotransduction,Adhesion",88,Fundamental force transmission molecule.
+RPL38,"Ribosome,Development",88,Ribosomal filter for Hox gene translation and vertebral patterning.
+ARL13B,"Cilia,Signaling",88,Key regulator of ciliary signaling with strong syndromic scoliosis link.
+KDM4C,"Epigenetics,Mechanotransduction,Nucleus",88,Key epigenetic stiffness sensor linking nuclear mechanics to gene expression stability.
+FGFR3,"Growth_Plate,Mechanotransduction",88,Major growth plate regulator responsive to load.
+ZMYND10,"Cilia,Assembly",88,Dynein assembly factor linked to ciliary scoliosis.
+HYDIN,"Cilia,Structure",88,Central pair protein linking ciliary motility to spine stability.
+DNAH5,"Cilia,Motor_Protein",88,Classic PCD gene with strong scoliosis comorbidity.
+GPX4,"Mechanotransduction,Ferroptosis",88,Crucial metabolic guard against mechanically-induced cell death.
+FKBP10,"ECM,Chaperone",88,Collagen chaperone essential for bone and joint stiffness.
+CREBBP,"Epigenetics,Development,Signaling",88,Strong syndromic link to spinal curvature.
+DKK1,"Signaling,Bone,Unloading",88,Key mediator of unloading-induced bone loss.
+SUN1,"Mechanotransduction,Nucleus,LINC",88,Anchor of the LINC complex.
+IFT80,"Cilia,Transport,IFT",88,Ciliopathy gene linking flow sensing to thoracic/spinal skeletal defects.
+SYNE2,"Mechanotransduction,Nucleus,LINC",88,LINC complex component linking nucleus to cytoskeletal tension.
+CCDC103,"Cilia,Motility",88,Key factor for dynein arm attachment in motile cilia.
+BNC2,"Transcription_Factor,Development,ECM",88,Strongest GWAS evidence for AIS susceptibility; regulates matrix genes.
+DZIP1,"Cilia,PCP,Zinc_Finger",88,Zinc finger protein linking ciliary function directly to spinal alignment.
+ITGAV,"Mechanotransduction,Integrin,Signaling",88,Primary mechanotransducer activating the TGF-beta pathway.
+CCDC40,"Cilia,Motor_Protein",88,Strong recent evidence (2025) linking motile cilia dysfunction to AIS.
+MYH3,"Muscle,Motor_Protein",88,Developmental myosin linked to congenital contracture syndromes.
+TTN,"Muscle,Cytoskeleton,Mechanotransduction",88,The primary molecular spring of the sarcomere.
+DLL1,"Segmentation,Notch,Ligand",88,Essential ligand for establishing somite boundaries.
+DMP1,"Bone,Mechanotransduction,Osteocyte",88,Key protein for osteocyte mechanosensing and mineralization.
+COL27A1,"ECM,Cartilage,Structure",88,Defining gene for Steel Syndrome with spinal instability.
+DNAH11,"Cilia,Motor_Protein",88,Ciliary motility defect linked to laterality and spine.
+SMAD3,"Signaling,Mechanotransduction",88,Key effector of the mechanically-regulated TGF-beta pathway; syndromic scoliosis link.
+ESR1,"Signaling,Muscle,Bone",88,Mechanosensitive receptor linking hormonal status to spinal stability.
+TFEB,"Signaling,Development,Transcription_Factor",88,Downstream effector of mTOR/DSTYK.
+AR,"Signaling,Growth_Plate",88,Hormone receptor localized to load-bearing growth plate.
+PAX1,"Segmentation,Somite",88,Essential for vertebral structural integrity.
+BANF1,"Nucleus,Mechanotransduction",88,Nuclear mechanics and envelope integrity.
+FKBP14,"ECM,Chaperone,ER",88,Essential collagen chaperone; defining gene for Kyphoscoliotic EDS.
+CHST14,"ECM,Enzyme,Glycosylation",88,Dermatan sulfate sulfotransferase; essential for collagen fibril organization.
+ZNF469,"Transcription_Factor,ECM,Development",88,Regulates corneal and skeletal ECM genes; mutations cause severe kyphoscoliosis.
+PTRF,"Mechanotransduction,Muscle,Membrane",88,Caveolae are critical mechanosensors; loss leads to severe muscle/skeletal phenotype.
+SCX,"Tendon,Development,Transcription_Factor",88,Master regulator of tendon/ligament fate; crucial for spine stability.
+NPHP1,"Cilia,Structure,Signaling",88,"Essential gatekeeper for ciliary mechanotransduction; key for the ""Stress-Lock"" mechanism."
+DYNC2H1,"Cilia,Transport,Motor_Protein",88,Strong syndromic link + cilia mechanism.
+TAPT1,"Cilia,Development,Bone",88,Strong homeotic/axial defect link.
+PAPSS2,"ECM,Metabolism,Cartilage",88,Direct chemical link to cartilage stiffness.
+CHST3,"ECM,Enzyme,Cartilage",88,Direct chemical link to cartilage stiffness.
+FAM20C,"Bone,Enzyme,Signaling",88,Master regulator of biomineralization.
+GALNS,"Metabolism,Lysosome,ECM",88,Classic storage disease with severe spinal phenotype.
+UTS2R,"Cilia,Signaling,Fluid_Flow",88,Strong genetic link involving the CSF flow pathway.
+MESP2,"Segmentation,Somite",88,Critical for vertebral segmentation integrity.
+FLNB,"Cytoskeleton,Segmentation",88,Structural integrator of stress and segmentation.
+ADGRG6,"Mechanotransduction,Adhesion",88,Mechanosensitive receptor directly linked to spine integrity.
+WWTR1,"Mechanotransduction,Hippo",88,Key partner of YAP in mechanosensing.
+ACAN,"ECM,Cartilage",88,Primary structural resistor of gravity load.
+KIF3A,"Cilia,Motor_Protein",88,Essential for ciliary structure and gravity sensing.
+TCF15,"Segmentation,Somite,Transcription_Factor",88,Transcription factor for somite segmentation.
+DYNC1H1,"Cytoskeleton,Motor_Protein,Transport",88,Motor protein essential for retrograde signaling and neuronal survival in the spine.
+SOST,"Bone,Mechanotransduction,Wnt",88,Direct mechanosensor in bone; key for microgravity bone loss.
+CHD7,"Chromatin,Development,Epigenetics",88,Key epigenetic regulator with strong syndromic link to spinal defects.
+TGFB2,"Signaling,ECM,Mechanotransduction",88,Key signaling ligand for load-dependent tissue maintenance; strong syndromic link.
+PLS3,"Cytoskeleton,Mechanotransduction,Actin",88,Cytoskeletal regulator linking actin dynamics to bone fragility and spine curvature.
+SLC26A2,"Ion_Transport,Cartilage,Mechanotransduction",88,Essential for the chemical basis of cartilage stiffness (sulfation).
+RPGRIP1L,"Cilia,Centrosome",88,Strong recent evidence linking ciliary defect to scoliosis.
+ELN,"ECM,Structure,Elasticity",88,Major structural determinant of tissue elasticity; strong clinical link.
+MMP3,"ECM,Degradation",87,Key protease in load-dependent disc remodeling.
+MMP1,"ECM,Degradation",87,Direct enzymatic driver of microgravity-induced disc degeneration.
+SKI,"Signaling,Development",85,Negative regulator of the mechanosensitive TGF-beta pathway.
+P3H1,"ECM,Enzyme",85,Essential enzyme for collagen mechanical quality.
+LOXL3,"ECM,Enzyme,Crosslinking",85,Enzyme determining the stiffness of the spinal column.
+CILP,"ECM,Cartilage,Mechanotransduction",85,Cartilage protein linked to disc degeneration and mechanical response.
+PPIB,"ECM,Chaperone",85,Collagen chaperone critical for matrix integrity.
+MKX,"Tendon,Mechanotransduction,Transcription_Factor",85,Mechanosensitive regulator of tendon stiffness.
+TNMD,"Tendon,ECM,Growth",85,"Key marker for mature, stiff tendons resisting gravity."
+IFT140,"Cilia,Transport",85,Ciliopathy link to skeletal dysplasia.
+WNT16,"Signaling,Bone,Mechanotransduction",85,Key regulator of cortical bone geometry under load.
+ADAMTS5,"ECM,Degradation,Cartilage",85,Mechanosensitive enzyme degrading the primary compressive load bearer (aggrecan).
+MYF5,"Muscle,Segmentation,Development",85,Defines the paraspinal muscle lineage essential for spinal support.
+PAX3,"Development,Neural_Crest,Muscle",85,Regulator of paraspinal and limb muscle progenitors.
+CRTAP,"ECM,Protein",85,Component of the collagen modification complex essential for stiffness.
+TPM3,"Muscle,Cytoskeleton,Contractility",85,Regulator of muscle contraction and fiber type identity.
+SEC23A,"Transport,ECM,Bone",85,Strong syndromic link + collagen transport.
+TNNT1,"Muscle,Contractility",85,Essential for function of slow-twitch postural muscles.
+KLHL41,"Muscle,Ubiquitination,Stability",85,Stabilizer of Nebulin.
+CFL2,"Muscle,Cytoskeleton,Regulation",85,Regulator of actin dynamics in muscle.
+CANT1,"ECM,Enzyme,Bone",85,Proteoglycan synthesis link.
+KBTBD13,"Muscle,Cytoskeleton,Ubiquitination",85,Muscle-specific ubiquitin ligase adaptor linked to myopathy.
+MYH8,"Muscle,Motor_Protein",85,Neonatal/masticatory myosin; mutations cause trismus-pseudocamptodactyly syndrome.
+CCN2,"ECM,Mechanotransduction,Fibrosis",85,Major effector of fibrosis and stiffness in response to mechanical load.
+NFE2L2,"Signaling,ROS,Muscle",85,Critical defender against microgravity-induced oxidative damage in paraspinal muscles.
+FBLN4,"ECM,Elasticity",85,Critical for elastic fiber integrity in the spine.
+SUV39H1,"Epigenetics,Mechanotransduction,Nucleus",85,Writer of the heterochromatin 'stiffness code' protecting the genome.
+LMOD3,"Muscle,Cytoskeleton,Assembly",85,Critical for sarcomere assembly and maintenance.
+GNPTAB,"Trafficking,Lysosome,ECM",85,Trafficking defect affecting ECM quality.
+TRPM7,"Ion_Channel,Kinase,Mechanotransduction",85,Dual-function chanzyme critical for skeletal mechanosensing.
+COL9A1,"ECM,Cartilage",85,Structural component of the intervertebral disc and cartilage.
+BBS10,"Cilia,Chaperone",85,Major ciliopathy gene with significant scoliosis comorbidity.
+CCN6,"ECM,Signaling,Cartilage",85,Matricellular regulator linked to PPRD.
+ALDH18A1,"Metabolism,ECM,Proline",85,"Key enzyme for proline synthesis, the primary amino acid of collagen."
+TNNT3,"Muscle,Contractility",85,Fast skeletal muscle troponin; mutations cause distal arthrogryposis and contractures.
+PYCR1,"Metabolism,ECM,Proline",85,"Key enzyme for proline synthesis, the primary amino acid of collagen."
+HES1,"Segmentation,Notch,Clock",85,Core component of the segmentation clock oscillator.
+SH3PXD2B,"ECM,Mechanotransduction,Cytoskeleton",85,Podosome adaptor protein linked to skeletal dysplasia.
+ADAMTS17,"ECM,Structure",85,ECM component linked to stiffness and skeletal dysplasia.
+ADAMTS2,"ECM,Enzyme",85,Enzyme defining collagen fibril mechanics.
+CC2D2A,"Cilia,Structure",85,Ciliary transition zone protein linked to scoliosis.
+TBX18,"Segmentation,Somite,Transcription_Factor",85,Regulator of anterior somite polarity and vertebral shape.
+TCTN1,"Cilia,Signaling",85,Ciliary transition zone protein linked to scoliosis.
+PHEX,"Bone,Mineralization,Signaling",85,Regulator of bone mineralization and mechanical stiffness.
+HAS2,"ECM,Metabolism,Epigenetics",85,Crucial for IVD mechanics (swelling pressure) and linked to AIS via epigenetics.
+IFT172,"Cilia,Transport,IFT",85,IFT complex component essential for skeletal ciliogenesis.
+PAX9,"Development,Segmentation,Vertebra",85,Essential for vertebral body formation.
+TBX15,"Development,Skeleton,Segmentation",85,Defining gene for Cousin syndrome vertebral defects.
+ITGB3,"Mechanotransduction,Adhesion,Bone",85,Key osteocyte mechanosensor.
+SEC24D,"Transport,ECM,Bone",85,Essential for collagen secretion and bone matrix integrity.
+KIF22,"Cytoskeleton,Motor_Protein,Development",85,Cytoskeletal motor protein with direct link to vertebral fusion.
+COL9A3,"ECM,Cartilage,Structure",85,FACIT collagen essential for cartilage mechanical integrity.
+MATN3,"ECM,Cartilage,Structure",85,Structural component of cartilage matrix linked to dysplasia.
+SLC39A13,"Ion_Transport,ECM,Mechanotransduction",85,Zinc transporter required for lysyl hydroxylase function and collagen crosslinking stiffness.
+SMAD2,"Signaling,Mechanotransduction",85,Downstream effector of the mechanosensitive TGF-beta pathway.
+IGF1,"Signaling,Growth,Muscle",85,Growth factor connecting systemic loading to spine progression.
+COL10A1,"ECM,Growth_Plate",85,Specific marker of the load-bearing growth plate zone.
+GORAB,"Golgi,Cilia,Signaling",85,Golgi protein essential for Hedgehog signaling and skeletal development.
+PRDM5,"Transcription_Factor,ECM,Development",85,Regulates corneal and skeletal ECM genes; mutations cause severe kyphoscoliosis.
+MYH7,"Muscle,Motor_Protein",85,Primary motor protein for slow-twitch postural muscles; direct scoliosis link.
+DSE,"ECM,Enzyme,Glycosylation",85,Dermatan sulfate epimerase; essential for collagen fibril organization.
+B4GALT7,"ECM,Enzyme,Glycosylation",85,Linker region enzyme for proteoglycan GAG synthesis; essential for matrix spacing.
+WNT5B,"PCP,Signaling,Growth_Plate",85,Regulates oriented cell division in the growth plate.
+B3GALT6,"ECM,Enzyme,Glycosylation",85,Linker region enzyme for proteoglycan GAG synthesis; essential for matrix spacing.
+ITGA5,"Mechanotransduction,Adhesion,Somite",85,Required for fibronectin matrix assembly and somite integrity.
+ITGA11,"Mechanotransduction,Adhesion,ECM",85,Key stiffness sensor for mesenchymal stem cells.
+MKS1,"Cilia,PCP,Development",85,Ciliopathy gene essential for ciliary integrity.
+LATS2,"Mechanotransduction,Hippo,Signaling",85,Core kinase of the Hippo mechanotransduction pathway.
+DVL2,"PCP,Wnt,Segmentation",85,PCP effector essential for vertebral segmentation.
+LATS1,"Mechanotransduction,Hippo,Signaling",85,Core kinase of the Hippo mechanotransduction pathway.
+LTBP3,"ECM,Signaling",85,Regulator of TGF-beta signaling critical for spinal ossification.
+DCHS1,"PCP,Adhesion,Development",85,Partner of FAT4 linked to Van Maldergem.
+CREB3L1,"Bone,ER,Signaling",85,ER stress sensor critical for bone matrix quality.
+FUZ,"PCP,Cilia,Cytoskeleton",85,Essential PCP effector for ciliogenesis.
+MYBPC1,"Muscle,Mechanotransduction",85,Direct regulator of muscle tone and posture.
+COL9A2,"ECM,Cartilage,Growth_Plate",85,Structural integrity of cartilage matrix.
+LMX1B,"Development,Cytoskeleton,Dorsal_Ventral",85,Dorso-ventral patterning and collagen regulation.
+MAGEL2,"Muscle,Metabolism,Circadian",85,Syndromic link to muscle hypotonia and spine.
+TMEM67,"Cilia,PCP",85,Ciliopathy gene linking PCP defects to spinal alignment.
+ILK,"Adhesion,Mechanotransduction,Kinase",85,Central hub for integrin-mediated force transduction.
+PPARG,"Metabolism,Muscle",85,Regulates the muscle-to-fat switch observed in unloading and scoliosis.
+LRP5,"Signaling,Bone",85,Key regulator of bone mechanoadaptation.
+DVL1,"PCP,Wnt_Signaling",85,PCP mediator linked to segmentation defects.
+FHL1,"Mechanotransduction,Muscle",85,Muscle mechanosensor linked to spinal rigidity.
+CAPN3,"Muscle,Enzyme,Remodeling",85,Titin-associated protease linked to muscle maintenance.
+COL6A1,"ECM,Muscle",85,Key for muscle-matrix mechanical coupling.
+TPM2,"Muscle,Cytoskeleton",85,Regulatory contractile protein linked to congenital contractures.
+INTU,"PCP,Cilia,Cytoskeleton",85,Strong PCP/Cilia link to segmentation.
+LOX,"ECM,Enzyme",85,Critical enzyme for establishing tissue stiffness against gravity.
+FAT4,"PCP,Cadherin,Growth",85,Hippo pathway member linked to syndromic scoliosis.
+RHOA,"Cytoskeleton,Mechanotransduction",85,Master regulator of cytoskeletal tension.
+GAS8,"Cilia,Motility",85,Ciliary motility protein linked to axis straightening.
+PLOD2,"ECM,Enzyme",85,Enzyme defining collagen mechanical properties.
+CTNNB1,"Adhesion,Signaling,Wnt",85,Key Wnt effector and mechanotransducer.
+NOG,"Signaling,Development",85,Regulator of vertebral segmentation and fusion.
+AKT1,"Signaling,Growth",85,Major growth regulator causing asymmetry when mutated.
+SMAD4,"Signaling,Mechanotransduction",85,TGF-beta pathway component linked to syndromic spine defects.
+GJA1,"Mechanotransduction,Gap_Junction",85,Essential for osteocyte mechanotransduction network.
+TNXB,"ECM,Structure",85,Essential for ECM elastic properties.
+LTBP4,"ECM,Signaling",85,Mechanosensitive TGF-beta anchor linked to AIS.
+PIK3CA,"Signaling,Mechanotransduction",85,Nuclear mechanics and mechanotransduction failure.
+RIPPLY2,"Segmentation,Somite",85,Essential for vertebral segmentation pattern.
+NOTCH2,"Segmentation,Signaling",85,Linked to vertebral segmentation and bone mass.
+MSTN,"Muscle,Signaling,Growth",85,Strong muscle link; potential therapeutic target for unloading.
+COL5A1,"ECM,Structure",85,Structural determinant of tissue stiffness.
+NKX3-2,"Growth_Plate,Development",85,Regulates cartilage growth under load.
+GDF6,"Development,Signaling",85,Direct cause of vertebral fusion defects.
+DLL3,"Segmentation,Notch",85,Notch ligand essential for somite boundaries.
+FGFR1,"Signaling,Growth_Plate,Development",85,Key growth factor receptor linked to congenital spinal defects.
+CDH2,"Adhesion,Mechanotransduction",85,Transmits mechanical information between cells.
+TOR1A,"Nucleus,ER,Mechanotransduction",85,Nuclear envelope protein linking muscle tone (dystonia) to spinal curvature.
+PKD2,"Cilia,Ion_Channel",85,Ciliary mechanosensor linked to asymmetry.
+PTK2,"Mechanotransduction,Adhesion",85,Key signal transducer for gravity sensing.
+TBX6,"Segmentation,Somite",85,Fundamental to vertebral segmentation symmetry.
+ADAMTS10,"ECM,Mechanotransduction",85,Fibrillin-interacting protease essential for ECM mechanics.
+COL2A1,"ECM,Growth_Plate",85,Primary gravity-resisting molecule in the spine.
+PTK7,"PCP,Wnt_Signaling",85,Core PCP component linked to spinal curvature.
+VANGL1,"PCP,Cilia",85,PCP pathway is fundamental to body axis linearity.
+NOTCH1,"Segmentation,Signaling",85,Critical for vertebral segmentation timing.
+POC1B,"Cilia,Structure",85,Structural component of cilia essential for function.
+SLC39A14,"Ion_Transport,Bone,Mechanotransduction",85,Transporter providing co-factors for integrin-mediated gravity sensing.
+VANGL2,"PCP,Cilia",85,PCP disruption directly links to vertebral defects.
+SOX9,"Growth_Plate,Transcription_Factor",85,Master regulator of gravity-resisting tissue.
+EVC,"Cilia,Hedgehog",85,Ciliary basal body protein regulating Hedgehog signaling.
+EVC2,"Cilia,Hedgehog",85,Partner of EVC in ciliary signaling.
+IFT122,"Cilia,Transport",85,IFT complex component essential for ciliary maintenance.
+ROBO3,"Axon_Guidance,Proprioception",85,Direct link between neural circuit formation (proprioception) and spinal curvature.
+TWIST1,"Development,Transcription_Factor",85,Developmental regulator linked to syndromic spinal defects.
+CAV3,"Muscle,Mechanotransduction,Membrane",85,Muscle-specific membrane mechanosensor.
+SUN2,"Mechanotransduction,Nucleus,LINC",85,Partner of SUN1 in nuclear mechanotransduction.
+XYLT1,"ECM,Enzyme",85,Essential for proteoglycan synthesis and cartilage stiffness.
+FBLN5,"ECM,Structure,Elasticity",85,Essential for elastic recoil properties of ECM.
+HES7,"Segmentation,Notch,Somite",85,Proven segmentation defect link to spinal malformation.
+PANX1,"Ion_Channel,Mechanotransduction,Signaling",82,Mechanosensitive ATP release channel.
+BBS1,"Cilia,PCP",82,Ciliary component linked to syndromic scoliosis.
+FOXJ1,"Cilia,Transcription_Factor",82,Master regulator of motile cilia.
+ACTB,"Cytoskeleton,Mechanotransduction",82,Fundamental gravity-responsive cytoskeletal element.
+TUBB,"Cytoskeleton,Mechanotransduction",82,Gravity-dependent self-assembly demonstrated in vitro.
+RIN2,"Trafficking,Signaling,ECM",82,Rab5 effector regulating BMP signaling and ECM trafficking.
+TMEM150C,"Ion_Channel,Mechanotransduction",82,Amplifier of Piezo1 mechanosensitivity.
+SCRIB,"PCP,Adhesion",82,PCP polarity defect links to neural tube/spine.
+ATP6V0A2,"Trafficking,ECM,Glycosylation",82,V-ATPase subunit regulating Golgi pH and glycosylation of ECM proteins.
+LAMA2,"ECM,Muscle,Adhesion",82,Critical for muscle-matrix coupling; loss leads to severe curvature.
+COL11A1,"ECM,Growth_Plate",82,Controls collagen fibril mechanics.
+ZNF462,"Neural_Crest,Development",82,Syndromic link to scoliosis via neural crest.
+TCTN2,"Cilia,PCP,Signaling",82,Regulator of ciliary membrane composition.
+TMEM231,"Cilia,PCP,Development",82,Essential for ciliary transition zone function.
+IHH,"Growth_Plate,Signaling,Development",82,Key regulator of growth plate ossification under load.
+ITGA10,"Adhesion,Cartilage,ECM",82,Chondrocyte-specific integrin.
+TMEM138,"Cilia,PCP,Development",82,Essential for ciliary vesicle trafficking.
+PTH1R,"Growth_Plate,Signaling",82,Key regulator of bone response to load.
+NPR2,"Signaling,Growth_Plate,Mechanotransduction",82,Regulator of long bone growth and vertebral plate physiology.
+SYNE1,"Mechanotransduction,Nucleus,LINC",82,LINC complex component essential for cellular mechanics.
+TRPS1,"Transcription_Factor,Bone",82,Transcriptional regulator of chondrocyte phenotype.
+SHOX,"Transcription_Factor,Growth",82,Key regulator of skeletal growth proportions.
+PKD1,"Cilia,Mechanotransduction",82,Mechanotransduction partner of PKD2 in ciliary sensing.
+INVS,"Cilia,PCP",82,Essential for ciliary mechanosensation and body axis symmetry.
+COL11A2,"ECM,Growth_Plate",82,Structural collagen linking hearing loss to spinal defects.
+TRPV4,"Mechanotransduction,Ion_Channel",82,Direct mechanosensor in chondrocytes.
+TMEM38B,"Ion_Channel,Bone,Signaling",82,Ion channel critical for calcium handling in bone cells.
+LRP6,"Signaling,Bone,Wnt",82,Core component of Wnt mechanotransduction complex.
+RYR1,"Muscle,Ion_Channel",82,Essential for muscle tone maintenance.
+IFITM5,"Bone,Mineralization,Immune",82,Critical for bone mineralization and structure.
+ASPN,"ECM,Cartilage,Signaling",82,SLRP linking ECM to TGF-beta signaling in the disc.
+CELSR1,"PCP,Adhesion",82,PCP determinant of tissue polarity.
+NEK1,"Cilia,Signaling,Kinase",82,Ciliary kinase regulating skeletal formation.
+NEK8,"Cilia,Signaling,Kinase",82,Ciliary kinase linked to fibrocystic/skeletal disease.
+PRRX1,"Development,Mechanotransduction,ECM",82,GWAS link and developmental regulator.
+CYR61,"Mechanotransduction,ECM,Signaling",82,Direct transcriptional target of YAP/TAZ mechanotransduction.
+ADAMTS4,"ECM,Degradation,Cartilage",82,Mechanosensitive enzyme degrading disc matrix.
+PXN,"Adhesion,Mechanotransduction",82,Key focal adhesion scaffold for mechanosignaling.
+DVL3,"PCP,Wnt,Segmentation",82,PCP effector linked to skeletal development.
+MEPE,"Bone,Mineralization,Mechanotransduction",82,Key regulator of bone mineralization density under load.
+STOML3,"Mechanotransduction,Membrane,Ion_Channel",82,Modulator of Piezo sensitivity; relevant for proprioceptive tone.
+SSPOP,"Cilia,Fluid_Flow,Structure",82,Component of the Reissner Fiber; pseudogene in humans but evolutionarily critical.
+PANX3,"Channel,Signaling,Bone",82,Mechanosensitive ATP release channel in bone.
+TWIST2,"Development,Transcription_Factor",82,Syndromic link via TWIST pathway.
+GDF5,"Signaling,Bone,Development",82,BMP ligand critical for joint and cartilage health.
+ASIC3,"Ion_Channel,Mechanotransduction,Inflammation",82,Metabolic/Mechanosensor link in the IVD.
+WDR35,"Cilia,Transport",82,IFT protein linking ciliary structure to skeletal form.
+PKHD1,"Cilia,Mechanotransduction",82,Ciliary mechanosensor linked to syndromic spinal defects.
+CNTNAP2,"Adhesion,Axon_Guidance",82,Genetic association linking neural adhesion to AIS.
+TTLL11,"Cytoskeleton,Cilia",82,Cytoskeletal modifier linked to ciliary stability and scoliosis.
+SPP1,"ECM,Mechanotransduction,Bone",82,Load-dependent regulator of bone remodeling and mineralization.
+GPC3,"Signaling,Development,HSPG",82,Regulator of morphogen gradients determining vertebral size.
+PTHLH,"Growth_Plate,Signaling",82,Central regulator of growth plate pacing under mechanical constraints.
+STAT3,"Signaling,Bone",82,Signaling pathway linking immune dysfunction to severe skeletal/spinal defects.
+KAT6B,"Chromatin,Development",82,Epigenetic regulator of vertebral development.
+DYM,"Golgi,ECM,Transport",82,Golgi protein affecting ECM quality and vertebral shape.
+PIK3R1,"Signaling,Growth,Mechanotransduction",82,Growth pathway linked to mechanotransduction.
+POSTN,"ECM,Mechanotransduction",82,Mechanosensitive ECM component regulating bone density.
+INPP5E,"Cilia,Signaling,Phosphatase",82,Phosphatase regulating ciliary membrane composition.
+ITGA2,"Mechanotransduction,Adhesion,ECM",82,Primary collagen receptor in the IVD.
+CEP164,"Cilia,Centrosome",82,Critical for the initial step of ciliogenesis.
+BGN,"ECM,Mechanotransduction",82,ECM regulator of bone quality and mechanics.
+MYH9,"Cytoskeleton,Motor_Protein",82,Generates cellular tension countering deformation.
+MYPN,"Muscle,Cytoskeleton,Structure",82,Linker protein in the sarcomeric mechanotransduction network.
+CTSK,"ECM,Remodeling",82,Key enzyme for load-driven disc remodeling.
+AQP4,"Fluid_Flow,Glymphatic,Membrane",80,The 'Gatekeeper' of the Glymphatic-Spine link; fluid dynamics.
+ROCK1,"Cytoskeleton,Signaling,Contraction",80,Key regulator of cytoskeletal tension and contraction.
+LFNG,"Segmentation,Notch",80,Notch modulator essential for vertebral segmentation.
+WNT10B,"Signaling,Bone",80,Regulator of bone mass under Wnt control.
+RUNX2,"Bone,Mechanotransduction",80,Master regulator of bone response to load.
+SHH,"Development,Notochord",80,Morphogen establishing the gravity axis.
+MESP1,"Segmentation,Somite",80,Partner of MESP2 in establishing somite polarity.
+GDF11,"Signaling,Segmentation",80,Regulator of vertebral segmentation number and identity.
+PKD1L1,"Cilia,Ion_Channel",80,Links CSF flow sensing to spine straightness.
+BMP4,"Signaling,Mechanotransduction",80,Shear stress modulates expression.
+FLNC,"Muscle,Cytoskeleton,Mechanotransduction",80,Muscle-specific mechanosensor essential for Z-disc integrity.
+CDH1,"Adhesion,Mechanotransduction",80,Adherens junction force transmission.
+EZR,"Cytoskeleton,Adhesion",80,Membrane-cytoskeleton linker.
+FRZB,"Signaling,Wnt,Development",80,Regulator of Wnt signaling diffusion and activity.
+COMP,"ECM,Mechanotransduction",80,Critical for matrix integrity under load.
+WNT5A,"Signaling,PCP",80,Mechanotransduction signaling mediator.
+SOD2,"Metabolism,ROS",80,Mitochondrial antioxidant defending against unloading-induced ROS.
+COL24A1,"ECM,Bone,Development",80,Bone-specific collagen.
+UNCX,"Segmentation,Somite",80,Transcription factor defining the structural unit of the spine.
+GDF3,"Development,Signaling",80,Linked to vertebral fusion.
+PCDH10,"Adhesion,Signaling,Epigenetics",80,Adhesion molecule identified as a tissue-specific biomarker in AIS.
+SPARC,"ECM,Signaling,Bone",80,Matricellular regulator of collagen and bone quality.
+TRPC6,"Mechanotransduction,Ion_Channel",80,Mechanosensitive ion channel.
+OGN,"ECM,Bone,Signaling",80,Regulator of bone mass and collagen organization.
+EN1,"Development,Transcription_Factor,Patterning",80,Transcription factor determining dorsal (spine) vs ventral identity.
+MEOX1,"Segmentation,Somite",80,Transcription factor for vertebral somites.
+NOV,"Mechanotransduction,ECM,Notch",80,Matricellular regulator of Notch signaling in bone.
+TMEM216,"Cilia,Membrane",80,Core component of the transition zone in cilia.
+CRY1,"Circadian,Nucleus",80,Essential repressor in the circadian feedback loop.
+RYK,"PCP,Receptor,Wnt",80,Receptor for Wnt/PCP pathway regulating body axis elongation.
+ATP2A2,"Ion_Channel,Mechanotransduction,Skin",80,Calcium pump interacting with Piezo channels.
+DLC1,"Mechanotransduction,Signaling,Cytoskeleton",80,Negative regulator of the RhoA gravity response.
+ZYX,"Mechanotransduction,Cytoskeleton",80,Mechanosensitive protein at focal adhesions.
+PAPPA2,"Signaling,Growth,Enzyme",80,Regulator of local IGF bioavailability and bone dimensions.
+PRICKLE2,"PCP,Signaling",80,PCP pathway member.
+CNNM2,"Ion_Transport,Magnesium,Membrane",78,Magnesium transporter linked to skeletal integrity.
+KIF6,"Cilia,Motor_Protein",78,Ciliary motor protein linked to scoliosis.
+AXIN2,"Signaling,Wnt",78,Negative regulator of Wnt mechanosignaling.
+CAV1,"Mechanotransduction,Membrane,Notochord",78,Membrane tension sensor linked to notochord mechanics.
+KCNK2,"Ion_Channel,Mechanotransduction",78,Classic mechanosensitive K+ channel regulating neuronal excitability.
+TRPC1,"Mechanotransduction,Ion_Channel",78,Mechanosensory channel distinct from Piezo.
+PRICKLE1,"PCP,Signaling",78,PCP pathway member.
+PTGS2,"Inflammation,Mechanotransduction",78,Inflammatory mediator in mechanotransduction.
+TEAD4,"Mechanotransduction,Development",78,Developmental paralog of TEAD1.
+SLC9A3R1,"Cytoskeleton,Signaling",75,Scaffold protein linking signaling to structure.
+TMEM63A,"Ion_Channel,Mechanotransduction",75,New class of mechanosensitive channel; relevance to spine emerging.
+CDKN2A,"Signaling,Senescence",75,Senescence marker in loaded tissues.
+HSPG2,"ECM,Mechanotransduction",75,Key mechanosensory ECM component.
+MATN1,"ECM,Cartilage",75,Structural component of cartilage matrix.
+WNT3A,"Signaling,Bone",75,Key signaling pathway in bone mechanobiology.
+TP53,"Signaling,Senescence",75,Marker of mechanical stress-induced senescence.
+GREM1,"Signaling,Growth_Plate",72,Regulates growth plate sensitivity.
+VIM,"Cytoskeleton,Mechanotransduction",72,Intermediate filament responsive to gravity loading.
+SIRT1,"Signaling,Muscle,Metabolism",72,Metabolic regulator of muscle response to unloading.
+SCUBE3,"ECM,Signaling",70,Emerging candidate in bone morphogenesis.
+HOXB1,"Development,Segmentation",70,Positional identity gene.
+CDKN1A,"Signaling,Microgravity_Response",70,Key marker of microgravity-induced cell cycle arrest.

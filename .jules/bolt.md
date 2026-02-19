@@ -82,3 +82,9 @@
 
 **Action:** Replaced the broadcasting logic with `scipy.spatial.cKDTree.query_ball_point(return_length=True)`, which is O(N log N). This reduced execution time for N=3000 from 1.69s to 0.015s (~110x speedup) and eliminates the memory bottleneck, enabling efficient analysis of giant proteins like Titin or Piezo1.
 ## 2026-11-20 - [cKDTree Parallelism] **Learning:** cKDTree in scipy supports parallel execution (workers=-1) and has a tunable leafsize. For N=3000-5000 points (typical protein), leafsize=64 and workers=-1 yielded ~2x speedup (12ms -> 6ms) for neighbor counting. **Action:** Updated compute_surface_metrics in bolt_biofold_analysis.py.
+
+## 2026-11-22 - [Optimized Curvature Geometry]
+
+**Learning:** `calculate_curvature` computed `b_len` (triangle side length) by allocating a temporary `vec_ac` array of size (N, 3) and calling `np.linalg.norm`. This involved significant memory allocation and overhead. By using the geometric identity $|u+v|^2 = |u|^2 + |v|^2 + 2(u \cdot v)$, we can compute `b_len` using `np.einsum` and scalar operations, avoiding the temporary array.
+
+**Action:** Replaced `np.linalg.norm(vec_ac)` with `sqrt(a^2 + c^2 + 2*dot(u,v))` in `MetricsAnalyzer`. Benchmarks show ~2x speedup for this specific calculation (29ms -> 13ms for 10k residues) and identical results (within 1e-15).

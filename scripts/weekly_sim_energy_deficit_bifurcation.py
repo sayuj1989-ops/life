@@ -5,7 +5,7 @@ Weekly Simulation: Energy Deficit Bifurcation.
 Performs a 2D parameter sweep of the Energy Deficit Window across (χ_κ, L) space,
 generating a phase diagram showing where AIS vulnerability is highest.
 
-Hypothesis: H_2026_02_08_EnergyPhase
+Hypothesis ID: H_2026_02_08_EnergyPhase
 """
 
 import sys

@@ -2,7 +2,7 @@
 
 **Date:** 2026-02
 **Simulation:** `scripts/weekly_sim_energy_deficit_bifurcation.py`
-**Hypothesis:** `H_2026_02_08_EnergyPhase`
+**Hypothesis ID:** `H_2026_02_08_EnergyPhase`
 
 ## Summary
 This weekly simulation performed a 2D parameter sweep of the Information-Elasticity Coupling (IEC) strength ($\chi_\kappa$) and spinal length ($L$) to map the "Energy Deficit Window" where metabolic demand for posture maintenance ($P_{counter}$) exceeds the proprioceptive supply capacity ($S_{proprio}$).

@@ -1,0 +1,25 @@
+Dr. Magdalena Skipper
+Editor-in-Chief
+Nature
+
+Dear Dr. Skipper,
+
+We are pleased to submit our manuscript, "Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis," for consideration as an Article in Nature.
+
+Adolescent Idiopathic Scoliosis (AIS) affects 3% of the global population and remains a "medical mystery" despite decades of genomic research. We present a paradigm shift: AIS is not a bone disease, but a thermodynamic failure of the "Biological Countercurvature" mechanism that maintains our upright posture against gravity.
+
+Using a novel Information-Cosserat framework, we identify an "Energy Deficit Window" during rapid growth where the metabolic cost of maintaining straightness ($L^4$) outstrips supply ($L^2$). We show that high-anisotropy mechanosensors like Vimentin collapse under this deficit, leading to "sensor blindness" and buckling. This explains the 10:1 female prevalence and the specific vulnerability of the adolescent growth spurt.
+
+This work bridges theoretical physics, structural biology, and clinical medicine. It is not a specialist orthopedic study; it reveals a fundamental scaling law of vertebrate morphogenesis.
+
+We suggest the following reviewers:
+1. Prof. Alain Goriely (Oxford) - Biological Physics
+2. Prof. Donald Ingber (Wyss Institute) - Mechanobiology
+3. Dr. Lawrence Lenke (Columbia) - Spinal Surgery
+
+We declare no competing interests.
+
+Sincerely,
+
+Dr. Sayuj Krishnan S
+Yashoda Hospitals, Hyderabad

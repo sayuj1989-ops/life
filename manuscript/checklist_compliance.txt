@@ -1,0 +1,27 @@
+# Nature Submission Compliance Checklist
+
+## 1. Article Structure
+- [x] Title < 90 characters (83 characters).
+- [x] Abstract < 150 words (~140 words).
+- [x] "Inverted Pyramid" structure (Introduction merged with Results).
+- [x] No subheadings in Main Text (Bold paragraph lead-ins used).
+- [x] Methods section separated at the end.
+
+## 2. Word Counts
+- [x] Main Text (excluding Methods/References): ~1950 words. (Limit: 2500 words).
+- [x] Methods: ~300 words. (Limit: 3000 words).
+
+## 3. Figures & Data
+- [x] Estimated Figures: 4 (Energy Deficit Window, Vector-Scalar Mismatch, Protein Cost Landscape, Phase Diagram). Limit: 6 items.
+- [x] Data Availability Statement included.
+- [x] Code Availability Statement included (`spinalmodes` repo).
+
+## 4. References
+- [x] Numerically cited in text [1, 2].
+- [x] Formatted list at the end.
+
+## 5. Metadata
+- [x] Cover Letter addressed to Chief Editor.
+- [x] Running Title generated.
+- [x] Competing Interests declared.
+- [x] Reviewer suggestions included.

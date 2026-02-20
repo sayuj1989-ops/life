@@ -1,70 +1,61 @@
-# Research Schedule: Gravity as an Optimization Process (12-Week Plan)
+# Research Schedule: Gravity as an Optimization Process
 
-**Principal Investigator:** Jules
-**Subject:** The "Gradient Descent" Model of Spinal Morphogenesis
-**Target:** *Nature* Submission / Validated Computational Framework
+**Date:** 2026-02-25
+**PI:** Jules (Theoretical Biology & Biomechanics)
+**Objective:** Validate the "Gravity as Gradient Descent" hypothesis for spinal morphogenesis over a 12-week timeline.
 
-## Executive Summary
+## Summary
 
-We are formally redefining spinal growth as a **Gradient Descent Optimization** problem. The spine does not merely "grow"; it iteratively solves for a shape that minimizes a thermodynamic Cost Function ($U_{CC}$), balancing gravitational potential, elastic strain, and information density.
-
-Scoliosis is therefore reclassified not as a disease of structure, but as a **failure of optimization**—specifically, a "Local Minimum" trap caused by a desynchronized "Learning Rate" (Circadian Clock) or a "Vanishing Gradient" (Microgravity/Disuse).
-
-This 12-week schedule is designed to mathematically formalize this optimizer, break it in simulation ("Spinal Jetlag"), and design the physical experiments to prove it.
+This research plan operationalizes the theory that the spine is an "Active Optimizing Structure" minimizing a potential energy cost function ($U_{CC}$) defined by gravity, elasticity, and information. We will deploy computational simulations using PyElastica to test failure modes ("Scoliosis as Local Minimum") and design experimental validations for the "Spinal Jetlag" and "Vector-Scalar Mismatch" hypotheses.
 
 ---
 
 ## Phase 1: Computational Proof-of-Concept (Weeks 1-4)
-**Objective:** Encode the "Cost Function" $U_{CC}$ into `pyelastica_bridge.py` and demonstrate that a healthy spine is the Global Minimum of this function.
+**Focus:** Defining the Cost Function ($U_{CC}$) and simulating "Optimization Failure".
 
-| Week | Focus | Task (Computational/Theoretical) | Hypothesis / Theoretical Component |
+| Week | Focus | Task | Hypothesis |
 | :--- | :--- | :--- | :--- |
-| **01** | **The Cost Function ($U_{CC}$)** | **Code:** Modify `compute_U_CC` in `pyelastica_bridge.py`. Explicitly sum: $U_{grav} + U_{elas} - \lambda I_{Info}$. <br>**Deliverable:** Heatmap of $U_{CC}$ for various spinal shapes (S, C, Straight). | The "Straight" spine is only the Global Minimum when Information Entropy is maximized ($\lambda I_{Info}$). Without it, the spine collapses (buckles). |
-| **02** | **The Optimizer (Gradient Descent)** | **Code:** Implement a feedback loop where Growth Rate $\dot{L} \propto -\nabla U_{CC}$. <br>**Sim:** Run a simulation where a deformed spine "finds" the straight line via differential growth. | **Mechanotransduction as Gradient Calculation.** Piezo1/2 acts as the backpropagation algorithm, calculating the error vector relative to gravity. |
-| **03** | **The Bio-Gravitational Number ($\mathcal{B}_g$)** | **Theory:** Define $\mathcal{B}_g = \frac{\rho g L^3}{EI \cdot \mathcal{S}_{sens}}$ (Gravity / Stiffness $\times$ Sensitivity). <br>**Code:** Parameter sweep of $\mathcal{B}_g$ in `weekly_sim_energy_deficit_bifurcation.py`. | **The Stability Boundary.** There exists a critical $\mathcal{B}_g^*$ above which the optimizer diverges (High gravity, low stiffness, or *hypersensitivity*). |
-| **04** | **Simulating "Exploding Gradients"** | **Code:** Introduce "Sensory Noise" (random fluctuations in Piezo signaling). <br>**Sim:** High-gain feedback loops causing oscillations (Scoliosis). | **Scoliosis as Overfitting.** If the learning rate (sensitivity) is too high, the spine over-corrects for minor deviations, creating a permanent curve. |
+| **1** | **The Cost Function ($U_{CC}$)** | **Implement `compute_U_CC` in `pyelastica_bridge.py`.** Formalize the energy terms: $U_{grav}$ (Gravity), $U_{elastic}$ (Strain), and $U_{info}$ (Alignment Benefit). Verify that a straight spine in 1g minimizes $U_{CC}$ when $\mathcal{B}_g > 1$. | The organism minimizes $U_{CC} = U_{grav} + U_{elastic} - U_{info}$. A failure to minimize this (high residual energy) corresponds to deformity. |
+| **2** | **The Bio-Gravitational Number ($\mathcal{B}_g$)** | **Implement `calculate_Bg` utility.** Create a script to sweep $\chi_M$ (morphomechanical stiffness) and $L$ (length) to map the $\mathcal{B}_g$ phase space. Identify the critical value $\mathcal{B}_{crit} \approx 1$ where gravity overwhelms the biological moment. | Scoliosis onset occurs when $\mathcal{B}_g < 1$, i.e., when the biological counter-moment ($\chi_M \nabla I$) is insufficient to oppose the gravitational moment ($\rho A g L^2$). |
+| **3** | **Optimization Failure (The Exploding Gradient)** | **Refine `experiment_optimization_failure.py`.** Simulate the "Exploding Gradient" scenario: High Gain ($\chi_\kappa \gg 1$) combined with Sensory Noise ($\sigma_{noise} > 0$). Run Monte Carlo simulations to detect stochastic buckling events. | High sensory gain (required for rapid growth) makes the system brittle. Sensory noise induces a "searching" behavior that gets trapped in a local minimum (S-curve). |
+| **4** | **The Developmental Loop** | **Implement `simulate_growth.py`.** Create a wrapper around `pyelastica_bridge.py` that updates intrinsic curvature $\kappa_{rest}$ over "developmental time" (weeks) based on residual stress, simulating the "Slow Optimizer". | Differential growth is the primary optimizer. If the growth update rule is too slow relative to perturbation frequency ($\mathcal{D}_{morph} \gg 1$), errors accumulate. |
 
 ---
 
 ## Phase 2: The "Spinal Jetlag" Simulation (Weeks 5-8)
-**Objective:** Integrate Time. The "Learning Rate" is not constant; it is modulated by the Circadian Clock (BMAL1). We test what happens when the Clock and Gravity desynchronize.
+**Focus:** Integrating Time-Dependent Learning Rate (Circadian Clock) and Vector-Scalar Mismatch.
 
-| Week | Focus | Task (Computational/Theoretical) | Hypothesis / Theoretical Component |
+| Week | Focus | Task | Hypothesis |
 | :--- | :--- | :--- | :--- |
-| **05** | **The Circadian Learning Rate** | **Code:** Implement $\alpha(t) = A [1 + \sin(\omega t + \phi)]$ in the growth update loop. <br>**Sim:** Growth only occurs during "Night" (high $\alpha$). | **Gating.** The spine is only plastic (high learning rate) during sleep to prevent remodeling under transient daytime loads. |
-| **06** | **"Spinal Jetlag" (Phase Shift)** | **Code:** Offset the Clock $\phi$ vs. the Loading Vector (Upright vs. Supine). <br>**Sim:** High Learning Rate while the agent is Upright (or upside down). | **The Mismatch.** If plasticity peaks when the spine is loaded asymmetrically (e.g., bad posture + disrupted clock), the optimizer "learns" the curve. |
-| **07** | **Vector-Scalar Mismatch (Microgravity)** | **Code:** Set Gravity $\vec{g} \to 0$ but keep Fluid Pressure (Scalar Stress) high. <br>**Sim:** Run the optimizer with scalar noise but no directional gradient. | **Vanishing Gradient.** In microgravity, $\nabla U_{grav}$ vanishes. The optimizer drifts via random walk (entropic collapse) or locks into a local minimum. |
-| **08** | **The Energy Deficit Window** | **Code:** Link `experiment_energy_deficit_window.py` with the Clock. <br>**Sim:** Cost of correction vs. Available Metabolic Power ($P_{supply}$). | **Metabolic Checkpointing.** Optimization stops if $\Delta U_{CC} > P_{supply}$. Scoliosis is a "frozen" optimization step due to energy bankruptcy. |
+| **5** | **The Clock Model** | **Implement `CircadianParams` logic in `pyelastica_bridge.py`.** Model the "Learning Rate" $\eta(t)$ as a function of BMAL1 expression: $\eta(t) = \eta_0 (1 + A \cos(\omega t + \phi))$. Ensure stiffness $\chi_M$ oscillates. | The spine is only "plastic" (learns geometry) during specific circadian phases (e.g., night/sleep). Mismatch between load and plasticity leads to maladaptation. |
+| **6** | **Spinal Jetlag (Desynchronization)** | **Run `experiment_spinal_jetlag.py`.** Simulate a phase shift $\Delta\phi$ between the gravitational load cycle (upright/supine) and the circadian clock (plasticity window). | **Spinal Jetlag:** If mechanical loading peaks when the tissue is "soft" (high learning rate), the spine learns the wrong shape. $\Delta\phi \neq 0$ drives curvature. |
+| **7** | **Vector-Scalar Mismatch (Microgravity)** | **Simulate Microgravity ($g \to 0$).** Set Gravity Vector to zero but maintain Scalar Drive (Pressure/Growth). Implement the "Confused Sensor" model where $\Phi_{VS} \to 0$. | In the absence of a Vector signal (Gravity), the Scalar signal (Growth) becomes isotropic. The spine loses its "direction" and buckles under internal growth stress. |
+| **8** | **The "Rescue" Simulation** | **Simulate Pharmacological Rescue.** Test if "rebooting" the clock (resetting phase $\phi$) or artificially boosting Vector signal (magnetic tweezers proxy) can escape the local minimum. | Resynchronizing the clock with the load cycle (e.g., via Melatonin or Nobiletin) can halt curve progression by realigning the "Learning Window". |
 
 ---
 
 ## Phase 3: Experimental Validation Design (Weeks 9-12)
-**Objective:** Translate the computational findings into falsifiable wet-lab experiment designs.
+**Focus:** Designing Wet-Lab experiments to validate computational predictions.
 
-| Week | Focus | Task (Experimental Design) | Hypothesis / Theoretical Component |
+| Week | Focus | Task | Hypothesis |
 | :--- | :--- | :--- | :--- |
-| **09** | **Experiment: "Test T_Clock"** | **Design:** Protocol for Bmal1-/- mice or Zebrafish under constant light (LL). <br>**Prediction:** Disrupted clock = Constant High Learning Rate = Severe Scoliosis under minor loads. | **Chronotherapy.** Does restoring the rhythm (e.g., Melatonin) rescue the curvature? |
-| **10** | **Experiment: The "Sensor-Blind" Control** | **Design:** Piezo1 conditional knockout (Osteoblast specific). <br>**Prediction:** The optimizer receives $\nabla U = 0$. Result: Hypoplastic, straight spine (no growth) or immediate buckling (no correction)? | **Gradient Necessity.** Without the gradient (Piezo), the cost function is invisible to the cells. |
-| **11** | **Experiment: The Clinostat (Microgravity)** | **Design:** 3D Clinostat setup for organoids/Zebrafish. <br>**Prediction:** "Vector-Scalar Mismatch" phenotype (High bone density but poor alignment). | **Scalar vs. Vector.** Confirm that cells sense *magnitude* (pressure) but lose *orientation* (gravity). |
-| **12** | **Synthesis & Submission** | **Docs:** Compile `formalism_01.md`, simulation heatmaps, and experimental designs into the *Nature* manuscript. <br>**Task:** Finalize `manuscript.md` and `cover_letter.txt`. | **The Grand Unified Theory.** Gravity is the instructor; the Spine is the neural network; the Clock is the scheduler. |
+| **9** | **Experiment Design: "Test T_Clock"** | **Protocol for Zebrafish Clock Disruption.** Design an experiment using *per2::luc* zebrafish larvae. Conditions: (1) Normal Light/Dark, (2) Constant Light (Arrhythmic), (3) Shifted Cycle (Jetlag). Measure Spinal Curvature (Cobb Angle). | Arrhythmic or phase-shifted larvae will develop spinal curvature deviations significantly higher than controls, validating the "Spinal Jetlag" hypothesis. |
+| **10** | **Experiment Design: "The Pressure Chamber"** | **Protocol for Vector-Scalar Mismatch.** Design a setup using a hyperbaric chamber (High Scalar) vs. a Clinostat (Zero Vector). Compare bone/notochord morphology. | High pressure (Scalar) without gravity (Vector) will result in "bloated" vertebrae with low aspect ratio, whereas Gravity + Pressure yields elongation. |
+| **11** | **Data Pipeline & Integration** | **Develop `analyze_experimental_data.py`.** Create a pipeline to ingest experimental data (images/CSV) and map them to $\mathcal{B}_g$ and $\Phi_{VS}$ parameter space for model validation. | Experimental results should map to the "Unstable Region" of the computationally derived phase diagram. |
+| **12** | **Synthesis & Manuscript** | **Draft "Gravity as Optimization" Manuscript.** Compile simulation results (Phase 1 & 2) and experimental designs (Phase 3) into a cohesive paper. | The theoretical framework unifies "Scoliosis," "Microgravity Adaptation," and "Developmental Stability" under a single energy minimization principle. |
 
 ---
 
-## Risk Assessment & Bottlenecks
+## Risk Assessment & Mitigation
 
-### 1. Theoretical Risk: The Cost Function is Non-Convex
-*   **Risk:** The simulation might get stuck in local minima (scoliosis) *too easily*, making it hard to simulate a healthy spine.
-*   **Mitigation:** Calibrate the "Elastic" term. A strong enough elastic reference (The Notochord/IVD) should smooth the landscape. We will use the `Bio-Gravitational Number` to find the convexity threshold.
+1.  **Theoretical Risk:** *The "Cost Function" might be ill-defined for biological growth.*
+    *   *Mitigation:* We explicitly separate "Elastic Energy" (Passive) from "Informational Energy" (Active). We will use `compute_U_CC` to track the ratio, ensuring the active term $\chi_M$ behaves physically (as a generalized stiffness).
 
-### 2. Computational Risk: Time-Scale Discrepancy
-*   **Risk:** Growth happens over months (slow); muscle tone happens in milliseconds (fast). Simulating both in `PyElastica` is computationally expensive.
-*   **Mitigation:** Use "Quasi-Static" updates. Solve the elastic equilibrium (fast), then take one large "Growth Step" (slow), assuming the fast dynamics average out.
+2.  **Computational Risk:** *PyElastica simulations might be too slow for "Developmental Time" (Weeks).*
+    *   *Mitigation:* Use the "Quasi-Static" assumption. We do not simulate every second of growth. We step `t_growth` in discrete intervals (e.g., 1 day), running a short relaxation simulation (10s) at each step to find equilibrium.
 
-### 3. Experimental Risk: Separating Clock from Activity
-*   **Risk:** In animals, disrupting the clock also disrupts sleep/activity, changing the mechanical load.
-*   **Mitigation:** The "Microgravity" (Clinostat) control. If the clock effect persists even without gravity load, it proves the "Learning Rate" hypothesis is distinct from mechanical load magnitude.
+3.  **Experimental Risk:** *Zebrafish clocks might be too robust to disrupt easily.*
+    *   *Mitigation:* Use *Cry1/2* double knockouts or pharmacological clock inhibitors (e.g., KL001) if light cycles alone are insufficient.
 
----
-
-### Immediate Next Step
-I will begin **Week 01** by inspecting `src/spinalmodes/countercurvature/pyelastica_bridge.py` to explicitly formalize the `compute_U_CC` function to match the $U_{grav} + U_{elas} - \lambda I_{Info}$ definition.
+4.  **Integration Risk:** *Mapping "Scalar Pressure" to PyElastica forces.*
+    *   *Mitigation:* We model Scalar Pressure as an isotropic expansion term in the reference metric (Growth Tensor $\mathbf{\Omega}$), while Vector Gravity remains an external force density.

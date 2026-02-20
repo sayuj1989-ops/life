@@ -32,7 +32,7 @@ We model the human spine as a continuous elastic Cosserat rod, defined by a cent
     \label{eq:cosserat_kinematics}
 \end{align}
 
-where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
+where $\mathbf{v}(s)$ is the tangent vector and $\boldsymbol{\varepsilon}(s)$ denotes the strain vector (shear and extension). The curvature vector $\boldsymbol{\kappa}(s)$ and twist $\tau(s)$ are encoded in the Darboux vector $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$. We assign the physical boundary conditions: $s=0$ corresponds to the sacrum (clamped: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ to the cranium (free), defining the mechanical axis of the column.
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
@@ -56,7 +56,7 @@ Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
     \label{eq:bg_number}
 \end{equation}
 
-When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins (e.g., HOXC8, HOXB13), as confirmed by AlphaFold structural analysis which reveals rigid DNA-binding domains capable of enforcing sharp identity boundaries.
+When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins (e.g., HOXC8, HOXB13). AlphaFold structural analysis confirms that these factors possess rigid DNA-binding domains, which are capable of enforcing sharp identity boundaries.
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge builds upon recent theoretical proposals\footnote{A preliminary exploration of this concept, proposing a cosmological "Information Term" $I_{\mu\nu}$ in Einstein's field equations, was introduced in \cite{krishnan2025consciousness}. The present work translates this speculative cosmological hypothesis into a rigorous, experimentally testable framework for biological morphogenesis, where $I(s)$ modifies the effective material metric rather than the vacuum spacetime metric.} suggesting that information may play a geometric role in physical systems.

@@ -1,255 +1,394 @@
-#!/usr/bin/env python3
 """
-Phase 1, Week 3: Exploding Gradient and Sensory Noise.
+Experiment: Optimization Failure — Exploding Gradient Map.
 
-Maps the "Exploding Gradient" region where high chi_kappa combined with sensory noise
-leads to spinal instability (scoliosis).
+This script implements Phase 1, Week 3 of the Gravity Optimization research schedule.
+It maps the "Exploding Gradient" region where high information-to-curvature coupling
+(chi_kappa) combined with low stiffness anisotropy leads to instability (scoliosis).
+
+Key innovation: Sensory noise injection into the information gradient.
+    grad_I_noisy = grad_I + eta, where eta ~ N(0, sigma_noise)
+
+This models imprecise mechanosensing (e.g. PIEZO2 dysfunction, proprioceptive
+error) that degrades the quality of the shape-maintenance gradient signal.
+
+Hypothesis:
+    Scoliosis emerges as an "Exploding Gradient" when:
+    1. The Learning Rate (chi_kappa) exceeds structural damping (anisotropy)
+    2. Sensory noise (sigma) degrades gradient fidelity below a critical threshold
+    3. The combination creates a wedge-shaped instability region in
+       (chi_kappa, sigma_noise) space
+
+Measurable outputs:
+    - Phase diagram of Cobb Angle in (chi_kappa, sigma_noise) space
+    - Critical noise threshold sigma_c(chi_kappa) for scoliosis onset
+    - Torsion emergence as a secondary instability marker
+    - Comparison: noisy vs noise-free gradient descent convergence
+
+References:
+    - Research Schedule Phase 1, Week 3: "Optimization Failure"
+    - Hypothesis Register: H_2026_02_08_EnergyPhase
 """
 
-import sys
-import os
-import time
 import argparse
+import csv
+import os
+import sys
+import time
+import tracemalloc
+from datetime import datetime
+from pathlib import Path
+from typing import List
+
 import numpy as np
-import pandas as pd
-from datetime import date
-from dataclasses import dataclass
-from typing import Optional, List, Dict, Tuple
 
-# Add src to path
-sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
+sys.path.append(str(Path(__file__).parent.parent / "src"))
 
+from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.pyelastica_bridge import (
     CounterCurvatureRodSystem,
-    CounterCurvatureParams,
-    InfoField1D,
     compute_U_CC,
-    SimulationResult,
-    PYELASTICA_AVAILABLE
+    verify_pyelastica_installation,
 )
-from spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
-if not PYELASTICA_AVAILABLE:
-    print("Error: PyElastica not installed.")
-    sys.exit(1)
 
-def inject_noise(info: InfoField1D, sigma: float, seed: Optional[int] = None) -> InfoField1D:
-    """Inject Gaussian noise into the information gradient."""
-    if seed is not None:
-        np.random.seed(seed)
+def create_noisy_info_field(
+    s: np.ndarray,
+    info_center_frac: float = 0.5,
+    info_width_frac: float = 0.1,
+    info_amplitude: float = 0.5,
+    sigma_noise: float = 0.0,
+    rng: np.random.Generator = None,
+) -> InfoField1D:
+    """Create an information field with optional gradient noise.
 
-    noise = np.random.normal(0.0, sigma, size=info.dIds.shape)
-    dIds_noisy = info.dIds + noise
+    The base field is a Gaussian bump (representing HOX-encoded shape programme).
+    Noise is injected into the gradient dI/ds to model imprecise mechanosensing.
 
-    # We do not update I(s) for consistency, assuming the sensor (gradient reader) is noisy,
-    # not the underlying morphogen field itself.
-    return InfoField1D(s=info.s, I=info.I, dIds=dIds_noisy)
+    Parameters
+    ----------
+    s : np.ndarray
+        Arc-length grid.
+    info_center_frac : float
+        Center of Gaussian bump as fraction of length.
+    info_width_frac : float
+        Width of Gaussian bump as fraction of length.
+    info_amplitude : float
+        Amplitude of the information bump.
+    sigma_noise : float
+        Standard deviation of additive Gaussian noise on dI/ds.
+    rng : np.random.Generator
+        Random number generator for reproducibility.
 
-def run_trial(
-    chi_kappa: float,
-    sigma_noise: float,
-    anisotropy: float = 1.5,
-    duration: float = 5.0, # Enough to settle
-    trial_id: int = 0,
-    quick_test: bool = False
-) -> Dict[str, float]:
-    """Run a single stochastic trial."""
+    Returns
+    -------
+    InfoField1D
+        Information field with noisy gradient.
+    """
+    length = s[-1] - s[0]
+    center = info_center_frac * length
+    width = info_width_frac * length
 
-    # 1. Physics Parameters
-    n_elements = 50
-    L = 0.4 # m
-    radius = 0.01 # m
-    E0 = 1e7 # Pa
-    rho = 1000.0
+    # Base information field (clean signal)
+    I = 0.5 + info_amplitude * np.exp(-0.5 * ((s - center) / width) ** 2)
+    dIds_clean = np.gradient(I, s)
 
-    if quick_test:
-        duration = 1.0
-        n_elements = 20 # Coarser for speed
-
-    # 2. Information Field (Baseline)
-    s = np.linspace(0, L, n_elements + 1)
-    # Gradient drives counter-curvature.
-    # Let's assume a simple linear gradient or a bump.
-    # A bump ensures dIds has + and - regions.
-    info_center = 0.5 * L
-    info_width = 0.15 * L
-    I = 0.8 * np.exp(-0.5 * ((s - info_center) / info_width)**2)
-    dIds = np.gradient(I, s)
-    info_base = InfoField1D(s=s, I=I, dIds=dIds)
-
-    # 3. Inject Noise
-    # This simulates "Imprecise Mechanosensing"
-    info_noisy = inject_noise(info_base, sigma_noise, seed=trial_id)
-
-    # 4. Coupling Parameters
-    params = CounterCurvatureParams(
-        chi_kappa=chi_kappa,
-        chi_E=0.0,
-        chi_M=0.0,
-        chi_tau=0.0,
-        scale_length=L
-    )
-
-    # 5. Geometry
-    # Start straight but with small lateral imperfection to allow buckling
-    kappa_gen = np.zeros((3, n_elements + 1))
-    kappa_gen[1, :] = 2.0 # Natural kyphosis
-    kappa_gen[0, :] = 0.1 # Small lateral defect (perturbation)
-
-    # 6. Create System
-    system = CounterCurvatureRodSystem.from_iec(
-        info=info_noisy, # System sees noisy info
-        params=params,
-        length=L,
-        n_elements=n_elements,
-        E0=E0,
-        radius=radius,
-        kappa_gen=kappa_gen,
-        gravity=9.81,
-        stiffness_anisotropy=anisotropy
-    )
-
-    # 7. Run Simulation
-    try:
-        dt = 2e-4 if not quick_test else 1e-3
-        n_steps = int(duration / dt)
-        save_every = max(1, n_steps // 10) # Save 10 frames
-
-        result = system.run_simulation(
-            final_time=duration,
-            dt=dt,
-            save_every=save_every,
-            progress_bar=False
-        )
-
-        # 8. Compute Metrics
-        metrics = result.compute_final_metrics()
-
-        # Compute U_CC
-        # Use base info for energy calculation? Or noisy?
-        # Biologically, the organism *thinks* it is minimizing energy based on noisy info.
-        # But we want to know the "true" cost or the "perceived" cost?
-        # Usually U_CC is the objective function.
-        # Let's compute based on the actual field used (noisy).
-        energies = compute_U_CC(result, info_noisy, params, gravity=9.81, E0=E0)
-
-        s_lat = metrics.get("S_lat", 0.0)
-        cobb = metrics.get("cobb_angle", 0.0)
-
-        # Failure Definition: S_lat > 2.0 mm? Or Cobb > 10 deg?
-        # Clinical scoliosis is Cobb > 10.
-        is_unstable = cobb > 10.0
-
-        return {
-            "chi_kappa": chi_kappa,
-            "sigma_noise": sigma_noise,
-            "trial_id": trial_id,
-            "S_lat": s_lat,
-            "Cobb_angle": cobb,
-            "Is_Unstable": float(is_unstable),
-            "U_CC": energies["U_CC"],
-            "Max_Curvature": metrics.get("max_curvature", 0.0)
-        }
-
-    except Exception as e:
-        print(f"Simulation failed: {e}")
-        return {
-            "chi_kappa": chi_kappa,
-            "sigma_noise": sigma_noise,
-            "trial_id": trial_id,
-            "S_lat": np.nan,
-            "Cobb_angle": np.nan,
-            "Is_Unstable": np.nan,
-            "U_CC": np.nan,
-            "Max_Curvature": np.nan
-        }
-
-def main():
-    parser = argparse.ArgumentParser(description="Optimization Failure Experiment")
-    parser.add_argument("--quick-test", action="store_true", help="Run short simulation for verification")
-    args = parser.parse_args()
-
-    print("Starting Optimization Failure (Exploding Gradient) Experiment...")
-
-    # Parameters
-    # Anisotropy fixed low
-    ANISOTROPY = 1.5
-
-    # Sweeps
-    if args.quick_test:
-        chi_values = [5.0, 10.0]
-        sigma_values = [0.0, 1.0]
-        n_trials = 1
+    # Inject sensory noise into the gradient
+    if sigma_noise > 0.0 and rng is not None:
+        noise = rng.normal(0.0, sigma_noise, size=dIds_clean.shape)
+        dIds = dIds_clean + noise
     else:
-        chi_values = np.linspace(0, 20, 11) # 0, 2, ..., 20
-        sigma_values = np.linspace(0, 5.0, 11) # 0, 0.5, ..., 5.0
-        n_trials = 5
+        dIds = dIds_clean
 
-    results = []
+    return InfoField1D(s=s, I=I, dIds=dIds)
 
-    total_runs = len(chi_values) * len(sigma_values) * n_trials
-    count = 0
-    start_time = time.time()
 
-    for chi in chi_values:
-        for sigma in sigma_values:
-            for i in range(n_trials):
-                count += 1
-                if count % 10 == 0:
-                    elapsed = time.time() - start_time
-                    print(f"Progress: {count}/{total_runs} ({count/total_runs*100:.1f}%) - Elapsed: {elapsed:.1f}s")
+def run_optimization_failure_sweep(
+    out_file: str,
+    chi_kappas: List[float],
+    sigma_noises: List[float],
+    n_trials: int = 3,
+    n_elements: int = 50,
+    final_time: float = 2.0,
+    seed: int = 42,
+):
+    """Run the optimization failure parameter sweep.
 
-                res = run_trial(
-                    chi_kappa=chi,
-                    sigma_noise=sigma,
-                    anisotropy=ANISOTROPY,
-                    trial_id=i,
-                    quick_test=args.quick_test
-                )
-                results.append(res)
+    For each (chi_kappa, sigma_noise) pair, runs n_trials stochastic realisations
+    and records the mean and std of scoliosis metrics.
 
-    df = pd.DataFrame(results)
+    Parameters
+    ----------
+    out_file : str
+        Path to output CSV file.
+    chi_kappas : list of float
+        Information-curvature coupling strengths to sweep.
+    sigma_noises : list of float
+        Noise levels for gradient corruption.
+    n_trials : int
+        Number of stochastic trials per parameter pair.
+    n_elements : int
+        Number of rod elements.
+    final_time : float
+        Simulation duration (seconds).
+    seed : int
+        Base random seed for reproducibility.
+    """
+    verify_pyelastica_installation(exit_on_fail=True)
 
-    # Save Outputs
-    today = date.today().isoformat()
-    output_dir = f"outputs/sim/{today}"
-    os.makedirs(output_dir, exist_ok=True)
+    print("=" * 100)
+    print("EXPERIMENT: Optimization Failure — Exploding Gradient Map")
+    print("=" * 100)
+    print(f"Sweeping chi_kappa: {chi_kappas}")
+    print(f"Sweeping sigma_noise: {sigma_noises}")
+    print(f"Trials per point: {n_trials}")
+    print(f"Output: {out_file}")
+    print("=" * 100)
 
-    csv_path = os.path.join(output_dir, "optimization_failure.csv")
-    df.to_csv(csv_path, index=False)
-    print(f"Saved CSV to {csv_path}")
+    # Rod parameters
+    length = 0.5      # metres
+    radius = 0.01     # metres
+    E0 = 1e6          # Pa
+    rho = 1000.0      # kg/m^3
+    gravity = 9.81
+    dt = 1e-5
+    anisotropy = 1.5  # Moderate anisotropy (between low=1.0 and high=5.0)
 
-    # Aggregation
-    agg = df.groupby(["chi_kappa", "sigma_noise"]).agg({
-        "Cobb_angle": ["mean", "std"],
-        "Is_Unstable": "mean" # Probability of failure
-    }).reset_index()
+    # Prepare output
+    out_dir = os.path.dirname(out_file)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
 
-    # Flatten columns
-    agg.columns = ["chi_kappa", "sigma_noise", "Cobb_mean", "Cobb_std", "Failure_Prob"]
+    fieldnames = [
+        "timestamp", "chi_kappa", "sigma_noise", "trial",
+        "cobb_angle", "max_torsion", "S_lat", "max_curvature",
+        "U_CC", "U_gravity", "U_elastic", "U_info", "info_gain_ratio",
+        "runtime_sec", "peak_memory_mb",
+    ]
 
-    # Generate Report
-    report_path = os.path.join(output_dir, "optimization_failure_report.md")
+    file_exists = os.path.isfile(out_file)
+    with open(out_file, mode="a", newline="") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
 
-    try:
-        import tabulate
-        table = agg.to_markdown(index=False)
-    except ImportError:
-        table = agg.to_string(index=False)
+        print(
+            f"{'chi_k':<8} | {'sigma':<8} | {'trial':<6} | "
+            f"{'Cobb':<8} | {'Torsion':<9} | {'S_lat':<8} | "
+            f"{'U_CC':<12} | {'Time':<8}"
+        )
+        print("-" * 90)
 
-    with open(report_path, "w") as f:
-        f.write(f"# Optimization Failure: Exploding Gradient Report\n")
-        f.write(f"Date: {today}\n\n")
-        f.write("## Hypothesis\n")
-        f.write("In the 'Exploding Gradient' regime, high coupling strength (chi_kappa) amplifies sensory noise (sigma), "
-                "leading to stochastic failure of spinal alignment (scoliosis).\n\n")
-        f.write("## Phase Diagram Data (Aggregated)\n")
-        f.write(table)
-        f.write("\n\n## Analysis\n")
-        f.write("The 'Failure_Prob' column indicates the likelihood of Cobb angle > 10 degrees. "
-                "We expect a transition boundary where failure probability jumps from 0 to 1 as chi_kappa * sigma_noise increases.\n")
+        total = len(chi_kappas) * len(sigma_noises) * n_trials
+        count = 0
 
-    print(f"Saved Report to {report_path}")
+        for chi_kappa in chi_kappas:
+            for sigma_noise in sigma_noises:
+                for trial in range(n_trials):
+                    count += 1
+                    rng = np.random.default_rng(seed + trial * 1000 + hash(
+                        (chi_kappa, sigma_noise)
+                    ) % 10000)
+
+                    tracemalloc.start()
+                    t0 = time.time()
+
+                    # Create noisy information field
+                    s = np.linspace(0, length, n_elements + 1)
+                    info = create_noisy_info_field(
+                        s, sigma_noise=sigma_noise, rng=rng
+                    )
+
+                    # Coupling: pure curvature drive (no active moments)
+                    params = CounterCurvatureParams(
+                        chi_kappa=chi_kappa,
+                        chi_tau=0.0,
+                        chi_E=0.0,
+                        chi_M=0.0,
+                        scale_length=length,
+                    )
+
+                    # Baseline sagittal curvature
+                    kappa_gen = np.zeros((3, n_elements + 1))
+                    kappa_gen[0, :] = 2.0  # Sagittal kyphosis
+
+                    # Create and run
+                    rod_system = CounterCurvatureRodSystem.from_iec(
+                        info=info,
+                        params=params,
+                        length=length,
+                        n_elements=n_elements,
+                        E0=E0,
+                        rho=rho,
+                        radius=radius,
+                        kappa_gen=kappa_gen,
+                        gravity=gravity,
+                        stiffness_anisotropy=anisotropy,
+                    )
+
+                    result = rod_system.run_simulation(
+                        final_time=final_time,
+                        dt=dt,
+                        save_every=5000,
+                        gravity=gravity,
+                        boundary_condition="fixed",
+                        progress_bar=False,
+                    )
+
+                    t1 = time.time()
+                    _, peak = tracemalloc.get_traced_memory()
+                    tracemalloc.stop()
+
+                    # Compute metrics
+                    sim_metrics = result.compute_final_metrics()
+                    cost = compute_U_CC(result, info, params, gravity, rho, E0)
+
+                    row = {
+                        "timestamp": datetime.now().isoformat(),
+                        "chi_kappa": chi_kappa,
+                        "sigma_noise": sigma_noise,
+                        "trial": trial,
+                        "cobb_angle": sim_metrics.get("cobb_angle", 0.0),
+                        "max_torsion": sim_metrics.get("max_torsion", 0.0),
+                        "S_lat": sim_metrics.get("S_lat", 0.0),
+                        "max_curvature": sim_metrics.get("max_curvature", 0.0),
+                        "U_CC": cost["U_CC"],
+                        "U_gravity": cost["U_gravity"],
+                        "U_elastic": cost["U_elastic"],
+                        "U_info": cost["U_info"],
+                        "info_gain_ratio": cost["info_gain_ratio"],
+                        "runtime_sec": round(t1 - t0, 4),
+                        "peak_memory_mb": round(peak / (1024 * 1024), 2),
+                    }
+                    writer.writerow(row)
+                    csvfile.flush()
+
+                    print(
+                        f"{chi_kappa:<8.2f} | {sigma_noise:<8.3f} | {trial:<6d} | "
+                        f"{row['cobb_angle']:<8.2f} | {row['max_torsion']:<9.4f} | "
+                        f"{row['S_lat']:<8.4f} | {row['U_CC']:<12.4f} | "
+                        f"{row['runtime_sec']:<8.3f}"
+                    )
+
+    print("=" * 100)
+    print(f"Experiment complete. {count}/{total} simulations finished.")
+    generate_report(out_file)
+
+
+def generate_report(csv_file: str):
+    """Generate a Markdown report from the sweep results."""
+    md_file = str(Path(csv_file).with_suffix(".md"))
+
+    with open(csv_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    if not rows:
+        print("No data to report.")
+        return
+
+    with open(md_file, "w") as f:
+        f.write("# Optimization Failure: Exploding Gradient Report\n\n")
+        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"**Source:** `{os.path.basename(csv_file)}`\n\n")
+
+        f.write("## Hypothesis\n\n")
+        f.write("Scoliosis emerges as an 'Exploding Gradient' when the learning rate\n")
+        f.write("(chi_kappa) exceeds structural damping AND sensory noise degrades\n")
+        f.write("gradient fidelity below a critical threshold.\n\n")
+
+        # Aggregate by (chi_kappa, sigma_noise)
+        from collections import defaultdict
+        groups = defaultdict(list)
+        for r in rows:
+            key = (float(r["chi_kappa"]), float(r["sigma_noise"]))
+            groups[key].append(float(r["cobb_angle"]))
+
+        f.write("## Mean Cobb Angle by (chi_kappa, sigma_noise)\n\n")
+        f.write("| chi_kappa | sigma_noise | mean_Cobb | std_Cobb | n_scoliotic |\n")
+        f.write("|-----------|-------------|-----------|----------|-------------|\n")
+
+        for (ck, sn), cobbs in sorted(groups.items()):
+            mean_c = np.mean(cobbs)
+            std_c = np.std(cobbs)
+            n_scol = sum(1 for c in cobbs if c > 10.0)
+            f.write(f"| {ck:.2f} | {sn:.3f} | {mean_c:.2f} | {std_c:.2f} | {n_scol}/{len(cobbs)} |\n")
+
+        # Identify critical noise threshold
+        f.write("\n## Critical Noise Threshold\n\n")
+        f.write("sigma_c is the noise level at which mean Cobb angle first exceeds 10 degrees.\n\n")
+
+        chi_vals = sorted(set(float(r["chi_kappa"]) for r in rows))
+        for ck in chi_vals:
+            sigma_c = None
+            sigma_vals = sorted(set(sn for (c, sn) in groups.keys() if c == ck))
+            for sn in sigma_vals:
+                if np.mean(groups[(ck, sn)]) > 10.0:
+                    sigma_c = sn
+                    break
+            if sigma_c is not None:
+                f.write(f"- chi_kappa = {ck:.2f}: sigma_c ≈ {sigma_c:.3f}\n")
+            else:
+                f.write(f"- chi_kappa = {ck:.2f}: no scoliosis onset detected\n")
+
+        # Cost function analysis
+        f.write("\n## Cost Function U_CC Analysis\n\n")
+        f.write("| chi_kappa | sigma_noise | U_CC (mean) | U_info (mean) | info_gain_ratio |\n")
+        f.write("|-----------|-------------|-------------|---------------|------------------|\n")
+
+        cost_groups = defaultdict(list)
+        for r in rows:
+            key = (float(r["chi_kappa"]), float(r["sigma_noise"]))
+            cost_groups[key].append({
+                "U_CC": float(r["U_CC"]),
+                "U_info": float(r["U_info"]),
+                "info_gain_ratio": float(r["info_gain_ratio"]),
+            })
+
+        for (ck, sn), costs in sorted(cost_groups.items()):
+            mean_ucc = np.mean([c["U_CC"] for c in costs])
+            mean_ui = np.mean([c["U_info"] for c in costs])
+            mean_igr = np.mean([c["info_gain_ratio"] for c in costs])
+            f.write(f"| {ck:.2f} | {sn:.3f} | {mean_ucc:.4f} | {mean_ui:.4f} | {mean_igr:.4f} |\n")
+
+    print(f"Report generated: {md_file}")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Optimization Failure: Exploding Gradient Experiment"
+    )
+    parser.add_argument(
+        "--out-file", type=str,
+        default="outputs/optimization_failure/exploding_gradient.csv",
+    )
+    parser.add_argument("--quick-test", action="store_true")
+    parser.add_argument("--seed", type=int, default=42)
+    return parser.parse_args()
+
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+
+    if args.quick_test:
+        chi_kappas = [0.0, 10.0, 20.0]
+        sigma_noises = [0.0, 0.5, 1.0]
+        n_trials = 2
+        n_elements = 20
+        final_time = 0.1
+    else:
+        chi_kappas = [0.0, 2.0, 5.0, 10.0, 15.0, 20.0]
+        sigma_noises = [0.0, 0.1, 0.2, 0.5, 1.0, 2.0]
+        n_trials = 5
+        n_elements = 50
+        final_time = 2.0
+
+    run_optimization_failure_sweep(
+        out_file=args.out_file,
+        chi_kappas=chi_kappas,
+        sigma_noises=sigma_noises,
+        n_trials=n_trials,
+        n_elements=n_elements,
+        final_time=final_time,
+        seed=args.seed,
+    )

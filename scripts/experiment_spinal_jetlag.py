@@ -1,417 +1,510 @@
-#!/usr/bin/env python3
 """
-Phase 2, Weeks 5-7: Spinal Jetlag and Circadian Desynchronization.
+Experiment: Spinal Jetlag — Time-Dependent Learning Rate Simulation.
 
-Models time-varying information-curvature coupling modulated by a circadian clock
-and simulates desynchronization ("jetlag") effects on spinal alignment.
+This script implements Phase 2, Weeks 5-7 of the Gravity Optimization schedule.
+It introduces time-varying information-curvature coupling modulated by a circadian
+clock, and simulates desynchronization ("jetlag") effects on spinal alignment.
+
+Core model:
+    chi_kappa(t) = chi_0 * (1 + A * cos(omega * t + phi))
+
+where:
+    - chi_0: baseline coupling strength
+    - A: circadian amplitude (modulation depth, 0 to 1)
+    - omega: circadian angular frequency (2*pi / T_circadian)
+    - phi: phase offset between gravity loading and clock
+
+When gravity acts as a Zeitgeber, the mechanical loading schedule entrains the
+circadian clock (phi -> 0, constructive interference). In "jetlag" conditions
+(e.g. microgravity, bed rest, shift work), the clock drifts (phi -> pi),
+creating destructive interference that suppresses the shape-maintenance signal.
+
+Experimental conditions:
+    1. Entrained (phi=0): Clock and gravity in phase — optimal adaptation
+    2. Free-running (phi varies): Clock drifts — gradual geometric degradation
+    3. Jetlagged (phi=pi): Anti-phase — worst-case, rapid scoliosis onset
+    4. Microgravity (g->0): Gravity Zeitgeber removed, clock amplitude decays
+
+Hypothesis (H_2026_02_17_SpinalJetlag):
+    Phase coherence (phi ~ 0) maximises adaptation.
+    Destructive interference (phi ~ pi) suppresses shape correction.
+    Microgravity removes the Zeitgeber, causing amplitude decay and geometric drift.
+
+References:
+    - Research Schedule Phase 2, Weeks 5-7
+    - Hypothesis Register: H_2026_02_17 series
+    - "Spinal Jetlag" concept from weekly synthesis 2026-02
 """
 
-import sys
-import os
-import time
 import argparse
+import csv
+import os
+import sys
+import time
+import tracemalloc
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Tuple
+
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from datetime import date
-from dataclasses import dataclass
-from typing import Optional, List, Dict
 
-# Add src to path
-sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
+sys.path.append(str(Path(__file__).parent.parent / "src"))
 
+from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.pyelastica_bridge import (
     CounterCurvatureRodSystem,
-    CircadianParams,
-    CounterCurvatureParams,
-    InfoField1D,
-    compute_U_CC,
     SimulationResult,
-    ea, # Access to PyElastica classes
-    PYELASTICA_AVAILABLE
+    compute_U_CC,
+    verify_pyelastica_installation,
 )
-from spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
-if not PYELASTICA_AVAILABLE:
-    print("Error: PyElastica not installed.")
-    sys.exit(1)
 
-# --- Time Dependent Gravity ---
-class TimeDependentGravity(ea.NoForces):
-    """Applies a time-varying gravitational force to simulate daily activity cycles.
+# ---------------------------------------------------------------------------
+# Circadian coupling model
+# ---------------------------------------------------------------------------
 
-    g(t) = g_base * (0.5 + 0.5 * cos(omega * t))
+def chi_kappa_circadian(
+    t: float,
+    chi_0: float,
+    amplitude: float,
+    T_circadian: float = 24.0,
+    phi: float = 0.0,
+) -> float:
+    """Compute time-varying chi_kappa with circadian modulation.
 
-    This approximates the cycle of upright posture (loading) and recumbent sleep (unloading).
+    Parameters
+    ----------
+    t : float
+        Time (in hours for biological interpretation, seconds for simulation).
+    chi_0 : float
+        Baseline coupling strength.
+    amplitude : float
+        Modulation depth (0 = constant, 1 = full modulation).
+    T_circadian : float
+        Circadian period (same units as t).
+    phi : float
+        Phase offset between gravity loading and clock (radians).
+        phi=0 : entrained (constructive)
+        phi=pi : jetlagged (destructive)
+
+    Returns
+    -------
+    float
+        Instantaneous chi_kappa value.
     """
-    def __init__(self, acc_gravity: np.ndarray, period: float = 24*3600, phase: float = 0.0):
-        super().__init__()
-        self.acc_gravity = np.array(acc_gravity) # Vector (0, 0, -g)
-        self.period = period
-        self.phase = phase
-        self.omega = 2 * np.pi / period
+    omega = 2.0 * np.pi / T_circadian
+    return chi_0 * (1.0 + amplitude * np.cos(omega * t + phi))
 
-    def apply_forces(self, system, time: float = 0.0):
-        # Modulation: 0 to 1.
-        # In phase: Max gravity at t=0 (noon?), Min gravity at t=period/2 (midnight?)
-        # Adjust phase as needed.
-        # Cosine: max at 0. (0.5 + 0.5*1) = 1.
-        factor = 0.5 + 0.5 * np.cos(self.omega * time + self.phase)
 
-        # Total force = mass * acc * factor
-        # system.mass is (n_nodes,)
-        # force is (3, n_nodes)
+def entrainment_strength(
+    K_ent: float,
+    gravity: float,
+    g_ref: float = 9.81,
+) -> float:
+    """Compute gravitational entrainment strength.
 
-        # We need to add to system.external_forces
-        # Expand dimensions for broadcasting
-        force_vector = self.acc_gravity[:, None] * system.mass[None, :] * factor
-        system.external_forces += force_vector
+    The gravity vector acts as a Zeitgeber that entrains the spinal clock.
+    Entrainment strength scales with the gravity ratio.
 
-# --- Experiment Setup ---
+    Parameters
+    ----------
+    K_ent : float
+        Coupling constant for gravity-clock entrainment.
+    gravity : float
+        Current gravitational acceleration.
+    g_ref : float
+        Reference gravity (Earth surface).
 
-def run_experiment(
-    condition: str,
-    circadian_params: CircadianParams,
-    duration_hours: float = 72.0,
-    quick_test: bool = False,
-    dt: float = 2e-4,
-    gravity_strength: float = 9.81,
-    scale_length: float = 1.0
-):
-    """Run a single experimental condition."""
+    Returns
+    -------
+    float
+        Effective entrainment strength E_mech.
+    """
+    return K_ent * (gravity / g_ref)
 
-    print(f"Running Condition: {condition}")
 
-    # 1. Physics Parameters
-    n_elements = 50
-    L = 0.4 # m
-    radius = 0.01 # m
-    E0 = 1e7 # Pa (Softer than bone to allow visible deformation in short time)
-    rho = 1000.0
+def clock_amplitude_decay(
+    A_0: float,
+    E_mech: float,
+    t: float,
+    tau_decay: float = 48.0,
+) -> float:
+    """Model circadian amplitude decay when entrainment is weak.
 
-    # Duration
-    duration = duration_hours * 3600.0
-    if quick_test:
-        duration = 10.0 # 10 seconds per condition for code verification
+    In the absence of gravitational Zeitgeber (microgravity), the clock
+    amplitude decays exponentially towards a free-running baseline.
 
-    # 2. Information Field
-    # Localized signal at center
-    s = np.linspace(0, L, n_elements + 1)
-    info_center = 0.5 * L
-    info_width = 0.15 * L
-    I = 0.8 * np.exp(-0.5 * ((s - info_center) / info_width)**2)
+    Parameters
+    ----------
+    A_0 : float
+        Initial circadian amplitude.
+    E_mech : float
+        Entrainment strength (0 = no entrainment).
+    t : float
+        Time since loss of entrainment.
+    tau_decay : float
+        Decay time constant (same units as t).
+
+    Returns
+    -------
+    float
+        Current circadian amplitude.
+    """
+    # Steady-state amplitude maintained by entrainment
+    A_steady = A_0 * min(E_mech, 1.0)
+    # Decay from initial to steady-state
+    return A_steady + (A_0 - A_steady) * np.exp(-t / tau_decay)
+
+
+# ---------------------------------------------------------------------------
+# Multi-cycle simulation
+# ---------------------------------------------------------------------------
+
+def run_jetlag_cycle(
+    chi_kappa_t: float,
+    gravity: float,
+    length: float = 0.5,
+    n_elements: int = 50,
+    E0: float = 1e6,
+    rho: float = 1000.0,
+    radius: float = 0.01,
+    cycle_duration: float = 0.5,
+    dt: float = 1e-5,
+) -> Dict[str, float]:
+    """Run a single quasi-static cycle with given instantaneous chi_kappa.
+
+    Each cycle represents a "snapshot" of the mechanical state at a particular
+    phase of the circadian rhythm. The rod relaxes to quasi-static equilibrium
+    under the current coupling strength and gravity.
+
+    Parameters
+    ----------
+    chi_kappa_t : float
+        Instantaneous information-curvature coupling.
+    gravity : float
+        Gravitational acceleration for this cycle.
+    length : float
+        Rod length (metres).
+    n_elements : int
+        Number of elements.
+    E0 : float
+        Young's modulus (Pa).
+    rho : float
+        Density (kg/m^3).
+    radius : float
+        Rod radius (metres).
+    cycle_duration : float
+        Simulation time per cycle (seconds).
+    dt : float
+        Time step.
+
+    Returns
+    -------
+    dict
+        Metrics for this cycle (cobb_angle, S_lat, torsion, U_CC, etc.)
+    """
+    s = np.linspace(0, length, n_elements + 1)
+    I = 0.5 + 0.5 * np.exp(-0.5 * ((s - 0.5 * length) / (0.1 * length)) ** 2)
     dIds = np.gradient(I, s)
     info = InfoField1D(s=s, I=I, dIds=dIds)
 
-    # 3. Coupling Parameters
-    # chi_kappa needs to be strong enough to counter gravity
-    # With E0=1e7, L=0.4, we need substantial curvature drive.
-    chi_kappa_base = 15.0
     params = CounterCurvatureParams(
-        chi_kappa=chi_kappa_base,
+        chi_kappa=chi_kappa_t,
+        chi_tau=0.0,
         chi_E=0.0,
         chi_M=0.0,
-        chi_tau=0.0,
-        scale_length=scale_length
+        scale_length=length,
     )
 
-    # 4. Geometry and Initial State
-    # Lateral defect to ensure measurable scoliosis if stabilization fails
     kappa_gen = np.zeros((3, n_elements + 1))
-    kappa_gen[0, :] = 0.2 # Lateral defect
-    kappa_gen[1, :] = 2.0 # Natural kyphosis
+    kappa_gen[0, :] = 2.0  # Sagittal kyphosis
 
-    # 5. Create System
-    # Note: We pass gravity=0 to the factory because we will add TimeDependentGravity manually
-    # Wait, run_simulation adds GravityForces if gravity > 0.
-    # We should modify how we call run_simulation or hack it.
-    # run_simulation adds GravityForces. We can pass gravity=0.0 to disable standard gravity,
-    # and add our custom forcing via a callback or by manually modifying the system?
-    # CounterCurvatureRodSystem.run_simulation builds the system internally.
-    # To inject TimeDependentGravity, we'd need to modify run_simulation or subclass.
-
-    # HACK: Since we cannot easily inject TimeDependentGravity into CounterCurvatureRodSystem.run_simulation
-    # without modifying the library again, we will use a workaround.
-    # We will let run_simulation handle a constant gravity if condition is "Microgravity".
-    # For others, we need oscillating gravity.
-    #
-    # Actually, the user prompt implies "Simulates ... through phase offset (phi) between gravity loading and circadian rhythm".
-    # If I can't oscillate gravity, I can't change the phase offset effect properly unless I oscillate the clock relative to constant gravity.
-    # Constant gravity is always "ON".
-    # If the clock oscillates, the "active counter-curvature" oscillates.
-    # If they are "in phase", it means Peak Curvature Drive coincides with Peak Load.
-    # If gravity is constant (Peak Load always), then phase doesn't mean much except shifting the peak of drive.
-    #
-    # However, biologically, "Entrained" means the internal clock matches the external cycle.
-    # If the external cycle (Gravity) is constant, there is no phase to lock to.
-    # So Gravity MUST vary.
-    #
-    # Since I cannot modify run_simulation (I marked it complete), I have to find a way.
-    # I can copy-paste the logic of run_simulation here and modify it, OR
-    # I can assume "Gravity Loading" is implicitly handled or that I can subclass CounterCurvatureRodSystem to override run_simulation.
-    #
-    # Subclassing is cleaner.
-
-    class TimeVaryingGravityRodSystem(CounterCurvatureRodSystem):
-        def run_simulation(self, final_time, dt, gravity_params=None, **kwargs):
-            # We copy the structure of parent run_simulation but add custom forcing
-
-            # ... (Copying generic setup from parent is hard without copy-paste)
-            # Alternative: Use the parent run_simulation but pass gravity=0,
-            # and use a "Callback" that is actually a Forcing?
-            # PyElastica Callbacks are for diagnostics. Forcing is for physics.
-            # run_simulation defines the system class:
-            # class CCSystem(ea.BaseSystemCollection, ea.Constraints, ea.Forcing, ea.Damping, ea.CallBacks): pass
-            # And it allows `system.add_forcing_to(self.rod)...`
-            # But I can't inject code into the parent method.
-
-            # OK, I will duplicate `run_simulation` logic in this script.
-            # It allows full control.
-            return run_simulation_custom(self, final_time, dt, gravity_params=gravity_params, **kwargs)
-
-    # Instantiate
-    system_wrapper = TimeVaryingGravityRodSystem.from_iec(
-        info=info,
-        params=params,
-        length=L,
-        n_elements=n_elements,
-        E0=E0,
-        radius=radius,
-        kappa_gen=kappa_gen,
-        gravity=0.0, # We will handle gravity manually
-        stiffness_anisotropy=2.0
+    rod_system = CounterCurvatureRodSystem.from_iec(
+        info=info, params=params, length=length, n_elements=n_elements,
+        E0=E0, rho=rho, radius=radius, kappa_gen=kappa_gen,
+        gravity=gravity, stiffness_anisotropy=2.0,
     )
 
-    # Gravity Params
-    g_params = {
-        "strength": gravity_strength,
-        "period": circadian_params.gravity_period if circadian_params.gravity_period else circadian_params.period,
-        "phase": 0.0 # External time reference usually 0
-    }
-
-    if condition == "Microgravity":
-        g_params["strength"] = 0.0 # Or very low
-
-    # Run
-    results = system_wrapper.run_simulation(
-        final_time=duration,
-        dt=dt,
-        save_every=max(1, int(duration/dt/50)), # 50 frames
-        gravity=0.0, # Disable internal gravity
-        circadian_params=circadian_params,
-        gravity_params=g_params, # Custom arg passed to our custom runner
-        progress_bar=True
+    result = rod_system.run_simulation(
+        final_time=cycle_duration, dt=dt, save_every=5000,
+        gravity=gravity, boundary_condition="fixed", progress_bar=False,
     )
 
-    # Compute Metrics
-    # Average over last 24 hours (or last period)
-    mask = results.time > (duration - 24*3600)
-    if not np.any(mask):
-        mask = np.full(results.time.shape, True)
-
-    avg_curvature = np.mean(results.curvature[mask])
-    avg_s_lat = np.mean([compute_scoliosis_metrics(results.centerline[i][:,2], results.centerline[i][:,0]).S_lat for i in np.where(mask)[0]])
-
-    # Energy
-    u_cc = compute_U_CC(results, info, params, gravity=gravity_strength, E0=E0)
+    sim_metrics = result.compute_final_metrics()
+    cost = compute_U_CC(result, info, params, gravity, rho, E0)
 
     return {
-        "Condition": condition,
-        "Avg_Curvature": avg_curvature,
-        "Avg_S_Lat": avg_s_lat,
-        "U_CC": u_cc["U_CC"],
-        "Info_Gain": u_cc["info_gain_ratio"],
-        "Final_Cobb": results.compute_final_metrics().get("cobb_angle", 0.0)
+        "cobb_angle": sim_metrics.get("cobb_angle", 0.0),
+        "max_torsion": sim_metrics.get("max_torsion", 0.0),
+        "S_lat": sim_metrics.get("S_lat", 0.0),
+        "max_curvature": sim_metrics.get("max_curvature", 0.0),
+        "U_CC": cost["U_CC"],
+        "U_info": cost["U_info"],
+        "info_gain_ratio": cost["info_gain_ratio"],
     }
 
-def run_simulation_custom(wrapper, final_time, dt, gravity_params=None, circadian_params=None, save_every=100, progress_bar=True, gravity=0.0, **kwargs):
-    # Re-implementation of run_simulation to support custom forcing
-    class CCSystem(ea.BaseSystemCollection, ea.Constraints, ea.Forcing, ea.Damping, ea.CallBacks):
-        pass
 
-    system = CCSystem()
-    system.append(wrapper.rod)
+def run_spinal_jetlag_experiment(
+    out_file: str,
+    conditions: List[Dict],
+    n_cycles: int = 24,
+    T_circadian: float = 24.0,
+    n_elements: int = 30,
+    cycle_duration: float = 0.5,
+):
+    """Run the full spinal jetlag multi-condition experiment.
 
-    # Constraints (Fixed)
-    system.constrain(wrapper.rod).using(
-        ea.OneEndFixedBC,
-        constrained_position_idx=(0,),
-        constrained_director_idx=(0,)
+    Parameters
+    ----------
+    out_file : str
+        Path to output CSV.
+    conditions : list of dict
+        Each dict specifies a condition:
+        {name, chi_0, amplitude, phi, gravity, K_ent}
+    n_cycles : int
+        Number of circadian cycles to simulate.
+    T_circadian : float
+        Circadian period (hours, used for cycling chi_kappa).
+    n_elements : int
+        Rod elements.
+    cycle_duration : float
+        Mechanical relaxation time per cycle (seconds).
+    """
+    verify_pyelastica_installation(exit_on_fail=True)
+
+    print("=" * 100)
+    print("EXPERIMENT: Spinal Jetlag — Time-Dependent Learning Rate")
+    print("=" * 100)
+    print(f"Conditions: {len(conditions)}")
+    print(f"Cycles per condition: {n_cycles}")
+    print(f"Circadian period: {T_circadian} hours")
+    print(f"Output: {out_file}")
+    print("=" * 100)
+
+    out_dir = os.path.dirname(out_file)
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+
+    fieldnames = [
+        "timestamp", "condition", "cycle", "t_hours",
+        "chi_kappa_t", "amplitude_t", "phi",
+        "gravity", "cobb_angle", "max_torsion", "S_lat",
+        "max_curvature", "U_CC", "U_info", "info_gain_ratio",
+        "runtime_sec",
+    ]
+
+    file_exists = os.path.isfile(out_file)
+    with open(out_file, mode="a", newline="") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+
+        for cond in conditions:
+            name = cond["name"]
+            chi_0 = cond["chi_0"]
+            A_0 = cond["amplitude"]
+            phi = cond["phi"]
+            grav = cond["gravity"]
+            K_ent = cond.get("K_ent", 1.0)
+
+            print(f"\n--- Condition: {name} ---")
+            print(f"    chi_0={chi_0}, A={A_0}, phi={phi:.2f}, g={grav}, K_ent={K_ent}")
+
+            # Compute entrainment
+            E_mech = entrainment_strength(K_ent, grav)
+
+            for cycle in range(n_cycles):
+                t0_wall = time.time()
+
+                # Current time in hours
+                t_hours = cycle * (T_circadian / n_cycles)
+
+                # Clock amplitude (may decay in microgravity)
+                A_t = clock_amplitude_decay(A_0, E_mech, t_hours)
+
+                # Instantaneous coupling
+                chi_t = chi_kappa_circadian(t_hours, chi_0, A_t, T_circadian, phi)
+
+                # Run mechanical cycle
+                metrics = run_jetlag_cycle(
+                    chi_kappa_t=chi_t,
+                    gravity=grav,
+                    n_elements=n_elements,
+                    cycle_duration=cycle_duration,
+                )
+
+                t1_wall = time.time()
+
+                row = {
+                    "timestamp": datetime.now().isoformat(),
+                    "condition": name,
+                    "cycle": cycle,
+                    "t_hours": round(t_hours, 2),
+                    "chi_kappa_t": round(chi_t, 4),
+                    "amplitude_t": round(A_t, 4),
+                    "phi": round(phi, 4),
+                    "gravity": grav,
+                    "cobb_angle": round(metrics["cobb_angle"], 4),
+                    "max_torsion": round(metrics["max_torsion"], 6),
+                    "S_lat": round(metrics["S_lat"], 6),
+                    "max_curvature": round(metrics["max_curvature"], 4),
+                    "U_CC": round(metrics["U_CC"], 6),
+                    "U_info": round(metrics["U_info"], 6),
+                    "info_gain_ratio": round(metrics["info_gain_ratio"], 6),
+                    "runtime_sec": round(t1_wall - t0_wall, 3),
+                }
+                writer.writerow(row)
+                csvfile.flush()
+
+                if cycle % 4 == 0:
+                    print(
+                        f"  cycle {cycle:3d} | t={t_hours:6.1f}h | "
+                        f"chi_k={chi_t:7.3f} | A={A_t:.3f} | "
+                        f"Cobb={metrics['cobb_angle']:6.2f} | "
+                        f"S_lat={metrics['S_lat']:.4f}"
+                    )
+
+    print("\n" + "=" * 100)
+    print("Experiment complete.")
+    generate_jetlag_report(out_file)
+
+
+def generate_jetlag_report(csv_file: str):
+    """Generate a Markdown report from the jetlag experiment."""
+    md_file = str(Path(csv_file).with_suffix(".md"))
+
+    with open(csv_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    if not rows:
+        print("No data to report.")
+        return
+
+    with open(md_file, "w") as f:
+        f.write("# Spinal Jetlag Experiment Report\n\n")
+        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+        f.write("## Model\n\n")
+        f.write("$$\\chi_{\\kappa}(t) = \\chi_0 \\cdot (1 + A(t) \\cdot \\cos(\\omega t + \\phi))$$\n\n")
+        f.write("- **Entrained** (phi=0): Clock and gravity in phase\n")
+        f.write("- **Free-running**: Clock drifts gradually\n")
+        f.write("- **Jetlagged** (phi=pi): Anti-phase, destructive interference\n")
+        f.write("- **Microgravity**: Zeitgeber removed, amplitude decays\n\n")
+
+        # Summary per condition
+        from collections import defaultdict
+        cond_data = defaultdict(list)
+        for r in rows:
+            cond_data[r["condition"]].append(r)
+
+        f.write("## Summary by Condition\n\n")
+        f.write("| Condition | Cycles | Final Cobb | Max Cobb | Mean S_lat | Mean U_CC |\n")
+        f.write("|-----------|--------|------------|----------|------------|----------|\n")
+
+        for cond_name, cond_rows in cond_data.items():
+            n = len(cond_rows)
+            final_cobb = float(cond_rows[-1]["cobb_angle"])
+            max_cobb = max(float(r["cobb_angle"]) for r in cond_rows)
+            mean_slat = np.mean([float(r["S_lat"]) for r in cond_rows])
+            mean_ucc = np.mean([float(r["U_CC"]) for r in cond_rows])
+            f.write(
+                f"| {cond_name} | {n} | {final_cobb:.2f} | {max_cobb:.2f} | "
+                f"{mean_slat:.4f} | {mean_ucc:.4f} |\n"
+            )
+
+        # Time series for each condition
+        f.write("\n## Time Series (every 4th cycle)\n\n")
+        for cond_name, cond_rows in cond_data.items():
+            f.write(f"\n### {cond_name}\n\n")
+            f.write("| Cycle | t (h) | chi_kappa | Amplitude | Cobb | S_lat |\n")
+            f.write("|-------|-------|-----------|-----------|------|-------|\n")
+            for r in cond_rows[::4]:
+                f.write(
+                    f"| {r['cycle']} | {r['t_hours']} | "
+                    f"{float(r['chi_kappa_t']):.3f} | {float(r['amplitude_t']):.3f} | "
+                    f"{float(r['cobb_angle']):.2f} | {float(r['S_lat']):.4f} |\n"
+                )
+
+        # Key findings
+        f.write("\n## Key Predictions\n\n")
+        f.write("1. **Phase Coherence**: Entrained condition should show lowest Cobb angles\n")
+        f.write("2. **Destructive Interference**: Jetlagged (phi=pi) should show highest Cobb angles\n")
+        f.write("3. **Microgravity Drift**: Clock amplitude decays → progressive geometric error\n")
+        f.write("4. **Critical Phase**: Scoliosis onset at phi > pi/2 (90 degrees of mismatch)\n")
+
+    print(f"Report generated: {md_file}")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Spinal Jetlag: Time-Dependent Learning Rate Experiment"
     )
-
-    # Custom Gravity
-    if gravity_params and gravity_params["strength"] > 1e-6:
-        system.add_forcing_to(wrapper.rod).using(
-            TimeDependentGravity,
-            acc_gravity=np.array([0.0, 0.0, -gravity_params["strength"]]),
-            period=gravity_params["period"],
-            phase=gravity_params["phase"]
-        )
-
-    # Damping
-    system.dampen(wrapper.rod).using(ea.AnalyticalLinearDamper, damping_constant=0.5, time_step=dt)
-
-    # Diagnostics
-    class CCCallback(ea.CallBackBaseClass):
-        def __init__(self, step_skip, results):
-            super().__init__()
-            self.every = step_skip
-            self.results = results
-        def make_callback(self, system, time, current_step):
-            if current_step % self.every == 0:
-                self.results["time"].append(time)
-                self.results["centerline"].append(system.position_collection.copy().T)
-                self.results["kappa"].append(system.kappa.copy().T)
-
-    results = {"time": [], "centerline": [], "kappa": []}
-    system.collect_diagnostics(wrapper.rod).using(CCCallback, step_skip=save_every, results=results)
-
-    # Circadian Callback (Copied logic)
-    if circadian_params:
-        class CircadianModulationCallback(ea.CallBackBaseClass):
-            def __init__(self, system_wrapper, c_params, step_skip=1):
-                super().__init__()
-                self.system_wrapper = system_wrapper
-                self.c_params = c_params
-                self.every = step_skip
-                self.chi_0 = system_wrapper.params.chi_kappa
-
-            def make_callback(self, system, time, current_step):
-                if current_step % self.every == 0:
-                    omega = 2 * np.pi / self.c_params.period
-                    modulation = 1.0 + self.c_params.amplitude * np.cos(omega * time + self.c_params.phase)
-                    new_chi_kappa = self.chi_0 * modulation
-                    new_params = self.system_wrapper.params._replace(chi_kappa=new_chi_kappa)
-                    self.system_wrapper.update_rest_curvature(new_params)
-
-        system.collect_diagnostics(wrapper.rod).using(
-            CircadianModulationCallback,
-            system_wrapper=wrapper,
-            c_params=circadian_params,
-            step_skip=1
-        )
-
-    system.finalize()
-    timestepper = ea.PositionVerlet()
-    ea.integrate(timestepper, system, final_time, int(final_time/dt), progress_bar=progress_bar)
-
-    # Process results (padding kappa)
-    kappa_raw = np.array(results["kappa"])
-    n_elems = wrapper.n_elements
-    if len(kappa_raw) > 0:
-        n_time, n_internal, n_dim = kappa_raw.shape
-        padded_kappa = np.zeros((n_time, n_internal + 2, n_dim))
-        padded_kappa[:, 1:-1, :] = kappa_raw
-        padded_kappa[:, 0, :] = kappa_raw[:, 0, :]
-        padded_kappa[:, -1, :] = kappa_raw[:, -1, :]
-    else:
-        padded_kappa = np.empty((0, n_elems + 1, 3))
-
-    # Compute final energies
-    final_energies = {}
-    if hasattr(wrapper.rod, "compute_bending_energy"):
-        final_energies["bending_energy"] = float(wrapper.rod.compute_bending_energy())
-    if hasattr(wrapper.rod, "compute_shear_energy"):
-        final_energies["shear_energy"] = float(wrapper.rod.compute_shear_energy())
-    if hasattr(wrapper.rod, "compute_translational_energy"):
-        final_energies["translational_energy"] = float(wrapper.rod.compute_translational_energy())
-    if hasattr(wrapper.rod, "compute_rotational_energy"):
-        final_energies["rotational_energy"] = float(wrapper.rod.compute_rotational_energy())
-
-    # Gravitational Potential Energy
-    # Note: If using TimeDependentGravity, the potential energy is ill-defined or time-dependent.
-    # We use standard m*g*z with the peak gravity strength for consistency,
-    # or instantaneous gravity?
-    # Usually U_gravity is defined with respect to a static field.
-    # We will use the base gravity_strength passed in gravity_params or 9.81 default.
-    g_ref = 9.81
-    if gravity_params:
-        g_ref = gravity_params.get("strength", 9.81)
-
-    if hasattr(wrapper.rod, "mass") and hasattr(wrapper.rod, "position_collection"):
-        z_pos = wrapper.rod.position_collection[2, :]
-        final_energies["gravitational_energy"] = float(np.sum(wrapper.rod.mass * g_ref * z_pos))
-
-    return SimulationResult(
-        time=np.array(results["time"]),
-        centerline=np.array(results["centerline"]),
-        kappa=padded_kappa,
-        info_field=wrapper.info_field,
-        final_energies=final_energies
+    parser.add_argument(
+        "--out-file", type=str,
+        default="outputs/spinal_jetlag/jetlag_cycles.csv",
     )
+    parser.add_argument("--quick-test", action="store_true")
+    parser.add_argument("--n-cycles", type=int, default=24)
+    return parser.parse_args()
 
-def main():
-    parser = argparse.ArgumentParser(description="Spinal Jetlag Simulation")
-    parser.add_argument("--quick-test", action="store_true", help="Run short simulation for verification")
-    args = parser.parse_args()
-
-    print("Starting Spinal Jetlag Experiment...")
-
-    # Define Conditions
-    # Period = 24h = 86400s
-    T_24 = 24 * 3600.0
-
-    conditions = {
-        "Entrained": CircadianParams(
-            period=T_24,
-            amplitude=0.5,
-            phase=0.0,
-            gravity_period=T_24
-        ),
-        "Free-running": CircadianParams(
-            period=24.5 * 3600.0, # Slight mismatch
-            amplitude=0.5,
-            phase=0.0,
-            gravity_period=T_24
-        ),
-        "Jetlagged": CircadianParams(
-            period=T_24,
-            amplitude=0.5,
-            phase=np.pi, # Anti-phase
-            gravity_period=T_24
-        ),
-        "Microgravity": CircadianParams(
-            period=T_24,
-            amplitude=0.1, # Amplitude decays
-            phase=0.0,
-            gravity_period=T_24 # Gravity period exists but strength will be 0
-        )
-    }
-
-    all_results = []
-
-    for name, params in conditions.items():
-        res = run_experiment(name, params, quick_test=args.quick_test)
-        all_results.append(res)
-
-    df = pd.DataFrame(all_results)
-    print("\nResults:")
-    print(df)
-
-    # Save Outputs
-    today = date.today().isoformat()
-    output_dir = f"outputs/sim/{today}"
-    os.makedirs(output_dir, exist_ok=True)
-
-    csv_path = os.path.join(output_dir, "jetlag_experiment.csv")
-    df.to_csv(csv_path, index=False)
-    print(f"Saved CSV to {csv_path}")
-
-    # Generate Report
-    report_path = os.path.join(output_dir, "jetlag_report.md")
-    with open(report_path, "w") as f:
-        f.write(f"# Spinal Jetlag Experiment Report\n")
-        f.write(f"Date: {today}\n\n")
-        f.write("## Hypothesis\n")
-        f.write("Desynchronization between the internal circadian clock (regulating counter-curvature stiffness/growth) "
-                "and the external gravity cycle leads to periods of high mechanical vulnerability, increasing the risk of scoliosis.\n\n")
-        f.write("## Results Summary\n")
-        f.write(df.to_markdown(index=False))
-        f.write("\n\n## Analysis\n")
-        f.write("The 'Jetlagged' condition (Anti-phase) is expected to show higher Cobb angles/lateral deformation due to "
-                "destructive interference: peak load coincides with minimum structural reinforcement.\n")
-
-    print(f"Saved Report to {report_path}")
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+
+    if args.quick_test:
+        conditions = [
+            {"name": "entrained", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
+            {"name": "jetlagged", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
+        ]
+        n_cycles = 8
+        n_elements = 20
+        cycle_duration = 0.1
+    else:
+        conditions = [
+            # 1. Entrained: phi=0, full gravity, strong entrainment
+            {"name": "entrained", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
+
+            # 2. Mild phase shift (45 degrees)
+            {"name": "phase_shift_45", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": np.pi / 4, "gravity": 9.81, "K_ent": 1.0},
+
+            # 3. Moderate phase shift (90 degrees)
+            {"name": "phase_shift_90", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": np.pi / 2, "gravity": 9.81, "K_ent": 1.0},
+
+            # 4. Fully jetlagged: phi=pi, anti-phase
+            {"name": "jetlagged", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
+
+            # 5. Microgravity: g ~ 0, weak entrainment, amplitude decays
+            {"name": "microgravity", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": 0.0, "gravity": 0.01, "K_ent": 1.0},
+
+            # 6. Microgravity + jetlag: worst case
+            {"name": "microgravity_jetlag", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": np.pi, "gravity": 0.01, "K_ent": 1.0},
+
+            # 7. Control: no circadian modulation (A=0)
+            {"name": "constant_chi", "chi_0": 10.0, "amplitude": 0.0,
+             "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
+
+            # 8. High coupling + jetlag (pathological)
+            {"name": "high_chi_jetlag", "chi_0": 20.0, "amplitude": 0.5,
+             "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
+        ]
+        n_cycles = args.n_cycles
+        n_elements = 30
+        cycle_duration = 0.5
+
+    run_spinal_jetlag_experiment(
+        out_file=args.out_file,
+        conditions=conditions,
+        n_cycles=n_cycles,
+        n_elements=n_elements,
+        cycle_duration=cycle_duration,
+    )

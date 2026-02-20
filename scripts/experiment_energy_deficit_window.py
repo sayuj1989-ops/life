@@ -31,9 +31,9 @@ A_l = 0.7; s_l = 0.25; sigma_l = 0.10
 I_0 = 0.3
 
 # Simulation Parameters
-L_MIN = 0.25
-L_MAX = 0.55
-N_STEPS = 30
+L_MIN = 0.20
+L_MAX = 0.60
+N_STEPS = 50
 ETA_A = 1.0
 
 def get_information_field(s, L):
@@ -69,17 +69,9 @@ def solve_column(L, chi_kappa):
 
     s_eval = np.linspace(0, L, 100)
 
-    # Precompute kappa_hat' for the ODE
-    # kappa_hat(s) = chi_kappa * dI/ds
-    # kappa_hat'(s) = chi_kappa * d^2I/ds^2
-
     def get_d2I_ds2(s):
         s_norm = s / L
         # Second derivative of Gaussian:
-        # d/dx (-((x-mu)/sigma^2) * exp(...))
-        # = (-1/sigma^2) * exp(...) + (-((x-mu)/sigma^2)) * (-((x-mu)/sigma^2) * exp(...))
-        # = exp(...) * ( (x-mu)^2/sigma^4 - 1/sigma^2 )
-
         term_c = np.exp(-((s_norm - s_c)**2) / (2 * sigma_c**2)) * \
                  ( ((s_norm - s_c)**2)/(sigma_c**4) - 1/(sigma_c**2) )
         d2Ic_dsn2 = A_c * term_c
@@ -107,8 +99,6 @@ def solve_column(L, chi_kappa):
         # theta(0) = 0
         # theta'(L) = kappa_hat(L)
 
-        # Calculate kappa_hat(L)
-        # dI/ds at s=L (s_norm=1)
         s_norm_L = 1.0
         dIc_dsn = A_c * np.exp(-((s_norm_L - s_c)**2) / (2 * sigma_c**2)) * (-(s_norm_L - s_c) / sigma_c**2)
         dIl_dsn = A_l * np.exp(-((s_norm_L - s_l)**2) / (2 * sigma_l**2)) * (-(s_norm_L - s_l) / sigma_l**2)
@@ -124,10 +114,6 @@ def solve_column(L, chi_kappa):
 
     if not sol.success:
         print(f"Warning: Solver failed for L={L}, chi_kappa={chi_kappa}")
-
-    # Interpolate solution onto fixed s_eval grid
-    # sol.x contains the adaptive mesh
-    # sol.y contains the solution at sol.x
 
     theta_interp = np.interp(s_eval, sol.x, sol.y[0])
     kappa_interp = np.interp(s_eval, sol.x, sol.y[1])
@@ -151,34 +137,29 @@ def main():
 
         # 3. Compute P_counter
         # P_counter ~ η_a * ρ * A * g * L² * <|κ_IEC - κ_passive|²>
+        # Note: A ~ L^2. So P ~ L^2 * L^2 * (1/L)^2 ~ L^2 if kappa ~ 1/L.
+        # But if gravity dominates, kappa_passive deviates more.
         msd_kappa = np.mean((kappa_iec - kappa_passive)**2)
         P_counter = ETA_A * RHO * current_A * G * (L**2) * msd_kappa
 
-        # 4. Compute Cobb Angle (IEC)
-        cobb_angle = np.degrees(np.max(theta_iec) - np.min(theta_iec))
-
-        # 5. Compute D_geo
-        D_geo = np.sqrt(msd_kappa)
-
         results.append({
             "L": L,
-            "P_counter": P_counter,
-            "Cobb_angle": cobb_angle,
-            "D_geo": D_geo
+            "P_counter": P_counter
         })
 
     df = pd.DataFrame(results)
 
-    # Interpolate P_counter at L_0 = 0.35
-    L0 = 0.35
-    if L0 < df['L'].min() or L0 > df['L'].max():
+    # Interpolate P_counter at L_crit = 0.35 to set the crossover point
+    L_crit = 0.35
+    if L_crit < df['L'].min() or L_crit > df['L'].max():
          S0 = df.iloc[len(df)//2]['P_counter']
     else:
-         S0 = np.interp(L0, df['L'], df['P_counter'])
+         S0 = np.interp(L_crit, df['L'], df['P_counter'])
 
-    # Calculate Supply curves
-    df['S_proprio_alpha05'] = S0 * (df['L'] / L0)**0.5
-    df['S_proprio_alpha10'] = S0 * (df['L'] / L0)**1.0
+    # Calculate Supply curve
+    # Supply scales as Surface Area (L^2)
+    # We calibrate it to match Demand at L_crit
+    df['S_proprio'] = S0 * (df['L'] / L_crit)**2.0
 
     # Save CSV
     output_csv = "outputs/thermodynamic_cost/energy_deficit_window.csv"
@@ -188,23 +169,39 @@ def main():
     # Plotting
     plt.figure(figsize=(10, 6))
 
-    plt.plot(df['L'], df['P_counter'], 'r-', linewidth=2, label=r'$P_{counter}$ (Demand)')
-    plt.plot(df['L'], df['S_proprio_alpha05'], 'b--', linewidth=2, label=r'$S_{proprio}$ ($\alpha=0.5$)')
-    plt.plot(df['L'], df['S_proprio_alpha10'], 'g--', linewidth=2, label=r'$S_{proprio}$ ($\alpha=1.0$)')
+    # Plot P_counter (Demand)
+    plt.plot(df['L'], df['P_counter'], 'r-', linewidth=3, label=r'Metabolic Demand ($P_{counter}$)')
+
+    # Plot S_proprio (Supply)
+    plt.plot(df['L'], df['S_proprio'], 'b--', linewidth=2, label=r'Metabolic Supply ($L^2$ Scaling)')
 
     # Shade Energy Deficit Window
-    deficit_mask = df['P_counter'] > df['S_proprio_alpha05']
+    deficit_mask = df['P_counter'] > df['S_proprio']
     if deficit_mask.any():
-        plt.fill_between(df['L'], df['P_counter'], df['S_proprio_alpha05'],
+        plt.fill_between(df['L'], df['P_counter'], df['S_proprio'],
                          where=deficit_mask, color='red', alpha=0.2, label='Energy Deficit Window')
 
-    plt.xlabel('Spinal Length L (m)', fontsize=12)
-    plt.ylabel('Thermodynamic Cost (Normalized)', fontsize=12)
-    plt.title('Energy Deficit Window: Metabolic Demand vs. Proprioceptive Supply', fontsize=14)
-    plt.legend(fontsize=10)
+        # Add annotation for the deficit
+        # Find max deficit
+        deficit_vals = df['P_counter'] - df['S_proprio']
+        max_idx = deficit_vals.argmax()
+        max_L = df.iloc[max_idx]['L']
+        max_val = df.iloc[max_idx]['P_counter']
+
+        plt.annotate('Thermodynamic\nBuckling', xy=(max_L, max_val), xytext=(max_L-0.1, max_val),
+             arrowprops=dict(facecolor='black', shrink=0.05),
+             fontsize=12, fontweight='bold')
+
+
+    plt.xlabel('Spinal Length L (m)', fontsize=14)
+    plt.ylabel('Thermodynamic Cost (J/s)', fontsize=14)
+    plt.title('The Energy Deficit Window', fontsize=16, fontweight='bold')
+    plt.legend(fontsize=12)
     plt.grid(True, alpha=0.3)
 
-    plt.axvline(x=0.35, color='k', linestyle=':', alpha=0.5, label=r'$L_{crit} \approx 0.35$ m')
+    # Add Critical Length Line
+    plt.axvline(x=L_crit, color='k', linestyle=':', alpha=0.5)
+    plt.text(L_crit + 0.01, df['P_counter'].min(), r'$L_{crit} \approx 0.35$ m', rotation=90, va='bottom')
 
     output_png = "outputs/figures/energy_deficit_window.png"
     plt.savefig(output_png, dpi=300)

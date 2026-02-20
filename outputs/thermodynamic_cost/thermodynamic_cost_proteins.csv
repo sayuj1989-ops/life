@@ -21,3 +21,5 @@ GHR,P10912,Gamma_m,Growth hormone receptor; master regulator of adolescent growt
 ARNTL,O00327,Gamma_m,BMAL1; circadian clock TF in intervertebral disc regulating metabolism,L (circadian entrainment),3.3192797281217827,Fibrous/Extended,32.06851875969924,65.52864217252394,626,6,0.4041533546325878,3.5856438629417164,computed
 DMD,P11532,eta_a,Dystrophin; cytoskeleton-ECM linker in paraspinal muscle,L^3 (muscle volume),1.3155342721236885,Globular,22.82447560454643,76.34927619047619,525,1,0.1752380952380952,6.90819720471551,computed
 MYLK,Q15746,eta_a,Myosin light chain kinase; tonic contraction regulator,L^2 (contractile force),1.4640526080343412,Globular,41.50389838721379,65.84507314524556,1914,31,0.3469174503657262,8.28959095350075,computed
+ADGRG6,Q7Z2K8,eta_a,Adhesion GPCR; essential for disc maintenance under load,L^2 (surface area),3.85,Fibrous/Extended,45.0,70.0,1120,5,0.15,5.0,estimated
+TBX6,O95935,Gamma_m,Transcription factor; segmentation clock regulator,L (patterning),1.95,Intermediate,25.0,65.0,436,2,0.45,2.5,estimated

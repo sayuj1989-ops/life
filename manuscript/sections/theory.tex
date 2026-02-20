@@ -1,26 +1,12 @@
 \section{Theory}
 
-We propose that the robust S-shaped geometry of the spine arises not from passive mechanical equilibrium under gravity, but from an active \emph{counter-curvature} mechanism driven by developmental information. We formalize this using an Information--Elasticity Coupling (IEC) framework, where a scalar information field $I(s)$ modifies the effective geometry and energetics of a Cosserat rod.
+We propose that the robust S-shaped geometry of the spine arises not from passive mechanical equilibrium under gravity, but from an active \emph{counter-curvature} mechanism driven by developmental information. We formalize this using a Thermodynamic Morphoelasticity framework, where a scalar information field $I(s)$ modifies the stress-free reference configuration of a Cosserat rod.
 
 \subsection{The Counter-Curvature Hypothesis}
 
 The central problem of vertebrate morphogenesis is the translation of a one-dimensional genetic code into a robust three-dimensional geometry that can withstand environmental loads. In the case of the human spine, this challenge is acute: the column must support the head and trunk against the relentless downward pull of gravity ($g \approx 9.81$ m/s$^2$) while maintaining flexibility for locomotion. Classical structural mechanics predicts that a flexible column clamped at the base and subjected to its own weight will buckle or sag into a monotonic C-shape~\cite{goriely2017mathematics}. Yet, the healthy human spine exhibits a complex, alternating S-shape (lordosis and kyphosis).
 
 This anomaly suggests that the S-shape is not a passive equilibrium but an active \emph{Counter-Curvature}---a geometric standing wave maintained by the continuous expenditure of metabolic energy against the gravitational field. This hypothesis bridges two foundational concepts in biology: the \emph{Morphogenetic Field} of developmental biology~\cite{wolpert1969positional, saunders1948proximodistal} and the \emph{Mechanostat} of tissue physiology~\cite{frost1987mechanostat}.
-
-\paragraph{The Information Field as a Target Metric.}
-Developmental patterning establishes a "Positional Information" field along the anterior-posterior axis, encoded by the nested expression of HOX genes~\cite{wellik2007hox}. We posit that this information field $I(s)$ does not merely specify cell identity but encodes a \emph{target metric}---a preferred intrinsic curvature $\kappa_{rest}(s)$ that the tissue strives to achieve. This is analogous to the "growth field" concepts in plant morphogenesis~\cite{coen2004war} but applied to a load-bearing animal structure. The spine is thus a "smart beam" that continuously computes the error between its actual geometry (sensed via proprioception) and its genetic target.
-
-\paragraph{Active Maintenance and the Hydrostatic Skeleton.}
-Achieving this target shape against gravity requires work. The spine functions partly as a \emph{hydrostatic skeleton}~\cite{kier1985hydrostatic}, where the nucleus pulposus of the intervertebral disc acts as a pressurized hydraulic element. The maintenance of this pressure---and thus the maintenance of the S-shape---depends on the balance between osmotic swelling pressure (driven by proteoglycan synthesis) and the mechanical stress of gravity. This active maintenance constitutes a biological implementation of \emph{optimal feedback control}~\cite{todorov2002optimal}, where the system minimizes a cost function comprising both "geometric error" (deviation from the HOX-specified shape) and "metabolic effort" (ATP consumption).
-
-\paragraph{Predictions.}
-This unifying hypothesis generates three testable predictions that distinguish it from purely mechanical buckling models:
-\begin{enumerate}
-    \item \textbf{Frequency-Hypoxia Coupling}: We predict that the maintenance of the S-shape requires dynamic loading frequencies $>0.5$ Hz to drive convective transport. Reducing frequency (e.g., microgravity) will stabilize HIF-1$\alpha$ in the nucleus pulposus before any structural deformity appears~\cite{ugur2024hypoxia}.
-    \item \textbf{The "Small-Molecule Rescue"}: If scoliotic buckling is a metabolic failure (Energy Deficit), then enhancing the amplitude of the circadian clock (e.g., via Nobiletin) or buffering local pH should restore spinal alignment even without mechanical correction.
-    \item \textbf{The Spinal Phase Shift}: The severity of spinal curvature should correlate with the phase lag between the central (SCN) and peripheral (IVD) circadian clocks, providing a quantifiable biomarker for "Counter-Curvature" failure.
-\end{enumerate}
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
@@ -34,161 +20,55 @@ We model the human spine as a continuous elastic Cosserat rod, defined by a cent
 
 where $\mathbf{v}(s)$ is the tangent vector and $\boldsymbol{\varepsilon}(s)$ denotes the strain vector (shear and extension). The curvature vector $\boldsymbol{\kappa}(s)$ and twist $\tau(s)$ are encoded in the Darboux vector $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$. We assign the physical boundary conditions: $s=0$ corresponds to the sacrum (clamped: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ to the cranium (free), defining the mechanical axis of the column.
 
-\subsection{Developmental Information Fields from Morphogenetic Patterning}
+\subsection{The Target Growth Tensor}
 
-We formalize the developmental input by defining a time-dependent scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ as a bimodal Gaussian distribution with peaks centered at the cervical ($s_c=0.80$) and lumbar ($s_l=0.25$) enlargements, with normalized amplitudes $A_c=0.5$ and $A_l=0.7$, respectively. These peaks correspond to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a "curvature generator" via the geometric coupling $\chi_\kappa$:
+We formalize the developmental input by defining a time-dependent scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). Following the morphoelastic theory of growth~\cite{goriely2017mathematics}, we posit that this information field determines the \emph{target reference configuration} of the tissue. Specifically, the gradient of the information field generates an intrinsic curvature $\boldsymbol{\kappa}_{\mathrm{rest}}(s)$:
+
 \begin{equation}
-    \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
+    \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
     \label{eq:kappa_rest}
 \end{equation}
 
-Simultaneously, the field exerts a stiffness via the morphomechanical coupling $\chi_M$, generating the active biological moment $\mathbf{M}_{bio}$ to oppose gravity:
+where $\chi_\kappa$ is the Information-Elasticity Coupling (IEC) coefficient. This target curvature represents the shape the spine would assume if gravity were absent ($g=0$).
+
+\subsection{The Thermodynamic Cost Function}
+
+The biological spine is not a conservative mechanical system; it is a dissipative structure that minimizes a generalized free energy functional. We define the total cost function $\mathcal{J}$ as the sum of elastic energy, gravitational potential energy, and metabolic work:
 
 \begin{equation}
-    \mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
-    \label{eq:active_moment}
+    \mathcal{J} = \mathcal{E}_{\mathrm{elastic}} + \mathcal{E}_{\mathrm{gravity}} + \mathcal{W}_{\mathrm{metabolic}}
 \end{equation}
 
-Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
-
-\begin{equation}
-    \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
-    \label{eq:bg_number}
-\end{equation}
-
-When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins (e.g., HOXC8, HOXB13). AlphaFold structural analysis confirms that these factors possess rigid DNA-binding domains, which are capable of enforcing sharp identity boundaries.
-
-\subsection{The Information--Cosserat Manifold Framework}
-The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge builds upon recent theoretical proposals\footnote{A preliminary exploration of this concept, proposing a cosmological "Information Term" $I_{\mu\nu}$ in Einstein's field equations, was introduced in \cite{krishnan2025consciousness}. The present work translates this speculative cosmological hypothesis into a rigorous, experimentally testable framework for biological morphogenesis, where $I(s)$ modifies the effective material metric rather than the vacuum spacetime metric.} suggesting that information may play a geometric role in physical systems.
-
-In our biological context, the information field acts as a source of \emph{information-matter density} $\rho_{I}(s)$ that dictates the target curvature $\kappa_{\mathrm{rest}}(s)$, effectively "shaping" the biological spacetime (Table \ref{tab:gr_analogy}) in which the musculoskeletal system must equilibrate. This field is physically anchored by the structural specificity of developmental transcription factors; for instance, AlphaFold 3 analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) reveals highly conserved amino acid domains (avg. pLDDT $\sim 64.1$) whose structural rigidity provides the necessary binding affinity landscapes to generate the segmented information profiles used in our model.
-
-\subsection{Biological Metric and the Effective Energy Functional}
-
-The central hypothesis of the IEC framework is that developmental information modifies the \emph{effective} metric experienced by the rod's reference manifold. We define a \emph{biological metric} $d\ell_{\mathrm{eff}}^2$ that encodes target geometry via a local dilation factor $g_{\mathrm{eff}}(s)$:
-
-\begin{equation}
-d\ell_{\mathrm{eff}}^2 = g_{\mathrm{eff}}(s)\,ds^2 = \exp\left[2\left(\beta_1 \tilde{I}(s) + \beta_2 \frac{\partial \tilde{I}}{\partial s}\right)\right] ds^2,
-\label{eq:biological_metric}
-\end{equation}
-where $\tilde{I}$ is the normalized information field and $\beta_{1,2}$ are dimensionless coupling constants. 
-
-The mechanics of the biological rod are governed by the minimization of a total potential energy $\mathcal{E}_{\mathrm{total}}$ that couples bending, torsion, and extension to the information field and gravity. For a Cosserat rod with centerline $\mathbf{r}(s)$, the full energy functional is:
-
-\begin{equation}
-\mathcal{E}_{\mathrm{total}} = \int_0^L \left[ \frac{1}{2} B_{\mathrm{eff}}(\kappa - \kappa_{\mathrm{rest}})^2 + \frac{1}{2} C_{\mathrm{eff}} \tau^2 + \frac{1}{2} K_{\mathrm{eff}} \varepsilon^2 + \rho A \mathbf{r} \cdot \mathbf{g} \right] ds,
-\label{eq:iec_energy}
-\end{equation}
-where: 
-\begin{itemize}
-    \item $B_{\mathrm{eff}}(s) = E_0 I_{\mathrm{area}} (1 + \chi_E I(s))$ is the information-modulated bending stiffness.
-    \item $C_{\mathrm{eff}}(s) = G_0 J (1 + \chi_C I(s))$ is the torsional stiffness ($G_0$: shear modulus).
-    \item $K_{\mathrm{eff}}(s) = E_0 A (1 + \chi_A I(s))$ is the extensional stiffness.
-    \item $\kappa_{\mathrm{rest}}(s) = \kappa_0 + \chi_\kappa \partial_s I$ is the information-driven target curvature.
-    \item $\tau$ and $\varepsilon$ are the local torsion and strain, respectively.
-\end{itemize}
-The weighting $w(I) = (1 + \chi_E I(s))$ penalizes deviations from the information-prescribed counter-curvature more heavily in high-identity regions (e.g., cervical/lumbar junctions). Note that we use $\chi_A$ for area stiffness modulation to distinguish it from the morphomechanical coupling $\chi_M$ defined earlier.
-
-\subsection{Cosserat force and moment balance}
-
-The equilibrium configuration is found by finding the stationary state of the total potential energy. For a static rod subject to gravity $\mathbf{f}_g = \rho A \mathbf{g}$ and active moments induced by the information field gradients, the balance equations for internal force $\mathbf{n}$ and moment $\mathbf{m}$ are:
-
-\begin{align}
-\mathbf{n}'(s) + \mathbf{f}_g &= \mathbf{0}, \nonumber \\
-\mathbf{m}'(s) + \mathbf{r}'(s) \times \mathbf{n}(s) + \mathbf{m}_{\mathrm{info}}'(s) &= \mathbf{0},
-\label{eq:cosserat_balance}
-\end{align}
-where $\mathbf{m}_{\mathrm{info}}$ represents the active couple.
-
-\paragraph{Boundary Conditions:} To model the human spine, we impose clamped-free boundary conditions. The sacral base ($s=0$) is rigidly fixed, while the cranial tip ($s=L$) is free of external loads:
-\begin{align}
-\mathbf{r}(0) = \mathbf{0}, \quad &\mathbf{d}_i(0) = \mathbf{e}_i \quad (\text{Clamped Base}) \nonumber \\
-\mathbf{n}(L) = \mathbf{0}, \quad &\mathbf{m}(L) = \mathbf{0} \quad (\text{Free Tip})
-\label{eq:boundary_conditions}
-\end{align}
-where $\{\mathbf{e}_i\}$ is the laboratory frame.
-
-\subsection{Mode selection and spinal geometry}
-
-The transition from a sagging C-shape to a counter-curved S-shape can be analyzed as a spectral shift in the rod's eigenmodes. In the linearized limit, small transverse deflections $y(s)$ satisfy:
-
-\begin{equation}
-\mathcal{L}_{\mathrm{IEC}}[y(s)] = \frac{d^2}{ds^2} \left( B_{\mathrm{eff}}(s) \frac{d^2 y}{ds^2} \right) - \frac{d}{ds} \left( N(s) \frac{dy}{ds} \right) = \lambda_n y_n(s),
-\label{eq:mode_selection}
-\end{equation}
-where $N(s) = \int_s^L \rho A g \, ds'$ is the axial tension due to gravity. The information field modifies the stiffness landscape $B_{\mathrm{eff}}(s)$. For a uniform beam ($\chi_E = 0$), the lowest eigenvalue $\lambda_0$ corresponds to a monotonic C-shaped mode. As $\chi_\kappa$ and $\chi_E$ increase, the effective stiffness at the peaks of $I(s)$ (cervical and lumbar regions) increases, making the C-mode energetically unfavorable. At a critical coupling strength $\chi_{\mathrm{crit}}$, a \emph{mode crossing} occurs where the S-shaped mode (characterized by a second zero-crossing in curvature) becomes the ground state ($\lambda_0$).
-
-\subsection{Geodesic curvature deviation metric}
-
-To quantify the degree of biological countercurvature—the extent to which information reshapes equilibrium geometry beyond passive gravitational response—we define a normalized geodesic curvature deviation $\widehat{D}_{\mathrm{geo}}$. This metric compares the realized curvature profile $\kappa_{\mathrm{IEC}}(s)$ from the full IEC-coupled simulation to the reference passive curvature $\kappa_{\mathrm{passive}}(s)$ obtained with identical boundary conditions and loading but $\chi_\kappa = \chi_E = 0$:
-
-\begin{equation}
-D_{\mathrm{geo}} = \int_0^L \left| \kappa_{\mathrm{IEC}}(s) - \kappa_{\mathrm{passive}}(s) \right|^2 w(s)\, ds,
-\label{eq:dgeo_raw}
-\end{equation}
-where $w(s) = g_{\mathrm{eff}}(s)$ is an optional weighting function reflecting the biological metric. For regime classification, we normalize by the maximum deviation observed across the parameter space:
-
-\begin{equation}
-\widehat{D}_{\mathrm{geo}} = \frac{D_{\mathrm{geo}}}{D_{\mathrm{geo,max}}(\chi_\kappa, g)},
-\label{eq:dgeo_normalized}
-\end{equation}
-where $D_{\mathrm{geo,max}}$ is computed over the explored $(\chi_\kappa, g)$ domain. Physically, $\widehat{D}_{\mathrm{geo}} \approx 0$ indicates the system follows gravitational geodesics (passive regime), while $\widehat{D}_{\mathrm{geo}} \sim 1$ indicates strong information-driven geometric distortion. We classify regimes as: \emph{gravity-dominated} ($\widehat{D}_{\mathrm{geo}} < 0.1$), \emph{cooperative} ($0.1 \leq \widehat{D}_{\mathrm{geo}} \leq 0.3$), and \emph{information-dominated} ($\widehat{D}_{\mathrm{geo}} > 0.3$), with thresholds chosen to separate qualitatively distinct curvature morphologies observed in simulations.
-
-\subsection{Thermodynamic cost of countercurvature}
-
-The energy functional $\mathcal{E}_{\mathrm{total}}$ (Eq.~\ref{eq:iec_energy}) describes the potential energy landscape of the spine at equilibrium. However, the biological spine is not a conservative system: it is a \emph{dissipative structure}~\cite{prigogine1977self} that requires continuous metabolic expenditure to maintain its S-shaped counter-curvature against gravitational loading and entropic degradation. The atoms composing vertebral bone, disc matrix, and paraspinal muscle are chemically identical to those in passive geological structures---what distinguishes life is the continuous investment of free energy to organize these atoms against gravitational geodesics~\cite{friston2013life}.
-
-We formalize this by defining a \emph{metabolic power density} $\dot{\mathcal{F}}$ that quantifies the rate of free energy dissipation required to sustain the counter-curvature:
-
-\begin{equation}
-\dot{\mathcal{F}} = \int_0^L \left[ \eta_p \left|\frac{\partial \kappa}{\partial t}\right|^2 + \eta_a \left(\kappa(s) - \kappa_{\mathrm{passive}}(s)\right)^2 + \Gamma_m(s) \right] ds,
-\label{eq:dissipation}
-\end{equation}
 where:
-\begin{itemize}
-    \item $\eta_p$ is the proprioceptive feedback dissipation coefficient, representing the metabolic cost of sensory error correction (muscle spindle activity, neural processing).
-    \item $\eta_a$ is the active moment maintenance coefficient, capturing the cost of tonic paraspinal muscle contraction required to hold the spine away from its passive C-shaped equilibrium.
-    \item $\Gamma_m(s)$ is the basal tissue maintenance cost density, encompassing matrix turnover (collagen synthesis/MMP degradation cycles), hormonal signaling (GH/IGF-1 axis), and circadian clock maintenance.
-\end{itemize}
+\begin{align}
+    \mathcal{E}_{\mathrm{elastic}} &= \int_0^L \frac{1}{2} B(s) (\kappa - \kappa_{\mathrm{rest}})^2 ds \\
+    \mathcal{E}_{\mathrm{gravity}} &= \int_0^L \rho A \mathbf{r} \cdot \mathbf{g} \, ds
+\end{align}
 
-The second term is the central quantity: it represents the standing metabolic cost of countercurvature---proportional to the squared deviation from the passive gravitational shape. For a passive beam, $\kappa = \kappa_{\mathrm{passive}}$ and this term vanishes; the S-curve imposes a non-zero ``thermodynamic tax'' at every point along the rod.
-
-\paragraph{Scaling with spinal length.} The gravitational moment acting on the spine scales as $M_g \sim \rho A g L^2$. The active biological moment must match this to maintain counter-curvature, so the metabolic power required to sustain the S-shape scales as:
+The critical innovation of our framework is the formulation of the \textbf{Thermodynamic Cost of Counter-Curvature} ($P_{\mathrm{counter}}$). This represents the metabolic power required to maintain the difference between the realized shape $\kappa(s)$ and the passive gravitational equilibrium shape $\kappa_{\mathrm{passive}}(s)$:
 
 \begin{equation}
-P_{\mathrm{counter}} \sim \eta_a \rho A g L^2 \cdot \langle |\kappa_{\mathrm{IEC}} - \kappa_{\mathrm{passive}}|^2 \rangle,
-\label{eq:metabolic_scaling}
+P_{\mathrm{counter}} \propto \int_0^L \left[ \eta_p \left|\frac{\partial \kappa}{\partial t}\right|^2 + \eta_a (\kappa - \kappa_{\mathrm{passive}})^2 \right] ds
+\label{eq:metabolic_cost}
 \end{equation}
-where $\langle \cdot \rangle$ denotes the spatial average over the rod length. If the tissue column participates volumetrically in maintaining tone, the scaling steepens to $L^3$. During the adolescent growth spurt, $L$ increases from approximately 0.35~m to 0.45~m over 2--3 years, implying a $(0.45/0.35)^2 \approx 1.65$-fold increase in required metabolic power under $L^2$ scaling, or $(0.45/0.35)^3 \approx 2.13$-fold under $L^3$ scaling~\cite{rolfe1997cellular}. Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.
 
-\paragraph{Molecular grounding via AlphaFold structural analysis.} The three dissipation terms are not abstract---each maps to specific molecular players whose AlphaFold-predicted structures reveal how they bear the thermodynamic cost of countercurvature. We analyzed 16 proteins across the three terms using structural metrics from the AlphaFold Protein Structure Database~\cite{jumper2021alphafold, varadi2022alphafold}, focusing on anisotropy ratio (shape elongation), radius of gyration, per-residue confidence (pLDDT), and hinge candidates (refer to Table \ref{tab:thermodynamic_cost_proteins}).
+Here, $\eta_a$ is the active maintenance coefficient, corresponding to the ATP consumption of paraspinal muscles and the turnover of load-bearing proteins (e.g., Vimentin, Lamin A/C).
 
-The \emph{proprioceptive feedback term} $\eta_p$ is borne by four proteins: the vector mechanosensor PIEZO2 (anisotropy~4.44, fibrous/extended morphology), the scalar sensor PIEZO1 (anisotropy~3.90, 2521~residues), the spindle-maintenance transcription factor EGR3 (anisotropy~3.76, 64\% intrinsically disordered), and the proprioceptive neuron development factor RUNX3 (anisotropy~2.06). Their high anisotropy reflects the extended, orientation-dependent structures required for directional sensing---structures that are intrinsically expensive to maintain in proper alignment.
+\subsection{The Energy Deficit Window}
 
-The \emph{active moment term} $\eta_a$ is borne by the molecular machines that generate tonic contraction: the dystrophin-glycoprotein complex linker Dystrophin (DMD; Score 100), the myosin light chain kinase (MYLK; Score 100), the nuclear stiffness regulator Lamin~A/C (LMNA; anisotropy~4.75), the mechanosensitive crosslinker Filamin~A (FLNA), the intermediate filament Vimentin (VIM; anisotropy~7.5), and the AIS-associated transcription factor LBX1~\cite{kou2013lbx1}. Their high structural complexity reflects the extreme metabolic cost of the cytoskeletal-nuclear axis that transmits gravitational loads.
+The vulnerability to scoliosis arises from a mismatch in the scaling laws of Demand vs. Supply.
+\paragraph{Demand Scaling.} The gravitational moment scales as $M_g \sim L^3$ (assuming isometric growth). To counteract this moment and maintain the S-shape, the active moment $M_a$ must also scale as $L^3$. The metabolic power required is proportional to the active work done, which scales with the volume of the supporting tissue:
+\begin{equation}
+    P_{\mathrm{counter}} \propto L^3
+\end{equation}
 
-The \emph{basal maintenance term} $\Gamma_m$ includes the critical metabolic and growth regulators that must scale with spinal length: the mitochondrial master regulator PPARGC1A (PGC-1$\alpha$; Score 100), the growth hormone receptor GHR, the insulin-like growth factor receptor IGF1R, and the circadian clock component ARNTL (BMAL1), alongside the structural matrix protein COL1A1 and the chondrogenic factor SOX9. These proteins represent the "supply side" of the energy equation, whose upregulation is required to meet the increasing metabolic demand of the growing spine.
+\paragraph{Supply Scaling.} The supply of metabolic resources (glucose, oxygen) to the avascular intervertebral disc and the deep paraspinal muscles is limited by surface area (diffusion) or cross-sectional area (vascular density). Thus, the supply capacity $S_{\mathrm{proprio}}$ scales as:
+\begin{equation}
+    S_{\mathrm{proprio}} \propto L^2
+\end{equation}
 
-This metabolic asymmetry provides the molecular basis for the energy deficit window: the structural demand proteins (DMD, FLNA, LMNA) must physically support the growing tissue mass against gravity, while the supply-side regulators (PPARGC1A, GHR) must drastically ramp up metabolic flux to meet this nonlinear cost.
-
-\subsection{The Spinal Clock and Convective Shutdown}
-
-The IEC framework described above treats the information field $I(s)$ and the metabolic supply $\Gamma_m(s)$ as time-independent parameters. However, biological tissues are dynamic, oscillating systems. Recent evidence demonstrates that the intervertebral disc (IVD) possesses an autonomous circadian clock driven by the BMAL1/CLOCK transcriptional loop, which regulates the synthesis of proteoglycans and the degradation of the extracellular matrix~\cite{dudek2017clock, takahashi2017clock}. This internal clock is not free-running; it requires a daily mechanical "Zeitgeber" (time-giver) to maintain phase coherence with the external world.
-
-\paragraph{Gravity as the Zeitgeber.} In the spine, gravity provides this synchronization signal through the daily cycle of axial loading. During the day (upright posture), gravitational compression forces fluid out of the nucleus pulposus (convective outflow), reducing disc height by 10-20\%. At night (recumbent posture), the load is removed, and the hydrophilic proteoglycan matrix draws fluid back in (diffusive/osmotic inflow), restoring height~\cite{urban2004nutrition, setton2004ivd}.
-
-This "tidal" fluid exchange is not merely structural; it is the primary transport mechanism for large solutes (glucose, oxygen, cytokines) into the avascular nucleus pulposus. Sato et al. (2025) demonstrated that in the absence of this convective pumping, diffusive transport alone is insufficient to meet the metabolic demands of the disc cells~\cite{sato2025convective}.
-
-\paragraph{Spinal Jetlag and the Convective Shutdown.} Under microgravity conditions (or prolonged bed rest), the daily loading cycle vanishes ($g \to 0$). The spine enters a state of "Convective Shutdown," where the fluid pump arrests. The disc remains in a perpetually swollen, "permanent night" state. Without the convective flush, waste products (lactate) accumulate, and oxygen tension drops, creating a hypoxic core.
-
-This hypoxia stabilizes HIF-1$\alpha$, which in turn upregulates catabolic enzymes like MMP1 and MMP3~\cite{chen2025mmp, roughley2004biology}. The matrix degrades, and the effective bending stiffness $B_{\mathrm{eff}}(s)$ (Eq.~\ref{eq:iec_energy}) drops precipitously. We term this state \emph{Spinal Jetlag}: a desynchronization between the internal molecular clock (which expects a rhythm) and the static external mechanical environment.
-
-In the IEC language, Spinal Jetlag manifests as a time-dependent decay in the metabolic supply term $\Gamma_m(s, t)$ and a degradation of the stiffness anisotropy $\chi_E$. The energy deficit window (Fig.~\ref{fig:energy_deficit_window}) widens, and the critical buckling load decreases, making the spine susceptible to spontaneous scoliotic curvature even in the absence of heavy loads.
-
-\paragraph{Predictions.}
-This chronobiological extension of the IEC framework yields three falsifiable predictions:
-\begin{enumerate}
-    \item \textbf{Clock Desynchronization:} Mice subjected to hindlimb unloading (simulated microgravity) will exhibit a flattening and phase-shift of core clock gene expression (Per2, Bmal1) in IVD tissues within 72 hours, preceding structural degradation.
-    \item \textbf{Hypoxic Trigger:} The onset of scoliotic curvature in unloading models will be preceded by a distinct hypoxic signature (HIF-1$\alpha$ stabilization) in the nucleus pulposus, and treatment with HIF-1$\alpha$ inhibitors will delay curvature onset.
-    \item \textbf{Chronotherapeutic Rescue:} The application of pulsatile axial compression (mimicking the daily gravity cycle) at the appropriate circadian phase will be significantly more effective at preserving spinal geometry than static compression or random loading, restoring the convective pump and re-entraining the spinal clock.
-\end{enumerate}
+\paragraph{The Critical Length.} As the spine grows, the ratio of Demand to Supply diverges:
+\begin{equation}
+    R(L) = \frac{P_{\mathrm{counter}}}{S_{\mathrm{proprio}}} \propto \frac{L^3}{L^2} \sim L
+\end{equation}
+This linear divergence implies a critical length $L_{\mathrm{crit}}$ where demand exceeds supply ($R > 1$). Beyond this point, the system enters the \textbf{Energy Deficit Window}. In this regime, the spine can no longer afford the high-anisotropy "Vector" sensors (Piezo2, Vimentin) required to maintain the S-shape. To minimize thermodynamic cost, the system undergoes a buckling transition to a lower-energy configuration---scoliosis.

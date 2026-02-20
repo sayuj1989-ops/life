@@ -536,3 +536,24 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Li, X., et al. (2023). Piezo1-mediated mechanosensation in bone marrow mesenchymal stem cells regulates bone formation. Journal of Bone and Mineral Research, 38(10).*
+
+---
+
+### 31. The Sweet String Pathway (DPY19L1L)
+
+**Arc Added**: `DPY19L1L` $\rightarrow$ `C_Mannosylation` $\rightarrow$ `Reissner_Fiber` $\rightarrow$ `CSF_Sensing`.
+
+*   **Source**: `DPY19L1L` (C-mannosyltransferase).
+*   **Mechanism**: **The Sugar Backbone**.
+    1.  **C-Mannosylation**: `DPY19L1L` adds a mannose sugar to specific tryptophan residues on SCO-spondin.
+    2.  **Fiber Assembly**: This modification is critical for the proper folding and polymerization of SCO-spondin into the Reissner Fiber.
+    3.  **Tension Reference**: The assembled Reissner Fiber forms a physical thread in the central canal, maintained under tension.
+*   **Property**: **Reissner Fiber Tension** (and CSF Sensing).
+*   **Role**: **The Plumb Line**. The Reissner Fiber acts as a physical reference for spinal straightness. Its tension is sensed by CSF-contacting neurons (PKD2L1) to detect curvature.
+    *   **The Defect**: Without DPY19L1L, the Reissner Fiber fails to assemble ("Sweet String" hypothesis). The spine loses its internal plumb line and buckles.
+*   **Evidence**: Tian et al. (2025) identified DPY19L1L as the critical enzyme for this process and showed that its loss causes severe scoliosis in zebrafish, which can be rescued by restoring the fiber.
+
+> **Hypothesis**: The spine's geometry is "sugared". A metabolic defect in glycosylation becomes a structural defect in geometry.
+
+**Citations**:
+*   *Tian, et al. (2025). DPY19L1L-mediated C-mannosylation of SCO-spondin regulates Reissner fiber assembly and spinal straightness. Science Advances.*

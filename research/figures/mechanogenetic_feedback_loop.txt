@@ -1,0 +1,14 @@
+A cyclic flow diagram illustrating the 'Mechanogenetic Feedback Loop' in spinal development.
+
+Nodes:
+1. Rapid Growth (Adolescent Spurt)
+2. Energy Demand Spike (Metabolic Cost)
+3. Supply Constraint (Mitochondrial/Vascular Limit)
+4. Energy Deficit (R_deficit > 1)
+5. Information-Elasticity Decoupling (Loss of Geometric Control)
+6. Geodesic Deviation (Spinal Curvature/Scoliosis)
+7. Mechanotransduction Error (Feedback Failure)
+
+Edges connecting 1->2->3->4->5->6->7->1 (Recursive Loop).
+
+Visual Style: Professional scientific diagram, clean lines, arrows indicating flow. Highlight the 'Energy Deficit' node as the critical failure point (red). Use biological/medical color palette (blues, greens, reds for danger).

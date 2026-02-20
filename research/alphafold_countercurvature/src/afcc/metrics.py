@@ -120,23 +120,26 @@ class MetricsAnalyzer:
         b_sq = c_len**2 + a_len**2 + 2 * dot
         b_len = np.sqrt(np.maximum(b_sq, 0))
 
-        # Bolt Optimization: Use Cross Product Area if available
-        # Area = 0.5 * |cross(AB, BC)| = 0.5 * normals_norm
-        # If normals_norm is provided, we save Heron's formula (sqrt + arith)
-        if normals_norm is not None:
-            area = 0.5 * normals_norm
-        else:
-            # Heron's formula for area
-            s = (a_len + b_len + c_len) / 2
-            arg = s * (s - a_len) * (s - b_len) * (s - c_len)
-            arg = np.maximum(arg, 0)
-            area = np.sqrt(arg)
-
         # R = abc / 4K
         # Kappa = 4K / abc
         denom = a_len * b_len * c_len
+
+        # Bolt Optimization 2026-11-22: Direct calculation if normals_norm available
+        # Avoids allocating 'area' array and redundant multiplication.
+        # Kappa = 4 * Area / denom
+        # If normals_norm (2*Area) is known: Kappa = 2 * normals_norm / denom
+
         with np.errstate(divide='ignore', invalid='ignore'):
-            kappa = 4 * area / denom
+            if normals_norm is not None:
+                kappa = (2.0 * normals_norm) / denom
+            else:
+                # Heron's formula for area
+                s = (a_len + b_len + c_len) / 2
+                arg = s * (s - a_len) * (s - b_len) * (s - c_len)
+                arg = np.maximum(arg, 0)
+                area = np.sqrt(arg)
+                kappa = (4.0 * area) / denom
+
             kappa[denom == 0] = 0.0
 
         # Pad results
@@ -476,25 +479,25 @@ class MetricsAnalyzer:
                     # Pruning check: bounding box distance
                     min_j, max_j = block_bounds[j]
 
-                        d_x = max(0, min_j[0] - max_i[0], min_i[0] - max_j[0])
-                        if d_x > threshold_plus_margin: continue
+                    d_x = max(0, min_j[0] - max_i[0], min_i[0] - max_j[0])
+                    if d_x > threshold_plus_margin: continue
 
-                        d_y = max(0, min_j[1] - max_i[1], min_i[1] - max_j[1])
-                        if d_y > threshold_plus_margin: continue
+                    d_y = max(0, min_j[1] - max_i[1], min_i[1] - max_j[1])
+                    if d_y > threshold_plus_margin: continue
 
-                        d_z = max(0, min_j[2] - max_i[2], min_i[2] - max_j[2])
-                        if d_z > threshold_plus_margin: continue
+                    d_z = max(0, min_j[2] - max_i[2], min_i[2] - max_j[2])
+                    if d_z > threshold_plus_margin: continue
 
-                        # If blocks are close, compute pairwise distances
-                        j_start = j * block_size
-                        j_end = min(j_start + block_size, n)
-                        b_j = coords[j_start:j_end]
+                    # If blocks are close, compute pairwise distances
+                    j_start = j * block_size
+                    j_end = min(j_start + block_size, n)
+                    b_j = coords[j_start:j_end]
 
-                        # |A-B|^2 = |A|^2 + |B|^2 - 2A.B
-                        block_dot = np.dot(b_i, b_j.T)
+                    # |A-B|^2 = |A|^2 + |B|^2 - 2A.B
+                    block_dot = np.dot(b_i, b_j.T)
 
-                        sq_norms_j = sq_norms[j_start:j_end]
-                        dists_sq = sq_norms_i + sq_norms_j[np.newaxis, :] - 2 * block_dot
+                    sq_norms_j = sq_norms[j_start:j_end]
+                    dists_sq = sq_norms_i + sq_norms_j[np.newaxis, :] - 2 * block_dot
 
                     # Count neighbors
                     mask = (dists_sq < threshold_sq)

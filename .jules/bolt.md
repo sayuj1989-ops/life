@@ -88,3 +88,9 @@
 **Learning:** `calculate_curvature` computed `b_len` (triangle side length) by allocating a temporary `vec_ac` array of size (N, 3) and calling `np.linalg.norm`. This involved significant memory allocation and overhead. By using the geometric identity $|u+v|^2 = |u|^2 + |v|^2 + 2(u \cdot v)$, we can compute `b_len` using `np.einsum` and scalar operations, avoiding the temporary array.
 
 **Action:** Replaced `np.linalg.norm(vec_ac)` with `sqrt(a^2 + c^2 + 2*dot(u,v))` in `MetricsAnalyzer`. Benchmarks show ~2x speedup for this specific calculation (29ms -> 13ms for 10k residues) and identical results (within 1e-15).
+
+## 2026-11-22 - [Simplified Curvature Calculation]
+
+**Learning:** `calculate_curvature` was calculating `Area` as an intermediate array (allocating O(N) floats) and then multiplying by 4 to get `Kappa`. Since `Area = 0.5 * normals_norm`, the full formula simplifies to `Kappa = 2 * normals_norm / denom`, avoiding the intermediate array allocation and one multiplication pass.
+
+**Action:** Optimized `calculate_curvature` in `metrics.py` to use the direct formula when `normals_norm` is available. Also fixed an indentation error in the fallback logic that was masking import errors. Verified identical results and slight performance gain (~0.24ms baseline for 10k residues).

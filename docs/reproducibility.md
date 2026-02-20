@@ -55,6 +55,18 @@ python scripts/experiments/reproducible_protein_sim.py
 - A generated report at `outputs/reproducible_protein_sim/report.md`.
 - A CSV file at `outputs/reproducible_protein_sim/results.csv`.
 
+### 3.1 Automated Pipeline Validation
+
+To verify the end-to-end integration of the pipeline (Data Ingestion -> Parameter Mapping -> Simulation) using mock data:
+
+**Command:**
+```bash
+python scripts/validation/validate_full_pipeline.py
+```
+
+**Expected Output:**
+- A report at `outputs/pipeline_validation/pipeline_validation_report.md` confirming that mock candidates were successfully simulated and produced differential mechanical outcomes.
+
 ## 4. Full Pipeline: Data Acquisition & Analysis
 
 The data pipeline fetches AlphaFold structures for candidate proteins, analyzes their geometry (curvature, anisotropy), and prepares them for simulation.

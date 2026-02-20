@@ -880,6 +880,15 @@ def compute_U_CC(
     # 5. Get Curvature (n_nodes, 3)
     kappa = result.kappa[-1] # Final step
 
+    # Interpolate curvature if rod resolution differs from info resolution
+    if kappa.shape[0] != s.shape[0]:
+        # Assume rod length matches info length (s[0] to s[-1])
+        s_rod = np.linspace(s[0], s[-1], kappa.shape[0])
+        kappa_interp = np.zeros((s.shape[0], 3))
+        for i in range(3):
+            kappa_interp[:, i] = np.interp(s, s_rod, kappa[:, i])
+        kappa = kappa_interp
+
     # 6. Compute U_elastic_straight (Energy relative to straight rod)
     # Integral 0.5 * (B11*k0^2 + B22*k1^2 + B33*k2^2) ds
     # kappa indices: 0=Lateral(d1), 1=Sagittal(d2), 2=Torsion(d3)

@@ -248,8 +248,8 @@ def run_jetlag_cycle(
 def run_spinal_jetlag_experiment(
     out_file: str,
     conditions: List[Dict],
-    n_cycles: int = 24,
-    T_circadian: float = 24.0,
+    n_days: float = 1.0,
+    samples_per_day: int = 24,
     n_elements: int = 30,
     cycle_duration: float = 0.5,
 ):
@@ -261,11 +261,11 @@ def run_spinal_jetlag_experiment(
         Path to output CSV.
     conditions : list of dict
         Each dict specifies a condition:
-        {name, chi_0, amplitude, phi, gravity, K_ent}
-    n_cycles : int
-        Number of circadian cycles to simulate.
-    T_circadian : float
-        Circadian period (hours, used for cycling chi_kappa).
+        {name, chi_0, amplitude, phi, gravity, K_ent, T_circadian (optional)}
+    n_days : float
+        Number of 24h days to simulate.
+    samples_per_day : int
+        Number of simulation steps per 24h day.
     n_elements : int
         Rod elements.
     cycle_duration : float
@@ -277,8 +277,8 @@ def run_spinal_jetlag_experiment(
     print("EXPERIMENT: Spinal Jetlag — Time-Dependent Learning Rate")
     print("=" * 100)
     print(f"Conditions: {len(conditions)}")
-    print(f"Cycles per condition: {n_cycles}")
-    print(f"Circadian period: {T_circadian} hours")
+    print(f"Days: {n_days}")
+    print(f"Samples per day: {samples_per_day}")
     print(f"Output: {out_file}")
     print("=" * 100)
 
@@ -314,17 +314,24 @@ def run_spinal_jetlag_experiment(
             # Compute entrainment
             E_mech = entrainment_strength(K_ent, grav)
 
-            for cycle in range(n_cycles):
+            # Determine simulation steps
+            n_steps = int(n_days * samples_per_day)
+            dt_hours = 24.0 / samples_per_day
+
+            # Use condition-specific period or default to 24.0
+            T_period = cond.get("T_circadian", 24.0)
+
+            for step in range(n_steps):
                 t0_wall = time.time()
 
                 # Current time in hours
-                t_hours = cycle * (T_circadian / n_cycles)
+                t_hours = step * dt_hours
 
                 # Clock amplitude (may decay in microgravity)
                 A_t = clock_amplitude_decay(A_0, E_mech, t_hours)
 
                 # Instantaneous coupling
-                chi_t = chi_kappa_circadian(t_hours, chi_0, A_t, T_circadian, phi)
+                chi_t = chi_kappa_circadian(t_hours, chi_0, A_t, T_period, phi)
 
                 # Run mechanical cycle
                 metrics = run_jetlag_cycle(
@@ -339,7 +346,7 @@ def run_spinal_jetlag_experiment(
                 row = {
                     "timestamp": datetime.now().isoformat(),
                     "condition": name,
-                    "cycle": cycle,
+                    "cycle": step,
                     "t_hours": round(t_hours, 2),
                     "chi_kappa_t": round(chi_t, 4),
                     "amplitude_t": round(A_t, 4),
@@ -357,9 +364,9 @@ def run_spinal_jetlag_experiment(
                 writer.writerow(row)
                 csvfile.flush()
 
-                if cycle % 4 == 0:
+                if step % max(1, samples_per_day // 4) == 0:
                     print(
-                        f"  cycle {cycle:3d} | t={t_hours:6.1f}h | "
+                        f"  step {step:4d} | t={t_hours:7.1f}h | "
                         f"chi_k={chi_t:7.3f} | A={A_t:.3f} | "
                         f"Cobb={metrics['cobb_angle']:6.2f} | "
                         f"S_lat={metrics['S_lat']:.4f}"
@@ -446,7 +453,8 @@ def parse_args():
         default="outputs/spinal_jetlag/jetlag_cycles.csv",
     )
     parser.add_argument("--quick-test", action="store_true")
-    parser.add_argument("--n-cycles", type=int, default=24)
+    parser.add_argument("--n-days", type=float, default=7.0, help="Number of simulation days")
+    parser.add_argument("--samples-per-day", type=int, default=24, help="Simulation steps per day")
     return parser.parse_args()
 
 
@@ -460,7 +468,8 @@ if __name__ == "__main__":
             {"name": "jetlagged", "chi_0": 10.0, "amplitude": 0.5,
              "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
         ]
-        n_cycles = 8
+        n_days = 0.5
+        samples_per_day = 8
         n_elements = 20
         cycle_duration = 0.1
     else:
@@ -493,18 +502,24 @@ if __name__ == "__main__":
             {"name": "constant_chi", "chi_0": 10.0, "amplitude": 0.0,
              "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
 
-            # 8. High coupling + jetlag (pathological)
+            # 8. Free-running drift (Period mismatch)
+            {"name": "free_running_24.5h", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": 0.0, "gravity": 9.81, "K_ent": 0.0, "T_circadian": 24.5},
+
+            # 9. High coupling + jetlag (pathological)
             {"name": "high_chi_jetlag", "chi_0": 20.0, "amplitude": 0.5,
              "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
         ]
-        n_cycles = args.n_cycles
+        n_days = args.n_days
+        samples_per_day = args.samples_per_day
         n_elements = 30
         cycle_duration = 0.5
 
     run_spinal_jetlag_experiment(
         out_file=args.out_file,
         conditions=conditions,
-        n_cycles=n_cycles,
+        n_days=n_days,
+        samples_per_day=samples_per_day,
         n_elements=n_elements,
         cycle_duration=cycle_duration,
     )

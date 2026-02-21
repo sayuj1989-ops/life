@@ -1,24 +1,29 @@
-# Countercurvature Claims Matrix: Evidence Status
-**Date:** 2026-02-19
-**Scope:** Structural and mechanosensitive claims derived from AFCC analysis.
+# Countercurvature Claims Matrix
+**Date:** 2026-02-20
+**Purpose:** Provide a disciplined mapping of theoretical claims to evidentiary status.
 
-| Claim ID | Claim Description | Evidence Status | Source Data | Confidence | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **C-001** | **"Tension Rods" Exist** | ✅ **Confirmed** | `metrics.csv`: PIEZO2 (4.44), LMNA (4.75), ADGRG6 (3.06) | **High** | Multiple high-confidence structures exceed Anisotropy > 3.0. |
-| **C-002** | **PIEZO2 is a Linear Sensor** | ✅ **Confirmed** | `metrics.csv`: PIEZO2 (Anisotropy 4.44, pLDDT 79.4) | **High** | Strong structural evidence for extended geometry. |
-| **C-003** | **LBX1 is a Structural Rod** | ❌ **Speculative / Weakened** | `metrics.csv`: LBX1 (Anisotropy 2.27, pLDDT 66.9) | **Low** | Anisotropy is moderate; structure is globular/intermediate. Unlikely to bear load. |
-| **C-004** | **Metabolic Receptors are Anisotropic** | ⚠️ **Supported (with Caveats)** | `metrics.csv`: GHR (5.13), ARNTL (3.32) vs IGF1R (1.43) | **Medium** | GHR is highly anisotropic but low confidence (pLDDT 58.7). IGF1R is globular. The claim is not universal. |
-| **C-005** | **Ciliary Proteins are Fibrous** | ⚠️ **Supported** | `metrics.csv`: POC5 (24.69) | **Low** | POC5 has extreme anisotropy but very low confidence (pLDDT 64.0) and high hinge count. Likely flexible. |
-| **C-006** | **Collagen (COL1A1) is Anisotropic** | ⚠️ **Supported (Artifactual?)** | `metrics.csv`: COL1A1 (2.80) | **Low** | Low pLDDT (52.7) and high disorder. AlphaFold struggles with collagen triple helix. Result likely unreliable. |
-| **C-007** | **Nuclear Envelope Stiffness (LMNA)** | ✅ **Confirmed** | `metrics.csv`: LMNA (4.75, pLDDT 76.4) | **High** | Consistent with known biology. Serves as a positive control. |
+## Classification Tiers
+1.  **Confirmed by Metrics:** Directly supported by quantitative data (Anisotropy > 3.0, pLDDT > 70).
+2.  **Supported but Uncertain:** Data exists but relies on interpretation or has caveats (Low confidence).
+3.  **Speculative Narrative:** Plausible hypothesis based on limited data or purely theoretical models.
 
-## Legend
-- **Confirmed:** Supported by high-anisotropy (>3.0) and high-confidence (>70 pLDDT) metrics.
-- **Supported:** Supported by metrics but limited by low confidence or mixed results.
-- **Speculative:** Weak metric support or contradicts current data.
+---
 
-## Implications for Manuscript
-- **Retain:** Claims C-001, C-002, C-007 as core pillars.
-- **Refine:** Claim C-004 to be specific (GHR, not all metabolic receptors).
-- **Reframe:** Claim C-003 (LBX1) should move from "Structural" to "Regulatory/Metabolic" or "Downstream Effector".
-- **Discard/Caveat:** Claim C-006 (Collagen) should be cited with extreme caution or excluded due to model limitations.
+## Claims Analysis
+
+| Claim ID | Claim Description | Status | Key Evidence / Source | Caveats |
+| :--- | :--- | :--- | :--- | :--- |
+| **C1** | **"Tension Rods" exist in the proteome.** | **Confirmed** | **PIEZO2** (Anisotropy 4.44), **LMNA** (Anisotropy 4.75). Source: `outputs/afcc/confidence_weighted_ranking.csv` | Confirmed for key mechanosensors. |
+| **C2** | **LBX1 acts as a "Tension Rod".** | **Weak / Falsified** | **LBX1** Anisotropy = 2.27 (Tier 4). Source: `reports/confidence_weighted_structural_evidence.md` | LBX1 is globular/intermediate, not fibrous. |
+| **C3** | **LBX1 functions as a "Blocky Switch".** | **Supported** | **LBX1** Blockiness = 7.35 (High domain segregation). Source: `outputs/afcc/2026-02-16/metrics.csv` | Requires experimental validation of functional relevance (Experiment 1). |
+| **C4** | **The "Energy Deficit Window" drives scoliosis.** | **Speculative** | Model: `scripts/experiment_energy_deficit_window.py`. Source: `manuscript/sections/theory.tex` | Mathematical derivation only; no direct in vivo measurement yet. |
+| **C5** | **Proprioceptive sensors are thermodynamically expensive.** | **Supported** | **PIEZO2**, **GHR** show high anisotropy/surface area. Source: `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv` | Correlation does not prove causation of failure. |
+| **C6** | **"Entropic Rheostat" mechanism filters mechanical noise.** | **Speculative** | Hypothesis `H_2026_02_27_EntropicRheostat`. Source: `notes/hypothesis_register.md` | Purely hypothetical mechanism for IDR function. |
+| **C7** | **Microgravity mimics the "Soft Nucleus" state.** | **Speculative** | Analogous to `LMNA` loss-of-function. Source: `reports/structure_clusters/2026-02-01__blocky_lbx1.md` | Indirect inference from spaceflight transcriptomics (Ocy454). |
+
+---
+
+## Action Plan
+-   **Prioritize C3:** Validate the "Blocky Switch" hypothesis via proposed experiments.
+-   **Refine C4:** Seek clinical growth curve data to correlate with the "Energy Deficit Window".
+-   **Abandon C2:** Stop referring to LBX1 as a "rod"; adopt "switch" or "rheostat" terminology.

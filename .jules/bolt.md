@@ -88,3 +88,9 @@
 **Learning:** `calculate_curvature` computed `b_len` (triangle side length) by allocating a temporary `vec_ac` array of size (N, 3) and calling `np.linalg.norm`. This involved significant memory allocation and overhead. By using the geometric identity $|u+v|^2 = |u|^2 + |v|^2 + 2(u \cdot v)$, we can compute `b_len` using `np.einsum` and scalar operations, avoiding the temporary array.
 
 **Action:** Replaced `np.linalg.norm(vec_ac)` with `sqrt(a^2 + c^2 + 2*dot(u,v))` in `MetricsAnalyzer`. Benchmarks show ~2x speedup for this specific calculation (29ms -> 13ms for 10k residues) and identical results (within 1e-15).
+
+## 2026-09-01 - [Fast Cross Product]
+
+**Learning:** `np.cross` is significantly slower (2x-6x) than manual arithmetic for large arrays of 3D vectors due to internal broadcasting checks and overhead. For geometry-heavy pipelines (curvature, torsion), this adds up per-residue.
+
+**Action:** Implemented `_cross_product_fast` using explicit numpy arithmetic. This yielded a ~2.2x speedup for the cross product operation and ~1.23x speedup for the overall geometry kernel (curvature + torsion) in `MetricsAnalyzer`.

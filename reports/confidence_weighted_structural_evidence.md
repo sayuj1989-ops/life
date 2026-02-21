@@ -1,48 +1,53 @@
 # Confidence-Weighted Structural Evidence
+Based on metrics from: outputs/afcc/2026-02-16/metrics.csv
 
-**Baseline Date:** 2026-02-16
-**Metric:** Weighted Score = Anisotropy * (pLDDT / 100)
+## 1. Executive Summary
+This analysis re-evaluates structural candidates by weighting their anisotropy with AlphaFold confidence metrics (pLDDT and PAE).
+High anisotropy in low-confidence regions (IDRs) is distinguished from rigid, high-confidence structural anisotropy.
 
-## Tier 1: Confirmed Structural Drivers (High Anisotropy, High Confidence)
-These candidates have robust structural evidence supporting their role as anisotropic mechanical elements.
+## 2. Comparator Analysis: LBX1 vs Controls
+We compare LBX1 against known mechanosensors (PIEZO2) and structural proteins (LMNA, GHR).
 
-| gene_symbol | anisotropy_index | plddt_mean | weighted_score |
-| --- | --- | --- | --- |
-| CNNM2 | 8.540535839977684 | 70.37298285714286 | 6.010229822575638 |
-| FBLN5 | 7.054480619949517 | 83.33808035714287 | 5.8790687278326 |
-| STOML3 | 5.559834719858973 | 84.32628865979382 | 4.688402274875716 |
-| PANX3 | 5.075360561640713 | 81.7247193877551 | 4.147824176917664 |
-| PIEZO2 | 4.441176983762356 | 79.4436389280677 | 3.5282326071366135 |
-| ROCK1 | 3.2921885930351955 | 76.13419497784342 | 2.5064812824597356 |
-| ADGRG6 | 3.0601126170353674 | 73.72809172809173 | 2.256162637270744 |
+| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
+|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
+| POC5          |           24.6864  |      63.9748 |    25.648  | Low               | Extreme (>3.5)    |              10.1036  | Fibrous/Extended |
+| PIEZO2        |            4.44118 |      79.4436 |    16.9875 | Medium            | Extreme (>3.5)    |               2.80296 | Fibrous/Extended |
+| GHR           |            5.13247 |      58.6975 |    25.8273 | Low               | Extreme (>3.5)    |               1.76834 | Fibrous/Extended |
+| ADGRG6        |            3.06011 |      73.7281 |    24.4288 | Medium            | High (>2.0)       |               1.66343 | Fibrous/Extended |
+| LBX1          |            2.26641 |      66.8678 |    25.0821 | Low               | High (>2.0)       |               1.01338 | Intermediate     |
 
-## Tier 2: Speculative Structural Drivers (High Anisotropy, Low Confidence)
-High anisotropy detected but structure is low confidence (IDR or flexible). **Interpret with caution.**
+### Key Observations
+- **LBX1**: Anisotropy 2.27, pLDDT 66.9 (Low).
+  - Weighted Score: 1.01
+  - **CRITICAL CAVEAT**: LBX1's anisotropy is flagged as Low Confidence. This suggests the shape elongation might be due to disordered loops rather than a rigid structural feature.
+- **PIEZO2**: Anisotropy 4.44, pLDDT 79.4 (Medium).
+  - Weighted Score: 2.80
+  - PIEZO2 maintains high anisotropy even when weighted by confidence, supporting its role as a rigid tension rod.
 
-| gene_symbol | anisotropy_index | plddt_mean | weighted_score |
-| --- | --- | --- | --- |
-| POC5 | 24.686435126462467 | 63.974834782608696 | 15.79310608587024 |
-| GHR | 5.13247062540886 | 58.69753918495297 | 3.012633956505567 |
-| EMD | 4.288514695460691 | 60.25062992125985 | 2.5838571182808647 |
-| MESP2 | 4.029817350768749 | 54.17438287153653 | 2.183128680629072 |
-| ARNTL | 3.3192797281217827 | 65.52864217252394 | 2.1750789357460487 |
+## 3. Top High-Confidence Anisotropic Structures
+These proteins have confirmed structural elongation (High/Medium Confidence + High/Extreme Anisotropy).
+| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
+|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
+| FBLN5         |            7.05448 |      83.3381 |    18.9889 | Medium            | Extreme (>3.5)    |               4.8995  | Fibrous/Extended |
+| CNNM2         |            8.54054 |      70.373  |    22.413  | Medium            | Extreme (>3.5)    |               4.22958 | Fibrous/Extended |
+| STOML3        |            5.55983 |      84.3263 |    13.6189 | High              | Extreme (>3.5)    |               3.95356 | Fibrous/Extended |
+| PANX3         |            5.07536 |      81.7247 |    12.8535 | High              | Extreme (>3.5)    |               3.3898  | Fibrous/Extended |
+| PIEZO2        |            4.44118 |      79.4436 |    16.9875 | Medium            | Extreme (>3.5)    |               2.80296 | Fibrous/Extended |
+| ROCK1         |            3.29219 |      76.1342 |    24.3405 | Medium            | High (>2.0)       |               1.90829 | Fibrous/Extended |
+| ADGRG6        |            3.06011 |      73.7281 |    24.4288 | Medium            | High (>2.0)       |               1.66343 | Fibrous/Extended |
+| HES7          |            2.24793 |      73.2838 |    22.8848 | Medium            | High (>2.0)       |               1.20725 | Intermediate     |
 
-## LBX1 Comparative Analysis
-Evaluating LBX1 against known mechanosensors and controls.
-
-**Note:** The following targets were not found in the baseline dataset (2026-02-16): LMNA, RUNX3.
-
-| gene_symbol | anisotropy_index | plddt_mean | PAE_domain_blockiness_score | confidence_tier | Comment |
-| --- | --- | --- | --- | --- | --- |
-| POC5 | 24.686435126462467 | 63.974834782608696 | 3.508112193042216 | Tier 2: High Anisotropy + Low Confidence | Extreme anisotropy, but check confidence (Ciliary). |
-| GHR | 5.13247062540886 | 58.69753918495297 | 5.309022073672339 | Tier 2: High Anisotropy + Low Confidence | High anisotropy, low confidence (Membrane). |
-| PIEZO2 | 4.441176983762356 | 79.4436389280677 | 2.799985883630068 | Tier 1: High Anisotropy + High Confidence | Confirmed high-anisotropy sensor (Vector). |
-| ADGRG6 | 3.0601126170353674 | 73.72809172809173 | 6.778548436294672 | Tier 1: High Anisotropy + High Confidence | High anisotropy, good confidence (GPCR). |
-| LBX1 | 2.266410666464284 | 66.86779359430605 | 7.354659843586591 | Tier 4: Low Anisotropy + Low Confidence | Baseline target. Moderate anisotropy, low confidence. Likely NOT a primary structural rod. |
-
-### LBX1 Assessment
-- **Anisotropy:** 2.27 (Moderate)
-- **Confidence (pLDDT):** 66.87 (Low/Moderate)
-- **Blockiness:** 7.35
-
-**Conclusion:** LBX1's structural metrics do not support a "Tension Rod" hypothesis. It clusters with globular/intermediate proteins. Its role is likely regulatory rather than structural.
+## 4. Low-Confidence Artifact Risks
+These proteins show high anisotropy but have Low confidence, posing a risk of false positives due to IDRs.
+| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
+|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
+| POC5          |           24.6864  |      63.9748 |    25.648  | Low               | Extreme (>3.5)    |             10.1036   | Fibrous/Extended |
+| GHR           |            5.13247 |      58.6975 |    25.8273 | Low               | Extreme (>3.5)    |              1.76834  | Fibrous/Extended |
+| EMD           |            4.28851 |      60.2506 |    26.4501 | Low               | Extreme (>3.5)    |              1.55679  | Fibrous/Extended |
+| GDF5          |            2.96967 |      69.9849 |    20.2226 | Low               | High (>2.0)       |              1.45451  | Intermediate     |
+| ARNTL         |            3.31928 |      65.5286 |    22.8182 | Low               | High (>2.0)       |              1.4253   | Fibrous/Extended |
+| MESP2         |            4.02982 |      54.1744 |    26.8834 | Low               | Extreme (>3.5)    |              1.1827   | Fibrous/Extended |
+| DZIP1         |            2.54368 |      64.3541 |    26.7206 | Low               | High (>2.0)       |              1.05345  | Intermediate     |
+| LBX1          |            2.26641 |      66.8678 |    25.0821 | Low               | High (>2.0)       |              1.01338  | Intermediate     |
+| PPARGC1A      |            2.18505 |      52.7429 |    28.0889 | Low               | High (>2.0)       |              0.60784  | Intermediate     |
+| COL11A2       |            2.46068 |      49.265  |    27.1683 | Low               | High (>2.0)       |              0.597216 | Intermediate     |

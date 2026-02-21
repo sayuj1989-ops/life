@@ -1,152 +1,63 @@
-# AFCC Evidence Freshness Audit
-**Date:** 2026-02-20
+# Evidence Freshness Audit Report
+Generated on: 2026-02-21 19:44:31
 
-## Run: 2026-01-06
-- **Metrics File:** `outputs/afcc/2026-01-06/metrics.csv`
-- **Summary Report:** `Found`
+## Run-to-Run Consistency Check
+| Date | Rows | Columns | Identical to Prev? | Changes |
+|---|---|---|---|---|
+| 2026-01-06 | 10 | 40 | False | N/A |
+| 2026-01-07 | 9 | 40 | False | Row count: 10 -> 9 |
+| 2026-01-09 | 9 | 40 | False | Changed cols: morphology, anisotropy, radius_of_gyration... |
+| 2026-01-14 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
+| 2026-01-16 | 3 | 40 | False | Row count: 9 -> 3 |
+| 2026-01-18 | 9 | 40 | False | Row count: 3 -> 9 |
+| 2026-01-20 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
+| 2026-01-21 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
+| 2026-01-27 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
+| 2026-01-31 | 9 | 40 | True | None |
+| 2026-02-05 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, radius_of_gyration... |
+| 2026-02-06 | 9 | 40 | True | None |
+| 2026-02-07 | 9 | 40 | False | Changed cols: source_category... |
+| 2026-02-08 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
+| 2026-02-09 | 10 | 40 | False | Row count: 9 -> 10 |
+| 2026-02-10 | 219 | 40 | False | Row count: 10 -> 219 |
+| 2026-02-11 | 10 | 40 | False | Row count: 219 -> 10 |
+| 2026-02-12 | 10 | 40 | True | None |
+| 2026-02-13 | 48 | 40 | False | Row count: 10 -> 48 |
+| 2026-02-16 | 25 | 40 | False | Row count: 48 -> 25 |
+| 2026-02-17 | 10 | 40 | False | Row count: 25 -> 10 |
+| 2026-02-18 | 58 | 40 | False | Row count: 10 -> 58 |
+| 2026-02-20 | 10 | 40 | False | Row count: 58 -> 10 |
 
-## Run: 2026-01-07
-- **Metrics File:** `outputs/afcc/2026-01-07/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 6 common genes show updates.
+## Gene-Level Freshness
+Checking for genes that have static metrics across multiple runs (indicating potential reuse or lack of update).
+- Total Genes Tracked: 71
+- Static Genes (Unchanged across runs): 70
+- Dynamic Genes (Changed at least once): 1
 
-## Run: 2026-01-09
-- **Metrics File:** `outputs/afcc/2026-01-09/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema Drift:**
-  - Added: backbone_principal_axis, exposed_surface_proxy, plddt_fraction_high, plddt_median, anisotropy_index, disorder_fraction_proxy, plddt_fraction_low, plddt_fraction_ok, PAE_mean, predicted_domain_segments, likely_IDR_heavy, plddt_mean, PAE_domain_blockiness_score
-  - Removed: mean_plddt, anisotropy, pae_blockiness, pae_mean, exposed_fraction, lambda_min, lambda_mid, likely_idr_heavy, anisotropy_ratio, disorder_fraction, lambda_max, fraction_low_plddt
-- **Freshness:** All 9 common genes show updates.
+### Top 10 Static Genes (Most Runs)
+| Gene     |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
+|:---------|-------:|:------------|:-----------|:---------|:-------------------|
+| PIEZO2   |     20 | 2026-01-06  | 2026-02-20 | Static   | 4.44-4.44          |
+| LBX1     |     20 | 2026-01-06  | 2026-02-18 | Static   | 2.27-2.27          |
+| NTRK3    |     14 | 2026-01-27  | 2026-02-20 | Static   | 1.94-1.94          |
+| RUNX3    |     13 | 2026-01-27  | 2026-02-18 | Static   | 2.06-2.06          |
+| LMNA     |     12 | 2026-01-14  | 2026-02-18 | Static   | 4.75-4.75          |
+| PIEZO1   |     11 | 2026-01-14  | 2026-02-18 | Static   | 3.90-3.90          |
+| NF1      |     11 | 2026-01-18  | 2026-02-18 | Static   | 1.93-1.93          |
+| POC5     |     10 | 2026-01-06  | 2026-02-18 | Static   | 24.69-24.69        |
+| MYLK     |      9 | 2026-02-09  | 2026-02-20 | Static   | 1.46-1.46          |
+| PPARGC1A |      9 | 2026-02-09  | 2026-02-20 | Static   | 2.19-2.19          |
 
-## Run: 2026-01-14
-- **Metrics File:** `outputs/afcc/2026-01-14/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 5/5 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
+### Top 10 Dynamic Genes (Most Variability)
+| Gene   |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
+|:-------|-------:|:------------|:-----------|:---------|:-------------------|
+| ADGRG6 |      6 | 2026-01-06  | 2026-02-16 | Dynamic  | 2.69-3.06          |
 
-## Run: 2026-01-16
-- **Metrics File:** `outputs/afcc/2026-01-16/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 3 common genes show updates.
-
-## Run: 2026-01-18
-- **Metrics File:** `outputs/afcc/2026-01-18/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 2 common genes show updates.
-
-## Run: 2026-01-20
-- **Metrics File:** `outputs/afcc/2026-01-20/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 7/7 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-01-21
-- **Metrics File:** `outputs/afcc/2026-01-21/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 6/6 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-01-27
-- **Metrics File:** `outputs/afcc/2026-01-27/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 5 common genes show updates.
-
-## Run: 2026-01-31
-- **Metrics File:** `outputs/afcc/2026-01-31/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 9/9 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-05
-- **Metrics File:** `outputs/afcc/2026-02-05/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 8/8 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-06
-- **Metrics File:** `outputs/afcc/2026-02-06/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 9/9 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-07
-- **Metrics File:** `outputs/afcc/2026-02-07/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 9 common genes show updates.
-
-## Run: 2026-02-08
-- **Metrics File:** `outputs/afcc/2026-02-08/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 7/7 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-09
-- **Metrics File:** `outputs/afcc/2026-02-09/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 4 common genes show updates.
-
-## Run: 2026-02-10
-- **Metrics File:** `outputs/afcc/2026-02-10/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 10 common genes show updates.
-
-## Run: 2026-02-11
-- **Metrics File:** `outputs/afcc/2026-02-11/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 9/9 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-12
-- **Metrics File:** `outputs/afcc/2026-02-12/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 10/10 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-13
-- **Metrics File:** `outputs/afcc/2026-02-13/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 10/10 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: 2026-02-16
-- **Metrics File:** `outputs/afcc/2026-02-16/metrics.csv`
-- **Summary Report:** **MISSING**
-- **Schema:** Stable
-- **Freshness:** All 11 common genes show updates.
-
-## Run: 2026-02-17
-- **Metrics File:** `outputs/afcc/2026-02-17/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Freshness:** All 6 common genes show updates.
-
-## Run: 2026-02-18
-- **Metrics File:** `outputs/afcc/2026-02-18/metrics.csv`
-- **Summary Report:** `Found`
-- **Schema:** Stable
-- **Stale Data Warning:** 10/10 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
-
-## Run: manual_metabolic_update
-- **Metrics File:** `outputs/afcc/manual_metabolic_update/metrics.csv`
-- **Summary Report:** **MISSING**
-- **Schema:** Stable
-- **Stale Data Warning:** 6/6 genes have IDENTICAL metrics to previous run.
-  - **CRITICAL:** Entire dataset appears to be a copy of the previous run.
+### Key Candidate Status
+| Gene   |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
+|:-------|-------:|:------------|:-----------|:---------|:-------------------|
+| PIEZO2 |     20 | 2026-01-06  | 2026-02-20 | Static   | 4.44-4.44          |
+| LBX1   |     20 | 2026-01-06  | 2026-02-18 | Static   | 2.27-2.27          |
+| POC5   |     10 | 2026-01-06  | 2026-02-18 | Static   | 24.69-24.69        |
+| LMNA   |     12 | 2026-01-14  | 2026-02-18 | Static   | 4.75-4.75          |
+| GHR    |      9 | 2026-02-09  | 2026-02-20 | Static   | 5.13-5.13          |

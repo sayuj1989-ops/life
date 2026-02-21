@@ -1,5 +1,1 @@
-A 3D visualization of a biological rod (spine) growing in a curved spacetime metric.
-The grid lines of space are curved like a gravity well, but the spine remains straight by actively fighting the curvature.
-The 'shadow' of the spine on the flat ground is curved (scoliosis), but the spine itself is straight in its effective geometry.
-High contrast, scientific style, blue and gold color scheme.
-Label: "Biological Countercurvature"
+A split composition visual abstract. Left side: 'Healthy Development' showing a straight spine with balanced forces (Gravity = Information). Right side: 'Scoliosis' showing a curved spine where Information < Gravity due to 'Thermodynamic Gap'. Overlay a mathematical equation: 'd_eff^2 = g_eff(s) ds^2'. Visual style: High-end scientific illustration, clean lines, biological teal and orange color scheme.

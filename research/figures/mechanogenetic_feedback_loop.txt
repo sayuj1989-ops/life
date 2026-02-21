@@ -1,13 +1,1 @@
-A cyclical diagram showing the feedback loop of spinal growth.
-Nodes:
-1. Genetic Template (Hox genes)
-2. Growth Velocity (Hypertrophy)
-3. Mechanical Loading (Gravity)
-4. Proprioceptive Feedback (Muscle Spindles)
-5. Error Signal (Asymmetry)
-
-Arrows connecting them in a circle:
-Template -> Growth Velocity -> Mechanical Loading -> Proprioceptive Feedback -> Error Signal -> Growth Velocity
-
-Annotate "Time Delay" on the feedback link (Error Signal -> Growth Velocity).
-Annotate "Gain" on Proprioceptive Feedback.
+A cyclical diagram showing the feedback loop between Mechanical Stress, Gene Expression (mTOR/AMPK), and Geometric Growth. 1. Mechanical Stress (Gravity) is detected by Mechanosensors (Piezo1). 2. Signal Transduction activates Gene Expression (mTOR for growth, AMPK for energy conservation). 3. Differential Growth modifies Spinal Geometry. 4. Geometry alters Mechanical Stress distribution. Central concept: 'Information-Elasticity Coupling'. Show a 'break' in the loop labeled 'Energy Deficit' during rapid growth.

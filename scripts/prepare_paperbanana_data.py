@@ -18,15 +18,15 @@ def downsample_data():
     # Define boundary region: 0.8 <= R_deficit <= 1.2
     boundary_mask = (df_filtered['R_deficit'] >= 0.8) & (df_filtered['R_deficit'] <= 1.2)
 
-    # Sample 30 points from the boundary region
+    # Sample 10 points from the boundary region
     df_boundary = df_filtered[boundary_mask]
-    if len(df_boundary) > 30:
-        df_boundary = df_boundary.sample(n=30, random_state=42)
+    if len(df_boundary) > 10:
+        df_boundary = df_boundary.sample(n=10, random_state=42)
 
-    # Sample 20 points from the rest (to show the global trend)
+    # Sample 8 points from the rest (to show the global trend)
     df_rest = df_filtered[~boundary_mask]
-    if len(df_rest) > 20:
-        df_rest = df_rest.sample(n=20, random_state=42)
+    if len(df_rest) > 8:
+        df_rest = df_rest.sample(n=8, random_state=42)
 
     # Combine and shuffle
     df_final = pd.concat([df_boundary, df_rest]).sample(frac=1, random_state=42).reset_index(drop=True)

@@ -376,6 +376,24 @@ $$ k_{eff}(\Lambda) = k_0 \exp\left( - \mathcal{P}_{crowd} \cdot \phi \cdot (\La
 *   **Scoliosis Context**: On the concave side of a curve, compressive stress increases cell density and $\phi$. This selectively silences high-$\Lambda$ metabolic sensors (GHR, Anisotropy ~5.13), creating a "Metabolic Blind Spot" that prevents compensatory growth.
 *   **Measurable Proxy**: The ratio of diffusion coefficients ($D_{long}/D_{short}$) for fluorescently tagged nanorods of varying aspect ratios injected into concave vs. convex side vertebral cells.
 
+### 2.25. The Kleiber-Euler Number ($\mathcal{K}_{Eu}$)
+
+We define a dimensionless number that captures the fundamental mismatch between the scaling of metabolic supply (Kleiber's Law) and the scaling of mechanical demand (Euler Buckling suppression).
+
+$$ \mathcal{K}_{Eu} = \frac{P_{met}(L)}{P_{mech}(L)} $$
+
+*   **Symbols**:
+    *   $P_{met}$: Rate of metabolic energy supply to paraspinal tissues $[ML^2T^{-3}]$.
+    *   $P_{mech}$: Rate of mechanical work required to maintain the "Standing Wave" counter-curvature $[ML^2T^{-3}]$.
+    *   $L$: Characteristic spinal length $[L]$.
+*   **Scaling Relationships**:
+    *   $P_{met} \propto M^{0.75} \approx L^{2.25}$ (Kleiber's Law, or $L^2$ surface-limited).
+    *   $P_{mech} \propto \mathbf{M}_{bio} \cdot \dot{\kappa} \approx L^4$.
+*   **Physical Interpretation**:
+    *   $\mathcal{K}_{Eu} \gg 1$: **Metabolic Abundance**. Energy supply outstrips mechanical cost. The spine is robust.
+    *   $\mathcal{K}_{Eu} < 1$: **Metabolic Buckling**. The cost of straightness exceeds the supply. The system must reduce demand by buckling (increasing $I$, lowering COM) or shutting down sensors.
+*   **Measurable Proxy**: The ratio of mitochondrial volume density ($V_{mito}/V_{cell}$) in paraspinal muscles to the square of spinal slenderness ($\lambda^2 = (L/r)^2$).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -659,6 +677,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Mechanotransduction gain (Piezo1 activity) in compressed cells treated with Rapamycin vs vehicle.
 *   **Refutation**: If "thinning" the cytoplasm fails to restore signaling under compression, the block is not steric/crowding-based. (Reference: Delarue et al., 2018).
 
+### Test AW: The Hyperoxic Rescue
+*   **Hypothesis**: If the critical failure limit is metabolic ($P_{met}$), increasing oxidative capacity via hyperoxia should delay the onset of curvature (increase $L_{crit}$).
+*   **Data Needed**: Spinal curvature onset length in zebrafish larvae raised in hyperoxic water (e.g., $120\%$ saturation).
+*   **Refutation**: If hyperoxia fails to shift $L_{crit}$ to larger values compared to normoxia, the bottleneck is not metabolic supply. (Reference: West et al., 1997).
+
+### Test AX: The Glycolytic Shift
+*   **Hypothesis**: As $\mathcal{K}_{Eu} \to 1$, paraspinal tissues should switch to glycolysis (Warburg effect) as oxidative capacity is maxed out, even in the presence of oxygen.
+*   **Data Needed**: Lactate/Pyruvate ratio and expression of glycolytic enzymes (e.g., LDH-A) in paraspinal muscles correlated with Cobb angle severity.
+*   **Refutation**: If severe curves show no evidence of metabolic stress or glycolytic shift, the "Energy Deficit" model is incorrect. (Reference: Vander Heiden et al., 2009).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -715,3 +743,6 @@ The theory makes specific predictions about the relationship between genetic ani
 52. **Salbreux, G., et al. (2012).** "Actin cortex mechanics and cellular morphogenesis." *Trends in Cell Biology*, 22(10). (Links ATP/Myosin to cortical tension).
 53. **Minton, A. P. (2006).** "How can biochemical reactions within cells differ from those in test tubes?" *Journal of Cell Science*, 119. (Crowding theory).
 54. **Delarue, M., et al. (2018).** "mTORC1 controls phase separation and the biophysical properties of the cytoplasm by tuning crowding." *Cell*, 174. (Crowding control).
+55. **Kleiber, M. (1932).** "Body size and metabolism." *Hilgardia*, 6. (Foundational metabolic scaling).
+56. **England, J. L. (2013).** "Statistical physics of self-replication." *The Journal of Chemical Physics*, 139. (Thermodynamics of biological structure).
+57. **Vander Heiden, M. G., et al. (2009).** "Understanding the Warburg effect: the metabolic requirements of cell proliferation." *Science*, 324. (Glycolytic shift mechanism).

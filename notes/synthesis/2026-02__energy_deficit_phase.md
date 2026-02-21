@@ -1,6 +1,6 @@
 # Synthesis: Energy Deficit Phase Diagram
 
-**Date:** 2026-02
+**Date:** 2026-02-21
 **Simulation:** `scripts/weekly_sim_energy_deficit_bifurcation.py`
 **Hypothesis ID:** `H_2026_02_08_EnergyPhase`
 
@@ -16,6 +16,9 @@ This weekly simulation performed a 2D parameter sweep of the Information-Elastic
 
 2.  **Correlation with Scoliosis Emergence**:
     The emergence of non-zero Cobb angles (lateral instability) correlates strongly with the Energy Deficit region. While the IEC model primarily drives sagittal counter-curvature, the metabolic deficit creates a permissive environment for lateral buckling under gravity.
+
+3.  **Connection to Piezo2 Vulnerability**:
+    The high metabolic cost of maintaining straightness at large $L$ and high $\chi_\kappa$ directly supports **H_2026_02_28_Piezo_Vulnerability**. High-anisotropy sensors like Piezo2 are metabolically expensive; the "Energy Deficit" implies a resource constraint that may force the downregulation or failure of these specific sensors, leading to proprioceptive blindness.
 
 ## Clinical Implications
 This result provides a theoretical basis for risk stratification based on "Morphogenetic Drive" ($\chi_\kappa$):

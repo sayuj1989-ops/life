@@ -6,6 +6,7 @@ Maps candidate gene symbols to UniProt Accessions using the UniProt Async ID Map
 """
 
 import sys
+import os
 import argparse
 import pandas as pd
 from pathlib import Path
@@ -16,7 +17,11 @@ sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.uniprot import UniProtMapper
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+if os.environ.get("AFCC_BASE_DIR"):
+    BASE_DIR = Path(os.environ["AFCC_BASE_DIR"])
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATA_DIR = BASE_DIR / "data" / "processed"
 INPUT_FILE = DATA_DIR / "candidates.csv"
 OUTPUT_FILE = DATA_DIR / "uniprot_mapping.csv"

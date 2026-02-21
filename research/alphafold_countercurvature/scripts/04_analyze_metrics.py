@@ -6,6 +6,7 @@ Computes geometric and confidence metrics for all downloaded structures.
 """
 
 import sys
+import os
 import json
 import numpy as np
 import pandas as pd
@@ -33,7 +34,11 @@ class NumpyEncoder(json.JSONEncoder):
             return bool(obj)
         return super(NumpyEncoder, self).default(obj)
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+if os.environ.get("AFCC_BASE_DIR"):
+    BASE_DIR = Path(os.environ["AFCC_BASE_DIR"])
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATA_DIR = BASE_DIR / "data"
 MANIFEST_FILE = DATA_DIR / "manifest.csv"
 OUTPUT_FILE = DATA_DIR / "processed" / "protein_metrics.csv"

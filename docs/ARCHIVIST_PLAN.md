@@ -54,4 +54,4 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
 - [x] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
-- [ ] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).
+- [x] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).

@@ -77,28 +77,28 @@ A rigorous analysis of the 23-protein dataset from `outputs/thermodynamic_cost/t
 
 ### 1. The Demand-Supply Anisotropy Gap
 *   **Demand Mean Anisotropy:** **3.32** (Proteins like PIEZO2, VIM, FLNA)
-*   **Supply Mean Anisotropy:** **2.47** (Proteins like SIRT1, PPARGC1A, COMP)
+*   **Supply Mean Anisotropy:** **2.48** (Proteins like SIRT1, PPARGC1A, COMP)
 *   **Implication:** The mechanosensory demand system carries a **~34% structural cost premium**. It is inherently more expensive to build and maintain the sensors that detect curvature than the metabolic machinery that fuels the correction.
 
 ### 2. Scaling Law Mismatch (Derived from `energy_deficit_window.csv`)
 During a critical 30% height increase (e.g., $L$ from 0.35m to 0.45m):
-*   **Demand ($P_{\mathrm{counter}}$):** Increases approximately **1.67x - 1.83x** (scaling roughly as $L^{2.5}$ to $L^3$ depending on deformation).
-*   **Supply ($S_{\mathrm{proprio}}$):** Increases approximately **1.13x - 1.38x** (scaling roughly as $L^{1.3}$ to $L^{1.5}$).
-*   **Net Deficit:** This differential growth rates creates a rapidly widening energy gap of **~33%** in the mid-growth phase.
+*   **Demand ($P_{\mathrm{counter}}$):** Increases approximately **1.83x** (scaling roughly as $L^{2.5}$ to $L^3$).
+*   **Supply ($S_{\mathrm{proprio}}$):** Increases approximately **1.38x** (scaling roughly as $L^{1.3}$).
+*   **Net Deficit:** This differential growth creates a rapidly widening energy gap of **~33%** in the mid-growth phase.
 
 ### 3. The VIM Vulnerability Index
 **Vimentin (VIM)** is the "canary in the coal mine."
 *   **Anisotropy:** 7.47
-*   **Vulnerability Ratio:** VIM Anisotropy / Supply Mean = $7.47 / 2.47 \approx$ **3.02x**.
+*   **Vulnerability Ratio:** VIM Anisotropy / Supply Mean = $7.47 / 2.48 \approx$ **3.01x**.
 *   **Interpretation:** VIM costs 3 times more to maintain than the average supply protein. It is mathematically destined to fail first when energy runs low, triggering the "VIM Cascade."
 
 ### 4. Top 5 High-Cost Proteins (Energy Cost Proxy)
 Ranking by `Anisotropy * n_residues` identifies the most metabolically expensive components:
-1.  **PIEZO1:** ~9,822 (Anisotropy 3.90, 2521 residues)
-2.  **FLNA:** ~6,622 (Anisotropy 2.50, 2647 residues)
-3.  **COL1A1:** ~4,095 (Anisotropy 2.80, 1464 residues)
-4.  **VIM:** ~3,480 (Anisotropy 7.47, 466 residues)
-5.  **GHR:** ~3,275 (Anisotropy 5.13, 638 residues)
+1.  **PIEZO1:** ~9,832 (Anisotropy 3.90, 2521 residues)
+2.  **FLNA:** ~6,618 (Anisotropy 2.50, 2647 residues)
+3.  **COL1A1:** ~4,099 (Anisotropy 2.80, 1464 residues)
+4.  **VIM:** ~3,481 (Anisotropy 7.47, 466 residues)
+5.  **GHR:** ~3,273 (Anisotropy 5.13, 638 residues)
 
 ### 5. PPARGC1A Fragility Score
 The supply chain is limited by its weakest link.

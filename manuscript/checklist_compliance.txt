@@ -7,11 +7,11 @@
 - [x] **Title:** < 90 characters (Active voice, no jargon).
       *Current:* "Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis" (83 chars).
 - [x] **Abstract:** ~150 words.
-      *Current:* ~160 words. Structured as "Basic Intro -> Specific Problem -> Solution -> Conclusion".
+      *Current:* ~160 words. Structured as "Basic Intro -> Specific Problem -> Solution -> Conclusion". Updated with "Allometric Trap" concept.
 - [x] **Main Text:** ~2000-2500 words.
-      *Status:* Compliant (~2200 words estimated). No subheadings used.
+      *Status:* Compliant (~2200 words estimated). No subheadings used. Includes new "Cross-Species Scaling" paragraph.
 - [x] **Methods:** Separate section at the end.
-      *Status:* Included.
+      *Status:* Included. Updated with "Cross-Species Scaling" and "Toy Model".
 - [x] **References:** Max 50.
       *Status:* Selected 9 key references for the draft; full bibliography to be expanded (currently placeholder).
 
@@ -19,8 +19,8 @@
 - [x] **Display Items:** Max 6.
       *Planned Figures:*
       1. The Thermodynamic Standing Wave (Concept).
-      2. The Scaling Catch-22 ($L^4$ vs $L^2$).
-      3. Vector-Scalar Mismatch (Bifurcation).
+      2. The Scaling Catch-22 ($L^4$ vs $L^2$) & The Allometric Trap (Cross-Species Scaling).
+      3. Vector-Scalar Mismatch (Bifurcation) & Toy Model A (Thermostatic Column).
       4. Protein Cost Landscape (Anisotropy Gap).
       5. The "VIM Cascade" Pathway.
       6. Sexual Dimorphism & Energy Deficit.

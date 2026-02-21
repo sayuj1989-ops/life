@@ -557,3 +557,26 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Tian, et al. (2025). DPY19L1L-mediated C-mannosylation of SCO-spondin regulates Reissner fiber assembly and spinal straightness. Science Advances.*
+
+---
+
+### 32. The Metabolic Buckling Pathway (Energy Deficit)
+
+**Arc Added**: `Rapid_Growth` $\rightarrow$ `Energy_Deficit` $\rightarrow$ `PIEZO2`.
+
+*   **Source**: `IGF1R` / `GHR` (Growth Factors).
+*   **Mechanism**: **The Energy Deficit Window**.
+    1.  **Rapid Growth**: During the adolescent growth spurt, the spine elongates rapidly.
+    2.  **Scaling Mismatch**: Metabolic demand scales with volume ($L^3$), while nutrient supply scales with surface area ($L^2$). This creates a transient "Energy Deficit".
+    3.  **Metabolic Crowding**: High-anisotropy proteins (like Piezo2) have a high entropic cost of assembly.
+    4.  **Sensor Failure**: In this energy-constrained environment, the costly sensors are "crowded out" or fail to assemble, leaving the spine "blind" to mechanical signals.
+*   **Property**: **Feedback Gain ($G_{mech}$)** (via Sensor Availability).
+*   **Role**: **Supply-Chain Failure**. The sensor isn't mutated; it's just unaffordable during the growth spurt.
+*   **Counter-Curvature Implication**: The "Counter-Curvature" reflex requires constant active sensing to fight gravity. When the metabolic budget is exhausted by growth ($L^3$), the sensory system ($L^2$ supply) shuts down, disabling the very mechanism required to maintain straightness.
+*   **Evidence**: England (2013) established the thermodynamic cost of self-replication and assembly. Chesler et al. (2016) confirmed that Piezo2 loss leads to scoliosis. This pathway links the two via the metabolic constraint of rapid growth.
+
+> **Hypothesis**: Scoliosis is a "Metabolic Buckling". The spine outgrows its own ability to power its sensors, leading to a collapse of the active counter-curvature system.
+
+**Citations**:
+*   *England, J. L. (2013). Statistical physics of self-replication. The Journal of Chemical Physics, 139(12), 121923.* https://doi.org/10.1063/1.4818538
+*   *Chesler, A. T., et al. (2016). The role of PIEZO2 in human mechanosensation. New England Journal of Medicine, 375(14), 1355-1364.* https://doi.org/10.1056/NEJMoa1602812

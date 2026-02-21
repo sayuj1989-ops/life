@@ -30,6 +30,8 @@ graph TD
         TFEB[TFEB<br/>Transcription Factor]
         Beta_Catenin[Beta-Catenin<br/>Wnt Effector]
         DPY19L1L[DPY19L1L<br/>C-mannosyltransferase]
+        IGF1R[IGF1R<br/>Insulin-like Growth Factor Receptor]
+        GHR[GHR<br/>Growth Hormone Receptor]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -62,6 +64,8 @@ graph TD
         Ciliary_Splint[Ciliary Splint<br/>Antenna Stiffness]
         Vacuole_Biogenesis[Vacuole Biogenesis<br/>Hydrostatic Inflation]
         C_Mannosylation[C-Mannosylation<br/>Protein Folding]
+        Rapid_Growth[Rapid Growth<br/>Adolescent Spurt]
+        Energy_Deficit[Energy Deficit<br/>Metabolic Buckling]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -246,7 +250,13 @@ graph TD
     C_Mannosylation --> Reissner_Fiber
     Reissner_Fiber --> CSF_Sensing
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation process;
+    %% NEW ARC: Metabolic Buckling Pathway
+    IGF1R --> Rapid_Growth
+    GHR --> Rapid_Growth
+    Rapid_Growth -- "Scaling Mismatch" --> Energy_Deficit
+    Energy_Deficit -- "Crowding Out" --> PIEZO2
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber tissue;
     class S_Curve,Stability,Scoliosis outcome;

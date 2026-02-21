@@ -45,6 +45,7 @@ ENV/
 outputs/csv/
 outputs/figs/
 outputs/experiments/
+outputs/tests/
 outputs/temp/
 outputs/sim/
 outputs/methodology/

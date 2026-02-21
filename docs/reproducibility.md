@@ -47,13 +47,13 @@ To verify that the physics engine (PyElastica + SpinalModes) is working correctl
 
 **Command:**
 ```bash
-python scripts/experiments/reproducible_protein_sim.py
+python scripts/experiments/experiment_protein_simulation_pyelastica.py --scenario minimal
 ```
 
 **Expected Output:**
-- Terminal output showing simulation progress for different profiles (e.g., "WildType_Control", "Marfan_Like").
-- A generated report at `outputs/reproducible_protein_sim/report.md`.
-- A CSV file at `outputs/reproducible_protein_sim/results.csv`.
+- Terminal output showing simulation progress for different profiles.
+- A generated report at `outputs/experiments/protein_simulation_results.md`.
+- A CSV file at `outputs/experiments/protein_simulation_results.csv`.
 
 ## 4. Full Pipeline: Data Acquisition & Analysis
 

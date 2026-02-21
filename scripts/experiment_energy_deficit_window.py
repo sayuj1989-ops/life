@@ -3,6 +3,41 @@ import os
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from scipy.integrate import solve_bvp
+import os
+import sys
+
+# Ensure outputs directories exist
+os.makedirs("outputs/thermodynamic_cost", exist_ok=True)
+os.makedirs("outputs/figures", exist_ok=True)
+
+# Verified for Energy Deficit Window simulation (Manuscript Fig 6)
+
+# --- Parameters ---
+RHO = 1100.0  # kg/m^3
+A_REF = 0.001 # m^2 (Reference area at L_REF)
+L_REF = 0.4   # m (Reference length for scaling)
+G = 9.81      # m/s^2
+E0 = 1.0e9    # Pa (1.0 GPa)
+
+# IEC Parameters (Bimodal Gaussian)
+A_c = 0.5; s_c = 0.80; sigma_c = 0.08
+A_l = 0.7; s_l = 0.25; sigma_l = 0.10
+I_0 = 0.3
+
+# Simulation Parameters
+L_MIN = 0.25
+L_MAX = 0.55
+N_STEPS = 30
+ETA_A = 1.0
+
+def get_information_field(s, L):
+    """
+    Computes the bimodal Gaussian information field I(s).
+    s: array of spatial coordinates [0, L]
+    L: total length
+    """
+    s_norm = s / L
 import matplotlib.pyplot as plt
 
 # Ensure src is in path to import spinalmodes

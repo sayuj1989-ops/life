@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 
 # Paths
-METRICS_PATH = Path("outputs/afcc/2026-02-18/metrics.csv")
+METRICS_PATH = Path("outputs/afcc/2026-02-20/metrics.csv")
 CANDIDATES_PATH = Path("data/candidates_master.csv")
 
 def main():

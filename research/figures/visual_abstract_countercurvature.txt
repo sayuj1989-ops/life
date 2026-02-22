@@ -1,1 +1,11 @@
-A split composition visual abstract. Left side: 'Healthy Development' showing a straight spine with balanced forces (Gravity = Information). Right side: 'Scoliosis' showing a curved spine where Information < Gravity due to 'Thermodynamic Gap'. Overlay a mathematical equation: 'd_eff^2 = g_eff(s) ds^2'. Visual style: High-end scientific illustration, clean lines, biological teal and orange color scheme.
+Create a Visual Abstract for the concept "Biological Countercurvature of Spacetime".
+
+Visual Elements:
+1. **Central Subject:** A stylized, translucent human spine (or a growing plant stem) standing upright.
+2. **The "Grid":** Surrounding the spine is a 3D grid representing spacetime (or the "effective metric").
+3. **Gravity:** The grid lines far from the spine curve downwards (representing gravity).
+4. **Countercurvature:** Close to the spine, the grid lines warp *upwards*, canceling out the gravitational curvature. The spine creates a "bubble" of flat spacetime around itself.
+5. **Information Flow:** Faint, glowing genetic code (ATCG or binary) flows from the spine into the grid, causing this upward warping. This represents "Developmental Information Modifying Geometry".
+
+Style: High-impact scientific illustration, like a Nature/Science cover. Dark background, glowing blue/cyan grid lines, organic white/gold spine.
+Caption: "Biological Countercurvature: Information modifies the effective metric to oppose gravity."

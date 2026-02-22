@@ -1,1 +1,16 @@
-A cyclical diagram showing the feedback loop between Mechanical Stress, Gene Expression (mTOR/AMPK), and Geometric Growth. 1. Mechanical Stress (Gravity) is detected by Mechanosensors (Piezo1). 2. Signal Transduction activates Gene Expression (mTOR for growth, AMPK for energy conservation). 3. Differential Growth modifies Spinal Geometry. 4. Geometry alters Mechanical Stress distribution. Central concept: 'Information-Elasticity Coupling'. Show a 'break' in the loop labeled 'Energy Deficit' during rapid growth.
+Create a cyclic causal loop diagram illustrating the "Mechanogenetic Feedback Loop" or "Demand-Supply Anisotropy Gap".
+
+The cycle should have these nodes:
+1. "Rapid Adolescent Growth" (Start)
+2. "High Metabolic Demand" (Growth proteins consume resources)
+3. "Energy Deficit Window" (Supply cannot keep up)
+4. "Mechanosensor Depletion" (Integrins/FAK are expensive to maintain and are sacrificed)
+5. "Loss of Proprioception" (Tissue cannot sense its own shape)
+6. "Geometric Instability" (Small asymmetries are not corrected)
+7. "Stress Asymmetry" (Curvature causes uneven loading)
+8. Back to "Rapid Adolescent Growth" (The cycle amplifies)
+
+Annotate the link between 3 and 4 with "Demand-Supply Gap".
+Annotate the link between 6 and 7 with "Twist-Bend Coupling".
+
+Style: Professional scientific diagram, clean lines, cyclical layout. Use red for the "Energy Deficit" and "Instability" nodes to indicate pathology. Use blue for "Growth".

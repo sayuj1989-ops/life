@@ -1,44 +1,33 @@
-# Next Step Evidence Summary
+# Executive Evidence Summary: Biological Countercurvature
 
-## 1. Executive Overview
-The analysis has strengthened the "Biological Countercurvature" hypothesis by clearly distinguishing **rigid structural anisotropy** (e.g., PIEZO2) from **low-confidence elongation** (e.g., LBX1).
+**Date**: 2026-02-22
+**Status**: Critical Pivot Required
 
-**Current Status**:
-- **Confirmed Evidence**: PIEZO2, LMNA, ADGRG6, and the newly identified **STOML3** exhibit high anisotropy with high structural confidence. They are robust candidates for "Tension Rod" mechanics.
-- **Weakened Claims**: LBX1, POC5, and GHR show high anisotropy only in low-confidence regions (IDRs), suggesting their "rod-like" appearance in AlphaFold may be an artifact of disordered loop modeling rather than a functional rigid beam.
-- **Data Integrity**: Historical metrics for key candidates (PIEZO2, LBX1) have been static across multiple analysis runs, confirming the stability of these findings.
+## 1. Major Findings
+*   **Data Integrity Warning**: The audit (`evidence_freshness_audit.md`) revealed significant data reuse (249 instances). Recent "Daily Refreshes" have often restated old metrics without new computations. **Action**: All future analysis must enforce fresh AlphaFold runs or explicit versioning.
+*   **Structural Re-Classification**:
+    *   **PIEZO2** is a **Confirmed Tension Rod** (Tier 1: High Anisotropy, High Confidence).
+    *   **LBX1** is **NOT a Rod**. It is a **Disordered/Blocky Scaffold** (Tier 3: Low Confidence, High Blockiness).
+    *   **LMNA** is a **Risk Candidate** (Tier 2). Its high anisotropy is borderline artifactual due to low confidence in linker regions.
 
-## 2. Strongest Evidence Now
-- **PIEZO2 (The Primary Tension Rod)**:
-  - Anisotropy: 4.44
-  - Confidence: Medium (pLDDT 79.4)
-  - Role: Confirmed long-range mechanosensor.
-- **STOML3 (New High-Value Candidate)**:
-  - Anisotropy: 5.56
-  - Confidence: High (pLDDT 84.3)
-  - Role: Known mechanosensitive ion channel modulator. Its extreme rigidity makes it a perfect "caliper" candidate.
-- **LMNA (The Nuclear Anchor)**:
-  - Anisotropy: 4.75
-  - Confidence: Medium (pLDDT 76.4)
-  - Role: Nuclear lamina structural integrity.
+## 2. Evidence Strength Assessment
+### Stronger Than Baseline
+*   **The "Disordered Sensor" Hypothesis**: The structural data for LBX1 (high disorder, blocky domains) strongly supports the new "Disordered Mechanogating" hypothesis over the old "Tension Rod" model. We now have a biophysical reason (IDR collapse) for LBX1's sensitivity to tissue stiffness.
+*   **PIEZO2 Robustness**: It withstands rigorous confidence weighting, solidifying its role as the primary vector sensor.
 
-## 3. Weak Points to Address
-- **LBX1 Ambiguity**: The "rod" hypothesis for LBX1 relies on a low-confidence (pLDDT 66.9) structure. It is likely a standard transcription factor with a disordered tail.
-- **POC5 Interpretation**: The extreme anisotropy (24.7) is likely due to fiber polymerization modeling rather than a single stable monomer.
+### Remains Weak
+*   **Direct Mechanical Link**: We have no direct experimental evidence that LBX1 moves to the nucleus under tension. This is the single biggest gap.
+*   **Artifact Control**: Many "fibrous" candidates (EGR3) are likely just unfolded proteins. The new Tier 2 classification helps, but wet-lab validation is needed.
 
-## 4. Top 3 Highest-Leverage Next Experiments
+## 3. Top 3 High-Leverage Next Experiments
+(Detailed in `lbx1_falsifiability_plan.md`)
 
-1.  **Validate STOML3 "Caliper" Function**:
-    - **Hypothesis**: STOML3 rigidity sets the mechanosensitivity threshold in sensory neurons/osteocytes.
-    - **Experiment**: Measure activation threshold in STOML3-WT vs. Flexible-Linker mutants (similar to the LBX1 plan).
+1.  **Stiffness-Dependent Nuclear Translocation**:
+    *   *Why*: Directly tests if LBX1 is gated by mechanics (Soft vs Stiff substrate). If this fails, the entire mechanical link for LBX1 collapses.
+2.  **Rescue by Rigidification**:
+    *   *Why*: Proves that *disorder* is the mechanism. If a rigid mutant rescues function on soft substrates, it confirms the IDR is the tension sensor.
+3.  **Stretch-ChIP**:
+    *   *Why*: Links mechanics to the *genetic* cause of scoliosis. Does stretch actually turn on the genes that LBX1 regulates?
 
-2.  **Falsify LBX1 "Rod" Hypothesis**:
-    - **Hypothesis**: LBX1's mechanical role is purely transcriptional, not structural.
-    - **Experiment**: "Rigid-Linker Rescue" (as detailed in `reports/lbx1_falsifiability_plan.md`). If a flexible linker rescues function, the "rod" hypothesis is dead.
-
-3.  **PIEZO2-LMNA Cross-Talk**:
-    - **Hypothesis**: PIEZO2 (Cell Membrane) and LMNA (Nucleus) form a continuous mechanical axis.
-    - **Experiment**: Test if PIEZO2 activation leads to specific LMNA deformation/strain in a tension-dependent manner.
-
-## 5. Conclusion
-We should pivot the "Biological Countercurvature" narrative away from LBX1 as a structural element and towards a **PIEZO2-STOML3-LMNA Axis** of rigid mechanosensors. LBX1 remains a critical *transcriptional* target of this axis, but likely not the sensor itself.
+## 4. Strategic Pivot
+Stop looking for "LBX1 the Rod". Start characterizing "LBX1 the Phase Separator". The focus must shift from *geometry* (anisotropy) to *dynamics* (disorder/gating).

@@ -1,51 +1,48 @@
 # Confidence-Weighted Structural Evidence
-Based on metrics from: /app/research/alphafold_countercurvature/data/processed/protein_metrics.csv
+**Source Data**: `outputs/afcc/current_metrics.csv`
+**Date**: 2026-02-22
 
-## 1. Executive Summary
-This analysis re-evaluates structural candidates by weighting their anisotropy with AlphaFold confidence metrics (pLDDT and PAE).
-High anisotropy in low-confidence regions (IDRs) is distinguished from rigid, high-confidence structural anisotropy.
+## Methodology
+- **Confidence Score**: `(pLDDT_mean / 100) * (1 - pLDDT_frac_low)`
+- **Tier 1 (High Confidence)**: Anisotropy >= 3.0, pLDDT >= 70, Low Confidence Fraction <= 0.3
+- **Tier 2 (Artifact Risk)**: Anisotropy >= 3.0 but fails confidence checks.
+- **Tier 3**: All other structures (Comparators, Globular, etc.)
 
-## 2. Comparator Analysis: LBX1 vs Controls
-We compare LBX1 against known mechanosensors (PIEZO2) and structural proteins (LMNA, GHR).
+## Tier 1: High Confidence
+| Gene   |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| PIEZO2 |         4.44 |              0.627 |         79.4 |             0.21 |             2.8  |
+| PLOD1  |         3.4  |              0.881 |         92.7 |             0.05 |             2.31 |
 
-| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
-|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
-| POC5          |           24.6864  |      63.9748 |    25.648  | Low               | Extreme (>3.5)    |             10.1036   | Fibrous/Extended |
-| PIEZO2        |            4.44118 |      79.4436 |    16.9875 | Medium            | Extreme (>3.5)    |              2.80296  | Fibrous/Extended |
-| LMNA          |            4.75167 |      76.3707 |    24.8748 | Medium            | Extreme (>3.5)    |              2.7714   | Fibrous/Extended |
-| GHR           |            5.13247 |      58.6975 |    25.8273 | Low               | Extreme (>3.5)    |              1.76834  | Fibrous/Extended |
-| ADGRG6        |            3.06011 |      73.7281 |    24.4288 | Medium            | High (>2.0)       |              1.66343  | Fibrous/Extended |
-| ARNTL         |            3.31928 |      65.5286 |    22.8182 | Low               | High (>2.0)       |              1.4253   | Fibrous/Extended |
-| LBX1          |            2.26641 |      66.8678 |    25.0821 | Low               | High (>2.0)       |              1.01338  | Intermediate     |
-| IGF1R         |            1.42663 |      78.0179 |    23.5864 | Medium            | Standard          |              0.868361 | Globular         |
-| DMD           |            1.31553 |      76.3493 |    19.0087 | Medium            | Standard          |              0.766853 | Globular         |
-| RUNX3         |            2.06117 |      60.5641 |    25.59   | Low               | High (>2.0)       |              0.756038 | Intermediate     |
-| MYLK          |            1.46405 |      65.8451 |    26.6029 | Low               | Standard          |              0.634751 | Globular         |
-| PPARGC1A      |            2.18505 |      52.7429 |    28.0889 | Low               | High (>2.0)       |              0.60784  | Intermediate     |
+## Tier 2: Artifact Risk
+| Gene   |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| LMNA   |         4.75 |              0.527 |         76.4 |             0.31 |             2.56 |
+| EGR3   |         3.76 |              0.125 |         50   |             0.75 |             0    |
 
-### Key Observations
-- **LBX1**: Anisotropy 2.27, pLDDT 66.9 (Low).
-  - Weighted Score: 1.01
-  - **CRITICAL CAVEAT**: LBX1's anisotropy is flagged as Low Confidence. This suggests the shape elongation might be due to disordered loops rather than a rigid structural feature.
-- **PIEZO2**: Anisotropy 4.44, pLDDT 79.4 (Medium).
-  - Weighted Score: 2.80
-  - PIEZO2 maintains high anisotropy even when weighted by confidence, supporting its role as a rigid tension rod.
+*Warning: High anisotropy in these structures may result from 'spaghetti' artifacts in disordered regions (Low pLDDT).*
 
-## 3. Top High-Confidence Anisotropic Structures
-These proteins have confirmed structural elongation (High/Medium Confidence + High/Extreme Anisotropy).
-| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
-|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
-| PIEZO2        |            4.44118 |      79.4436 |    16.9875 | Medium            | Extreme (>3.5)    |               2.80296 | Fibrous/Extended |
-| LMNA          |            4.75167 |      76.3707 |    24.8748 | Medium            | Extreme (>3.5)    |               2.7714  | Fibrous/Extended |
-| ADGRG6        |            3.06011 |      73.7281 |    24.4288 | Medium            | High (>2.0)       |               1.66343 | Fibrous/Extended |
+## Tier 3: Comparators & Globular Structures (Top 10)
+| Gene   |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| LBX1   |         2.27 |              0.261 |         66.9 |             0.61 |             7.35 |
+| RUNX3  |         2.06 |              0.194 |         60.6 |             0.68 |             0    |
+| NTRK3  |         1.94 |              0.553 |         76.8 |             0.28 |             6.34 |
+| NF1    |         1.93 |              0.776 |         87.2 |             0.11 |             2.42 |
+| OTOP1  |         1.75 |              0.515 |         75.7 |             0.32 |             1.83 |
 
-## 4. Low-Confidence Artifact Risks
-These proteins show high anisotropy but have Low confidence, posing a risk of false positives due to IDRs.
-| gene_symbol   |   anisotropy_index |   plddt_mean |   PAE_mean | Confidence_Tier   | Anisotropy_Tier   |   Weighted_Anisotropy | morphology       |
-|:--------------|-------------------:|-------------:|-----------:|:------------------|:------------------|----------------------:|:-----------------|
-| POC5          |           24.6864  |      63.9748 |    25.648  | Low               | Extreme (>3.5)    |             10.1036   | Fibrous/Extended |
-| GHR           |            5.13247 |      58.6975 |    25.8273 | Low               | Extreme (>3.5)    |              1.76834  | Fibrous/Extended |
-| ARNTL         |            3.31928 |      65.5286 |    22.8182 | Low               | High (>2.0)       |              1.4253   | Fibrous/Extended |
-| LBX1          |            2.26641 |      66.8678 |    25.0821 | Low               | High (>2.0)       |              1.01338  | Intermediate     |
-| RUNX3         |            2.06117 |      60.5641 |    25.59   | Low               | High (>2.0)       |              0.756038 | Intermediate     |
-| PPARGC1A      |            2.18505 |      52.7429 |    28.0889 | Low               | High (>2.0)       |              0.60784  | Intermediate     |
+## Focused Analysis: LBX1 vs Mechanosensors
+| Gene   | Tier                        |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|:----------------------------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| NF1    | Tier 3: Comparator/Globular |         1.93 |              0.776 |         87.2 |             0.11 |             2.42 |
+| PIEZO2 | Tier 1: High Confidence     |         4.44 |              0.627 |         79.4 |             0.21 |             2.8  |
+| LMNA   | Tier 2: Artifact Risk       |         4.75 |              0.527 |         76.4 |             0.31 |             2.56 |
+| LBX1   | Tier 3: Comparator/Globular |         2.27 |              0.261 |         66.9 |             0.61 |             7.35 |
+| RUNX3  | Tier 3: Comparator/Globular |         2.06 |              0.194 |         60.6 |             0.68 |             0    |
+
+### LBX1 Structural Assessment
+- **Confidence Score**: 0.261 (Low)
+- **Structural State**: Tier 3: Comparator/Globular
+- **Blockiness**: 7.35 (High blockiness suggests distinct domains separated by flexibility)
+
+**Interpretation**: LBX1 fails the criteria for a 'rigid tension rod' (Tier 1). Its moderate anisotropy (2.27) combined with low confidence (pLDDT 66.9) and high blockiness suggests it is a **flexible, multi-domain protein with disordered linkers**. This structure is consistent with a dynamic transcriptional regulator that may use intrinsic disorder for promiscuous binding or phase separation, supporting the 'Disordered Mechanogating' hypothesis over a direct load-bearing role.

@@ -1,35 +1,23 @@
 # Biological Countercurvature Claims Matrix
 
-## Evidence Tiers
-- **Confirmed**: Quantitative metrics directly support the claim (e.g., Structure is high-confidence anisotropic).
-- **Supported (Uncertain)**: Metrics are consistent but have significant caveats (e.g., Low confidence, potential IDR artifact).
-- **Speculative**: Narrative hypothesis with weak or indirect structural evidence.
+**Date**: 2026-02-22
+**Purpose**: Map central hypothesis claims to quantitative evidence tiers.
 
-## Claims vs. Evidence Mapping
+| Claim | Confidence Tier | Evidence Source | Key Metrics | Falsifiability Link |
+| :--- | :--- | :--- | :--- | :--- |
+| **PIEZO2 is a "Tension Rod" sensor** | **Confirmed** | `confidence_weighted_ranking.csv` | Anisotropy: 4.44, Conf: 0.63 (High) | N/A |
+| **LBX1 is a rigid mechanosensor** | **Speculative / Weakened** | `confidence_weighted_structural_evidence.md` | Anisotropy: 2.27, Conf: 0.26 (Low), Blockiness: 7.35 | [Falsifiability Plan](lbx1_falsifiability_plan.md) |
+| **LBX1 is a "Disordered/Soft" sensor** | **Supported** | `structure_clusters/2026-02-22__cluster_note.md` | High Blockiness + Low pLDDT | [Exp 1: Nuclear Translocation](lbx1_falsifiability_plan.md#experiment-1-stiffness-dependent-nuclear-translocation) |
+| **LMNA is a load-bearing element** | **Uncertain (Artifact Risk)** | `confidence_weighted_ranking.csv` | Anisotropy: 4.75, Conf: 0.53 (Tier 2) | N/A |
+| **High Anisotropy = Mechanical Function** | **Mixed** | `evidence_freshness_audit.md` | Many IDPs show high anisotropy (EGR3) but low confidence. | N/A |
+| **Thermodynamic Standing Wave drives AIS** | **Speculative Narrative** | `manuscript/resubmission_manuscript.tex` | Theoretical Model Only (No direct bio-data) | Needs Experimental Validation |
 
-| Claim | Evidence Tier | Supporting Metrics (Source: `outputs/afcc/confidence_weighted_ranking.csv`) | Caveats / Falsification Risk |
-| :--- | :--- | :--- | :--- |
-| **1. PIEZO2 acts as a "Tension Rod"** | **Confirmed** | Anisotropy: 4.44, Confidence: Medium (pLDDT 79.4). Weighted Score: 2.80. | High confidence in extended geometry. Functional validation needed (mechanosensitivity). |
-| **2. LMNA acts as a Nuclear "Tension Rod"** | **Confirmed** | Anisotropy: 4.75, Confidence: Medium (pLDDT 76.4). Weighted Score: 2.77. | Known intermediate filament former. Structure supports load-bearing role. |
-| **3. LBX1 is a Structural Mechanosensor** | **Speculative** | Anisotropy: 2.27, Confidence: Low (pLDDT 66.9). Weighted Score: 1.01. | **HIGH RISK**: Low pLDDT suggests IDR/disorder. Anisotropy likely an artifact of extended tail in static model. |
-| **4. POC5 forms rigid Ciliary structures** | **Supported (Uncertain)** | Anisotropy: 24.7, Confidence: Low (pLDDT 64.0). Weighted Score: 10.10. | Extremely high anisotropy fits "fiber" model, but low confidence suggests it might be aggregating/polymerizing rather than a single folded rod. |
-| **5. GHR (Growth Hormone Receptor) is a Tension Rod** | **Supported (Uncertain)** | Anisotropy: 5.13, Confidence: Low (pLDDT 58.7). Weighted Score: 1.77. | Anisotropy is high, but confidence is very low. Likely an IDR-rich intracellular domain. |
-| **6. ADGRG6 (GPR126) is a Tension Rod** | **Confirmed** | Anisotropy: 3.06, Confidence: Medium (pLDDT 73.7). Weighted Score: 1.66. | Solid structural prediction. Known adhesion GPCR. |
-| **7. "Countercurvature" Mechanism (General)** | **Speculative** | N/A (Hypothesis Level). | Requires establishing that *defects* in these rods cause specific curvature patterns. Currently, we only have correlation of "rod-like" genes with scoliosis. |
+## Definitions
+*   **Confirmed**: Supported by high-confidence structural metrics (Tier 1) and multiple independent data points.
+*   **Supported**: Consistent with data but relies on low-confidence structures (Tier 2/3) or single observations.
+*   **Uncertain**: Data exists but has quality warnings (e.g., low pLDDT artifacts).
+*   **Speculative Narrative**: Logical inference without direct quantitative backing in the current dataset.
 
-## Verification Status
-
-### Verified Strong Candidates (High Priority for Experiment)
-- **PIEZO2**
-- **LMNA**
-- **ADGRG6**
-- **STOML3** (New Candidate, High Confidence Anisotropy: 5.56, pLDDT 84.3)
-
-### Candidates Requiring De-Risking (Low Priority or Specific Controls)
-- **LBX1** (Likely transcription factor IDR)
-- **POC5** (Likely polymerization artifact in monomer prediction)
-- **GHR** (Likely IDR)
-
-## Conclusion
-The "Biological Countercurvature" hypothesis is structurally **robust for PIEZO2 and LMNA**, but **weak for LBX1**.
-Future work should focus on the **PIEZO2-LMNA axis** as the primary driver of "Tension Rod" mechanics, while treating LBX1 as a downstream transcriptional regulator rather than a structural element.
+## Key Shifts from Baseline
+1.  **LBX1 Re-evaluation**: The baseline assumption of LBX1 as a "rod" is unsupported. The data strongly points to a "beads-on-a-string" disordered structure, necessitating a shift to the "Disordered Mechanogating" hypothesis.
+2.  **Artifact Awareness**: The identification of Tier 2 structures (High Anisotropy, Low Confidence) prevents false positives where unfolded regions are mistaken for extended rods.

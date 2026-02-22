@@ -1,193 +1,160 @@
 import os
-import pandas as pd
-import numpy as np
 import glob
-from pathlib import Path
+import pandas as pd
 import datetime
 
-def audit_freshness(base_dir="outputs/afcc"):
-    report_lines = []
-    report_lines.append("# Evidence Freshness Audit Report")
-    report_lines.append(f"Generated on: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    report_lines.append("")
+OUTPUT_DIR = "outputs/afcc"
+REPORT_FILE = "reports/evidence_freshness_audit.md"
 
-    metrics_files = sorted(glob.glob(os.path.join(base_dir, "*", "metrics.csv")))
-
-    if not metrics_files:
-        report_lines.append("No metrics.csv files found.")
-        print("\n".join(report_lines))
-        return
-
-    all_data = []
-    for f in metrics_files:
+def get_metrics_files():
+    # Find all metrics.csv files under outputs/afcc/YYYY-MM-DD
+    files = glob.glob(os.path.join(OUTPUT_DIR, "*", "metrics.csv"))
+    # Filter for valid dates
+    valid_files = []
+    for f in files:
+        dirname = os.path.basename(os.path.dirname(f))
         try:
-            df = pd.read_csv(f)
-            # Extract date from path
-            path_parts = Path(f).parts
-            run_date = path_parts[-2] # Assuming outputs/afcc/DATE/metrics.csv
+            datetime.datetime.strptime(dirname, "%Y-%m-%d")
+            valid_files.append((dirname, f))
+        except ValueError:
+            pass
 
-            # Check if date is valid format (YYYY-MM-DD)
-            try:
-                datetime.datetime.strptime(run_date, '%Y-%m-%d')
-            except ValueError:
-                continue # Skip non-date directories like 'manual_metabolic_update'
+    # Sort by date
+    valid_files.sort(key=lambda x: x[0])
+    return valid_files
 
-            df['run_date'] = run_date
-            all_data.append(df)
+def audit_freshness():
+    files = get_metrics_files()
+
+    # Store history: gene -> list of (date, metrics_dict)
+    history = {}
+
+    # Metrics to track for freshness
+    track_cols = ['anisotropy_index', 'plddt_mean', 'PAE_mean', 'plddt_fraction_low']
+
+    # Also handle column name variations if any (e.g. 'Anisotropy' vs 'anisotropy_index')
+    # Based on reading metrics.csv earlier:
+    # gene_symbol,uniprot,source_category,morphology,anisotropy_index,radius_of_gyration,plddt_mean,...
+
+    for date, filepath in files:
+        try:
+            df = pd.read_csv(filepath)
         except Exception as e:
-            report_lines.append(f"- Error reading {f}: {e}")
+            print(f"Error reading {filepath}: {e}")
+            continue
 
-    if not all_data:
-        report_lines.append("No valid date-stamped metrics files found.")
-        print("\n".join(report_lines))
-        return
+        # Standardize columns if needed
+        # In 2026-02-16 metrics.csv: anisotropy_index, plddt_mean, PAE_mean, plddt_fraction_low
+        # In older files, might be different.
+        # Let's try to normalize.
 
-    combined_df = pd.concat(all_data, ignore_index=True)
+        # Check for 'Identity' column vs 'gene_symbol'
+        gene_col = None
+        if 'gene_symbol' in df.columns:
+            gene_col = 'gene_symbol'
+        elif 'Identity' in df.columns: # Sometimes used
+             # Need to extract gene from Identity string e.g. "PIEZO2 (Q9H5I5)"
+             df['gene_symbol'] = df['Identity'].apply(lambda x: x.split(' ')[0] if isinstance(x, str) else x)
+             gene_col = 'gene_symbol'
 
-    # Check for identical runs (file hash or content equality)
-    # Group by run_date and check if content is identical to previous run
-    run_dates = sorted(combined_df['run_date'].unique())
+        if not gene_col:
+            continue
 
-    report_lines.append("## Run-to-Run Consistency Check")
-    report_lines.append("| Date | Rows | Columns | Identical to Prev? | Changes |")
-    report_lines.append("|---|---|---|---|---|")
+        # Check for column aliases
+        # Newer files use snake_case, older files or reports might use CamelCase
+        col_map = {
+            'Anisotropy': 'anisotropy_index',
+            'pLDDT_mean': 'plddt_mean',
+            'pLDDT_frac_low': 'plddt_fraction_low',
+            'PAE_blockiness': 'PAE_domain_blockiness_score' # Not strictly freshness but good to know
+        }
+        df = df.rename(columns=col_map)
 
-    prev_df = None
-    prev_date = None
+        for _, row in df.iterrows():
+            gene = row[gene_col]
+            metrics = {}
+            for col in track_cols:
+                if col in row:
+                    metrics[col] = row[col]
 
-    for date in run_dates:
-        current_df = combined_df[combined_df['run_date'] == date].drop(columns=['run_date']).reset_index(drop=True)
-        # Sort by gene_symbol to ensure order doesn't affect equality
-        if 'gene_symbol' in current_df.columns:
-            current_df = current_df.sort_values('gene_symbol').reset_index(drop=True)
+            if gene not in history:
+                history[gene] = []
+            history[gene].append((date, metrics))
 
-        is_identical = False
-        changes = "N/A"
+    # Analyze for staleness
+    report_lines = []
+    report_lines.append("# Evidence Freshness Audit")
+    report_lines.append(f"Date: {datetime.date.today()}")
+    report_lines.append("\n## Summary")
 
-        if prev_df is not None:
-            # Check if columns are the same
-            if set(current_df.columns) != set(prev_df.columns):
-                changes = "Schema Drift"
-            else:
-                # Check if content is identical
+    stale_count = 0
+    total_comparisons = 0
+
+    detailed_lines = []
+    detailed_lines.append("\n## Detailed Findings")
+
+    stale_genes = set()
+
+    sorted_genes = sorted(history.keys())
+
+    for gene in sorted_genes:
+        records = history[gene]
+        if len(records) < 2:
+            continue
+
+        # Sort by date
+        records.sort(key=lambda x: x[0])
+
+        for i in range(1, len(records)):
+            prev_date, prev_metrics = records[i-1]
+            curr_date, curr_metrics = records[i]
+
+            # Compare float values
+            is_identical = True
+            compared_keys = 0
+            for k in track_cols:
+                v1 = prev_metrics.get(k)
+                v2 = curr_metrics.get(k)
+
+                if v1 is None or v2 is None:
+                    continue # Skip if metric missing
+
+                compared_keys += 1
                 try:
-                    pd.testing.assert_frame_equal(current_df, prev_df, check_dtype=False)
-                    is_identical = True
-                    changes = "None"
-                except AssertionError:
-                    is_identical = False
-                    # Identify what changed
-                    # Simple check: number of rows
-                    if len(current_df) != len(prev_df):
-                        changes = f"Row count: {len(prev_df)} -> {len(current_df)}"
-                    else:
-                        # Check specific columns for changes
-                        diff_cols = []
-                        for col in current_df.columns:
-                            if not current_df[col].equals(prev_df[col]):
-                                diff_cols.append(col)
-                        changes = f"Changed cols: {', '.join(diff_cols[:3])}..." if diff_cols else "Value changes"
+                    # Use a small epsilon for float comparison if needed, but exact reuse often means exact equality
+                    if float(v1) != float(v2):
+                        is_identical = False
+                        break
+                except:
+                    if v1 != v2:
+                        is_identical = False
+                        break
 
-        report_lines.append(f"| {date} | {len(current_df)} | {len(current_df.columns)} | {is_identical} | {changes} |")
+            if compared_keys > 0:
+                total_comparisons += 1
+                if is_identical:
+                    stale_count += 1
+                    stale_genes.add(gene)
+                    detailed_lines.append(f"- **{gene}**: {curr_date} is identical to {prev_date} (Reused Data).")
 
-        prev_df = current_df
-        prev_date = date
+    report_lines.append(f"- **Runs Audited**: {len(files)}")
+    report_lines.append(f"- **Total Gene-Date Comparisons**: {total_comparisons}")
+    report_lines.append(f"- **Identical/Stale Records**: {stale_count}")
+    report_lines.append(f"- **Genes Affected**: {len(stale_genes)}")
 
-    report_lines.append("")
+    if stale_count > 0:
+        report_lines.append("\n### Warning")
+        report_lines.append(f"Found {stale_count} instances where metrics were identical across runs. This suggests data reuse rather than re-computation.")
+    else:
+        report_lines.append("\n### Status: Clean")
+        report_lines.append("No identical metric vectors found across consecutive runs.")
 
-    # Check for static genes across all runs
-    report_lines.append("## Gene-Level Freshness")
-    report_lines.append("Checking for genes that have static metrics across multiple runs (indicating potential reuse or lack of update).")
+    report_lines.extend(detailed_lines)
 
-    gene_stats = []
-
-    # Coerce numeric columns to ensure correct min/max calculation
-    combined_df['anisotropy_index'] = pd.to_numeric(combined_df['anisotropy_index'], errors='coerce')
-    combined_df['plddt_mean'] = pd.to_numeric(combined_df['plddt_mean'], errors='coerce')
-
-    genes = combined_df['gene_symbol'].unique()
-    for gene in genes:
-        gene_df = combined_df[combined_df['gene_symbol'] == gene].sort_values('run_date')
-        if len(gene_df) > 1:
-            # Check if anisotropy_index is static (ignoring NaNs for static check if desired, or treating as value)
-            # Using dropna() for values to check range
-            aniso_vals = gene_df['anisotropy_index'].dropna().unique()
-            plddt_vals = gene_df['plddt_mean'].dropna().unique()
-
-            # If after dropna we have values, check if they are all close (float comparison)
-            is_static_aniso = False
-            if len(aniso_vals) == 0:
-                is_static_aniso = True # All NaNs
-            elif len(aniso_vals) == 1:
-                is_static_aniso = True
-            else:
-                # Check if all values are close
-                if np.allclose(aniso_vals, aniso_vals[0]):
-                    is_static_aniso = True
-
-            is_static_plddt = False
-            if len(plddt_vals) == 0:
-                is_static_plddt = True
-            elif len(plddt_vals) == 1:
-                is_static_plddt = True
-            else:
-                 if np.allclose(plddt_vals, plddt_vals[0]):
-                    is_static_plddt = True
-
-            status = "Dynamic"
-            if is_static_aniso and is_static_plddt:
-                status = "Static"
-
-            # Format range
-            if len(aniso_vals) > 0:
-                aniso_range = f"{min(aniso_vals):.2f}-{max(aniso_vals):.2f}"
-            else:
-                aniso_range = "NaN"
-
-            gene_stats.append({
-                'Gene': gene,
-                'Runs': len(gene_df),
-                'First_Run': gene_df['run_date'].min(),
-                'Last_Run': gene_df['run_date'].max(),
-                'Status': status,
-                'Anisotropy_Range': aniso_range
-            })
-
-    gene_stats_df = pd.DataFrame(gene_stats)
-
-    if not gene_stats_df.empty:
-        static_genes = gene_stats_df[gene_stats_df['Status'] == 'Static']
-        dynamic_genes = gene_stats_df[gene_stats_df['Status'] == 'Dynamic']
-
-        report_lines.append(f"- Total Genes Tracked: {len(gene_stats_df)}")
-        report_lines.append(f"- Static Genes (Unchanged across runs): {len(static_genes)}")
-        report_lines.append(f"- Dynamic Genes (Changed at least once): {len(dynamic_genes)}")
-        report_lines.append("")
-
-        report_lines.append("### Top 10 Static Genes (Most Runs)")
-        report_lines.append(static_genes.sort_values('Runs', ascending=False).head(10).to_markdown(index=False))
-        report_lines.append("")
-
-        report_lines.append("### Top 10 Dynamic Genes (Most Variability)")
-        # Calculate variance or just list them
-        report_lines.append(dynamic_genes.sort_values('Runs', ascending=False).head(10).to_markdown(index=False))
-
-        # Specific check for key candidates
-        key_candidates = ['LBX1', 'PIEZO2', 'LMNA', 'POC5', 'GHR']
-        report_lines.append("")
-        report_lines.append("### Key Candidate Status")
-        key_stats = gene_stats_df[gene_stats_df['Gene'].isin(key_candidates)]
-        if not key_stats.empty:
-            report_lines.append(key_stats.to_markdown(index=False))
-        else:
-            report_lines.append("None of the key candidates found in multiple runs.")
-
-    # Write report
-    report_path = "reports/evidence_freshness_audit.md"
-    with open(report_path, "w") as f:
+    with open(REPORT_FILE, "w") as f:
         f.write("\n".join(report_lines))
 
-    print(f"Audit complete. Report written to {report_path}")
+    print(f"Audit complete. Report written to {REPORT_FILE}")
 
 if __name__ == "__main__":
     audit_freshness()

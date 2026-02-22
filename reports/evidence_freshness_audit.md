@@ -1,63 +1,262 @@
-# Evidence Freshness Audit Report
-Generated on: 2026-02-21 19:44:31
+# Evidence Freshness Audit
+Date: 2026-02-22
 
-## Run-to-Run Consistency Check
-| Date | Rows | Columns | Identical to Prev? | Changes |
-|---|---|---|---|---|
-| 2026-01-06 | 10 | 40 | False | N/A |
-| 2026-01-07 | 9 | 40 | False | Row count: 10 -> 9 |
-| 2026-01-09 | 9 | 40 | False | Changed cols: morphology, anisotropy, radius_of_gyration... |
-| 2026-01-14 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
-| 2026-01-16 | 3 | 40 | False | Row count: 9 -> 3 |
-| 2026-01-18 | 9 | 40 | False | Row count: 3 -> 9 |
-| 2026-01-20 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
-| 2026-01-21 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
-| 2026-01-27 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
-| 2026-01-31 | 9 | 40 | True | None |
-| 2026-02-05 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, radius_of_gyration... |
-| 2026-02-06 | 9 | 40 | True | None |
-| 2026-02-07 | 9 | 40 | False | Changed cols: source_category... |
-| 2026-02-08 | 9 | 40 | False | Changed cols: gene_symbol, uniprot, source_category... |
-| 2026-02-09 | 10 | 40 | False | Row count: 9 -> 10 |
-| 2026-02-10 | 219 | 40 | False | Row count: 10 -> 219 |
-| 2026-02-11 | 10 | 40 | False | Row count: 219 -> 10 |
-| 2026-02-12 | 10 | 40 | True | None |
-| 2026-02-13 | 48 | 40 | False | Row count: 10 -> 48 |
-| 2026-02-16 | 25 | 40 | False | Row count: 48 -> 25 |
-| 2026-02-17 | 10 | 40 | False | Row count: 25 -> 10 |
-| 2026-02-18 | 58 | 40 | False | Row count: 10 -> 58 |
-| 2026-02-20 | 10 | 40 | False | Row count: 58 -> 10 |
+## Summary
+- **Runs Audited**: 24
+- **Total Gene-Date Comparisons**: 270
+- **Identical/Stale Records**: 249
+- **Genes Affected**: 67
 
-## Gene-Level Freshness
-Checking for genes that have static metrics across multiple runs (indicating potential reuse or lack of update).
-- Total Genes Tracked: 71
-- Static Genes (Unchanged across runs): 70
-- Dynamic Genes (Changed at least once): 1
+### Warning
+Found 249 instances where metrics were identical across runs. This suggests data reuse rather than re-computation.
 
-### Top 10 Static Genes (Most Runs)
-| Gene     |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
-|:---------|-------:|:------------|:-----------|:---------|:-------------------|
-| PIEZO2   |     20 | 2026-01-06  | 2026-02-20 | Static   | 4.44-4.44          |
-| LBX1     |     20 | 2026-01-06  | 2026-02-18 | Static   | 2.27-2.27          |
-| NTRK3    |     14 | 2026-01-27  | 2026-02-20 | Static   | 1.94-1.94          |
-| RUNX3    |     13 | 2026-01-27  | 2026-02-18 | Static   | 2.06-2.06          |
-| LMNA     |     12 | 2026-01-14  | 2026-02-18 | Static   | 4.75-4.75          |
-| PIEZO1   |     11 | 2026-01-14  | 2026-02-18 | Static   | 3.90-3.90          |
-| NF1      |     11 | 2026-01-18  | 2026-02-18 | Static   | 1.93-1.93          |
-| POC5     |     10 | 2026-01-06  | 2026-02-18 | Static   | 24.69-24.69        |
-| MYLK     |      9 | 2026-02-09  | 2026-02-20 | Static   | 1.46-1.46          |
-| PPARGC1A |      9 | 2026-02-09  | 2026-02-20 | Static   | 2.19-2.19          |
-
-### Top 10 Dynamic Genes (Most Variability)
-| Gene   |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
-|:-------|-------:|:------------|:-----------|:---------|:-------------------|
-| ADGRG6 |      6 | 2026-01-06  | 2026-02-16 | Dynamic  | 2.69-3.06          |
-
-### Key Candidate Status
-| Gene   |   Runs | First_Run   | Last_Run   | Status   | Anisotropy_Range   |
-|:-------|-------:|:------------|:-----------|:---------|:-------------------|
-| PIEZO2 |     20 | 2026-01-06  | 2026-02-20 | Static   | 4.44-4.44          |
-| LBX1   |     20 | 2026-01-06  | 2026-02-18 | Static   | 2.27-2.27          |
-| POC5   |     10 | 2026-01-06  | 2026-02-18 | Static   | 24.69-24.69        |
-| LMNA   |     12 | 2026-01-14  | 2026-02-18 | Static   | 4.75-4.75          |
-| GHR    |      9 | 2026-02-09  | 2026-02-20 | Static   | 5.13-5.13          |
+## Detailed Findings
+- **ACAN**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **ACVR1**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **ADGRG6**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **ALPL**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **AQP4**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **ARNTL**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **ARNTL**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **ARNTL**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **ARNTL**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **ARNTL**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **ARNTL**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **ARNTL**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **ARNTL**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **BNC2**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **BNC2**: 2026-02-18 is identical to 2026-02-16 (Reused Data).
+- **CCDC40**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **CCDC57**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **CDH23**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **CDH23**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **CEP290**: 2026-02-10 is identical to 2026-01-20 (Reused Data).
+- **CEP290**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **CEP290**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **CLOCK**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **CNNM2**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **COL11A2**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **COL1A1**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **COL1A1**: 2026-02-10 is identical to 2026-01-20 (Reused Data).
+- **COL1A1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **COL1A1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **COL1A2**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **DAG1**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **DAG1**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **DMD**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **DMD**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **DMD**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **DMD**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **DMD**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **DMD**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **DMD**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **DMD**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **DZIP1**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **EGR3**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **EGR3**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **EGR3**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **EGR3**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **EGR3**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **EGR3**: 2026-02-10 is identical to 2026-02-08 (Reused Data).
+- **EGR3**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **EGR3**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **EMD**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **EMD**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **EMD**: 2026-02-18 is identical to 2026-02-16 (Reused Data).
+- **ETV1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **ETV1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **FBLN5**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **FBN2**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **FBN2**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **FERMT2**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **FERMT2**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **FLNA**: 2026-02-10 is identical to 2026-01-20 (Reused Data).
+- **FLNA**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **FLNB**: 2026-02-10 is identical to 2026-01-09 (Reused Data).
+- **GDF5**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **GHR**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **GHR**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **GHR**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **GHR**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **GHR**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **GHR**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **GHR**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **GHR**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **HIF1A**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **HIF1A**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **HIF1A**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **IFT88**: 2026-01-18 is identical to 2026-01-14 (Reused Data).
+- **IFT88**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **IFT88**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **IFT88**: 2026-02-08 is identical to 2026-01-21 (Reused Data).
+- **IFT88**: 2026-02-10 is identical to 2026-02-08 (Reused Data).
+- **IFT88**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **IFT88**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **IGF1R**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **IGF1R**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **IGF1R**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **IGF1R**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **IGF1R**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **IGF1R**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **IGF1R**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **IGF1R**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **ITGB1**: 2026-01-14 is identical to 2026-01-09 (Reused Data).
+- **ITGB1**: 2026-01-18 is identical to 2026-01-14 (Reused Data).
+- **ITGB1**: 2026-01-21 is identical to 2026-01-18 (Reused Data).
+- **ITGB1**: 2026-02-10 is identical to 2026-01-21 (Reused Data).
+- **ITGB1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **ITGB1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **KIF3A**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **KIF7**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **LBX1**: 2026-01-14 is identical to 2026-01-09 (Reused Data).
+- **LBX1**: 2026-01-18 is identical to 2026-01-14 (Reused Data).
+- **LBX1**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **LBX1**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **LBX1**: 2026-01-27 is identical to 2026-01-21 (Reused Data).
+- **LBX1**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **LBX1**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **LBX1**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **LBX1**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **LBX1**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **LBX1**: 2026-02-09 is identical to 2026-02-08 (Reused Data).
+- **LBX1**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **LBX1**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **LBX1**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **LBX1**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **LBX1**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **LBX1**: 2026-02-18 is identical to 2026-02-16 (Reused Data).
+- **LMNA**: 2026-01-18 is identical to 2026-01-14 (Reused Data).
+- **LMNA**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **LMNA**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **LMNA**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **LMNA**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **LMNA**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **LMNA**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **LMNA**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **LMNA**: 2026-02-13 is identical to 2026-02-08 (Reused Data).
+- **LMNA**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **MESP2**: 2026-02-10 is identical to 2026-01-09 (Reused Data).
+- **MESP2**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **METTL3**: 2026-02-10 is identical to 2026-01-14 (Reused Data).
+- **METTL3**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **METTL3**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **MYLK**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **MYLK**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **MYLK**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **MYLK**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **MYLK**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **MYLK**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **MYLK**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **MYLK**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **MYO7A**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **NF1**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **NF1**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **NF1**: 2026-01-27 is identical to 2026-01-21 (Reused Data).
+- **NF1**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **NF1**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **NF1**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **NF1**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **NF1**: 2026-02-10 is identical to 2026-02-07 (Reused Data).
+- **NF1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **NF1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **NR1D1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **NTRK3**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **NTRK3**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **NTRK3**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **NTRK3**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **NTRK3**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **NTRK3**: 2026-02-09 is identical to 2026-02-08 (Reused Data).
+- **NTRK3**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **NTRK3**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **NTRK3**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **NTRK3**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **NTRK3**: 2026-02-17 is identical to 2026-02-13 (Reused Data).
+- **NTRK3**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **NTRK3**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **OTOP1**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **OTOP1**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **OTOP1**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **OTOP1**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **OTOP1**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **OTOP1**: 2026-02-10 is identical to 2026-02-08 (Reused Data).
+- **OTOP1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **OTOP1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **PANX3**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **PIEZO1**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **PIEZO1**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **PIEZO1**: 2026-01-27 is identical to 2026-01-21 (Reused Data).
+- **PIEZO1**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **PIEZO1**: 2026-02-08 is identical to 2026-01-31 (Reused Data).
+- **PIEZO1**: 2026-02-10 is identical to 2026-02-08 (Reused Data).
+- **PIEZO1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **PIEZO1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **PIEZO2**: 2026-01-14 is identical to 2026-01-09 (Reused Data).
+- **PIEZO2**: 2026-01-20 is identical to 2026-01-18 (Reused Data).
+- **PIEZO2**: 2026-01-21 is identical to 2026-01-20 (Reused Data).
+- **PIEZO2**: 2026-01-27 is identical to 2026-01-21 (Reused Data).
+- **PIEZO2**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **PIEZO2**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **PIEZO2**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **PIEZO2**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **PIEZO2**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **PIEZO2**: 2026-02-09 is identical to 2026-02-08 (Reused Data).
+- **PIEZO2**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **PIEZO2**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **PIEZO2**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **PIEZO2**: 2026-02-18 is identical to 2026-02-16 (Reused Data).
+- **PIEZO2**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **PLOD1**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **PLOD1**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **PLOD1**: 2026-02-10 is identical to 2026-02-07 (Reused Data).
+- **PLOD1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **PLOD1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **POC5**: 2026-01-14 is identical to 2026-01-09 (Reused Data).
+- **POC5**: 2026-01-18 is identical to 2026-01-14 (Reused Data).
+- **POC5**: 2026-01-21 is identical to 2026-01-18 (Reused Data).
+- **POC5**: 2026-02-10 is identical to 2026-01-21 (Reused Data).
+- **POC5**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **POC5**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **POC5**: 2026-02-18 is identical to 2026-02-16 (Reused Data).
+- **PPARGC1A**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **PPARGC1A**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **PPARGC1A**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **PPARGC1A**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **PPARGC1A**: 2026-02-16 is identical to 2026-02-13 (Reused Data).
+- **PPARGC1A**: 2026-02-17 is identical to 2026-02-16 (Reused Data).
+- **PPARGC1A**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **PPARGC1A**: 2026-02-20 is identical to 2026-02-18 (Reused Data).
+- **ROCK1**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **ROR2**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **ROR2**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **RPL38**: 2026-02-18 is identical to 2026-02-10 (Reused Data).
+- **RUNX3**: 2026-01-31 is identical to 2026-01-27 (Reused Data).
+- **RUNX3**: 2026-02-05 is identical to 2026-01-31 (Reused Data).
+- **RUNX3**: 2026-02-06 is identical to 2026-02-05 (Reused Data).
+- **RUNX3**: 2026-02-07 is identical to 2026-02-06 (Reused Data).
+- **RUNX3**: 2026-02-08 is identical to 2026-02-07 (Reused Data).
+- **RUNX3**: 2026-02-09 is identical to 2026-02-08 (Reused Data).
+- **RUNX3**: 2026-02-10 is identical to 2026-02-09 (Reused Data).
+- **RUNX3**: 2026-02-11 is identical to 2026-02-10 (Reused Data).
+- **RUNX3**: 2026-02-12 is identical to 2026-02-11 (Reused Data).
+- **RUNX3**: 2026-02-13 is identical to 2026-02-12 (Reused Data).
+- **RUNX3**: 2026-02-17 is identical to 2026-02-13 (Reused Data).
+- **RUNX3**: 2026-02-18 is identical to 2026-02-17 (Reused Data).
+- **SERPINH1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **SERPINH1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **SMAD3**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **SSPOP**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **STOML3**: 2026-02-16 is identical to 2026-02-10 (Reused Data).
+- **SUN1**: 2026-02-18 is identical to 2026-02-10 (Reused Data).
+- **SYNE2**: 2026-02-18 is identical to 2026-02-10 (Reused Data).
+- **TEAD1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **TGFBR1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **TGFBR1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **TGFBR2**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **TGFBR2**: 2026-02-18 is identical to 2026-02-13 (Reused Data).
+- **TLN1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **WWTR1**: 2026-02-10 is identical to 2026-01-09 (Reused Data).
+- **WWTR1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **YAP1**: 2026-01-14 is identical to 2026-01-09 (Reused Data).
+- **YAP1**: 2026-02-10 is identical to 2026-01-21 (Reused Data).
+- **YAP1**: 2026-02-13 is identical to 2026-02-10 (Reused Data).
+- **YAP1**: 2026-02-18 is identical to 2026-02-13 (Reused Data).

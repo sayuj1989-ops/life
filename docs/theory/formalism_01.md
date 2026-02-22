@@ -394,6 +394,19 @@ $$ \mathcal{K}_{Eu} = \frac{P_{met}(L)}{P_{mech}(L)} $$
     *   $\mathcal{K}_{Eu} < 1$: **Metabolic Buckling**. The cost of straightness exceeds the supply. The system must reduce demand by buckling (increasing $I$, lowering COM) or shutting down sensors.
 *   **Measurable Proxy**: The ratio of mitochondrial volume density ($V_{mito}/V_{cell}$) in paraspinal muscles to the square of spinal slenderness ($\lambda^2 = (L/r)^2$).
 
+### 2.26. The Spinal Learning Rate ($\eta_{spine}$)
+
+We formalize the spinal alignment process as a **gradient descent optimization** where the organism iteratively updates its intrinsic target shape ($\boldsymbol{\kappa}_{rest}$) to minimize the difference between sensed and homeostatic stress. $\eta_{spine}$ is the rate of this plastic adaptation.
+
+$$ \frac{d \boldsymbol{\kappa}_{rest}}{dt} = - \eta_{spine} \cdot \left( \boldsymbol{\kappa}_{sensed} - \boldsymbol{\kappa}_{target} \right) $$
+
+*   **Dimensions**: $[T^{-1}]$.
+*   **Physical Interpretation**:
+    *   **High $\eta_{spine}$**: Rapid adaptation. The spine quickly "learns" a new shape. If the error signal is noisy or biased (e.g., vestibular loss), it learns a deformity (scoliosis) quickly.
+    *   **Low $\eta_{spine}$**: Rigid/Slow adaptation. The spine is resistant to change, even beneficial ones (e.g., brace correction).
+    *   **Microgravity Context**: We hypothesize that $\eta_{spine}$ is gated by gravitational load magnitude. In $\mu g$, $\eta_{spine} \to 0$ (plasticity freeze) or becomes unconstrained (random drift).
+*   **Measurable Proxy**: The **Rate of Curvature Correction** ($d\theta/dt$) observed in a patient immediately following the application of a corrective brace, normalized by the applied force.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -687,6 +700,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Lactate/Pyruvate ratio and expression of glycolytic enzymes (e.g., LDH-A) in paraspinal muscles correlated with Cobb angle severity.
 *   **Refutation**: If severe curves show no evidence of metabolic stress or glycolytic shift, the "Energy Deficit" model is incorrect. (Reference: Vander Heiden et al., 2009).
 
+### Test AY: The Plasticity-Metabolism Link
+*   **Hypothesis**: The Spinal Learning Rate $\eta_{spine}$ is metabolically expensive. In the "Energy Deficit Window" ($\mathcal{M}_{prop} < 1$), $\eta_{spine}$ drops effectively to zero, causing the spine to become "stuck" in a deformed state rather than actively correcting it.
+*   **Data Needed**: Correlation between local paraspinal muscle metabolic rate (FDG-PET or ATP concentration) and the rate of curve correction ($d\theta/dt$) in patients undergoing bracing therapy.
+*   **Refutation**: If "high-plasticity" responders (fast correction) have *lower* metabolic activity than non-responders, the metabolic cost of plasticity is negligible. (Reference: Taber, 1995).
+
+### Test AZ: The Microgravity Amnesia
+*   **Hypothesis**: Without the "training signal" of gravity, the spinal optimization algorithm loses its gradient. $\eta_{spine}$ should become effectively random or zero. Re-introduction to 1g should trigger a rapid "re-learning" phase with high $\eta_{spine}$.
+*   **Data Needed**: High-frequency tracking of spinal curvature in astronauts immediately post-flight (R+0 to R+7 days).
+*   **Refutation**: If spinal shape recovery follows a fixed viscoelastic relaxation curve (passive) rather than a sigmoidal "learning" curve (active), the optimization framework is unnecessary. (Reference: Moulton et al., 2020).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -746,3 +769,5 @@ The theory makes specific predictions about the relationship between genetic ani
 55. **Kleiber, M. (1932).** "Body size and metabolism." *Hilgardia*, 6. (Foundational metabolic scaling).
 56. **England, J. L. (2013).** "Statistical physics of self-replication." *The Journal of Chemical Physics*, 139. (Thermodynamics of biological structure).
 57. **Vander Heiden, M. G., et al. (2009).** "Understanding the Warburg effect: the metabolic requirements of cell proliferation." *Science*, 324. (Glycolytic shift mechanism).
+58. **Taber, L. A. (1995).** "Biomechanics of growth and remodeling." *Applied Mechanics Reviews*, 48(8). (Foundational theory of stress-modulated growth).
+59. **Moulton, D. E., et al. (2020).** "Morphoelastic rods and shells." *Annual Review of Condensed Matter Physics*, 11. (Mathematical framework for active filament growth).

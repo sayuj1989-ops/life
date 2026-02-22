@@ -2,6 +2,8 @@
 
 **Purpose:** To de-risk the complex Cosserat simulation and provide intuitive validation for "Metabolic Buckling" and "Active Countercurvature".
 
+**Status:** ✅ Completed (2026-05-22)
+
 ## Toy Model A: 1D Thermostatic Column (Thermodynamic)
 
 **Goal:** Demonstrate the "Energy Deficit Bifurcation" in a minimal system without complex geometry.
@@ -18,31 +20,30 @@
 - Show that for $L < L_{crit}$, the column is stable (Surplus). For $L > L_{crit}$, it is unstable (Deficit).
 
 **Implementation:**
-- Simple Python script or even a spreadsheet.
-- **Output:** Plot of Energy Deficit vs Length.
+- Script: `scripts/experiments/toy_model_thermostatic.py`
+- **Output:** `outputs/figures/toy_model_thermostatic.png`
+- **Status:** ✅ **Implemented**
 
 ## Toy Model B: The "Active" Elastica (Mechanical)
 
-**Goal:** Validate that *intrinsic curvature* can stabilize a column against gravity *without* infinite stiffness.
+**Goal:** Validate that *intrinsic curvature* can stabilize a column against gravity *without* infinite stiffness. Specifically, link Protein Anisotropy to $L_{crit}$.
 
 **Setup:**
-- Use `scipy.integrate.solve_bvp`.
-- Equation: $EI \theta'' + P \sin(\theta) = M_{active}'$.
-- $M_{active} = EI \cdot \kappa_{active}$.
-- $\kappa_{active}(s) = \chi_\kappa \cdot \nabla I(s)$.
+- Equations derived in `docs/theory/toy_model_anisotropy.md`.
+- $L_{crit} \propto A^{-0.5}$ (Inverse square root of anisotropy).
 
 **Simulations:**
 1.  **Passive:** $\chi_\kappa = 0$. Show buckling under self-weight for large $L$.
 2.  **Active:** $\chi_\kappa > 0$. Show stability for the same $L$.
-3.  **Perturbation:** Add small lateral force. Show Active recovers, Passive collapses.
 
 **Implementation:**
-- Python script using `scipy`.
-- **Output:** Comparison plot of deflection $\delta$ vs Load $P$ (or Length $L$) for Passive vs Active.
+- Script: `scripts/toy_model_anisotropy_link.py`
+- **Output:** `outputs/figures/toy_model_anisotropy_bifurcation.png`
+- **Status:** ✅ **Implemented**
 
 ## Schedule
 
 | Model | Owner | Effort | Status |
 | :--- | :--- | :--- | :--- |
-| **Toy A** | PI/Theory | 0.5 day | ⚪ **Planned** |
-| **Toy B** | Comp Bio | 1 day | ⚪ **Planned** |
+| **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
+| **Toy B** | Comp Bio | 1 day | ✅ **Completed** |

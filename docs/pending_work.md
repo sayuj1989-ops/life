@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-02
+**Last Updated:** 2026-05-22
 **Status:** In Progress
 **Priority Level:** High (Blocking Submission)
 
@@ -15,7 +15,7 @@
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data (DATA-01) and plot $Bg$ number vs Mass/Length. Validate "Passive Stability" vs "Active Need". | 1 day | DATA-01 | 🚨 **Not Started** |
+| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data (DATA-01) and plot $Bg$ number vs Mass/Length. Validate "Passive Stability" vs "Active Need". | 1 day | DATA-01 | 🚨 **Blocked by DATA-01** |
 | **CODE-02** | **Update `experiment_optimization_failure.py`** | Add a `mutation_map` dictionary to map gene names to simulation parameters ($\chi_\kappa, \sigma, EI$). Generate Figure 4 with specific labels. | 0.5 day | DATA-02 | 🟠 **Pending** |
 | **CODE-03** | **Generate Figure Plots** | Ensure all scripts output publication-quality PNG/PDFs (300 dpi). Current scripts mostly output CSVs or simple plots. | 2 days | EXP-01, EXP-02 | 🟡 **In Progress** |
 
@@ -32,7 +32,7 @@
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **THEORY-01** | **Reviewer #3 Defense** | Finalize "Anisotropy Gap" argument. Ensure `manuscript/reviewer_response_strategy.txt` covers potential critiques of thermodynamic scaling. | 0.5 day | None | ✅ **Drafted** |
-| **THEORY-02** | **Toy Models** | Create simple 1D models (Toy Model A/B) to de-risk the complex Cosserat simulation for reviewers. | 1 day | None | ⚪ **Planned** |
+| **THEORY-02** | **Toy Models** | Create simple 1D models (Toy Model A/B) to de-risk the complex Cosserat simulation for reviewers. | 1 day | None | ✅ **Completed** (See `docs/toy_models_plan.md`) |
 
 ## Summary of Risks
 

@@ -36,6 +36,13 @@ TARGETS = [
     {"gene_symbol": "ARNTL", "uniprot_accession": "O00327", "organism_id": "9606"},
     {"gene_symbol": "DMD", "uniprot_accession": "P11532", "organism_id": "9606"},
     {"gene_symbol": "MYLK", "uniprot_accession": "Q15746", "organism_id": "9606"},
+    # Comparators for Evidence Note
+    {"gene_symbol": "LBX1", "uniprot_accession": "P52954", "organism_id": "9606"},
+    {"gene_symbol": "PIEZO2", "uniprot_accession": "Q9H5I5", "organism_id": "9606"},
+    {"gene_symbol": "LMNA", "uniprot_accession": "P02545", "organism_id": "9606"},
+    {"gene_symbol": "ADGRG6", "uniprot_accession": "Q86SQ4", "organism_id": "9606"},
+    {"gene_symbol": "RUNX3", "uniprot_accession": "Q13761", "organism_id": "9606"},
+    {"gene_symbol": "POC5", "uniprot_accession": "Q8NA72", "organism_id": "9606"},
 ]
 
 def run_step(script_name, description):
@@ -135,6 +142,28 @@ def main():
     except subprocess.CalledProcessError as e:
         print(f"❌ Experiment failed with exit code {e.returncode}.")
         sys.exit(e.returncode)
+
+    # 7. Run Confidence Ranking
+    print("\n📊 Running Confidence Ranking...")
+    # Add REPO_ROOT to sys.path to import from scripts
+    sys.path.append(str(REPO_ROOT))
+    try:
+        from scripts.analysis.confidence_ranking import generate_confidence_ranking
+
+        report_path = REPO_ROOT / "reports" / "confidence_weighted_structural_evidence.md"
+        ranking_csv = OUTPUTS_DIR / "confidence_weighted_ranking.csv"
+
+        generate_confidence_ranking(
+            input_csv=str(METRICS_FILE),
+            output_csv=str(ranking_csv),
+            report_path=str(report_path)
+        )
+        print(f"✅ Confidence ranking updated: {report_path}")
+    except ImportError as e:
+        print(f"❌ Failed to import confidence_ranking: {e}")
+        # Don't exit, this is reporting
+    except Exception as e:
+        print(f"❌ Failed to run confidence ranking: {e}")
 
     print("\n🎉 Metabolic Expansion Pipeline Complete!")
 

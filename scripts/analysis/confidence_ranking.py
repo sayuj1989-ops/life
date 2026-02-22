@@ -10,7 +10,8 @@ def generate_confidence_ranking(input_csv="outputs/afcc/2026-02-16/metrics.csv",
         return
 
     # Key candidates for comparator analysis
-    target_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
+    target_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR',
+                    'PPARGC1A', 'IGF1R', 'ARNTL', 'DMD', 'MYLK']
 
     # Filter for target genes (and maybe keep others for context if needed, but let's focus first)
     # Actually, let's keep all for ranking, but highlight targets

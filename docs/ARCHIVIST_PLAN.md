@@ -55,3 +55,18 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
 - [x] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
 - [x] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).
+
+## Phase 7: Manuscript & Submission Cleanup (High Priority)
+
+- [ ] **Consolidate Submission Directories**:
+    - [ ] Decide between `submission/` and `submission_package/` (likely keep `submission_package` and archive `submission`).
+    - [ ] Ensure all submission artifacts (cover letter, checklist) are in one place.
+- [ ] **Clean Root of Drafts**:
+    - [ ] Move `.docx` files (`IEC_*.docx`, `NATURE_*.docx`) to `manuscript/drafts/`.
+    - [ ] Move template files (`*_Template.docx`) to `manuscript/templates/`.
+- [ ] **Organize Manuscript Scripts**:
+    - [ ] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
+- [ ] **Organize Prompts**:
+    - [ ] Move `AI_*.md` and `*_PROMPT.md` to `docs/prompts/` or `notes/prompts/`.
+- [ ] **Submission Checklist**:
+    - [ ] Consolidate `SUBMISSION_MASTER_CHECKLIST.md` and `SUBMISSION_PACKAGE_SUMMARY.txt` into the submission folder.

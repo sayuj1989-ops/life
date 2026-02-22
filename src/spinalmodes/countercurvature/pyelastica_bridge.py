@@ -299,6 +299,7 @@ class CounterCurvatureRodSystem:
         base_direction: tuple[float, float, float] = (0.0, 0.0, 1.0),
         normal: tuple[float, float, float] = (0.0, 1.0, 0.0),
         stiffness_anisotropy: Union[float, ArrayF64] = 1.0,
+        taper_ratio: float = 1.0,
     ) -> "CounterCurvatureRodSystem":
         _check_pyelastica()
 
@@ -314,6 +315,56 @@ class CounterCurvatureRodSystem:
             youngs_modulus=E0,
             shear_modulus=E0 / (2.0 * (1.0 + nu)),
         )
+
+        # Apply geometric tapering (muscle atrophy / developmental gradient)
+        if taper_ratio != 1.0:
+            # Generate scaling profile r(s) = r_base * (1 + (taper-1) * s/L)
+            s_nodes = np.linspace(0, length, n_elements + 1)
+            # Element centers
+            s_elements = 0.5 * (s_nodes[:-1] + s_nodes[1:])
+            # Internal nodes (Voronoi domains)
+            s_voronoi = s_nodes[1:-1]
+
+            # Scaling function
+            def get_scale(s_val):
+                return 1.0 + (taper_ratio - 1.0) * (s_val / length)
+
+            scale_elems = get_scale(s_elements)
+            scale_voro = get_scale(s_voronoi)
+
+            # 1. Update Radius (elements)
+            rod.radius[:] *= scale_elems
+
+            # 2. Update Mass (nodes)
+            # Recompute element mass based on new radius
+            # m_elem = rho * pi * r^2 * L_elem
+            m_elems_new = rho * np.pi * (rod.radius ** 2) * rod.rest_lengths
+
+            # Distribute to nodes (simple lumped mass)
+            rod.mass[:] = 0.0
+            rod.mass[:-1] += 0.5 * m_elems_new
+            rod.mass[1:] += 0.5 * m_elems_new
+
+            # 3. Update Mass Second Moment of Inertia (elements)
+            # J propto m * r^2 propto r^2 * r^2 = r^4
+            # Scale existing J by (r_new / r_old)^4
+            scale_J = scale_elems ** 4
+            for k in range(n_elements):
+                rod.mass_second_moment_of_inertia[..., k] *= scale_J[k]
+                if hasattr(rod, "inv_mass_second_moment_of_inertia"):
+                    rod.inv_mass_second_moment_of_inertia[..., k] /= scale_J[k]
+
+            # 4. Update Shear Matrix (elements)
+            # S propto A propto r^2
+            scale_S = scale_elems ** 2
+            for k in range(n_elements):
+                rod.shear_matrix[..., k] *= scale_S[k]
+
+            # 5. Update Bend Matrix (internal nodes)
+            # B propto I propto r^4
+            scale_B = scale_voro ** 4
+            for k in range(n_elements - 1):
+                rod.bend_matrix[..., k] *= scale_B[k]
 
         # Compute effective stiffness E_eff based on information field
         E_eff = compute_effective_stiffness(info, params, E0)

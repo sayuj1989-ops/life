@@ -75,19 +75,20 @@ def generate_markdown_report(csv_file: str, results: List[Dict[str, Any]]):
         f.write(f"- **Peak Memory:** {max_mem:.2f} MB\n\n")
 
         f.write("## Biological Interpretation\n")
-        f.write("| Label | Anisotropy | Growth Drive (χ_κ) | Cobb Angle (deg) | Max Curvature | Max Torsion | Bending Energy |\n")
-        f.write("|---|---|---|---|---|---|---|\n")
+        f.write("| Label | Anisotropy | Taper | Growth Drive (χ_κ) | Cobb Angle (deg) | Max Curvature | Max Torsion | Bending Energy |\n")
+        f.write("|---|---|---|---|---|---|---|---|\n")
 
         for r in results:
             label = r.get("bio_label", "N/A")
             aniso = r["stiffness_anisotropy"]
+            taper = r.get("taper_ratio", 1.0)
             chi_k = r["chi_kappa"]
             cobb = r["cobb_angle"]
             max_c = r["max_curvature"]
             max_t = r["max_torsion"]
             energy = r.get("bending_energy", 0.0)
 
-            f.write(f"| {label} | {aniso:.2f} | {chi_k:.2f} | {cobb:.4f} | {max_c:.4f} | {max_t:.4f} | {energy:.4e} |\n")
+            f.write(f"| {label} | {aniso:.2f} | {taper:.2f} | {chi_k:.2f} | {cobb:.4f} | {max_c:.4f} | {max_t:.4f} | {energy:.4e} |\n")
 
         f.write("\n## Key Findings\n")
         f.write("1. **Loss of FBN1 (Low Anisotropy)** reduces structural stability.\n")
@@ -112,8 +113,12 @@ def run_experiment(
     info_width: float = 0.1,
     info_amplitude: float = 0.1,
     curvature_profile: str = "constant",
+    taper_ratios: list[float] = None,
 ):
     """Run the parameter sweep and save results."""
+    if taper_ratios is None:
+        taper_ratios = [1.0]
+
     if not PYELASTICA_AVAILABLE:
         print("Warning: PyElastica is not installed. Using mock objects for testing.")
 
@@ -146,6 +151,7 @@ def run_experiment(
         "chi_tau",
         "chi_e",
         "chi_m",
+        "taper_ratio",
         "boundary_condition",
         "curvature_profile",
         "info_center",
@@ -176,130 +182,134 @@ def run_experiment(
         if not file_exists:
             writer.writeheader()
 
-        print("-" * 140)
+        print("-" * 155)
         print(
-            f"{'Label':<15} | {'Aniso':<6} | {'chi_k':<6} | {'Max Curv':<9} | "
-            f"{'Cobb':<8} | {'Energy (J)':<10} | {'Time (s)':<9} | {'Mem (MB)':<8}"
+            f"{'Aniso':<6} | {'chi_k':<6} | {'chi_t':<6} | {'chi_e':<6} | {'chi_m':<6} | {'Taper':<6} | "
+            f"{'MaxCurv':<9} | {'MaxTor':<8} | {'y_tip':<8} | {'S_lat':<8} | "
+            f"{'Cobb':<8} | {'Time(s)':<8} | {'Mem(MB)':<8}"
         )
-        print("-" * 140)
+        print("-" * 155)
 
         for chi_kappa in chi_kappas:
             for chi_tau in chi_taus:
                 for chi_e in chi_es:
                     for chi_m in chi_ms:
-                        for anisotropy in anisotropies:
-                            # Start tracking memory and time
-                            tracemalloc.start()
-                            t0 = time.time()
+                        for taper_ratio in taper_ratios:
+                            for anisotropy in anisotropies:
+                                # Start tracking memory and time
+                                tracemalloc.start()
+                                t0 = time.time()
 
-                            # 1. Setup Information Field (Simulating a protein gradient)
-                            s = np.linspace(0, length, n_elements + 1)
-                            # Gaussian bump in information density
-                            info_density = 0.5 + info_amplitude * np.exp(
-                                -0.5 * ((s - info_center * length) / (info_width * length))**2
-                            )
-                            dIds = np.gradient(info_density, s)
-                            info = InfoField1D(s=s, I=info_density, dIds=dIds)
+                                # 1. Setup Information Field (Simulating a protein gradient)
+                                s = np.linspace(0, length, n_elements + 1)
+                                # Gaussian bump in information density
+                                info_density = 0.5 + info_amplitude * np.exp(
+                                    -0.5 * ((s - info_center * length) / (info_width * length))**2
+                                )
+                                dIds = np.gradient(info_density, s)
+                                info = InfoField1D(s=s, I=info_density, dIds=dIds)
 
-                            # 2. Setup Coupling Parameters
-                            # chi_kappa drives curvature correction (Lateral/d2)
-                            # chi_tau drives torsion correction (Twist/d3)
-                            # chi_e drives stiffness modulation
-                            # chi_m drives active moment (effort)
-                            params = CounterCurvatureParams(
-                                chi_kappa=chi_kappa,
-                                chi_tau=chi_tau,
-                                chi_E=chi_e,
-                                chi_M=chi_m,
-                                scale_length=length
-                            )
+                                # 2. Setup Coupling Parameters
+                                # chi_kappa drives curvature correction (Lateral/d2)
+                                # chi_tau drives torsion correction (Twist/d3)
+                                # chi_e drives stiffness modulation
+                                # chi_m drives active moment (effort)
+                                params = CounterCurvatureParams(
+                                    chi_kappa=chi_kappa,
+                                    chi_tau=chi_tau,
+                                    chi_E=chi_e,
+                                    chi_M=chi_m,
+                                    scale_length=length
+                                )
 
-                            # 3. Setup Geometric Curvature (kappa_gen)
-                            # Intrinsic curvature about d1 (index 0) = Sagittal Plane (Kyphosis/Lordosis)
-                            # Note: chi_kappa couples to index 1 (Lateral Plane/Scoliosis)
-                            kappa_gen = _get_curvature_profile(
-                                curvature_profile, 2.0, n_elements, length
-                            )
+                                # 3. Setup Geometric Curvature (kappa_gen)
+                                # Intrinsic curvature about d1 (index 0) = Sagittal Plane (Kyphosis/Lordosis)
+                                # Note: chi_kappa couples to index 1 (Lateral Plane/Scoliosis)
+                                kappa_gen = _get_curvature_profile(
+                                    curvature_profile, 2.0, n_elements, length
+                                )
 
-                            # 4. Create Rod System
-                            rod_system = CounterCurvatureRodSystem.from_iec(
-                                info=info,
-                                params=params,
-                                length=length,
-                                n_elements=n_elements,
-                                E0=E0,
-                                rho=rho,
-                                radius=radius,
-                                kappa_gen=kappa_gen,
-                                gravity=gravity,
-                                base_position=(0.0, 0.0, 0.0),
-                                base_direction=(0.0, 0.0, 1.0),  # Vertical
-                                normal=(1.0, 0.0, 0.0),         # Normal in X
-                                stiffness_anisotropy=anisotropy
-                            )
+                                # 4. Create Rod System
+                                rod_system = CounterCurvatureRodSystem.from_iec(
+                                    info=info,
+                                    params=params,
+                                    length=length,
+                                    n_elements=n_elements,
+                                    E0=E0,
+                                    rho=rho,
+                                    radius=radius,
+                                    kappa_gen=kappa_gen,
+                                    gravity=gravity,
+                                    base_position=(0.0, 0.0, 0.0),
+                                    base_direction=(0.0, 0.0, 1.0),  # Vertical
+                                    normal=(1.0, 0.0, 0.0),         # Normal in X
+                                    stiffness_anisotropy=anisotropy,
+                                    taper_ratio=taper_ratio
+                                )
 
-                            # 5. Run Simulation
-                            result = rod_system.run_simulation(
-                                final_time=final_time,
-                                dt=dt,
-                                save_every=save_every,
-                                gravity=gravity,
-                                boundary_condition=boundary_condition
-                            )
+                                # 5. Run Simulation
+                                result = rod_system.run_simulation(
+                                    final_time=final_time,
+                                    dt=dt,
+                                    save_every=save_every,
+                                    gravity=gravity,
+                                    boundary_condition=boundary_condition
+                                )
 
-                            t1 = time.time()
-                            current, peak = tracemalloc.get_traced_memory()
-                            tracemalloc.stop()
+                                t1 = time.time()
+                                current, peak = tracemalloc.get_traced_memory()
+                                tracemalloc.stop()
 
-                            runtime = t1 - t0
-                            peak_mb = peak / (1024 * 1024)
+                                runtime = t1 - t0
+                                peak_mb = peak / (1024 * 1024)
 
-                            # 6. Compute Metrics
-                            metrics = result.compute_final_metrics()
+                                # 6. Compute Metrics
+                                metrics = result.compute_final_metrics()
 
-                            # 7. Store and Print
-                            row_data = {
-                                "timestamp": datetime.now().isoformat(),
-                                "stiffness_anisotropy": anisotropy,
-                                "chi_kappa": chi_kappa,
-                                "chi_tau": chi_tau,
-                                "chi_e": chi_e,
-                                "chi_m": chi_m,
-                                "boundary_condition": boundary_condition,
-                                "curvature_profile": curvature_profile,
-                                "info_center": info_center,
-                                "info_width": info_width,
-                                "info_amplitude": info_amplitude,
-                                "max_curvature": metrics.get('max_curvature', 0.0),
-                                "max_torsion": metrics.get('max_torsion', 0.0),
-                                "y_tip": metrics.get('y_tip', 0.0),
-                                "s_lat": metrics.get('S_lat', 0.0),
-                                "cobb_angle": metrics.get('cobb_angle', 0.0),
-                                "end_to_end_distance": metrics.get(
-                                    'end_to_end_distance', 0.0
-                                ),
-                                "runtime_sec": round(runtime, 4),
-                                "peak_memory_mb": round(peak_mb, 2)
-                            }
+                                # 7. Store and Print
+                                row_data = {
+                                    "timestamp": datetime.now().isoformat(),
+                                    "stiffness_anisotropy": anisotropy,
+                                    "chi_kappa": chi_kappa,
+                                    "chi_tau": chi_tau,
+                                    "chi_e": chi_e,
+                                    "chi_m": chi_m,
+                                    "taper_ratio": taper_ratio,
+                                    "boundary_condition": boundary_condition,
+                                    "curvature_profile": curvature_profile,
+                                    "info_center": info_center,
+                                    "info_width": info_width,
+                                    "info_amplitude": info_amplitude,
+                                    "max_curvature": metrics.get('max_curvature', 0.0),
+                                    "max_torsion": metrics.get('max_torsion', 0.0),
+                                    "y_tip": metrics.get('y_tip', 0.0),
+                                    "s_lat": metrics.get('S_lat', 0.0),
+                                    "cobb_angle": metrics.get('cobb_angle', 0.0),
+                                    "end_to_end_distance": metrics.get(
+                                        'end_to_end_distance', 0.0
+                                    ),
+                                    "runtime_sec": round(runtime, 4),
+                                    "peak_memory_mb": round(peak_mb, 2)
+                                }
 
-                            # Debug: Ensure chi_e is set
-                            if "chi_e" not in row_data or row_data["chi_e"] is None:
-                                print(f"WARNING: chi_e missing or None. chi_e var = {chi_e}")
-                                row_data["chi_e"] = chi_e
+                                # Debug: Ensure chi_e is set
+                                if "chi_e" not in row_data or row_data["chi_e"] is None:
+                                    print(f"WARNING: chi_e missing or None. chi_e var = {chi_e}")
+                                    row_data["chi_e"] = chi_e
 
-                            writer.writerow(row_data)
-                            csvfile.flush()  # Ensure write
+                                writer.writerow(row_data)
+                                csvfile.flush()  # Ensure write
 
-                            print(
-                                f"{anisotropy:<10.2f} | {chi_kappa:<6.1f} | {chi_tau:<6.1f} | "
-                                f"{chi_e:<6.1f} | {chi_m:<6.1f} | "
-                                f"{row_data['max_curvature']:<10.4f} | "
-                                f"{row_data['max_torsion']:<8.4f} | "
-                                f"{row_data['y_tip']:<8.4f} | "
-                                f"{row_data['s_lat']:<8.4f} | "
-                                f"{row_data['cobb_angle']:<6.2f} | {runtime:<8.3f} | "
-                                f"{peak_mb:<6.2f}"
-                            )
+                                print(
+                                    f"{anisotropy:<6.2f} | {chi_kappa:<6.1f} | {chi_tau:<6.1f} | "
+                                    f"{chi_e:<6.1f} | {chi_m:<6.1f} | {taper_ratio:<6.2f} | "
+                                    f"{row_data['max_curvature']:<9.4f} | "
+                                    f"{row_data['max_torsion']:<8.4f} | "
+                                    f"{row_data['y_tip']:<8.4f} | "
+                                    f"{row_data['s_lat']:<8.4f} | "
+                                    f"{row_data['cobb_angle']:<8.2f} | {runtime:<8.3f} | "
+                                    f"{peak_mb:<6.2f}"
+                                )
 
     print("-" * 140)
     print("Experiment complete.")
@@ -386,6 +396,14 @@ def parse_args():
     )
 
     parser.add_argument(
+        "--taper-ratio-list",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="List of taper ratios (r_tip / r_base) to sweep"
+    )
+
+    parser.add_argument(
         "--boundary-condition",
         type=str,
         default="fixed",
@@ -463,6 +481,7 @@ if __name__ == "__main__":
     chi_taus = args.chi_tau_list
     chi_es = args.chi_e_list
     chi_ms = args.chi_m_list
+    taper_ratios = args.taper_ratio_list
     final_time = args.final_time
     n_elements = args.n_elements
     curvature_profile = args.curvature_profile
@@ -474,6 +493,7 @@ if __name__ == "__main__":
         chi_taus = [0.0]
         chi_es = [0.0]
         chi_ms = [0.0]
+        taper_ratios = [1.0]
         final_time = 0.1
         n_elements = 20
 
@@ -483,6 +503,7 @@ if __name__ == "__main__":
         anisotropies = [1.0, 5.0] # [Marfan, WildType]
         chi_kappas = [2.0, 15.0]  # [Homeostatic, HyperGrowth]
         chi_taus = [0.0]
+        taper_ratios = [1.0, 0.8] # [Normal, Mild Atrophy]
 
     elif args.scenario == "protein_profile":
         print(">>> Scenario: Protein Profile (Harmonic Curvature)")
@@ -517,6 +538,7 @@ if __name__ == "__main__":
         chi_taus=chi_taus,
         chi_es=chi_es,
         chi_ms=chi_ms,
+        taper_ratios=taper_ratios,
         boundary_condition=args.boundary_condition,
         n_elements=n_elements,
         final_time=final_time,

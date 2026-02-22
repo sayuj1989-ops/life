@@ -1,6 +1,6 @@
 # PyElastica Spinal Rod Experiment Report
 
-**Date:** 2026-02-19 13:14:43
+**Date:** 2026-02-22 14:37:05
 **Source Data:** `minimal_experiment_results_v2.csv`
 
 ## Performance Metrics
@@ -9,8 +9,8 @@
 - **Peak Memory:** 0.00 MB
 
 ## Biological Interpretation
-| Label | Anisotropy | Growth Drive (χ_κ) | Cobb Angle (deg) | Max Curvature | Max Torsion | Bending Energy |
-|---|---|---|---|---|---|---|
+| Label | Anisotropy | Taper | Growth Drive (χ_κ) | Cobb Angle (deg) | Max Curvature | Max Torsion | Bending Energy |
+|---|---|---|---|---|---|---|---|
 
 ## Key Findings
 1. **Loss of FBN1 (Low Anisotropy)** reduces structural stability.

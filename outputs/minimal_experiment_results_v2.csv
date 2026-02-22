@@ -1,2 +1,5 @@
 timestamp,bio_label,stiffness_anisotropy,chi_kappa,chi_tau,chi_e,chi_m,boundary_condition,curvature_profile,info_center,info_width,info_amplitude,max_curvature,max_torsion,y_tip,s_lat,cobb_angle,bending_energy,shear_energy,gravitational_energy,runtime_sec,peak_memory_mb,end_to_end_distance
 2026-02-19T13:14:43.142079,nan,1.0,0.0,0.0,0.0,0.0,fixed,constant,0.6,0.1,0.1,1.5840640476767436,0.0,-0.0071168882460451045,0.0,0.0,nan,nan,nan,4.8493,15.52,0.49743294517909453
+2026-02-22T14:31:14.017248,nan,1.0,0.0,0.0,0.0,0.0,fixed,constant,0.6,0.1,0.1,1.5840640476767436,0.0,-0.0071168882460451045,0.0,0.0,nan,nan,nan,4.8194,15.51,0.49743294517909453
+2026-02-22T14:36:56.998066,nan,1.0,0.0,0.0,0.0,0.0,1.0,fixed,constant,0.6,0.1,0.1,1.5840640476767436,0.0,-0.0071168882460451045,0.0,0.0,nan,nan,nan,4.6949,15.52,0.49743294517909453
+2026-02-22T14:37:05.017224,nan,1.0,0.0,0.0,0.0,0.0,0.5,fixed,constant,0.6,0.1,0.1,0.9629505349989624,0.0,-0.006097572933281235,0.0,0.0,nan,nan,nan,4.545,15.51,0.4999305677404513

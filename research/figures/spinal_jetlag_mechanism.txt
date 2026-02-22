@@ -1,0 +1,23 @@
+A high-impact conceptual diagram illustrating the "Spinal Jetlag" mechanism in scoliosis.
+
+The diagram is split into two panels: "Entrained (Healthy)" and "Jetlagged (Scoliotic)".
+
+Left Panel (Entrained):
+- A straight, healthy human spine growing vertically.
+- A "Sun" icon represents the Circadian Clock, emitting synchronized waves.
+- Upward "Growth" arrows (mTOR) are aligned with "Structural" support arrows (AMPK).
+- A mathematical sine wave labeled "Information Field" is in phase with a "Gravity" loading cycle.
+- The text "Coherent Interference" or "phi = 0" appears.
+
+Right Panel (Jetlagged):
+- A curved, scoliotic spine (S-shape).
+- A "Moon/Stars" icon or a dimmer Sun represents the desynchronized Clock.
+- The "Information Field" sine wave is shifted (out of phase) relative to the "Gravity" cycle.
+- "Growth" arrows are active where "Structural" support is missing, causing buckling.
+- The text "Destructive Interference" or "phi = pi" appears.
+- Visual metaphor of a "growing rod" bending because the blueprint arrived too late.
+
+Style:
+- Clean, scientific, Nature-journal quality.
+- Use distinct colors: Blue for Growth/Information, Red for Gravity/Load.
+- Minimalist but explanatory.

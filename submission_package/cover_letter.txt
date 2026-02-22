@@ -4,11 +4,11 @@ Nature
 
 Dear Dr. Skipper,
 
-We are pleased to submit our manuscript, "Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis," for consideration as an Article in Nature.
+We are pleased to submit our manuscript, "Metabolic buckling of the growing spine," for consideration as an Article in Nature.
 
-**The Grand Challenge:** Living systems routinely defeat gravity, yet the physical cost of this victory remains unquantified. We present a first-principles derivation showing that the human spine is a "Thermodynamic Standing Wave"—a dissipative structure that inevitably buckles when metabolic supply fails to scale with the $L^4$ demand of straightening.
+**The Grand Challenge:** Living systems routinely defeat gravity, yet the physical cost of this victory remains unquantified. We present a first-principles derivation showing that the human spine is a "Thermodynamic Standing Wave"—a dissipative structure that inevitably buckles when metabolic supply fails to scale with the active moment ($L^4$) required to maintain straightness.
 
-**The Breakthrough:** Adolescent Idiopathic Scoliosis (AIS) affects 3% of the global population and remains a "medical mystery" despite decades of genomic research. We demonstrate that AIS is not a random bone disease, but a predictable "Metabolic Buckling" event. Using a novel Information-Cosserat framework, we identify a critical "Energy Deficit Window" ($L > 0.35$m) where the thermodynamic cost of high-fidelity mechanosensing outstrips metabolic capacity.
+**The Breakthrough:** Adolescent Idiopathic Scoliosis (AIS) affects 3% of the global population and remains a "medical mystery" despite decades of genomic research. We demonstrate that AIS is not a random bone disease, but a predictable "Metabolic Buckling" event. Using a novel Information-Cosserat framework, we identify a critical "Energy Deficit Window" ($L > 0.35$m) where the thermodynamic cost of high-fidelity mechanosensing outstrips metabolic capacity. Crucially, we show that this failure is driven by an "Anisotropy Tax"—where high-anisotropy sensors like Vimentin become unaffordable, and reducing their stiffness offers a therapeutic rescue of up to 60 cm of stable growth.
 
 **Why Nature?** This work bridges theoretical physics, structural biology, and clinical medicine. It is not a specialist orthopedic study; it reveals a fundamental scaling law of vertebrate morphogenesis (The "Scaling Catch-22") that redefines deformity as a strategy for thermodynamic survival. It answers the question: "Why do we stand up, and why does it sometimes fail?"
 

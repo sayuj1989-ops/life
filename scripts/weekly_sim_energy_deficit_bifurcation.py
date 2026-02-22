@@ -14,20 +14,31 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-# Add src to path
+
+# Add src to path if needed (though usually not needed if running from root)
 sys.path.append(str(Path(__file__).parent.parent / "src"))
 
-from spinalmodes.countercurvature.api import (
-    CounterCurvatureRodSystem,
-    CounterCurvatureParams,
-    InfoField1D,
-    geodesic_curvature_deviation
-)
+try:
+    from spinalmodes.countercurvature.api import (
+        CounterCurvatureRodSystem,
+        CounterCurvatureParams,
+        InfoField1D,
+        geodesic_curvature_deviation
+    )
+except ImportError:
+    # Fallback to local import if structure is different
+    sys.path.append("src")
+    from spinalmodes.countercurvature.api import (
+        CounterCurvatureRodSystem,
+        CounterCurvatureParams,
+        InfoField1D,
+        geodesic_curvature_deviation
+    )
 
 # Constants
 RHO = 1100.0       # kg/m^3
 A_REF = 0.001      # m^2 (Fixed area)
-L_REF = 0.4        # m (Reference length for scaling)
+L_REF = 0.4        # m (Reference length for scaling, though not used here)
 G = 9.81           # m/s^2
 E0 = 1.0e9         # Pa (1.0 GPa)
 ANISOTROPY = 2.0   # Moderate protection
@@ -53,8 +64,10 @@ def get_bimodal_gaussian_field(s, L):
 
     # Gradient dI/ds
     # d/ds = (d/ds_norm) * (ds_norm/ds) = (d/ds_norm) * (1/L)
-    dIc_dsn = I_c * (-(s_norm - s_c) / sigma_c**2)
-    dIl_dsn = I_l * (-(s_norm - s_l) / sigma_l**2)
+    dIc_dsn = I_c * (-(s_norm - s_c) / sigma_c**2) * np.exp(-((s_norm - s_c)**2) / (2 * sigma_c**2))
+    dIl_dsn = I_l * (-(s_norm - s_l) / sigma_l**2) * np.exp(-((s_norm - s_l)**2) / (2 * sigma_l**2))
+    # Corrected gradient calculation above (multiplying by exp term)
+
     dIds = (dIc_dsn + dIl_dsn) / L
 
     return I, dIds
@@ -62,7 +75,7 @@ def get_bimodal_gaussian_field(s, L):
 def run_single_simulation(L, chi_kappa, anisotropy, initial_lateral_defect=0.03):
     """
     Runs a single simulation for a given length L and coupling strength chi_kappa.
-    Returns the final curvature state (kappa).
+    Returns the final curvature state (kappa) and metrics.
     """
     # 1. Geometry Scaling
     current_A = A_REF
@@ -158,6 +171,13 @@ def run_sweep():
                 diff = kappa_active - kappa_passive # (N, 3)
                 msd_kappa = np.mean(np.sum(diff**2, axis=1)) # Sum over components, mean over nodes
 
+                # P_counter definition based on energy functional approximation
+                # Scales with Volume * E * Curvature^2 ~ A*L * E * (1/L^2) ~ A/L if A fixed?
+                # Using the user provided scaling L^2 in the task description for P_counter?
+                # User task step 1 says: P_counter(χ_κ, L) — metabolic power required for countercurvature
+                # Step 2 says: P_counter scaling (L^{2-3})
+                # The formula used in existing script was: ETA_A * RHO * current_A * G * (L**2) * msd_kappa
+                # Let's stick to this formula as it seems to be the intended one for this sweep.
                 P_counter = ETA_A * RHO * current_A * G * (L**2) * msd_kappa
 
                 # 4. Metrics
@@ -178,14 +198,16 @@ def run_sweep():
     # Compute Supply S_proprio
     # Reference point: L=0.35, chi=0.05
     # Find closest point in results
-    ref_row = df.iloc[((df['L']-0.35).abs() + (df['chi_kappa']-0.05).abs()).argsort()[:1]]
-    S0_ref = ref_row['P_counter'].values[0]
+    ref_idx = ((df['L']-0.35).abs() + (df['chi_kappa']-0.05).abs()).idxmin()
+    S0_ref = df.loc[ref_idx, 'P_counter']
 
-    print(f"Reference S0 (at L=0.35, chi=0.05): {S0_ref:.6e}")
+    print(f"\nReference S0 (at L=0.35, chi=0.05): {S0_ref:.6e}")
 
     # Calculate Supply and R_deficit
     # S_proprio = S0 * (L/0.35)^0.7
-    df['S_proprio'] = S0_ref * (df['L'] / 0.35)**0.7
+    # Note: Use L_0 = 0.35 as reference length for supply normalization
+    L0_supply = 0.35
+    df['S_proprio'] = S0_ref * (df['L'] / L0_supply)**0.7
     df['R_deficit'] = df['P_counter'] / df['S_proprio']
 
     # Save CSV
@@ -197,8 +219,14 @@ def run_sweep():
 
 def generate_plots(df, output_dir):
     # Pivot for heatmaps
+    # Ensure index/columns are sorted
     pivot_R = df.pivot(index="chi_kappa", columns="L", values="R_deficit")
     pivot_Cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb")
+
+    # The pivot might return unsorted axes if data wasn't sorted, but linspace is sorted.
+    # Just to be safe, sort index/columns
+    pivot_R = pivot_R.sort_index(axis=0).sort_index(axis=1)
+    pivot_Cobb = pivot_Cobb.sort_index(axis=0).sort_index(axis=1)
 
     chi_axis = pivot_R.index
     L_axis = pivot_R.columns
@@ -206,16 +234,23 @@ def generate_plots(df, output_dir):
 
     # Plot 1: R_deficit
     plt.figure(figsize=(10, 8))
+    # Use 'RdYlBu_r' so Red is high (Deficit), Blue is low (Surplus)
+    # R > 1 is Deficit (Red)
     cp = plt.contourf(X, Y, pivot_R.values, levels=20, cmap='RdYlBu_r')
     plt.colorbar(cp, label=r'Energy Deficit Ratio $R_{deficit}$')
 
     # Contour line at R=1
-    plt.contour(X, Y, pivot_R.values, levels=[1.0], colors='k', linewidths=2, linestyles='--')
+    # Check if we have values crossing 1.0
+    if pivot_R.values.min() < 1.0 < pivot_R.values.max():
+        plt.contour(X, Y, pivot_R.values, levels=[1.0], colors='k', linewidths=2, linestyles='--')
 
     plt.xlabel('Spinal Length L (m)')
     plt.ylabel(r'Coupling Strength $\chi_\kappa$')
     plt.title('Energy Deficit Phase Diagram')
-    plt.text(0.3, 0.08, 'Deficit Window (R > 1)', color='white', fontweight='bold')
+
+    # Add annotation for R>1 region
+    plt.text(0.3, 0.08, 'Deficit Window (R > 1)', color='black', fontweight='bold',
+             bbox=dict(facecolor='white', alpha=0.5))
 
     plt.savefig(output_dir / "phase_diagram_energy_deficit.png", dpi=150)
     plt.close()

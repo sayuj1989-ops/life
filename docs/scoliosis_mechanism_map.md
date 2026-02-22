@@ -580,3 +580,24 @@ The map categorizes the system into four layers:
 **Citations**:
 *   *England, J. L. (2013). Statistical physics of self-replication. The Journal of Chemical Physics, 139(12), 121923.* https://doi.org/10.1063/1.4818538
 *   *Chesler, A. T., et al. (2016). The role of PIEZO2 in human mechanosensation. New England Journal of Medicine, 375(14), 1355-1364.* https://doi.org/10.1056/NEJMoa1602812
+
+---
+
+### 33. The Piezo-Lymphatic Baroreflex
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `VCL_Stasis`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+*   **Mechanism**: **Valve Latching**.
+    1.  **Pressure Sensing**: Piezo1 channels in lymphatic endothelial cells act as baroreceptors, sensing the hydrostatic pressure gradient.
+    2.  **Valve Closure**: Activation triggers calcium influx that is required for the "latching" of lymphatic valves against retrograde flow.
+    3.  **Reflux**: In microgravity (unloading) or Piezo1 deficiency, the pressure signal is lost, valves fail to latch, and lymph flows backward into the spinal interstitium.
+*   **Property**: **Hydraulic Homeostasis**.
+*   **Role**: **The Check Valve**. Gravity creates a pressure head; Piezo1 ensures the plumbing can handle it.
+*   **Evidence**: Choi et al. (2024) identified Piezo1 as a critical baroreceptor in lymphatic valves.
+*   **Counter-Curvature Implication**: The spine's drainage system is active, not passive. It requires a sensor (Piezo1) to maintain the seal.
+
+> **Hypothesis**: "Valve Failure" leads to "Swamp Spine".
+
+**Citations**:
+*   *Choi, D., et al. (2024). Piezo1 acts as a latching baroreceptor in lymphatic valves. Nature Cardiovascular Research.*

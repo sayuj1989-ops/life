@@ -30,13 +30,13 @@ def test_energy_deficit_window_outputs():
     df = pd.read_csv(csv_path)
     assert not df.empty, "CSV file is empty"
     # Updated column name to reflect L^2 scaling
-    required_cols = ["L", "P_counter", "S_proprio_L2"]
+    required_cols = ["L", "P_counter", "S_proprio_alpha05", "S_proprio_alpha10"]
     for col in required_cols:
         assert col in df.columns, f"Column {col} missing in CSV. Available: {df.columns}"
 
     # Check critical logic (L_crit approx 0.35)
     # Find crossover
-    deficit_mask = df['P_counter'] > df['S_proprio_L2']
+    deficit_mask = df['P_counter'] > df['S_proprio_alpha05']
     # It should be False for small L and True for large L
     assert not deficit_mask.iloc[0], "Should not be in deficit at small L"
     assert deficit_mask.iloc[-1], "Should be in deficit at large L"

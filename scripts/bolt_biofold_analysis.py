@@ -8,15 +8,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from Bio.PDB import PDBParser
 from typing import Dict, Any, List, Optional
+from pathlib import Path
 
 # Add the source directory to sys.path to import metrics
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../research/alphafold_countercurvature/src')))
 try:
     from afcc.metrics import MetricsAnalyzer
+    from afcc.structure import StructureParser
 except ImportError:
     # If the import fails, we might be running from repo root
     sys.path.append(os.path.abspath('research/alphafold_countercurvature/src'))
     from afcc.metrics import MetricsAnalyzer
+    from afcc.structure import StructureParser
 
 # Configuration
 PROTEINS = [
@@ -94,38 +97,6 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         print(f"Exception fetching data for {uniprot_id}: {e}")
         return None
 
-def parse_pdb(pdb_path: str):
-    """Parses PDB file to get coords, pLDDT, and resnames."""
-    parser = PDBParser(QUIET=True)
-    structure = parser.get_structure("struct", pdb_path)
-
-    coords = []
-    plddt_scores = []
-    resnames = []
-
-    for model in structure:
-        for chain in model:
-            for residue in chain:
-                if 'CA' in residue:
-                    coords.append(residue['CA'].get_coord())
-                    plddt_scores.append(residue['CA'].get_bfactor())
-                    resnames.append(residue.get_resname())
-
-    return np.array(coords), np.array(plddt_scores), np.array(resnames)
-
-def parse_pae(pae_path: str) -> Optional[np.ndarray]:
-    """Parses PAE JSON file."""
-    if not pae_path:
-        return None
-    try:
-        with open(pae_path, 'r') as f:
-            data = json.load(f)
-        if isinstance(data, list) and len(data) > 0 and 'predicted_aligned_error' in data[0]:
-            return np.array(data[0]['predicted_aligned_error'])
-    except Exception as e:
-        print(f"Error parsing PAE JSON: {e}")
-    return None
-
 def print_markdown_table(df: pd.DataFrame):
     """Prints a DataFrame as a Markdown table manually."""
     if df.empty:
@@ -143,6 +114,8 @@ def print_markdown_table(df: pd.DataFrame):
         print("| " + " | ".join(row_str) + " |")
 
 def main():
+    # ⚡ Bolt Optimization: Use shared StructureParser for caching and fast parsing
+    parser = StructureParser()
     analyzer = MetricsAnalyzer()
     results = []
 
@@ -161,8 +134,13 @@ def main():
             print(f"Skipping {symbol} - data fetch failed.")
             continue
 
-        coords, plddt, resnames = parse_pdb(paths['pdb'])
-        pae_matrix = parse_pae(paths['pae'])
+        # ⚡ Bolt Optimization: Use fast parser with caching
+        coords, plddt, resnames = parser.fast_parse_pdb_arrays(Path(paths['pdb']))
+        if coords is None:
+            print(f"Skipping {symbol} - PDB parsing failed.")
+            continue
+
+        pae_matrix = parser.parse_pae(Path(paths['pae'])) if paths['pae'] else None
 
         # Run Analysis
         metrics = analyzer.analyze_structure(

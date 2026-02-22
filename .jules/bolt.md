@@ -94,3 +94,9 @@
 **Learning:** `np.cross` is significantly slower (2x-6x) than manual arithmetic for large arrays of 3D vectors due to internal broadcasting checks and overhead. For geometry-heavy pipelines (curvature, torsion), this adds up per-residue.
 
 **Action:** Implemented `_cross_product_fast` using explicit numpy arithmetic. This yielded a ~2.2x speedup for the cross product operation and ~1.23x speedup for the overall geometry kernel (curvature + torsion) in `MetricsAnalyzer`.
+
+## 2026-11-20 - [Redundant Parsing in Aux Scripts]
+
+**Learning:** Standalone scripts like `bolt_biofold_analysis.py` often duplicate core library logic but miss optimizations (e.g., using slow `Bio.PDB` instead of `fast_parse_pdb_arrays`, loading JSON instead of cached `.npz`). This creates inconsistent performance baselines.
+
+**Action:** Refactored `scripts/bolt_biofold_analysis.py` to use the optimized `StructureParser` from `afcc.structure`, gaining ~20% speedup on small sets and massive scalability for large proteins via `.npz` caching.

@@ -115,12 +115,12 @@ def run_experiment():
             I_moment=I_moment, P_load=P_load, distributed_load=q
         )
 
-        # 6. Compute Thermodynamic Cost P_counter (Power)
-        # New Scaling: P_counter ~ Strain Energy U / tau
-        # U = 0.5 * integral(EI * (kappa - kappa0)^2) ds
-        # EI ~ L^4, kappa^2 ~ L^-2, ds ~ L => U ~ L^3
-        # Therefore Demand scales as L^3
-
+        # 6. Compute Thermodynamic Cost P_counter
+        # P_counter ~ eta_a * rho * A * g * L^2 * <|kappa_IEC - kappa_passive|^2>
+        # Under isometric scaling: A ~ L^2, g ~ L^0.
+        # Active moment M ~ L^3 (to balance M_g ~ L^4?? No, see manuscript discussion).
+        # Cost function effectively scales as L^2 due to geometric similarity (kappa ~ 1/L).
+        # Use Mean Squared Error
         kappa_diff_sq = (kappa_IEC - kappa_passive)**2
         mean_kappa_diff_sq = np.mean(kappa_diff_sq) # Average (1/m^2)
 
@@ -154,17 +154,15 @@ def run_experiment():
     df = pd.DataFrame(results)
 
     # Calculate Proprioceptive Supply Curves
-    # Reference P_counter at L0 (0.35m) to ensure crossover
-    # New Scaling: Supply ~ Surface Area ~ L^2
-    # Supply = S0 * (L/L0)^2
-
-    # Interpolate to find P_counter at L0 exactly
+    # Reference P_counter at L0.
+    # Interpolate to find P_counter at L0 exactly.
     S0 = np.interp(L0, df['L'], df['P_counter'])
 
-    df['S_proprio_L2'] = S0 * (df['L'] / L0)**2.0
-
-    # Also include L^1 (Volume/Length?) for comparison, or Kleiber L^2.25
-    df['S_proprio_L1'] = S0 * (df['L'] / L0)**1.0
+    # Supply scaling models:
+    # alpha=0.5: Sublinear proprioceptive maturation (neural limit).
+    # alpha=1.0: Linear scaling.
+    df['S_proprio_alpha05'] = S0 * (df['L'] / L0)**0.5
+    df['S_proprio_alpha10'] = S0 * (df['L'] / L0)**1.0
 
     print("\nResults Summary (New Scaling: Demand L^3 vs Supply L^2):")
     print(df[['L', 'P_counter', 'S_proprio_L2']].head())
@@ -213,6 +211,20 @@ def run_experiment():
     plt.savefig(fig_path, dpi=300)
     plt.close()
     print(f"Saved Figure to {fig_path}")
+
+    # --- Analysis for Manuscript ---
+    # Calculate deficit at L=0.45
+    target_L = 0.45
+    P_target = np.interp(target_L, df['L'], df['P_counter'])
+    S_target = np.interp(target_L, df['L'], df['S_proprio_alpha05'])
+    deficit_pct = ((P_target - S_target) / S_target) * 100
+
+    print("\n--- Manuscript Statistics ---")
+    print(f"Reference Length L0: {L0} m")
+    print(f"At L = {target_L} m:")
+    print(f"  P_counter = {P_target:.4f}")
+    print(f"  S_proprio = {S_target:.4f}")
+    print(f"  Deficit   = {deficit_pct:.1f}%")
 
 if __name__ == "__main__":
     run_experiment()

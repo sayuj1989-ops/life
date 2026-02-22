@@ -1,215 +1,210 @@
-"""
-experiment_energy_phase_diagram.py
-
-Generates a 2D Phase Diagram (chi_kappa vs L) of the Energy Deficit Bifurcation.
-Hypothesis: H_2026_02_08_EnergyPhase
-"High-chi_kappa patients enter the Energy Deficit Window at shorter L."
-
-"""
-
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from scipy.integrate import solve_bvp
+import sys
 import os
+from pathlib import Path
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+try:
+    import seaborn as sns
+except ImportError:
+    sns = None
 
-# Ensure outputs directories exist
-os.makedirs("outputs/thermodynamic_cost", exist_ok=True)
-os.makedirs("outputs/figures", exist_ok=True)
+# Ensure src is in path to import spinalmodes
+sys.path.append("src")
 
-# --- Parameters (matching experiment_energy_deficit_window.py) ---
+try:
+    from spinalmodes.iec import solve_beam_static
+except ImportError:
+    # Fallback if running from a different directory structure
+    repo_root = Path(__file__).parent.parent
+    sys.path.append(str(repo_root / "src"))
+    from spinalmodes.iec import solve_beam_static
+
+# ---------------------------------------------------------
+# Constants
+# ---------------------------------------------------------
+# Standard IEC Parameters (Physical Constants)
+E0 = 1.0e9  # Pa (1.0 GPa)
 RHO = 1100.0  # kg/m^3
-A_REF = 0.001 # m^2 (Reference area at L_REF)
-L_REF = 0.4   # m (Reference length for scaling)
-G = 9.81      # m/s^2
-E0 = 1.0e9    # Pa (1.0 GPa)
+G = 9.81  # m/s^2
+ETA_A = 1.0 # Efficiency factor for cost
 
-# IEC Parameters (Bimodal Gaussian Information Field)
-A_c = 0.5; s_c = 0.80; sigma_c = 0.08
-A_l = 0.7; s_l = 0.25; sigma_l = 0.10
-I_0 = 0.3
+# Geometric scaling
+A_REF = 0.001  # m^2 at L=0.4m
+L_REF = 0.4
 
-# Simulation Parameters
-ETA_A = 1.0
+# Information field parameters (Bimodal Gaussian)
+A_C = 0.5; S_C = 0.80; SIGMA_C = 0.08
+A_L = 0.7; S_L = 0.25; SIGMA_L = 0.10
 
-def solve_column(L, chi_kappa):
+def gaussian(s_norm, A, center, width):
+    """Compute Gaussian function."""
+    return A * np.exp(-((s_norm - center)**2) / (2 * width**2))
+
+def gaussian_grad(s_norm, A, center, width, L):
     """
-    Solves the beam equation for a column under gravity with intrinsic curvature.
-    Returns s_eval, theta_interp, kappa_interp.
+    Compute spatial gradient of Gaussian function d/ds.
+    I(s) = A * exp(-(s/L - c)^2 / 2w^2)
+    dI/ds = A * exp(...) * -(s/L - c)/w^2 * (1/L)
     """
+    term = -(s_norm - center) / (width**2)
+    val = gaussian(s_norm, A, center, width)
+    return val * term / L
 
-    # Isometric scaling: A scales with L^2
-    current_A = A_REF * (L / L_REF)**2
-    # I scales with A^2 (assuming circular scaling) => I ~ L^4
-    current_I = (current_A**2) / (4 * np.pi)
+def compute_energy_cost(L, chi):
+    """
+    Compute the thermodynamic cost P_counter for a given length L and coupling chi.
+    """
+    # Isometric Growth: A scales with L^2
+    A_cross = A_REF * (L / L_REF)**2
+    # Moment of Inertia I ~ A^2
+    I_moment = (A_cross**2) / (4 * np.pi)
 
-    s_eval = np.linspace(0, L, 100)
+    # Spatial grid
+    n_nodes = 100
+    s = np.linspace(0, L, n_nodes)
+    s_norm = s / L
 
-    def get_d2I_ds2(s):
-        s_norm = s / L
-        # Second derivative of Gaussian components
-        term_c = np.exp(-((s_norm - s_c)**2) / (2 * sigma_c**2)) * \
-                 ( ((s_norm - s_c)**2)/(sigma_c**4) - 1/(sigma_c**2) )
-        d2Ic_dsn2 = A_c * term_c
+    # Information Field Gradient (nabla I)
+    grad_I_c = gaussian_grad(s_norm, A_C, S_C, SIGMA_C, L)
+    grad_I_l = gaussian_grad(s_norm, A_L, S_L, SIGMA_L, L)
+    grad_I = grad_I_c + grad_I_l
 
-        term_l = np.exp(-((s_norm - s_l)**2) / (2 * sigma_l**2)) * \
-                 ( ((s_norm - s_l)**2)/(sigma_l**4) - 1/(sigma_l**2) )
-        d2Il_dsn2 = A_l * term_l
+    # Loads
+    q = RHO * A_cross * G
+    P_load = 0.0
 
-        return (d2Ic_dsn2 + d2Il_dsn2) / (L**2)
+    # Beam Properties
+    E_field = np.full_like(s, E0)
+    M_active = np.zeros_like(s)
 
-    def fun(s, y):
-        theta = y[0]
-        # theta_prime = y[1]
+    # IEC Equilibrium (Active)
+    kappa_target_IEC = chi * grad_I
+    theta_IEC, kappa_IEC = solve_beam_static(
+        s, kappa_target_IEC, E_field, M_active,
+        I_moment=I_moment, P_load=P_load, distributed_load=q
+    )
 
-        P_s = RHO * current_A * G * (L - s)
-        kappa_hat_prime = chi_kappa * get_d2I_ds2(s)
+    # Passive Equilibrium (Gravity only, chi=0 implicit for kappa_target)
+    kappa_target_passive = np.zeros_like(s)
+    theta_passive, kappa_passive = solve_beam_static(
+        s, kappa_target_passive, E_field, M_active,
+        I_moment=I_moment, P_load=P_load, distributed_load=q
+    )
 
-        # theta'' = kappa_hat' - (P(s)/EI) * theta
-        theta_double_prime = kappa_hat_prime - (P_s / (E0 * current_I)) * theta
+    # Thermodynamic Cost P_counter
+    # P_counter ~ eta_a * rho * A * g * L^2 * <|kappa_IEC - kappa_passive|^2>
+    kappa_diff_sq = (kappa_IEC - kappa_passive)**2
+    mean_kappa_diff_sq = np.mean(kappa_diff_sq)
+    P_counter = ETA_A * RHO * A_cross * G * (L**2) * mean_kappa_diff_sq
 
-        return np.vstack((y[1], theta_double_prime))
+    return P_counter
 
-    def bc(ya, yb):
-        # theta(0) = 0
-        # theta'(L) = kappa_hat(L)
+def compute_supply(L, S0, L0):
+    """Compute supply based on scaling law."""
+    return S0 * (L / L0)**0.5
 
-        # Calculate kappa_hat(L) = chi_kappa * dI/ds|L
-        s_norm_L = 1.0
-        dIc_dsn = A_c * np.exp(-((s_norm_L - s_c)**2) / (2 * sigma_c**2)) * (-(s_norm_L - s_c) / sigma_c**2)
-        dIl_dsn = A_l * np.exp(-((s_norm_L - s_l)**2) / (2 * sigma_l**2)) * (-(s_norm_L - s_l) / sigma_l**2)
-        dI_ds_L = (dIc_dsn + dIl_dsn) / L
-        kappa_hat_L = chi_kappa * dI_ds_L
+def run_experiment():
+    print("Starting Energy Phase Diagram Experiment (H_2026_02_08)...")
 
-        return np.array([ya[0], yb[1] - kappa_hat_L])
+    # Ensure output directories exist
+    Path("outputs/thermodynamic_cost").mkdir(parents=True, exist_ok=True)
+    Path("outputs/figures").mkdir(parents=True, exist_ok=True)
 
-    # Initial guess
-    y_guess = np.zeros((2, s_eval.size))
+    # Ranges for sweep
+    L_values = np.linspace(0.2, 0.6, 40)
+    chi_values = np.linspace(0.0, 0.2, 21)
 
-    sol = solve_bvp(fun, bc, s_eval, y_guess, max_nodes=1000)
+    # ---------------------------------------------------------
+    # 2. Compute Baseline Supply Curve
+    # ---------------------------------------------------------
+    chi_baseline = 0.05
+    L0 = 0.35
 
-    if not sol.success:
-        # Fallback or warning (usually converges for reasonable parameters)
-        pass
+    print(f"Computing Baseline Supply Curve (chi={chi_baseline}, L0={L0})...")
 
-    theta_interp = np.interp(s_eval, sol.x, sol.y[0])
-    kappa_interp = np.interp(s_eval, sol.x, sol.y[1])
+    # Calculate S0 (Cost at L0 for baseline chi)
+    S0 = compute_energy_cost(L0, chi_baseline)
+    print(f"Baseline Cost S0 at L={L0}m: {S0:.6f} Watts (normalized)")
 
-    return s_eval, theta_interp, kappa_interp
+    # ---------------------------------------------------------
+    # 3. Perform 2D Parameter Sweep
+    # ---------------------------------------------------------
+    print(f"Starting Sweep: {len(chi_values)} chi x {len(L_values)} L = {len(chi_values)*len(L_values)} points.")
 
-def main():
-    print("Starting Energy Phase Diagram simulation...")
+    results = []
 
-    # Grid Definition
-    L_steps = 50
-    chi_steps = 50
-    L_values = np.linspace(0.15, 0.65, L_steps)
-    chi_values = np.linspace(0.01, 20.0, chi_steps)
+    for chi in chi_values:
+        for L in L_values:
+            P_counter = compute_energy_cost(L, chi)
+            S_proprio = compute_supply(L, S0, L0)
+            deficit = P_counter - S_proprio
 
-    # Precompute Reference Supply S0
-    # Reference: L=0.35, chi_kappa=0.05
-    L_ref_supply = 0.35
-    chi_ref_supply = 0.05
-
-    # 1. Active (IEC) at ref
-    _, _, kappa_iec_ref = solve_column(L_ref_supply, chi_ref_supply)
-    # 2. Passive at ref (chi=0)
-    _, _, kappa_pass_ref = solve_column(L_ref_supply, 0.0)
-
-    current_A_ref = A_REF * (L_ref_supply / L_REF)**2
-    msd_kappa_ref = np.mean((kappa_iec_ref - kappa_pass_ref)**2)
-    S0 = ETA_A * RHO * current_A_ref * G * (L_ref_supply**2) * msd_kappa_ref
-
-    print(f"Reference Supply S0 computed at L={L_ref_supply}, chi={chi_ref_supply}: {S0:.2e}")
-
-    # Initialize data storage
-    X, Y = np.meshgrid(L_values, chi_values)
-    Z_deficit = np.zeros_like(X)
-
-    data_records = []
-
-    # Parameter Sweep
-    for i, chi in enumerate(chi_values):
-        for j, L in enumerate(L_values):
-            # Compute Demand (P_counter)
-            current_A = A_REF * (L / L_REF)**2
-
-            # Active
-            _, _, kappa_iec = solve_column(L, chi)
-            # Passive
-            _, _, kappa_pass = solve_column(L, 0.0)
-
-            msd_kappa = np.mean((kappa_iec - kappa_pass)**2)
-            P_counter = ETA_A * RHO * current_A * G * (L**2) * msd_kappa
-
-            # Compute Supply
-            # S(L) = S0 * (L / L_ref_supply)^2
-            Supply = S0 * (L / L_ref_supply)**2
-
-            Deficit = P_counter - Supply
-            Z_deficit[i, j] = Deficit
-
-            data_records.append({
+            results.append({
                 "chi_kappa": chi,
                 "L": L,
                 "P_counter": P_counter,
-                "Supply": Supply,
-                "Deficit": Deficit
+                "S_proprio": S_proprio,
+                "Deficit": deficit,
+                "Is_Deficit": deficit > 0
             })
 
-        if (i+1) % 10 == 0:
-            print(f"Computed row {i+1}/{chi_steps} (chi_kappa={chi:.2f})")
+    df = pd.DataFrame(results)
 
     # Save Data
-    df = pd.DataFrame(data_records)
-    output_csv = "outputs/thermodynamic_cost/energy_phase_diagram.csv"
-    df.to_csv(output_csv, index=False)
-    print(f"Results saved to {output_csv}")
+    csv_path = Path("outputs/thermodynamic_cost/energy_phase_data.csv")
+    df.to_csv(csv_path, index=False)
+    print(f"Saved Data to {csv_path}")
 
-    # Plotting
+    # ---------------------------------------------------------
+    # 4. Visualization (Phase Diagram)
+    # ---------------------------------------------------------
+    # Pivot for Heatmap
+    pivot_table = df.pivot(index="chi_kappa", columns="L", values="Deficit")
+
+    # Flip y-axis so high chi is at top
+    pivot_table = pivot_table.sort_index(ascending=False)
+
     plt.figure(figsize=(10, 8))
 
-    # Heatmap
-    # Use pcolormesh for proper grid alignment
-    # Norm: centered at 0 with diverging colormap
+    if sns:
+        ax = sns.heatmap(
+            pivot_table,
+            cmap="RdBu_r",
+            center=0,
+            cbar_kws={'label': r'Energy Deficit ($P_{counter} - S_{proprio}$)'}
+        )
 
-    vmin = -np.max(np.abs(Z_deficit))
-    vmax = np.max(np.abs(Z_deficit))
+        xticks = ax.get_xticks()
 
-    # Cap the color range to visualize the transition better?
-    # Or just use symmetric log if values span orders of magnitude?
-    # P_counter scales significantly. Deficit can be large.
-    # Let's use a symmetric linear scale but clamped if needed, or just standard.
-    # The bifurcation is at 0.
+        n_ticks_x = 10
+        x_indices = np.linspace(0, len(pivot_table.columns)-1, n_ticks_x, dtype=int)
+        ax.set_xticks(x_indices + 0.5)
+        ax.set_xticklabels([f"{pivot_table.columns[i]:.2f}" for i in x_indices], rotation=0)
 
-    plt.pcolormesh(X, Y, Z_deficit, cmap='RdBu_r', vmin=-1e-4, vmax=1e-4, shading='auto')
-    # Note: vmin/vmax likely need adjustment based on S0 magnitude.
-    # S0 is likely small. Let's auto-scale or use percentiles, but 0 must be white.
-    # Re-plotting with dynamic limits centered at 0.
+        n_ticks_y = 10
+        y_indices = np.linspace(0, len(pivot_table.index)-1, n_ticks_y, dtype=int)
+        ax.set_yticks(y_indices + 0.5)
+        ax.set_yticklabels([f"{pivot_table.index[i]:.2f}" for i in y_indices], rotation=0)
 
-    max_val = np.max(np.abs(Z_deficit))
-    # We want to highlight the zero crossing.
+    else:
+        pivot_imshow = df.pivot(index="chi_kappa", columns="L", values="Deficit")
+        plt.imshow(
+            pivot_imshow,
+            aspect='auto',
+            extent=[L_values.min(), L_values.max(), chi_values.min(), chi_values.max()],
+            cmap="RdBu_r",
+            origin='lower'
+        )
+        plt.colorbar(label=r'Energy Deficit ($P_{counter} - S_{proprio}$)')
 
-    pcm = plt.pcolormesh(X, Y, Z_deficit, cmap='RdBu_r',
-                         vmin=-max_val/2, vmax=max_val/2, shading='auto')
+    plt.title("Energy Deficit Phase Diagram")
+    plt.xlabel("Spine Length L (m)")
+    plt.ylabel(r"Coupling Strength $\chi_\kappa$")
 
-    plt.colorbar(pcm, label='Energy Deficit (J/m?)')
-
-    # Zero Contour (Bifurcation Line)
-    CS = plt.contour(X, Y, Z_deficit, levels=[0], colors='k', linewidths=2, linestyles='--')
-    plt.clabel(CS, inline=True, fontsize=10, fmt='Bifurcation')
-
-    plt.xlabel('Spinal Length L (m)', fontsize=12)
-    plt.ylabel(r'Coupling Strength $\chi_\kappa$', fontsize=12)
-    plt.title('Energy Deficit Phase Diagram', fontsize=14)
-
-    plt.text(0.2, 15, "Vulnerability Zone\n(Deficit > 0)", color='red', fontsize=12, fontweight='bold')
-    plt.text(0.5, 2, "Safe Zone\n(Surplus)", color='blue', fontsize=12, fontweight='bold')
-
-    plt.tight_layout()
-    output_png = "outputs/figures/energy_phase_diagram.png"
-    plt.savefig(output_png, dpi=300)
-    print(f"Figure saved to {output_png}")
+    fig_path = Path("outputs/figures/energy_phase_diagram.png")
+    plt.savefig(fig_path, dpi=300)
+    print(f"Saved Figure to {fig_path}")
 
 if __name__ == "__main__":
-    main()
+    run_experiment()

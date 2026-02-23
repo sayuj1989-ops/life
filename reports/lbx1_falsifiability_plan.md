@@ -1,69 +1,34 @@
-# LBX1 Falsifiability Plan: The "Disordered Mechanogating" Hypothesis
+# LBX1 Falsifiability Package
+**Target**: LBX1 (Transcription Factor, Scoliosis Driver)
+**Hypothesis**: LBX1 acts as a **nuclear mechanosensor** where mechanical stress alters its phase behavior (solubility/binding), coupling spinal growth forces to proprioceptive gene expression.
 
-**Date**: 2026-02-22
-**Status**: Proposed
-**Context**: Structural analysis reveals LBX1 is not a rigid "tension rod" (Anisotropy 2.27, Confidence 0.26) but a "blocky scaffold" (Blockiness 7.35) with high intrinsic disorder. This suggests it acts as a "soft sensor" or "phase separator" rather than a force transmitter.
+## Experiment 1: Nuclear Stiffness Rescue
+**Hypothesis**: LBX1 dysfunction leads to nuclear softening (via Lamin A/C downregulation or chromatin de-compaction), making proprioceptive neurons hypersensitive to noise.
+**Design**:
+1.  **Model**: LBX1-knockout or mutant iPSC-derived proprioceptive neurons.
+2.  **Intervention**: Overexpress Lamin A (LMNA) to artificially stiffen the nucleus.
+3.  **Readout**: neuronal firing rate / adaptation under mechanical ramp stimulation.
+**Expected Result**: LBX1-KO neurons are hypersensitive/unstable. LMNA overexpression restores normal firing thresholds.
+**Falsification Threshold**: If LMNA overexpression has **no effect** on the firing instability of LBX1-KO neurons, then LBX1's mechanism is **not** mediated by nuclear stiffness.
 
----
+## Experiment 2: Strain-Dependent Translocation
+**Hypothesis**: LBX1 nuclear entry or chromatin binding is gated by mechanical strain on the nucleus (e.g., via nuclear pore opening or phase solubility).
+**Design**:
+1.  **Model**: Wild-type proprioceptive neurons on a stretchable substrate (10% cyclic strain).
+2.  **Tag**: Endogenous GFP-tagged LBX1.
+3.  **Readout**: Ratio of Nuclear vs. Cytoplasmic fluorescence intensity under Static vs. Strained conditions.
+**Expected Result**: Strain increases Nuclear/Cytoplasmic ratio (mechanically gated entry).
+**Falsification Threshold**: If the Nuclear/Cytoplasmic ratio is **unchanged** (< 10% diff) between static and strained conditions, LBX1 is **not** a direct mechanosensor.
 
-## Core Hypothesis: Disordered Nuclear Mechanogating
-**Statement**: LBX1 nuclear translocation and chromatin binding are strictly regulated by cytoskeletal tension. The high intrinsic disorder (IDR) of LBX1 prevents nuclear import in relaxed (low-tension) cells, effectively silencing it in atrophic or unloaded paraspinal muscles.
+## Experiment 3: IDR Phase Disruption
+**Hypothesis**: LBX1 transcriptional activity relies on Intrinsically Disordered Region (IDR) driven phase separation (condensates) at super-enhancers.
+**Design**:
+1.  **Model**: Wild-type proprioceptive neurons.
+2.  **Intervention**: Treat with 1,6-hexanediol (dissolves liquid-liquid phase separated droplets) at non-toxic concentrations.
+3.  **Readout**: Expression levels of LBX1 target genes (e.g., mechanosensory channels).
+**Expected Result**: 1,6-hexanediol treatment mimics the LBX1-KO transcriptional phenotype (downregulation of targets).
+**Falsification Threshold**: If 1,6-hexanediol has **no specific effect** on LBX1 targets compared to housekeeping genes, then the **Phase Separation hypothesis is falsified** (LBX1 acts as a standard lock-and-key factor).
 
-**Falsifiability Criteria**: If LBX1 nuclear localization is constitutive (independent of substrate stiffness or cell tension), the hypothesis is false.
-
----
-
-## Experiment 1: Stiffness-Dependent Nuclear Translocation
-**Objective**: Determine if substrate stiffness gates LBX1 nuclear entry.
-
-*   **Model**: C2C12 Myoblasts (murine).
-*   **Conditions**:
-    1.  **Soft Hydrogel (0.5 kPa)**: Mimics atrophic/unloaded muscle.
-    2.  **Stiff Hydrogel (40 kPa)**: Mimics healthy/loaded muscle.
-    3.  **Control**: Glass coverslips (>1 GPa).
-*   **Method**: Immunofluorescence staining for LBX1 and YAP1 (positive control).
-*   **Readout**: Nuclear-to-Cytoplasmic (N/C) fluorescence intensity ratio.
-*   **Expected Result**:
-    *   **Soft**: Low LBX1 N/C ratio (< 1.0).
-    *   **Stiff**: High LBX1 N/C ratio (> 1.5).
-*   **Falsification Threshold**:
-    *   If LBX1 N/C ratio is statistically indistinguishable between Soft and Stiff conditions (p > 0.05).
-    *   If LBX1 is nuclear in Soft conditions.
-
----
-
-## Experiment 2: Force-Dependent Chromatin Binding (Stretch-ChIP)
-**Objective**: Test if mechanical stretch is required for LBX1 to bind its target genes.
-
-*   **Model**: Primary human paraspinal myotubes cultured on flexible silicone membranes.
-*   **Conditions**:
-    1.  **Static**: No stretch.
-    2.  **Cyclic Stretch**: 10% strain, 0.5 Hz for 24 hours.
-*   **Method**: ChIP-seq for LBX1.
-*   **Readout**: Peak enrichment at known AIS susceptibility loci (e.g., *GPR126*, *PAX1*).
-*   **Expected Result**: Significant (>2-fold) increase in peak height/number under Cyclic Stretch.
-*   **Falsification Threshold**:
-    *   If LBX1 binding profiles are identical between Static and Stretch.
-    *   If LBX1 binds targets strongly in Static conditions (suggesting constitutive activity).
-
----
-
-## Experiment 3: Rescue by Rigidification (Mutant Analysis)
-**Objective**: Prove that the *intrinsic disorder* is the sensor.
-
-*   **Design**: Construct a "Rigid-LBX1" mutant where the disordered linker regions are replaced by rigid alpha-helical spacers (e.g., EAAAK repeats), preserving the Homeobox DNA-binding domain.
-*   **Model**: C2C12 cells on Soft Hydrogels (0.5 kPa).
-*   **Method**: Transfect WT-LBX1 vs Rigid-LBX1. Measure myogenic differentiation (MYOD1 expression) which usually fails on soft matrices.
-*   **Hypothesis**: The disorder "collapses" in low tension, blocking import. The Rigid mutant cannot collapse, so it should bypass the checkpoint.
-*   **Readout**: % Myogenin-positive cells.
-*   **Expected Result**:
-    *   **WT-LBX1 on Soft**: Low differentiation.
-    *   **Rigid-LBX1 on Soft**: High differentiation (Rescue).
-*   **Falsification Threshold**:
-    *   If Rigid-LBX1 fails to rescue differentiation on soft matrices.
-    *   If Rigid-LBX1 localization mimics WT-LBX1.
-
----
-
-## Conclusion
-These experiments move the Biological Countercurvature hypothesis from "correlation" (LBX1 is mutated in AIS) to "mechanism" (LBX1 is a tension sensor). The failure of any of these tests would force a pivot back to purely biochemical or developmental explanations for LBX1's role.
+## Priority
+Start with **Experiment 3** (Chemical probe) as it is the fastest to execute in cell culture.
+Follow with **Experiment 2** (Imaging) if Expt 3 suggests phase behavior.

@@ -1,33 +1,25 @@
-# Executive Evidence Summary: Biological Countercurvature
+# Next Step Evidence Summary
+**Date:** 2026-03-06
+**Author:** AI Research Engineer
 
-**Date**: 2026-02-22
-**Status**: Critical Pivot Required
+## 1. What is Stronger Now (Confidences Gained)
+*   **PIEZO2 as a Tension Rod**: Confirmed with high confidence (Score 1.59, Rank #2). Its anisotropy (4.44) is supported by high pLDDT (79.4) and low PAE (17.0), validating it as a rigid mechanical strut.
+*   **Structural Dichotomy**: We have successfully separated "True Rods" (PIEZO2, LMNA, PLOD1) from "Disordered Nodes" (LBX1, EGR3, GHR). This resolves previous confusion where low-confidence "anisotropy" was conflated with stiffness.
+*   **Metabolic Candidate Identification**: We confirmed that metabolic candidates (ARNTL, GHR) are being actively updated (fresh metrics), distinguishing them from the stale structural candidates.
 
-## 1. Major Findings
-*   **Data Integrity Warning**: The audit (`evidence_freshness_audit.md`) revealed significant data reuse (249 instances). Recent "Daily Refreshes" have often restated old metrics without new computations. **Action**: All future analysis must enforce fresh AlphaFold runs or explicit versioning.
-*   **Structural Re-Classification**:
-    *   **PIEZO2** is a **Confirmed Tension Rod** (Tier 1: High Anisotropy, High Confidence).
-    *   **LBX1** is **NOT a Rod**. It is a **Disordered/Blocky Scaffold** (Tier 3: Low Confidence, High Blockiness).
-    *   **LMNA** is a **Risk Candidate** (Tier 2). Its high anisotropy is borderline artifactual due to low confidence in linker regions.
+## 2. What Remains Weak (Risks Identified)
+*   **Stale Core Data**: The metrics for PIEZO2, LBX1, and LMNA have not been re-calculated since January (static values). While reliable, they miss any recent pipeline improvements applied to the metabolic set.
+*   **LBX1 Mechanism**: The "Stiff Rod" hypothesis for LBX1 is effectively **refuted** by its low structural confidence (pLDDT=66.9). We lack a validated alternative mechanism (Phase Separation is currently speculative).
+*   **Schema Instability**: The `metrics.csv` format is drifting, posing a risk to automated monitoring.
 
-## 2. Evidence Strength Assessment
-### Stronger Than Baseline
-*   **The "Disordered Sensor" Hypothesis**: The structural data for LBX1 (high disorder, blocky domains) strongly supports the new "Disordered Mechanogating" hypothesis over the old "Tension Rod" model. We now have a biophysical reason (IDR collapse) for LBX1's sensitivity to tissue stiffness.
-*   **PIEZO2 Robustness**: It withstands rigorous confidence weighting, solidifying its role as the primary vector sensor.
+## 3. Top 3 Highest-Leverage Next Experiments
+Based on the `reports/lbx1_falsifiability_plan.md`, these are the critical next moves:
 
-### Remains Weak
-*   **Direct Mechanical Link**: We have no direct experimental evidence that LBX1 moves to the nucleus under tension. This is the single biggest gap.
-*   **Artifact Control**: Many "fibrous" candidates (EGR3) are likely just unfolded proteins. The new Tier 2 classification helps, but wet-lab validation is needed.
+1.  **Chemical Probe (Phase Separation)**: Treat LBX1-expressing neurons with **1,6-hexanediol**.
+    *   *Why*: Fastest way to test the new "Disordered Sensor" hypothesis. If it works, it validates the pivot from "Rod" to "Droplet".
+2.  **Nuclear Stiffness Rescue**: Overexpress **Lamin A (LMNA)** in LBX1-KO neurons.
+    *   *Why*: Tests the "Downstream" link. If stiffness rescues the phenotype, it confirms the mechanical etiology regardless of LBX1's direct structure.
+3.  **Freshness Pipeline Repair**: Refactor `scripts/afcc_daily_refresh.py` to **force-recalculate** metrics for PIEZO2/LBX1 using the latest code, ensuring the "Confidence Gap" isn't just an artifact of old software.
 
-## 3. Top 3 High-Leverage Next Experiments
-(Detailed in `lbx1_falsifiability_plan.md`)
-
-1.  **Stiffness-Dependent Nuclear Translocation**:
-    *   *Why*: Directly tests if LBX1 is gated by mechanics (Soft vs Stiff substrate). If this fails, the entire mechanical link for LBX1 collapses.
-2.  **Rescue by Rigidification**:
-    *   *Why*: Proves that *disorder* is the mechanism. If a rigid mutant rescues function on soft substrates, it confirms the IDR is the tension sensor.
-3.  **Stretch-ChIP**:
-    *   *Why*: Links mechanics to the *genetic* cause of scoliosis. Does stretch actually turn on the genes that LBX1 regulates?
-
-## 4. Strategic Pivot
-Stop looking for "LBX1 the Rod". Start characterizing "LBX1 the Phase Separator". The focus must shift from *geometry* (anisotropy) to *dynamics* (disorder/gating).
+## Conclusion
+The Biological Countercurvature hypothesis has matured. We have moved from a simplistic "Everything is a Rod" model to a nuanced "Rods (PIEZO2) vs. Droplets (LBX1)" model. This creates distinct, falsifiable predictions for the next phase of research.

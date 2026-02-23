@@ -1,0 +1,518 @@
+Starting Evidence Freshness Audit...
+Found 27 metrics files.
+⚠ Schema Drift detected on 2026-01-09 vs 2026-01-07
+   Differences: {'plddt_fraction_high', 'disorder_fraction', 'disorder_fraction_proxy', 'predicted_domain_segments', 'anisotropy', 'likely_IDR_heavy', 'PAE_domain_blockiness_score', 'exposed_fraction', 'pae_mean', 'pae_blockiness', 'lambda_min', 'PAE_mean', 'anisotropy_index', 'plddt_fraction_low', 'mean_plddt', 'lambda_max', 'backbone_principal_axis', 'plddt_mean', 'plddt_median', 'lambda_mid', 'anisotropy_ratio', 'exposed_surface_proxy', 'plddt_fraction_ok', 'likely_idr_heavy', 'fraction_low_plddt'}
+⚠ Schema Drift detected on 2026-02-21 vs 2026-02-20
+   Differences: {'source_category', 'plddt_fraction_high', 'species', 'uniprot_id', 'uniprot', 'pLDDT_fraction_high', 'plddt_fraction_low', 'n_residues', 'length', 'pLDDT_mean', 'plddt_mean', 'plddt_median', 'dise_score', 'plddt_fraction_ok', 'pLDDT_fraction_low'}
+⚠ Schema Drift detected on 2026-02-22 vs 2026-02-21
+   Differences: {'plddt_fraction_ok', 'plddt_fraction_high', 'species', 'plddt_fraction_low', 'n_residues', 'organism', 'length', 'pLDDT_fraction_low', 'pLDDT_mean', 'plddt_mean', 'plddt_median', 'pLDDT_fraction_high', 'priority_score'}
+⚠ Schema Drift detected on 2026-02-23 vs 2026-02-22
+   Differences: {'plddt_fraction_high', 'species', 'pLDDT_fraction_high', 'plddt_fraction_low', 'n_residues', 'organism', 'length', 'pLDDT_mean', 'plddt_mean', 'plddt_median', 'plddt_fraction_ok', 'priority_score', 'pLDDT_fraction_low'}
+⚠ Schema Drift detected on manual_metabolic_update vs 2026-02-23
+   Differences: {'source_category', 'plddt_fraction_ok', 'plddt_fraction_high', 'uniprot_id', 'species', 'uniprot', 'plddt_fraction_low', 'n_residues', 'length', 'pLDDT_fraction_low', 'pLDDT_mean', 'plddt_mean', 'plddt_median', 'dise_score', 'pLDDT_fraction_high'}
+
+--- Static Value Analysis ---
+
+Gene: PIEZO2 (Found in 22 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-01-14: No common metrics to compare.
+  2026-01-14 -> 2026-01-16: No common metrics to compare.
+  2026-01-16 -> 2026-01-18: No common metrics to compare.
+  2026-01-18 -> 2026-01-20: No common metrics to compare.
+  2026-01-20 -> 2026-01-21: No common metrics to compare.
+  2026-01-21 -> 2026-01-27: No common metrics to compare.
+  2026-01-27 -> 2026-01-31: No common metrics to compare.
+  2026-01-31 -> 2026-02-05: No common metrics to compare.
+  2026-02-05 -> 2026-02-06: No common metrics to compare.
+  2026-02-06 -> 2026-02-07: No common metrics to compare.
+  2026-02-07 -> 2026-02-08: No common metrics to compare.
+  2026-02-08 -> 2026-02-09: No common metrics to compare.
+  2026-02-09 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-16: No common metrics to compare.
+  2026-02-16 -> 2026-02-18: No common metrics to compare.
+  2026-02-18 -> 2026-02-20: No common metrics to compare.
+  2026-02-20 -> 2026-02-22: No common metrics to compare.
+  2026-02-22 -> 2026-02-23: No common metrics to compare.
+
+Gene: LBX1 (Found in 22 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-01-14: No common metrics to compare.
+  2026-01-14 -> 2026-01-18: No common metrics to compare.
+  2026-01-18 -> 2026-01-20: No common metrics to compare.
+  2026-01-20 -> 2026-01-21: No common metrics to compare.
+  2026-01-21 -> 2026-01-27: No common metrics to compare.
+  2026-01-27 -> 2026-01-31: No common metrics to compare.
+  2026-01-31 -> 2026-02-05: No common metrics to compare.
+  2026-02-05 -> 2026-02-06: No common metrics to compare.
+  2026-02-06 -> 2026-02-07: No common metrics to compare.
+  2026-02-07 -> 2026-02-08: No common metrics to compare.
+  2026-02-08 -> 2026-02-09: No common metrics to compare.
+  2026-02-09 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-11: No common metrics to compare.
+  2026-02-11 -> 2026-02-12: No common metrics to compare.
+  2026-02-12 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-16: No common metrics to compare.
+  2026-02-16 -> 2026-02-18: No common metrics to compare.
+  2026-02-18 -> 2026-02-22: No common metrics to compare.
+  2026-02-22 -> 2026-02-23: No common metrics to compare.
+
+Gene: YAP1 (Found in 9 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-01-14: No common metrics to compare.
+  2026-01-14 -> 2026-01-16: No common metrics to compare.
+  2026-01-16 -> 2026-01-21: No common metrics to compare.
+  2026-01-21 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-18: No common metrics to compare.
+
+Gene: POC5 (Found in 10 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-01-14: No common metrics to compare.
+  2026-01-14 -> 2026-01-18: No common metrics to compare.
+  2026-01-18 -> 2026-01-21: No common metrics to compare.
+  2026-01-21 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-16: No common metrics to compare.
+  2026-02-16 -> 2026-02-18: No common metrics to compare.
+
+Gene: WWTR1 (Found in 5 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+
+Gene: ADGRG6 (Found in 6 runs)
+  2026-01-06 -> 2026-01-07: No common metrics to compare.
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-16: No common metrics to compare.
+
+Gene: TBX6 (Found in 2 runs)
+  2026-01-06 -> 2026-02-10: No common metrics to compare.
+
+Gene: VANGL1 (Found in 2 runs)
+  2026-01-06 -> 2026-02-10: No common metrics to compare.
+
+Gene: PTK7 (Found in 2 runs)
+  2026-01-06 -> 2026-02-10: No common metrics to compare.
+
+Gene: COL2A1 (Found in 2 runs)
+  2026-01-06 -> 2026-02-10: No common metrics to compare.
+
+Gene: ITGB1 (Found in 8 runs)
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-01-14: No common metrics to compare.
+  2026-01-14 -> 2026-01-18: No common metrics to compare.
+  2026-01-18 -> 2026-01-21: No common metrics to compare.
+  2026-01-21 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-13: No common metrics to compare.
+  2026-02-13 -> 2026-02-18: No common metrics to compare.
+
+Gene: MESP2 (Found in 4 runs)
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-02-10: No common metrics to compare.
+  2026-02-10 -> 2026-02-16: No common metrics to compare.
+
+Gene: FLNB (Found in 3 runs)
+  2026-01-07 -> 2026-01-09: No common metrics to compare.
+  2026-01-09 -> 2026-02-10: No common metrics to compare.
+
+Gene: IFT88 (Found in 8 runs)
+  ⚠ 2026-01-14 -> 2026-01-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-18 -> 2026-01-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-20 -> 2026-01-21: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-21 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: IFT88 data is completely static across all observed transitions.
+
+Gene: PIEZO1 (Found in 11 runs)
+  ✅ 2026-01-14 -> 2026-01-16: Metrics changed
+  ✅ 2026-01-16 -> 2026-01-18: Metrics changed
+  ⚠ 2026-01-18 -> 2026-01-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-20 -> 2026-01-21: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-21 -> 2026-01-27: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+
+Gene: LMNA (Found in 12 runs)
+  ⚠ 2026-01-14 -> 2026-01-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-18 -> 2026-01-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-20 -> 2026-01-21: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-21 -> 2026-01-27: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: LMNA data is completely static across all observed transitions.
+
+Gene: METTL3 (Found in 4 runs)
+  ⚠ 2026-01-14 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: METTL3 data is completely static across all observed transitions.
+
+Gene: NF1 (Found in 11 runs)
+  ⚠ 2026-01-18 -> 2026-01-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-20 -> 2026-01-21: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-21 -> 2026-01-27: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: NF1 data is completely static across all observed transitions.
+
+Gene: COL1A1 (Found in 5 runs)
+  ⚠ 2026-01-18 -> 2026-01-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-20 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: COL1A1 data is completely static across all observed transitions.
+
+Gene: FLNA (Found in 4 runs)
+  ⚠ 2026-01-20 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: FLNA data is completely static across all observed transitions.
+
+Gene: CEP290 (Found in 4 runs)
+  ⚠ 2026-01-20 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CEP290 data is completely static across all observed transitions.
+
+Gene: NTRK3 (Found in 16 runs)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-09: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-20 -> 2026-02-22: Identical metrics (Potential Reuse)
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+
+Gene: RUNX3 (Found in 13 runs)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-09: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: RUNX3 data is completely static across all observed transitions.
+
+Gene: OTOP1 (Found in 9 runs)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: OTOP1 data is completely static across all observed transitions.
+
+Gene: EGR3 (Found in 9 runs)
+  ⚠ 2026-01-27 -> 2026-01-31: Identical metrics (Potential Reuse)
+  ⚠ 2026-01-31 -> 2026-02-05: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-08: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-08 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: EGR3 data is completely static across all observed transitions.
+
+Gene: PLOD1 (Found in 6 runs)
+  ⚠ 2026-02-05 -> 2026-02-06: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-06 -> 2026-02-07: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-07 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: PLOD1 data is completely static across all observed transitions.
+
+Gene: ARNTL (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: DMD (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: GHR (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: IGF1R (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: PPARGC1A (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: MYLK (Found in 13 runs)
+  ⚠ 2026-02-09 -> 2026-02-10: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-10 -> 2026-02-11: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-17: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+  ✅ 2026-02-23 -> manual_metabolic_update: Metrics changed
+
+Gene: TGFBR2 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: TGFBR2 data is completely static across all observed transitions.
+
+Gene: MYO7A (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: MYO7A data is completely static across all observed transitions.
+
+Gene: CDH23 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CDH23 data is completely static across all observed transitions.
+
+Gene: FBN2 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: FBN2 data is completely static across all observed transitions.
+
+Gene: SERPINH1 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: SERPINH1 data is completely static across all observed transitions.
+
+Gene: CCDC57 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CCDC57 data is completely static across all observed transitions.
+
+Gene: ETV1 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: ETV1 data is completely static across all observed transitions.
+
+Gene: EMD (Found in 4 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: EMD data is completely static across all observed transitions.
+
+Gene: ROR2 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: ROR2 data is completely static across all observed transitions.
+
+Gene: FERMT2 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: FERMT2 data is completely static across all observed transitions.
+
+Gene: TGFBR1 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: TGFBR1 data is completely static across all observed transitions.
+
+Gene: SMAD3 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: SMAD3 data is completely static across all observed transitions.
+
+Gene: ACAN (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: ACAN data is completely static across all observed transitions.
+
+Gene: CCDC40 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CCDC40 data is completely static across all observed transitions.
+
+Gene: KIF7 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: KIF7 data is completely static across all observed transitions.
+
+Gene: KIF3A (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: KIF3A data is completely static across all observed transitions.
+
+Gene: SYNE2 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: SYNE2 data is completely static across all observed transitions.
+
+Gene: DZIP1 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: DZIP1 data is completely static across all observed transitions.
+
+Gene: RPL38 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: RPL38 data is completely static across all observed transitions.
+
+Gene: SUN1 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: SUN1 data is completely static across all observed transitions.
+
+Gene: BNC2 (Found in 3 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-16 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: BNC2 data is completely static across all observed transitions.
+
+Gene: TLN1 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-13: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: TLN1 data is completely static across all observed transitions.
+
+Gene: FBLN5 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: FBLN5 data is completely static across all observed transitions.
+
+Gene: COL11A2 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: COL11A2 data is completely static across all observed transitions.
+
+Gene: SSPOP (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: SSPOP data is completely static across all observed transitions.
+
+Gene: STOML3 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: STOML3 data is completely static across all observed transitions.
+
+Gene: PANX3 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: PANX3 data is completely static across all observed transitions.
+
+Gene: GDF5 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: GDF5 data is completely static across all observed transitions.
+
+Gene: ROCK1 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: ROCK1 data is completely static across all observed transitions.
+
+Gene: AQP4 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: AQP4 data is completely static across all observed transitions.
+
+Gene: CNNM2 (Found in 2 runs)
+  ⚠ 2026-02-10 -> 2026-02-16: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CNNM2 data is completely static across all observed transitions.
+
+Gene: HIF1A (Found in 4 runs)
+  ⚠ 2026-02-11 -> 2026-02-12: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-12 -> 2026-02-13: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: HIF1A data is completely static across all observed transitions.
+
+Gene: NR1D1 (Found in 2 runs)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: NR1D1 data is completely static across all observed transitions.
+
+Gene: TEAD1 (Found in 2 runs)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: TEAD1 data is completely static across all observed transitions.
+
+Gene: CLOCK (Found in 2 runs)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: CLOCK data is completely static across all observed transitions.
+
+Gene: COL1A2 (Found in 2 runs)
+  ⚠ 2026-02-13 -> 2026-02-18: Identical metrics (Potential Reuse)
+  🔴 CRITICAL: COL1A2 data is completely static across all observed transitions.
+
+Gene: DAG1 (Found in 6 runs)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed
+  ✅ 2026-02-21 -> 2026-02-22: Metrics changed
+  ✅ 2026-02-22 -> 2026-02-23: Metrics changed
+
+Gene: ALPL (Found in 3 runs)
+  ⚠ 2026-02-17 -> 2026-02-18: Identical metrics (Potential Reuse)
+  ✅ 2026-02-18 -> 2026-02-21: Metrics changed
+
+Gene: ACVR1 (Found in 3 runs)
+  ⚠ 2026-02-18 -> 2026-02-20: Identical metrics (Potential Reuse)
+  ✅ 2026-02-20 -> 2026-02-21: Metrics changed

@@ -266,6 +266,13 @@ class CounterCurvatureRodSystem:
       Therefore, kappa[0] (d1 curvature) corresponds to Lateral Curvature (Scoliosis).
     - Binormal (d2) aligns with -X-axis. Bending about d2 is in Y-Z plane (Sagittal Bending).
       Therefore, kappa[1] (d2 curvature) corresponds to Sagittal Curvature (Kyphosis/Lordosis).
+
+    Units:
+    - Length: meters (m)
+    - Time: seconds (s)
+    - Mass: kilograms (kg)
+    - Force: Newtons (N)
+    - Stiffness: Pascals (Pa)
     """
     def __init__(
         self,

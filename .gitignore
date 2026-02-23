@@ -49,6 +49,7 @@ outputs/tests/
 outputs/temp/
 outputs/sim/
 outputs/methodology/
+outputs/protein_physics/
 !outputs/.gitkeep
 results/
 logs/

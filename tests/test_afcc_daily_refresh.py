@@ -1,91 +1,77 @@
 import os
 import pandas as pd
 import pytest
+from unittest.mock import patch, MagicMock
 from pathlib import Path
 import datetime
 
+# Import the module to be tested
+# Ensure sys.path is correct for import
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../scripts')))
 import afcc_daily_refresh
 
-def test_prepare_inputs(tmp_path):
-    # Mock paths in the module
-    original_data_processed = afcc_daily_refresh.DATA_PROCESSED
-    afcc_daily_refresh.DATA_PROCESSED = tmp_path / "processed"
-    afcc_daily_refresh.DATA_PROCESSED.mkdir()
+def test_get_top_candidates(tmp_path):
+    # Create a dummy candidates file
+    candidates_file = tmp_path / "candidates_master.csv"
+    data = {
+        'gene_symbol': ['GENE1', 'GENE2', 'GENE3'],
+        'uniprot_id': ['P1', 'P2', 'P3'],
+        'priority_score': [10, 30, 20],
+        'organism': ['Human', 'Human', 'Human']
+    }
+    df = pd.DataFrame(data)
+    df.to_csv(candidates_file, index=False)
 
-    try:
-        # Create dummy candidates df
-        data = {
-            'gene_symbol': ['GENE1', 'GENE2'],
-            'uniprot_id': ['P12345', 'Q67890'],
-            'pathway_tags': ['Path1', 'Path2'],
-            'priority_score': [90, 80],
-            'justification': ['Just1', 'Just2']
-        }
-        df = pd.DataFrame(data)
+    # Test
+    top_df = afcc_daily_refresh.get_top_candidates(n=2, filepath=str(candidates_file))
 
-        # Run prepare_inputs
-        afcc_daily_refresh.prepare_inputs(df)
+    assert len(top_df) == 2
+    assert top_df.iloc[0]['gene_symbol'] == 'GENE2'  # Highest score
+    assert top_df.iloc[1]['gene_symbol'] == 'GENE3'  # Second highest
 
-        # Check uniprot_mapping.csv
-        mapping_path = afcc_daily_refresh.DATA_PROCESSED / "uniprot_mapping.csv"
-        assert mapping_path.exists()
-        mapping_df = pd.read_csv(mapping_path)
-        assert 'gene_symbol' in mapping_df.columns
-        assert 'uniprot_accession' in mapping_df.columns
-        assert len(mapping_df) == 2
-        assert mapping_df.iloc[0]['uniprot_accession'] == 'P12345'
+def test_generate_summary():
+    # Create dummy results df
+    data = {
+        'gene_symbol': ['GENE1', 'GENE2'],
+        'anisotropy_index': [5.0, 1.5],
+        'plddt_mean': [80.0, 60.0],
+        'morphology': ['Fibrous', 'Globular']
+    }
+    df = pd.DataFrame(data)
+    today_str = "2023-01-01"
 
-        # Check candidates.csv
-        cand_path = afcc_daily_refresh.DATA_PROCESSED / "candidates.csv"
-        assert cand_path.exists()
-        cand_df = pd.read_csv(cand_path)
-        assert 'gene_symbol' in cand_df.columns
-        assert 'source' in cand_df.columns
-        assert 'total_score' in cand_df.columns
-        assert cand_df.iloc[0]['source'] == 'Path1'
-        assert cand_df.iloc[0]['total_score'] == 90
+    summary = afcc_daily_refresh.generate_summary(df, [], today_str)
 
-    finally:
-        afcc_daily_refresh.DATA_PROCESSED = original_data_processed
+    assert "AFCC Daily Refresh: 2023-01-01" in summary
+    assert "**Top Candidate**: GENE1" in summary
+    assert "Tension Rods" in summary
+    assert "Fibrous" in summary
 
-def test_generate_outputs(tmp_path):
-    # Mock paths
-    original_outputs_dir = afcc_daily_refresh.OUTPUTS_DIR
-    original_data_processed = afcc_daily_refresh.DATA_PROCESSED
+@patch('afcc_daily_refresh.requests.get')
+def test_fetch_afdb_data(mock_get, tmp_path):
+    # Mock API response
+    mock_response_api = MagicMock()
+    mock_response_api.status_code = 200
+    mock_response_api.json.return_value = [{
+        'pdbUrl': 'http://example.com/pdb',
+        'paeDocUrl': 'http://example.com/pae'
+    }]
 
-    afcc_daily_refresh.OUTPUTS_DIR = tmp_path / "outputs"
-    afcc_daily_refresh.DATA_PROCESSED = tmp_path / "processed"
-    afcc_daily_refresh.OUTPUTS_DIR.mkdir()
-    afcc_daily_refresh.DATA_PROCESSED.mkdir()
+    # Mock File Download response
+    mock_response_file = MagicMock()
+    mock_response_file.status_code = 200
+    mock_response_file.content = b"fake pdb content"
 
-    try:
-        # Create dummy metrics file
-        metrics_data = {
-            'gene_symbol': ['GENE1', 'GENE2'],
-            'anisotropy_index': [4.5, 2.0],
-            'plddt_mean': [80.0, 60.0],
-            'morphology': ['Fibrous', 'Globular']
-        }
-        metrics_df = pd.DataFrame(metrics_data)
-        metrics_path = afcc_daily_refresh.DATA_PROCESSED / "protein_metrics.csv"
-        metrics_df.to_csv(metrics_path, index=False)
+    mock_get.side_effect = [mock_response_api, mock_response_file, mock_response_file]
 
-        # Run generate_outputs
-        res = afcc_daily_refresh.generate_outputs()
-        assert res is not None
-        summary_path, lines = res
+    # Override cache dir
+    afcc_daily_refresh.CACHE_DIR = str(tmp_path)
 
-        # Check summary content
-        content = "\n".join(lines)
-        assert "GENE1" in content
-        assert "4.50" in content
-        assert "Tension Rods" in content
-        assert "Structural Confidence" in content
+    res = afcc_daily_refresh.fetch_afdb_data("P12345")
 
-        # Check output file exists
-        assert summary_path.exists()
-        assert (summary_path.parent / "metrics.csv").exists()
-
-    finally:
-        afcc_daily_refresh.OUTPUTS_DIR = original_outputs_dir
-        afcc_daily_refresh.DATA_PROCESSED = original_data_processed
+    assert res is not None
+    assert "P12345.pdb" in res['pdb']
+    assert "P12345.json" in res['pae']
+    assert (tmp_path / "P12345.pdb").exists()
+    assert (tmp_path / "P12345.json").exists()

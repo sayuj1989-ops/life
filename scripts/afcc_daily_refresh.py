@@ -5,50 +5,49 @@ import json
 import requests
 import numpy as np
 import pandas as pd
-import datetime
-from Bio.PDB import PDBParser
-from typing import Dict, Any, List, Optional
+import argparse
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any, List, Optional, Tuple
 
 # Add the source directory to sys.path to import metrics
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../research/alphafold_countercurvature/src')))
+# Assuming script is run from repo root or scripts/ dir
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+SRC_DIR = os.path.join(REPO_ROOT, 'research', 'alphafold_countercurvature', 'src')
+
+if SRC_DIR not in sys.path:
+    sys.path.append(SRC_DIR)
+
 try:
     from afcc.metrics import MetricsAnalyzer
-except ImportError:
-    # If the import fails, we might be running from repo root
-    sys.path.append(os.path.abspath('research/alphafold_countercurvature/src'))
-    from afcc.metrics import MetricsAnalyzer
+    from afcc.structure import StructureParser
+except ImportError as e:
+    print(f"Error importing afcc modules: {e}")
+    # Fallback for testing if run from wrong dir
+    try:
+        sys.path.append(os.path.abspath('research/alphafold_countercurvature/src'))
+        from afcc.metrics import MetricsAnalyzer
+        from afcc.structure import StructureParser
+    except ImportError:
+        pass
 
-OUTPUT_BASE = "outputs/afcc"
-TEMP_DIR = "temp/afdb"
-os.makedirs(TEMP_DIR, exist_ok=True)
+# Configuration
+CACHE_DIR = os.path.join(REPO_ROOT, "data", "afdb_cache")
+OUTPUT_BASE = os.path.join(REPO_ROOT, "outputs", "afcc")
+CANDIDATES_FILE = os.path.join(REPO_ROOT, "data", "candidates_master.csv")
+REPORT_FILE = os.path.join(REPO_ROOT, "reports", "afcc_latest.md")
 
-def get_todays_output_dir():
-    today = datetime.datetime.now().strftime("%Y-%m-%d")
-    out_dir = os.path.join(OUTPUT_BASE, today)
-    os.makedirs(out_dir, exist_ok=True)
-    return out_dir
-
-def get_top_candidates(n=10):
-    candidates_path = "data/candidates_master.csv"
-    if not os.path.exists(candidates_path):
-        print(f"Error: {candidates_path} not found.")
-        sys.exit(1)
-
-    df = pd.read_csv(candidates_path)
-    # clean priority_score column
-    df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce')
-    df = df.sort_values(by='priority_score', ascending=False)
-    return df.head(n)
+def ensure_dirs():
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    os.makedirs(OUTPUT_BASE, exist_ok=True)
 
 def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
     """Fetches PDB and PAE JSON for a given UniProt ID using the API."""
-    if not uniprot_id or pd.isna(uniprot_id):
-        return None
-
     api_url = f"https://alphafold.ebi.ac.uk/api/prediction/{uniprot_id}"
 
-    pdb_path = os.path.join(TEMP_DIR, f"{uniprot_id}.pdb")
-    pae_path = os.path.join(TEMP_DIR, f"{uniprot_id}.json")
+    pdb_path = os.path.join(CACHE_DIR, f"{uniprot_id}.pdb")
+    pae_path = os.path.join(CACHE_DIR, f"{uniprot_id}.json")
 
     # Check if files already exist
     if os.path.exists(pdb_path) and os.path.exists(pae_path):
@@ -56,7 +55,7 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
 
     print(f"Querying API for {uniprot_id}...")
     try:
-        response = requests.get(api_url, timeout=30)
+        response = requests.get(api_url, timeout=10)
         if response.status_code != 200:
              print(f"API Error for {uniprot_id}: {response.status_code}")
              return None
@@ -93,7 +92,7 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
                     f.write(pae_resp.content)
             else:
                 print(f"Failed to download PAE: {pae_resp.status_code}")
-                # Optional but good to have
+                # Optional, proceed without PAE? The analysis seems to handle None PAE.
 
         return {"pdb": pdb_path, "pae": pae_path if os.path.exists(pae_path) else None}
 
@@ -101,184 +100,146 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         print(f"Exception fetching data for {uniprot_id}: {e}")
         return None
 
-def parse_pdb(pdb_path: str):
-    """Parses PDB file to get coords, pLDDT, and resnames."""
-    parser = PDBParser(QUIET=True)
-    structure = parser.get_structure("struct", pdb_path)
+def get_top_candidates(n: int = 10, filepath: str = CANDIDATES_FILE) -> pd.DataFrame:
+    if not os.path.exists(filepath):
+        print(f"Candidates file not found: {filepath}")
+        # Return empty DataFrame with expected columns for safety
+        return pd.DataFrame(columns=['gene_symbol', 'uniprot_id', 'organism', 'priority_score'])
 
-    coords = []
-    plddt_scores = []
-    resnames = []
+    df = pd.read_csv(filepath)
+    # Ensure priority_score is numeric
+    df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce').fillna(0)
 
-    for model in structure:
-        for chain in model:
-            for residue in chain:
-                if 'CA' in residue:
-                    coords.append(residue['CA'].get_coord())
-                    plddt_scores.append(residue['CA'].get_bfactor())
-                    resnames.append(residue.get_resname())
+    # Sort descending
+    df_sorted = df.sort_values(by='priority_score', ascending=False)
 
-    return np.array(coords), np.array(plddt_scores), np.array(resnames)
+    return df_sorted.head(n)
 
-def parse_pae(pae_path: str) -> Optional[np.ndarray]:
-    """Parses PAE JSON file."""
-    if not pae_path:
-        return None
-    try:
-        with open(pae_path, 'r') as f:
-            data = json.load(f)
-        if isinstance(data, list) and len(data) > 0 and 'predicted_aligned_error' in data[0]:
-            return np.array(data[0]['predicted_aligned_error'])
-    except Exception as e:
-        print(f"Error parsing PAE JSON: {e}")
-    return None
+def generate_summary(results_df: pd.DataFrame, failures: List[str], today_str: str) -> str:
+    if results_df.empty:
+        return f"# AFCC Daily Refresh: {today_str}\n\nNo results generated.\n"
+
+    top_aniso = results_df.sort_values(by='anisotropy_index', ascending=False).head(1).iloc[0]
+    top_aniso_gene = top_aniso['gene_symbol']
+    top_aniso_val = top_aniso['anisotropy_index']
+
+    summary_md = f"# AFCC Daily Refresh: {today_str}\n\n"
+    summary_md += f"## Run Summary\n"
+    summary_md += f"- **Candidates Processed**: {len(results_df)}\n"
+    summary_md += f"- **Top Candidate**: {top_aniso_gene} (Anisotropy: {top_aniso_val:.2f})\n"
+
+    if failures:
+            summary_md += f"- **Failures**: {len(failures)}\n"
+
+    summary_md += f"\n## Top 5 High-Anisotropy Structures\n"
+    summary_md += f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n"
+    summary_md += f"|------|------------|--------------|------------|\n"
+
+    top5 = results_df.sort_values(by='anisotropy_index', ascending=False).head(5)
+    for _, r in top5.iterrows():
+        summary_md += f"| {r['gene_symbol']} | {r['anisotropy_index']:.2f} | {r['plddt_mean']:.1f} | {r['morphology']} |\n"
+
+    summary_md += f"\n## Key Observations\n"
+    # Generate some insights
+    fibrous_count = len(results_df[results_df['anisotropy_index'] > 4.0])
+    low_conf_count = len(results_df[results_df['plddt_mean'] < 70])
+
+    summary_md += f"- **Tension Rods**: Found {fibrous_count} candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.\n"
+    summary_md += f"- **Structural Confidence**: {low_conf_count} candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.\n"
+    summary_md += f"- **Top Mover**: {top_aniso_gene} remains the most anisotropic structure in this batch.\n"
+
+    return summary_md
 
 def main():
-    todays_dir = get_todays_output_dir()
-    metrics_csv_path = os.path.join(todays_dir, "metrics.csv")
-    summary_md_path = os.path.join(todays_dir, "summary.md")
-    failure_md_path = os.path.join(todays_dir, "failure.md")
+    parser = argparse.ArgumentParser(description="AFCC Daily Refresh")
+    parser.add_argument("--top-n", type=int, default=10, help="Number of top candidates to process")
+    args = parser.parse_args()
 
-    top_candidates = get_top_candidates(10)
-    print(f"Processing top {len(top_candidates)} candidates based on priority score.")
+    ensure_dirs()
 
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    daily_output_dir = os.path.join(OUTPUT_BASE, today_str)
+    os.makedirs(daily_output_dir, exist_ok=True)
+
+    failure_file = os.path.join(daily_output_dir, "failure.md")
+    metrics_file = os.path.join(daily_output_dir, "metrics.csv")
+    summary_file = os.path.join(daily_output_dir, "summary.md")
+
+    candidates = get_top_candidates(args.top_n)
+    print(f"Processing top {len(candidates)} candidates for {today_str}...")
+
+    struct_parser = StructureParser()
     analyzer = MetricsAnalyzer()
+
     results = []
     failures = []
 
-    for index, row in top_candidates.iterrows():
+    for _, row in candidates.iterrows():
         symbol = row['gene_symbol']
-        uid = row['uniprot_id']
-        species = row.get('organism', 'Unknown')
+        uniprot = row['uniprot_id']
 
-        print(f"Processing {symbol} ({uid})...")
+        print(f"Processing {symbol} ({uniprot})...")
 
-        paths = fetch_afdb_data(uid)
+        paths = fetch_afdb_data(uniprot)
         if not paths:
-            print(f"Skipping {symbol} - data fetch failed.")
-            failures.append(f"- **{symbol}** ({uid}): Data fetch failed (API error or missing files).")
+            failures.append(f"- **{symbol}** ({uniprot}): Data fetch failed.")
             continue
 
-        coords, plddt, resnames = parse_pdb(paths['pdb'])
-        pae_matrix = parse_pae(paths['pae'])
+        pdb_path = Path(paths['pdb'])
+        pae_path = Path(paths['pae']) if paths['pae'] else None
 
-        # Run Analysis
-        try:
-            metrics = analyzer.analyze_structure(
-                coords=coords,
-                plddt_scores=plddt,
-                resnames=resnames,
-                pae_matrix=pae_matrix
-            )
+        coords, plddt, resnames = struct_parser.fast_parse_pdb_arrays(pdb_path)
+        if coords is None:
+             failures.append(f"- **{symbol}** ({uniprot}): PDB parsing failed.")
+             continue
 
-            # Combine identity + metrics
-            entry = {
-                "gene_symbol": symbol,
-                "uniprot_id": uid,
-                "species": species,
-                "length": metrics['n_residues'],
+        pae_matrix = struct_parser.parse_pae(pae_path)
 
-                # Confidence
-                "pLDDT_mean": f"{metrics['plddt_mean']:.2f}",
-                "PAE_mean": f"{metrics['PAE_mean']:.2f}",
+        metrics = analyzer.analyze_structure(
+            coords=coords,
+            plddt_scores=plddt,
+            resnames=resnames,
+            pae_matrix=pae_matrix
+        )
 
-                # Architecture
-                "morphology": metrics['morphology'],
+        # Add metadata
+        metrics['gene_symbol'] = symbol
+        metrics['uniprot_id'] = uniprot
+        metrics['organism'] = row.get('organism', 'Unknown')
+        metrics['priority_score'] = row['priority_score']
 
-                # Geometry
-                "radius_of_gyration": f"{metrics['radius_of_gyration']:.2f}",
-                "anisotropy_index": f"{metrics['anisotropy_index']:.2f}",
+        results.append(metrics)
 
-                # Detailed metrics
-                "pLDDT_fraction_high": f"{metrics['plddt_fraction_high']:.2f}",
-                "pLDDT_fraction_low": f"{metrics['plddt_fraction_low']:.2f}",
-                "PAE_domain_blockiness_score": f"{metrics['PAE_domain_blockiness_score']:.2f}",
-                "predicted_domain_segments": metrics['predicted_domain_segments'],
-                "disorder_fraction_proxy": f"{metrics['disorder_fraction_proxy']:.2f}",
-                "hinge_candidates": metrics['hinge_candidates'],
-                "backbone_principal_axis": metrics['backbone_principal_axis'],
-                "end_to_end_distance": f"{metrics['end_to_end_distance']:.2f}",
-                "curvature_summary": f"{metrics['curvature_summary']:.4f}",
-                "torsion_summary": f"{metrics['torsion_summary']:.4f}",
-                "bending_hotspots": metrics['bending_hotspots'],
-                "exposed_surface_proxy": f"{metrics['exposed_surface_proxy']:.2f}",
-                "charged_patch_score": f"{metrics['charged_patch_score']:.2f}",
-                "low_confidence_warning": metrics['low_confidence_warning'],
-                "multi_domain_uncertain": metrics['multi_domain_uncertain'],
-                "likely_IDR_heavy": metrics['likely_IDR_heavy']
-            }
-            results.append(entry)
+    # Save metrics
+    if results:
+        results_df = pd.DataFrame(results)
+        # Reorder columns to put identity first
+        cols = ['gene_symbol', 'uniprot_id', 'priority_score', 'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'morphology'] + [c for c in results_df.columns if c not in ['gene_symbol', 'uniprot_id', 'priority_score', 'anisotropy_index', 'radius_of_gyration', 'plddt_mean', 'morphology']]
+        results_df = results_df[cols]
+        results_df.to_csv(metrics_file, index=False)
+        print(f"Saved metrics to {metrics_file}")
 
-        except Exception as e:
-            print(f"Error analyzing {symbol}: {e}")
-            failures.append(f"- **{symbol}** ({uid}): Analysis failed with error: {e}")
+        # Generate Daily Summary
+        summary_md = generate_summary(results_df, failures, today_str)
 
-    # Generate Outputs
-    df = pd.DataFrame(results)
-    if not df.empty:
-        df.to_csv(metrics_csv_path, index=False)
-        print(f"Saved metrics to {metrics_csv_path}")
+        with open(summary_file, 'w') as f:
+            f.write(summary_md)
+        print(f"Saved summary to {summary_file}")
 
-        # Summary MD
-        with open(summary_md_path, "w") as f:
-            f.write(f"# AFCC Daily Refresh: {datetime.datetime.now().strftime('%Y-%m-%d')}\n\n")
-            f.write(f"## Run Summary\n")
-            f.write(f"- **Candidates Processed**: {len(results)}\n")
+        # Update Rolling Dashboard
+        with open(REPORT_FILE, 'a') as f:
+            f.write(f"\n{summary_md}")
+        print(f"Updated dashboard {REPORT_FILE}")
 
-            # Find top candidate by anisotropy
-            # df['anisotropy_index'] is string, need to convert back for sorting
-            df['anisotropy_float'] = pd.to_numeric(df['anisotropy_index'], errors='coerce')
-            top_ani = df.sort_values(by='anisotropy_float', ascending=False).iloc[0]
-            f.write(f"- **Top Candidate**: {top_ani['gene_symbol']} (Anisotropy: {top_ani['anisotropy_index']})\n")
-            if failures:
-                f.write(f"- **Failed/Missing**: {len(failures)}\n")
-
-            f.write(f"\n## Top 5 High-Anisotropy Structures\n")
-            f.write(f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n")
-            f.write(f"|------|------------|--------------|------------|\n")
-
-            top_5 = df.sort_values(by='anisotropy_float', ascending=False).head(5)
-            for _, row in top_5.iterrows():
-                f.write(f"| {row['gene_symbol']} | {row['anisotropy_index']} | {row['pLDDT_mean']} | {row['morphology']} |\n")
-
-            f.write(f"\n## Key Observations\n")
-            high_ani_count = len(df[df['anisotropy_float'] > 4.0])
-            f.write(f"- **Tension Rods**: Found {high_ani_count} candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.\n")
-
-            low_conf_count = len(df[pd.to_numeric(df['pLDDT_mean']) < 70])
-            f.write(f"- **Structural Confidence**: {low_conf_count} candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.\n")
-
-            f.write(f"- **Top Mover**: {top_ani['gene_symbol']} remains the most anisotropic structure in this batch.\n")
-
-        print(f"Saved summary to {summary_md_path}")
-
-        # Update reports/afcc_latest.md
-        latest_report_path = "reports/afcc_latest.md"
-        if os.path.exists(latest_report_path):
-            with open(latest_report_path, "a") as f:
-                f.write(f"\n# AFCC Daily Refresh: {datetime.datetime.now().strftime('%Y-%m-%d')}\n\n")
-                f.write(f"## Run Summary\n")
-                f.write(f"- **Candidates Processed**: {len(results)}\n")
-                f.write(f"- **Top Candidate**: {top_ani['gene_symbol']} (Anisotropy: {top_ani['anisotropy_index']})\n")
-
-                f.write(f"\n## Top 5 High-Anisotropy Structures\n")
-                f.write(f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n")
-                f.write(f"|------|------------|--------------|------------|\n")
-                for _, row in top_5.iterrows():
-                    f.write(f"| {row['gene_symbol']} | {row['anisotropy_index']} | {row['pLDDT_mean']} | {row['morphology']} |\n")
-
-                f.write(f"\n## Key Observations\n")
-                f.write(f"- **Tension Rods**: Found {high_ani_count} candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.\n")
-                f.write(f"- **Structural Confidence**: {low_conf_count} candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.\n")
-                f.write(f"- **Top Mover**: {top_ani['gene_symbol']} remains the most anisotropic structure in this batch.\n")
-            print(f"Updated {latest_report_path}")
+    else:
+        print("No results generated.")
 
     if failures:
-        with open(failure_md_path, "w") as f:
-            f.write(f"# AFCC Failure Log: {datetime.datetime.now().strftime('%Y-%m-%d')}\n\n")
+        with open(failure_file, 'w') as f:
+            f.write("# Failures\n\n")
             for fail in failures:
                 f.write(f"{fail}\n")
-        print(f"Saved failure log to {failure_md_path}")
+        print(f"Saved failures to {failure_file}")
 
 if __name__ == "__main__":
     main()

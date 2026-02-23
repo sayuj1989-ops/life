@@ -318,7 +318,10 @@ def compute_cycle_dissipation(
         # eta_p: |dkappa/dt|^2 — curvature rate of change
         dkappa_dt = (kappa_history[i + 1] - kappa_history[i]) / dt
         dkdt_sq = dkappa_dt**2
-        eta_p_integral = eta_p * np.trapz(dkdt_sq, dx=ds)
+        try:
+            eta_p_integral = eta_p * np.trapezoid(dkdt_sq, dx=ds)
+        except AttributeError:
+            eta_p_integral = eta_p * np.trapz(dkdt_sq, dx=ds)
         total_eta_p += eta_p_integral * dt
         eta_p_contributions.append(eta_p_integral)
 
@@ -326,7 +329,10 @@ def compute_cycle_dissipation(
 
         # eta_a: (kappa - kappa_passive)^2 — cost of maintaining counter-curvature
         delta_k = kappa_history[i + 1] - kappa_passive_history[i + 1]
-        eta_a_integral = eta_a * np.trapz(delta_k**2, dx=ds)
+        try:
+            eta_a_integral = eta_a * np.trapezoid(delta_k**2, dx=ds)
+        except AttributeError:
+            eta_a_integral = eta_a * np.trapz(delta_k**2, dx=ds)
         total_eta_a += eta_a_integral * dt
         eta_a_contributions.append(eta_a_integral)
 

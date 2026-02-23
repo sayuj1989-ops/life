@@ -1,16 +1,16 @@
-Create a cyclic causal loop diagram illustrating the "Mechanogenetic Feedback Loop" or "Demand-Supply Anisotropy Gap".
+A circular diagram showing the 'Mechanogenetic Feedback Loop' causing Scoliosis.
 
-The cycle should have these nodes:
-1. "Rapid Adolescent Growth" (Start)
-2. "High Metabolic Demand" (Growth proteins consume resources)
-3. "Energy Deficit Window" (Supply cannot keep up)
-4. "Mechanosensor Depletion" (Integrins/FAK are expensive to maintain and are sacrificed)
-5. "Loss of Proprioception" (Tissue cannot sense its own shape)
-6. "Geometric Instability" (Small asymmetries are not corrected)
-7. "Stress Asymmetry" (Curvature causes uneven loading)
-8. Back to "Rapid Adolescent Growth" (The cycle amplifies)
+Components in the cycle:
+1. Genetic Information (HOX) -> defines Target Geometry.
+2. Target Geometry + Gravity -> creates Mechanical Stress.
+3. Mechanical Stress -> detected by Mechanosensors (Demand).
+4. Metabolic Regulators -> provide Energy (Supply).
+5. Feedback Decision:
+   - If Demand <= Supply: Adaptation (Healthy Spine).
+   - If Demand > Supply: "Thermodynamic Vulnerability" -> Control Failure -> Scoliosis.
 
-Annotate the link between 3 and 4 with "Demand-Supply Gap".
-Annotate the link between 6 and 7 with "Twist-Bend Coupling".
-
-Style: Professional scientific diagram, clean lines, cyclical layout. Use red for the "Energy Deficit" and "Instability" nodes to indicate pathology. Use blue for "Growth".
+Visual Style:
+- Clean, scientific flowchart.
+- Use arrows to show the flow.
+- Highlight the "Demand > Supply" condition in red as the failure mode.
+- Use biological icons where appropriate (DNA for genetics, spine for geometry, mitochondria for energy).

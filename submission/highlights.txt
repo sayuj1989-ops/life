@@ -1,5 +1,0 @@
-- The human spine acts as a "Thermodynamic Standing Wave" consuming energy to resist gravity.
-- An "Energy Deficit Window" emerges during growth when demand ($L^4$) outstrips supply ($L^2$).
-- Structural anisotropy of mechanosensors (PIEZO2) makes them metabolically expensive to maintain.
-- Scoliosis is a "Metabolic Buckling" triggered by circadian desynchrony ("Spinal Jetlag").
-- "Chronotherapeutic" rescue of the spinal clock can stabilize geometry without bracing.

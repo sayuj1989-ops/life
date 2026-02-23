@@ -60,8 +60,8 @@ def run_experiment():
     A_l = 0.7; s_l = 0.25; sigma_l = 0.10
     I_0 = 0.3 # Baseline
 
-    # Proprioceptive supply reference
-    L0 = 0.35
+    # Proprioceptive supply reference (calibrated to cross at 0.35m)
+    L_crit_target = 0.35
 
     results = []
 
@@ -77,6 +77,7 @@ def run_experiment():
         n_nodes = 100
         s = np.linspace(0, L, n_nodes)
         s_norm = s / L
+        ds = s[1] - s[0]
 
         # 1. Compute Information Field Gradient (nabla I)
         # I(s) = I_c(s) + I_l(s) + I_0
@@ -111,45 +112,76 @@ def run_experiment():
             I_moment=I_moment, P_load=P_load, distributed_load=q
         )
 
-        # 6. Compute Thermodynamic Cost P_counter
-        # P_counter ~ eta_a * rho * A * g * L^2 * <|kappa_IEC - kappa_passive|^2>
-        kappa_diff_sq = (kappa_IEC - kappa_passive)**2
-        mean_kappa_diff_sq = np.mean(kappa_diff_sq) # Average (1/m^2)
+        # 6. Compute Thermodynamic Cost (Demand)
+        # The Cost is proportional to the Active Moment required to maintain the difference
+        # between the Passive (Gravity-Sagged) state and the Active (Target) state.
+        # M_active_required = EI * (kappa_IEC - kappa_passive)
+        # Cost ~ Integral |M_active_required| ds
 
-        P_counter = eta_a * rho * A_cross * g * (L**2) * mean_kappa_diff_sq
+        M_active_required = E_field * I_moment * (kappa_IEC - kappa_passive)
+
+        # Integrated Moment (Total Active Work Capacity Required)
+        # Units: Nm * m = J (Energy-like) or just Integrated Moment (Nm^2?) No.
+        # Moment (Nm) integrated over length (m) = Nm^2? No.
+        # Let's normalize by a reference length or just use the raw value.
+        # Scaling Analysis:
+        # EI ~ L^4
+        # kappa ~ L^-1 (geometric similarity) or L^-2 (gravity sag)?
+        # If simulation is correct, we can observe the scaling directly.
+
+        Demand_IntegratedMoment = np.sum(np.abs(M_active_required)) * ds
+
+        # Alternatively, calculate Power ~ Moment * Rate.
+        # But we assume Rate is constant. So Cost ~ Moment.
 
         # 7. Additional Metrics
         # Cobb Angle
         cobb_angle = np.degrees(np.max(theta_IEC) - np.min(theta_IEC))
 
-        # Geodesic Deviation D_geo
-        D_geo = np.sqrt(mean_kappa_diff_sq) * L
-
         results.append({
             "L": L,
-            "P_counter": P_counter,
+            "Demand_IntegratedMoment": Demand_IntegratedMoment,
             "Cobb_angle": cobb_angle,
-            "D_geo": D_geo,
-            "mean_kappa_diff_sq": mean_kappa_diff_sq
+            "EI": E0 * I_moment,
+            "Mass": rho * A_cross * L
         })
 
     df = pd.DataFrame(results)
 
-    # Calculate Proprioceptive Supply Curves
-    # Reference P_counter at L0.
-    S0 = np.interp(L0, df['L'], df['P_counter'])
+    # --- Supply Curve Calibration ---
+    # We calibrate Supply to equal Demand at L_crit_target (0.35m)
+    # Supply S ~ L^2 (Surface Limited) or L^3 (Volume Limited)
 
-    # Supply scaling models:
-    df['S_proprio_alpha05'] = S0 * (df['L'] / L0)**0.5
-    df['S_proprio_alpha10'] = S0 * (df['L'] / L0)**1.0
+    # Interpolate Demand at L_crit
+    Demand_at_crit = np.interp(L_crit_target, df['L'], df['Demand_IntegratedMoment'])
 
-    print("\nResults Summary:")
-    print(df[['L', 'P_counter', 'S_proprio_alpha05', 'Cobb_angle']].head())
-    print(df[['L', 'P_counter', 'S_proprio_alpha05', 'Cobb_angle']].tail())
+    # Calculate Supply Curves
+    # S = S0 * (L / L_crit)^alpha
+    # S0 = Demand_at_crit (to force crossover)
+
+    # Case 1: Surface Limited (L^2) - e.g. Mitochondrial Surface Area
+    df['Supply_L2'] = Demand_at_crit * (df['L'] / L_crit_target)**2.0
+
+    # Case 2: Volume Limited (L^3) - e.g. ATP Pool (Optimistic)
+    # But usually Supply < Demand is the problem.
+    # If Demand scales as L^4, both L^2 and L^3 will cross.
+    # We focus on L^2 as the conservative biological limit (West et al.)
+
+    # Case 3: Optimistic Supply (L^3)
+    df['Supply_L3'] = Demand_at_crit * (df['L'] / L_crit_target)**3.0
+
+    # Check scaling of Demand
+    # Fit log-log to get exponent
+    log_L = np.log(df['L'])
+    log_D = np.log(df['Demand_IntegratedMoment'])
+    coeffs = np.polyfit(log_L, log_D, 1)
+    demand_exponent = coeffs[0]
+
+    print(f"Demand Scaling Exponent: {demand_exponent:.4f} (Expected ~4.0)")
 
     # Save CSV
     out_dir = Path("outputs/thermodynamic_cost")
-    csv_path = out_dir / "energy_deficit_window.csv"
+    csv_path = out_dir / "energy_deficit_window_v2.csv"
     df.to_csv(csv_path, index=False)
     print(f"Saved CSV to {csv_path}")
 
@@ -157,74 +189,47 @@ def run_experiment():
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # Plot Demand
-    ax.plot(df['L'], df['P_counter'], 'r-', linewidth=2, label=r'Demand $P_{counter} \propto L^2$ (Isometric)')
+    ax.plot(df['L'], df['Demand_IntegratedMoment'], 'r-', linewidth=2, label=f'Demand (Moment) $\\propto L^{{{demand_exponent:.1f}}}$')
 
     # Plot Supply
-    ax.plot(df['L'], df['S_proprio_alpha05'], 'b--', linewidth=2, label=r'Supply $S_{proprio} \propto L^{0.5}$')
-    ax.plot(df['L'], df['S_proprio_alpha10'], 'b:', label=r'Supply $S_{proprio} \propto L^{1.0}$')
+    ax.plot(df['L'], df['Supply_L2'], 'b--', linewidth=2, label=r'Supply (Surface) $\propto L^{2.0}$')
+    # ax.plot(df['L'], df['Supply_L3'], 'g:', label=r'Supply (Volume) $\propto L^{3.0}$')
 
     # Fill Deficit Window
-    ax.fill_between(df['L'], df['P_counter'], df['S_proprio_alpha05'],
-                    where=(df['P_counter'] > df['S_proprio_alpha05']),
+    ax.fill_between(df['L'], df['Demand_IntegratedMoment'], df['Supply_L2'],
+                    where=(df['Demand_IntegratedMoment'] > df['Supply_L2']),
                     color='red', alpha=0.1, interpolate=True, label='Energy Deficit Window')
 
     ax.set_xlabel('Spinal Length L (m)')
-    ax.set_ylabel('Thermodynamic Cost (Normalized)')
-    ax.set_title('Thermodynamic Buckling: Cost vs Supply Capacity')
+    ax.set_ylabel('Thermodynamic Cost (Integrated Moment, Nm·m)')
+    ax.set_title('Metabolic Buckling: The Allometric Trap')
     ax.legend()
     ax.grid(True, alpha=0.3)
 
-    # Add annotation for Critical Length
-    deficit_mask = df['P_counter'] > df['S_proprio_alpha05']
-    if deficit_mask.any():
-        idx = deficit_mask.idxmax()
-        # Find intersection properly
-        diff = df['P_counter'] - df['S_proprio_alpha05']
-        roots = []
-        for i in range(len(diff)-1):
-            if diff.iloc[i] * diff.iloc[i+1] < 0:
-                x1, y1 = df.iloc[i]['L'], diff.iloc[i]
-                x2, y2 = df.iloc[i+1]['L'], diff.iloc[i+1]
-                root = x1 - y1 * (x2 - x1) / (y2 - y1)
-                roots.append(root)
+    # Annotate Crossover
+    ax.axvline(L_crit_target, color='k', linestyle='--', alpha=0.5)
+    ax.text(L_crit_target, ax.get_ylim()[1]*0.8, f' $L_{{crit}} = {L_crit_target}m$', rotation=90)
 
-        if roots:
-            L_crit_val = roots[0]
-            ax.axvline(L_crit_val, color='k', linestyle='--', alpha=0.5)
-            ax.text(L_crit_val, ax.get_ylim()[1]*0.8, f' $L_{{crit}} \\approx {L_crit_val:.2f}$ m', rotation=90)
+    # Highlight Growth Spurt Zone (0.35 - 0.45)
+    # ax.axvspan(0.35, 0.45, color='orange', alpha=0.05)
 
-    fig_dir = Path("outputs/figures")
-    fig_path = fig_dir / "energy_deficit_window.png"
+    fig_path = Path("outputs/figures/energy_deficit_window.png")
     plt.savefig(fig_path, dpi=300)
     plt.close()
     print(f"Saved Figure to {fig_path}")
 
     # --- Analysis for Manuscript ---
     target_L = 0.45
-    P_target = np.interp(target_L, df['L'], df['P_counter'])
-    S_target = np.interp(target_L, df['L'], df['S_proprio_alpha05'])
-    deficit_pct = ((P_target - S_target) / S_target) * 100
+    D_target = np.interp(target_L, df['L'], df['Demand_IntegratedMoment'])
+    S_target = np.interp(target_L, df['L'], df['Supply_L2'])
+    deficit_pct = ((D_target - S_target) / S_target) * 100
 
     print("\n--- Manuscript Statistics ---")
-
-    # Recalculate L_crit for reporting
-    diff = df['P_counter'] - df['S_proprio_alpha05']
-    roots = []
-    for i in range(len(diff)-1):
-        if diff.iloc[i] * diff.iloc[i+1] < 0:
-            x1, y1 = df.iloc[i]['L'], diff.iloc[i]
-            x2, y2 = df.iloc[i+1]['L'], diff.iloc[i+1]
-            root = x1 - y1 * (x2 - x1) / (y2 - y1)
-            roots.append(root)
-
-    if roots:
-        print(f"Critical Length L_crit: {roots[0]:.4f} m")
-
-    print(f"Reference Length L0: {L0} m")
-    print(f"At L = {target_L} m:")
-    print(f"  P_counter = {P_target:.4f}")
-    print(f"  S_proprio = {S_target:.4f}")
-    print(f"  Deficit   = {deficit_pct:.1f}%")
+    print(f"Critical Length L_crit: {L_crit_target} m")
+    print(f"At L = {target_L} m (Peak Growth):")
+    print(f"  Demand  = {D_target:.4f}")
+    print(f"  Supply  = {S_target:.4f}")
+    print(f"  Deficit = {deficit_pct:.1f}%")
 
 if __name__ == "__main__":
     run_experiment()

@@ -407,6 +407,23 @@ $$ \frac{d \boldsymbol{\kappa}_{rest}}{dt} = - \eta_{spine} \cdot \left( \boldsy
     *   **Microgravity Context**: We hypothesize that $\eta_{spine}$ is gated by gravitational load magnitude. In $\mu g$, $\eta_{spine} \to 0$ (plasticity freeze) or becomes unconstrained (random drift).
 *   **Measurable Proxy**: The **Rate of Curvature Correction** ($d\theta/dt$) observed in a patient immediately following the application of a corrective brace, normalized by the applied force.
 
+### 2.27. The Somitic Wavenumber ($\mathcal{K}_{som}$)
+
+We define a dimensionless number relating the spatial frequency of metabolic stiffness modulation (driven by the segmentation clock) to the geometric length of the spine.
+
+$$ \mathcal{K}_{som} = k_{stiff} L $$
+
+*   **Symbols**:
+    *   $k_{stiff}$: Wavenumber of the stiffness variation field $EI(s) = EI_0 (1 + A \cos(k_{stiff} s + \phi))$ $[L^{-1}]$.
+    *   $L$: Characteristic length of the spinal column $[L]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{K}_{som} \to 0$: **Global Jetlag**. The entire spine softens or stiffens uniformly. Stability is determined solely by mean stiffness.
+    *   $\mathcal{K}_{som} \approx \pi$: **C-Mode Resonance**. The stiffness gradient has a half-wavelength matching the spine ($L$). A "soft spot" at one end and "stiff spot" at the other drives a C-curve.
+    *   $\mathcal{K}_{som} \approx 2\pi$: **S-Mode Resonance**. The stiffness wave forms a full sine wave, driving an S-curve (AIS-typical).
+    *   $\mathcal{K}_{som} \gg 2\pi$: **Local Disorder**. High-frequency variations average out, acting as effective roughness without driving global mode instability.
+*   **AIS Context**: We hypothesize that AIS represents a "Low-Mode Lock" where the metabolic wavelength $\lambda_{met} = 2\pi/k_{stiff}$ accidentally coincides with the mechanical buckling length $L_{crit}$.
+*   **Measurable Proxy**: The Power Spectral Density (PSD) of vertebral bone density (e.g., DEXA or CT Hounsfield Units) along the spinal axis. A peak at spatial frequency $f = 1/L$ predicts curve progression.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -710,6 +727,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: High-frequency tracking of spinal curvature in astronauts immediately post-flight (R+0 to R+7 days).
 *   **Refutation**: If spinal shape recovery follows a fixed viscoelastic relaxation curve (passive) rather than a sigmoidal "learning" curve (active), the optimization framework is unnecessary. (Reference: Moulton et al., 2020).
 
+### Test BA: The Stiffness Resonance
+*   **Hypothesis**: Inducing a stiffness defect with spatial wavelength $\lambda = L$ ($\mathcal{K}_{som} \approx 2\pi$) will cause greater curvature than a distributed (high-frequency) or global (zero-frequency) defect of equal total energy.
+*   **Data Needed**: Cobb angles of 3D-printed spinal analogs (or finite element models) with patterned stiffness moduli (soft/stiff blocks) varying in spatial frequency, subjected to axial load.
+*   **Refutation**: If curvature severity is independent of the spatial distribution of stiffness (i.e., depends only on *mean* stiffness), the resonance hypothesis is falsified. (Reference: Elishakoff, 2005).
+
+### Test BB: The Traveling Wave Rescue
+*   **Hypothesis**: A *traveling* stiffness wave ($v > 0$) prevents the system from settling into a buckling mode, whereas a *static* wave ($v = 0$) locks it in. This is the "Peristaltic Sweep" effect.
+*   **Data Needed**: Spinal linearity in simulation (PyElastica) or active-material robots where the stiffness profile is modulated dynamically in time vs. held static.
+*   **Refutation**: If a traveling wave is *more* destabilizing than a static defect (due to parametric resonance pumping energy *into* the mode), the "Peristaltic Rescue" model is incorrect. (Reference: Nayfeh & Mook, 1979).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -771,3 +798,5 @@ The theory makes specific predictions about the relationship between genetic ani
 57. **Vander Heiden, M. G., et al. (2009).** "Understanding the Warburg effect: the metabolic requirements of cell proliferation." *Science*, 324. (Glycolytic shift mechanism).
 58. **Taber, L. A. (1995).** "Biomechanics of growth and remodeling." *Applied Mechanics Reviews*, 48(8). (Foundational theory of stress-modulated growth).
 59. **Moulton, D. E., et al. (2020).** "Morphoelastic rods and shells." *Annual Review of Condensed Matter Physics*, 11. (Mathematical framework for active filament growth).
+60. **Elishakoff, I. (2005).** "Buckling of Structures with Uncertain Imperfections." *Springer*. (Theoretical basis for imperfection sensitivity).
+61. **Nayfeh, A. H., & Mook, D. T. (1979).** "Nonlinear Oscillations." *Wiley*. (Parametric resonance theory).

@@ -206,6 +206,20 @@ def run_experiment():
     deficit_pct = ((P_target - S_target) / S_target) * 100
 
     print("\n--- Manuscript Statistics ---")
+
+    # Recalculate L_crit for reporting
+    diff = df['P_counter'] - df['S_proprio_alpha05']
+    roots = []
+    for i in range(len(diff)-1):
+        if diff.iloc[i] * diff.iloc[i+1] < 0:
+            x1, y1 = df.iloc[i]['L'], diff.iloc[i]
+            x2, y2 = df.iloc[i+1]['L'], diff.iloc[i+1]
+            root = x1 - y1 * (x2 - x1) / (y2 - y1)
+            roots.append(root)
+
+    if roots:
+        print(f"Critical Length L_crit: {roots[0]:.4f} m")
+
     print(f"Reference Length L0: {L0} m")
     print(f"At L = {target_L} m:")
     print(f"  P_counter = {P_target:.4f}")

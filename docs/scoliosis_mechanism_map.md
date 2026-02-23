@@ -601,3 +601,25 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Choi, D., et al. (2024). Piezo1 acts as a latching baroreceptor in lymphatic valves. Nature Cardiovascular Research.*
+
+---
+
+### 34. The Piezo-Fibrosis Brake
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Fibrosis` (Inhibition) $\rightarrow$ `Stiffness`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+*   **Mechanism**: **The Collagen Brake**.
+    1.  **Tension Sensing**: In healthy tissue, Piezo1 senses physiological tension.
+    2.  **Collagen Suppression**: Activation of Piezo1 actively suppresses excessive collagen synthesis (acting as a "brake" on fibrosis).
+    3.  **Brake Failure**: In microgravity (unloading) or Piezo1 deficiency, this brake is released.
+    4.  **Fibrosis**: The unchecked fibroblasts deposit excessive, disordered collagen, leading to fibrosis.
+*   **Property**: **Stiffness ($EI$)** (Pathological).
+*   **Role**: **Stiffness Mismatch**. While bone requires stiffness (Section 26), soft tissue requires compliance. The loss of Piezo1 leads to "Soft Bones" (Osteopenia) but "Hard Muscles/Ligaments" (Fibrosis).
+    *   **Counter-Curvature Implication**: This localized fibrosis locks the spine into its deformed shape, preventing the active muscular system from correcting the curvature.
+*   **Evidence**: Rashidi et al. (2025) demonstrated that Piezo1 activation suppresses collagen synthesis in aligned 3D models.
+
+> **Hypothesis**: The spine is a "Composite Material". Piezo1 ensures the bone is hard and the ligament is soft. When it fails, the bone softens and the ligament hardens—the worst possible combination for stability.
+
+**Citations**:
+*   *Rashidi, H., et al. (2025). Piezo1 regulates collagen synthesis in 3D aligned models. Acta Biomaterialia.*

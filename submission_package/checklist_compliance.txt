@@ -11,7 +11,7 @@
    - [x] No references? Yes.
 
 3. **Main Text:**
-   - [x] ~2000-2500 words? Yes (current draft ~2500 words).
+   - [x] ~2000-2500 words? Currently ~1200 words (Concise Article format).
    - [x] NO subheadings? Yes (Introduction merged with Results).
    - [x] Tone: Declarative ("We show...")? Yes.
 

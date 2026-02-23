@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-05-22
+**Last Updated:** 2026-03-05
 **Status:** In Progress
 **Priority Level:** High (Blocking Submission)
 
@@ -8,16 +8,16 @@
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Gather scaling data ($L, R, EI, Mass$) for 9 species (e.g., Mouse, Rat, Rabbit, Cat, Dog, Human, Chimp, Cow, Elephant). Required for Figure 3. | 2 days | Literature search | 🚨 **MISSING** |
+| **DATA-01** | **Cross-Species Dataset** | Gather scaling data ($L, R, EI, Mass$) for 9 species (Mouse to Elephant). | 2 days | None | ✅ **Completed** (See `data/species_parameters.csv`) |
 | **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for "5 matrix protein variants" mentioned in Figure 4 (e.g., FBN1 $\to$ EI *= 0.7; COL1A1 $\to$ EI *= 0.5). | 1 day | Literature search | 🟠 **Pending** |
 
 ## 2. Code Implementation (High)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data (DATA-01) and plot $Bg$ number vs Mass/Length. Validate "Passive Stability" vs "Active Need". | 1 day | DATA-01 | 🚨 **Blocked by DATA-01** |
+| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data (DATA-01) and plot $Bg$ number vs Mass/Length. | 1 day | DATA-01 | ✅ **Completed** (See `scripts/analysis/cross_species_scaling.py`) |
 | **CODE-02** | **Update `experiment_optimization_failure.py`** | Add a `mutation_map` dictionary to map gene names to simulation parameters ($\chi_\kappa, \sigma, EI$). Generate Figure 4 with specific labels. | 0.5 day | DATA-02 | 🟠 **Pending** |
-| **CODE-03** | **Generate Figure Plots** | Ensure all scripts output publication-quality PNG/PDFs (300 dpi). Current scripts mostly output CSVs or simple plots. | 2 days | EXP-01, EXP-02 | 🟡 **In Progress** |
+| **CODE-03** | **Generate Figure Plots** | Ensure all scripts output publication-quality PNG/PDFs (300 dpi). | 2 days | EXP-01, EXP-02 | 🟡 **In Progress** |
 
 ## 3. Manuscript Tasks (Medium)
 
@@ -36,9 +36,9 @@
 
 ## Summary of Risks
 
-1.  **Missing Species Data:** If we cannot find reliable $EI$ or $L$ data for 9 species, Figure 3 ("Cross-Species Validation") will be weak or must be cut. **Mitigation:** Fall back to a theoretical scaling argument ($L^4$ vs $L^{3}$) without explicit data points if necessary.
-2.  **Mutation Specificity:** The claim of "5 specific variants" is currently unsupported by code. **Mitigation:** Use generic parameter sweeps and label them "Model for FBN1-type defect".
+1.  **Mutation Specificity:** The claim of "5 specific variants" is currently unsupported by code. **Mitigation:** Use generic parameter sweeps and label them "Model for FBN1-type defect".
+2.  **Figure Quality:** Need to ensure all figures are generated at high resolution (300 dpi).
 
 **Next Actions:**
-1.  Start Literature Search for **DATA-01** immediately.
-2.  Implement **CODE-01** as soon as data is available.
+1.  Implement **CODE-02** (Mutation Mapping) immediately.
+2.  Finalize **MS-02** (Figures).

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Weekly Simulation: Energy Deficit Bifurcation.
+Weekly Simulation: Energy Deficit Bifurcation (2D Phase Diagram).
 
 Performs a 2D parameter sweep of the Energy Deficit Window across (χ_κ, L) space.
 Generates a phase diagram showing where AIS vulnerability is highest (Energy Deficit > Supply).
 
 Hypothesis ID: H_2026_02_08_EnergyPhase
+Solver: spinalmodes.iec.solve_beam_static (Fast Static Equilibrium)
 """
 
 import sys
@@ -15,258 +16,203 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# Add src to path if needed (though usually not needed if running from root)
-sys.path.append(str(Path(__file__).parent.parent / "src"))
+# Ensure src is in path to import spinalmodes
+sys.path.append("src")
 
 try:
-    from spinalmodes.countercurvature.api import (
-        CounterCurvatureRodSystem,
-        CounterCurvatureParams,
-        InfoField1D,
-        geodesic_curvature_deviation
-    )
+    from spinalmodes.iec import solve_beam_static
 except ImportError:
-    # Fallback to local import if structure is different
-    sys.path.append("src")
-    from spinalmodes.countercurvature.api import (
-        CounterCurvatureRodSystem,
-        CounterCurvatureParams,
-        InfoField1D,
-        geodesic_curvature_deviation
-    )
+    # Fallback if running from a different directory structure
+    sys.path.append(str(Path(__file__).parent.parent / "src"))
+    from spinalmodes.iec import solve_beam_static
 
-# Constants
-RHO = 1100.0       # kg/m^3
-A_REF = 0.001      # m^2 (Fixed area)
-L_REF = 0.4        # m (Reference length for scaling, though not used here)
-G = 9.81           # m/s^2
-E0 = 1.0e9         # Pa (1.0 GPa)
-ANISOTROPY = 2.0   # Moderate protection
-ETA_A = 1.0        # Scaling factor for P_counter
+# --- Parameters ---
+E0 = 1.0e9  # Pa (1.0 GPa)
+rho = 1100.0  # kg/m^3
+g = 9.81  # m/s^2
 
-# IEC Bimodal Gaussian Parameters
+# Isometric Growth: A ~ L^2
+# Reference: A=0.001 m^2 at L=0.4m
+A_ref = 0.001
+L_ref = 0.4
+eta_a = 1.0
+
+# Information field parameters (Bimodal Gaussian)
+# Cervical
 A_c = 0.5; s_c = 0.80; sigma_c = 0.08
+# Lumbar
 A_l = 0.7; s_l = 0.25; sigma_l = 0.10
-I_0 = 0.3
+I_0 = 0.3 # Baseline
 
-def get_bimodal_gaussian_field(s, L):
+def gaussian(s_norm, A, center, width):
+    """Compute Gaussian function."""
+    return A * np.exp(-((s_norm - center)**2) / (2 * width**2))
+
+def gaussian_grad(s_norm, A, center, width, L):
     """
-    Computes the bimodal Gaussian information field I(s) and its gradient dI/ds.
-    s: array of spatial coordinates [0, L]
-    L: total length
+    Compute spatial gradient of Gaussian function d/ds.
+    I(s) = A * exp(-(s/L - c)^2 / 2w^2)
+    dI/ds = A * exp(...) * -(s/L - c)/w^2 * (1/L)
+    """
+    term = -(s_norm - center) / (width**2)
+    val = gaussian(s_norm, A, center, width)
+    return val * term / L
+
+def get_bimodal_field_gradient(s, L):
+    """
+    Compute total gradient of bimodal information field.
+    I(s) = I_c(s) + I_l(s) + I_0
+    Returns: grad_I (array)
     """
     s_norm = s / L
+    grad_I_c = gaussian_grad(s_norm, A_c, s_c, sigma_c, L)
+    grad_I_l = gaussian_grad(s_norm, A_l, s_l, sigma_l, L)
+    return grad_I_c + grad_I_l
 
-    # Field I(s)
-    I_c = A_c * np.exp(-((s_norm - s_c)**2) / (2 * sigma_c**2))
-    I_l = A_l * np.exp(-((s_norm - s_l)**2) / (2 * sigma_l**2))
-    I = I_c + I_l + I_0
-
-    # Gradient dI/ds
-    # d/ds = (d/ds_norm) * (ds_norm/ds) = (d/ds_norm) * (1/L)
-    dIc_dsn = I_c * (-(s_norm - s_c) / sigma_c**2) * np.exp(-((s_norm - s_c)**2) / (2 * sigma_c**2))
-    dIl_dsn = I_l * (-(s_norm - s_l) / sigma_l**2) * np.exp(-((s_norm - s_l)**2) / (2 * sigma_l**2))
-    # Corrected gradient calculation above (multiplying by exp term)
-
-    dIds = (dIc_dsn + dIl_dsn) / L
-
-    return I, dIds
-
-def run_single_simulation(L, chi_kappa, anisotropy, initial_lateral_defect=0.03):
+def solve_system(L, chi_kappa):
     """
-    Runs a single simulation for a given length L and coupling strength chi_kappa.
-    Returns the final curvature state (kappa) and metrics.
+    Solves the system for a given L and chi_kappa.
+    Returns: P_counter, Cobb_angle
     """
-    # 1. Geometry Scaling
-    current_A = A_REF
-    radius = np.sqrt(current_A / np.pi)
-    n_elements = 20
+    # Isometric Growth: A scales with L^2
+    A_cross = A_ref * (L / L_ref)**2
 
-    # 2. Setup Information Field
-    s = np.linspace(0, L, n_elements + 1)
-    I, dIds = get_bimodal_gaussian_field(s, L)
-    info = InfoField1D(s=s, I=I, dIds=dIds)
+    # Moment of Inertia (Circular approx)
+    I_moment = (A_cross**2) / (4 * np.pi)
 
-    # 3. Setup Parameters
-    params = CounterCurvatureParams(
-        chi_kappa=chi_kappa,
-        chi_tau=0.0,
-        chi_E=0.0,
-        chi_M=0.0,
-        scale_length=L
+    # Spatial grid
+    n_nodes = 100
+    s = np.linspace(0, L, n_nodes)
+
+    # 1. Compute Gradient
+    grad_I = get_bimodal_field_gradient(s, L)
+
+    # 2. Loads
+    q = rho * A_cross * g
+    P_load = 0.0
+
+    # 3. Beam Properties
+    E_field = np.full_like(s, E0)
+    M_active = np.zeros_like(s)
+
+    # 4. IEC Equilibrium (Active)
+    kappa_target_IEC = chi_kappa * grad_I
+    theta_IEC, kappa_IEC = solve_beam_static(
+        s, kappa_target_IEC, E_field, M_active,
+        I_moment=I_moment, P_load=P_load, distributed_load=q
     )
 
-    # 4. Create System with intrinsic curvature
-    kappa_gen = np.zeros((3, n_elements + 1))
-    kappa_gen[1, :] = 2.0  # Natural Kyphosis (Sagittal)
-    if initial_lateral_defect > 0:
-        kappa_gen[0, :] = initial_lateral_defect # Lateral Defect
+    # 5. Passive Equilibrium (Gravity only)
+    kappa_target_passive = np.zeros_like(s)
+    theta_passive, kappa_passive = solve_beam_static(
+        s, kappa_target_passive, E_field, M_active,
+        I_moment=I_moment, P_load=P_load, distributed_load=q
+    )
 
-    try:
-        rod_system = CounterCurvatureRodSystem.from_iec(
-            info=info,
-            params=params,
-            length=L,
-            n_elements=n_elements,
-            E0=E0,
-            rho=RHO,
-            radius=radius,
-            kappa_gen=kappa_gen,
-            gravity=G,
-            stiffness_anisotropy=anisotropy
-        )
+    # 6. Thermodynamic Cost
+    # P_counter ~ eta_a * rho * A * g * L^2 * <|kappa_IEC - kappa_passive|^2>
+    kappa_diff_sq = (kappa_IEC - kappa_passive)**2
+    mean_kappa_diff_sq = np.mean(kappa_diff_sq)
+    P_counter = eta_a * rho * A_cross * g * (L**2) * mean_kappa_diff_sq
 
-        # 5. Run Simulation
-        duration = 0.5 # Fast settle
-        dt = 2e-4
+    # 7. Cobb Angle
+    cobb_angle = np.degrees(np.max(theta_IEC) - np.min(theta_IEC))
 
-        result = rod_system.run_simulation(
-            final_time=duration,
-            dt=dt,
-            save_every=max(1, int(duration/dt/5)),
-            boundary_condition="fixed",
-            progress_bar=False,
-            damping_constant=2.0
-        )
-
-        # Return final kappa (n_nodes, 3) and simulation metrics
-        metrics = result.compute_final_metrics()
-        final_kappa = result.kappa[-1] # (n_nodes, 3)
-
-        return final_kappa, metrics
-
-    except Exception as e:
-        print(f"Simulation failed for L={L}, chi={chi_kappa}: {e}")
-        return None, {}
+    return P_counter, cobb_angle
 
 def run_sweep():
-    # Parameters
-    chi_vals = np.linspace(0.01, 0.10, 20)
-    L_vals = np.linspace(0.25, 0.55, 20)
+    print("Starting 2D Energy Deficit Bifurcation Sweep...")
 
-    results = []
-
-    # Create output directory
     output_dir = Path("outputs/thermodynamic_cost")
     output_dir.mkdir(parents=True, exist_ok=True)
     figures_dir = Path("outputs/figures")
     figures_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Starting Energy Deficit Sweep: {len(chi_vals)}x{len(L_vals)} runs")
+    # Parameter Ranges
+    # L from 0.15m to 0.85m (covering pre-adolescent to adult)
+    L_vals = np.linspace(0.15, 0.85, 30)
 
-    for i, chi in enumerate(chi_vals):
-        print(f"Row {i+1}/{len(chi_vals)} (chi={chi:.3f})...", end="", flush=True)
+    # chi_kappa from 0.0 to 0.15 (covering healthy to pathological)
+    chi_vals = np.linspace(0.0, 0.15, 30)
+
+    # Reference Supply Calibration
+    # Calibrate Supply S(L) based on a "Healthy/Reference" trajectory
+    # Reference condition: L=0.35m, chi_kappa=0.05
+    L_calib = 0.35
+    chi_calib = 0.05
+    P_calib, _ = solve_system(L_calib, chi_calib)
+    S0 = P_calib
+    print(f"Calibrated Supply S0 = {S0:.6f} at L={L_calib}m, chi={chi_calib}")
+
+    results = []
+
+    for chi in chi_vals:
         for L in L_vals:
-            current_A = A_REF
+            P_counter, cobb = solve_system(L, chi)
 
-            # 1. Active Run (chi_kappa = chi)
-            kappa_active, metrics_active = run_single_simulation(L, chi, ANISOTROPY, initial_lateral_defect=0.03)
+            # Supply Model: S(L) = S0 * (L / L_calib)^1.0
+            # Assuming linear scaling of proprioceptive supply capacity with length
+            S_proprio = S0 * (L / L_calib)**1.0
 
-            # 2. Passive Run (chi_kappa = 0.0)
-            kappa_passive, _ = run_single_simulation(L, 0.0, ANISOTROPY, initial_lateral_defect=0.03)
+            R_deficit = P_counter / S_proprio if S_proprio > 1e-9 else 0.0
 
-            if kappa_active is not None and kappa_passive is not None:
-                # 3. Compute P_counter
-                # Mean Squared Difference of curvature vectors
-                diff = kappa_active - kappa_passive # (N, 3)
-                msd_kappa = np.mean(np.sum(diff**2, axis=1)) # Sum over components, mean over nodes
-
-                # P_counter definition based on energy functional approximation
-                # Scales with Volume * E * Curvature^2 ~ A*L * E * (1/L^2) ~ A/L if A fixed?
-                # Using the user provided scaling L^2 in the task description for P_counter?
-                # User task step 1 says: P_counter(χ_κ, L) — metabolic power required for countercurvature
-                # Step 2 says: P_counter scaling (L^{2-3})
-                # The formula used in existing script was: ETA_A * RHO * current_A * G * (L**2) * msd_kappa
-                # Let's stick to this formula as it seems to be the intended one for this sweep.
-                P_counter = ETA_A * RHO * current_A * G * (L**2) * msd_kappa
-
-                # 4. Metrics
-                cobb_angle = metrics_active.get("cobb_angle", 0.0)
-                D_geo = np.sqrt(msd_kappa)
-
-                results.append({
-                    "chi_kappa": chi,
-                    "L": L,
-                    "P_counter": P_counter,
-                    "Cobb": cobb_angle,
-                    "D_geo": D_geo
-                })
-        print(" Done.")
+            results.append({
+                "chi_kappa": chi,
+                "L": L,
+                "P_counter": P_counter,
+                "S_proprio": S_proprio,
+                "R_deficit": R_deficit,
+                "Cobb_angle": cobb
+            })
 
     df = pd.DataFrame(results)
-
-    # Compute Supply S_proprio
-    # Reference point: L=0.35, chi=0.05
-    # Find closest point in results
-    ref_idx = ((df['L']-0.35).abs() + (df['chi_kappa']-0.05).abs()).idxmin()
-    S0_ref = df.loc[ref_idx, 'P_counter']
-
-    print(f"\nReference S0 (at L=0.35, chi=0.05): {S0_ref:.6e}")
-
-    # Calculate Supply and R_deficit
-    # S_proprio = S0 * (L/0.35)^0.7
-    # Note: Use L_0 = 0.35 as reference length for supply normalization
-    L0_supply = 0.35
-    df['S_proprio'] = S0_ref * (df['L'] / L0_supply)**0.7
-    df['R_deficit'] = df['P_counter'] / df['S_proprio']
-
-    # Save CSV
     csv_path = output_dir / "phase_diagram_energy_deficit.csv"
     df.to_csv(csv_path, index=False)
-    print(f"Saved results to {csv_path}")
+    print(f"Saved sweep data to {csv_path}")
 
-    generate_plots(df, figures_dir)
+    # Generate Heatmaps
+    generate_heatmaps(df, figures_dir)
 
-def generate_plots(df, output_dir):
-    # Pivot for heatmaps
-    # Ensure index/columns are sorted
+def generate_heatmaps(df, output_dir):
     pivot_R = df.pivot(index="chi_kappa", columns="L", values="R_deficit")
-    pivot_Cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb")
+    pivot_Cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb_angle")
 
-    # The pivot might return unsorted axes if data wasn't sorted, but linspace is sorted.
-    # Just to be safe, sort index/columns
+    # Ensure sorted axes
     pivot_R = pivot_R.sort_index(axis=0).sort_index(axis=1)
-    pivot_Cobb = pivot_Cobb.sort_index(axis=0).sort_index(axis=1)
-
     chi_axis = pivot_R.index
     L_axis = pivot_R.columns
     X, Y = np.meshgrid(L_axis, chi_axis)
 
-    # Plot 1: R_deficit
+    # Plot 1: Energy Deficit Ratio
     plt.figure(figsize=(10, 8))
-    # Use 'RdYlBu_r' so Red is high (Deficit), Blue is low (Surplus)
-    # R > 1 is Deficit (Red)
+    # RdYlBu_r: Red (High Deficit), Blue (Low Deficit)
     cp = plt.contourf(X, Y, pivot_R.values, levels=20, cmap='RdYlBu_r')
-    plt.colorbar(cp, label=r'Energy Deficit Ratio $R_{deficit}$')
+    cbar = plt.colorbar(cp)
+    cbar.set_label(r'Energy Deficit Ratio $R_{deficit} = P_{counter}/S_{proprio}$')
 
-    # Contour line at R=1
-    # Check if we have values crossing 1.0
+    # Contour at R=1 (Bifurcation Boundary)
     if pivot_R.values.min() < 1.0 < pivot_R.values.max():
-        plt.contour(X, Y, pivot_R.values, levels=[1.0], colors='k', linewidths=2, linestyles='--')
+        cs = plt.contour(X, Y, pivot_R.values, levels=[1.0], colors='k', linewidths=2, linestyles='--')
+        plt.clabel(cs, fmt='R=1.0', inline=True, fontsize=10)
 
     plt.xlabel('Spinal Length L (m)')
     plt.ylabel(r'Coupling Strength $\chi_\kappa$')
-    plt.title('Energy Deficit Phase Diagram')
-
-    # Add annotation for R>1 region
-    plt.text(0.3, 0.08, 'Deficit Window (R > 1)', color='black', fontweight='bold',
-             bbox=dict(facecolor='white', alpha=0.5))
-
+    plt.title('Phase Diagram: Energy Deficit Bifurcation')
     plt.savefig(output_dir / "phase_diagram_energy_deficit.png", dpi=150)
     plt.close()
 
     # Plot 2: Cobb Angle
     plt.figure(figsize=(10, 8))
     cp2 = plt.contourf(X, Y, pivot_Cobb.values, levels=20, cmap='viridis')
-    plt.colorbar(cp2, label='Cobb Angle (degrees)')
+    cbar2 = plt.colorbar(cp2)
+    cbar2.set_label('Cobb Angle (degrees)')
 
     plt.xlabel('Spinal Length L (m)')
     plt.ylabel(r'Coupling Strength $\chi_\kappa$')
-    plt.title('Scoliosis Emergence Phase Diagram')
-
-    plt.savefig(output_dir / "phase_diagram_energy_deficit_cobb.png", dpi=150)
+    plt.title('Phase Diagram: Cobb Angle Severity')
+    plt.savefig(output_dir / "phase_diagram_cobb.png", dpi=150)
     plt.close()
-    print("Plots saved.")
+    print("Saved heatmaps to outputs/figures/")
 
 if __name__ == "__main__":
     run_sweep()

@@ -36,6 +36,8 @@ import sys
 import time
 import tracemalloc
 from datetime import datetime
+
+__version__ = "1.0.0"
 from pathlib import Path
 from typing import List
 

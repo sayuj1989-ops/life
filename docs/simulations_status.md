@@ -36,3 +36,4 @@
 | 2026-02-20 | weekly-sim-defect-sensitivity | Initial Lateral Defect | Extreme sensitivity at high growth (chi=15); 0.026 defect triggers Cobb > 50 deg, vanishing basin of attraction. | [Report](../outputs/sim/2026-02-20/report.md) |
 | 2026-02-21 | weekly-sim-anisotropy-rescue | Stiffness Anisotropy | Non-monotonic stability; Rescue Windows at ~3.0 and ~6.0, but critical Resonance Spikes at 4.3 and 7.6. | [Report](../outputs/sim/2026-02-21/report.md) |
 | 2026-02-22 | weekly-sim: anisotropy-sweep-v2 | stiffness_anisotropy | Critical Rescue Cliff at Anisotropy ~2.4; Optimal stability at ~2.9; Isotropic collapse (Cobb 87 deg) confirms vector constraint failure. | [Report](../outputs/sim/2026-02-22/report.md) |
+| 2026-03-05 | weekly-sim: taper-sweep | taper_ratio | Geometric Tapering (0.5) stabilizes high growth; Inverted Tapering (1.5) causes catastrophic collapse (Cobb 71 deg). | [Report](../outputs/sim/2026-03-05/report.md) |

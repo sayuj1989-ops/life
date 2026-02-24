@@ -1,11 +1,6 @@
-Visual Abstract: Biological Countercurvature of Spacetime.
-
-A conceptual illustration combining biological growth with relativistic geometry.
-
-Key Elements:
-1. **The Grid**: A 3D metric grid (representing spacetime/information field) that is warped and curved. It should look like a gravity well or a complex manifold.
-2. **The Spine**: A human spine growing within this grid. The spine's curvature perfectly matches the warped grid lines, showing that it is following the "path of least resistance" (geodesic) in this curved space.
-3. **Contrast**: On one side, a straight grid with a straight spine (Healthy/Euclidean). On the other, the warped grid with a scoliotic spine (Pathological/Riemannian).
-4. **Style**: High-end scientific illustration, 3D render style, translucent materials, glowing grid lines. Blue and gold color scheme.
-
-Caption: "Scoliosis as a geometric adaptation to a warped information field."
+A high-quality 3D visualization of the "Biological Countercurvature" concept.
+Show a human spine growing upwards within a transparent, warped 3D grid representing spacetime or the information field.
+The grid lines should curve opposite to the spine's natural curves (counter-curvature), illustrating how information balances gravity.
+The spine should look organic but translucent, revealing the internal "energy flow" or "metric tensor" lines.
+The background should be dark and abstract, emphasizing the geometry.
+Title: "Information-Elasticity Coupling".

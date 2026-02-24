@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0
+rootdir: /app
+configfile: pyproject.toml
+plugins: cov-7.0.0, langsmith-0.6.9, anyio-4.12.1
+collected 3 items
+
+tests/test_afcc_daily_refresh.py .../home/jules/.pyenv/versions/3.12.12/lib/python3.12/site-packages/coverage/inorout.py:562: CoverageWarning: Module spinalmodes was never imported. (module-not-imported); see https://coverage.readthedocs.io/en/7.13.3/messages.html#warning-module-not-imported
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")
+                                     [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.12-final-0 _______________
+
+Name                                                         Stmts   Miss  Cover   Missing
+------------------------------------------------------------------------------------------
+research/alphafold_countercurvature/src/afcc/__init__.py         0      0   100%
+research/alphafold_countercurvature/src/afcc/afdb.py           134    134     0%   1-230
+research/alphafold_countercurvature/src/afcc/candidates.py      76     76     0%   1-121
+research/alphafold_countercurvature/src/afcc/metrics.py        327    310     5%   8-9, 13, 25-29, 33-40, 47-81, 97-102, 116-161, 174-218, 224-304, 311-602
+research/alphafold_countercurvature/src/afcc/report.py          52     52     0%   1-124
+research/alphafold_countercurvature/src/afcc/simulation.py      62     62     0%   16-202
+research/alphafold_countercurvature/src/afcc/structure.py      127    112    12%   13, 17-24, 36-117, 125-126, 135-152, 159-216
+research/alphafold_countercurvature/src/afcc/uniprot.py        124    124     0%   1-194
+------------------------------------------------------------------------------------------
+TOTAL                                                          902    870     4%
+============================== 3 passed in 2.36s ===============================

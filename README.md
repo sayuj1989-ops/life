@@ -37,8 +37,9 @@ The repository is organized into clear functional domains:
 │   └── references.bib            # Bibliography
 │
 ├── scripts/                      # Reproducible experiment runners
-│   ├── experiment_minimal_elastica.py  # Core simulation runner
-│   └── weekly_sim_anisotropy_growth.py # Parameter sweep wrapper
+│   ├── experiments/              # Simulation sweeps and hypothesis tests
+│   ├── data_management/          # Data fetching and processing pipelines
+│   └── analysis/                 # Post-processing and plotting
 │
 ├── docs/                         # Project documentation and plans
 ├── data/                         # Datasets (tracked and external)
@@ -69,7 +70,7 @@ pip install -r requirements.txt
 To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
 
 ```bash
-python scripts/experiment_minimal_elastica.py
+python scripts/experiments/experiment_minimal_elastica.py
 ```
 
 ### 3. AlphaFold Counter-Curvature Analysis

@@ -43,6 +43,14 @@ seeds:
     - CNNM2
     - BNC2
 
+  Metabolic_Expansion:
+    - PPARGC1A
+    - IGF1R
+    - GHR
+    - ARNTL
+    - DMD
+    - MYLK
+
   # Optional Expansion Sets
   expansion_modules:
     pass: []

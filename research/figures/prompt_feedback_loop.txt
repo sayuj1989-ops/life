@@ -1,0 +1,18 @@
+A scientific feedback loop diagram titled 'Mechanogenetic Coupling'.
+Nodes:
+1. Genetic Plan (Target Curvature)
+2. Mechanosensors (Measure Strain)
+3. Metabolic Supply (ATP/Proteins)
+4. Growth Rate (Bone Elongation)
+5. Physical Geometry (Spine Shape)
+6. Gravity (External Load)
+
+Edges:
+Genetic Plan -> Target Curvature.
+Gravity -> Physical Geometry.
+Physical Geometry -> Mechanosensors (Error Signal).
+Mechanosensors -> Metabolic Supply (Demand).
+Metabolic Supply -> Growth Rate (Regulation).
+Growth Rate -> Physical Geometry.
+
+Show a 'Short-Circuit' path labeled 'Scoliosis' where Metabolic Supply fails to meet Demand.

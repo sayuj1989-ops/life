@@ -7,6 +7,7 @@ Applies the discrete ranking/scoring rubric (initial automated pass).
 """
 
 import sys
+import os
 from pathlib import Path
 import pandas as pd
 
@@ -16,7 +17,11 @@ sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.candidates import build_candidate_list
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+if os.environ.get("AFCC_BASE_DIR"):
+    BASE_DIR = Path(os.environ["AFCC_BASE_DIR"])
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
 CONFIG_DIR = BASE_DIR / "config"
 DATA_DIR = BASE_DIR / "data" / "processed"
 

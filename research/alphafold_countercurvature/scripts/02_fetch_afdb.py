@@ -6,6 +6,7 @@ Downloads structure data (PDB, PAE) from AlphaFold DB for mapped UniProt IDs.
 """
 
 import sys
+import os
 import argparse
 import time
 import pandas as pd
@@ -16,7 +17,11 @@ sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.afdb import AlphaFoldFetcher
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+if os.environ.get("AFCC_BASE_DIR"):
+    BASE_DIR = Path(os.environ["AFCC_BASE_DIR"])
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
 DATA_DIR = BASE_DIR / "data"
 INPUT_MAPPING = DATA_DIR / "processed" / "uniprot_mapping.csv"
 MANIFEST_FILE = DATA_DIR / "manifest.csv"

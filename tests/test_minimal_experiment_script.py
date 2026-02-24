@@ -176,3 +176,39 @@ def test_run_experiment_active_coupling(tmp_path):
 
     assert float(row["chi_e"]) == 0.5
     assert float(row["chi_m"]) == 1.0
+
+@pytest.mark.skipif(
+    not experiment_minimal_elastica.PYELASTICA_AVAILABLE,
+    reason="PyElastica not installed"
+)
+def test_run_experiment_tapering(tmp_path):
+    """
+    Test that taper_ratios argument is accepted and recorded.
+    """
+    out_file = tmp_path / "test_taper.csv"
+
+    experiment_minimal_elastica.run_experiment(
+        out_file=str(out_file),
+        anisotropies=[1.0],
+        chi_kappas=[0.0],
+        chi_taus=[0.0],
+        chi_es=[0.0],
+        chi_ms=[0.0],
+        taper_ratios=[0.5, 1.0],
+        boundary_condition="fixed",
+        n_elements=10,
+        final_time=0.01,
+        save_every=100
+    )
+
+    assert out_file.exists()
+
+    with open(out_file, "r") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert len(rows) == 2
+
+    tapers = [float(r["taper_ratio"]) for r in rows]
+    assert 0.5 in tapers
+    assert 1.0 in tapers

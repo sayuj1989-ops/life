@@ -48,10 +48,25 @@ This document tracks the daily incremental refactor of the repository towards pu
 
 - [x] **Organize `scripts/`**: Group scripts into logical subdirectories (`experiments/`, `pipeline/`, `data_management/`) to reduce clutter.
 - [x] **Fix Script Imports**: Ensure moved scripts can still import `src` correctly (sys.path or package install).
-- [ ] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function.
+- [x] **Standardize Experiment Interface**: Ensure all experiment scripts have a standard CLI or main function. (Created `experiment_utils.py` and refactored key scripts).
 
 ## Phase 6: Reproducibility & QA (High Priority)
 
-- [ ] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
-- [ ] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
-- [ ] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).
+- [x] **Add Reproducibility Guide**: Create `docs/reproducibility.md` explaining how to run the full pipeline.
+- [x] **Verify Example Scripts**: Ensure examples in `README.md` and `docs/` are runnable.
+- [x] **Automated Pipeline Test**: Create a test or script that runs a minimal version of the full pipeline (AlphaFold -> CounterCurvature -> Analysis).
+
+## Phase 7: Manuscript & Submission Cleanup (High Priority)
+
+- [x] **Consolidate Submission Directories**:
+    - [x] Decide between `submission/` and `submission_package/` (likely keep `submission_package` and archive `submission`).
+    - [x] Ensure all submission artifacts (cover letter, checklist) are in one place.
+- [ ] **Clean Root of Drafts**:
+    - [ ] Move `.docx` files (`IEC_*.docx`, `NATURE_*.docx`) to `manuscript/drafts/`.
+    - [ ] Move template files (`*_Template.docx`) to `manuscript/templates/`.
+- [ ] **Organize Manuscript Scripts**:
+    - [ ] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
+- [ ] **Organize Prompts**:
+    - [ ] Move `AI_*.md` and `*_PROMPT.md` to `docs/prompts/` or `notes/prompts/`.
+- [ ] **Submission Checklist**:
+    - [ ] Consolidate `SUBMISSION_MASTER_CHECKLIST.md` and `SUBMISSION_PACKAGE_SUMMARY.txt` into the submission folder.

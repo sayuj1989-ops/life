@@ -1,0 +1,32 @@
+Dr. Magdalena Skipper
+Editor-in-Chief
+Nature
+
+Dear Dr. Skipper,
+
+We submit for your consideration our Article entitled "Active metabolic countercurvature of the growing spine."
+
+**Target Editorial Section:**
+Given the interdisciplinary nature of this work, we request assignment to the **Biophysics** and **Developmental Biology** desks.
+
+**The Grand Challenge:**
+Gravity is the most pervasive physical force on Earth, yet biology lacks a fundamental theory for how living systems maintain complex, non-monotonic geometries (like the S-shaped spine) against it. Current biomechanical models treat the spine as a passive column that buckles under load. This fails to explain why healthy spines do *not* buckle, nor why scoliotic deformity appears specifically during the rapid growth of adolescence.
+
+**The Breakthrough:**
+We propose a paradigm shift: the spine is not a passive structure, but a "Thermodynamic Standing Wave" maintained by the continuous expenditure of metabolic energy. Using a novel Information-Elasticity Coupling (IEC) framework, we demonstrate that the S-shape is an active "Counter-Curvature" driven by developmental patterning genes. We identify a critical "Energy Deficit Window" during adolescent growth where the metabolic cost of resisting gravity ($L^4$) outpaces the nutrient supply ($L^2$).
+
+**Broad Implication:**
+This work reclassifies Adolescent Idiopathic Scoliosis (AIS) from a mechanical mystery to a predictable metabolic failure. By linking AlphaFold-derived protein anisotropy to macroscopic buckling, we provide the first physical explanation for the 10:1 female preponderance and offer a non-surgical "chronotherapeutic" route to prevention.
+
+This manuscript is not a specialist orthopedic study; it is a fundamental advance in the physics of living matter, bridging developmental biology, thermodynamics, and clinical medicine.
+
+**Suggested Reviewers:**
+1. **Alain Goriely (Oxford)** - For the mathematics of biological growth.
+2. **Olivier Pourquié (Harvard)** - For the developmental segmentation (HOX) aspect.
+3. **Stefan Dudek (Manchester)** - For the intervertebral disc circadian clock.
+
+We declare no competing interests.
+
+Sincerely,
+
+The Authors

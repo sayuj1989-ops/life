@@ -1,0 +1,1 @@
+Plot a phase diagram of Energy Deficit (R_deficit) vs Coupling Strength (chi_kappa) and Spinal Length (L). Use a heatmap or contour plot. Highlight the critical boundary where R_deficit = 1.0.

@@ -264,3 +264,105 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rods**: Found 8 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
 - **Structural Confidence**: 24 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
 - **Top Mover**: POC5 remains the most anisotropic structure in this batch.
+
+
+# AFCC Daily Refresh: 2026-02-18
+
+## Run Summary
+- **Candidates Processed**: 58
+- **Top Candidate**: POC5 (Anisotropy: 24.69)
+# AFCC Daily Refresh: 2026-02-17
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| POC5 | 24.69 | 64.0 | Fibrous/Extended |
+| CDH23 | 11.93 | 76.7 | Fibrous/Extended |
+| ETV1 | 5.32 | 67.9 | Fibrous/Extended |
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| LMNA | 4.75 | 76.4 | Fibrous/Extended |
+
+## Key Observations
+- **Tension Rods**: Found 8 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 24 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: POC5 remains the most anisotropic structure in this batch.
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| PPARGC1A | 2.19 | 52.7 | Intermediate |
+| RUNX3 | 2.06 | 60.6 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 6 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+## 2026-02-20: Daily Refresh
+- **Targets**: PPARGC1A, IGF1R, GHR, ARNTL, DAG1, DMD, MYLK, PIEZO2, ACVR1, NTRK3
+- **Full Report**: [View Summary](outputs/afcc/2026-02-20/summary.md)
+- **Metrics**: [Download CSV](outputs/afcc/2026-02-20/metrics.csv)
+- **Top Anisotropy**: GHR (5.13)
+
+# AFCC Daily Refresh: 2026-02-21
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.70 | Fibrous/Extended |
+| ACVR1 | 3.41 | 83.11 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.53 | Fibrous/Extended |
+| JAG1 | 2.76 | 73.14 | Intermediate |
+| DAG1 | 2.39 | 68.17 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 5 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+# AFCC Daily Refresh: 2026-02-22
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| LBX1 | 2.27 | 66.9 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 2 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 6 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+# AFCC Daily Refresh: 2026-02-23
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| HIF1A | 3.42 | 60.8 | Fibrous/Extended |
+| ACVR1 | 3.41 | 83.1 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 6 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.

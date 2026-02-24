@@ -45,9 +45,11 @@ ENV/
 outputs/csv/
 outputs/figs/
 outputs/experiments/
+outputs/tests/
 outputs/temp/
 outputs/sim/
 outputs/methodology/
+outputs/protein_physics/
 !outputs/.gitkeep
 results/
 logs/
@@ -95,3 +97,4 @@ data/processed/
 !data/processed/.gitkeep
 chroma_db/
 chroma_db_llama/
+data/afdb_cache/

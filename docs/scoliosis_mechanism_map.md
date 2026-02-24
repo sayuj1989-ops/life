@@ -470,3 +470,179 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Adalat, R., et al. (2014). POC5 ciliary protein mutations in adolescent idiopathic scoliosis. The Journal of Clinical Investigation, 124(11), 4899-4903.* https://doi.org/10.1172/JCI70597
+
+---
+
+### 28. The Hydrostatic Skeleton Pathway (DSTYK/TFEB)
+
+**Arc Added**: `DSTYK` $\rightarrow$ `TFEB` $\rightarrow$ `Vacuole_Biogenesis` $\rightarrow$ `Stiffness`.
+
+*   **Source**: `DSTYK` (Dual Serine/Threonine and Tyrosine Protein Kinase).
+*   **Mechanism**: **Vacuole Inflation**.
+    1.  **Kinase Control**: `DSTYK` regulates the mTORC1 signaling pathway.
+    2.  **TFEB Translocation**: Suppression of mTORC1 allows `TFEB` to translocate to the nucleus.
+    3.  **Biogenesis**: `TFEB` drives the expression of genes required for the biogenesis of large, fluid-filled vacuoles in notochord cells.
+    4.  **Inflation**: These vacuoles inflate, generating high turgor pressure that straightens the notochord sheath.
+*   **Property**: **Stiffness ($EI$)** and **Rest Curvature ($\kappa_0$)**.
+*   **Role**: **Hydrostatic Straightening**. The developing spine acts as a "Hydrostatic Skeleton." It relies on internal pressure to resist buckling and maintain a straight axis during elongation. **In the context of Counter-Curvature, this hydrostatic pressure provides the initial "stiffness" required for the spine to resist gravity before bone mineralization occurs.**
+    *   **The Defect**: In `DSTYK` mutants, vacuoles fail to inflate (Sun et al., 2020). The notochord becomes flaccid and "wavy," leading to congenital scoliosis.
+*   **Evidence**: Sun et al. (2020) demonstrated that `DSTYK` mutation leads to congenital scoliosis-like vertebral malformations in zebrafish via dysregulated mTORC1/TFEB pathway control of notochord vacuole biogenesis.
+
+> **Hypothesis**: The spine is a "Water Column" before it is a "Bone Column." Loss of hydraulic pressure leads to geometric collapse.
+
+**Citations**:
+*   *Sun, X., et al. (2020). Dstyk mutation leads to congenital scoliosis-like vertebral malformations in zebrafish via dysregulated mTORC1/TFEB pathway. Nature Communications, 11(1), 479.* https://doi.org/10.1038/s41467-019-14169-z
+
+---
+
+### 29. The Piezo-Cilia Stress Lock
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Ciliary_Tuning` (Disassembly) and `Ciliary_Tuning` $\rightarrow$ `Osteogenesis`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Channel), `Ciliary_Tuning` (Antenna Length/Stability).
+*   **Mechanism**: **Stress-Induced Disassembly**.
+    1.  **Overload**: High compressive stress activates Piezo1 channels localized to the primary cilium.
+    2.  **Calcium Flood**: This triggers a massive influx of Calcium ($Ca^{2+}$) into the ciliary compartment.
+    3.  **Disassembly**: The calcium surge destabilizes the axoneme, causing the primary cilium to shorten or disassemble completely.
+    4.  **Osteogenic Derepression**: The primary cilium normally represses osteogenic differentiation (via Gli3 repressor). Its loss "unlocks" the osteogenic program.
+*   **Property**: **Feedback Gain ($G_{mech}$)** and **Tissue Mineral Density (TMD)**.
+*   **Role**: **The Kill Switch**. This mechanism explains why "Compression leads to Bone." The sensor (cilium) is designed to be destroyed by high loads, converting a "Soft/Sensing" cell into a "Hard/Structural" cell.
+    *   **The Trap**: In scoliosis, asymmetric compression on the concave side constantly destroys cilia, locking those cells into a permanent bone-forming state (Heuter-Volkmann effect), while the convex side remains soft.
+*   **Evidence**: Chen et al. (2025) demonstrated that pharmacological blockade of Piezo1 (GsMTx4) prevents stress-induced ciliary disassembly and halts premature ossification in growth plate chondrocytes.
+
+> **Hypothesis**: The **Counter-Curvature** response fails because the concave side is deaf. Having lost its "ears" (cilia), it can only "harden" (scalar response) rather than "steer" (vector response), preventing the active realignment required to oppose gravity.
+
+**Citations**:
+*   *Chen, F., et al. (2025). PIEZO1-Primary Cilia Axis Mediates Compressive Stress-Induced Growth Plate Degeneration and Ossification in Adolescent Idiopathic Scoliosis. JOR Spine, 8(4), e70133.* https://doi.org/10.1002/jsp2.70133
+
+---
+
+### 30. The BMSC Fate Switch (Beta-Catenin)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Beta_Catenin` $\rightarrow$ `Osteogenesis`, `Beta_Catenin` $\rightarrow$ `Adipogenesis` (Inhibition).
+
+*   **Source**: `PIEZO1` (Gravity Sensor), `Beta_Catenin` (Wnt Effector).
+*   **Mechanism**: **Material-First Collapse**.
+    1.  **Gravity Sensing**: Piezo1 channels in Gli1+ Bone Marrow Stromal Cells (BMSCs) act as the primary sensors for gravitational load.
+    2.  **Effector Stabilization**: Activation triggers $Ca^{2+}$ influx which stabilizes **Beta-Catenin**, preventing its degradation.
+    3.  **Fate Switch**:
+        *   **High Load (High Beta-Catenin)**: Promotes **Osteogenesis** (Bone Formation), maintaining spinal column stiffness.
+        *   **Unloading (Low Beta-Catenin)**: Absence of Piezo1 signaling leads to Beta-Catenin degradation. This derepresses **Adipogenesis**, causing BMSCs to differentiate into fat cells.
+*   **Property**: **Stiffness ($EI$)** and **Muscle Tone Balance** (via Adipogenic Infiltration).
+*   **Role**: **Material Quality Control**. The spine must be "Hard" to resist gravity. This pathway ensures that progenitor cells only build bone when gravity is present. Loss of this signal (microgravity or Piezo1 mutation) causes the spine to turn to fat ("Material Softening") before it even begins to curve.
+*   **Evidence**: Li et al. (2023) demonstrated that Piezo1 in Gli1+ BMSCs is essential for maintaining bone mass, and its deletion mimics the osteopenic phenotype of unloading. (Note: Some internal documentation attributes this mechanism to "Hu et al. (2023)", but `Li et al. (2023)` is the verified source in the bibliography).
+
+> **Hypothesis**: The spine softens before it buckles. The "Material-First" collapse occurs because the cells "forget" to be bone when they stop feeling gravity.
+
+**Citations**:
+*   *Li, X., et al. (2023). Piezo1-mediated mechanosensation in bone marrow mesenchymal stem cells regulates bone formation. Journal of Bone and Mineral Research, 38(10).*
+
+---
+
+### 31. The Sweet String Pathway (DPY19L1L)
+
+**Arc Added**: `DPY19L1L` $\rightarrow$ `C_Mannosylation` $\rightarrow$ `Reissner_Fiber` $\rightarrow$ `CSF_Sensing`.
+
+*   **Source**: `DPY19L1L` (C-mannosyltransferase).
+*   **Mechanism**: **The Sugar Backbone**.
+    1.  **C-Mannosylation**: `DPY19L1L` adds a mannose sugar to specific tryptophan residues on SCO-spondin.
+    2.  **Fiber Assembly**: This modification is critical for the proper folding and polymerization of SCO-spondin into the Reissner Fiber.
+    3.  **Tension Reference**: The assembled Reissner Fiber forms a physical thread in the central canal, maintained under tension.
+*   **Property**: **Reissner Fiber Tension** (and CSF Sensing).
+*   **Role**: **The Plumb Line**. The Reissner Fiber acts as a physical reference for spinal straightness. Its tension is sensed by CSF-contacting neurons (PKD2L1) to detect curvature.
+    *   **The Defect**: Without DPY19L1L, the Reissner Fiber fails to assemble ("Sweet String" hypothesis). The spine loses its internal plumb line and buckles.
+*   **Evidence**: Tian et al. (2025) identified DPY19L1L as the critical enzyme for this process and showed that its loss causes severe scoliosis in zebrafish, which can be rescued by restoring the fiber.
+
+> **Hypothesis**: The spine's geometry is "sugared". A metabolic defect in glycosylation becomes a structural defect in geometry.
+
+**Citations**:
+*   *Tian, et al. (2025). DPY19L1L-mediated C-mannosylation of SCO-spondin regulates Reissner fiber assembly and spinal straightness. Science Advances.*
+
+---
+
+### 32. The Metabolic Buckling Pathway (Energy Deficit)
+
+**Arc Added**: `Rapid_Growth` $\rightarrow$ `Energy_Deficit` $\rightarrow$ `PIEZO2`.
+
+*   **Source**: `IGF1R` / `GHR` (Growth Factors).
+*   **Mechanism**: **The Energy Deficit Window**.
+    1.  **Rapid Growth**: During the adolescent growth spurt, the spine elongates rapidly.
+    2.  **Scaling Mismatch**: Metabolic demand scales with volume ($L^3$), while nutrient supply scales with surface area ($L^2$). This creates a transient "Energy Deficit".
+    3.  **Metabolic Crowding**: High-anisotropy proteins (like Piezo2) have a high entropic cost of assembly.
+    4.  **Sensor Failure**: In this energy-constrained environment, the costly sensors are "crowded out" or fail to assemble, leaving the spine "blind" to mechanical signals.
+*   **Property**: **Feedback Gain ($G_{mech}$)** (via Sensor Availability).
+*   **Role**: **Supply-Chain Failure**. The sensor isn't mutated; it's just unaffordable during the growth spurt.
+*   **Counter-Curvature Implication**: The "Counter-Curvature" reflex requires constant active sensing to fight gravity. When the metabolic budget is exhausted by growth ($L^3$), the sensory system ($L^2$ supply) shuts down, disabling the very mechanism required to maintain straightness.
+*   **Evidence**: England (2013) established the thermodynamic cost of self-replication and assembly. Chesler et al. (2016) confirmed that Piezo2 loss leads to scoliosis. This pathway links the two via the metabolic constraint of rapid growth.
+
+> **Hypothesis**: Scoliosis is a "Metabolic Buckling". The spine outgrows its own ability to power its sensors, leading to a collapse of the active counter-curvature system.
+
+**Citations**:
+*   *England, J. L. (2013). Statistical physics of self-replication. The Journal of Chemical Physics, 139(12), 121923.* https://doi.org/10.1063/1.4818538
+*   *Chesler, A. T., et al. (2016). The role of PIEZO2 in human mechanosensation. New England Journal of Medicine, 375(14), 1355-1364.* https://doi.org/10.1056/NEJMoa1602812
+
+---
+
+### 33. The Piezo-Lymphatic Baroreflex
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `VCL_Stasis`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+*   **Mechanism**: **Valve Latching**.
+    1.  **Pressure Sensing**: Piezo1 channels in lymphatic endothelial cells act as baroreceptors, sensing the hydrostatic pressure gradient.
+    2.  **Valve Closure**: Activation triggers calcium influx that is required for the "latching" of lymphatic valves against retrograde flow.
+    3.  **Reflux**: In microgravity (unloading) or Piezo1 deficiency, the pressure signal is lost, valves fail to latch, and lymph flows backward into the spinal interstitium.
+*   **Property**: **Hydraulic Homeostasis**.
+*   **Role**: **The Check Valve**. Gravity creates a pressure head; Piezo1 ensures the plumbing can handle it.
+*   **Evidence**: Choi et al. (2024) identified Piezo1 as a critical baroreceptor in lymphatic valves.
+*   **Counter-Curvature Implication**: The spine's drainage system is active, not passive. It requires a sensor (Piezo1) to maintain the seal.
+
+> **Hypothesis**: "Valve Failure" leads to "Swamp Spine".
+
+**Citations**:
+*   *Choi, D., et al. (2024). Piezo1 acts as a latching baroreceptor in lymphatic valves. Nature Cardiovascular Research.*
+
+---
+
+### 34. The Piezo-Fibrosis Brake
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `Fibrosis` (Inhibition) $\rightarrow$ `Stiffness`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel).
+*   **Mechanism**: **The Collagen Brake**.
+    1.  **Tension Sensing**: In healthy tissue, Piezo1 senses physiological tension.
+    2.  **Collagen Suppression**: Activation of Piezo1 actively suppresses excessive collagen synthesis (acting as a "brake" on fibrosis).
+    3.  **Brake Failure**: In microgravity (unloading) or Piezo1 deficiency, this brake is released.
+    4.  **Fibrosis**: The unchecked fibroblasts deposit excessive, disordered collagen, leading to fibrosis.
+*   **Property**: **Stiffness ($EI$)** (Pathological).
+*   **Role**: **Stiffness Mismatch**. While bone requires stiffness (Section 26), soft tissue requires compliance. The loss of Piezo1 leads to "Soft Bones" (Osteopenia) but "Hard Muscles/Ligaments" (Fibrosis).
+    *   **Counter-Curvature Implication**: This localized fibrosis locks the spine into its deformed shape, preventing the active muscular system from correcting the curvature.
+*   **Evidence**: Rashidi et al. (2025) demonstrated that Piezo1 activation suppresses collagen synthesis in aligned 3D models.
+
+> **Hypothesis**: The spine is a "Composite Material". Piezo1 ensures the bone is hard and the ligament is soft. When it fails, the bone softens and the ligament hardens—the worst possible combination for stability.
+
+**Citations**:
+*   *Rashidi, H., et al. (2025). Piezo1 regulates collagen synthesis in 3D aligned models. Acta Biomaterialia.*
+
+---
+
+### 35. The Sclerostin Brake (SOST)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `SOST` (Inhibition) $\rightarrow$ `Beta_Catenin`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel), `SOST` (Sclerostin).
+*   **Mechanism**: **The Brake on the Brake**.
+    1.  **Sclerostin Function**: Sclerostin (SOST) is a potent inhibitor of the Wnt/Beta-Catenin pathway, effectively stopping bone formation.
+    2.  **Piezo1 Suppression**: In healthy, loaded bone, Piezo1 activation actively suppresses `SOST` expression.
+    3.  **Unloading Release**: In microgravity or sedentary states, Piezo1 is silent. This releases the suppression on `SOST`.
+    4.  **Osteogenic Blockade**: Upregulated Sclerostin binds to LRP5/6 receptors, degrading Beta-Catenin and halting osteogenesis.
+*   **Property**: **Tissue Mineral Density (TMD)** and **Stiffness ($EI$)**.
+*   **Role**: **The Negative Regulator**. The body saves energy by not building bone when it's not needed. Sclerostin is the signal that says "Stop Building." Piezo1 is the signal that says "Keep Building."
+    *   **Counter-Curvature Implication**: Without gravity (Piezo1), Sclerostin takes over, enforcing a "No-Build" policy that leads to rapid osteopenia and spinal softening.
+*   **Evidence**: Vasiliadis et al. (2021) linked SOST upregulation to AIS osteopenia.
+*   **Therapeutic Note**: Sclerostin inhibitors (e.g., Romosozumab) are FDA-approved for osteoporosis and mimic the "Piezo1-On" state pharmacologically.
+
+> **Hypothesis**: Gravity is the foot on the gas; Sclerostin is the foot on the brake. Unloading takes the foot off the gas *and* presses the brake.
+
+**Citations**:
+*   *Vasiliadis, E. S., et al. (2021). Sclerostin levels in adolescent idiopathic scoliosis. Journal of Children's Orthopaedics.*

@@ -312,6 +312,135 @@ $$ \frac{d(\text{TMD})}{dt} = \Gamma_{PO} \langle S_{scalar} \rangle - \delta \c
 *   **Mechanism**: Piezo1 activation $\to$ Ca2+ influx $\to$ Calcineurin/NFAT $\to$ Osteoblast differentiation (Ramli et al., 2024).
 *   **Measurable Proxy**: The slope of the regression line between local bone mineral density (BMD) and computationally estimated hydrostatic pressure in the vertebral centrum.
 
+### 2.21. The Bastien Number ($\mathcal{B}_{osc}$)
+
+We define a dimensionless number governing the bifurcation from stable straight growth to oscillatory (scoliotic) instability, derived from the Bastien et al. (2013) gravitropic oscillator model.
+
+$$ \mathcal{B}_{osc} = \frac{\beta L}{\gamma} $$
+
+*   **Symbols**:
+    *   $\beta$: Gravitropic sensitivity (rate of curvature change per unit angle) $[L^{-1}T^{-1}]$.
+    *   $\gamma$: Proprioceptive straightening gain (rate of curvature decay) $[T^{-1}]$.
+    *   $L$: Characteristic length $[L]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{B}_{osc} < \mathcal{B}_{crit}$: Stable convergence to vertical.
+    *   $\mathcal{B}_{osc} > \mathcal{B}_{crit}$: Spontaneous "hunting" oscillations (S-shape formation).
+*   **Measurable Proxy**: The ratio of the overshoot amplitude to the damping rate in a postural perturbation test (sway ratio).
+
+### 2.22. The Ciliary-Osteogenic Locking Number ($\mathcal{L}_{CO}$)
+
+We define a dimensionless number representing the bistable competition between ciliary-mediated repression of osteogenesis (active during growth) and Piezo1-mediated promotion of osteogenesis (active during loading/ossification).
+
+$$ \mathcal{L}_{CO} = \frac{\Gamma_{Piezo} \cdot \sigma_{eff}}{K_{Cilia} \cdot L_{cil}} $$
+
+*   **Symbols**:
+    *   $\Gamma_{Piezo}$: Piezo1-mediated osteogenic gain (sensitivity to stress) $[M^{-1} L T^2]$.
+    *   $\sigma_{eff}$: Effective compressive stress $[ML^{-1}T^{-2}]$.
+    *   $K_{Cilia}$: Repressive sensitivity per unit cilium length $[L^{-1}]$.
+    *   $L_{cil}$: Primary cilium length $[L]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{L}_{CO} < 1$: **Growth Mode**. Low stress allows long cilia ($L_{cil} \uparrow$), which repress Runx2/Osterix. The growth plate remains cartilaginous.
+    *   $\mathcal{L}_{CO} > 1$: **Locked Mode**. High stress shortens cilia ($L_{cil} \downarrow$) and activates Piezo1, driving a positive feedback loop of ossification and stiffening. This describes the "Stress-Lock" leading to vertebral wedging.
+*   **Measurable Proxy**: The ratio of nuclear YAP/TAZ intensity (osteogenic driver) to ciliary Arl13b intensity (repressive state) in chondrocytes at the vertebral growth plate.
+
+### 2.23. The Metabolic Gating Factor ($\Psi_{met}$)
+
+We define a dimensionless scaling factor representing the metabolic permissiveness for mechanotransduction. It modulates the effective Morphomechanical Stiffness $\chi_M$ based on local ATP availability.
+
+$$ \chi_M(t) = \Psi_{met}(t) \cdot \chi_{M,0} $$
+$$ \Psi_{met} = \frac{[ATP]}{K_m + [ATP]} $$
+
+*   **Symbols**:
+    *   $\Psi_{met}$: Metabolic gating efficiency $[1]$.
+    *   $[ATP]$: Local intracellular ATP concentration $[N L^{-3}]$.
+    *   $K_m$: Michaelis constant for Myosin II ATPase activity (critical threshold) $[N L^{-3}]$.
+*   **Physical Interpretation**:
+    *   **$\Psi_{met} \approx 1$**: High energy state. Cytoskeletal tension is maintained, and Piezo1 is sensitive to mechanical stress.
+    *   **$\Psi_{met} \to 0$**: Low energy state (Energy Deficit). Actomyosin cortex relaxes, membrane tension drops, and Piezo1 becomes "deaf" to external load, effectively breaking the feedback loop ($\chi_M \to 0$).
+*   **Measurable Proxy**: The ratio of cortical tension (measured via AFM or micropipette aspiration) to intracellular [ATP] (measured via PercevalHR biosensor).
+
+### 2.24. The Anisotropic Crowding Penalty ($\mathcal{P}_{crowd}$)
+
+We posit that the signaling efficiency of high-aspect-ratio proteins (e.g., Piezo1, GHR) is disproportionately sensitive to cytoplasmic crowding compared to globular proteins. We define $\mathcal{P}_{crowd}$ as the sensitivity of the diffusion-limited reaction rate $k_{eff}$ to the volume fraction of macromolecules $\phi$.
+
+$$ k_{eff}(\Lambda) = k_0 \exp\left( - \mathcal{P}_{crowd} \cdot \phi \cdot (\Lambda - 1) \right) $$
+
+*   **Symbols**:
+    *   $\Lambda$: Protein Anisotropy (Aspect Ratio, $L_{major}/L_{minor}$).
+    *   $\phi$: Cytoplasmic volume fraction (increases under compression/dehydration) $[1]$.
+    *   $\mathcal{P}_{crowd}$: Anisotropic crowding coefficient $[1]$.
+*   **Physical Interpretation**:
+    *   $\Lambda \approx 1$ (Globular): The exponential term vanishes. Signaling is robust to crowding.
+    *   $\Lambda \gg 1$ (Elongated): Signaling is exponentially suppressed as $\phi$ increases.
+    *   **Mechanism**: Rotational diffusion hindrance and excluded volume effects are amplified for anisotropic shapes (Minton, 2006).
+*   **Scoliosis Context**: On the concave side of a curve, compressive stress increases cell density and $\phi$. This selectively silences high-$\Lambda$ metabolic sensors (GHR, Anisotropy ~5.13), creating a "Metabolic Blind Spot" that prevents compensatory growth.
+*   **Measurable Proxy**: The ratio of diffusion coefficients ($D_{long}/D_{short}$) for fluorescently tagged nanorods of varying aspect ratios injected into concave vs. convex side vertebral cells.
+
+### 2.25. The Kleiber-Euler Number ($\mathcal{K}_{Eu}$)
+
+We define a dimensionless number that captures the fundamental mismatch between the scaling of metabolic supply (Kleiber's Law) and the scaling of mechanical demand (Euler Buckling suppression).
+
+$$ \mathcal{K}_{Eu} = \frac{P_{met}(L)}{P_{mech}(L)} $$
+
+*   **Symbols**:
+    *   $P_{met}$: Rate of metabolic energy supply to paraspinal tissues $[ML^2T^{-3}]$.
+    *   $P_{mech}$: Rate of mechanical work required to maintain the "Standing Wave" counter-curvature $[ML^2T^{-3}]$.
+    *   $L$: Characteristic spinal length $[L]$.
+*   **Scaling Relationships**:
+    *   $P_{met} \propto M^{0.75} \approx L^{2.25}$ (Kleiber's Law, or $L^2$ surface-limited).
+    *   $P_{mech} \propto \mathbf{M}_{bio} \cdot \dot{\kappa} \approx L^4$.
+*   **Physical Interpretation**:
+    *   $\mathcal{K}_{Eu} \gg 1$: **Metabolic Abundance**. Energy supply outstrips mechanical cost. The spine is robust.
+    *   $\mathcal{K}_{Eu} < 1$: **Metabolic Buckling**. The cost of straightness exceeds the supply. The system must reduce demand by buckling (increasing $I$, lowering COM) or shutting down sensors.
+*   **Measurable Proxy**: The ratio of mitochondrial volume density ($V_{mito}/V_{cell}$) in paraspinal muscles to the square of spinal slenderness ($\lambda^2 = (L/r)^2$).
+
+### 2.26. The Spinal Learning Rate ($\eta_{spine}$)
+
+We formalize the spinal alignment process as a **gradient descent optimization** where the organism iteratively updates its intrinsic target shape ($\boldsymbol{\kappa}_{rest}$) to minimize the difference between sensed and homeostatic stress. $\eta_{spine}$ is the rate of this plastic adaptation.
+
+$$ \frac{d \boldsymbol{\kappa}_{rest}}{dt} = - \eta_{spine} \cdot \left( \boldsymbol{\kappa}_{sensed} - \boldsymbol{\kappa}_{target} \right) $$
+
+*   **Dimensions**: $[T^{-1}]$.
+*   **Physical Interpretation**:
+    *   **High $\eta_{spine}$**: Rapid adaptation. The spine quickly "learns" a new shape. If the error signal is noisy or biased (e.g., vestibular loss), it learns a deformity (scoliosis) quickly.
+    *   **Low $\eta_{spine}$**: Rigid/Slow adaptation. The spine is resistant to change, even beneficial ones (e.g., brace correction).
+    *   **Microgravity Context**: We hypothesize that $\eta_{spine}$ is gated by gravitational load magnitude. In $\mu g$, $\eta_{spine} \to 0$ (plasticity freeze) or becomes unconstrained (random drift).
+*   **Measurable Proxy**: The **Rate of Curvature Correction** ($d\theta/dt$) observed in a patient immediately following the application of a corrective brace, normalized by the applied force.
+
+### 2.27. The Somitic Wavenumber ($\mathcal{K}_{som}$)
+
+We define a dimensionless number relating the spatial frequency of metabolic stiffness modulation (driven by the segmentation clock) to the geometric length of the spine.
+
+$$ \mathcal{K}_{som} = k_{stiff} L $$
+
+*   **Symbols**:
+    *   $k_{stiff}$: Wavenumber of the stiffness variation field $EI(s) = EI_0 (1 + A \cos(k_{stiff} s + \phi))$ $[L^{-1}]$.
+    *   $L$: Characteristic length of the spinal column $[L]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{K}_{som} \to 0$: **Global Jetlag**. The entire spine softens or stiffens uniformly. Stability is determined solely by mean stiffness.
+    *   $\mathcal{K}_{som} \approx \pi$: **C-Mode Resonance**. The stiffness gradient has a half-wavelength matching the spine ($L$). A "soft spot" at one end and "stiff spot" at the other drives a C-curve.
+    *   $\mathcal{K}_{som} \approx 2\pi$: **S-Mode Resonance**. The stiffness wave forms a full sine wave, driving an S-curve (AIS-typical).
+    *   $\mathcal{K}_{som} \gg 2\pi$: **Local Disorder**. High-frequency variations average out, acting as effective roughness without driving global mode instability.
+*   **AIS Context**: We hypothesize that AIS represents a "Low-Mode Lock" where the metabolic wavelength $\lambda_{met} = 2\pi/k_{stiff}$ accidentally coincides with the mechanical buckling length $L_{crit}$.
+*   **Measurable Proxy**: The Power Spectral Density (PSD) of vertebral bone density (e.g., DEXA or CT Hounsfield Units) along the spinal axis. A peak at spatial frequency $f = 1/L$ predicts curve progression.
+
+### 2.28. The Sclerostin-Brake Number ($\mathcal{S}_{ost}$)
+
+We define a dimensionless ratio quantifying the dominance of the Sclerostin (SOST) "brake" over the Piezo1-mediated "gas" for osteogenesis.
+
+$$ \mathcal{S}_{ost} = \frac{\beta_{inh} [SOST]}{\alpha_{load} \langle \sigma_{mech} \rangle} $$
+
+*   **Symbols**:
+    *   $[SOST]$: Local concentration of Sclerostin (biochemical brake) $[N L^{-3}]$.
+    *   $\langle \sigma_{mech} \rangle$: Time-averaged mechanical stress (load) $[ML^{-1}T^{-2}]$.
+    *   $\beta_{inh}$: Inhibitory potency of Sclerostin on Wnt signaling $[L^3 T^{-1}]$.
+    *   $\alpha_{load}$: Mechanotransduction gain of Piezo1 for osteogenesis $[M^{-1} L T]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{S}_{ost} \gg 1$: **Brake Dominant** (Osteopenic). Osteocytes suppress osteoblasts despite load.
+    *   $\mathcal{S}_{ost} \ll 1$: **Drive Dominant** (Growth). Mechanical load overcomes the chemical brake.
+    *   **AIS Context**: On the concave side of a scoliotic curve (high stress), $\mathcal{S}_{ost} \to 0$, driving runaway ossification (wedging).
+*   **Measurable Proxy**: The ratio of serum Sclerostin to serum P1NP, normalized by physical activity level (accelerometry).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -555,6 +684,86 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Time course of TMD loss in astronauts (or tail-suspended rats) treated with Yoda1 (Piezo1 agonist).
 *   **Refutation**: If Yoda1 fails to rescue bone density in unloading, then stimulating the sensor is insufficient (downstream metabolic block). (Reference: Sun et al., 2019).
 
+### Test AO: The Egr3 Bifurcation
+*   **Hypothesis**: Egr3-/- mice (low $\gamma$) should exhibit oscillatory curvature dynamics (wavy spine) that fits the Bastien solution for $\mathcal{B}_{osc} > \mathcal{B}_{crit}$.
+*   **Data Needed**: Longitudinal radiographic tracking of spinal curvature in Egr3-/- mice from P7 to P60, fitted to the Bastien oscillator equation.
+*   **Refutation**: If curvature is static/monotonic (buckling) rather than oscillatory (hunting), the proprioceptive gain hypothesis is falsified. (Reference: Blecher et al., 2017).
+
+### Test AP: The Frequency-Gain Lock
+*   **Hypothesis**: Artificially increasing $\beta$ (e.g., hyper-gravity via centrifuge) in a system with fixed $\gamma$ should induce oscillation (scoliosis) in wild-type organisms.
+*   **Data Needed**: Spinal geometry of zebrafish larvae raised in 3g centrifuge vs 1g.
+*   **Refutation**: If hyper-gravity causes only compression (shorter spine) without lateral oscillation, the graviceptive gain $\beta$ is not the driver of instability. (Reference: Bastien et al., 2013).
+
+### Test AQ: The Locking Threshold
+*   **Hypothesis**: The transition from cartilaginous growth to ossification is not linear with stress but exhibits a critical threshold (bifurcation) at $\mathcal{L}_{CO} \approx 1$. Ciliary disassembly should be sharp, not gradual.
+*   **Data Needed**: Step-stress application to vertebral chondrocytes in hydrogels, tracking ciliary length ($L_{cil}$) and Runx2 expression over 24h.
+*   **Refutation**: If Runx2 scales linearly with stress magnitude without a sharp switch-like behavior linked to ciliary loss, the "Lock" concept is incorrect. (Reference: Chen et al., 2025; Li et al., 2023).
+
+### Test AR: The Decoupled Rescue
+*   **Hypothesis**: Stabilizing ciliary length pharmacologically (e.g., via Tubacin) should prevent stress-induced ossification even if Piezo1 is activated (high stress), by maintaining the denominator of $\mathcal{L}_{CO}$.
+*   **Data Needed**: Vertebral growth plate explants under compression treated with Tubacin (HDAC6 inhibitor) vs GsMTx4 (Piezo1 blocker).
+*   **Refutation**: If Tubacin fails to prevent ossification while GsMTx4 does, the mechanism relies solely on Piezo1 activation, not ciliary retraction. (Reference: Chen et al., 2025).
+
+### Test AS: The ATP-Deafness Test
+*   **Hypothesis**: Depleting intracellular ATP (e.g., via oligomycin or 2-deoxyglucose) below a critical threshold ($K_m$) will silence Piezo1-mediated Ca2+ signaling even in the presence of high mechanical compression, effectively reducing $\chi_M$ to zero.
+*   **Data Needed**: Simultaneous high-speed imaging of [ATP] (PercevalHR) and Calcium influx (GCaMP6) in vertebral chondrocytes under cyclic compression with graded metabolic inhibition.
+*   **Refutation**: If mechanotransduction (Ca2+ spikes) persists at the same magnitude despite significant ATP depletion and loss of cortical tension, the "active gating" hypothesis is false. (Reference: Ridone et al., 2019).
+
+### Test AT: The Cortical Collapse
+*   **Hypothesis**: Specific inhibition of Myosin II (e.g., via Blebbistatin) should mimic the "Energy Deficit" phenotype even in high energy states, causing Piezo1 desensitization and loss of osteogenic gene expression.
+*   **Data Needed**: Piezo1 activation probability (patch clamp or Ca2+ imaging) in Blebbistatin-treated osteoblasts compared to controls under identical stretch.
+*   **Refutation**: If Piezo1 remains fully mechanosensitive despite the collapse of cortical tension, the sensor does not rely on the actomyosin cortex for gating. (Reference: Salbreux et al., 2012).
+
+### Test AU: The Aspect Ratio Filter
+*   **Hypothesis**: Under hyper-osmotic compression (simulating high $\phi$), signaling pathways relying on high-anisotropy receptors (e.g., GHR, $\Lambda \approx 5$) will be inhibited significantly more than those relying on globular receptors (e.g., EGFR, $\Lambda \approx 1.5$), even if ligand availability is constant.
+*   **Data Needed**: Phosphorylation levels of STAT5 (downstream of GHR) vs ERK (downstream of EGFR) in chondrocytes exposed to PEG-induced crowding.
+*   **Refutation**: If inhibition is uniform across receptors regardless of shape, the shape-dependent crowding hypothesis is falsified. (Reference: Minton, 2006).
+
+### Test AV: The Crowding Rescue
+*   **Hypothesis**: Reducing cytoplasmic crowding (e.g., by inhibiting ribosome synthesis via low-dose Rapamycin) should restore the signaling of high-anisotropy sensors in compressed cells, "unblinding" them.
+*   **Data Needed**: Mechanotransduction gain (Piezo1 activity) in compressed cells treated with Rapamycin vs vehicle.
+*   **Refutation**: If "thinning" the cytoplasm fails to restore signaling under compression, the block is not steric/crowding-based. (Reference: Delarue et al., 2018).
+
+### Test AW: The Hyperoxic Rescue
+*   **Hypothesis**: If the critical failure limit is metabolic ($P_{met}$), increasing oxidative capacity via hyperoxia should delay the onset of curvature (increase $L_{crit}$).
+*   **Data Needed**: Spinal curvature onset length in zebrafish larvae raised in hyperoxic water (e.g., $120\%$ saturation).
+*   **Refutation**: If hyperoxia fails to shift $L_{crit}$ to larger values compared to normoxia, the bottleneck is not metabolic supply. (Reference: West et al., 1997).
+
+### Test AX: The Glycolytic Shift
+*   **Hypothesis**: As $\mathcal{K}_{Eu} \to 1$, paraspinal tissues should switch to glycolysis (Warburg effect) as oxidative capacity is maxed out, even in the presence of oxygen.
+*   **Data Needed**: Lactate/Pyruvate ratio and expression of glycolytic enzymes (e.g., LDH-A) in paraspinal muscles correlated with Cobb angle severity.
+*   **Refutation**: If severe curves show no evidence of metabolic stress or glycolytic shift, the "Energy Deficit" model is incorrect. (Reference: Vander Heiden et al., 2009).
+
+### Test AY: The Plasticity-Metabolism Link
+*   **Hypothesis**: The Spinal Learning Rate $\eta_{spine}$ is metabolically expensive. In the "Energy Deficit Window" ($\mathcal{M}_{prop} < 1$), $\eta_{spine}$ drops effectively to zero, causing the spine to become "stuck" in a deformed state rather than actively correcting it.
+*   **Data Needed**: Correlation between local paraspinal muscle metabolic rate (FDG-PET or ATP concentration) and the rate of curve correction ($d\theta/dt$) in patients undergoing bracing therapy.
+*   **Refutation**: If "high-plasticity" responders (fast correction) have *lower* metabolic activity than non-responders, the metabolic cost of plasticity is negligible. (Reference: Taber, 1995).
+
+### Test AZ: The Microgravity Amnesia
+*   **Hypothesis**: Without the "training signal" of gravity, the spinal optimization algorithm loses its gradient. $\eta_{spine}$ should become effectively random or zero. Re-introduction to 1g should trigger a rapid "re-learning" phase with high $\eta_{spine}$.
+*   **Data Needed**: High-frequency tracking of spinal curvature in astronauts immediately post-flight (R+0 to R+7 days).
+*   **Refutation**: If spinal shape recovery follows a fixed viscoelastic relaxation curve (passive) rather than a sigmoidal "learning" curve (active), the optimization framework is unnecessary. (Reference: Moulton et al., 2020).
+
+### Test BA: The Stiffness Resonance
+*   **Hypothesis**: Inducing a stiffness defect with spatial wavelength $\lambda = L$ ($\mathcal{K}_{som} \approx 2\pi$) will cause greater curvature than a distributed (high-frequency) or global (zero-frequency) defect of equal total energy.
+*   **Data Needed**: Cobb angles of 3D-printed spinal analogs (or finite element models) with patterned stiffness moduli (soft/stiff blocks) varying in spatial frequency, subjected to axial load.
+*   **Refutation**: If curvature severity is independent of the spatial distribution of stiffness (i.e., depends only on *mean* stiffness), the resonance hypothesis is falsified. (Reference: Elishakoff, 2005).
+
+### Test BB: The Traveling Wave Rescue
+*   **Hypothesis**: A *traveling* stiffness wave ($v > 0$) prevents the system from settling into a buckling mode, whereas a *static* wave ($v = 0$) locks it in. This is the "Peristaltic Sweep" effect.
+*   **Data Needed**: Spinal linearity in simulation (PyElastica) or active-material robots where the stiffness profile is modulated dynamically in time vs. held static.
+*   **Refutation**: If a traveling wave is *more* destabilizing than a static defect (due to parametric resonance pumping energy *into* the mode), the "Peristaltic Rescue" model is incorrect. (Reference: Nayfeh & Mook, 1979).
+
+### Test BC: The Braking Failure
+*   **Hypothesis**: In "Drive Dominant" AIS (rapid progression), $\mathcal{S}_{ost}$ is abnormally low not due to high stress, but due to a failure of Sclerostin production/secretion ($\beta_{inh} \to 0$).
+*   **Data Needed**: Serum Sclerostin levels in rapidly progressing AIS patients vs. stable curves, controlled for BMI and activity.
+*   **Refutation**: If progressors have *high* Sclerostin (strong brake) yet still progress, the runaway growth is Sclerostin-independent (e.g., direct Wnt mutation). (Reference: Robling et al., 2008).
+
+### Test BD: The Piezo-Sost Inversion
+*   **Hypothesis**: Piezo1 activation is the necessary and sufficient signal to downregulate Sclerostin. Blocking Piezo1 should prevent the load-induced drop in SOST.
+*   **Data Needed**: SOST mRNA/protein levels in osteocytes treated with GsMTx4 (Piezo inhibitor) vs Vehicle under fluid shear stress.
+*   **Refutation**: If SOST is downregulated by load even when Piezo1 is blocked (e.g., via Integrins or Connexins), the exclusive Piezo-Sost axis is falsified. (Reference: Li et al., 2019).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -603,3 +812,20 @@ The theory makes specific predictions about the relationship between genetic ani
 44. **Kang, M., et al. (2025).** "Tension-sensitive HOX gene expression in fibroblasts for differential scar formation." *Journal of Translational Medicine*, 23(1). (Demonstrates that mechanical tension modulates HOX gene expression).
 45. **Wang, N., et al. (2009).** "Mechanotransduction at a distance: mechanically coupling the extracellular matrix with the nucleus." *Nature Reviews Molecular Cell Biology*, 10(1). (Nuclear mechanotransduction mechanism).
 46. **Ramli, R., et al. (2024).** "Piezo1 mutant zebrafish as a model of idiopathic scoliosis." *Frontiers in Genetics*, 14. (Identifies Piezo1 as the scalar stiffness regulator).
+47. **Bastien, R., et al. (2013).** "Unifying model of shoot gravitropism reveals proprioception as a central feature of posture control." *PNAS*, 110(2). (Establishes the proprioceptive oscillator model).
+48. **Blecher, R., et al. (2017).** "New functions for the proprioceptive system in skeletal biology." *Philosophical Transactions B*, 373. (Identifies Egr3/proprioception defects in spinal alignment).
+49. **Chen, F., et al. (2025).** "PIEZO1-Primary Cilia Axis Mediates Compressive Stress-Induced Growth Plate Degeneration and Ossification in Adolescent Idiopathic Scoliosis." *JOR Spine*, 8(4). (Identifies the Piezo1-Primary Cilia axis as the mechanotransduction pathway converting compressive stress into premature ossification).
+50. **Li, X., et al. (2023).** "Piezo1-mediated mechanosensation in bone marrow mesenchymal stem cells regulates bone formation." *Journal of Bone and Mineral Research*, 38(10). (Demonstrates Piezo1 importance in osteogenesis).
+51. **Ridone, P., et al. (2019).** "Piezo1 mechanosensitivity is modulated by membrane cholesterol and tension." *Nature Communications*, 10. (Establish tension dependence of Piezo1).
+52. **Salbreux, G., et al. (2012).** "Actin cortex mechanics and cellular morphogenesis." *Trends in Cell Biology*, 22(10). (Links ATP/Myosin to cortical tension).
+53. **Minton, A. P. (2006).** "How can biochemical reactions within cells differ from those in test tubes?" *Journal of Cell Science*, 119. (Crowding theory).
+54. **Delarue, M., et al. (2018).** "mTORC1 controls phase separation and the biophysical properties of the cytoplasm by tuning crowding." *Cell*, 174. (Crowding control).
+55. **Kleiber, M. (1932).** "Body size and metabolism." *Hilgardia*, 6. (Foundational metabolic scaling).
+56. **England, J. L. (2013).** "Statistical physics of self-replication." *The Journal of Chemical Physics*, 139. (Thermodynamics of biological structure).
+57. **Vander Heiden, M. G., et al. (2009).** "Understanding the Warburg effect: the metabolic requirements of cell proliferation." *Science*, 324. (Glycolytic shift mechanism).
+58. **Taber, L. A. (1995).** "Biomechanics of growth and remodeling." *Applied Mechanics Reviews*, 48(8). (Foundational theory of stress-modulated growth).
+59. **Moulton, D. E., et al. (2020).** "Morphoelastic rods and shells." *Annual Review of Condensed Matter Physics*, 11. (Mathematical framework for active filament growth).
+60. **Elishakoff, I. (2005).** "Buckling of Structures with Uncertain Imperfections." *Springer*. (Theoretical basis for imperfection sensitivity).
+61. **Nayfeh, A. H., & Mook, D. T. (1979).** "Nonlinear Oscillations." *Wiley*. (Parametric resonance theory).
+62. **Robling, A. G., et al. (2008).** "Mechanical stimulation of bone in vivo reduces osteocyte expression of Sost/sclerostin." *Journal of Biological Chemistry*, 283(9). (Defines the mechanical brake release).
+63. **Li, X., et al. (2019).** "Piezo1 sensing of mechanical force regulates bone formation." *Nature Communications*, 10. (Establishes the Piezo1-Osteogenesis link).

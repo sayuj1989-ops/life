@@ -1,0 +1,16 @@
+Title: Spinal Jetlag Mechanism: Circadian Desynchronization and Scoliosis
+
+Panel A (Left): Healthy Entrainment.
+- A healthy spine is shown with a synchronized internal clock (Circadian Rhythm) and external loading (Gravity).
+- The internal clock is depicted as a sine wave (blue) and the external loading as another sine wave (green), perfectly in phase ($\phi = 0$).
+- Constructive interference leads to robust "Counter-Curvature" maintenance, resulting in a straight or healthy S-shaped spine.
+- Symbolic elements: A clock face showing 12:00, aligned with a gravity vector.
+
+Panel B (Right): Spinal Jetlag.
+- A scoliotic spine is shown with desynchronized rhythms.
+- The internal clock (blue sine wave) is out of phase with the external loading (green sine wave) by 180 degrees ($\phi = \pi$).
+- Destructive interference cancels the shape-maintenance signal.
+- The spine buckles into a C-shape or helical torsion (Scoliosis).
+- Symbolic elements: A clock face showing 06:00 (opposite phase), and a "broken" link between information and geometry.
+
+The overall style should be a clean, scientific schematic suitable for a textbook or journal figure. Use clear labels: "Entrained (Health)" and "Jetlagged (Pathology)".

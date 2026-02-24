@@ -56,7 +56,7 @@
 
 **Learning:** The previous optimization (using `line[:4] == "ATOM"`) was found to be slightly slower than `line.startswith("ATOM")` in disk-bound scenarios (40ms vs 45ms per 25k lines). More importantly, unconditional `strip()` of residue names (`line[17:20].strip()`) creates allocations for every residue, even when padding is absent.
 
-**Action:** Replaced `slice` check with `startswith()` and `char` indexing (`line[13] == 'C'`). Replaced unconditional `strip()` with a conditional check. This yielded a ~10% speedup on raw parsing and reduces memory churn for large batch processing.
+**Action:** Replaced `startswith` with `startswith()` and `char` indexing (`line[13] == 'C'`). Replaced unconditional `strip()` with a conditional check. This yielded a ~10% speedup on raw parsing and reduces memory churn for large batch processing.
 
 ## 2026-11-05 - [Flat List Append for PDB Parsing]
 
@@ -76,4 +76,40 @@
 
 **Action:** Replaced `np.convolve` with `np.cumsum` in `scripts/bolt_biofold_analysis.py`.
 
-**Learning:** `scipy.spatial.cKDTree` in version < 1.8.0 lacks `return_length=True` for `query_ball_point`, causing massive memory overhead (list of lists) for neighbor counting. This remains a bottleneck in `metrics.py` but requires dependency upgrade to fix properly.
+## 2026-11-21 - [Surface Metrics O(N) Optimization]
+
+**Learning:** The `compute_surface_metrics` function in `bolt_biofold_analysis.py` used an O(N^2) broadcasting approach to compute neighbor counts. For proteins with >3000 residues, this caused massive memory usage (>200MB) and slow execution (>1.6s).
+
+**Action:** Replaced the broadcasting logic with `scipy.spatial.cKDTree.query_ball_point(return_length=True)`, which is O(N log N). This reduced execution time for N=3000 from 1.69s to 0.015s (~110x speedup) and eliminates the memory bottleneck, enabling efficient analysis of giant proteins like Titin or Piezo1.
+## 2026-11-20 - [cKDTree Parallelism] **Learning:** cKDTree in scipy supports parallel execution (workers=-1) and has a tunable leafsize. For N=3000-5000 points (typical protein), leafsize=64 and workers=-1 yielded ~2x speedup (12ms -> 6ms) for neighbor counting. **Action:** Updated compute_surface_metrics in bolt_biofold_analysis.py.
+
+## 2026-11-22 - [Optimized Curvature Geometry]
+
+**Learning:** `calculate_curvature` computed `b_len` (triangle side length) by allocating a temporary `vec_ac` array of size (N, 3) and calling `np.linalg.norm`. This involved significant memory allocation and overhead. By using the geometric identity $|u+v|^2 = |u|^2 + |v|^2 + 2(u \cdot v)$, we can compute `b_len` using `np.einsum` and scalar operations, avoiding the temporary array.
+
+**Action:** Replaced `np.linalg.norm(vec_ac)` with `sqrt(a^2 + c^2 + 2*dot(u,v))` in `MetricsAnalyzer`. Benchmarks show ~2x speedup for this specific calculation (29ms -> 13ms for 10k residues) and identical results (within 1e-15).
+
+## 2026-09-01 - [Fast Cross Product]
+
+**Learning:** `np.cross` is significantly slower (2x-6x) than manual arithmetic for large arrays of 3D vectors due to internal broadcasting checks and overhead. For geometry-heavy pipelines (curvature, torsion), this adds up per-residue.
+
+**Action:** Implemented `_cross_product_fast` using explicit numpy arithmetic. This yielded a ~2.2x speedup for the cross product operation and ~1.23x speedup for the overall geometry kernel (curvature + torsion) in `MetricsAnalyzer`.
+
+## 2026-11-20 - [Redundant Parsing in Aux Scripts]
+
+**Learning:** Standalone scripts like `bolt_biofold_analysis.py` often duplicate core library logic but miss optimizations (e.g., using slow `Bio.PDB` instead of `fast_parse_pdb_arrays`, loading JSON instead of cached `.npz`). This creates inconsistent performance baselines.
+
+**Action:** Refactored `scripts/bolt_biofold_analysis.py` to use the optimized `StructureParser` from `afcc.structure`, gaining ~20% speedup on small sets and massive scalability for large proteins via `.npz` caching.
+
+## 2026-03-05 - [Switch PAE cache to uint8 + uncompressed npy + mmap]
+
+**Learning:**
+1. **PAE matrices are compressible but slow to compress:** `np.savez_compressed` takes ~1.5s for 5MB PAE matrix due to zlib overhead. Reading back is also slow (decompression).
+2. **Space waste:** Default `np.array(pae_data)` uses `int64` (8 bytes) even though PAE values are 0-31.
+3. **Optimized format:** Converting to `uint8` (1 byte) + `np.save` (uncompressed `.npy`) reduces file size by ~8x compared to raw `int64`, making it smaller than compressed `int64` arrays!
+4. **Massive Speedup:**
+   - Saving: ~20x faster (0.6s vs 14.7s for 2000x2000).
+   - Loading: Instant via `mmap_mode='r'` (<0.01s).
+   - RAM: `mmap` avoids loading full array into memory, preventing spikes for large proteins (e.g., Titin).
+
+**Action:** Refactored `StructureParser.parse_pae` to use `.npy` cache with `uint8` casting and `mmap` loading. Added backward compatibility to auto-upgrade legacy `.npz` caches.

@@ -1,0 +1,3 @@
+case_name,anisotropy_type,S_lat,cobb_angle,max_curvature,runtime_sec,success
+Uniform (R=2.0),Uniform(2.0),0.012153486887307243,2.3213259749868396,74.38409132214056,8.515334129333496,True
+Spatial (R=1->3->1),Spatial(Gaussian),0.013893933279242184,2.396367660275989,74.38407751974177,5.777447700500488,True

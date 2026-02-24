@@ -1,0 +1,8 @@
+A schematic diagram of the Mechanogenetic Feedback Loop in spinal development.
+1. Genetic Information (HOX) sets the Target Geometry (S-curve).
+2. Growth creates Mechanical Stress (Gravity).
+3. Mechanosensors (Piezo2) detect the Error (Strain) between Actual and Target geometry.
+4. This Error drives Metabolic Demand (ATP).
+5. Metabolic Regulators (mTOR/AMPK) provide Energy Supply.
+6. If Demand > Supply, the loop breaks, leading to Instability (Scoliosis).
+Use a circular flow with distinct nodes and arrows. Highlight "Instability" as a breakout path.

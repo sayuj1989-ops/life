@@ -27,26 +27,30 @@ class CounterCurvatureParams(NamedTuple):
     chi_kappa:
         Coupling gain transforming information gradients (``∂I/∂s``) into corrections of
         the rod's rest curvature (units: 1/m per unit information gradient).
+        Can be a scalar or an array matching the information grid size.
     chi_E:
         Coupling gain for stiffness modulation by the information density (dimensionless
         multiplier on the baseline Young's modulus).
+        Can be a scalar or an array matching the information grid size.
     chi_M:
         Coupling gain converting information gradients into active internal moments
         (units: N·m per unit gradient).  This represents the "effort" expended by the
         living system to steer curvature against gravity.
+        Can be a scalar or an array matching the information grid size.
     chi_tau:
         Coupling gain transforming information gradients (``∂I/∂s``) into rest torsion
         (units: 1/m per unit information gradient). This models the "twist" induced by
         anisotropic tissue organisation (e.g. PCP defects).
+        Can be a scalar or an array matching the information grid size.
     scale_length:
         Optional length scale used when non-dimensionalising information gradients.  Set
         to ``1.0`` to operate directly in SI units.
     """
 
-    chi_kappa: float = 0.0
-    chi_E: float = 0.0
-    chi_M: float = 0.0
-    chi_tau: float = 0.0
+    chi_kappa: Union[float, ArrayF64] = 0.0
+    chi_E: Union[float, ArrayF64] = 0.0
+    chi_M: Union[float, ArrayF64] = 0.0
+    chi_tau: Union[float, ArrayF64] = 0.0
     scale_length: float = 1.0
 
     def nondimensional_gradient(self, dIds: ArrayF64) -> ArrayF64:

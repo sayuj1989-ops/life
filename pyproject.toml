@@ -28,6 +28,7 @@ biopython = "^1.85"
 pyelastica = "^0.3.3"
 paperbanana = "^0.1.2"
 seaborn = "^0.13.0"
+click = "<8.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.2"

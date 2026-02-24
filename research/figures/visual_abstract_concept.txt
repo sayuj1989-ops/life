@@ -1,8 +1,6 @@
-Visual Abstract: Biological Countercurvature of Spacetime.
-A 3D visualization of a human spine growing within a warped metric grid representing spacetime and developmental information.
-- The spine is glowing and follows a curved path of least resistance (geodesic).
-- The grid is distorted by "mass" (genetic information), similar to general relativity.
-- Mathematical equations (e.g., R_deficit, D/Dt) are subtly overlaid on the grid.
-- Background: A deep blue starry cosmos merging with biological tissue textures.
-- The spine shows a transition from a straight line to an S-shape as it navigates the curved space.
-- Style: High-impact Nature/Science cover art, photorealistic yet conceptual, cinematic lighting.
+A high-impact visual abstract for the theory of 'Biological Countercurvature'.
+Central image: A human spine where the vertebrae are depicted as discrete geometric manifolds.
+Background: A warped grid representing spacetime, showing how biological information (genes) curves the space to counteract gravity.
+Concept: Gravity pulls down (red arrow), Information pulls up/corrects (blue arrow).
+The spine is an active 'standing wave' against the flow of gravity.
+Style: Scientific, clean, 3D render style, similar to Nature/Science covers.

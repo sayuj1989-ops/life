@@ -1,5 +1,4 @@
-A diagram illustrating "Spinal Jetlag" as the cause of twist-bend coupling.
-Show two parallel growth plates (Left and Right) behaving as coupled oscillators.
-Depict a phase shift (delta phi) between them, caused by a delay (tau) in the neural control loop.
-This phase shift causes one side to grow faster than the other at specific times, inducing a torque (twist) alongside the bending.
-Label "Left Clock", "Right Clock", "Neural Delay", and "Resulting Torsion".
+A schematic diagram illustrating the 'Spinal Jetlag' mechanism.
+Panel A: 'Synchronized State'. A biological clock (sine wave) is in phase with a growth signal (sine wave). The spine grows straight (vertical).
+Panel B: 'Desynchronized State (Jetlag)'. The biological clock is phase-shifted by 180 degrees relative to the growth signal. Destructive interference occurs. The spine develops a curved, scoliotic deformity.
+Key elements: Sine waves representing signals, a straight spine, a curved spine, clock icons showing different times.

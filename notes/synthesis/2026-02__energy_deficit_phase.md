@@ -1,30 +1,29 @@
-# Synthesis: Energy Deficit Phase Diagram
+# Synthesis: Energy Deficit Phase Diagram (2026-02)
 
-**Date:** February 2026
-**Hypothesis:** H_2026_02_08_EnergyPhase
-**Artifacts:** `outputs/thermodynamic_cost/phase_diagram_energy_deficit.png`, `scripts/weekly_sim_energy_deficit_bifurcation.py`
+## Overview
+This week's simulation (`scripts/weekly_sim_energy_deficit_bifurcation.py`) mapped the **Energy Deficit Window** in the $(\chi_\kappa, L)$ parameter space, testing Hypothesis **H_2026_02_08_EnergyPhase**. The goal was to identify where the metabolic cost of counter-curvature ($P_{counter}$) exceeds the proprioceptive supply capacity ($S_{proprio}$), creating a region of instability ("vulnerability window").
 
-## The Wedge of Vulnerability
+## Key Findings
 
-We performed a 2D parameter sweep of the spinal system across Information-Elasticity Coupling strength ($\chi_\kappa$) and Spinal Length ($L$). The resulting phase diagram reveals a distinct **"Energy Deficit Window"** where the metabolic demand of maintaining counter-curvature ($P_{counter}$) exceeds the available proprioceptive supply ($S_{proprio}$).
+### 1. The Wedge-Shaped Instability Region
+The 2D phase diagram reveals a distinct **wedge-shaped region** where $R_{deficit} = P_{counter} / S_{proprio} > 1$.
+- **Low $\chi_\kappa$ (< 0.03):** The system remains stable ($R < 1$) throughout the growth period ($L \in [0.25, 0.55]$ m). These individuals likely represent the healthy population.
+- **High $\chi_\kappa$ (> 0.05):** The system enters the deficit window at a shorter spinal length (earlier in adolescence). For example, at $\chi_\kappa = 0.08$, instability onset occurs around $L \approx 0.30$ m.
+- **Scaling Effect:** The metabolic cost $P_{counter}$ scales roughly as $L^2$ (due to moment arms and mass), while supply $S_{proprio}$ scales as $L^{0.7}$ (allometric scaling). This mismatch means *everyone* eventually approaches a deficit, but high $\chi_\kappa$ (strong coupling/drive) accelerates this process, pushing the crossover point into the rapid growth phase.
 
-### Key Findings
+### 2. Clinical Correlation
+The simulation supports the "Mismatch" model of AIS onset:
+- **Early Onset:** Patients with high intrinsic drive ($\chi_\kappa$) hit the energy wall earlier (shorter $L$).
+- **Severity:** The magnitude of the deficit ($R \gg 1$) correlates with the potential for catastrophic collapse (Cobb angle amplification).
+- **Vulnerability Window:** High $\chi_\kappa$ patients not only enter the window earlier but stay in it longer (or deeper) during the critical growth spurt.
 
-1.  **Wedge-Shaped Instability:**
-    The deficit region ($R_{deficit} > 1$) forms a wedge shape in the $(\chi_\kappa, L)$ plane.
-    -   **Low Coupling ($\chi_\kappa < 0.02$):** The system is stable. The metabolic cost of the weak correction is negligible, and supply always exceeds demand.
-    -   **High Coupling ($\chi_\kappa > 0.08$):** The system enters the deficit window at shorter lengths (e.g., $L \approx 0.30$m) and exits later (or stays in deficit). This corresponds to **early-onset, severe scoliosis**.
-    -   **Intermediate Coupling:** A finite window of vulnerability exists during the peak growth phase (adolescence), which closes as growth slows or supply catches up.
+### 3. Bifurcation Logic
+The Cobb angle heatmap confirms that significant lateral deformation ("scoliosis") only emerges when $R_{deficit} > 1$. Below this threshold, lateral perturbations ($\epsilon_{asym}$) are corrected elastically. Above it, the feedback gain fails (or flips), amplifying the defect. This matches the clinical observation of a "tipping point" or bifurcation.
 
-2.  **Clinical Risk Stratification:**
-    This result suggests that $\chi_\kappa$ (the "gain" of the proprioceptive loop) is a critical risk factor.
-    -   Patients with high intrinsic sensory gain (high $\chi_\kappa$) are "High Risk": they hit the metabolic ceiling earlier in development.
-    -   This explains why some adolescents develop curves rapidly while others with similar growth rates do not—the *cost* of their specific spinal alignment strategy is higher.
+## Implications for Theory
+- **Thermodynamic Limit:** Scoliosis may be fundamentally a thermodynamic failure—the inability to pay the metabolic bill for a straight spine against gravity during rapid growth.
+- **Risk Stratification:** If $\chi_\kappa$ (active curvature drive) can be estimated early (e.g., via sagittal profile analysis), it could predict the "safe length" limit for a patient.
 
-### Mechanism
-
-The instability arises from the scaling mismatch:
--   **Supply ($S_{proprio}$):** Scales sub-linearly or linearly with length ($\sim L^{0.7}$), reflecting the diffusion-limited or surface-area-limited nature of nutrient supply to the slender proprioceptive structures (e.g., muscle spindles, mechanosensors).
--   **Demand ($P_{counter}$):** Scales with the square of length ($\sim L^2$) and the square of the curvature deviation. High $\chi_\kappa$ drives larger active curvature corrections, acting as a multiplicative factor on the demand.
-
-When $P_{counter} > S_{proprio}$, the system cannot thermodynamically sustain the high-fidelity counter-curvature, leading to **Convective Shutdown** or **Sensor Shedding** (as per the Anisotropy-Stability Link), resulting in a buckling-like collapse into scoliosis.
+## Next Steps
+- Validate the $L^{0.7}$ supply scaling assumption against metabolic data.
+- Investigate if reducing $\chi_\kappa$ (e.g., via bracing or physiotherapy to reduce lordotic drive?) can exit the wedge.

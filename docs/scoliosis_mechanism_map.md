@@ -623,3 +623,26 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Rashidi, H., et al. (2025). Piezo1 regulates collagen synthesis in 3D aligned models. Acta Biomaterialia.*
+
+---
+
+### 35. The Sclerostin Brake (SOST)
+
+**Arc Added**: `PIEZO1` $\rightarrow$ `SOST` (Inhibition) $\rightarrow$ `Beta_Catenin`.
+
+*   **Source**: `PIEZO1` (Mechanosensitive Ion Channel), `SOST` (Sclerostin).
+*   **Mechanism**: **The Brake on the Brake**.
+    1.  **Sclerostin Function**: Sclerostin (SOST) is a potent inhibitor of the Wnt/Beta-Catenin pathway, effectively stopping bone formation.
+    2.  **Piezo1 Suppression**: In healthy, loaded bone, Piezo1 activation actively suppresses `SOST` expression.
+    3.  **Unloading Release**: In microgravity or sedentary states, Piezo1 is silent. This releases the suppression on `SOST`.
+    4.  **Osteogenic Blockade**: Upregulated Sclerostin binds to LRP5/6 receptors, degrading Beta-Catenin and halting osteogenesis.
+*   **Property**: **Tissue Mineral Density (TMD)** and **Stiffness ($EI$)**.
+*   **Role**: **The Negative Regulator**. The body saves energy by not building bone when it's not needed. Sclerostin is the signal that says "Stop Building." Piezo1 is the signal that says "Keep Building."
+    *   **Counter-Curvature Implication**: Without gravity (Piezo1), Sclerostin takes over, enforcing a "No-Build" policy that leads to rapid osteopenia and spinal softening.
+*   **Evidence**: Vasiliadis et al. (2021) linked SOST upregulation to AIS osteopenia.
+*   **Therapeutic Note**: Sclerostin inhibitors (e.g., Romosozumab) are FDA-approved for osteoporosis and mimic the "Piezo1-On" state pharmacologically.
+
+> **Hypothesis**: Gravity is the foot on the gas; Sclerostin is the foot on the brake. Unloading takes the foot off the gas *and* presses the brake.
+
+**Citations**:
+*   *Vasiliadis, E. S., et al. (2021). Sclerostin levels in adolescent idiopathic scoliosis. Journal of Children's Orthopaedics.*

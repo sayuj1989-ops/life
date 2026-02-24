@@ -6,7 +6,14 @@ import pytest
 # Add repo root to path so we can import scripts
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from scripts.experiment_energy_phase_diagram import compute_energy_cost, compute_supply, E0, RHO, A_REF, L_REF, G
+from scripts.experiment_energy_phase_diagram import compute_energy_cost, compute_supply, E0, RHO, A_REF, L_REF, G, L_CROSSING, CHI_BASELINE
+
+def test_constants():
+    """Verify that constants match the specific experimental design (Prompt 2 alignment)."""
+    assert L_REF == 0.5
+    assert A_REF == 0.001
+    assert L_CROSSING == 0.35
+    assert CHI_BASELINE == 0.05
 
 def test_compute_energy_cost_smoke():
     """Smoke test to ensure compute_energy_cost runs without error and returns a float."""

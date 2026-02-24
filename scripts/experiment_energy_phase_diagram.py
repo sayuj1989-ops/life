@@ -29,35 +29,29 @@ RHO = 1100.0  # kg/m^3
 G = 9.81  # m/s^2
 ETA_A = 1.0 # Efficiency factor for cost
 
-# Geometric scaling
-A_REF = 0.001  # m^2 at L=0.4m
-L_REF = 0.4
+# Geometric scaling (Verified from experiment_energy_deficit_window.py)
+A_REF = 0.001  # m^2 (at L_A_ref)
+L_REF = 0.5    # m (L_A_ref)
+
+# Supply scaling
+L_CROSSING = 0.35 # m (L_ref)
+CHI_BASELINE = 0.05
 
 # Information field parameters (Bimodal Gaussian)
+# Verified from experiment_energy_deficit_window.py
 A_C = 0.5; S_C = 0.80; SIGMA_C = 0.08
 A_L = 0.7; S_L = 0.25; SIGMA_L = 0.10
-
-def gaussian(s_norm, A, center, width):
-    """Compute Gaussian function."""
-    return A * np.exp(-((s_norm - center)**2) / (2 * width**2))
-
-def gaussian_grad(s_norm, A, center, width, L):
-    """
-    Compute spatial gradient of Gaussian function d/ds.
-    I(s) = A * exp(-(s/L - c)^2 / 2w^2)
-    dI/ds = A * exp(...) * -(s/L - c)/w^2 * (1/L)
-    """
-    term = -(s_norm - center) / (width**2)
-    val = gaussian(s_norm, A, center, width)
-    return val * term / L
+I_0 = 0.3
 
 def compute_energy_cost(L, chi):
     """
     Compute the thermodynamic cost P_counter for a given length L and coupling chi.
     """
     # Isometric Growth: A scales with L^2
+    # A = A_ref * (L / L_A_ref)**2
     A_cross = A_REF * (L / L_REF)**2
-    # Moment of Inertia I ~ A^2
+
+    # Moment of Inertia I ~ A^2 / (4*pi)
     I_moment = (A_cross**2) / (4 * np.pi)
 
     # Spatial grid
@@ -65,10 +59,13 @@ def compute_energy_cost(L, chi):
     s = np.linspace(0, L, n_nodes)
     s_norm = s / L
 
-    # Information Field Gradient (nabla I)
-    grad_I_c = gaussian_grad(s_norm, A_C, S_C, SIGMA_C, L)
-    grad_I_l = gaussian_grad(s_norm, A_L, S_L, SIGMA_L, L)
-    grad_I = grad_I_c + grad_I_l
+    # Information Field I(s)
+    I_field = (A_C * np.exp(-((s_norm - S_C)**2) / (2 * SIGMA_C**2)) +
+               A_L * np.exp(-((s_norm - S_L)**2) / (2 * SIGMA_L**2)) +
+               I_0)
+
+    # Gradient of I (nabla I)
+    grad_I = np.gradient(I_field, s)
 
     # Loads
     q = RHO * A_cross * G
@@ -101,7 +98,7 @@ def compute_energy_cost(L, chi):
     return P_counter
 
 def compute_supply(L, S0, L0):
-    """Compute supply based on scaling law."""
+    """Compute supply based on scaling law (alpha=0.5)."""
     return S0 * (L / L0)**0.5
 
 def run_experiment():
@@ -113,19 +110,16 @@ def run_experiment():
 
     # Ranges for sweep
     L_values = np.linspace(0.2, 0.6, 40)
-    chi_values = np.linspace(0.0, 0.2, 21)
+    chi_values = np.linspace(0.0, 0.5, 51) # Increased max to 0.5 to capture stronger coupling
 
     # ---------------------------------------------------------
     # 2. Compute Baseline Supply Curve
     # ---------------------------------------------------------
-    chi_baseline = 0.05
-    L0 = 0.35
+    print(f"Computing Baseline Supply Curve (chi={CHI_BASELINE}, L0={L_CROSSING})...")
 
-    print(f"Computing Baseline Supply Curve (chi={chi_baseline}, L0={L0})...")
-
-    # Calculate S0 (Cost at L0 for baseline chi)
-    S0 = compute_energy_cost(L0, chi_baseline)
-    print(f"Baseline Cost S0 at L={L0}m: {S0:.6f} Watts (normalized)")
+    # Calculate S0 (Cost at L_CROSSING for baseline chi)
+    S0 = compute_energy_cost(L_CROSSING, CHI_BASELINE)
+    print(f"Baseline Cost S0 at L={L_CROSSING}m: {S0:.6e} Watts (normalized)")
 
     # ---------------------------------------------------------
     # 3. Perform 2D Parameter Sweep
@@ -137,16 +131,18 @@ def run_experiment():
     for chi in chi_values:
         for L in L_values:
             P_counter = compute_energy_cost(L, chi)
-            S_proprio = compute_supply(L, S0, L0)
-            deficit = P_counter - S_proprio
+            S_proprio = compute_supply(L, S0, L_CROSSING)
+            deficit_val = P_counter - S_proprio
+            deficit_ratio = P_counter / S_proprio if S_proprio > 0 else np.inf
 
             results.append({
                 "chi_kappa": chi,
                 "L": L,
                 "P_counter": P_counter,
                 "S_proprio": S_proprio,
-                "Deficit": deficit,
-                "Is_Deficit": deficit > 0
+                "Deficit": deficit_val,
+                "Deficit_Ratio": deficit_ratio,
+                "Is_Deficit": deficit_val > 0
             })
 
     df = pd.DataFrame(results)
@@ -159,8 +155,9 @@ def run_experiment():
     # ---------------------------------------------------------
     # 4. Visualization (Phase Diagram)
     # ---------------------------------------------------------
-    # Pivot for Heatmap
-    pivot_table = df.pivot(index="chi_kappa", columns="L", values="Deficit")
+    # Pivot for Heatmap (Deficit Ratio)
+    # Using Ratio
+    pivot_table = df.pivot(index="chi_kappa", columns="L", values="Deficit_Ratio")
 
     # Flip y-axis so high chi is at top
     pivot_table = pivot_table.sort_index(ascending=False)
@@ -168,14 +165,18 @@ def run_experiment():
     plt.figure(figsize=(10, 8))
 
     if sns:
+        # Use log scale for color if range is large
+        from matplotlib.colors import LogNorm
+
+        # Clip ratio to reasonable range for visualization (e.g., 0.1 to 10)
+
         ax = sns.heatmap(
             pivot_table,
-            cmap="RdBu_r",
-            center=0,
-            cbar_kws={'label': r'Energy Deficit ($P_{counter} - S_{proprio}$)'}
+            cmap="RdBu_r", # Red = High Deficit (Ratio > 1), Blue = Low (Ratio < 1)
+            center=1.0,
+            norm=LogNorm(vmin=0.1, vmax=10.0),
+            cbar_kws={'label': r'Deficit Ratio ($P_{counter} / S_{proprio}$)'}
         )
-
-        xticks = ax.get_xticks()
 
         n_ticks_x = 10
         x_indices = np.linspace(0, len(pivot_table.columns)-1, n_ticks_x, dtype=int)
@@ -188,17 +189,27 @@ def run_experiment():
         ax.set_yticklabels([f"{pivot_table.index[i]:.2f}" for i in y_indices], rotation=0)
 
     else:
-        pivot_imshow = df.pivot(index="chi_kappa", columns="L", values="Deficit")
+        pivot_imshow = df.pivot(index="chi_kappa", columns="L", values="Deficit_Ratio")
+        # Ensure matrix is sorted by chi descending (top to bottom) for imshow
+        pivot_imshow = pivot_imshow.sort_index(ascending=True)
+
         plt.imshow(
-            pivot_imshow,
+            np.log10(pivot_imshow), # Visualizing log ratio
             aspect='auto',
             extent=[L_values.min(), L_values.max(), chi_values.min(), chi_values.max()],
             cmap="RdBu_r",
-            origin='lower'
+            origin='lower',
+            vmax=1.0, vmin=-1.0 # log10(10) to log10(0.1)
         )
-        plt.colorbar(label=r'Energy Deficit ($P_{counter} - S_{proprio}$)')
+        plt.colorbar(label=r'Log10 Deficit Ratio')
 
-    plt.title("Energy Deficit Phase Diagram")
+        # Add contour line at Ratio=1 (Log=0)
+        X, Y = np.meshgrid(L_values, chi_values)
+        Z = pivot_imshow.values
+        plt.contour(X, Y, Z, levels=[1.0], colors='black', linewidths=2)
+
+
+    plt.title("Energy Deficit Phase Diagram (Ratio P/S)")
     plt.xlabel("Spine Length L (m)")
     plt.ylabel(r"Coupling Strength $\chi_\kappa$")
 

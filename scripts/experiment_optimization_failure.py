@@ -366,6 +366,9 @@ def parse_args():
     )
     parser.add_argument("--quick-test", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--n-trials", type=int, default=None)
+    parser.add_argument("--n-elements", type=int, default=None)
+    parser.add_argument("--final-time", type=float, default=None)
     return parser.parse_args()
 
 
@@ -375,15 +378,15 @@ if __name__ == "__main__":
     if args.quick_test:
         chi_kappas = [0.0, 10.0, 20.0]
         sigma_noises = [0.0, 0.5, 1.0]
-        n_trials = 2
-        n_elements = 20
-        final_time = 0.1
+        n_trials = args.n_trials if args.n_trials is not None else 2
+        n_elements = args.n_elements if args.n_elements is not None else 20
+        final_time = args.final_time if args.final_time is not None else 0.1
     else:
         chi_kappas = [0.0, 2.0, 5.0, 10.0, 15.0, 20.0]
         sigma_noises = [0.0, 0.1, 0.2, 0.5, 1.0, 2.0]
-        n_trials = 5
-        n_elements = 50
-        final_time = 2.0
+        n_trials = args.n_trials if args.n_trials is not None else 5
+        n_elements = args.n_elements if args.n_elements is not None else 50
+        final_time = args.final_time if args.final_time is not None else 2.0
 
     run_optimization_failure_sweep(
         out_file=args.out_file,

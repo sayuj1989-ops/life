@@ -9,11 +9,12 @@ from typing import Dict, List, Optional, Any
 ALPHAFOLD_API_BASE = "https://alphafold.ebi.ac.uk/api/prediction"
 # Note: PAE URL pattern: https://alphafold.ebi.ac.uk/files/AF-{uniprot}-F1-predicted_aligned_error_v4.json
 
+
 class AlphaFoldFetcher:
     def __init__(self, data_dir: Path, manifest_path: Path, dry_run: str = "none"):
         self.data_dir = data_dir
         self.manifest_path = manifest_path
-        self.dry_run_mode = dry_run # "none", "metadata", "full" (skip all)
+        self.dry_run_mode = dry_run  # "none", "metadata", "full" (skip all)
         self.manifest = self._load_manifest()
 
         # Subdirectories
@@ -25,14 +26,34 @@ class AlphaFoldFetcher:
             try:
                 # Ensure all columns exist
                 df = pd.read_csv(self.manifest_path)
-                cols = ['uniprot', 'gene_symbol', 'status', 'pdb_path', 'pae_path', 'sha256_pdb', 'retrieved_at', 'notes']
+                cols = [
+                    "uniprot",
+                    "gene_symbol",
+                    "status",
+                    "pdb_path",
+                    "pae_path",
+                    "sha256_pdb",
+                    "retrieved_at",
+                    "notes",
+                ]
                 for c in cols:
                     if c not in df.columns:
                         df[c] = None
                 return df
             except Exception:
                 pass
-        return pd.DataFrame(columns=['uniprot', 'gene_symbol', 'status', 'pdb_path', 'pae_path', 'sha256_pdb', 'retrieved_at', 'notes'])
+        return pd.DataFrame(
+            columns=[
+                "uniprot",
+                "gene_symbol",
+                "status",
+                "pdb_path",
+                "pae_path",
+                "sha256_pdb",
+                "retrieved_at",
+                "notes",
+            ]
+        )
 
     def _save_manifest(self):
         if self.manifest_path:
@@ -52,7 +73,7 @@ class AlphaFoldFetcher:
 
         try:
             # Use curl to fetch metadata
-            cmd = ['curl', '-s', api_url]
+            cmd = ["curl", "-s", api_url]
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
 
             if result.returncode != 0:
@@ -88,7 +109,7 @@ class AlphaFoldFetcher:
         for attempt in range(3):
             try:
                 # Use curl to download file
-                cmd = ['curl', '-L', '-s', '-o', str(dest_path), url]
+                cmd = ["curl", "-L", "-s", "-o", str(dest_path), url]
                 result = subprocess.run(cmd, timeout=60)
 
                 if result.returncode == 0 and dest_path.exists() and dest_path.stat().st_size > 0:
@@ -107,66 +128,63 @@ class AlphaFoldFetcher:
         Updates manifest and returns status dict.
         """
         # Check manifest first
-        existing = self.manifest[self.manifest['uniprot'] == uniprot_id]
+        existing = self.manifest[self.manifest["uniprot"] == uniprot_id]
         if not existing.empty:
             row = existing.iloc[0]
-            if row['status'] == 'downloaded':
+            if row["status"] == "downloaded":
                 # Verify files exist
-                if Path(row['pdb_path']).exists():
+                if Path(row["pdb_path"]).exists():
                     print(f"   ✅ Already cached: {gene_symbol} ({uniprot_id})")
                     return row.to_dict()
 
-        if self.dry_run_mode == "full": # Skip network completely
-             print(f"   ⚠️  [Dry Run] Skipping {gene_symbol}")
-             return {'status': 'skipped'}
+        if self.dry_run_mode == "full":  # Skip network completely
+            print(f"   ⚠️  [Dry Run] Skipping {gene_symbol}")
+            return {"status": "skipped"}
 
         print(f"   📡 Fetching metadata for {gene_symbol} ({uniprot_id})...")
         metadata = self._fetch_metadata(uniprot_id)
 
         if not metadata:
             print(f"   ❌ Not found in AFDB: {gene_symbol}")
-            self._update_manifest(uniprot_id, gene_symbol, 'not_found_afdb')
-            return {'status': 'not_found'}
+            self._update_manifest(uniprot_id, gene_symbol, "not_found_afdb")
+            return {"status": "not_found"}
 
         # Extract URLs (Schema tolerant)
         # Look for pdbUrl, cifUrl, etc.
-        pdb_url = metadata.get('pdbUrl')
-        pae_image_url = metadata.get('paeImageUrl') # Often just the image, need JSON
-
-        # NOTE: The API often doesn't give the PAE JSON URL explicitly in older versions,
-        # but the schema usually has it. If not, we can infer it or skip.
-        # However, 'ampt' (PAE) might be available via 'paeDocUrl' or similar?
-        # Let's look for known keys.
-
-        # Typically: https://alphafold.ebi.ac.uk/files/AF-{uid}-F1-predicted_aligned_error_{v}.json
-        # The metadata entry normally has 'cifUrl', 'pdbUrl', 'bcifUrl', 'paeImageUrl', 'paeDocUrl' (maybe).
-        # We will try to rely on 'pdbUrl' to infer PAE JSON if not explicit,
-        # but let's check keys.
+        pdb_url = metadata.get("pdbUrl")
+        cif_url = metadata.get("cifUrl")
+        pae_doc_url = metadata.get("paeDocUrl")
 
         # Explicit download
         protein_dir = self.afdb_dir / uniprot_id
         protein_dir.mkdir(parents=True, exist_ok=True)
 
-        # 1. PDB
+        # 1. Structure file (PDB preferred, CIF fallback)
         pdb_path = protein_dir / f"{uniprot_id}.pdb"
-        if pdb_url:
-            if not self._download_file(pdb_url, pdb_path):
-                 self._update_manifest(uniprot_id, gene_symbol, 'download_failed')
-                 return {'status': 'failed'}
+        structure_url = pdb_url
+        if not structure_url and cif_url:
+            structure_url = cif_url
+            pdb_path = protein_dir / f"{uniprot_id}.cif"
+
+        if structure_url:
+            if not self._download_file(structure_url, pdb_path):
+                self._update_manifest(uniprot_id, gene_symbol, "download_failed")
+                return {"status": "failed"}
         else:
-             print("   ⚠️  No PDB URL found.")
-             self._update_manifest(uniprot_id, gene_symbol, 'no_structure')
-             return {'status': 'no_structure'}
+            print("   ⚠️  No structural URL (PDB or CIF) found.")
+            self._update_manifest(uniprot_id, gene_symbol, "no_structure")
+            return {"status": "no_structure"}
 
         # 2. PAE JSON
-        # Infer URL if not present.
-        # Example pdbUrl: https://alphafold.ebi.ac.uk/files/AF-P49768-F1-model_v4.pdb
-        # PAE URL:        https://alphafold.ebi.ac.uk/files/AF-P49768-F1-predicted_aligned_error_v4.json
         pae_path = protein_dir / f"{uniprot_id}_pae.json"
-        pae_url = None
+        pae_url = pae_doc_url
 
-        if pdb_url:
-             pae_url = pdb_url.replace("model", "predicted_aligned_error").replace(".pdb", ".json")
+        if not pae_url and structure_url:
+            pae_url = (
+                structure_url.replace("model", "predicted_aligned_error")
+                .replace(".pdb", ".json")
+                .replace(".cif", ".json")
+            )
 
         has_pae = False
         if pae_url:
@@ -179,25 +197,26 @@ class AlphaFoldFetcher:
         # 3. Checksum
         sha256 = None
         if self.dry_run_mode == "none":
-             sha256 = self._calculate_sha256(pdb_path)
+            sha256 = self._calculate_sha256(pdb_path)
 
         # Update Manifest
         self._update_manifest(
             uniprot_id,
             gene_symbol,
-            'downloaded',
+            "downloaded",
             str(pdb_path),
             str(pae_path) if has_pae else None,
-            sha256
+            sha256,
         )
 
-        return {'status': 'downloaded'}
+        return {"status": "downloaded"}
 
     def _update_manifest(self, uniprot, gene, status, pdb_path=None, pae_path=None, sha=None):
-        if self.dry_run_mode != "none": return
+        if self.dry_run_mode != "none":
+            return
 
         # Remove old entry
-        self.manifest = self.manifest[self.manifest['uniprot'] != uniprot]
+        self.manifest = self.manifest[self.manifest["uniprot"] != uniprot]
 
         # Convert to relative paths
         # Assume data_dir is research/alphafold_countercurvature/data/raw
@@ -206,7 +225,8 @@ class AlphaFoldFetcher:
         # print(f"DEBUG: data_dir={self.data_dir}, repo_root={repo_root}")
 
         def make_relative(p_str):
-            if not p_str: return None
+            if not p_str:
+                return None
             try:
                 p = Path(p_str)
                 if p.is_absolute():
@@ -216,14 +236,14 @@ class AlphaFoldFetcher:
             return p_str
 
         new_row = {
-            'uniprot': uniprot,
-            'gene_symbol': gene,
-            'status': status,
-            'pdb_path': make_relative(pdb_path),
-            'pae_path': make_relative(pae_path),
-            'sha256_pdb': sha,
-            'retrieved_at': time.strftime('%Y-%m-%d %H:%M:%S'),
-            'notes': ''
+            "uniprot": uniprot,
+            "gene_symbol": gene,
+            "status": status,
+            "pdb_path": make_relative(pdb_path),
+            "pae_path": make_relative(pae_path),
+            "sha256_pdb": sha,
+            "retrieved_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "notes": "",
         }
 
         self.manifest = pd.concat([self.manifest, pd.DataFrame([new_row])], ignore_index=True)

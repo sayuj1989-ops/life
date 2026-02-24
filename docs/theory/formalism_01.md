@@ -424,6 +424,23 @@ $$ \mathcal{K}_{som} = k_{stiff} L $$
 *   **AIS Context**: We hypothesize that AIS represents a "Low-Mode Lock" where the metabolic wavelength $\lambda_{met} = 2\pi/k_{stiff}$ accidentally coincides with the mechanical buckling length $L_{crit}$.
 *   **Measurable Proxy**: The Power Spectral Density (PSD) of vertebral bone density (e.g., DEXA or CT Hounsfield Units) along the spinal axis. A peak at spatial frequency $f = 1/L$ predicts curve progression.
 
+### 2.28. The Sclerostin-Brake Number ($\mathcal{S}_{ost}$)
+
+We define a dimensionless ratio quantifying the dominance of the Sclerostin (SOST) "brake" over the Piezo1-mediated "gas" for osteogenesis.
+
+$$ \mathcal{S}_{ost} = \frac{\beta_{inh} [SOST]}{\alpha_{load} \langle \sigma_{mech} \rangle} $$
+
+*   **Symbols**:
+    *   $[SOST]$: Local concentration of Sclerostin (biochemical brake) $[N L^{-3}]$.
+    *   $\langle \sigma_{mech} \rangle$: Time-averaged mechanical stress (load) $[ML^{-1}T^{-2}]$.
+    *   $\beta_{inh}$: Inhibitory potency of Sclerostin on Wnt signaling $[L^3 T^{-1}]$.
+    *   $\alpha_{load}$: Mechanotransduction gain of Piezo1 for osteogenesis $[M^{-1} L T]$.
+*   **Physical Interpretation**:
+    *   $\mathcal{S}_{ost} \gg 1$: **Brake Dominant** (Osteopenic). Osteocytes suppress osteoblasts despite load.
+    *   $\mathcal{S}_{ost} \ll 1$: **Drive Dominant** (Growth). Mechanical load overcomes the chemical brake.
+    *   **AIS Context**: On the concave side of a scoliotic curve (high stress), $\mathcal{S}_{ost} \to 0$, driving runaway ossification (wedging).
+*   **Measurable Proxy**: The ratio of serum Sclerostin to serum P1NP, normalized by physical activity level (accelerometry).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -737,6 +754,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Spinal linearity in simulation (PyElastica) or active-material robots where the stiffness profile is modulated dynamically in time vs. held static.
 *   **Refutation**: If a traveling wave is *more* destabilizing than a static defect (due to parametric resonance pumping energy *into* the mode), the "Peristaltic Rescue" model is incorrect. (Reference: Nayfeh & Mook, 1979).
 
+### Test BC: The Braking Failure
+*   **Hypothesis**: In "Drive Dominant" AIS (rapid progression), $\mathcal{S}_{ost}$ is abnormally low not due to high stress, but due to a failure of Sclerostin production/secretion ($\beta_{inh} \to 0$).
+*   **Data Needed**: Serum Sclerostin levels in rapidly progressing AIS patients vs. stable curves, controlled for BMI and activity.
+*   **Refutation**: If progressors have *high* Sclerostin (strong brake) yet still progress, the runaway growth is Sclerostin-independent (e.g., direct Wnt mutation). (Reference: Robling et al., 2008).
+
+### Test BD: The Piezo-Sost Inversion
+*   **Hypothesis**: Piezo1 activation is the necessary and sufficient signal to downregulate Sclerostin. Blocking Piezo1 should prevent the load-induced drop in SOST.
+*   **Data Needed**: SOST mRNA/protein levels in osteocytes treated with GsMTx4 (Piezo inhibitor) vs Vehicle under fluid shear stress.
+*   **Refutation**: If SOST is downregulated by load even when Piezo1 is blocked (e.g., via Integrins or Connexins), the exclusive Piezo-Sost axis is falsified. (Reference: Li et al., 2019).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -800,3 +827,5 @@ The theory makes specific predictions about the relationship between genetic ani
 59. **Moulton, D. E., et al. (2020).** "Morphoelastic rods and shells." *Annual Review of Condensed Matter Physics*, 11. (Mathematical framework for active filament growth).
 60. **Elishakoff, I. (2005).** "Buckling of Structures with Uncertain Imperfections." *Springer*. (Theoretical basis for imperfection sensitivity).
 61. **Nayfeh, A. H., & Mook, D. T. (1979).** "Nonlinear Oscillations." *Wiley*. (Parametric resonance theory).
+62. **Robling, A. G., et al. (2008).** "Mechanical stimulation of bone in vivo reduces osteocyte expression of Sost/sclerostin." *Journal of Biological Chemistry*, 283(9). (Defines the mechanical brake release).
+63. **Li, X., et al. (2019).** "Piezo1 sensing of mechanical force regulates bone formation." *Nature Communications*, 10. (Establishes the Piezo1-Osteogenesis link).

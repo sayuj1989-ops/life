@@ -29,7 +29,7 @@ The repository is organized into clear functional domains:
 │
 ├── src/                          # Core Python packages
 │   ├── spinalmodes/              # Main IEC model and Cosserat implementation
-│   └── afcc/                     # Protein structure utilities
+│   └── alphafold/                # Protein structure utilities
 │
 ├── research/                     # Active research modules (e.g., AlphaFold Countercurvature)
 │
@@ -64,17 +64,23 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run a Basic Simulation
+### 2. Run the Analysis Pipeline
 
-To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
+To run the master reproducing script that executes the core analyses (Integrated Simulation, Energy Deficit Bifurcation, Thermodynamic Cost):
 
 ```bash
-python scripts/experiment_minimal_elastica.py
+python main.py
 ```
 
-### 3. AlphaFold Counter-Curvature Analysis
+Outputs will be saved dynamically to the `outputs/` directory (or `../results` if run via Code Ocean).
 
-For protein structure analysis steps, refer to `research/alphafold_countercurvature/README.md` (if available) or explore the module directly.
+### 3. Code Ocean Deployment
+
+The repository is configured for submission via Code Ocean. Execute the full environment run using the provided entry point:
+
+```bash
+bash run.sh
+```
 
 ---
 

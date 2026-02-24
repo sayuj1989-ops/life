@@ -187,6 +187,7 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(buffer => {
-  fs.writeFileSync("/sessions/pensive-amazing-hawking/mnt/life/ABSTRACT_Template.docx", buffer);
-  console.log("Abstract created successfully!");
+  const outputPath = "manuscript/templates/ABSTRACT_Template.docx";
+  fs.writeFileSync(outputPath, buffer);
+  console.log(`Abstract created successfully at ${outputPath}!`);
 });

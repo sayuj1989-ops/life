@@ -707,6 +707,7 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(buffer => {
-  fs.writeFileSync("/sessions/pensive-amazing-hawking/mnt/life/NATURE_MANUSCRIPT_BiologicalCountercurvature.docx", buffer);
-  console.log("Full Nature manuscript created successfully!");
+  const outputPath = "manuscript/drafts/NATURE_MANUSCRIPT_BiologicalCountercurvature.docx";
+  fs.writeFileSync(outputPath, buffer);
+  console.log(`Full Nature manuscript created successfully at ${outputPath}!`);
 });

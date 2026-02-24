@@ -238,6 +238,7 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(buffer => {
-  fs.writeFileSync("/sessions/pensive-amazing-hawking/mnt/life/COVER_LETTER_Template.docx", buffer);
-  console.log("Cover letter created successfully!");
+  const outputPath = "manuscript/templates/COVER_LETTER_Template.docx";
+  fs.writeFileSync(outputPath, buffer);
+  console.log(`Cover letter created successfully at ${outputPath}!`);
 });

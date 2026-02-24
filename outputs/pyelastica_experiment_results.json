@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Control",
+    "input_parameters": {
+      "anisotropy": 1.0,
+      "active_curvature": 0.0,
+      "stiffness_modulation": 0.0,
+      "boundary_condition": "fixed",
+      "initial_lateral_defect": 0.0,
+      "natural_kyphosis": 2.0
+    },
+    "metrics": {
+      "max_curvature": 1.549054621726719,
+      "cobb_angle": 0.0,
+      "S_lat": 0.0,
+      "U_CC": 1.5367753232247225,
+      "U_info": 0.0,
+      "U_gravity": 1.5359557284519831,
+      "runtime_sec": 4.960298776626587,
+      "peak_memory_mb": 15.533363342285156,
+      "success": true,
+      "error": ""
+    }
+  },
+  {
+    "name": "High_Stiffness_Anisotropy (PIEZO2-like)",
+    "input_parameters": {
+      "anisotropy": 5.0,
+      "active_curvature": 2.0,
+      "stiffness_modulation": 0.1,
+      "boundary_condition": "fixed",
+      "initial_lateral_defect": 0.5,
+      "natural_kyphosis": 2.0
+    },
+    "metrics": {
+      "max_curvature": 31.352201186423805,
+      "cobb_angle": 1.1656531832646266,
+      "S_lat": 0.04480150830631685,
+      "U_CC": -0.10788493412413125,
+      "U_info": 1.4862134132886746,
+      "U_gravity": 0.5913231725823482,
+      "runtime_sec": 2.7875444889068604,
+      "peak_memory_mb": 0.12182807922363281,
+      "success": true,
+      "error": ""
+    }
+  },
+  {
+    "name": "High_Active_Curvature (Instability)",
+    "input_parameters": {
+      "anisotropy": 1.0,
+      "active_curvature": 10.0,
+      "stiffness_modulation": 0.0,
+      "boundary_condition": "fixed",
+      "initial_lateral_defect": 0.5,
+      "natural_kyphosis": 2.0
+    },
+    "metrics": {
+      "max_curvature": 72.23694276387008,
+      "cobb_angle": 5.065723226448026,
+      "S_lat": 0.46151322903823694,
+      "U_CC": -13.643698274716044,
+      "U_info": 19.172112293721263,
+      "U_gravity": -0.039814649678720934,
+      "runtime_sec": 2.8101108074188232,
+      "peak_memory_mb": 0.11865234375,
+      "success": true,
+      "error": ""
+    }
+  }
+]

@@ -203,6 +203,9 @@ def verify_pyelastica_installation(exit_on_fail: bool = True) -> bool:
     """
     Public utility to verify PyElastica installation for scripts.
 
+    This function attempts to import PyElastica and checks for a valid version.
+    It is used by reproduction scripts to ensure the environment is correctly set up.
+
     Args:
         exit_on_fail: If True, prints error and exits with sys.exit(1).
                       If False, returns False on failure.
@@ -1030,6 +1033,7 @@ __all__ = [
     "run_protein_simulation",
     "compute_U_CC",
     "CircadianParams",
+    "verify_pyelastica_installation",
 ]
 
 if __name__ == "__main__":

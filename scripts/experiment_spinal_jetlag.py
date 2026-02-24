@@ -99,6 +99,38 @@ def chi_kappa_circadian(
     return chi_0 * (1.0 + amplitude * np.cos(omega * t + phi))
 
 
+def gravity_circadian(
+    t: float,
+    g_max: float,
+    T_gravity: float = 24.0,
+) -> float:
+    """Compute time-varying gravity (circadian loading cycle).
+
+    Models the daily loading cycle: Upright (high load) during day,
+    Recumbent (low load) at night.
+
+    Using a cosine for simplicity:
+    g(t) = g_max * (0.5 + 0.5 * cos(omega * t))
+    Peak at t=0 (noon/start of day), minimum at t=T/2 (midnight).
+
+    Parameters
+    ----------
+    t : float
+        Time in hours.
+    g_max : float
+        Maximum gravity (e.g. 9.81).
+    T_gravity : float
+        Period of gravity cycle (hours).
+
+    Returns
+    -------
+    float
+        Instantaneous gravity.
+    """
+    omega = 2.0 * np.pi / T_gravity
+    return max(0.0, g_max * (0.5 + 0.5 * np.cos(omega * t)))
+
+
 def entrainment_strength(
     K_ent: float,
     gravity: float,
@@ -250,8 +282,9 @@ def run_jetlag_cycle(
 def run_spinal_jetlag_experiment(
     out_file: str,
     conditions: List[Dict],
-    n_cycles: int = 24,
-    T_circadian: float = 24.0,
+    n_steps: int = 72,
+    T_circadian_default: float = 24.0,
+    dt_hours: float = 1.0,
     n_elements: int = 30,
     cycle_duration: float = 0.5,
 ):
@@ -263,11 +296,13 @@ def run_spinal_jetlag_experiment(
         Path to output CSV.
     conditions : list of dict
         Each dict specifies a condition:
-        {name, chi_0, amplitude, phi, gravity, K_ent}
-    n_cycles : int
-        Number of circadian cycles to simulate.
-    T_circadian : float
-        Circadian period (hours, used for cycling chi_kappa).
+        {name, chi_0, amplitude, phi, gravity, K_ent, [clock_period]}
+    n_steps : int
+        Number of time steps to simulate (e.g. 72 hours).
+    T_circadian_default : float
+        Default circadian period if not specified in condition.
+    dt_hours : float
+        Time step in hours (biological time between mechanical snapshots).
     n_elements : int
         Rod elements.
     cycle_duration : float
@@ -279,8 +314,8 @@ def run_spinal_jetlag_experiment(
     print("EXPERIMENT: Spinal Jetlag — Time-Dependent Learning Rate")
     print("=" * 100)
     print(f"Conditions: {len(conditions)}")
-    print(f"Cycles per condition: {n_cycles}")
-    print(f"Circadian period: {T_circadian} hours")
+    print(f"Time steps: {n_steps} (dt={dt_hours}h)")
+    print(f"Default Circadian period: {T_circadian_default} hours")
     print(f"Output: {out_file}")
     print("=" * 100)
 
@@ -307,31 +342,36 @@ def run_spinal_jetlag_experiment(
             chi_0 = cond["chi_0"]
             A_0 = cond["amplitude"]
             phi = cond["phi"]
-            grav = cond["gravity"]
+            g_max = cond["gravity"]
             K_ent = cond.get("K_ent", 1.0)
+            clock_period = cond.get("clock_period", T_circadian_default)
 
             print(f"\n--- Condition: {name} ---")
-            print(f"    chi_0={chi_0}, A={A_0}, phi={phi:.2f}, g={grav}, K_ent={K_ent}")
+            print(f"    chi_0={chi_0}, A={A_0}, phi={phi:.2f}, g_max={g_max}, K_ent={K_ent}, T_clock={clock_period}")
 
-            # Compute entrainment
-            E_mech = entrainment_strength(K_ent, grav)
+            # Compute entrainment based on max gravity
+            E_mech = entrainment_strength(K_ent, g_max)
 
-            for cycle in range(n_cycles):
+            for step in range(n_steps):
                 t0_wall = time.time()
 
                 # Current time in hours
-                t_hours = cycle * (T_circadian / n_cycles)
+                t_hours = step * dt_hours
 
                 # Clock amplitude (may decay in microgravity)
                 A_t = clock_amplitude_decay(A_0, E_mech, t_hours)
 
-                # Instantaneous coupling
-                chi_t = chi_kappa_circadian(t_hours, chi_0, A_t, T_circadian, phi)
+                # Instantaneous coupling (using internal clock period)
+                chi_t = chi_kappa_circadian(t_hours, chi_0, A_t, clock_period, phi)
 
-                # Run mechanical cycle
+                # Instantaneous gravity (always 24h cycle)
+                # Note: Microgravity condition has g_max ~ 0, so g_t ~ 0.
+                g_t = gravity_circadian(t_hours, g_max, T_gravity=24.0)
+
+                # Run mechanical cycle with time-varying gravity
                 metrics = run_jetlag_cycle(
                     chi_kappa_t=chi_t,
-                    gravity=grav,
+                    gravity=g_t,
                     n_elements=n_elements,
                     cycle_duration=cycle_duration,
                 )
@@ -341,12 +381,12 @@ def run_spinal_jetlag_experiment(
                 row = {
                     "timestamp": datetime.now().isoformat(),
                     "condition": name,
-                    "cycle": cycle,
+                    "cycle": step,
                     "t_hours": round(t_hours, 2),
                     "chi_kappa_t": round(chi_t, 4),
                     "amplitude_t": round(A_t, 4),
                     "phi": round(phi, 4),
-                    "gravity": grav,
+                    "gravity": round(g_t, 4),
                     "cobb_angle": round(metrics["cobb_angle"], 4),
                     "max_torsion": round(metrics["max_torsion"], 6),
                     "S_lat": round(metrics["S_lat"], 6),
@@ -359,10 +399,10 @@ def run_spinal_jetlag_experiment(
                 writer.writerow(row)
                 csvfile.flush()
 
-                if cycle % 4 == 0:
+                if step % 4 == 0:
                     print(
-                        f"  cycle {cycle:3d} | t={t_hours:6.1f}h | "
-                        f"chi_k={chi_t:7.3f} | A={A_t:.3f} | "
+                        f"  step {step:3d} | t={t_hours:6.1f}h | "
+                        f"g={g_t:5.2f} | chi_k={chi_t:6.3f} | "
                         f"Cobb={metrics['cobb_angle']:6.2f} | "
                         f"S_lat={metrics['S_lat']:.4f}"
                     )
@@ -448,7 +488,7 @@ def parse_args():
         default="outputs/spinal_jetlag/jetlag_cycles.csv",
     )
     parser.add_argument("--quick-test", action="store_true")
-    parser.add_argument("--n-cycles", type=int, default=24)
+    parser.add_argument("--n-steps", type=int, default=72)
     return parser.parse_args()
 
 
@@ -458,11 +498,11 @@ if __name__ == "__main__":
     if args.quick_test:
         conditions = [
             {"name": "entrained", "chi_0": 10.0, "amplitude": 0.5,
-             "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
+             "phi": 0.0, "gravity": 9.81, "K_ent": 1.0, "clock_period": 24.0},
             {"name": "jetlagged", "chi_0": 10.0, "amplitude": 0.5,
-             "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
+             "phi": np.pi, "gravity": 9.81, "K_ent": 1.0, "clock_period": 24.0},
         ]
-        n_cycles = 8
+        n_steps = 24  # 24 hours
         n_elements = 20
         cycle_duration = 0.1
     else:
@@ -471,42 +511,38 @@ if __name__ == "__main__":
             {"name": "entrained", "chi_0": 10.0, "amplitude": 0.5,
              "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
 
-            # 2. Mild phase shift (45 degrees)
-            {"name": "phase_shift_45", "chi_0": 10.0, "amplitude": 0.5,
-             "phi": np.pi / 4, "gravity": 9.81, "K_ent": 1.0},
+            # 2. Free-running: Clock drifts (24.5h vs 24.0h gravity)
+            # Starts in phase (phi=0), but drifts by 0.5h per day.
+            # After 48 days (1152h), it will be 24h out of phase? No.
+            # 0.5h drift per 24h. To drift 12h (anti-phase), needs 24 cycles.
+            {"name": "free_running", "chi_0": 10.0, "amplitude": 0.5,
+             "phi": 0.0, "gravity": 9.81, "K_ent": 0.1, "clock_period": 24.5},
 
-            # 3. Moderate phase shift (90 degrees)
-            {"name": "phase_shift_90", "chi_0": 10.0, "amplitude": 0.5,
-             "phi": np.pi / 2, "gravity": 9.81, "K_ent": 1.0},
-
-            # 4. Fully jetlagged: phi=pi, anti-phase
+            # 3. Jetlagged: phi=pi, anti-phase
+            # Starts anti-phase and stays anti-phase (if T=24)
             {"name": "jetlagged", "chi_0": 10.0, "amplitude": 0.5,
              "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
 
-            # 5. Microgravity: g ~ 0, weak entrainment, amplitude decays
+            # 4. Microgravity: g ~ 0, weak entrainment, amplitude decays
             {"name": "microgravity", "chi_0": 10.0, "amplitude": 0.5,
              "phi": 0.0, "gravity": 0.01, "K_ent": 1.0},
 
-            # 6. Microgravity + jetlag: worst case
-            {"name": "microgravity_jetlag", "chi_0": 10.0, "amplitude": 0.5,
-             "phi": np.pi, "gravity": 0.01, "K_ent": 1.0},
-
-            # 7. Control: no circadian modulation (A=0)
+            # 5. Control: no circadian modulation (A=0)
             {"name": "constant_chi", "chi_0": 10.0, "amplitude": 0.0,
              "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
 
-            # 8. High coupling + jetlag (pathological)
+            # 6. High coupling + jetlag (pathological)
             {"name": "high_chi_jetlag", "chi_0": 20.0, "amplitude": 0.5,
              "phi": np.pi, "gravity": 9.81, "K_ent": 1.0},
         ]
-        n_cycles = args.n_cycles
+        n_steps = args.n_steps
         n_elements = 30
         cycle_duration = 0.5
 
     run_spinal_jetlag_experiment(
         out_file=args.out_file,
         conditions=conditions,
-        n_cycles=n_cycles,
+        n_steps=n_steps,
         n_elements=n_elements,
         cycle_duration=cycle_duration,
     )

@@ -14,23 +14,23 @@ from typing import Dict, Any, List, Optional, Tuple
 # Assuming script is run from repo root or scripts/ dir
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
-SRC_DIR = os.path.join(REPO_ROOT, 'research', 'alphafold_countercurvature', 'src')
+
+# Prioritize the new 'src' directory (where afcc package lives)
+SRC_DIR = os.path.join(REPO_ROOT, 'src')
+LEGACY_SRC_DIR = os.path.join(REPO_ROOT, 'research', 'alphafold_countercurvature', 'src')
 
 if SRC_DIR not in sys.path:
-    sys.path.append(SRC_DIR)
+    sys.path.insert(0, SRC_DIR)
+
+if LEGACY_SRC_DIR not in sys.path:
+    sys.path.append(LEGACY_SRC_DIR)
 
 try:
     from afcc.metrics import MetricsAnalyzer
     from afcc.structure import StructureParser
 except ImportError as e:
     print(f"Error importing afcc modules: {e}")
-    # Fallback for testing if run from wrong dir
-    try:
-        sys.path.append(os.path.abspath('research/alphafold_countercurvature/src'))
-        from afcc.metrics import MetricsAnalyzer
-        from afcc.structure import StructureParser
-    except ImportError:
-        pass
+    sys.exit(1)
 
 # Configuration
 CACHE_DIR = os.path.join(REPO_ROOT, "data", "afdb_cache")

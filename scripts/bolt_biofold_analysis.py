@@ -32,6 +32,10 @@ PROTEINS = [
     {"symbol": "LBX1", "uniprot": "P52954", "species": "Homo sapiens"},
     {"symbol": "ADGRG6", "uniprot": "Q7Z2K8", "species": "Homo sapiens"},
     {"symbol": "DMD", "uniprot": "P11532", "species": "Homo sapiens"},
+    {"symbol": "PPARGC1A", "uniprot": "Q9UBK2", "species": "Homo sapiens"},
+    {"symbol": "GHR", "uniprot": "P10912", "species": "Homo sapiens"},
+    {"symbol": "ARNTL", "uniprot": "O00327", "species": "Homo sapiens"},
+    {"symbol": "MYLK", "uniprot": "Q15746", "species": "Homo sapiens"},
 ]
 
 OUTPUT_DIR = "outputs"

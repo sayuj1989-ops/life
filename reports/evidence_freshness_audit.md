@@ -1,48 +1,106 @@
 # Evidence Freshness Audit Report
-**Date:** 2026-03-06
-**Scope:** Audit of `outputs/afcc/*/metrics.csv` for data staleness and schema drift.
-**Method:** `scripts/analysis/evidence_freshness_audit.py`
 
-## Executive Summary
-The "Daily Refresh" pipeline exhibits a bimodal behavior:
-1.  **Static Legacy Data**: Core structural candidates (PIEZO2, LBX1, LMNA) have shown **identical metric values** for over 20 runs (since Jan 2026). This indicates they are being reported from cache without re-computation, or the underlying computation code has not changed for them.
-2.  **Active Metabolic Update**: A subset of candidates (ARNTL, DMD, GHR, IGF1R, PPARGC1A, MYLK) shows **significant metric changes** and schema evolution between Feb 20-23, 2026. This correlates with the "Metabolic Buckling" hypothesis development.
+## 1. Run History & Output Integrity
 
-**Critical Risk**: The evidence for the core "Countercurvature" candidates (LBX1, PIEZO2) is **stale**. Recent improvements in metric calculation (evident in the metabolic set) have likely *not* been applied to these core drivers.
+| Date | Rows | Linked Images | Status |
+|---|---|---|---|
+| 2026-01-06 | 10 | 0 | ⚠️ Missing |
+| 2026-01-07 | 9 | 0 | ⚠️ Missing |
+| 2026-01-09 | 9 | 0 | ⚠️ Missing |
+| 2026-01-14 | 9 | 0 | ⚠️ Missing |
+| 2026-01-16 | 3 | 0 | ⚠️ Missing |
+| 2026-01-18 | 9 | 0 | ⚠️ Missing |
+| 2026-01-20 | 9 | 0 | ⚠️ Missing |
+| 2026-01-21 | 9 | 25 | ✅ Present |
+| 2026-01-27 | 9 | 0 | ⚠️ Missing |
+| 2026-01-31 | 9 | 0 | ⚠️ Missing |
+| 2026-02-05 | 9 | 0 | ⚠️ Missing |
+| 2026-02-06 | 9 | 0 | ⚠️ Missing |
+| 2026-02-07 | 9 | 0 | ⚠️ Missing |
+| 2026-02-08 | 9 | 0 | ⚠️ Missing |
+| 2026-02-09 | 10 | 0 | ⚠️ Missing |
+| 2026-02-10 | 219 | 0 | ⚠️ Missing |
+| 2026-02-11 | 10 | 0 | ⚠️ Missing |
+| 2026-02-12 | 10 | 0 | ⚠️ Missing |
+| 2026-02-13 | 48 | 0 | ⚠️ Missing |
+| 2026-02-16 | 25 | 0 | ⚠️ Missing |
+| 2026-02-17 | 10 | 0 | ⚠️ Missing |
+| 2026-02-18 | 58 | 0 | ⚠️ Missing |
+| 2026-02-20 | 10 | 0 | ⚠️ Missing |
+| 2026-02-21 | 10 | 0 | ⚠️ Missing |
+| 2026-02-22 | 10 | 0 | ⚠️ Missing |
+| 2026-02-23 | 10 | 0 | ⚠️ Missing |
+| manual_longevity | 2 | 0 | ⚠️ Missing |
+| manual_metabolic_update | 6 | 0 | ⚠️ Missing |
 
-## Detailed Findings
+## 2. Schema Drift Analysis
 
-### 1. Static Candidates (Potential Stale Evidence)
-The following key candidates have had **zero metric changes** across all observed transitions (>20 runs for some), suggesting no re-analysis has occurred despite codebase evolution:
-*   **LBX1**: Static since Jan 06 (22 runs).
-*   **PIEZO2**: Static since Jan 06 (22 runs).
-*   **LMNA**: Static since Jan 14 (12 runs).
-*   **IFT88**: Static since Jan 14 (8 runs).
-*   **NF1**: Static since Jan 18 (11 runs).
+- Baseline (2026-01-06): 27 columns
+- 2026-01-09: Drift detected.
+  - Added: plddt_mean, anisotropy_index, backbone_principal_axis, PAE_domain_blockiness_score, plddt_fraction_ok, predicted_domain_segments, plddt_median, exposed_surface_proxy, plddt_fraction_low, disorder_fraction_proxy, likely_IDR_heavy, plddt_fraction_high, PAE_mean
+  - Removed: anisotropy_ratio, pae_mean, fraction_low_plddt, lambda_mid, likely_idr_heavy, pae_blockiness, lambda_min, anisotropy, mean_plddt, disorder_fraction, lambda_max, exposed_fraction
+- 2026-02-21: Drift detected.
+  - Added: pLDDT_fraction_low, uniprot_id, length, species, pLDDT_mean, pLDDT_fraction_high
+  - Removed: plddt_mean, dise_score, plddt_fraction_ok, plddt_median, uniprot, n_residues, plddt_fraction_low, source_category, plddt_fraction_high
+- 2026-02-22: Drift detected.
+  - Added: plddt_mean, organism, plddt_fraction_ok, plddt_median, n_residues, plddt_fraction_low, priority_score, plddt_fraction_high
+  - Removed: pLDDT_fraction_low, length, species, pLDDT_mean, pLDDT_fraction_high
+- manual_longevity: Drift detected.
+  - Added: confidence_level, interpretation, uniprot, species
+  - Removed: uniprot_id, priority_score, organism
+- manual_metabolic_update: Drift detected.
+  - Added: source_category, dise_score
+  - Removed: confidence_level, interpretation, species
 
-**Implication**: Claims about these proteins are based on code/metrics from early January. If the pipeline has improved (e.g., better anisotropy calculation, new confidence weighting), these candidates are **out of date**.
+## 3. Data Freshness (Reuse Detection)
 
-### 2. Active Development (Fresh Evidence)
-The following candidates show recent activity (metric changes) in late Feb (Feb 20-23), indicating they are the focus of recent work:
-*   **ARNTL**
-*   **DMD**
-*   **GHR**
-*   **IGF1R**
-*   **PPARGC1A**
-*   **MYLK**
+Analysis of identical per-gene values across multiple dates.
 
-**Implication**: The "Metabolic" evidence is fresher and likely uses more robust/recent metric definitions than the "Structural" evidence.
+**Total Multi-Run Genes:** 71
+**Static Genes (100% Identical Metrics):** 58
+**Dynamic Genes (Changed Values):** 13
 
-### 3. Schema Drift
-Significant schema drift occurred between **Feb 20 and Feb 23**.
-*   **Changes**: casing changes (`plddt_fraction_high` -> `pLDDT_fraction_high`), column additions (`priority_score`, `source_category`), and removals.
-*   **Risk**: Downstream analysis scripts (like ranking or plotting) must be robust to these column name changes or they will fail/misinterpret data.
+### Static Genes (Potential Cache Reuse)
+| Gene | Run Count | Date Range |
+|---|---|---|
+| LBX1 | 21 | 2026-01-06 to 2026-02-22 |
+| NTRK3 | 15 | 2026-01-27 to 2026-02-22 |
+| RUNX3 | 13 | 2026-01-27 to 2026-02-18 |
+| LMNA | 12 | 2026-01-14 to 2026-02-18 |
+| NF1 | 11 | 2026-01-18 to 2026-02-18 |
+| POC5 | 10 | 2026-01-06 to 2026-02-18 |
+| OTOP1 | 9 | 2026-01-27 to 2026-02-18 |
+| EGR3 | 9 | 2026-01-27 to 2026-02-18 |
+| ITGB1 | 8 | 2026-01-07 to 2026-02-18 |
+| IFT88 | 8 | 2026-01-14 to 2026-02-18 |
+| PLOD1 | 6 | 2026-02-05 to 2026-02-18 |
+| HIF1A | 5 | 2026-02-11 to 2026-02-23 |
+| COL1A1 | 5 | 2026-01-18 to 2026-02-18 |
+| WWTR1 | 5 | 2026-01-06 to 2026-02-13 |
+| MESP2 | 4 | 2026-01-07 to 2026-02-16 |
+| EMD | 4 | 2026-02-10 to 2026-02-18 |
+| METTL3 | 4 | 2026-01-14 to 2026-02-18 |
+| CEP290 | 4 | 2026-01-20 to 2026-02-18 |
+| FLNA | 4 | 2026-01-20 to 2026-02-18 |
+| FBN2 | 3 | 2026-02-10 to 2026-02-18 |
+| ... (38 more) | ... | ... |
 
-## Recommendations
-1.  **Force Refresh Core Candidates**: We must re-run the *current* analysis pipeline on PIEZO2, LBX1, and LMNA to ensure they are evaluated with the same rigor and code as the metabolic candidates.
-2.  **Standardize Schema**: The `metrics.csv` output format needs to be locked down to prevent further drift.
-3.  **Confidence Weighting**: The static nature of LBX1 (low confidence) vs PIEZO2 (high confidence) needs to be re-evaluated with the new pipeline to see if the "confidence gap" persists or narrows.
+### Dynamic Genes (Value Updates)
+| Gene | Run Count | Changes Detected |
+|---|---|---|
+| PIEZO2 | 21 | PAE_domain_blockiness_score |
+| MYLK | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| IGF1R | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| GHR | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| DMD | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| ARNTL | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| PPARGC1A | 13 | anisotropy_index, PAE_domain_blockiness_score |
+| PIEZO1 | 11 | PAE_domain_blockiness_score |
+| YAP1 | 9 | PAE_domain_blockiness_score |
+| DAG1 | 6 | anisotropy_index, PAE_domain_blockiness_score |
+| ADGRG6 | 6 | anisotropy_index, plddt_mean, PAE_domain_blockiness_score |
+| ALPL | 4 | anisotropy_index |
+| ACVR1 | 4 | anisotropy_index, PAE_domain_blockiness_score |
 
-## Artifacts
-*   **Raw Audit Log**: `reports/evidence_freshness_audit_raw.txt`
-*   **Audit Script**: `scripts/analysis/evidence_freshness_audit.py`
+## 4. Audit Conclusion
+🟠 **WARNING**: Majority of data is static. Verify cache invalidation policies.

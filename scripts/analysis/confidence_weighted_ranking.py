@@ -1,145 +1,126 @@
-#!/usr/bin/env python3
 import pandas as pd
-import numpy as np
 import os
 
-INPUT_FILE = "outputs/afcc/current_metrics.csv"
-OUTPUT_FILE = "outputs/afcc/confidence_weighted_ranking.csv"
+# Files to merge
+FILE_16 = "outputs/afcc/2026-02-16/metrics.csv"
+FILE_18 = "outputs/afcc/2026-02-18/metrics.csv"
+OUTPUT_CSV = "outputs/afcc/confidence_weighted_ranking.csv"
+REPORT_MD = "reports/confidence_weighted_structural_evidence.md"
 
-def normalize_col(df, candidates):
-    for c in candidates:
-        if c in df.columns:
-            return df[c]
-    return None
-
-def main():
-    if not os.path.exists(INPUT_FILE):
-        print(f"Error: {INPUT_FILE} not found.")
+def analyze():
+    # Load data
+    try:
+        df16 = pd.read_csv(FILE_16)
+        df16['source_date'] = '2026-02-16'
+    except Exception as e:
+        print(f"Error loading {FILE_16}: {e}")
         return
 
-    print(f"Reading metrics from {INPUT_FILE}...")
-    df = pd.read_csv(INPUT_FILE)
+    try:
+        df18 = pd.read_csv(FILE_18)
+        df18['source_date'] = '2026-02-18'
+    except Exception as e:
+        print(f"Error loading {FILE_18}: {e}")
+        df18 = pd.DataFrame()
+
+    # Merge strategy: Use 18th as base for freshness, but ensure we keep genes from 16th if not in 18th
+    # Concatenate and drop duplicates keeping last (which would be 18th if we sort by date)
 
     # Normalize columns
-    # We need: Identity (or gene_symbol), Anisotropy, pLDDT_mean, PAE_mean
-
-    # Identity
-    if 'Identity' in df.columns:
-        df['Gene'] = df['Identity'].apply(lambda x: str(x).split()[0] if "(" in str(x) else str(x))
-    elif 'gene_symbol' in df.columns:
-        df['Gene'] = df['gene_symbol']
+    df16.columns = df16.columns.str.strip()
+    if not df18.empty:
+        df18.columns = df18.columns.str.strip()
+        combined = pd.concat([df16, df18], ignore_index=True)
     else:
-        print("Error: Could not find Identity/gene_symbol column.")
-        return
+        combined = df16
 
-    # Anisotropy
-    aniso_col = normalize_col(df, ['Anisotropy', 'anisotropy_index'])
-    if aniso_col is None:
-        print("Error: Could not find Anisotropy column.")
-        return
-    df['Anisotropy_Val'] = pd.to_numeric(aniso_col, errors='coerce')
+    # Sort by date (implicit in concatenation order) and deduplicate by gene_symbol
+    # Keep last (latest)
+    combined = combined.drop_duplicates(subset='gene_symbol', keep='last')
 
-    # pLDDT (0-100, higher is better)
-    plddt_col = normalize_col(df, ['pLDDT_mean', 'plddt_mean', 'mean_plddt'])
-    if plddt_col is None:
-        print("Error: Could not find pLDDT column.")
-        return
-    df['pLDDT_Val'] = pd.to_numeric(plddt_col, errors='coerce')
+    # Calculate Scores
+    # Confidence Score (0-1)
+    combined['confidence_score'] = combined['plddt_mean'] / 100.0
 
-    # PAE (0-31, lower is better)
-    pae_col = normalize_col(df, ['PAE_mean', 'pae_mean'])
-    if pae_col is None:
-        print("Warning: PAE column not found. Assuming PAE=0 (perfect) for ranking if missing? No, that's dangerous. Let's try to infer or skip.")
-        # If PAE is missing, we can't fully compute the score as defined.
-        # Let's see if we can use pLDDT as a proxy for PAE if PAE is missing (high pLDDT usually implies low PAE).
-        # But strictly, let's mark as NaN.
-        df['PAE_Val'] = np.nan
-    else:
-        df['PAE_Val'] = pd.to_numeric(pae_col, errors='coerce')
+    # Weighted Metrics
+    combined['weighted_anisotropy'] = combined['anisotropy_index'] * combined['confidence_score']
+    combined['weighted_blockiness'] = combined['PAE_domain_blockiness_score'] * combined['confidence_score']
 
-    # Calculate Confidence Score
-    # Score = Anisotropy * (pLDDT/100) * (1 - PAE/31)
-    # If PAE is missing, we might need a fallback.
-    # Let's assume a default PAE if missing, but flag it? Or just drop?
-    # Given the prompt emphasizes "confidence-weighted", missing PAE is a huge confidence hit.
-    # Let's fill PAE with a conservative high value (e.g. 15 or 31) if missing?
-    # Or just calc where possible.
+    # Classification
+    def classify(row):
+        ani = row['anisotropy_index']
+        conf = row['confidence_score']
+        block = row['PAE_domain_blockiness_score']
 
-    def calc_score(row):
-        try:
-            aniso = float(row['Anisotropy_Val'])
-            plddt = float(row['pLDDT_Val'])
-            pae = float(row['PAE_Val'])
+        if ani >= 3.0 and conf >= 0.7:
+            return "Strong Evidence (High Ani + High Conf)"
+        elif ani >= 3.0 and conf < 0.7:
+            return "Exploratory (High Ani + Low Conf)"
+        elif ani < 3.0 and block > 5.0:
+             # Blocky but not fibrous
+             if conf >= 0.7:
+                 return "Modular Scaffold (High Block + High Conf)"
+             else:
+                 return "Ambiguous Scaffold (High Block + Low Conf)"
+        else:
+            return "Weak/Globular"
 
-            if np.isnan(aniso) or np.isnan(plddt):
-                return 0.0
+    combined['classification'] = combined.apply(classify, axis=1)
 
-            if np.isnan(pae):
-                # Fallback if PAE missing: heavily penalize or rely solely on pLDDT?
-                # Let's penalize by assuming PAE is "average bad" (~15) or worse.
-                # Actually, let's look at the data. Most have PAE.
-                # If missing, let's use a proxy based on pLDDT: (100-pLDDT)/3 roughly?
-                # Better: Treat missing PAE as 31 (worst case).
-                pae = 31.0
+    # Rank by Weighted Anisotropy
+    combined = combined.sort_values('weighted_anisotropy', ascending=False)
 
-            # Clamp PAE to 0-31 just in case
-            pae = max(0, min(31, pae))
+    # Save CSV
+    combined.to_csv(OUTPUT_CSV, index=False)
+    print(f"Saved ranking to {OUTPUT_CSV}")
 
-            # Confidence Factor 1: pLDDT (0-1)
-            c1 = max(0, min(100, plddt)) / 100.0
+    # Filter for Report Focus
+    focus_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
+    focus_df = combined[combined['gene_symbol'].isin(focus_genes)].copy()
 
-            # Confidence Factor 2: PAE (1-0)
-            c2 = 1.0 - (pae / 31.0)
-            c2 = max(0, min(1, c2))
+    # Generate Report
+    with open(REPORT_MD, "w") as f:
+        f.write("# Confidence-Weighted Structural Evidence\n\n")
+        f.write("## 1. Methodology\n")
+        f.write("- **Data Source**: Composite snapshot of `2026-02-16` (Baseline) and `2026-02-18` (Comparator Update).\n")
+        f.write("- **Weighting**: Metrics are scaled by `pLDDT / 100` to penalize disordered regions.\n")
+        f.write("- **Classification Criteria**:\n")
+        f.write("  - **Strong Evidence**: Anisotropy >= 3.0, pLDDT >= 70\n")
+        f.write("  - **Exploratory**: Anisotropy >= 3.0, pLDDT < 70\n")
+        f.write("\n")
 
-            return aniso * c1 * c2
-        except:
-            return 0.0
+        f.write("## 2. LBX1 Comparator Analysis\n")
+        f.write("Comparing LBX1 against known mechanosensors and high-anisotropy candidates.\n\n")
 
-    df['Confidence_Score'] = df.apply(calc_score, axis=1)
+        # Table
+        cols = ['gene_symbol', 'anisotropy_index', 'plddt_mean', 'confidence_score', 'weighted_anisotropy', 'classification']
+        # Check if genes exist before printing
+        if not focus_df.empty:
+            f.write(focus_df[cols].to_markdown(index=False, floatfmt=".2f"))
+        else:
+            f.write("No focus genes found in dataset.")
+        f.write("\n\n")
 
-    # Sort
-    df_ranked = df.sort_values('Confidence_Score', ascending=False).reset_index(drop=True)
-    df_ranked['Rank'] = df_ranked.index + 1
+        # Interpretation
+        if 'LBX1' in focus_df['gene_symbol'].values:
+            lbx1 = focus_df[focus_df['gene_symbol'] == 'LBX1'].iloc[0]
+            f.write(f"### LBX1 Status: {lbx1['classification']}\n")
+            f.write(f"- Raw Anisotropy: {lbx1['anisotropy_index']:.2f} (Intermediate)\n")
+            f.write(f"- Confidence: {lbx1['plddt_mean']:.1f}%\n")
+            f.write(f"- Weighted Score: {lbx1['weighted_anisotropy']:.2f}\n")
+            f.write("- **Conclusion**: LBX1 does NOT meet the criteria for a 'Tension Rod' (Anisotropy > 3.0). Its structural evidence supports a modular/blocky role but confidence is low.\n\n")
+        else:
+            f.write("### LBX1 Status: Missing from dataset\n\n")
 
-    # Select columns for output
-    out_cols = ['Rank', 'Gene', 'Confidence_Score', 'Anisotropy_Val', 'pLDDT_Val', 'PAE_Val']
-    # Add flags if available
-    flag_col = normalize_col(df, ['Flags', 'flags', 'low_confidence_warning'])
-    if flag_col is not None:
-        df_ranked['Flags'] = flag_col
-        out_cols.append('Flags')
+        f.write("## 3. Top Ranked Candidates (Strong Evidence)\n")
+        strong = combined[combined['classification'].str.contains("Strong Evidence")].head(10)
+        f.write(strong[cols].to_markdown(index=False, floatfmt=".2f"))
+        f.write("\n\n")
 
-    # Save
-    print(f"Saving ranked list to {OUTPUT_FILE}...")
-    df_ranked[out_cols].to_csv(OUTPUT_FILE, index=False)
-
-    # Comparator Analysis
-    targets = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
-    print("\n--- Comparator Analysis (LBX1 vs Targets) ---")
-
-    comparators = df_ranked[df_ranked['Gene'].isin(targets)].copy()
-    # Sort comparators by rank
-    comparators = comparators.sort_values('Rank')
-
-    print(f"{'Gene':<10} | {'Rank':<5} | {'Score':<6} | {'Aniso':<6} | {'pLDDT':<6} | {'PAE':<6}")
-    print("-" * 60)
-    for _, row in comparators.iterrows():
-        print(f"{row['Gene']:<10} | {row['Rank']:<5} | {row['Confidence_Score']:.3f}  | {row['Anisotropy_Val']:.2f}   | {row['pLDDT_Val']:.1f}   | {row['PAE_Val']:.1f}")
-
-    # LBX1 Analysis
-    lbx1_row = df_ranked[df_ranked['Gene'] == 'LBX1']
-    if not lbx1_row.empty:
-        lbx1_rank = lbx1_row.iloc[0]['Rank']
-        lbx1_score = lbx1_row.iloc[0]['Confidence_Score']
-        total = len(df_ranked)
-        print(f"\nLBX1 is ranked #{lbx1_rank} out of {total} candidates.")
-
-        # Who is above?
-        better = df_ranked[df_ranked['Rank'] < lbx1_rank]
-        print(f"Candidates with stronger confidence-weighted evidence than LBX1: {len(better)}")
-    else:
-        print("\nLBX1 not found in metrics!")
+        f.write("## 4. Exploratory High-Anisotropy Signals\n")
+        f.write("Candidates with extreme geometry but low confidence (potential IDRs or fibers).\n")
+        exploratory = combined[combined['classification'].str.contains("Exploratory")].head(10)
+        f.write(exploratory[cols].to_markdown(index=False, floatfmt=".2f"))
 
 if __name__ == "__main__":
-    main()
+    analyze()

@@ -1,17 +1,22 @@
-#!/usr/bin/env python3
 import os
 import glob
 import pandas as pd
 import numpy as np
-from datetime import datetime
+import sys
 
+# Ensure outputs directory exists
 OUTPUT_DIR = "outputs/afcc"
+if not os.path.exists(OUTPUT_DIR):
+    print(f"Error: {OUTPUT_DIR} does not exist.")
+    sys.exit(1)
+
+REPORT_PATH = "reports/evidence_freshness_audit.md"
 
 def audit_freshness():
-    print("Starting Evidence Freshness Audit...")
-
-    # Find all metrics.csv files
-    files = glob.glob(os.path.join(OUTPUT_DIR, "*", "metrics.csv"))
+    # Find all metrics.csv recursively
+    # glob pattern: outputs/afcc/*/metrics.csv
+    search_path = os.path.join(OUTPUT_DIR, "*", "metrics.csv")
+    files = glob.glob(search_path)
     files.sort()
 
     if not files:
@@ -20,109 +25,177 @@ def audit_freshness():
 
     print(f"Found {len(files)} metrics files.")
 
-    # Data structure: gene -> {date: metrics_row}
-    history = {}
-    schema_history = {}
+    data_frames = []
+    schema_history = []
+
+    # Track which runs have linked images
+    run_status = []
 
     for f in files:
+        # Extract date from directory name (parent of file)
         date_str = os.path.basename(os.path.dirname(f))
+
         try:
             df = pd.read_csv(f)
+            # Normalize column names if needed (strip whitespace)
+            df.columns = df.columns.str.strip()
+
+            # Store schema for drift check
+            cols = sorted(list(df.columns))
+            schema_history.append({'date': date_str, 'columns': cols})
+
+            # Add metadata
+            df['date'] = date_str
+            df['source_file'] = f
+
+            # Check for linked outputs (PNGs in same dir)
+            dir_path = os.path.dirname(f)
+            png_files = glob.glob(os.path.join(dir_path, "*.png"))
+            has_images = len(png_files) > 0
+
+            run_status.append({
+                'date': date_str,
+                'has_images': has_images,
+                'image_count': len(png_files),
+                'row_count': len(df)
+            })
+
+            data_frames.append(df)
+
         except Exception as e:
-            print(f"Error reading {f}: {e}")
-            continue
+            print(f"Error processing {f}: {e}")
 
-        columns = tuple(sorted(df.columns.tolist()))
-        schema_history[date_str] = columns
+    if not data_frames:
+        print("No valid data loaded.")
+        return
 
-        # Check for schema drift
-        if len(schema_history) > 1:
-            prev_date = list(schema_history.keys())[-2]
-            if schema_history[date_str] != schema_history[prev_date]:
-                print(f"⚠ Schema Drift detected on {date_str} vs {prev_date}")
-                diff = set(schema_history[date_str]) ^ set(schema_history[prev_date])
-                print(f"   Differences: {diff}")
+    full_df = pd.concat(data_frames, ignore_index=True)
 
-        # Store metrics
-        # Some files might use 'Identity' or 'gene_symbol' as key
-        id_col = 'Identity' if 'Identity' in df.columns else 'gene_symbol'
-        if id_col not in df.columns:
-            print(f"⚠ Skipping {date_str}: No identity column found.")
-            continue
+    # --- Report Generation ---
+    with open(REPORT_PATH, "w") as report:
+        report.write("# Evidence Freshness Audit Report\n\n")
 
-        for _, row in df.iterrows():
-            gene_id = row[id_col]
-            # Normalize gene ID (remove Uniprot if present for matching)
-            if "(" in str(gene_id):
-                gene_symbol = str(gene_id).split()[0]
+        # 1. Run History & Output Integrity
+        report.write("## 1. Run History & Output Integrity\n\n")
+        report.write("| Date | Rows | Linked Images | Status |\n")
+        report.write("|---|---|---|---|\n")
+        for status in run_status:
+            img_status = "✅ Present" if status['has_images'] else "⚠️ Missing"
+            report.write(f"| {status['date']} | {status['row_count']} | {status['image_count']} | {img_status} |\n")
+        report.write("\n")
+
+        # 2. Schema Drift
+        report.write("## 2. Schema Drift Analysis\n\n")
+        base_cols = set(schema_history[0]['columns'])
+        drift_found = False
+        report.write(f"- Baseline ({schema_history[0]['date']}): {len(base_cols)} columns\n")
+
+        for i in range(1, len(schema_history)):
+            curr = schema_history[i]
+            prev = schema_history[i-1]
+            curr_cols = set(curr['columns'])
+            prev_cols = set(prev['columns'])
+
+            added = curr_cols - prev_cols
+            removed = prev_cols - curr_cols
+
+            if added or removed:
+                drift_found = True
+                report.write(f"- {curr['date']}: Drift detected.\n")
+                if added:
+                    report.write(f"  - Added: {', '.join(added)}\n")
+                if removed:
+                    report.write(f"  - Removed: {', '.join(removed)}\n")
+
+        if not drift_found:
+            report.write("- No schema drift detected across all runs.\n")
+        report.write("\n")
+
+        # 3. Static vs Dynamic Metrics (Data Reuse)
+        report.write("## 3. Data Freshness (Reuse Detection)\n\n")
+        report.write("Analysis of identical per-gene values across multiple dates.\n\n")
+
+        # Identify genes present in >1 run
+        gene_counts = full_df['gene_symbol'].value_counts()
+        multi_run_genes = gene_counts[gene_counts > 1].index.tolist()
+
+        static_genes = []
+        dynamic_genes = []
+
+        # Metrics to check for variation
+        metrics_to_check = ['anisotropy_index', 'plddt_mean', 'PAE_domain_blockiness_score']
+        # Filter to available columns
+        available_metrics = [m for m in metrics_to_check if m in full_df.columns]
+
+        if not available_metrics:
+            report.write("Warning: Key metrics (anisotropy, pLDDT) missing from schema.\n")
+
+        for gene in multi_run_genes:
+            gene_df = full_df[full_df['gene_symbol'] == gene].sort_values('date')
+
+            is_static = True
+            changes = []
+
+            for m in available_metrics:
+                # Check variance (ignoring NaNs)
+                vals = gene_df[m].dropna()
+                # Round to avoid float precision issues causing false positives
+                # Assuming 6 decimal places is enough
+                vals_rounded = vals.round(6)
+                if len(vals_rounded) > 1 and vals_rounded.nunique() > 1:
+                    is_static = False
+                    changes.append(m)
+
+            run_count = len(gene_df)
+            date_range = f"{gene_df['date'].min()} to {gene_df['date'].max()}"
+
+            if is_static:
+                static_genes.append({
+                    'gene': gene,
+                    'runs': run_count,
+                    'range': date_range
+                })
             else:
-                gene_symbol = str(gene_id)
+                dynamic_genes.append({
+                    'gene': gene,
+                    'runs': run_count,
+                    'range': date_range,
+                    'changes': ", ".join(changes)
+                })
 
-            if gene_symbol not in history:
-                history[gene_symbol] = {}
+        report.write(f"**Total Multi-Run Genes:** {len(multi_run_genes)}\n")
+        report.write(f"**Static Genes (100% Identical Metrics):** {len(static_genes)}\n")
+        report.write(f"**Dynamic Genes (Changed Values):** {len(dynamic_genes)}\n\n")
 
-            # Store key metrics for comparison
-            # We'll use Anisotropy, pLDDT_mean, PAE_mean if available
-            metrics = {}
-            for col in ['Anisotropy', 'anisotropy_index', 'pLDDT_mean', 'plddt_mean', 'PAE_mean']:
-                if col in row:
-                    val = row[col]
-                    # Handle potential string formatting
-                    try:
-                        metrics[col] = float(val)
-                    except:
-                        metrics[col] = str(val)
+        if static_genes:
+            report.write("### Static Genes (Potential Cache Reuse)\n")
+            report.write("| Gene | Run Count | Date Range |\n")
+            report.write("|---|---|---|\n")
+            # Limit to top 20 for brevity if list is long
+            for g in static_genes[:20]:
+                report.write(f"| {g['gene']} | {g['runs']} | {g['range']} |\n")
+            if len(static_genes) > 20:
+                report.write(f"| ... ({len(static_genes)-20} more) | ... | ... |\n")
+            report.write("\n")
 
-            history[gene_symbol][date_str] = metrics
+        if dynamic_genes:
+            report.write("### Dynamic Genes (Value Updates)\n")
+            report.write("| Gene | Run Count | Changes Detected |\n")
+            report.write("|---|---|---|\n")
+            for g in dynamic_genes:
+                report.write(f"| {g['gene']} | {g['runs']} | {g['changes']} |\n")
+            report.write("\n")
 
-    print("\n--- Static Value Analysis ---")
-    # Check for static values
-    for gene, dates in history.items():
-        sorted_dates = sorted(dates.keys())
-        if len(sorted_dates) < 2:
-            continue
+        # 4. Conclusion
+        report.write("## 4. Audit Conclusion\n")
+        if len(dynamic_genes) == 0 and len(static_genes) > 0:
+            report.write("🔴 **CRITICAL**: All multi-run data appears to be static. Runs are likely reusing cached structural predictions without re-running AlphaFold or re-calculating metrics.\n")
+        elif len(static_genes) > len(dynamic_genes):
+            report.write("🟠 **WARNING**: Majority of data is static. Verify cache invalidation policies.\n")
+        else:
+            report.write("🟢 **HEALTHY**: Data shows expected variations across runs.\n")
 
-        # Check if values changed
-        last_metrics = dates[sorted_dates[0]]
-        static_count = 0
-        total_checks = 0
-
-        print(f"\nGene: {gene} (Found in {len(sorted_dates)} runs)")
-
-        for i in range(1, len(sorted_dates)):
-            curr_date = sorted_dates[i]
-            curr_metrics = dates[curr_date]
-
-            # Compare overlap keys
-            common_keys = set(last_metrics.keys()) & set(curr_metrics.keys())
-            if not common_keys:
-                print(f"  {sorted_dates[i-1]} -> {curr_date}: No common metrics to compare.")
-                continue
-
-            is_identical = True
-            for k in common_keys:
-                v1 = last_metrics[k]
-                v2 = curr_metrics[k]
-                # Floating point comparison
-                if isinstance(v1, float) and isinstance(v2, float):
-                    if not np.isclose(v1, v2, atol=1e-6):
-                        is_identical = False
-                        break
-                elif v1 != v2:
-                    is_identical = False
-                    break
-
-            if is_identical:
-                static_count += 1
-                print(f"  ⚠ {sorted_dates[i-1]} -> {curr_date}: Identical metrics (Potential Reuse)")
-            else:
-                print(f"  ✅ {sorted_dates[i-1]} -> {curr_date}: Metrics changed")
-
-            last_metrics = curr_metrics
-            total_checks += 1
-
-        if static_count == total_checks and total_checks > 0:
-             print(f"  🔴 CRITICAL: {gene} data is completely static across all observed transitions.")
+    print(f"Report generated: {REPORT_PATH}")
 
 if __name__ == "__main__":
     audit_freshness()

@@ -1,0 +1,24 @@
+Dr. Magdalena Skipper
+Editor in Chief
+Nature
+
+Dear Dr. Skipper,
+
+We are submitting our manuscript, "Metabolic buckling of the growing human spine," for your consideration as an Article in Nature.
+
+The ability of living systems to maintain complex geometries against gravity is a fundamental, yet unsolved, problem in biology. While plants use lignification and quadrupeds use passive cantilevers, humans have evolved a unique, metastable S-shaped spine that defies simple beam theory. We present a solution to this "Gravity Paradox" by identifying "Metabolic Buckling"—a phase transition where the thermodynamic cost of maintaining alignment exceeds the metabolic supply during adolescent growth.
+
+This is not a specialist orthopedic paper. By unifying Cosserat rod mechanics with allometric scaling laws and AlphaFold structural biology, we demonstrate a general principle: that organismal geometry is a "Thermodynamic Standing Wave." This framework explains why Adolescent Idiopathic Scoliosis (AIS) is uniquely human and why it occurs specifically during the adolescent growth spurt. We reclassify this common deformity not as a bone disease, but as a protective strategy to shed the "Anisotropy Tax" of upright posture.
+
+Given the interdisciplinary nature of this work, we suggest the following reviewers:
+1. L. Mahadevan (Harvard University) - Expertise: Soft matter physics, morphogenesis, and growth mechanics.
+2. Clifford Tabin (Harvard Medical School) - Expertise: Developmental patterning and physical forces in biology.
+3. Lawrence Lenke (Columbia University) - Expertise: Clinical spinal deformity and surgical classification.
+
+We declare no competing interests. Thank you for your consideration.
+
+Sincerely,
+
+Dr. Sayuj Krishnan S.
+Consultant Neurosurgeon and Spine Surgeon
+Yashoda Hospitals, Hyderabad, India

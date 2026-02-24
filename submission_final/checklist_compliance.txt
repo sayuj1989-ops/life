@@ -1,0 +1,9 @@
+[x] Title < 90 characters, active verbs, no jargon. (Current: "Metabolic buckling of the growing human spine", 46 chars)
+[x] Abstract < 150 words. (Current: ~135 words)
+[x] Abstract unreferenced and follows Nature structure.
+[x] Main Text ~1300 words. (Merged Intro/Results, no subheadings, declarative tone)
+[x] Methods moved to end.
+[x] Rebuttal sentence added to Discussion regarding correlative protein measurements.
+[x] Cover Letter addressed to Dr. Magdalena Skipper.
+[x] Highlights (3-5 bullet points, max 85 chars each).
+[x] Conflict of Interest statement included.

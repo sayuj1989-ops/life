@@ -39,6 +39,11 @@ We introduce a scalar information field $I(s, t) \in [0, 1]$ representing the co
 \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
 \label{eq:kappa_rest}
 \end{equation}
+We quantify the information content of this patterning field using the local Shannon entropy $\ShannonH[I]$, which bounds the precision of the target metric specification:
+\begin{equation}
+\ShannonH[I] = -\int I(s) \log I(s) \, ds.
+\label{eq:shannon_entropy}
+\end{equation}
 Simultaneously, the field exerts a stiffness via the morphomechanical coupling $\chi_M$, generating the active biological moment $\mathbf{M}_{bio}$ to oppose gravity:
 \begin{equation}
 \mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
@@ -52,9 +57,15 @@ Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
 When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins. For example, AlphaFold analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) demonstrates that these proteins possess rigid DNA-binding domains capable of enforcing the sharp identity boundaries necessary for this parameterization.
 
 \subsection{The Information--Cosserat Manifold Framework}
-The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge builds upon recent theoretical proposals\footnote{A preliminary exploration of this concept, proposing a cosmological "Information Term" $I_{\mu\nu}$ in Einstein's field equations, was introduced in \cite{krishnan2025consciousness}. The present work translates this speculative cosmological hypothesis into a rigorous, experimentally testable framework for biological morphogenesis, where $I(s)$ modifies the effective material metric rather than the vacuum spacetime metric.} suggesting that information may play a geometric role in physical systems.
+The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. However, in the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of spacetime $g_{\mu\nu}$ is determined by the mass-energy distribution $T_{\mu\nu}$. This conceptual bridge suggests that information may play a geometric role in physical systems.
 
-In our biological context, the information field acts as a source of \emph{information-matter density} $\rho_{I}(s)$ that dictates the target curvature $\kappa_{\mathrm{rest}}(s)$, effectively "shaping" the biological spacetime (Table \ref{tab:gr_analogy}) in which the musculoskeletal system must equilibrate. This field is physically anchored by the structural specificity of developmental transcription factors; for instance, AlphaFold 3 analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) reveals highly conserved amino acid domains (avg. pLDDT $\sim 64.1$) whose structural rigidity provides the necessary binding affinity landscapes to generate the segmented information profiles used in our model.
+In our biological context, the information field acts as a source of \emph{information-matter density} $\rho_{I}(s)$ that dictates the target curvature $\kappa_{\mathrm{rest}}(s)$, effectively "shaping" the biological spacetime (Table \ref{tab:gr_analogy}). This shaping is formally described by the Fisher Information metric $\FisherInfo(s)$, which defines the local sensitivity of the target geometry to perturbations in the morphogenetic field:
+\begin{equation}
+\FisherInfo(s) = \left\langle \left( \frac{\partial \log P(\kappa | I)}{\partial I} \right)^2 \right\rangle.
+\label{eq:fisher_info_def}
+\end{equation}
+The magnitude of $\FisherInfo(s)$ determines the "stumpiness" of the energy landscape; at high information density, the counter-curved state resides in a deep, narrow well, while lower $\FisherInfo(s)$ (as observed in developmental noise) allows for spontaneous transitions to scoliotic modes.
+We analyzed the structural specificity of developmental transcription factors; for instance, AlphaFold 3 analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) reveals highly conserved amino acid domains (avg. pLDDT $\sim 64.1$) whose structural rigidity provides the necessary binding affinity landscapes to generate the segmented information profiles used in our model.
 
 \subsection{Biological Metric and the Effective Energy Functional}
 
@@ -111,25 +122,21 @@ The transition from a sagging C-shape to a counter-curved S-shape can be analyze
 \end{equation}
 where $N(s) = \int_s^L \rho A g \, ds'$ is the axial tension due to gravity. The information field modifies the stiffness landscape $B_{\mathrm{eff}}(s)$. For a uniform beam ($\chi_E = 0$), the lowest eigenvalue $\lambda_0$ corresponds to a monotonic C-shaped mode. As $\chi_\kappa$ and $\chi_E$ increase, the effective stiffness at the peaks of $I(s)$ (cervical and lumbar regions) increases, making the C-mode energetically unfavorable. At a critical coupling strength $\chi_{\mathrm{crit}}$, a \emph{mode crossing} occurs where the S-shaped mode (characterized by a second zero-crossing in curvature) becomes the ground state ($\lambda_0$).
 
-\subsection{Geodesic curvature deviation metric}
-
-To quantify the degree of biological countercurvature—the extent to which information reshapes equilibrium geometry beyond passive gravitational response—we define a normalized geodesic curvature deviation $\widehat{D}_{\mathrm{geo}}$. This metric compares the realized curvature profile $\kappa_{\mathrm{IEC}}(s)$ from the full IEC-coupled simulation to the reference passive curvature $\kappa_{\mathrm{passive}}(s)$ obtained with identical boundary conditions and loading but $\chi_\kappa = \chi_E = 0$:
+To quantify the degree of biological countercurvature—the extent to which information reshapes equilibrium geometry—we define the Kullback--Leibler (KL) divergence, $\KLDivergence(P_{\mathrm{IEC}} \| P_{\mathrm{passive}})$, between the probability distribution of the IEC-coupled geometry and that of the passive gravitational state:
 
 \begin{equation}
-D_{\mathrm{geo}} = \int_0^L \left| \kappa_{\mathrm{IEC}}(s) - \kappa_{\mathrm{passive}}(s) \right|^2 w(s)\, ds,
-\label{eq:dgeo_raw}
+\KLDivergence = \int_0^L \left[ \frac{1}{2} \left( \kappa_{\mathrm{IEC}}(s) - \kappa_{\mathrm{passive}}(s) \right)^2 \FisherInfo(s) \right] w(s)\, ds,
+\label{eq:kl_divergence}
 \end{equation}
-where $w(s) = g_{\mathrm{eff}}(s)$ is an optional weighting function reflecting the biological metric. For regime classification, we normalize by the maximum deviation observed across the parameter space:
+where $\FisherInfo(s)$ is the local Fisher Information and $w(s) = g_{\mathrm{eff}}(s)$ is a weighting function reflecting the biological metric. For regime classification, we normalize by the maximum divergence observed across the parameter space:
 
 \begin{equation}
-\widehat{D}_{\mathrm{geo}} = \frac{D_{\mathrm{geo}}}{D_{\mathrm{geo,max}}(\chi_\kappa, g)},
+\Dgeohat = \frac{\KLDivergence}{\KLDivergence^{\mathrm{max}}(\chi_\kappa, g)},
 \label{eq:dgeo_normalized}
 \end{equation}
-where $D_{\mathrm{geo,max}}$ is computed over the explored $(\chi_\kappa, g)$ domain. Physically, $\widehat{D}_{\mathrm{geo}} \approx 0$ indicates the system follows gravitational geodesics (passive regime), while $\widehat{D}_{\mathrm{geo}} \sim 1$ indicates strong information-driven geometric distortion. We classify regimes as: \emph{gravity-dominated} ($\widehat{D}_{\mathrm{geo}} < 0.1$), \emph{cooperative} ($0.1 \leq \widehat{D}_{\mathrm{geo}} \leq 0.3$), and \emph{information-dominated} ($\widehat{D}_{\mathrm{geo}} > 0.3$), with thresholds chosen to separate qualitatively distinct curvature morphologies observed in simulations.
+where $\KLDivergence^{\mathrm{max}}$ is computed over the explored $(\chi_\kappa, g)$ domain. Physically, $\Dgeohat \approx 0$ indicates the system follows gravitational geodesics (passive regime), while $\Dgeohat \sim 1$ indicates strong information-driven geometric distortion. We classify regimes as: \emph{gravity-dominated} ($\Dgeohat < 0.1$), \emph{cooperative} ($0.1 \leq \Dgeohat \leq 0.3$), and \emph{information-dominated} ($\Dgeohat > 0.3$), with thresholds chosen to separate qualitatively distinct curvature morphologies observed in simulations.
 
-\subsection{Thermodynamic cost of countercurvature}
-
-The energy functional $\mathcal{E}_{\mathrm{total}}$ (Eq.~\ref{eq:iec_energy}) describes the potential energy landscape of the spine at equilibrium. However, the biological spine is not a conservative system: it is a \emph{dissipative structure}~\cite{prigogine1977self} that requires continuous metabolic expenditure to maintain its S-shaped counter-curvature against gravitational loading and entropic degradation. The atoms composing vertebral bone, disc matrix, and paraspinal muscle are chemically identical to those in passive geological structures---what distinguishes life is the continuous investment of free energy to organize these atoms against gravitational geodesics~\cite{friston2013life}.
+The energy functional $\mathcal{E}_{\mathrm{total}}$ (Eq.~\ref{eq:iec_energy}) describes the potential energy landscape of the spine at equilibrium. However, the biological spine is not a conservative system: it is a \emph{dissipative structure}~\cite{prigogine1977self} that requires continuous metabolic expenditure to maintain its S-shaped counter-curvature against gravitational loading and entropic degradation. According to Landauer's principle, the erasure or maintenance of information $\ShannonH$ carries a minimum metabolic cost of $k_B T \ln 2$ per bit. The atoms composing vertebral bone, disc matrix, and paraspinal muscle are chemically identical to those in passive geological structures---what distinguishes life is the continuous investment of free energy to organize these atoms against gravitational geodesics~\cite{friston2013life}.
 
 We formalize this by defining a \emph{metabolic power density} $\dot{\mathcal{F}}$ that quantifies the rate of free energy dissipation required to sustain the counter-curvature:
 
@@ -152,7 +159,12 @@ The second term is the central quantity: it represents the standing metabolic co
 P_{\mathrm{counter}} \sim \eta_a \rho A g L^2 \cdot \langle |\kappa_{\mathrm{IEC}} - \kappa_{\mathrm{passive}}|^2 \rangle,
 \label{eq:metabolic_scaling}
 \end{equation}
-where $\langle \cdot \rangle$ denotes the spatial average over the rod length. If the tissue column participates volumetrically in maintaining tone, the scaling steepens to $L^3$. During the adolescent growth spurt, $L$ increases from approximately 0.35~m to 0.45~m over 2--3 years, implying a $(0.45/0.35)^2 \approx 1.65$-fold increase in required metabolic power under $L^2$ scaling, or $(0.45/0.35)^3 \approx 2.13$-fold under $L^3$ scaling~\cite{rolfe1997cellular}. Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.
+where $\langle \cdot \rangle$ denotes the spatial average over the rod length. If the tissue column participates volumetrically in maintaining tone, the scaling steepens to $L^3$. During the adolescent growth spurt, $L$ increases from approximately 0.35~m to 0.45~m over 2--3 years, implying a $(0.45/0.35)^2 \approx 1.65$-fold increase in required metabolic power under $L^2$ scaling, or $(0.45/0.35)^3 \approx 2.13$-fold under $L^3$ scaling~\cite{rolfe1997cellular}. To formalize this transition, we introduce the \textbf{Thermodynamic Instability Ratio} $\InstabilityR$:
+\begin{equation}
+\InstabilityR = \frac{\text{Demand}(L^4 \langle \kappa^2 \rangle)}{\text{Supply}(L^2)} = \xi L^2,
+\label{eq:instability_ratio}
+\end{equation}
+where $\xi$ is a coupling coefficient reflecting the avascular diffusion efficiency of the intervertebral disc. We posit that the Countercurvature mechanism undergoes a \textbf{Thermodynamic Bifurcation} when $\InstabilityR > \InstabilityR_{crit}$, forcing the system to shed metabolic entropy by collapsing into a lower-information, asymmetric mode (scoliosis). Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.
 
 \paragraph{Molecular grounding via AlphaFold structural analysis.} The three dissipation terms are not abstract---each maps to specific molecular players whose AlphaFold-predicted structures reveal how they bear the thermodynamic cost of countercurvature. We analyzed 16 proteins across the three terms using structural metrics from the AlphaFold Protein Structure Database~\cite{jumper2021alphafold, varadi2022alphafold}, focusing on anisotropy ratio (shape elongation), radius of gyration, per-residue confidence (pLDDT), and hinge candidates (refer to Table \ref{tab:thermodynamic_cost_proteins}).
 

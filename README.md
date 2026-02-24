@@ -25,23 +25,22 @@ The repository is organized into clear functional domains:
 
 ```
 .
+├── theory/                       # Theoretical frameworks, derivations, and living hypotheses
+│
 ├── src/                          # Core Python packages
 │   ├── spinalmodes/              # Main IEC model and Cosserat implementation
-│   └── alphafold/                # Protein structure utilities
+│   └── afcc/                     # Protein structure utilities
 │
-├── research/                     # Active research modules
-│   └── alphafold_countercurvature/ # Protein structure-mechanics mapping analysis
+├── research/                     # Active research modules (e.g., AlphaFold Countercurvature)
 │
 ├── manuscript/                   # Camera-ready manuscript sources
 │   ├── main.tex                  # Main LaTeX file
 │   └── references.bib            # Bibliography
 │
 ├── scripts/                      # Reproducible experiment runners
-│   ├── experiments/              # Simulation sweeps and hypothesis tests
-│   ├── data_management/          # Data fetching and processing pipelines
-│   └── analysis/                 # Post-processing and plotting
+│   ├── experiments/              # Core simulation runners
 │
-├── docs/                         # Project documentation and plans
+├── docs/                         # Project documentation and admin plans
 ├── data/                         # Datasets (tracked and external)
 └── archive/                      # Legacy code and prior iterations
 ```
@@ -70,7 +69,7 @@ pip install -r requirements.txt
 To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
 
 ```bash
-python scripts/experiments/experiment_minimal_elastica.py
+python scripts/experiment_minimal_elastica.py
 ```
 
 ### 3. AlphaFold Counter-Curvature Analysis
@@ -82,15 +81,19 @@ For protein structure analysis steps, refer to `research/alphafold_countercurvat
 ## Key Results
 
 ### 1. S-Curve Emergence
+
 The model demonstrates that the characteristic spinal S-curve emerges as the **energetic ground state** when developmental information (HOX patterning) couples to mechanical properties via the Information-Elasticity Coupling (IEC).
 
 ### 2. Phase Diagram
+
 Three distinct regimes identified in the parameter space:
+
 - **Gravity-dominated**: Structure follows passive gravitational geodesics.
 - **Cooperative**: Information and gravity balance (normal physiology).
 - **Information-dominated**: Strong geometric distortion (potential pathology).
 
 ### 3. Microgravity Persistence
+
 Model predicts spinal curvature **persists in microgravity**, identifying a "Stagnant Pool" effect driven by fluid shifts that may drive inflammatory scoliosis.
 
 ---
@@ -114,6 +117,7 @@ If you use this work, please cite:
 ## License
 
 This project adopts a dual-licensing model:
+
 - **Source Code**: Licensed under the **MIT License**.
 - **Manuscript & Documentation**: Licensed under **CC BY 4.0**.
 

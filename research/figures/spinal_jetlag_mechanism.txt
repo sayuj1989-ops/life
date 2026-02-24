@@ -1,0 +1,5 @@
+A diagram illustrating "Spinal Jetlag" as the cause of twist-bend coupling.
+Show two parallel growth plates (Left and Right) behaving as coupled oscillators.
+Depict a phase shift (delta phi) between them, caused by a delay (tau) in the neural control loop.
+This phase shift causes one side to grow faster than the other at specific times, inducing a torque (twist) alongside the bending.
+Label "Left Clock", "Right Clock", "Neural Delay", and "Resulting Torsion".

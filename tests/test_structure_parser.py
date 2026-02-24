@@ -1,5 +1,7 @@
 import pytest
 import numpy as np
+import json
+import os
 from pathlib import Path
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
@@ -59,3 +61,105 @@ def test_fast_parse_pdb_arrays_missing_file(tmp_path):
     parser = StructureParser()
     coords, _, _ = parser.fast_parse_pdb_arrays(tmp_path / "nonexistent.pdb")
     assert coords is None
+
+@pytest.fixture
+def parser():
+    return StructureParser()
+
+def test_parse_pae_json(tmp_path, parser):
+    """Test parsing standard JSON PAE file."""
+    pae_data = [[0, 10], [10, 0]]
+    json_content = [{"predicted_aligned_error": pae_data}]
+
+    pae_file = tmp_path / "test.json"
+    with open(pae_file, 'w') as f:
+        json.dump(json_content, f)
+
+    # First parse: should read JSON and create .npy cache
+    arr = parser.parse_pae(pae_file)
+    assert arr is not None
+    assert arr.shape == (2, 2)
+    assert arr[0, 1] == 10
+    assert arr.dtype == np.uint8
+
+    # Check cache creation
+    cache_npy = pae_file.with_suffix('.pae.npy')
+    assert cache_npy.exists()
+
+    # Verify cache content
+    cached_arr = np.load(cache_npy)
+    assert np.array_equal(cached_arr, arr)
+
+def test_parse_pae_cache_usage(tmp_path, parser):
+    """Test that NPY cache is used if available."""
+    pae_file = tmp_path / "test.json"
+    # Create dummy JSON (should not be read if cache exists)
+    with open(pae_file, 'w') as f:
+        f.write("INVALID JSON")
+
+    # Create valid NPY cache
+    cache_npy = pae_file.with_suffix('.pae.npy')
+    data = np.array([[5, 5], [5, 5]], dtype=np.uint8)
+    np.save(cache_npy, data)
+
+    # Ensure timestamps are correct (cache >= source)
+    # Touch json then cache
+    os.utime(pae_file, (1000, 1000))
+    os.utime(cache_npy, (1001, 1001))
+
+    arr = parser.parse_pae(pae_file)
+    assert np.array_equal(arr, data)
+
+def test_parse_pae_legacy_upgrade(tmp_path, parser):
+    """Test upgrade from .npz to .npy."""
+    pae_file = tmp_path / "test.json"
+    with open(pae_file, 'w') as f:
+        f.write("INVALID JSON") # Should not be read
+
+    # Create legacy .npz cache
+    cache_npz = pae_file.with_suffix('.pae.npz')
+    data = np.array([[1, 2], [3, 4]], dtype=np.int64) # Legacy uses int64
+    np.savez_compressed(cache_npz, pae=data)
+
+    # Ensure timestamps
+    os.utime(pae_file, (1000, 1000))
+    os.utime(cache_npz, (1001, 1001))
+
+    # Parse: should load NPZ and save NPY
+    arr = parser.parse_pae(pae_file)
+    assert np.array_equal(arr, data)
+
+    # Check NPY creation
+    cache_npy = pae_file.with_suffix('.pae.npy')
+    assert cache_npy.exists()
+
+    # Check it was converted to uint8
+    npy_data = np.load(cache_npy)
+    assert npy_data.dtype == np.uint8
+    assert np.array_equal(npy_data, data)
+
+def test_parse_pae_corrupted_cache(tmp_path, parser):
+    """Test fallback if cache is corrupted."""
+    pae_data = [[0, 1], [1, 0]]
+    json_content = [{"predicted_aligned_error": pae_data}]
+
+    pae_file = tmp_path / "test.json"
+    with open(pae_file, 'w') as f:
+        json.dump(json_content, f)
+
+    # Create corrupted NPY
+    cache_npy = pae_file.with_suffix('.pae.npy')
+    with open(cache_npy, 'wb') as f:
+        f.write(b"CORRUPTED DATA")
+
+    os.utime(pae_file, (1000, 1000))
+    os.utime(cache_npy, (1001, 1001))
+
+    # Should fall back to JSON
+    arr = parser.parse_pae(pae_file)
+    assert arr is not None
+    assert np.array_equal(arr, np.array(pae_data))
+
+    # Should overwrite corrupted cache with valid one
+    valid_cache = np.load(cache_npy)
+    assert np.array_equal(valid_cache, arr)

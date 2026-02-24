@@ -61,6 +61,8 @@ Based on this thermodynamic framework, we make three specific, falsifiable predi
     \label{fig:iec_landscape}
 \end{figure}
 
+\input{theory}
+
 \section*{Methods}
 
 \textbf{Cosserat Rod Simulation.} We utilized \texttt{PyElastica}\cite{pyelastica_zenodo}, an open-source Python implementation of Cosserat rod theory. The ``Biological Countercurvature'' was implemented via an Information-Elasticity Coupling (IEC) term. The metabolic cost (Demand) was calculated as the integrated active moment required to maintain the difference between the target S-shape and the passive gravitational sag: $D = \int |M_{active}| ds$.
@@ -70,6 +72,8 @@ Based on this thermodynamic framework, we make three specific, falsifiable predi
 \textbf{AlphaFold Structural Analysis.} We retrieved predicted structures for 23 proteins from the AlphaFold Protein Structure Database\cite{jumper2021alphafold}. Structural anisotropy was calculated via the Gyration Tensor of the atomic coordinates.
 
 \textbf{Data Availability.} All simulation code and processed data are available in the \texttt{spinalmodes} repository.
+
+\input{tables}
 
 \bibliography{references}
 \bibliographystyle{naturemag}

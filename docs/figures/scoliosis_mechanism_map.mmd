@@ -32,6 +32,7 @@ graph TD
         DPY19L1L[DPY19L1L<br/>C-mannosyltransferase]
         IGF1R[IGF1R<br/>Insulin-like Growth Factor Receptor]
         GHR[GHR<br/>Growth Hormone Receptor]
+        SOST[SOST<br/>Sclerostin]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -264,7 +265,11 @@ graph TD
     PIEZO1 -- "Inhibition (Brake)" --> Fibrosis
     Fibrosis --> Stiffness
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR gene;
+    %% NEW ARC: Sclerostin Brake (Vasiliadis 2021)
+    PIEZO1 -- "Inhibition (Brake)" --> SOST
+    SOST -- "Inhibition (Wnt)" --> Beta_Catenin
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST gene;
     class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,Fibrosis process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber tissue;
     class S_Curve,Stability,Scoliosis outcome;

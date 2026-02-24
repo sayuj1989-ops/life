@@ -1,49 +1,31 @@
-# Toy Models Plan
+# Toy Models Plan (2026-03-10)
 
-**Purpose:** To de-risk the complex Cosserat simulation and provide intuitive validation for "Metabolic Buckling" and "Active Countercurvature".
+This plan outlines simple, low-complexity models to de-risk the theoretical framework and provide intuitive explanations.
 
-**Status:** ✅ Completed (2026-05-22)
+## 1. 1D Active Spring Chain (Information-Elasticity Coupling)
+**Objective:** Demonstrate that a spatially varying "information field" $I(x)$ can generate emergent curvature/strain patterns without complex Cosserat mechanics.
+- **Model:** A chain of springs $k_i$ connected by nodes $x_i$.
+- **Mechanism:** Information $I(x_i)$ modulates local rest length $L_0(i)$ or stiffness $k_i$.
+    - $L_0(i) = L_{base} \cdot (1 + \alpha I(x_i))$
+- **Prediction:** A sinusoidal information field $I(x) = \sin(kx)$ produces a sinusoidal strain pattern.
+- **Complexity:** Minimal (linear algebra).
+- **Status:** Proposed.
 
-## Toy Model A: 1D Thermostatic Column (Thermodynamic)
+## 2. Thermostat Controller (Exploding Gradient)
+**Objective:** Demonstrate the "Exploding Gradient" instability in a simple scalar control loop.
+- **Model:** A variable $x(t)$ (temperature/curvature) controlled by a heater $u(t)$ (muscle/growth) with delayed feedback.
+    - $\dot{x} = -kx + u(t) + \eta(t)$ (system dynamics + noise)
+    - $u(t) = -G \cdot (x(t-\tau) - x_{target})$ (delayed feedback)
+- **Mechanism:** High gain $G$ combined with delay $\tau$ and noise $\eta$ leads to divergent oscillations.
+- **Prediction:** Critical threshold $G_{crit}$ for instability.
+- **Complexity:** ODE (1 variable).
+- **Status:** Proposed.
 
-**Goal:** Demonstrate the "Energy Deficit Bifurcation" in a minimal system without complex geometry.
-
-**Setup:**
-- Consider a 1D column of height $L$.
-- **Active Curvature Cost:** $C(L) \propto \chi_\kappa^2 L^3$ (Volume $\times$ Curvature Energy).
-- **Metabolic Supply:** $S(L) \propto L^2$ (Surface Area / Flux Limit).
-- **Deficit:** $D(L) = C(L) - S(L)$.
-
-**Analysis:**
-- Plot $D(L)$ vs $L$.
-- Identify critical length $L_{crit}$ where $D(L) > 0$.
-- Show that for $L < L_{crit}$, the column is stable (Surplus). For $L > L_{crit}$, it is unstable (Deficit).
-
-**Implementation:**
-- Script: `scripts/experiments/toy_model_thermostatic.py`
-- **Output:** `outputs/figures/toy_model_thermostatic.png`
-- **Status:** ✅ **Implemented**
-
-## Toy Model B: The "Active" Elastica (Mechanical)
-
-**Goal:** Validate that *intrinsic curvature* can stabilize a column against gravity *without* infinite stiffness. Specifically, link Protein Anisotropy to $L_{crit}$.
-
-**Setup:**
-- Equations derived in `docs/theory/toy_model_anisotropy.md`.
-- $L_{crit} \propto A^{-0.5}$ (Inverse square root of anisotropy).
-
-**Simulations:**
-1.  **Passive:** $\chi_\kappa = 0$. Show buckling under self-weight for large $L$.
-2.  **Active:** $\chi_\kappa > 0$. Show stability for the same $L$.
-
-**Implementation:**
-- Script: `scripts/toy_model_anisotropy_link.py`
-- **Output:** `outputs/figures/toy_model_anisotropy_bifurcation.png`
-- **Status:** ✅ **Implemented**
-
-## Schedule
-
-| Model | Owner | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
-| **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
+## 3. Circadian Oscillator (Spinal Jetlag)
+**Objective:** Demonstrate resonance and destructive interference in a driven oscillator.
+- **Model:** Damped harmonic oscillator driven by two forces: Gravity (constant) and Clock (periodic).
+    - $\ddot{x} + \gamma \dot{x} + \omega_0^2 x = F_{grav} + F_{clock} \cos(\omega_{clock} t + \phi)$
+- **Mechanism:** Phase mismatch $\phi$ determines amplitude of oscillation.
+- **Prediction:** Resonance peak at $\omega_{clock} \approx \omega_0$. Maximum amplitude at specific phase.
+- **Complexity:** ODE (1 variable).
+- **Status:** Proposed.

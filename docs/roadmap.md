@@ -1,41 +1,43 @@
-# Research Roadmap: Biological Countercurvature
+# Spine Submission Roadmap (Updated 2026-03-10)
 
-**Target:** *Nature* Submission
-**Timeline:** 6 Weeks (May 22 - July 03, 2026)
+**Target:** *Spine* (IF: 3.30, Q1) or *JOR Spine* (Tier 1)
+**Submission Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
+**Start Date:** 2026-02-23
+**Target Submission Date:** 2026-04-06 (4 Weeks Remaining)
 
-## Phase 1: Data Gathering & Code (Weeks 1-2: May 22 - June 05)
+## Phase 1: Computational Framework (Complete)
 
-- [ ] **Data:** Collect Literature Data for Cross-Species Validation (9 Species: $L, R, EI, Mass$). **CRITICAL**
-- [ ] **Code:** Create `experiment_cross_species_scaling.py` and reproduce Figure 3.
-- [ ] **Code:** Implement Specific Mutation Mapping in `experiment_optimization_failure.py`.
-- [x] **Validation:** Run all scripts and ensure clean outputs (CSV/PNG). (Core & Toy Models Done)
+- [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
+    - *Result:* Confirmed ~41% deficit at critical lengths.
+- [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (`outputs/sim/2026-02-22/`).
+    - *Result:* Found critical value.
+- [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation (`experiment_spinal_jetlag.py`).
+    - *Result:* Confirmed $\phi=\pi$ yields higher Cobb angles (15° vs 10°).
+- [ ] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
+    - *Result:* Preliminary `experiment_optimization_failure.py` shows stability up to $\chi_\kappa=20$. Needs higher range.
 
-## Phase 2: Manuscript Polish & Theory (Weeks 3-4: June 06 - June 19)
+## Phase 2: Clinical Validation (Weeks 3-4: Mar 10 - Mar 24)
 
-- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
-- [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
-- [x] **Theory:** Develop Toy Models A & B for Reviewer Defense. (Done)
-- [ ] **References:** Complete Bibliography (80-100 refs).
+- [ ] **Cohort Data Extraction:** Extract clinical cohort data (Cobb angle distributions, progression rates) from published literature.
+    - *Focus:* Peak Height Velocity (PHV) timing vs. Cobb progression.
+- [ ] **PHV Timing:** Compare model "Instability Window" with clinical PHV timing data.
+- [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
+- [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
 
-## Phase 3: Review & Submission (Weeks 5-6: June 20 - July 03)
+## Phase 3: Manuscript Preparation (Weeks 5-6: Mar 24 - Apr 06)
 
-- [ ] **Internal Review:** PI Review of full package (Manuscript + Supp Info).
-- [ ] **Pre-Submission:** Run `SUBMISSION_MASTER_CHECKLIST.md`.
-- [ ] **Submission:** Submit to *Nature*.
+- [ ] **Reformatting:** Adapt `NATURE_MANUSCRIPT_BiologicalCountercurvature.docx` to *Spine* format (IMRaD structure).
+    - *Current:* 70% complete (Introduction, Results, Discussion drafted).
+- [ ] **Abstract:** Draft Structured Abstract (Study Design, Objective, Summary of Background Data, Methods, Results, Conclusions).
+    - *Current:* Needs shortening (210 -> 150 words).
+- [ ] **Clinical Relevance:** Write "Clinical Relevance" section highlighting the predictive value for early intervention.
+- [ ] **Figures:** Generate "Clinical Translation" figures (Model vs. Patient Data overlays).
+    - *Current:* Figure legends written, images missing.
+- [ ] **References:** Update bibliography to include relevant *Spine* and *Eur Spine J* citations.
+    - *Current:* 15 core refs, need 80+.
 
-## Gantt Chart
+## Progress Tracking
 
-| Week | Task | Owner | Status |
-| :--- | :--- | :--- | :--- |
-| **Week 1 (May 22)** | Species Data Collection | **CRITICAL** | 🚨 **Starting** |
-| **Week 2 (May 29)** | Cross-Species Script & Plot | Comp Bio | ⚪ Planned |
-| **Week 3 (Jun 05)** | Figure Assembly (1-7) | PI / Design | ⚪ Planned |
-| **Week 4 (Jun 12)** | Manuscript Final Text | PI | ⚪ Planned |
-| **Week 5 (Jun 19)** | Internal Review & Polish | Team | ⚪ Planned |
-| **Week 6 (Jun 26)** | **SUBMISSION** | PI | ⚪ Planned |
-
-## Risks & Mitigations
-
-1.  **Species Data Gap:** If data is unavailable, revert to theoretical scaling argument ($L^4$ vs $L^3$). **Risk: High.**
-2.  **Simulation Artifacts:** Ensure `experiment_optimization_failure.py` results are robust to noise seeds. **Risk: Low.**
-3.  **Reviewer Skepticism:** Toy models essential to clarify "Metabolic Buckling" vs simple Euler Buckling. **Mitigation:** Toy Models A & B are implemented. **Risk: Low.**
+**Current Phase:** Phase 2 (Clinical Validation)
+**Percent Complete:** 35% (Computational mostly done, Clinical 0%, Manuscript 70% drafted but needs major polish)
+**Status:** On Track (but tight timeline)

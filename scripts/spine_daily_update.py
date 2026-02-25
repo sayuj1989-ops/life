@@ -20,10 +20,15 @@ def parse_roadmap(filepath):
     current_phase = None
 
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
-    target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
+    target_date_match = re.search(r'\*\*Target Submission Date:\*\* (.*)', content) # Relaxed regex for target date
 
     start_date = datetime.datetime.strptime(start_date_match.group(1), '%Y-%m-%d').date() if start_date_match else None
-    target_date = datetime.datetime.strptime(target_date_match.group(1), '%Y-%m-%d').date() if target_date_match else None
+
+    target_date_str = target_date_match.group(1).split(' ')[0] if target_date_match else None
+    try:
+        target_date = datetime.datetime.strptime(target_date_str, '%Y-%m-%d').date() if target_date_str else None
+    except ValueError:
+        target_date = None
 
     for line in lines:
         if line.startswith('## Phase'):
@@ -114,7 +119,7 @@ def generate_report(data):
     return report
 
 if __name__ == "__main__":
-    roadmap_path = "research/spine_submission/roadmap.md"
+    roadmap_path = "docs/SPINE_SUBMISSION_TRACKER.md"
     data, error = parse_roadmap(roadmap_path)
 
     if error:

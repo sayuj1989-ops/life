@@ -1,0 +1,25 @@
+Starting Energy Deficit Window Experiment...
+
+Results Summary:
+          L  P_counter  S_proprio_alpha05  Cobb_angle
+0  0.250000   0.073911           0.122458    1.953364
+1  0.260345   0.080155           0.124966    1.952657
+2  0.270690   0.086651           0.127425    1.951950
+3  0.281034   0.093401           0.129837    1.951243
+4  0.291379   0.100404           0.132205    1.950536
+           L  P_counter  S_proprio_alpha05  Cobb_angle
+25  0.508621   0.305928           0.174669    1.975878
+26  0.518966   0.318499           0.176436    1.977126
+27  0.529310   0.331323           0.178186    1.978374
+28  0.539655   0.344401           0.179919    1.979623
+29  0.550000   0.357731           0.181635    1.980871
+Saved CSV to outputs/thermodynamic_cost/energy_deficit_window.csv
+Saved Figure to outputs/figures/energy_deficit_window.png
+
+--- Manuscript Statistics ---
+Critical Length L_crit: 0.3500 m
+Reference Length L0: 0.35 m
+At L = 0.45 m:
+  P_counter = 0.2395
+  S_proprio = 0.1643
+  Deficit   = 45.8%

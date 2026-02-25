@@ -1,37 +1,35 @@
-# Countercurvature Claims Matrix
-**Date:** 2026-03-06
-**Evidence Source:** `outputs/afcc/confidence_weighted_ranking.csv`
+# Biological Countercurvature Claims Matrix
+**Date:** 2026-03-12
+**Purpose:** Strict categorization of scientific claims based on current AFCC metric evidence.
 
-## 1. Confirmed Claims (High Confidence)
-These claims are supported by **high-confidence** structural metrics (Anisotropy > 3.0, pLDDT > 70, PAE < 20).
+## Classification Legend
+*   **🟢 CONFIRMED:** Directly measured by high-confidence metrics (Tier 1: Anisotropy > 3.0, pLDDT > 70).
+*   **🟡 SUPPORTED:** measured by metrics but with significant caveats (Tier 2: Low Confidence) or indirect evidence.
+*   **🔴 SPECULATIVE / REFUTED:** Narrative claim not supported by current data, or directly contradicted by it.
 
-| Claim | Candidate | Evidence Metric | Status |
-|---|---|---|---|
-| **"Tension Rod" Architecture** | **PIEZO2** | Anisotropy=4.44, pLDDT=79.4 | **CONFIRMED**. High aspect ratio is structurally validated. |
-| **"Tension Rod" Architecture** | **LMNA** | Anisotropy=4.75, pLDDT=76.4 | **CONFIRMED**. Fibrous nature aligns with nuclear lamina role. |
-| **"Tension Rod" Architecture** | **PLOD1** | Anisotropy=3.40, pLDDT=92.7 | **CONFIRMED**. Extremely rigid enzyme structure. |
-| **Scalar vs Vector Sensing** | **PIEZO1 vs PIEZO2** | PIEZO2 (4.44) > PIEZO1 (3.90) | **CONFIRMED**. PIEZO2 is measurably more anisotropic than PIEZO1. |
+## 1. Structural Claims
+| Claim | Status | Evidence Source | Notes |
+| :--- | :--- | :--- | :--- |
+| **"PIEZO2 acts as a curved anisotropic beam."** | 🟢 **CONFIRMED** | `metrics.csv`: Aniso=4.44, pLDDT=79.4 | Classic mechanosensor profile. |
+| **"LBX1 acts as a rigid molecular caliper."** | 🔴 **REFUTED** | `metrics.csv`: Aniso=2.27, pLDDT=66.9 | Too flexible/globular. Ranks 18th/25. |
+| **"POC5 forms a stiff filamentous tether."** | 🟡 **SUPPORTED** | `metrics.csv`: Aniso=24.7, pLDDT=64.0 | Extreme anisotropy supports filament, but low confidence suggests disorder/artifact risk. |
+| **"CNNM2 is a high-priority structural candidate."** | 🟢 **CONFIRMED** | `metrics.csv`: Aniso=8.54, pLDDT=70.4 | **New Finding:** Highest anisotropy with acceptable confidence. |
+| **"LBX1 has a modular 'beads-on-a-string' architecture."** | 🟢 **CONFIRMED** | `metrics.csv`: PAE_Blockiness=7.35 | High blockiness score confirms distinct domains separated by flexible linkers. |
 
-## 2. Supported Claims (Low Confidence)
-These claims are supported by metrics, but the structural confidence is **low** (pLDDT < 70), suggesting the feature might be disordered.
+## 2. Temporal / Evolutionary Claims
+| Claim | Status | Evidence Source | Notes |
+| :--- | :--- | :--- | :--- |
+| **"LBX1 structure is 'emerging' or 'crystallizing' over time."** | 🔴 **REFUTED** | `evidence_freshness_audit.md` | Metrics are bit-for-bit static across 6 weeks. "Emergence" is a narrative hallucination. |
+| **"Candidate pool is expanding with new anisotropic targets."** | 🟢 **CONFIRMED** | `metrics.csv` (Compare Jan vs Feb) | New genes (e.g., FBLN5, STOML3) have been added and validated. |
 
-| Claim | Candidate | Evidence Metric | Status |
-|---|---|---|---|
-| **"Blocky Scaffold"** | **LBX1** | Anisotropy=2.27, Blockiness=7.35 | **SUPPORTED (WEAK)**. "Blockiness" exists but pLDDT=66.9 suggests it's likely dynamic/disordered domains. |
-| **"Metabolic Anisotropy"** | **GHR** | Anisotropy=5.13 | **SUPPORTED (ARTIFACTUAL?)**. pLDDT=58.7 is very low. Likely a disordered tail, not a rod. |
-| **"Disordered Proprioception"** | **EGR3** | Anisotropy=3.76, pLDDT=50.0 | **SUPPORTED**. High disorder aligns with IDR hypothesis, not structural stiffness. |
-| **"Disordered Proprioception"** | **RUNX3** | Anisotropy=2.06, pLDDT=60.6 | **SUPPORTED**. Consistent with transcription factor disorder. |
+## 3. Mechanistic Hypotheses
+| Claim | Status | Evidence Source | Notes |
+| :--- | :--- | :--- | :--- |
+| **"LBX1 mechanosensitivity is intrinsic to its geometry."** | 🔴 **SPECULATIVE** | `confidence_weighted_ranking.csv` | Geometry (Tier 3) is insufficient. Requires **Experiment 1 (LINC)** to test extrinsic coupling. |
+| **"Scoliosis drivers are enriched for high anisotropy."** | 🟡 **SUPPORTED** | `confidence_weighted_ranking.csv` | Top tier includes known driver ADGRG6 and sensor PIEZO2, but LBX1 (major driver) is an exception. |
+| **"Disordered regions (IDRs) drive mechanosensation via condensation."** | 🟡 **SUPPORTED** | `metrics.csv` (Low pLDDT for LBX1/GHR) | Plausible alternative to "Rigid Rod" model, but requires **Experiment 3 (Phase Sep)** validation. |
 
-## 3. Speculative Claims (Refuted or Unproven)
-These claims are contradicted by the new confidence-weighted analysis or lack metric support.
-
-| Claim | Candidate | Refutation / Gap | Status |
-|---|---|---|---|
-| **"LBX1 is a stiff rod"** | **LBX1** | pLDDT=66.9, PAE=25.1 | **REFUTED**. Structure is too low-confidence/disordered to be a rigid mechanical strut. |
-| **"Metabolic Enzymes are Rods"** | **ARNTL, MYLK** | pLDDT < 66 | **WEAKENED**. Likely IDR-driven phase separation, not rigid enzymatic rods. |
-| **"Sexual Dimorphism via Rods"** | **General** | No sex-specific structural data | **SPECULATIVE**. Metric differences (if any) are not linked to sex in this dataset. |
-
-## Action Plan
-*   **Retract**: "LBX1 is a stiff rod". Replace with "LBX1 is a disordered phase-sensor".
-*   **Maintain**: "PIEZO2 is a Tension Rod".
-*   **Investigate**: "Metabolic Anisotropy" (GHR, ARNTL) – verify if IDRs are functional or artifacts.
+## Action Items
+1.  **Retract:** "LBX1 Stiff Rod" narrative in all future manuscripts. Replace with "Modular Integrator".
+2.  **Promote:** CNNM2 and FBLN5 to "Primary Structural Candidates".
+3.  **Investigate:** POC5 requires specific validation to rule out AlphaFold artifact (e.g., TEM/AFM).

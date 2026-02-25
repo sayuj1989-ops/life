@@ -1,34 +1,53 @@
-# LBX1 Falsifiability Package
-**Target**: LBX1 (Transcription Factor, Scoliosis Driver)
-**Hypothesis**: LBX1 acts as a **nuclear mechanosensor** where mechanical stress alters its phase behavior (solubility/binding), coupling spinal growth forces to proprioceptive gene expression.
+# LBX1 Falsifiability Plan
+**Date:** 2026-03-12
+**Objective:** Define rigorous failure criteria for the "LBX1 Mechanosensor" hypothesis.
 
-## Experiment 1: Nuclear Stiffness Rescue
-**Hypothesis**: LBX1 dysfunction leads to nuclear softening (via Lamin A/C downregulation or chromatin de-compaction), making proprioceptive neurons hypersensitive to noise.
-**Design**:
-1.  **Model**: LBX1-knockout or mutant iPSC-derived proprioceptive neurons.
-2.  **Intervention**: Overexpress Lamin A (LMNA) to artificially stiffen the nucleus.
-3.  **Readout**: neuronal firing rate / adaptation under mechanical ramp stimulation.
-**Expected Result**: LBX1-KO neurons are hypersensitive/unstable. LMNA overexpression restores normal firing thresholds.
-**Falsification Threshold**: If LMNA overexpression has **no effect** on the firing instability of LBX1-KO neurons, then LBX1's mechanism is **not** mediated by nuclear stiffness.
+## Context
+Structural analysis (Tier 3: Low Anisotropy/Low Confidence) has **falsified** the simple "Stiff Rod" model for LBX1. The remaining viable hypothesis is that LBX1 acts as a **"Condensate Sensor"** or **"Nuclear Shuttling Integrator"** driven by its modular/disordered architecture (High PAE Blockiness, Low pLDDT).
 
-## Experiment 2: Strain-Dependent Translocation
-**Hypothesis**: LBX1 nuclear entry or chromatin binding is gated by mechanical strain on the nucleus (e.g., via nuclear pore opening or phase solubility).
-**Design**:
-1.  **Model**: Wild-type proprioceptive neurons on a stretchable substrate (10% cyclic strain).
-2.  **Tag**: Endogenous GFP-tagged LBX1.
-3.  **Readout**: Ratio of Nuclear vs. Cytoplasmic fluorescence intensity under Static vs. Strained conditions.
-**Expected Result**: Strain increases Nuclear/Cytoplasmic ratio (mechanically gated entry).
-**Falsification Threshold**: If the Nuclear/Cytoplasmic ratio is **unchanged** (< 10% diff) between static and strained conditions, LBX1 is **not** a direct mechanosensor.
+## Experiment 1: The "Nuclear Tether" Test (LINC Perturbation)
+**Hypothesis:** LBX1 transcriptional activity depends on mechanical coupling between the cytoskeleton and nucleus via the LINC complex.
+**Assay:**
+1.  Culture paraspinal myoblasts on stiff (20 kPa) vs. soft (1 kPa) substrates.
+2.  Transfect with Dominant-Negative KASH domain (disrupts LINC) or Control.
+3.  Measure *LBX1* nuclear localization (IF) and downstream target expression (qPCR of *GDF5*, *FBLN5*).
+**Readout:** Ratio of Nuclear/Cytoplasmic LBX1; Fold-change in targets.
+**Expected Result (Support):** LINC disruption abolishes stiffness-dependent LBX1 nuclear accumulation.
+**Falsification Threshold:**
+*   If LBX1 nuclear levels remain unchanged by LINC disruption despite stiffness changes.
+*   **AND** Target gene expression is unaffected by LINC state.
+*   **Implication:** LBX1 is not mechanically coupled to nuclear tension; it is purely biochemical.
 
-## Experiment 3: IDR Phase Disruption
-**Hypothesis**: LBX1 transcriptional activity relies on Intrinsically Disordered Region (IDR) driven phase separation (condensates) at super-enhancers.
-**Design**:
-1.  **Model**: Wild-type proprioceptive neurons.
-2.  **Intervention**: Treat with 1,6-hexanediol (dissolves liquid-liquid phase separated droplets) at non-toxic concentrations.
-3.  **Readout**: Expression levels of LBX1 target genes (e.g., mechanosensory channels).
-**Expected Result**: 1,6-hexanediol treatment mimics the LBX1-KO transcriptional phenotype (downregulation of targets).
-**Falsification Threshold**: If 1,6-hexanediol has **no specific effect** on LBX1 targets compared to housekeeping genes, then the **Phase Separation hypothesis is falsified** (LBX1 acts as a standard lock-and-key factor).
+## Experiment 2: The "Blocky Domain" Deletion Series
+**Hypothesis:** The high PAE Blockiness (7.35) indicates functional modularity. One specific domain confers mechanosensitivity (e.g., an IDR that collapses under pressure).
+**Assay:**
+1.  Generate GFP-tagged LBX1 variants: Full-Length, N-term only, C-term only, IDR-deletion.
+2.  Subject cells to cyclic stretch (10%, 1Hz, 24h).
+3.  Quantify nuclear entry and aggregate formation.
+**Readout:** Nuclear/Cytoplasmic ratio; number of nuclear foci.
+**Expected Result (Support):** Only Full-Length LBX1 responds to stretch; deletion of the IDR abolishes response.
+**Falsification Threshold:**
+*   If IDR-deletion mutant responds identically to Full-Length.
+*   **OR** If no variant (including Full-Length) shows >1.5x change in localization/foci under stretch.
+*   **Implication:** The "Blocky" architecture is structurally irrelevant to mechanics.
 
-## Priority
-Start with **Experiment 3** (Chemical probe) as it is the fastest to execute in cell culture.
-Follow with **Experiment 2** (Imaging) if Expt 3 suggests phase behavior.
+## Experiment 3: In Vitro Phase Separation (Condensation)
+**Hypothesis:** LBX1's low confidence (pLDDT ~66) and modularity reflect an ability to undergo Liquid-Liquid Phase Separation (LLPS) in response to crowding (a proxy for compressive stress).
+**Assay:**
+1.  Purify recombinant LBX1-GFP.
+2.  Titrate crowding agent (PEG-8000: 0%, 5%, 10%, 20%).
+3.  Measure droplet formation via microscopy and FRAP (Fluorescence Recovery After Photobleaching).
+**Readout:** Saturation concentration ($C_{sat}$); Diffusion coefficient ($D$).
+**Expected Result (Support):** LBX1 forms droplets at physiological concentrations; $C_{sat}$ decreases with increased crowding (pressure sensor).
+**Falsification Threshold:**
+*   If LBX1 does not form droplets ($C_{sat} > 50 \mu M$).
+*   **OR** If droplets are solid aggregates (no FRAP recovery) rather than liquid.
+*   **Implication:** LBX1 is not a dynamic condensate; low pLDDT is just disorder, not function.
+
+## Go/No-Go Decision Matrix
+| Result Combination | Conclusion | Action |
+| :--- | :--- | :--- |
+| **Exp 1 Fail + Exp 3 Fail** | **LBX1 is NOT a mechanosensor.** | **DROP LBX1** as a primary candidate. Focus on PIEZO2/ADGRG6. |
+| **Exp 1 Pass + Exp 3 Fail** | LBX1 is a LINC-dependent TF. | Reclassify as "Nuclear Responder" (not sensor). |
+| **Exp 1 Fail + Exp 3 Pass** | LBX1 is a Crowding Sensor. | Reframe hypothesis around "Metabolic Crowding". |
+| **Exp 1 Pass + Exp 3 Pass** | **Strong Confirmation.** | Proceed to *in vivo* Scoliosis models. |

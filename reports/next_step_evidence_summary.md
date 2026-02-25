@@ -1,25 +1,41 @@
-# Next Step Evidence Summary
-**Date:** 2026-03-06
-**Author:** AI Research Engineer
+# Evidence Strength & Next Steps Summary
+**Date:** 2026-03-12
+**Status:** Audit Complete. Hypothesis Refinement Required.
 
-## 1. What is Stronger Now (Confidences Gained)
-*   **PIEZO2 as a Tension Rod**: Confirmed with high confidence (Score 1.59, Rank #2). Its anisotropy (4.44) is supported by high pLDDT (79.4) and low PAE (17.0), validating it as a rigid mechanical strut.
-*   **Structural Dichotomy**: We have successfully separated "True Rods" (PIEZO2, LMNA, PLOD1) from "Disordered Nodes" (LBX1, EGR3, GHR). This resolves previous confusion where low-confidence "anisotropy" was conflated with stiffness.
-*   **Metabolic Candidate Identification**: We confirmed that metabolic candidates (ARNTL, GHR) are being actively updated (fresh metrics), distinguishing them from the stale structural candidates.
+## 1. Evidence Baseline Assessment
+The audit of the `outputs/afcc/` data (2026-01-09 to 2026-02-16) reveals a critical distinction between **narrative trends** and **measured reality**.
 
-## 2. What Remains Weak (Risks Identified)
-*   **Stale Core Data**: The metrics for PIEZO2, LBX1, and LMNA have not been re-calculated since January (static values). While reliable, they miss any recent pipeline improvements applied to the metabolic set.
-*   **LBX1 Mechanism**: The "Stiff Rod" hypothesis for LBX1 is effectively **refuted** by its low structural confidence (pLDDT=66.9). We lack a validated alternative mechanism (Phase Separation is currently speculative).
-*   **Schema Instability**: The `metrics.csv` format is drifting, posing a risk to automated monitoring.
+*   **Data Freshness:** The "evolution" of LBX1 structural features is a **fiction**. The underlying metric vectors are bit-for-bit identical across 17 runs. Any perceived trend is due to changes in reporting frequency or metadata schemas (`dise_score`), not protein folding.
+*   **Structural Reality:** When weighted by confidence (pLDDT), **LBX1** collapses to a **Tier 3** candidate (Rank 18/25). It lacks the intrinsic stiffness or anisotropy to act as a "Molecular Caliper" or "Counter-Curve" element on its own.
+*   **True Mechanosensors:** The analysis **strongly confirms** **PIEZO2**, **CNNM2**, and **FBLN5** as high-confidence, high-anisotropy structures capable of passive mechanical sensing.
 
-## 3. Top 3 Highest-Leverage Next Experiments
-Based on the `reports/lbx1_falsifiability_plan.md`, these are the critical next moves:
+## 2. Hypothesis Pivot: The "Modular Integrator" Model
+We must abandon the "LBX1 as a Rod" model. The data (Intermediate Anisotropy ~2.27, High Blockiness ~7.35) supports a new model:
 
-1.  **Chemical Probe (Phase Separation)**: Treat LBX1-expressing neurons with **1,6-hexanediol**.
-    *   *Why*: Fastest way to test the new "Disordered Sensor" hypothesis. If it works, it validates the pivot from "Rod" to "Droplet".
-2.  **Nuclear Stiffness Rescue**: Overexpress **Lamin A (LMNA)** in LBX1-KO neurons.
-    *   *Why*: Tests the "Downstream" link. If stiffness rescues the phenotype, it confirms the mechanical etiology regardless of LBX1's direct structure.
-3.  **Freshness Pipeline Repair**: Refactor `scripts/afcc_daily_refresh.py` to **force-recalculate** metrics for PIEZO2/LBX1 using the latest code, ensuring the "Confidence Gap" isn't just an artifact of old software.
+**The "Modular Integrator" Hypothesis:**
+*   LBX1 is a flexible, multi-domain protein (High PAE Blockiness).
+*   It does not *sense* curvature directly via bending (like PIEZO2).
+*   Instead, it *integrates* mechanical signals via **differential localization** (Nuclear Shuttling) or **condensation** (Phase Separation), driven by its disordered linkers.
 
-## Conclusion
-The Biological Countercurvature hypothesis has matured. We have moved from a simplistic "Everything is a Rod" model to a nuanced "Rods (PIEZO2) vs. Droplets (LBX1)" model. This creates distinct, falsifiable predictions for the next phase of research.
+## 3. Top 3 High-Leverage Experiments
+To validate this new model, we require functional assays, not more static structure prediction.
+
+1.  **The Nuclear Tether Test (LINC Perturbation):**
+    *   *Objective:* Determine if LBX1 nuclear entry depends on physical cytoskeleton-nucleus coupling.
+    *   *Critical Readout:* Nuclear/Cytoplasmic ratio in KASH-DN cells under strain.
+
+2.  **The "Blocky" Deletion Series:**
+    *   *Objective:* Identify which domain (N-term, C-term, IDR) confers mechanosensitivity.
+    *   *Critical Readout:* Loss of stretch-response in IDR-deletion mutants.
+
+3.  **In Vitro Condensation (Phase Separation):**
+    *   *Objective:* Test if LBX1 forms condensates under crowding pressure (biophysical sensor).
+    *   *Critical Readout:* Droplet formation at physiological concentrations ($<10 \mu M$).
+
+## 4. Go/No-Go Recommendation
+*   **STOP** all "LBX1 Stiff Rod" narrative development immediately.
+*   **GO** on **PIEZO2/ADGRG6** as the primary "Structural Countercurvature" examples.
+*   **GO** on **CNNM2** and **FBLN5** as new, high-priority candidates for structural validation.
+*   **RECLASSIFY** LBX1 as a "Downstream Responder" pending the results of Experiment 1.
+
+**Final Verdict:** The "Biological Countercurvature" hypothesis stands, but the cast of characters has changed. **PIEZO2 is the rod; LBX1 is the reader.**

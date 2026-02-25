@@ -1,0 +1,2 @@
+natural_kyphosis_min,natural_kyphosis_max,steps,active_curvature,anisotropy,initial_lateral_defect,duration,dt,n_elements,seed
+0.0,10.0,21,12.0,5.0,0.05,2.0,0.0001,50,42

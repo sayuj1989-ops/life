@@ -56,16 +56,16 @@ def merge_metrics(latest_file):
         flags_str = ", ".join(flags) if flags else "OK"
 
         # Calculate Frac OK
-        frac_high = row.get('pLDDT_fraction_high', 0.0)
-        frac_low = row.get('pLDDT_fraction_low', 0.0)
+        frac_high = row.get('plddt_fraction_high', 0.0)
+        frac_low = row.get('plddt_fraction_low', 0.0)
         frac_ok = max(0.0, 1.0 - frac_high - frac_low)
 
         new_row = {
             'Identity': f"{row['gene_symbol']} ({row['uniprot_id']})",
-            'Species': row['species'],
-            'Length': row['length'],
-            'pLDDT_mean': row['pLDDT_mean'],
-            'pLDDT_median': 0.0, # Not available
+            'Species': row['organism'],
+            'Length': row['n_residues'],
+            'pLDDT_mean': row['plddt_mean'],
+            'pLDDT_median': row.get('plddt_median', 0.0),
             'pLDDT_frac_high': frac_high,
             'pLDDT_frac_ok': frac_ok,
             'pLDDT_frac_low': frac_low,

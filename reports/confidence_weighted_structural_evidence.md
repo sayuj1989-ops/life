@@ -1,52 +1,55 @@
-# Confidence-Weighted Structural Evidence Report
-**Date:** 2026-03-06
-**Method:** Ranked by $Score = Anisotropy \times \frac{pLDDT}{100} \times (1 - \frac{PAE}{31})$
-**Source:** `outputs/afcc/confidence_weighted_ranking.csv`
+# Confidence-Weighted Structural Evidence
+**Source Data**: `outputs/afcc/current_metrics.csv`
+**Date**: 2026-02-25
 
-## Executive Summary
-We applied a rigorous "Confidence Weighting" to the AlphaFold structural metrics. This filters out candidates where high anisotropy might be an artifact of disordered "floppy" tails rather than rigid structural features.
+## Methodology
+- **Confidence Score**: `(pLDDT_mean / 100) * (1 - pLDDT_frac_low)`
+- **Tier 1 (High Confidence)**: Anisotropy >= 3.0, pLDDT >= 70, Low Confidence Fraction <= 0.3
+- **Tier 2 (Artifact Risk)**: Anisotropy >= 3.0 but fails confidence checks.
+- **Tier 3**: All other structures (Comparators, Globular, etc.)
 
-**Key Finding**: The "Tension Rod" hypothesis splits into two distinct categories:
-1.  **True Structural Struts (High Confidence)**: PIEZO2, LMNA, PLOD1. These have high anisotropy AND high structural confidence, confirming they are likely rigid, load-bearing elements.
-2.  **Disordered Signaling Nodes (Low Confidence)**: LBX1, GHR, EGR3. These have high anisotropy but low confidence, suggesting they are **mechanically soft** but potentially **phase-sensitive** (IDR-heavy).
+## Tier 1: High Confidence
+| Gene   |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| PIEZO2 |         4.44 |              0.627 |         79.4 |             0.21 |             2.8  |
+| PLOD1  |         3.4  |              0.881 |         92.7 |             0.05 |             2.31 |
 
-## Ranking Analysis
+## Tier 2: Artifact Risk
+| Gene   |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| GHR    |        5.132 |              0.195 |       58.698 |            0.668 |            5.309 |
+| LMNA   |        4.75  |              0.527 |       76.4   |            0.31  |            2.56  |
+| EGR3   |        3.76  |              0.125 |       50     |            0.75  |            0     |
+| ARNTL  |        3.319 |              0.307 |       65.529 |            0.532 |            3.586 |
 
-### Top Tier: Validated Structural Elements
-These candidates have strong evidence for being anisotropic *and* well-defined structures.
+*Warning: High anisotropy in these structures may result from 'spaghetti' artifacts in disordered regions (Low pLDDT).*
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **1** | **PLOD1** | 2.37 | 3.40 | 92.7 | 7.7 | **Confirmed**. Rigid enzyme, likely crosslinks collagen under load. |
-| **2** | **PIEZO2** | 1.59 | 4.44 | 79.4 | 17.0 | **Confirmed**. The primary "Tension Rod". High aspect ratio is real. |
-| **3** | **NF1** | 1.17 | 1.93 | 87.2 | 9.5 | **Confirmed**. Globular/Intermediate, but very distinct structure. |
-| **4** | **LMNA** | 0.71 | 4.75 | 76.4 | 24.9 | **Supported**. High anisotropy, but lower confidence in tails. |
+## Tier 3: Comparators & Globular Structures (Top 10)
+| Gene     |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:---------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| LBX1     |        2.27  |              0.261 |       66.9   |            0.61  |            7.35  |
+| PPARGC1A |        2.185 |              0.11  |       52.743 |            0.791 |            6.561 |
+| RUNX3    |        2.06  |              0.194 |       60.6   |            0.68  |            0     |
+| NTRK3    |        1.94  |              0.553 |       76.8   |            0.28  |            6.34  |
+| NF1      |        1.93  |              0.776 |       87.2   |            0.11  |            2.42  |
+| OTOP1    |        1.75  |              0.515 |       75.7   |            0.32  |            1.83  |
+| MYLK     |        1.464 |              0.4   |       65.845 |            0.392 |            8.29  |
+| IGF1R    |        1.427 |              0.587 |       78.018 |            0.248 |            5.85  |
+| DMD      |        1.316 |              0.487 |       76.349 |            0.362 |            6.908 |
 
-### Middle Tier: The Metabolic/Signaling Cluster
-These candidates show "anisotropy" but it is likely driven by disordered regions (IDRs).
+## Focused Analysis: LBX1 vs Mechanosensors
+| Gene   | Tier                        |   Anisotropy |   Confidence_Score |   pLDDT_mean |   pLDDT_frac_low |   PAE_blockiness |
+|:-------|:----------------------------|-------------:|-------------------:|-------------:|-----------------:|-----------------:|
+| NF1    | Tier 3: Comparator/Globular |        1.93  |              0.776 |       87.2   |            0.11  |            2.42  |
+| PIEZO2 | Tier 1: High Confidence     |        4.44  |              0.627 |       79.4   |            0.21  |            2.8   |
+| LMNA   | Tier 2: Artifact Risk       |        4.75  |              0.527 |       76.4   |            0.31  |            2.56  |
+| LBX1   | Tier 3: Comparator/Globular |        2.27  |              0.261 |       66.9   |            0.61  |            7.35  |
+| GHR    | Tier 2: Artifact Risk       |        5.132 |              0.195 |       58.698 |            0.668 |            5.309 |
+| RUNX3  | Tier 3: Comparator/Globular |        2.06  |              0.194 |       60.6   |            0.68  |            0     |
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **6** | **ARNTL** | 0.57 | 3.32 | 65.5 | 22.8 | **Mixed**. Circadian clock component. IDR-heavy. |
-| **7** | **GHR** | 0.50 | 5.13 | 58.7 | 25.8 | **Artifactual Anisotropy?** Very low confidence. Likely a floppy tail. |
+### LBX1 Structural Assessment
+- **Confidence Score**: 0.261 (Low)
+- **Structural State**: Tier 3: Comparator/Globular
+- **Blockiness**: 7.35 (High blockiness suggests distinct domains separated by flexibility)
 
-### Lower Tier: LBX1 and Proprioceptors
-LBX1 falls into the low-confidence tail.
-
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **10** | **EGR3** | 0.31 | 3.76 | 50.0 | 25.9 | **Speculative**. Very low confidence. Likely IDR-driven. |
-| **11** | **LBX1** | 0.29 | 2.27 | 66.9 | 25.1 | **Weak Structural Evidence**. |
-
-## LBX1 Deep Dive
-**Current Status**: Rank #11/15.
-**The Problem**: LBX1 was originally hypothesized to be a "stiff" transcription factor. The data contradicts this. With pLDDT=66.9 and PAE=25.1, AlphaFold is unsure of its relative domain positions.
-**New Hypothesis**: LBX1 is not a *rod*. It is a *phase-sensor*. Its anisotropy (2.27) and disorder suggest it might condense into liquid droplets.
-*   **Implication**: Mechanical stress might not "bend" LBX1 (as it does PIEZO2). Instead, nuclear stress might change the *solubility* or *phase state* of LBX1, altering its binding kinetics.
-
-## Conclusion
-We must stop referring to LBX1 as a "Tension Rod". It is structurally distinct from PIEZO2/LMNA.
-*   **PIEZO2/LMNA**: Mechanics-through-Structure (Rod).
-*   **LBX1/EGR3**: Mechanics-through-Phase (Droplet).
-
-This distinction creates a falsifiable divergence in our model: PIEZO2 should respond to *strain magnitude*, while LBX1 should respond to *nuclear crowding/density*.
+**Interpretation**: LBX1 fails the criteria for a 'rigid tension rod' (Tier 1). Its moderate anisotropy (2.27) combined with low confidence (pLDDT 66.9) and high blockiness suggests it is a **flexible, multi-domain protein with disordered linkers**. This structure is consistent with a dynamic transcriptional regulator that may use intrinsic disorder for promiscuous binding or phase separation, supporting the 'Disordered Mechanogating' hypothesis over a direct load-bearing role.

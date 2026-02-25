@@ -1,0 +1,26 @@
+Dr. Magdalena Skipper
+Editor-in-Chief, Nature
+
+Dear Dr. Skipper,
+
+We are submitting our manuscript, "Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis," for consideration as an Article in Nature.
+
+Living systems must continuously invest energy to maintain their form against the relentless pull of gravity. While this cost is negligible for small organisms or those with passive stability, we show that human adolescents face a unique and precarious "Allometric Trap." Our work identifies a fundamental scaling law—a "Scaling Catch-22"—where the thermodynamic cost of maintaining spinal straightness ($L^4$) outpaces the growth of metabolic supply ($L^2$). This divergence creates a predictable "Energy Deficit Window" during the adolescent growth spurt, leading to a catastrophic buckling event we recognize as scoliosis.
+
+This manuscript represents a paradigm shift from the prevailing view of scoliosis as a bone disease or a genetic accident. By integrating Cosserat rod mechanics, AlphaFold structural thermodynamics, and cross-species allometry, we demonstrate that the deformity is, in fact, a "Metabolic Buckling" strategy—a mechanism of survival that sheds the "Anisotropy Tax" of upright posture when energy reserves are depleted.
+
+This work is not a specialist clinical report but a description of a general biological principle governing the limits of vertebrate growth. It bridges the gap between soft matter physics and developmental biology, offering a unifying theory for why only humans—among all vertebrates—suffer from this condition.
+
+Given the interdisciplinary nature of this work, we suggest the following reviewers who can evaluate the physical, biological, and clinical dimensions of our argument:
+
+1.  **L. Mahadevan** (Harvard University) – For his expertise in the physics of growth, soft matter mechanics, and biological pattern formation.
+2.  **Olivier Pourquié** (Harvard University) – For his seminal work on vertebrate segmentation and the developmental timing of the spine.
+3.  **Stuart Weinstein** (University of Iowa) – For his definitive clinical expertise on the natural history and etiology of adolescent idiopathic scoliosis.
+
+We declare no competing interests. We look forward to your consideration of this work.
+
+Sincerely,
+
+Sayuj Krishnan S., MBBS, DNB
+Yashoda Hospitals, Hyderabad
+hellodr@drsayuj.info

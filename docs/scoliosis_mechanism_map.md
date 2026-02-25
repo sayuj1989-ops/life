@@ -646,3 +646,25 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Vasiliadis, E. S., et al. (2021). Sclerostin levels in adolescent idiopathic scoliosis. Journal of Children's Orthopaedics.*
+
+---
+
+### 36. The Reissner Resonance Pathway
+
+**Arc Added**: `Reissner_Fiber` $\rightarrow$ `Gain`.
+
+*   **Source**: `Reissner_Fiber` (Structure), `CSF_Sensing` (Mechanism).
+*   **Mechanism**: **Resonant Tuning**.
+    1.  **Tensioned String**: The Reissner Fiber is not a passive aggregate but a dynamic, tensioned polymer that oscillates in vivo (Bellegarda et al., 2023).
+    2.  **Ciliary Interaction**: The fiber physically brushes against the motile cilia of CSF-contacting neurons (CSF-cNs) and ependymal cells.
+    3.  **Gain Enhancement**: This interaction acts as a "stochastic resonance" or mechanical reference, effectively amplifying the sensitivity of the proprioceptive system.
+    4.  **Signal Loss**: If the fiber loses tension (slack) or fails to assemble (scospondin mutation), the reference signal is lost. The sensors effectively "go deaf" to the fine-grained postural errors they are meant to correct.
+*   **Property**: **Feedback Gain ($G_{mech}$)**.
+*   **Role**: **The Plumb Line**. The spine requires an absolute reference frame to distinguish "Vertical" from "Tilted". The tensioned Reissner Fiber provides this internal plumb line.
+    *   **Counter-Curvature Implication**: The "Counter-Curvature" reflex relies on comparing the *actual* shape to the *reference* shape. The Reissner Fiber *is* the physical manifestation of that reference.
+*   **Evidence**: Bellegarda et al. (2023) demonstrated that the Reissner Fiber is under tension and that its ablation reduces the spontaneous activity of CSF-cNs, confirming its role as a gain enhancer.
+
+> **Hypothesis**: The spine's geometry is "tuned" to the resonant frequency of the Reissner Fiber. A "slack string" leads to a "wobbly spine".
+
+**Citations**:
+*   *Bellegarda, C., et al. (2023). The Reissner fiber is a tensioned and dynamic polymer, contacting the CSF-cNs cilia in vivo. eLife, 12, RP86762.* https://doi.org/10.7554/eLife.86762

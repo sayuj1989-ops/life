@@ -441,6 +441,23 @@ $$ \mathcal{S}_{ost} = \frac{\beta_{inh} [SOST]}{\alpha_{load} \langle \sigma_{m
     *   **AIS Context**: On the concave side of a scoliotic curve (high stress), $\mathcal{S}_{ost} \to 0$, driving runaway ossification (wedging).
 *   **Measurable Proxy**: The ratio of serum Sclerostin to serum P1NP, normalized by physical activity level (accelerometry).
 
+### 2.29. The Reissner Resonance Tuning ($\Omega_{RF}$)
+
+We postulate that the Reissner Fiber (RF) acts as a heterogeneous string resonator under tension, tuned to match the spatial frequency of somitic mechanosensory neurons (CSF-cNs).
+
+$$ \Omega_{RF}(s) = \frac{\omega_{drive}(s)}{\omega_{natural}(s)} \approx \frac{2 \pi f_{cilia}}{\frac{\pi}{L_{somite}} \sqrt{\frac{T(s)}{\mu}}} $$
+
+*   **Symbols**:
+    *   $f_{cilia}$: Ciliary Beat Frequency (CBF) driving the fiber ($\approx 30$ Hz) $[T^{-1}]$.
+    *   $L_{somite}$: Characteristic length of a somitic segment $[L]$.
+    *   $T(s)$: Local tension in the Reissner Fiber, increasing rostrally ($dT/ds > 0$) $[MLT^{-2}]$.
+    *   $\mu$: Linear mass density of the fiber $[ML^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\Omega_{RF} \approx 1$ (Critical Tuning): The fiber resonates with the ciliary drive, maximizing amplitude and activating Pkd2l1 channels at nodes.
+    *   $\Omega_{RF} \neq 1$ (Detuned): The fiber is quiescent; sensory feedback is silenced.
+    *   **Mechanism**: The fiber's tension gradient compensates for developmental changes in length or stiffness to maintain resonance. Loss of this gradient (e.g., via flow stasis) detunes the system.
+*   **Measurable Proxy**: The correlation between local RF oscillation amplitude (high-speed imaging) and local somite length.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -764,6 +781,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: SOST mRNA/protein levels in osteocytes treated with GsMTx4 (Piezo inhibitor) vs Vehicle under fluid shear stress.
 *   **Refutation**: If SOST is downregulated by load even when Piezo1 is blocked (e.g., via Integrins or Connexins), the exclusive Piezo-Sost axis is falsified. (Reference: Li et al., 2019).
 
+### Test BE: The Frequency Detuning
+*   **Hypothesis**: Shifting $f_{cilia}$ globally (e.g., via temperature change in zebrafish, which alters CBF) will shift the resonance condition $\Omega_{RF}=1$ to a different anatomical location, inducing curvature at predictable somites rather than globally.
+*   **Data Needed**: Spinal curvature profile of zebrafish larvae raised at 22°C vs 28°C, correlated with RF oscillation maps.
+*   **Refutation**: If curvature topology is temperature-invariant despite CBF changes, the resonance model is falsified. (Reference: Bellegarda et al., 2023).
+
+### Test BF: The Tension Gradient Ablation
+*   **Hypothesis**: The RF possesses a rostral-caudal tension gradient ($dT/ds > 0$). Ablating the fiber at the rostral tip should propagate a tension loss wave that sequentially detunes caudal segments.
+*   **Data Needed**: Sequential high-speed imaging of RF oscillations in caudal somites immediately following rostral laser ablation.
+*   **Refutation**: If tension is uniform ($dT/ds = 0$) or if caudal oscillations persist unchanged after rostral cut, the "tuned string" hypothesis is incorrect. (Reference: Orhon et al., 2020).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -829,3 +856,5 @@ The theory makes specific predictions about the relationship between genetic ani
 61. **Nayfeh, A. H., & Mook, D. T. (1979).** "Nonlinear Oscillations." *Wiley*. (Parametric resonance theory).
 62. **Robling, A. G., et al. (2008).** "Mechanical stimulation of bone in vivo reduces osteocyte expression of Sost/sclerostin." *Journal of Biological Chemistry*, 283(9). (Defines the mechanical brake release).
 63. **Li, X., et al. (2019).** "Piezo1 sensing of mechanical force regulates bone formation." *Nature Communications*, 10. (Establishes the Piezo1-Osteogenesis link).
+64. **Bellegarda, C., et al. (2023).** "The Reissner fiber under tension in vivo shows dynamic interaction with ciliated cells contacting the cerebrospinal fluid." *eLife*, 12. (Demonstrates RF tension gradient and resonance).
+65. **Orhon, I., et al. (2020).** "Reissner fiber-induced signals act on CSF-contacting neurons and are required for the erect posture of the trunk in zebrafish." *Development*, 147. (Demonstrates RF signaling to CSF-cNs).

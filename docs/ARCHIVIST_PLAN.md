@@ -61,9 +61,9 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Consolidate Submission Directories**:
     - [x] Decide between `submission/` and `submission_package/` (likely keep `submission_package` and archive `submission`).
     - [x] Ensure all submission artifacts (cover letter, checklist) are in one place.
-- [ ] **Clean Root of Drafts**:
-    - [ ] Move `.docx` files (`IEC_*.docx`, `NATURE_*.docx`) to `manuscript/drafts/`.
-    - [ ] Move template files (`*_Template.docx`) to `manuscript/templates/`.
+- [x] **Clean Root of Drafts**:
+    - [x] Move `.docx` files (`IEC_*.docx`, `NATURE_*.docx`) to `manuscript/drafts/`.
+    - [x] Move template files (`*_Template.docx`) to `manuscript/templates/`.
 - [ ] **Organize Manuscript Scripts**:
     - [ ] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
 - [ ] **Organize Prompts**:

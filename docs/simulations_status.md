@@ -38,3 +38,4 @@
 | 2026-02-22 | weekly-sim: anisotropy-sweep-v2 | stiffness_anisotropy | Critical Rescue Cliff at Anisotropy ~2.4; Optimal stability at ~2.9; Isotropic collapse (Cobb 87 deg) confirms vector constraint failure. | [Report](../outputs/sim/2026-02-22/report.md) |
 | 2026-02-24 | weekly-sim: active-curvature-sweep | active_curvature | Critical threshold at Curvature=11.0; Sudden jump to >70 deg Cobb despite high anisotropy (5.0). | [Report](../outputs/sim/2026-02-24/report.md) |
 | 2026-03-05 | weekly-sim: taper-sweep | taper_ratio | Geometric Tapering (0.5) stabilizes high growth; Inverted Tapering (1.5) causes catastrophic collapse (Cobb 71 deg). | [Report](../outputs/sim/2026-03-05/report.md) |
+| 2026-03-10 | Energy_Deficit_Bifurcation | chi_kappa, L | Confirmed: High chi leads to earlier deficit onset (L_crit drops from 0.47m to 0.27m) | [CSV](../outputs/thermodynamic_cost/energy_phase_diagram.csv) |

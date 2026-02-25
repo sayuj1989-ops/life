@@ -1,0 +1,2 @@
+frequency_hz,period_s,amplitude,base_chi_kappa,max_cobb_angle,max_curvature,total_energy,tip_sway_lateral,tip_sway_sagittal,runtime_sec,peak_memory_mb
+1.0,1.0,0.5,5.0,130.88533684655036,119.97335842474563,25211.500330167255,0.05487595007099803,0.0,2.568096399307251,15.498912811279297

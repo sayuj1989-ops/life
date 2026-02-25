@@ -1,108 +1,158 @@
-import sys
-
-import numpy as np
 import pandas as pd
-from scipy.cluster.vq import kmeans2
-
+import numpy as np
+from scipy.cluster.vq import kmeans2, whiten
+import os
+import datetime
 
 def main():
-    # Load data
+    # Paths
+    metrics_path = 'outputs/afcc/current_metrics.csv'
+    candidates_path = 'data/candidates_master.csv'
+    hypothesis_register_path = 'notes/hypothesis_register.md'
+
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    report_dir = 'reports/structure_clusters/'
+    if not os.path.exists(report_dir):
+        os.makedirs(report_dir)
+    report_path = f'{report_dir}{today}__cluster_note.md'
+
+    # Load Data
+    if not os.path.exists(metrics_path):
+        print(f"Error: {metrics_path} not found.")
+        return
+    if not os.path.exists(candidates_path):
+        print(f"Error: {candidates_path} not found.")
+        return
+
     try:
-        metrics_df = pd.read_csv('outputs/bolt_biofold_analysis/bolt_biofold_results.csv')
-        candidates_df = pd.read_csv('data/candidates_master.csv')
-    except FileNotFoundError as e:
-        print(f"Error loading files: {e}")
-        sys.exit(1)
+        df_metrics = pd.read_csv(metrics_path)
+        df_candidates = pd.read_csv(candidates_path)
+    except Exception as e:
+        print(f"Error reading CSVs: {e}")
+        return
+
+    # Clean Identity to get gene_symbol
+    df_metrics['Identity'] = df_metrics['Identity'].astype(str)
+    df_metrics['gene_symbol'] = df_metrics['Identity'].apply(lambda x: x.split(' ')[0] if ' ' in x else x)
 
     # Merge
-    # Use gene_symbol as key
-    merged_df = pd.merge(metrics_df, candidates_df[['gene_symbol', 'pathway_tags']], on='gene_symbol', how='left')
+    df = pd.merge(df_metrics, df_candidates, on='gene_symbol', how='inner')
+    print(f"Merged dataset size: {len(df)}")
 
-    # Fill NaN pathway tags with empty string
-    merged_df['pathway_tags'] = merged_df['pathway_tags'].fillna('')
+    if len(df) < 5:
+        print("Not enough data points for clustering.")
+        return
 
-    # Calculate derived metrics
-    # Elongation = End-to-End Distance / Radius of Gyration
-    # Handle division by zero
-    merged_df['elongation'] = merged_df.apply(
-        lambda row: row['end_to_end_distance'] / row['radius_of_gyration'] if row['radius_of_gyration'] > 0 else 0, axis=1
-    )
+    # Select features
+    features = ['Anisotropy', 'pLDDT_mean', 'Disorder_Proxy']
+    df[features] = df[features].apply(pd.to_numeric, errors='coerce')
+    X = df[features].fillna(df[features].mean()).values.astype(float)
 
-    # Select features for clustering
-    features = ['length', 'pLDDT_mean', 'anisotropy_index', 'disorder_fraction_proxy', 'predicted_domain_segments', 'elongation']
+    # Whiten (normalize)
+    X_scaled = whiten(X)
 
-    # Check for missing values and fill with mean
-    for col in features:
-        if col not in merged_df.columns:
-            print(f"Warning: Column {col} not found. Creating dummy.")
-            merged_df[col] = 0
-        merged_df[col] = merged_df[col].fillna(merged_df[col].mean())
-
-    data = merged_df[features].values.astype(float)
-
-    # Standardize (Whiten)
-    # scipy.cluster.vq.whiten divides by std dev. It doesn't subtract mean.
-    # For K-means, mean centering is also good practice, but whitening is often sufficient for scale invariance.
-    # Let's do manual Z-score standardization for better control.
-    data_mean = np.mean(data, axis=0)
-    data_std = np.std(data, axis=0)
-    # Avoid division by zero
-    data_std[data_std == 0] = 1.0
-
-    data_scaled = (data - data_mean) / data_std
-
-    # Run K-Means
-    k = 5
-    # seed for reproducibility
+    # Cluster (k=5)
     np.random.seed(42)
-    centroids, labels = kmeans2(data_scaled, k, minit='points')
+    n_clusters = 5
+    centroids, labels = kmeans2(X_scaled, k=n_clusters, minit='points')
+    df['cluster'] = labels
 
-    merged_df['cluster'] = labels
+    # Analyze Clusters
+    cluster_stats = []
+    target_terms = ["Mechanotransduction", "Spine", "ECM", "Cilia", "Cytoskeleton"]
 
-    # Analyze clusters
-    print(f"--- Cluster Analysis (k={k}) ---\n")
+    print("\nCluster Analysis:")
+    for i in range(n_clusters):
+        cluster_df = df[df['cluster'] == i]
+        mean_aniso = cluster_df['Anisotropy'].mean()
+        mean_plddt = cluster_df['pLDDT_mean'].mean()
+        mean_disorder = cluster_df['Disorder_Proxy'].mean()
 
-    for i in range(k):
-        cluster_data = merged_df[merged_df['cluster'] == i]
-        n_members = len(cluster_data)
+        # Calculate enrichment score
+        tags_list = cluster_df['pathway_tags'].dropna().astype(str).tolist()
+        all_tags = []
+        for tags in tags_list:
+            all_tags.extend([t.strip() for t in tags.split(',')])
 
-        print(f"Cluster {i}: {n_members} members")
+        enrichment_score = 0
+        for term in target_terms:
+            count = sum(1 for t in all_tags if term.lower() in t.lower())
+            enrichment_score += count
 
-        # Mean feature values
-        means = cluster_data[features].mean()
-        print("  Mean Features:")
-        for feat in features:
-            print(f"    {feat}: {means[feat]:.2f}")
+        # Normalize by cluster size to avoid bias towards large clusters
+        enrichment_score = enrichment_score / len(cluster_df) if len(cluster_df) > 0 else 0
 
-        # Pathway enrichment
-        pathways = []
-        for tags in cluster_data['pathway_tags']:
-            if tags:
-                pathways.extend([t.strip() for t in tags.split(',')])
+        members = cluster_df['gene_symbol'].tolist()
+        print(f"Cluster {i} (n={len(cluster_df)}): Aniso={mean_aniso:.2f}, pLDDT={mean_plddt:.2f}, Disorder={mean_disorder:.2f}, Enrichment={enrichment_score:.2f}")
 
-        pathway_counts = pd.Series(pathways).value_counts().head(5)
-        print("  Top Pathways:")
-        if not pathway_counts.empty:
-            for p, count in pathway_counts.items():
-                print(f"    {p}: {count}")
-        else:
-            print("    (No pathway tags found)")
+        cluster_stats.append({
+            'cluster_id': i,
+            'mean_aniso': mean_aniso,
+            'mean_plddt': mean_plddt,
+            'mean_disorder': mean_disorder,
+            'enrichment_score': enrichment_score,
+            'members': members,
+            'tags': tags_list
+        })
 
-        # Top members (closest to centroid)
-        # Calculate distance to centroid
-        cluster_scaled = data_scaled[labels == i]
-        centroid = centroids[i]
-        distances = np.linalg.norm(cluster_scaled - centroid, axis=1)
+    # Select best cluster based on enrichment score
+    best_cluster = max(cluster_stats, key=lambda x: x['enrichment_score'])
+    print(f"\nSelected Cluster {best_cluster['cluster_id']} (Score: {best_cluster['enrichment_score']:.2f})")
 
-        # Get indices of top 5
-        sorted_indices = np.argsort(distances)[:5]
-        top_members = cluster_data.iloc[sorted_indices]
+    # Generate Hypothesis
+    members = best_cluster['members']
+    aniso = best_cluster['mean_aniso']
+    disorder = best_cluster['mean_disorder']
 
-        print("  Representative Members:")
-        for _, row in top_members.iterrows():
-            print(f"    {row['gene_symbol']} (Aniso: {row['anisotropy_index']:.2f}, Domains: {row['predicted_domain_segments']})")
+    hypothesis_id = f"H_{today.replace('-','_')}_Cluster_{best_cluster['cluster_id']}"
 
-        print("\n" + "-"*30 + "\n")
+    if aniso > 3.0:
+        role = "Tensile Tether"
+        concept = "High anisotropy suggests these proteins act as molecular calipers or tethers, transmitting force over long distances."
+        test = "Apply cyclic strain and measure protein alignment/nuclear translocation."
+    elif disorder > 0.4:
+        role = "Entropic Spring"
+        concept = "High intrinsic disorder suggests these proteins function as entropic springs, tuning stiffness via conformational entropy."
+        test = "Measure persistence length via FRET under osmotic compression."
+    else:
+        role = "Signaling Hub"
+        concept = "Globular structure with specific domains suggests a role in signal integration rather than direct mechanics."
+        test = "Compare phosphorylation states under static vs dynamic loading."
+
+    # Write Report
+    content = f"""# Structure Cluster Report: {today}
+
+## Cluster Analysis
+**Focus Cluster:** {best_cluster['cluster_id']} (Enrichment Score: {best_cluster['enrichment_score']:.2f})
+**Members:** {', '.join(members)}
+**Shared Properties:**
+- Mean Anisotropy: {aniso:.2f}
+- Mean pLDDT: {best_cluster['mean_plddt']:.2f}
+- Mean Disorder: {disorder:.2f}
+
+## Hypothesis: {hypothesis_id}
+**Concept:** {concept}
+**Proposed Mechanical Role:** {role}
+
+## Concrete Test
+**Experiment:** {test}
+"""
+    with open(report_path, 'w') as f:
+        f.write(content)
+    print(f"Report written to {report_path}")
+
+    # Update Hypothesis Register
+    # Check if hypothesis already exists
+    with open(hypothesis_register_path, 'r') as f:
+        register_content = f.read()
+
+    if hypothesis_id not in register_content:
+        new_entry = f"| **{hypothesis_id}** | {concept} | Cluster analysis identified a group enriched in mechanotransduction with distinct structural properties (Aniso={aniso:.2f}, Disorder={disorder:.2f}). | {test} | Proposed |\n"
+        with open(hypothesis_register_path, 'a') as f:
+            f.write(new_entry)
+        print(f"Hypothesis added to {hypothesis_register_path}")
+    else:
+        print("Hypothesis already exists in register.")
 
 if __name__ == "__main__":
     main()

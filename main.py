@@ -1,7 +1,7 @@
 """
 Master reproducible execution script for the Code Ocean capsule.
 This script runs the core analysis pipeline for the
-"Biological Countercurvature of Spacetime" manuscript.
+"Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis" manuscript.
 """
 
 import os

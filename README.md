@@ -1,6 +1,6 @@
-# Biological Countercurvature of Spacetime
+# Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis
 
-**An Information-Cosserat Framework for Spinal Geometry**
+**Formerly: Biological Countercurvature of Spacetime**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -11,9 +11,9 @@
 
 This repository contains the manuscript, reproducible analysis code, and datasets supporting a theoretical framework that explains how developmental information shapes biological structures against gravity. The work bridges developmental genetics, biomechanics, and differential geometry to understand spinal curvature in normal development, microgravity adaptation, and pathological conditions like scoliosis.
 
-**Key Insight:** Developmental information acts as biological "countercurvature"—modifying the effective spacetime metric experienced by living structures, enabling them to maintain complex geometries against gravitational loading.
+**Key Insight:** Adolescent Idiopathic Scoliosis (AIS) is a "Metabolic Buckling" event caused by a mismatch between the scaling laws of mechanical demand ($L^4$) and metabolic supply ($L^2$). This "Energy Deficit Window" forces the spine to buckle into a lower-energy configuration to survive.
 
-📄 **Manuscript:** [manuscript/main.tex](manuscript/main.tex)  
+📄 **Manuscript:** [manuscript/nature_submission_manuscript.tex](manuscript/nature_submission_manuscript.tex)
 📊 **Figures:** [figures/main/](figures/main/)  
 🔬 **Core Logic:** [src/spinalmodes/](src/spinalmodes/)
 
@@ -34,7 +34,7 @@ The repository is organized into clear functional domains:
 ├── research/                     # Active research modules (e.g., AlphaFold Countercurvature)
 │
 ├── manuscript/                   # Camera-ready manuscript sources
-│   ├── main.tex                  # Main LaTeX file
+│   ├── nature_submission_manuscript.tex  # Main LaTeX file
 │   └── references.bib            # Bibliography
 │
 ├── scripts/                      # Reproducible experiment runners
@@ -69,7 +69,7 @@ pip install -r requirements.txt
 To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
 
 ```bash
-python scripts/experiment_minimal_elastica.py
+python scripts/experiments/experiment_minimal_elastica.py
 ```
 
 ### 3. AlphaFold Counter-Curvature Analysis
@@ -103,11 +103,11 @@ Model predicts spinal curvature **persists in microgravity**, identifying a "Sta
 If you use this work, please cite:
 
 ```bibtex
-@article{krishnan2025biological_countercurvature,
-  title   = {Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry},
+@article{krishnan2026metabolic_buckling,
+  title   = {Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis},
   author  = {Krishnan, Sayuj},
   journal = {preprint},
-  year    = {2025},
+  year    = {2026},
   url     = {https://github.com/sayujks0071/life}
 }
 ```

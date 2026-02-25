@@ -216,7 +216,7 @@ def generate_figure(
         )
 
     plt.suptitle(
-        "Biological Countercurvature of Spacetime: Information-Driven Geometry",
+        "Metabolic Buckling: Information-Driven Geometry",
         fontsize=14,
         fontweight="bold",
         y=0.98,

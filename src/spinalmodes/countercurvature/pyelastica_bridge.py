@@ -34,6 +34,7 @@ from .coupling import (
 )
 from .info_fields import InfoField1D
 from .scoliosis_metrics import compute_scoliosis_metrics, ScoliosisMetrics
+from .proprioception import DelayedFeedbackTorques, ProprioceptiveParams
 
 ArrayF64 = NDArray[np.float64]
 
@@ -541,6 +542,7 @@ class CounterCurvatureRodSystem:
         boundary_condition: str = "fixed",
         progress_bar: bool = True,
         circadian_params: Optional[CircadianParams] = None,
+        proprioceptive_params: Optional[ProprioceptiveParams] = None,
     ) -> SimulationResult:
         _check_pyelastica()
 
@@ -578,6 +580,12 @@ class CounterCurvatureRodSystem:
         # Active Moments (if any)
         if self.active_torques is not None:
              system.add_forcing_to(self.rod).using(ActiveMuscleTorques, torques=self.active_torques)
+
+        # Proprioceptive Feedback (Delayed)
+        if proprioceptive_params is not None:
+            system.add_forcing_to(self.rod).using(
+                DelayedFeedbackTorques, params=proprioceptive_params, dt=dt
+            )
 
         # Damping
         system.dampen(self.rod).using(ea.AnalyticalLinearDamper, damping_constant=damping_constant, time_step=dt)
@@ -694,6 +702,8 @@ def run_protein_simulation(
     scale_factor_kappa: float = 5.0,
     scale_factor_tau: float = 5.0,
     scale_factor_E: float = 0.5,
+    proprioception_delay: float = 0.0,
+    proprioception_gain: float = 0.0,
 ) -> Dict[str, Any]:
     """
     Run a mechanical simulation driven by protein-derived metrics using PyElastica.
@@ -803,12 +813,20 @@ def run_protein_simulation(
         )
 
         # 4. Run Simulation
+        proprio_params = None
+        if proprioception_gain != 0.0:
+            proprio_params = ProprioceptiveParams(
+                delay=proprioception_delay,
+                gain=proprioception_gain
+            )
+
         result = rod_system.run_simulation(
             final_time=duration,
             dt=dt,
             save_every=max(1, int(duration/dt/10)),
             boundary_condition=boundary_condition,
-            progress_bar=show_progress
+            progress_bar=show_progress,
+            proprioceptive_params=proprio_params
         )
 
         sim_metrics = result.compute_final_metrics()
@@ -1030,6 +1048,7 @@ __all__ = [
     "run_protein_simulation",
     "compute_U_CC",
     "CircadianParams",
+    "ProprioceptiveParams",
 ]
 
 if __name__ == "__main__":

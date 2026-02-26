@@ -441,6 +441,23 @@ $$ \mathcal{S}_{ost} = \frac{\beta_{inh} [SOST]}{\alpha_{load} \langle \sigma_{m
     *   **AIS Context**: On the concave side of a scoliotic curve (high stress), $\mathcal{S}_{ost} \to 0$, driving runaway ossification (wedging).
 *   **Measurable Proxy**: The ratio of serum Sclerostin to serum P1NP, normalized by physical activity level (accelerometry).
 
+### 2.29. The Anisotropic Metabolic Cost ($\mu_{aniso}$)
+
+We define $\mu_{aniso}$ as the marginal metabolic cost required to maintain the structural anisotropy of a protein domain against rotational diffusion and thermal randomization.
+
+$$ P_{maint} = \mu_{aniso} \cdot [C] \cdot (\Lambda - 1) $$
+
+*   **Symbols**:
+    *   $P_{maint}$: Metabolic power density $[ML^{-1}T^{-3}]$ (W/m³).
+    *   $\mu_{aniso}$: Anisotropic cost coefficient $[ML^2T^{-3}N^{-1}]$ (Watts per mole per unit aspect ratio).
+    *   $[C]$: Molar concentration of the protein $[N L^{-3}]$.
+    *   $\Lambda$: Aspect ratio ($L_{major}/L_{minor}$).
+*   **Physical Interpretation**:
+    *   **$\Lambda \approx 1$**: Globular proteins (e.g., GFP) have minimal entropic maintenance cost beyond synthesis.
+    *   **$\Lambda \gg 1$**: High-aspect-ratio proteins (e.g., Filamin, Piezo1 arms) require continuous ATP consumption (via chaperones or cytoskeletal tension) to prevent "entropic curling" or aggregation.
+*   **AIS Context**: In the "Energy Deficit Window" ($\mathcal{M}_{prop} < 1$), the cell sheds expensive high-$\Lambda$ proteins first. This selectively degrades the "Vector" sensing system (high anisotropy) while preserving the "Scalar" system (globular), causing geometric blindness.
+*   **Measurable Proxy**: The rate of ATP depletion (via Seahorse XF analyzer) in cells expressing high-anisotropy constructs vs globular controls, under ATP synthesis blockade.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -764,6 +781,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: SOST mRNA/protein levels in osteocytes treated with GsMTx4 (Piezo inhibitor) vs Vehicle under fluid shear stress.
 *   **Refutation**: If SOST is downregulated by load even when Piezo1 is blocked (e.g., via Integrins or Connexins), the exclusive Piezo-Sost axis is falsified. (Reference: Li et al., 2019).
 
+### Test BE: The Anisotropic Cost Scaling
+*   **Hypothesis**: Metabolic maintenance cost ($P_{maint}$) scales linearly or super-linearly with protein aspect ratio ($\Lambda$).
+*   **Data Needed**: ATP turnover rates (oxygen consumption rate) in cells transfected with synthetic protein nanorods of varying $\Lambda$ (1 to 10), controlled for expression level.
+*   **Refutation**: If ATP cost is independent of $\Lambda$ (i.e., depends only on mass), the thermodynamic penalty for anisotropy is negligible. (Reference: Lynch & Marinov, 2015).
+
+### Test BF: The Starvation-Induced Isotropization
+*   **Hypothesis**: Under acute energy stress (glucose deprivation), the cell will preferentially degrade or disassemble high-$\Lambda$ structures (e.g., stress fibers, primary cilia) to lower $P_{maint}$, while preserving globular housekeeping proteins.
+*   **Data Needed**: Time-lapse anisotropy imaging (fluorescence polarization) of the cytoskeleton during metabolic starvation.
+*   **Refutation**: If high-$\Lambda$ structures are preserved equally well as low-$\Lambda$ structures during starvation, the "Energy Saving" hypothesis is falsified. (Reference: Naganathan et al., 2014).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -829,3 +856,5 @@ The theory makes specific predictions about the relationship between genetic ani
 61. **Nayfeh, A. H., & Mook, D. T. (1979).** "Nonlinear Oscillations." *Wiley*. (Parametric resonance theory).
 62. **Robling, A. G., et al. (2008).** "Mechanical stimulation of bone in vivo reduces osteocyte expression of Sost/sclerostin." *Journal of Biological Chemistry*, 283(9). (Defines the mechanical brake release).
 63. **Li, X., et al. (2019).** "Piezo1 sensing of mechanical force regulates bone formation." *Nature Communications*, 10. (Establishes the Piezo1-Osteogenesis link).
+64. **Lynch, M., & Marinov, G. K. (2015).** "The bioenergetic costs of a gene." *PNAS*, 112(51). (Foundational metabolic cost theory).
+65. **Naganathan, S. R., et al. (2014).** "Active torque generation by the actomyosin cortex drives left-right symmetry breaking." *eLife*, 3. (Links ATP consumption to cortical anisotropy).

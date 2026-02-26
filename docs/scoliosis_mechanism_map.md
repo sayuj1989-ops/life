@@ -646,3 +646,25 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Vasiliadis, E. S., et al. (2021). Sclerostin levels in adolescent idiopathic scoliosis. Journal of Children's Orthopaedics.*
+
+---
+
+### 36. The Stiffness Gain Controller (COL11A1-MMP3)
+
+**Arc Added**: `COL11A1` $\rightarrow$ `MMP` (Suppression), `ESR1` $\rightarrow$ `MMP` (Suppression).
+
+*   **Source**: `COL11A1` (Collagen XI), `ESR1` (Estrogen Receptor Alpha).
+*   **Mechanism**: **The Broken Brake**.
+    1.  **MMP Suppression**: Normally, `COL11A1` and `ESR1` act as negative regulators of `MMP3`, preventing excessive ECM degradation.
+    2.  **Variant Defect**: The `COL11A1` p.Pro1335Leu variant fails to suppress `MMP3`.
+    3.  **Hormonal Sensitivity**: Because `ESR1` is the *other* suppressor, the system becomes hypersensitive to estrogen levels. When estrogen drops or fluctuates (adolescence), the "backup brake" fails, and MMP3 levels skyrocket.
+    4.  **Softening**: Excess MMP3 degrades Aggrecan, leading to a loss of compressive stiffness in the disc and endplate.
+*   **Property**: **Stiffness ($EI$)**.
+*   **Role**: **The Stiffness Gain Controller**. The spine must actively suppress degradation to maintain the stiffness required for growth.
+    *   **Counter-Curvature Implication**: This is a failure of "Stiffness Gain". The spine cannot "harden" its material properties to match its growing length, leading to buckling.
+*   **Evidence**: Yu et al. (2024) identified this specific axis, linking a genetic risk factor (COL11A1) to a hormonal trigger (Estrogen) and a mechanical outcome (Stiffness).
+
+> **Hypothesis**: Scoliosis in females is often a "Double Brake Failure". The genetic brake (COL11A1) is broken, so the spine relies entirely on the hormonal brake (Estrogen). When that fluctuates, the crash occurs.
+
+**Citations**:
+*   *Yu, L., et al. (2024). COL11A1 variants in adolescent idiopathic scoliosis: The stiffness gain controller. eLife, 13, RP97210.* https://doi.org/10.7554/eLife.97210

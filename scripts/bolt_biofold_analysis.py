@@ -18,8 +18,18 @@ try:
 except ImportError:
     # If the import fails, we might be running from repo root
     sys.path.append(os.path.abspath('research/alphafold_countercurvature/src'))
-    from afcc.metrics import MetricsAnalyzer
-    from afcc.structure import StructureParser
+    try:
+        from afcc.metrics import MetricsAnalyzer
+        from afcc.structure import StructureParser
+    except ImportError:
+        print("CRITICAL: Could not import 'afcc' module. Ensure you are running from the repo root.")
+        sys.exit(1)
+
+# Check for Scipy
+try:
+    import scipy
+except ImportError:
+    print("WARNING: Scipy not found. Some geometric optimizations will fall back to slower implementations.")
 
 # Configuration
 PROTEINS = [
@@ -101,6 +111,22 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         print(f"Exception fetching data for {uniprot_id}: {e}")
         return None
 
+def plot_pae_heatmap(pae_matrix: np.ndarray, symbol: str, output_path: str):
+    """Generates and saves a heatmap of the PAE matrix."""
+    if pae_matrix is None:
+        return
+
+    plt.figure(figsize=(8, 6))
+    plt.imshow(pae_matrix, cmap="Greens_r", vmin=0, vmax=30)
+    plt.colorbar(label="Predicted Aligned Error (Å)")
+    plt.title(f"PAE Heatmap: {symbol}")
+    plt.xlabel("Residue Index")
+    plt.ylabel("Residue Index")
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+    print(f"Saved PAE heatmap to {output_path}")
+
 def print_markdown_table(df: pd.DataFrame):
     """Prints a DataFrame as a Markdown table manually."""
     if df.empty:
@@ -124,9 +150,14 @@ def main():
     results = []
 
     # Store data for plotting
-    plot_data = {}
+    plot_data_plddt = {}
+    pae_plot_count = 0
+    MAX_PAE_PLOTS = 3
 
-    print(f"Starting Bolt-BioFold Analysis Cycle on {len(PROTEINS)} proteins...")
+    print("### Bolt-BioFold Analysis Cycle")
+    print(f"Date: {pd.Timestamp.now()}")
+    print(f"Source: Default Seed List ({len(PROTEINS)} proteins)")
+    print("--------------------------------------------------")
 
     for prot in PROTEINS:
         uid = prot['uniprot']
@@ -153,6 +184,11 @@ def main():
             resnames=resnames,
             pae_matrix=pae_matrix
         )
+
+        # Plot PAE if available and under limit
+        if pae_matrix is not None and pae_plot_count < MAX_PAE_PLOTS:
+            plot_pae_heatmap(pae_matrix, symbol, os.path.join(OUTPUT_DIR, f"bolt_biofold_pae_{symbol}.png"))
+            pae_plot_count += 1
 
         # Combine identity + metrics
         entry = {
@@ -195,7 +231,7 @@ def main():
         }
 
         results.append(entry)
-        plot_data[symbol] = plddt
+        plot_data_plddt[symbol] = plddt
 
     # Generate Outputs
     df = pd.DataFrame(results)
@@ -210,10 +246,10 @@ def main():
     print(df.to_csv(index=False))
     print("```")
 
-    # Plotting
-    plt.figure(figsize=(10, 6))
-    for symbol, plddt in plot_data.items():
-        plt.plot(plddt, label=symbol, alpha=0.7, linewidth=1)
+    # Plotting pLDDT
+    plt.figure(figsize=(12, 8))
+    for symbol, plddt in plot_data_plddt.items():
+        plt.plot(plddt, label=symbol, alpha=0.6, linewidth=1)
 
     plt.title("Per-Residue Confidence (pLDDT)")
     plt.xlabel("Residue Index")
@@ -222,18 +258,23 @@ def main():
     plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.tight_layout()
     plt.savefig(os.path.join(OUTPUT_DIR, "bolt_biofold_plddt.png"))
-    print(f"\nSaved plot to {os.path.join(OUTPUT_DIR, 'bolt_biofold_plddt.png')}")
+
+    print("\n### Key plots summary")
+    print(f"- **pLDDT Confidence Plot**: Saved to `{os.path.join(OUTPUT_DIR, 'bolt_biofold_plddt.png')}`")
+    if pae_plot_count > 0:
+        print(f"- **PAE Heatmaps**: Generated for {pae_plot_count} proteins (e.g., `bolt_biofold_pae_*.png`).")
 
     # Interpretation
-    print("\n### Interpretation")
+    print("\n### Interpretation bullets")
     for row in results:
         symbol = row['protein_id'].split()[0]
         anisotropy = float(row['anisotropy_index'])
         hinges = int(row['hinge_candidates'])
         plddt_high = float(row['pLDDT_fraction_high'])
         curvature = float(row['curvature_summary'])
+        rg = float(row['radius_of_gyration'])
 
-        interp = f"- **{symbol}**: "
+        interp = f"* **{symbol}**: "
         conf_level = "High" if plddt_high > 0.8 else ("Medium" if plddt_high > 0.5 else "Low")
 
         # Heuristics
@@ -256,18 +297,22 @@ def main():
             interp += "Matters: Mechanotransducer; structural disorder likely facilitates binding versatility under stress."
         elif "DMD" in symbol:
             interp += "Matters: Muscle-ECM linker; massive length and flexibility essential for shock absorption."
+        elif "LBX1" in symbol:
+            interp += "Matters: Transcription factor; disordered regions may suggest condensate formation (phase separation) potential."
         else:
             interp += "Matters: Structural metrics imply role in mechanical integrity or sensing."
 
-        # Next Test
-        if hinges > 0 and anisotropy > 2:
-            next_test = "Next: Test mechanical gating/unfolding under force."
-        elif row['likely_IDR_heavy']:
-             next_test = "Next: Analyze IDR phase separation potential."
-        else:
-            next_test = "Next: Compare with orthologs to check conservation of geometry."
+        # Add next test suggestion inline for bullet brevity? Or keep separate?
+        # Requirement says: "Next test (one concrete hypothesis)"
 
-        print(f"{interp} {next_test}")
+        if hinges > 0 and anisotropy > 2:
+            next_test = "Test mechanical gating/unfolding under force."
+        elif row['likely_IDR_heavy']:
+             next_test = "Analyze IDR phase separation potential."
+        else:
+            next_test = "Compare with orthologs to check conservation of geometry."
+
+        print(f"{interp} Next test: {next_test}")
 
     # Best Next Move
     print("\n### Best Next Move")

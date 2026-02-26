@@ -1,5 +1,27 @@
-A diagram illustrating "Spinal Jetlag" as the cause of twist-bend coupling.
-Show two parallel growth plates (Left and Right) behaving as coupled oscillators.
-Depict a phase shift (delta phi) between them, caused by a delay (tau) in the neural control loop.
-This phase shift causes one side to grow faster than the other at specific times, inducing a torque (twist) alongside the bending.
-Label "Left Clock", "Right Clock", "Neural Delay", and "Resulting Torsion".
+Title: The Spinal Jetlag Mechanism: Symmetry Breaking via Circadian Desynchronization
+
+Concept: A schematic diagram illustrating how a phase shift ("jetlag") between the circadian clocks of the left and right vertebral growth plates converts planar sagittal buckling into 3D helical scoliosis.
+
+Visual Elements:
+1.  **Left Panel: Synchronized State (Healthy)**
+    -   Two parallel vertical bars representing the left and right sides of the spine.
+    -   Inside each bar, a sine wave represents the oscillating growth rate (clock gene expression).
+    -   The sine waves are perfectly in phase ($\Delta \phi = 0$).
+    -   Result: The spine grows straight upward.
+    -   Label: "Synchronized Growth ($\Delta \phi = 0$)" and "Planar Symmetry".
+
+2.  **Right Panel: Desynchronized State (Scoliotic)**
+    -   The same two vertical bars.
+    -   The sine waves are now shifted relative to each other ($\Delta \phi \approx \pi/2$ or 90 degrees).
+    -   Visual effect: One side is "growing" (peak) while the other is "resting" (trough).
+    -   Result: The spine twists into a helical spiral (corkscrew shape).
+    -   Label: "Spinal Jetlag ($\Delta \phi \neq 0$)" and "Twist-Bend Coupling".
+
+3.  **Mechanism Arrow:**
+    -   An arrow connecting the phase shift to the twist, labeled "Twist-Bend Coupling Operator $\chi_{TB}$".
+
+Style:
+-   Clean, modern scientific diagram.
+-   Colors: Use Blue for "Synchronized/Healthy" and Red/Orange for "Desynchronized/Scoliotic".
+-   Background: White.
+-   Annotations: Clear, sans-serif font.

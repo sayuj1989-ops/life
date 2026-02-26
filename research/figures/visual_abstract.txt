@@ -1,1 +1,25 @@
-Visual Abstract for 'Biological Countercurvature of Spacetime'. A split comparison. Left side: A passive elastic rod bending downward under gravity (Gravity Dominated). Right side: A biological spine maintaining a robust S-curve against gravity, with a glowing mathematical grid overlay representing the 'effective metric' or 'countercurvature'. The background is a subtle mix of biological tissue textures and spacetime curvature grids. Title: 'Biological Countercurvature'. Style: High-end 3D render, scientific visualization.
+Title: Biological Countercurvature: An Information-Cosserat Framework
+
+Concept: A visual metaphor for the core theory, illustrating how biological information acts as a "force" that bends spacetime (or structure) against gravity.
+
+Visual Elements:
+1.  **Central Figure:** A translucent, glowing human spine.
+    -   The spine has a perfect, healthy S-curve.
+    -   It is composed of golden light or "code" (binary/DNA strands), representing Information.
+
+2.  **Environment:** A 3D wireframe grid representing Spacetime/Gravity.
+    -   The grid is warped *downward* by gravity (like a heavy mass on a rubber sheet).
+    -   The spine, however, warps the grid *upward* (Countercurvature), creating a local bubble of non-Euclidean geometry.
+
+3.  **Forces:**
+    -   Downward purple arrows labeled "Gravity ($g$)".
+    -   Upward/curving golden arrows emanating from the spine labeled "Information ($\mathcal{I}$)".
+
+4.  **Equation (Optional but impactful):**
+    -   Ideally, include the text "$\mathcal{S}_{co} = \frac{K \dot{L} \tau}{B}$" floating near the critical instability point (thoracic curve).
+
+Style:
+-   High-end 3D render style (Blender/Cinema4D aesthetic).
+-   Dark background (space/void) to make the glowing spine pop.
+-   Colors: Gold/Amber (Information/Life) vs. Purple/Dark Blue (Entropy/Gravity).
+-   "Futuristic but biological."

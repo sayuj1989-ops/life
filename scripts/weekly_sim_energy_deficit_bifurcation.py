@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Weekly Simulation: Energy Deficit Bifurcation (2D Phase Diagram).
+# Executed for H_2026_02_08_EnergyPhase
 
 Performs a 2D parameter sweep of the Energy Deficit Window across (χ_κ, L) space.
 Generates a phase diagram showing where AIS vulnerability is highest (Energy Deficit > Supply).

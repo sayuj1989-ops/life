@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-05-22
+**Last Updated:** 2026-03-13
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -28,8 +28,8 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Component | Script Path | Purpose | Key Outputs | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **AFCC_Pipeline** | `research/alphafold_countercurvature/scripts/run_afcc_daily.py` | Generate Figure 6: Protein Structure Integration. Fetches AFDB structures, computes Anisotropy/Disorder metrics. | `research/alphafold_countercurvature/data/processed/candidates.csv` | ✅ **Active** | Successfully ranks candidates (PIEZO2, COL1A1, etc.). |
-| **AFCC_Report** | `research/alphafold_countercurvature/scripts/bolt_biofold_report.py` | Generate structured analysis reports. | `reports/afcc_latest.md` | ✅ **Active** | Summarizes protein metrics. |
+| **AFCC_Pipeline** | `scripts/afcc_daily_refresh.py` | Generate Figure 6: Protein Structure Integration. Fetches AFDB structures, computes Anisotropy/Disorder metrics. | `outputs/afcc/current_metrics.csv` | ✅ **Active** | Successfully ranks candidates (PIEZO2, COL1A1, etc.). |
+| **AFCC_Report** | `scripts/bolt_biofold_analysis.py` | Generate structured analysis reports. | `reports/afcc_latest.md` | ✅ **Active** | Summarizes protein metrics. |
 
 ## 4. Missing / Pending Experiments
 

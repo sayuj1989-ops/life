@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Verified and updated by Jules on 2026-02-26
 """
 Squat-to-Stand Cycle: Dynamic Thermodynamic Perturbation of the Standing Wave
 ==============================================================================

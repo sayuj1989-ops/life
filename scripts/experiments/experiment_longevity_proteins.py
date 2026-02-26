@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Verified and updated by Jules on 2026-02-26
 """
 Longevity Protein Analysis: Extending the Thermodynamic Cost Framework
 ========================================================================

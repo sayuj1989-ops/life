@@ -95,16 +95,16 @@ For N uniformly-spaced cycles per day:
 χ_avg = χ₀ · (τ_decay · N / T_day) · (1 − exp(−T_day / (N · τ_decay)))
 ```
 
-**Quantitative predictions (with τ_decay = 2 hours):**
+**Quantitative predictions (from simulation, τ_decay = 2 hours):**
 
 | Lifestyle | Cycles/day | χ_avg / χ₀ | Interpretation |
 |-----------|-----------|------------|----------------|
-| Bedridden | 0 | ~0% | Complete coupling loss |
-| Sedentary | 1 | ~12% | Near-total loss |
-| Chair-sitter | 3 | ~30% | Significant degradation |
-| Active-sitter | 20 | ~75% | Moderate preservation |
-| Floor-sitter | 50 | ~92% | High preservation |
-| Okinawan elder | 80 | ~96% | Near-complete preservation |
+| Bedridden | 0 | 0.0% | Complete coupling loss |
+| Sedentary | 1 | 8.3% | Near-total loss |
+| Chair-sitter | 3 | 24.5% | Significant degradation |
+| Active-sitter | 20 | 75.2% | Moderate preservation |
+| Floor-sitter | 50 | 88.9% | High preservation |
+| Okinawan elder | 80 | 92.9% | Near-complete preservation |
 
 ---
 
@@ -130,36 +130,29 @@ P_counter ~ ηₐ · ρ · A · g · L² · <|κ_IEC − κ_passive|²>
 
 During a 30% height increase (L: 0.35 → 0.45 m), demand increases 1.65× (L²) to 2.13× (L³).
 
-**Per-cycle dissipation breakdown (estimated from simulation):**
+**Per-cycle dissipation breakdown (computed from `experiment_squat_stand_cycle.py`):**
 
 ```
-ΔḞ_η_p ≈ ηₚ · L · <|∂κ/∂t|²>_peak · Δt_transition
-         ~ 1.0 · 1.0 · (10 rad/m/s)² · 2.0 s
-         ~ 200 J/m  (dominates during 2s transition window)
-
-ΔḞ_η_a ≈ ηₐ · L · <(κ − κ_passive)²>_mean · T_cycle
-         ~ 1.0 · 1.0 · (5 rad/m)² · 4.0 s
-         ~ 100 J/m  (sustained during holding phases)
-
-ΔḞ_Γ_m ≈ Γₘ · L · T_cycle
-         ~ 0.1 · 1.0 · 4.0
-         ~ 0.4 J/m  (baseline, always present)
+ΔḞ_η_p (sensing)   ≈ 5,860 J  (58% of total)
+ΔḞ_η_a (actuation) ≈ 4,275 J  (42% of total)
+ΔḞ_Γ_m (maint.)    ≈ 0.4 J    (negligible baseline over 4s)
+Total per cycle    ≈ 10,140 J
 ```
 
-**Key insight:** The sensing term (η_p) accounts for ~67% of per-cycle energy, confirming that the **proprioceptive refresh** is the most metabolically expensive component of a single squat-to-stand cycle. This maps directly to PIEZO2 (anisotropy 4.44) and EGR3 (disorder 64%) being structurally expensive proteins.
+**Key insight:** The sensing term (η_p) accounts for ~58% of per-cycle energy, confirming that the **proprioceptive refresh** is the most metabolically expensive component of a single squat-to-stand cycle. This maps directly to PIEZO2 (anisotropy 4.44) and EGR3 (disorder 64%) being structurally expensive proteins.
 
 ### 3.2 Daily Energy Budget
 
 For an Okinawan elder (80 cycles/day):
 
 ```
-ΔḞ_daily = 80 × 300 J/m = 24,000 J/m ≈ 24 kJ for the spinal column
+ΔḞ_daily = 80 × 10,140 J ≈ 811 kJ (significant metabolic investment)
 ```
 
 For a chair-sitter (3 cycles/day):
 
 ```
-ΔḞ_daily = 3 × 300 J/m = 900 J/m ≈ 0.9 kJ
+ΔḞ_daily = 3 × 10,140 J ≈ 30 kJ
 ```
 
 The 27× difference in daily thermodynamic cycling investment maps to the ~5.4× hazard ratio difference observed by De Brito et al.

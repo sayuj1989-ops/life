@@ -110,12 +110,12 @@ Each cycle resets coupling. For N cycles/day, time-averaged coupling:
 
 | Lifestyle | Cycles/day | χ_avg/χ₀ | SRT Prediction (age 70) |
 |-----------|-----------|----------|------------------------|
-| Bedridden | 0 | ~0% | 0-1 |
-| Sedentary | 1 | ~12% | 1-2 |
-| Chair-sitter | 3 | ~30% | 2-4 |
-| Active-sitter | 20 | ~75% | 5-7 |
-| Floor-sitter | 50 | ~92% | 7-9 |
-| Okinawan elder | 80 | ~96% | 8-10 |
+| Bedridden | 0 | 0.0% | 0-1 |
+| Sedentary | 1 | 8.3% | 1-2 |
+| Chair-sitter | 3 | 24.5% | 2-4 |
+| Active-sitter | 20 | 75.2% | 5-7 |
+| Floor-sitter | 50 | 88.9% | 7-9 |
+| Okinawan elder | 80 | 92.9% | 8-10 |
 
 ---
 
@@ -194,5 +194,5 @@ Each cycle resets coupling. For N cycles/day, time-averaged coupling:
 
 ---
 
-**Last updated:** 2026-02-23
+**Last updated:** 2026-02-26
 **Contact:** dr.sayujkrishnan@gmail.com

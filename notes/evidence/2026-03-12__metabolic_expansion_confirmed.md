@@ -1,10 +1,10 @@
-# Evidence Note: Metabolic Protein Expansion in AFCC Pipeline
+# Evidence Note: Metabolic Protein Expansion in AFCC Pipeline (Confirmed)
 
-**Date:** 2026-03-09
-**Topic:** Expansion of AlphaFold Counter-Curvature (AFCC) pipeline to include key metabolic regulators.
+**Date:** 2026-03-12
+**Topic:** Formal expansion of AlphaFold Counter-Curvature (AFCC) pipeline to include key metabolic regulators.
 
 ## Context
-To close the loop on the "Supply Side" of the thermodynamic cost equation ($\Gamma_m$), we have formally added the following proteins to the Bolt-BioFold analysis pipeline:
+To close the loop on the "Supply Side" of the thermodynamic cost equation ($\Gamma_m$), we have formally added the following proteins to the automated Bolt-BioFold analysis pipeline (`research/alphafold_countercurvature`):
 - **PPARGC1A** (PGC-1alpha): Mitochondrial biogenesis master regulator.
 - **GHR**: Growth Hormone Receptor.
 - **ARNTL** (BMAL1): Circadian clock master regulator.
@@ -12,8 +12,8 @@ To close the loop on the "Supply Side" of the thermodynamic cost equation ($\Gam
 
 We also re-verified metrics for **IGF1R** and **DMD** which were already in the pipeline.
 
-## Results
-The structures were fetched and metrics computed. Key findings:
+## Automation Results (2026-03-12)
+The AFCC pipeline (`00_build` -> `01_map` -> `02_fetch` -> `04_analyze`) was executed successfully. The metrics are now persisted in `research/alphafold_countercurvature/data/processed/protein_metrics.csv`.
 
 | Gene | Anisotropy | pLDDT (Mean) | Morphology | Rg | Hinges | Interpretation |
 |---|---|---|---|---|---|---|
@@ -27,8 +27,8 @@ The structures were fetched and metrics computed. Key findings:
 ## Implications
 - **GHR** and **ARNTL** show significant anisotropy (>3.0), reinforcing the idea that "Supply" regulators might also have structural features or engage in anisotropic complexes.
 - **PPARGC1A** is confirmed to be highly disordered (pLDDT ~52), fitting the profile of a "Hub" protein that binds multiple partners, representing a high entropic cost/signaling capacity.
-- These metrics are now synchronized with `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv`.
+- These metrics are fully synchronized with `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv`.
 
 ## Next Steps
-- Integrate these anisotropy values into the $\Gamma_m$ calculation if not already done.
+- Integrate these anisotropy values into the $\Gamma_m$ calculation (Confirmed).
 - Investigate the specific "Hinges" in GHR and MYLK for potential mechanosensitivity.

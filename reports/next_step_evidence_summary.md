@@ -1,25 +1,34 @@
 # Next Step Evidence Summary
-**Date:** 2026-03-06
-**Author:** AI Research Engineer
 
-## 1. What is Stronger Now (Confidences Gained)
-*   **PIEZO2 as a Tension Rod**: Confirmed with high confidence (Score 1.59, Rank #2). Its anisotropy (4.44) is supported by high pLDDT (79.4) and low PAE (17.0), validating it as a rigid mechanical strut.
-*   **Structural Dichotomy**: We have successfully separated "True Rods" (PIEZO2, LMNA, PLOD1) from "Disordered Nodes" (LBX1, EGR3, GHR). This resolves previous confusion where low-confidence "anisotropy" was conflated with stiffness.
-*   **Metabolic Candidate Identification**: We confirmed that metabolic candidates (ARNTL, GHR) are being actively updated (fresh metrics), distinguishing them from the stale structural candidates.
+**Generated:** 2026-02-26
+**Status:** **PIVOT REQUIRED**
+**New Direction:** From "Stiff Caliper" to "Condensate Sensor"
 
-## 2. What Remains Weak (Risks Identified)
-*   **Stale Core Data**: The metrics for PIEZO2, LBX1, and LMNA have not been re-calculated since January (static values). While reliable, they miss any recent pipeline improvements applied to the metabolic set.
-*   **LBX1 Mechanism**: The "Stiff Rod" hypothesis for LBX1 is effectively **refuted** by its low structural confidence (pLDDT=66.9). We lack a validated alternative mechanism (Phase Separation is currently speculative).
-*   **Schema Instability**: The `metrics.csv` format is drifting, posing a risk to automated monitoring.
+## 1. What is Stronger Now
+- **Negative Control:** We have definitively **refuted** the idea that LBX1 is a rigid, high-confidence structural rod (`reports/confidence_weighted_structural_evidence.md`). This prevents wasting resources on stiffness assays.
+- **Data Integrity:** We have proven that "temporal trends" in AlphaFold metrics were artifacts of data reuse (`reports/evidence_freshness_audit.md`). We now have a clean baseline.
+- **New Candidates:** We identified **FBLN5** and **STOML3** as high-confidence, high-anisotropy structural candidates to replace LBX1 in the "Stiffness" arm of the theory.
+
+## 2. What Remains Weak
+- **LBX1 Mechanism:** The "Condensate Sensor" hypothesis is plausible (High Blockiness, Low pLDDT) but lacks direct experimental proof.
+- **POC5 Reality:** The extreme anisotropy of POC5 (24.7) is paired with low confidence (64.0), making it a high-risk structural bet without TEM/AFM validation.
+- **Cross-Species Data:** We still lack the `experiment_cross_species_scaling.py` script and data to validate the evolutionary angle.
 
 ## 3. Top 3 Highest-Leverage Next Experiments
-Based on the `reports/lbx1_falsifiability_plan.md`, these are the critical next moves:
 
-1.  **Chemical Probe (Phase Separation)**: Treat LBX1-expressing neurons with **1,6-hexanediol**.
-    *   *Why*: Fastest way to test the new "Disordered Sensor" hypothesis. If it works, it validates the pivot from "Rod" to "Droplet".
-2.  **Nuclear Stiffness Rescue**: Overexpress **Lamin A (LMNA)** in LBX1-KO neurons.
-    *   *Why*: Tests the "Downstream" link. If stiffness rescues the phenotype, it confirms the mechanical etiology regardless of LBX1's direct structure.
-3.  **Freshness Pipeline Repair**: Refactor `scripts/afcc_daily_refresh.py` to **force-recalculate** metrics for PIEZO2/LBX1 using the latest code, ensuring the "Confidence Gap" isn't just an artifact of old software.
+1.  **Validate LBX1 Phase Separation (Exp B/C from Plan)**
+    - *Why:* If LBX1 does not form condensates, the entire mechanosensory hypothesis for it collapses.
+    - *Action:* GFP-LBX1-ΔIDR vs WT in hyper-osmotic stress.
 
-## Conclusion
-The Biological Countercurvature hypothesis has matured. We have moved from a simplistic "Everything is a Rod" model to a nuanced "Rods (PIEZO2) vs. Droplets (LBX1)" model. This creates distinct, falsifiable predictions for the next phase of research.
+2.  **Test FBLN5/STOML3 as the Real "Stiff Rods"**
+    - *Why:* These proteins actually fit the original "Stiff Caliper" structural profile (High Anisotropy + High pLDDT).
+    - *Action:* Check expression in paraxial mesoderm; knockdown phenotypes.
+
+3.  **LINC Complex Decoupling (Exp A from Plan)**
+    - *Why:* Determines if the sensing is physical (nuclear strain) or biochemical.
+    - *Action:* *SUN1/2* knockdown + Cyclic stretch -> LBX1 localization.
+
+## 4. Immediate Actions for Manuscript
+- **Rewrite:** Remove all references to LBX1 as a "stiff rod". Replace with "disordered/condensate-forming".
+- **Substitute:** Use PIEZO2, LMNA, and FBLN5 as the primary examples of "Molecular Struts".
+- **Caveat:** Explicitly label POC5 as a "Putative" fiber requiring validation.

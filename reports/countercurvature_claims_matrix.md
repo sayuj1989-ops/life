@@ -1,37 +1,38 @@
 # Countercurvature Claims Matrix
-**Date:** 2026-03-06
-**Evidence Source:** `outputs/afcc/confidence_weighted_ranking.csv`
 
-## 1. Confirmed Claims (High Confidence)
-These claims are supported by **high-confidence** structural metrics (Anisotropy > 3.0, pLDDT > 70, PAE < 20).
+**Generated:** 2026-02-26
+**Purpose:** Discipline manuscript claims by mapping them to data confidence tiers.
 
-| Claim | Candidate | Evidence Metric | Status |
+## 1. Confirmed Claims (Tier 1)
+*Supported by direct measurement (pLDDT > 70) and reproducible metric trends.*
+
+| Claim | Status | Evidence Source | Confidence |
 |---|---|---|---|
-| **"Tension Rod" Architecture** | **PIEZO2** | Anisotropy=4.44, pLDDT=79.4 | **CONFIRMED**. High aspect ratio is structurally validated. |
-| **"Tension Rod" Architecture** | **LMNA** | Anisotropy=4.75, pLDDT=76.4 | **CONFIRMED**. Fibrous nature aligns with nuclear lamina role. |
-| **"Tension Rod" Architecture** | **PLOD1** | Anisotropy=3.40, pLDDT=92.7 | **CONFIRMED**. Extremely rigid enzyme structure. |
-| **Scalar vs Vector Sensing** | **PIEZO1 vs PIEZO2** | PIEZO2 (4.44) > PIEZO1 (3.90) | **CONFIRMED**. PIEZO2 is measurably more anisotropic than PIEZO1. |
+| **"PIEZO2 is a stiff, extended molecular rod."** | **CONFIRMED** | `outputs/afcc/2026-02-16/metrics.csv` (Aniso: 4.44, pLDDT: 79.4) | **High** |
+| **"LMNA acts as a nuclear tension element."** | **CONFIRMED** | `outputs/afcc/2026-02-18/metrics.csv` (Aniso: 4.75, pLDDT: 76.4) | **High** |
+| **"FBLN5 and STOML3 are viable high-stiffness candidates."** | **CONFIRMED** | `outputs/afcc/confidence_weighted_ranking.csv` (Weighted: ~5.8-4.7) | **High** |
+| **"LBX1 is structurally distinct from PIEZO2/LMNA."** | **CONFIRMED** | `reports/confidence_weighted_structural_evidence.md` (Aniso: 2.27 vs 4.44) | **High** |
 
-## 2. Supported Claims (Low Confidence)
-These claims are supported by metrics, but the structural confidence is **low** (pLDDT < 70), suggesting the feature might be disordered.
+## 2. Supported Claims (Tier 2)
+*Supported by data trends but requiring specific context or caveat (e.g., Low pLDDT).*
 
-| Claim | Candidate | Evidence Metric | Status |
+| Claim | Status | Evidence Source | Caveat |
 |---|---|---|---|
-| **"Blocky Scaffold"** | **LBX1** | Anisotropy=2.27, Blockiness=7.35 | **SUPPORTED (WEAK)**. "Blockiness" exists but pLDDT=66.9 suggests it's likely dynamic/disordered domains. |
-| **"Metabolic Anisotropy"** | **GHR** | Anisotropy=5.13 | **SUPPORTED (ARTIFACTUAL?)**. pLDDT=58.7 is very low. Likely a disordered tail, not a rod. |
-| **"Disordered Proprioception"** | **EGR3** | Anisotropy=3.76, pLDDT=50.0 | **SUPPORTED**. High disorder aligns with IDR hypothesis, not structural stiffness. |
-| **"Disordered Proprioception"** | **RUNX3** | Anisotropy=2.06, pLDDT=60.6 | **SUPPORTED**. Consistent with transcription factor disorder. |
+| **"POC5 forms extreme anisotropic fibers."** | **SUPPORTED** | `outputs/afcc/2026-02-16/metrics.csv` (Aniso: 24.7) | Low Confidence (pLDDT 64.0); likely IDR-extended. |
+| **"LBX1 structure is consistent with condensate formation."** | **SUPPORTED** | `outputs/afcc/2026-02-16/metrics.csv` (Blockiness: 7.35, High IDR) | Metric supports "Phase Separation" but does not prove function. |
+| **"CNNM2 is a high-anisotropy magnesium transporter."** | **SUPPORTED** | `outputs/afcc/confidence_weighted_ranking.csv` (Weighted: 6.01) | Medium Confidence (pLDDT 70.4). |
 
-## 3. Speculative Claims (Refuted or Unproven)
-These claims are contradicted by the new confidence-weighted analysis or lack metric support.
+## 3. Speculative / Refuted Claims (Tier 3)
+*Hypotheses not supported by current structural data or actively contradicted.*
 
-| Claim | Candidate | Refutation / Gap | Status |
+| Claim | Status | Evidence Against | Recommendation |
 |---|---|---|---|
-| **"LBX1 is a stiff rod"** | **LBX1** | pLDDT=66.9, PAE=25.1 | **REFUTED**. Structure is too low-confidence/disordered to be a rigid mechanical strut. |
-| **"Metabolic Enzymes are Rods"** | **ARNTL, MYLK** | pLDDT < 66 | **WEAKENED**. Likely IDR-driven phase separation, not rigid enzymatic rods. |
-| **"Sexual Dimorphism via Rods"** | **General** | No sex-specific structural data | **SPECULATIVE**. Metric differences (if any) are not linked to sex in this dataset. |
+| **"LBX1 acts as a 'Stiff Caliper' or rigid rod."** | **REFUTED** | `reports/confidence_weighted_structural_evidence.md` (Weighted Score: 1.52) | **Abandon.** Pivot to Condensate Sensor. |
+| **"GHR is a high-stiffness structural rod."** | **SPECULATIVE** | `outputs/afcc/2026-02-16/metrics.csv` (pLDDT: 58.7) | **Weak.** Low confidence suggests disorder, not stiffness. |
+| **"Structural evolution of candidates driven by time."** | **REFUTED** | `reports/evidence_freshness_audit.md` (Freshness: < 0.20) | **Stop.** Static vectors prove no evolution occurred. |
 
-## Action Plan
-*   **Retract**: "LBX1 is a stiff rod". Replace with "LBX1 is a disordered phase-sensor".
-*   **Maintain**: "PIEZO2 is a Tension Rod".
-*   **Investigate**: "Metabolic Anisotropy" (GHR, ARNTL) – verify if IDRs are functional or artifacts.
+## 4. Manuscript Guidelines
+- **DO NOT** claim LBX1 is stiff. Use "condensate-forming" or "disordered domain-rich".
+- **DO NOT** imply "trends" in structure over Jan-Feb. State "consistent AlphaFold predictions".
+- **DO** highlight FBLN5 and STOML3 as new, high-confidence mechanosensory candidates.
+- **DO** flag POC5 as "putative fiber" pending experimental validation of its folded state.

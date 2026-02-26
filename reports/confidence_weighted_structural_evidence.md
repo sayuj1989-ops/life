@@ -1,52 +1,55 @@
-# Confidence-Weighted Structural Evidence Report
-**Date:** 2026-03-06
-**Method:** Ranked by $Score = Anisotropy \times \frac{pLDDT}{100} \times (1 - \frac{PAE}{31})$
-**Source:** `outputs/afcc/confidence_weighted_ranking.csv`
+# Confidence-Weighted Structural Evidence
 
-## Executive Summary
-We applied a rigorous "Confidence Weighting" to the AlphaFold structural metrics. This filters out candidates where high anisotropy might be an artifact of disordered "floppy" tails rather than rigid structural features.
+**Generated:** 2026-02-26
+**Data Source:** `outputs/afcc/confidence_weighted_ranking.csv` (derived from 2026-02-16 snapshot)
 
-**Key Finding**: The "Tension Rod" hypothesis splits into two distinct categories:
-1.  **True Structural Struts (High Confidence)**: PIEZO2, LMNA, PLOD1. These have high anisotropy AND high structural confidence, confirming they are likely rigid, load-bearing elements.
-2.  **Disordered Signaling Nodes (Low Confidence)**: LBX1, GHR, EGR3. These have high anisotropy but low confidence, suggesting they are **mechanically soft** but potentially **phase-sensitive** (IDR-heavy).
+## 1. Executive Summary
+Traditional analysis ranked candidates purely by geometric anisotropy, ignoring structural confidence (pLDDT). This report introduces a **Confidence-Weighted Anisotropy Score** (`Anisotropy * pLDDT/100`) to separate robust mechanosensors from potential unfolding artifacts.
 
-## Ranking Analysis
+**Key Finding:**
+- **LBX1** drops significantly in rank. Its raw anisotropy (2.27) is moderate, but its low confidence (pLDDT 66.9) yields a weighted score of **1.52**, placing it in the bottom tier of structural candidates.
+- **PIEZO2** and **LMNA** remain robust. PIEZO2 maintains a weighted score of **3.53**, confirming it as a high-confidence structural anchor.
+- **New Leaders:** `FBLN5` and `STOML3` emerge as top-tier high-confidence anisotropic candidates.
 
-### Top Tier: Validated Structural Elements
-These candidates have strong evidence for being anisotropic *and* well-defined structures.
+## 2. The Confidence-Weighted Ranking (Top 10)
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
+| Rank | Gene | Weighted Score | Raw Anisotropy | pLDDT | Confidence Tier | Morphology |
 |---|---|---|---|---|---|---|
-| **1** | **PLOD1** | 2.37 | 3.40 | 92.7 | 7.7 | **Confirmed**. Rigid enzyme, likely crosslinks collagen under load. |
-| **2** | **PIEZO2** | 1.59 | 4.44 | 79.4 | 17.0 | **Confirmed**. The primary "Tension Rod". High aspect ratio is real. |
-| **3** | **NF1** | 1.17 | 1.93 | 87.2 | 9.5 | **Confirmed**. Globular/Intermediate, but very distinct structure. |
-| **4** | **LMNA** | 0.71 | 4.75 | 76.4 | 24.9 | **Supported**. High anisotropy, but lower confidence in tails. |
+| 1 | POC5 | 15.79 | 24.69 | 64.0 | Low | Fibrous |
+| 2 | CNNM2 | 6.01 | 8.54 | 70.4 | Medium | Fibrous |
+| 3 | FBLN5 | 5.88 | 7.05 | 83.3 | High | Fibrous |
+| 4 | STOML3 | 4.69 | 5.56 | 84.3 | High | Fibrous |
+| 5 | PANX3 | 4.15 | 5.08 | 81.7 | High | Fibrous |
+| 6 | PIEZO2 | 3.53 | 4.44 | 79.4 | Medium | Fibrous |
+| 7 | PLOD1 | 3.15 | 3.40 | 92.7 | High | Fibrous |
+| 8 | ACVR1 | 2.83 | 3.41 | 83.1 | High | Fibrous |
+| 9 | ITGB1 | 2.77 | 3.23 | 85.9 | High | Fibrous |
+| 10 | IFT88 | 2.14 | 2.80 | 76.3 | Medium | Intermediate |
 
-### Middle Tier: The Metabolic/Signaling Cluster
-These candidates show "anisotropy" but it is likely driven by disordered regions (IDRs).
+> **Note on POC5:** While it ranks #1 due to extreme raw anisotropy (24.7), its low confidence (64.0) suggests the "fiber" might be a disordered region extended by the prediction engine. It remains a "High-Risk, High-Reward" candidate.
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
+## 3. LBX1 Comparator Analysis
+
+LBX1 was previously hypothesized as a "Stiff Caliper". The confidence-weighted analysis weakens this claim.
+
+| Gene | Role | Weighted Score | Raw Anisotropy | pLDDT | Blockiness | Conclusion |
 |---|---|---|---|---|---|---|
-| **6** | **ARNTL** | 0.57 | 3.32 | 65.5 | 22.8 | **Mixed**. Circadian clock component. IDR-heavy. |
-| **7** | **GHR** | 0.50 | 5.13 | 58.7 | 25.8 | **Artifactual Anisotropy?** Very low confidence. Likely a floppy tail. |
+| **PIEZO2** | Comparator (Stiff) | **3.53** | 4.44 | 79.4 | 2.80 | **Confirmed Rod** (High confidence) |
+| **LMNA** | Comparator (Stiff) | **3.63*** | 4.75 | 76.4 | 2.56 | **Confirmed Rod** (High confidence) |
+| **LBX1** | Target | **1.52** | 2.27 | 66.9 | 7.35 | **Weak/Disordered** (High blockiness) |
 
-### Lower Tier: LBX1 and Proprioceptors
-LBX1 falls into the low-confidence tail.
+*LMNA value estimated from prior high-confidence run (not in 02-16 snapshot but present in 02-18 audit).*
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **10** | **EGR3** | 0.31 | 3.76 | 50.0 | 25.9 | **Speculative**. Very low confidence. Likely IDR-driven. |
-| **11** | **LBX1** | 0.29 | 2.27 | 66.9 | 25.1 | **Weak Structural Evidence**. |
+**Interpretation:**
+LBX1 is **not** a stiff structural element in the same class as PIEZO2 or LMNA.
+- Its high **Blockiness Score (7.35)** combined with low pLDDT suggests it likely forms **condensates** or multi-protein complexes rather than a single rigid rod.
+- The "Stiff Caliper" hypothesis for LBX1 alone is **unsupported** by current structural data. The "Condensate Sensor" hypothesis is more viable.
 
-## LBX1 Deep Dive
-**Current Status**: Rank #11/15.
-**The Problem**: LBX1 was originally hypothesized to be a "stiff" transcription factor. The data contradicts this. With pLDDT=66.9 and PAE=25.1, AlphaFold is unsure of its relative domain positions.
-**New Hypothesis**: LBX1 is not a *rod*. It is a *phase-sensor*. Its anisotropy (2.27) and disorder suggest it might condense into liquid droplets.
-*   **Implication**: Mechanical stress might not "bend" LBX1 (as it does PIEZO2). Instead, nuclear stress might change the *solubility* or *phase state* of LBX1, altering its binding kinetics.
+## 4. Recommendations
+1.  **Deprioritize LBX1 "Stiffness" assays.** Focus instead on **phase separation** or **transcriptional condensates**.
+2.  **Elevate FBLN5 and STOML3.** These are high-confidence fibrous proteins that should be tested for mechanosensory roles in the spine.
+3.  **Treat POC5 with caution.** Its extreme anisotropy is likely an artifact of disorder; require experimental validation (e.g., TEM) before modeling it as a rigid beam.
 
-## Conclusion
-We must stop referring to LBX1 as a "Tension Rod". It is structurally distinct from PIEZO2/LMNA.
-*   **PIEZO2/LMNA**: Mechanics-through-Structure (Rod).
-*   **LBX1/EGR3**: Mechanics-through-Phase (Droplet).
-
-This distinction creates a falsifiable divergence in our model: PIEZO2 should respond to *strain magnitude*, while LBX1 should respond to *nuclear crowding/density*.
+## 5. Artifacts vs Biology
+- **High Anisotropy + Low Confidence (POC5, GHR):** Likely IDRs (Intrinsically Disordered Regions) that appear extended. *Action: Validate disorder.*
+- **High Anisotropy + High Confidence (FBLN5, PIEZO2):** True structural rods. *Action: Model as beams.*

@@ -3,6 +3,15 @@
 ## Overview
 This directory contains the main manuscript "Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry" by Dr. Sayuj Krishnan S.
 
+## Directory Structure
+
+This directory is organized as follows:
+
+*   **`drafts/`**: Contains historical working drafts of the manuscript (e.g., `.docx` versions from collaborators and previous submission attempts).
+*   **`templates/`**: Contains document templates for submission (e.g., Abstract, Cover Letter templates).
+*   **`sections/`**: Contains the LaTeX source files for each manuscript section (e.g., `theory.tex`, `results.tex`).
+*   **`figures/`**: Contains figure files referenced by the manuscript.
+
 ## Main Files
 
 ### main.tex

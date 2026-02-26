@@ -12,12 +12,12 @@ This registry tracks high-priority gene and protein candidates identified as rel
 
 | Rank | Gene Symbol | Score | Mechanism / Rationale | Gravity/Mechano Link |
 |:----:|:-----------:|:-----:|:----------------------|:---------------------|
-| 1 | **ARNTL** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | BMAL1; circadian clock TF in intervertebral disc regulating metabolism. |
+| 1 | **ARNTL** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | BMAL1; circadian clock TF in intervertebral disc. |
 | 2 | **DAG1** | 100 | **ECM**: Critical muscle-ECM link; similar to DMD. | Connects ECM to cytoskeleton via DGC; essential for force transmission. |
-| 3 | **DMD** | 100 | **Muscle**: Essential for maintenance of muscle tone against gravity; loss leads to collapse. | Connects cytoskeleton to ECM (costamere), protecting muscle from contraction-induced mechanical damage and gravity load. |
+| 3 | **DMD** | 100 | **Thermodynamic_Cost**: Essential for maintenance of muscle tone against gravity; loss leads to collapse. | Dystrophin; cytoskeleton-ECM linker in paraspinal muscle (eta_a term). |
 | 4 | **GHR** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | Growth hormone receptor; master regulator of adolescent growth spurt rate. |
-| 5 | **IGF1R** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | Insulin-like growth factor 1 receptor; mediates growth plate signaling under load. |
-| 6 | **MYLK** | 100 | **Muscle**: Regulator of myosin contractility. | Regulates smooth/non-muscle motility and contractility via myosin phosphorylation. |
+| 5 | **IGF1R** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | Insulin-like growth factor 1 receptor; mediates growth plate signaling. |
+| 6 | **MYLK** | 100 | **Thermodynamic_Cost**: Regulator of myosin contractility. | Myosin light chain kinase; tonic contraction regulator (eta_a term). |
 | 7 | **PPARGC1A** | 100 | **Thermodynamic_Cost**: Essential for Gamma_m supply side. | Mitochondrial biogenesis master regulator; determines energy SUPPLY capacity. |
 | 8 | **ACVR1** | 95 | **Signaling**: Direct causative mutation linking mechanosensing failure to catastrophic spinal ossification. | FOP causative mutation (R206H) alters mechanosensing (stiffness sensing) and leads to heterotopic ossification. |
 | 9 | **ALPL** | 95 | **Bone**: Critical enzyme for bone mineralization. | Hydrolyzes pyrophosphate to allow mineralization under load. |

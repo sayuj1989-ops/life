@@ -84,8 +84,25 @@ def main():
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
     # Write to processed/candidates.csv (used by 01 and 04)
-    top_n.to_csv(PROCESSED_CANDIDATES, index=False)
-    print(f"📄 Wrote top 10 to {PROCESSED_CANDIDATES}")
+    # Actually, we should not overwrite the whole candidates file with just top 10,
+    # as other scripts might rely on the full list of candidates in processed/candidates.csv.
+    # However, to maintain pipeline compatibility while avoiding data loss,
+    # we'll read existing processed candidates, update the 'source' for top_n, and write back,
+    # or just let bolt_targets control what gets reported.
+    # Wait, the pipeline 01_map_to_uniprot expects PROCESSED_CANDIDATES.
+    # We will preserve the existing PROCESSED_CANDIDATES if it exists, and just ensure top_n is in it.
+    if PROCESSED_CANDIDATES.exists():
+        existing_df = pd.read_csv(PROCESSED_CANDIDATES)
+        # Update or append
+        existing_symbols = existing_df['gene_symbol'].tolist()
+        new_rows = top_n[~top_n['gene_symbol'].isin(existing_symbols)]
+        if not new_rows.empty:
+            existing_df = pd.concat([existing_df, new_rows], ignore_index=True)
+        existing_df.to_csv(PROCESSED_CANDIDATES, index=False)
+        print(f"📄 Updated {PROCESSED_CANDIDATES} with top 10")
+    else:
+        top_n.to_csv(PROCESSED_CANDIDATES, index=False)
+        print(f"📄 Wrote top 10 to {PROCESSED_CANDIDATES}")
 
     # Write to processed/bolt_targets.csv (used by 06 to filter report)
     # 06_bolt_report.py expects 'gene_symbol'

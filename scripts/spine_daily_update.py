@@ -113,6 +113,19 @@ def generate_report(data):
 
     return report
 
+def save_report(report):
+    """
+    Saves the report to reports/daily_update_latest.md
+    """
+    reports_dir = "reports"
+    if not os.path.exists(reports_dir):
+        os.makedirs(reports_dir)
+
+    filepath = os.path.join(reports_dir, "daily_update_latest.md")
+    with open(filepath, "w") as f:
+        f.write(report)
+    print(f"Report saved to {filepath}")
+
 if __name__ == "__main__":
     roadmap_path = "research/spine_submission/roadmap.md"
     data, error = parse_roadmap(roadmap_path)
@@ -121,4 +134,6 @@ if __name__ == "__main__":
         print(error)
         sys.exit(1)
     else:
-        print(generate_report(data))
+        report = generate_report(data)
+        print(report)
+        save_report(report)

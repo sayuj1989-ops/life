@@ -1,0 +1,33 @@
+CHECKLIST FOR NATURE SUBMISSION
+
+1.  **Format**:
+    *   [ ] **Article Type**: "Article" (Up to 3000 words main text, up to 6 display items).
+    *   [ ] **Abstract**: Structured (Background -> Methods -> Results -> Conclusion). Approx 150 words.
+    *   [ ] **Main Text**: Introduction (merged with results), Results (subheadings), Discussion (concise).
+    *   [ ] **Methods**: Separate section at the end.
+    *   [ ] **References**: < 50 for main text (ideally ~30-40).
+    *   [ ] **Font**: Times New Roman, 12pt, Double Spaced.
+    *   [ ] **Margins**: 1 inch.
+
+2.  **Content Requirements**:
+    *   [ ] **Title**: < 90 characters (including spaces). Active voice.
+    *   [ ] **Data Availability Statement**: Mandatory. Link to GitHub repo/Zenodo.
+    *   [ ] **Code Availability Statement**: Mandatory. Link to GitHub/Zenodo.
+    *   [ ] **Conflict of Interest Statement**: "The authors declare no competing interests."
+    *   [ ] **Author Contributions**: Initials (S.K.S.) designed research, performed research, analyzed data, wrote paper.
+
+3.  **Figures**:
+    *   [ ] **Count**: Max 6 figures/tables combined for main text.
+    *   [ ] **Format**: EPS/PDF for vector, TIFF for raster (300 dpi).
+    *   [ ] **Legends**: < 300 words per figure.
+
+4.  **Highlights (for Elsevier/Cell Press transfer options)**:
+    *   "Gravity Paradox: Mechanical demand ($L^4$) outpaces metabolic supply ($L^2$) in puberty."
+    *   "Information-Elasticity Coupling (IEC) explains spinal S-curve stability."
+    *   "AlphaFold analysis reveals high anisotropy cost for gravity sensors (PIEZO2)."
+    *   "Spinal Jetlag: Proprioceptive delay triggers scoliotic buckling."
+
+5.  **Word Count Verification**:
+    *   **Abstract**: ~150 words.
+    *   **Main Text**: ~2500-3000 words.
+    *   **Methods**: No strict limit, but keep concise (~1500 words).

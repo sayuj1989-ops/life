@@ -8,11 +8,14 @@ import pytest
 from pathlib import Path
 from unittest.mock import patch
 
-# Add scripts folder to python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+# Add scripts/experiments folder to python path so we can import the script
+# The script is at scripts/experiments/experiment_pyelastica_minimal.py
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts', 'experiments'))
 
 # Import the module under test
+# Note: Since the file is scripts/experiments/experiment_pyelastica_minimal.py, and we added scripts/experiments to path
 import experiment_pyelastica_minimal as minimal_script
+
 from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE, run_protein_simulation
 
 def test_run_protein_simulation_args():

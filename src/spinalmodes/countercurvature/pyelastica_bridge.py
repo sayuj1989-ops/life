@@ -743,6 +743,10 @@ def run_protein_simulation(
         - Energy metrics: U_CC, U_elastic, U_info, info_gain_ratio.
         - Performance metrics: runtime_sec, peak_memory_mb.
         - success (bool) and error (str).
+
+    Note on Resource Profiling:
+        This function internally uses `tracemalloc` to measure peak memory usage during the simulation.
+        If the caller is also using `tracemalloc`, nested usage behavior may vary.
     """
     if not PYELASTICA_AVAILABLE:
         return {
@@ -1005,6 +1009,7 @@ def compute_U_CC(
 
     # --- U_CC ---
     # U_CC = U_gravity + U_elastic_straight - U_info_coupling
+    # U_CC represents the organism's thermodynamic cost function, minimizing deformation while aligning with information
     U_CC = U_gravity + U_elastic_straight - U_info_coupling
 
     # --- Info Gain Ratio ---

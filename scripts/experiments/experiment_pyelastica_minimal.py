@@ -14,10 +14,13 @@ from pathlib import Path
 import csv
 import time
 import argparse
+# Removed tracemalloc from outer script as run_protein_simulation handles it internally
 
 # Ensure src is in python path
 # This handles execution from repo root or scripts/ dir
 current_file = Path(__file__).resolve()
+# Assuming this script is at scripts/experiments/experiment_pyelastica_minimal.py
+# src is at ../../../src relative to this file
 src_path = current_file.parent.parent.parent / "src"
 if str(src_path) not in sys.path:
     sys.path.append(str(src_path))
@@ -80,6 +83,7 @@ def run_experiment(
     print("-" * 80)
 
     start_time_all = time.time()
+    max_peak_memory = 0.0
 
     for bc in boundary_conditions:
         for mod in stiffness_modulations:
@@ -115,6 +119,11 @@ def run_experiment(
                         print(f"Failed for A={anisotropy}, C={active_curvature}, BC={bc}, Mod={mod}: {result.get('error')}")
                         continue
 
+                    # Track peak memory across all runs
+                    run_peak_mem = result.get("peak_memory_mb", 0.0)
+                    if run_peak_mem > max_peak_memory:
+                        max_peak_memory = run_peak_mem
+
                     # Store result
                     row = {
                         "boundary_condition": bc,
@@ -138,6 +147,7 @@ def run_experiment(
     total_time = time.time() - start_time_all
     print("-" * 70)
     print(f"Total experiment time: {total_time:.2f} s")
+    print(f"Max Peak memory usage (single run): {max_peak_memory:.2f} MB")
 
     # Save to CSV
     if results:
@@ -149,14 +159,15 @@ def run_experiment(
         print(f"Results saved to {csv_file}")
 
         # Generate Report
-        generate_report(md_file, results, total_time)
+        generate_report(md_file, results, total_time, max_peak_memory)
         print(f"Report saved to {md_file}")
 
-def generate_report(md_file, results, total_time):
+def generate_report(md_file, results, total_time, peak_mb):
     """Generate a Markdown summary."""
     with open(md_file, "w") as f:
         f.write("# Minimal PyElastica Experiment Report\n\n")
-        f.write(f"**Total Time:** {total_time:.2f} s\n\n")
+        f.write(f"**Total Time:** {total_time:.2f} s\n")
+        f.write(f"**Max Peak Memory (Single Run):** {peak_mb:.2f} MB\n\n")
 
         f.write("| BC | Mod | Anisotropy | Active Curv | S_lat | Cobb (deg) | Max Curv | Max Torsion | Runtime (s) |\n")
         f.write("|---|---|---|---|---|---|---|---|---|\n")

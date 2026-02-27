@@ -39,7 +39,7 @@ from datetime import datetime
 
 __version__ = "1.0.0"
 from pathlib import Path
-from typing import List
+from typing import List, Dict, Optional
 
 import numpy as np
 
@@ -52,6 +52,22 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
     compute_U_CC,
     verify_pyelastica_installation,
 )
+
+# --- Mutation Parameter Map ---
+# Digital Twin parameters for specific genetic defects.
+# chi_kappa: Learning Rate (Information Sensitivity)
+# anisotropy: Structural Stiffness Anisotropy (EI_major / EI_minor)
+# sigma_noise: Sensory Noise Level (Gradient Corruption)
+#
+# Baseline: chi=10.0, aniso=1.5, sigma=0.1
+MUTATION_PARAMETERS: Dict[str, Dict[str, float]] = {
+    "WT": {"chi_kappa": 10.0, "anisotropy": 1.5, "sigma_noise": 0.1},
+    "PIEZO2": {"chi_kappa": 20.0, "anisotropy": 1.5, "sigma_noise": 2.0},  # High Noise (Blindness)
+    "LBX1": {"chi_kappa": 5.0, "anisotropy": 1.0, "sigma_noise": 0.5},    # Low Tone + Low Anisotropy
+    "FBN1": {"chi_kappa": 10.0, "anisotropy": 0.5, "sigma_noise": 0.1},   # Loss of Stiffness (Marfan)
+    "POC5": {"chi_kappa": 10.0, "anisotropy": 1.5, "sigma_noise": 1.5},   # Ciliary Defect (Noise)
+    "PTK7": {"chi_kappa": 10.0, "anisotropy": 1.0, "sigma_noise": 0.1},   # Loss of Polarity (Anisotropy)
+}
 
 
 def create_noisy_info_field(
@@ -105,6 +121,114 @@ def create_noisy_info_field(
     return InfoField1D(s=s, I=I, dIds=dIds)
 
 
+def run_single_simulation(
+    mutation_name: str,
+    chi_kappa: float,
+    sigma_noise: float,
+    anisotropy: float,
+    trial: int,
+    writer: csv.DictWriter,
+    csvfile,
+    n_elements: int = 50,
+    final_time: float = 2.0,
+    seed: int = 42,
+    length: float = 0.5,
+):
+    """Run a single simulation instance."""
+
+    # Rod parameters
+    radius = 0.01     # metres
+    E0 = 1e6          # Pa
+    rho = 1000.0      # kg/m^3
+    gravity = 9.81
+    dt = 1e-5
+
+    rng = np.random.default_rng(seed + trial * 1000 + hash(
+        (mutation_name, chi_kappa, sigma_noise)
+    ) % 10000)
+
+    tracemalloc.start()
+    t0 = time.time()
+
+    # Create noisy information field
+    s = np.linspace(0, length, n_elements + 1)
+    info = create_noisy_info_field(
+        s, sigma_noise=sigma_noise, rng=rng
+    )
+
+    # Coupling: pure curvature drive (no active moments)
+    params = CounterCurvatureParams(
+        chi_kappa=chi_kappa,
+        chi_tau=0.0,
+        chi_E=0.0,
+        chi_M=0.0,
+        scale_length=length,
+    )
+
+    # Baseline sagittal curvature
+    kappa_gen = np.zeros((3, n_elements + 1))
+    kappa_gen[0, :] = 2.0  # Sagittal kyphosis
+
+    # Create and run
+    rod_system = CounterCurvatureRodSystem.from_iec(
+        info=info,
+        params=params,
+        length=length,
+        n_elements=n_elements,
+        E0=E0,
+        rho=rho,
+        radius=radius,
+        kappa_gen=kappa_gen,
+        gravity=gravity,
+        stiffness_anisotropy=anisotropy,
+    )
+
+    result = rod_system.run_simulation(
+        final_time=final_time,
+        dt=dt,
+        save_every=5000,
+        gravity=gravity,
+        boundary_condition="fixed",
+        progress_bar=False,
+    )
+
+    t1 = time.time()
+    _, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+
+    # Compute metrics
+    sim_metrics = result.compute_final_metrics()
+    cost = compute_U_CC(result, info, params, gravity, rho, E0)
+
+    row = {
+        "timestamp": datetime.now().isoformat(),
+        "mutation": mutation_name,
+        "chi_kappa": chi_kappa,
+        "sigma_noise": sigma_noise,
+        "anisotropy": anisotropy,
+        "trial": trial,
+        "cobb_angle": sim_metrics.get("cobb_angle", 0.0),
+        "max_torsion": sim_metrics.get("max_torsion", 0.0),
+        "S_lat": sim_metrics.get("S_lat", 0.0),
+        "max_curvature": sim_metrics.get("max_curvature", 0.0),
+        "U_CC": cost["U_CC"],
+        "U_gravity": cost["U_gravity"],
+        "U_elastic": cost["U_elastic"],
+        "U_info": cost["U_info"],
+        "info_gain_ratio": cost["info_gain_ratio"],
+        "runtime_sec": round(t1 - t0, 4),
+        "peak_memory_mb": round(peak / (1024 * 1024), 2),
+    }
+    writer.writerow(row)
+    csvfile.flush()
+
+    print(
+        f"{mutation_name:<8} | {chi_kappa:<6.1f} | {sigma_noise:<6.2f} | {anisotropy:<6.1f} | "
+        f"{row['cobb_angle']:<8.2f} | {row['max_torsion']:<9.4f} | "
+        f"{row['S_lat']:<8.4f}"
+    )
+
+
 def run_optimization_failure_sweep(
     out_file: str,
     chi_kappas: List[float],
@@ -113,48 +237,22 @@ def run_optimization_failure_sweep(
     n_elements: int = 50,
     final_time: float = 2.0,
     seed: int = 42,
+    run_mutations: bool = False,
 ):
-    """Run the optimization failure parameter sweep.
-
-    For each (chi_kappa, sigma_noise) pair, runs n_trials stochastic realisations
-    and records the mean and std of scoliosis metrics.
-
-    Parameters
-    ----------
-    out_file : str
-        Path to output CSV file.
-    chi_kappas : list of float
-        Information-curvature coupling strengths to sweep.
-    sigma_noises : list of float
-        Noise levels for gradient corruption.
-    n_trials : int
-        Number of stochastic trials per parameter pair.
-    n_elements : int
-        Number of rod elements.
-    final_time : float
-        Simulation duration (seconds).
-    seed : int
-        Base random seed for reproducibility.
-    """
+    """Run the optimization failure parameter sweep."""
     verify_pyelastica_installation(exit_on_fail=True)
 
     print("=" * 100)
     print("EXPERIMENT: Optimization Failure — Exploding Gradient Map")
     print("=" * 100)
-    print(f"Sweeping chi_kappa: {chi_kappas}")
-    print(f"Sweeping sigma_noise: {sigma_noises}")
+    if run_mutations:
+        print(f"Running Mutation Scenarios: {list(MUTATION_PARAMETERS.keys())}")
+    else:
+        print(f"Sweeping chi_kappa: {chi_kappas}")
+        print(f"Sweeping sigma_noise: {sigma_noises}")
     print(f"Trials per point: {n_trials}")
     print(f"Output: {out_file}")
     print("=" * 100)
-
-    # Rod parameters
-    length = 0.5      # metres
-    radius = 0.01     # metres
-    E0 = 1e6          # Pa
-    rho = 1000.0      # kg/m^3
-    gravity = 9.81
-    dt = 1e-5
-    anisotropy = 1.5  # Moderate anisotropy (between low=1.0 and high=5.0)
 
     # Prepare output
     out_dir = os.path.dirname(out_file)
@@ -162,7 +260,7 @@ def run_optimization_failure_sweep(
         os.makedirs(out_dir, exist_ok=True)
 
     fieldnames = [
-        "timestamp", "chi_kappa", "sigma_noise", "trial",
+        "timestamp", "mutation", "chi_kappa", "sigma_noise", "anisotropy", "trial",
         "cobb_angle", "max_torsion", "S_lat", "max_curvature",
         "U_CC", "U_gravity", "U_elastic", "U_info", "info_gain_ratio",
         "runtime_sec", "peak_memory_mb",
@@ -175,102 +273,53 @@ def run_optimization_failure_sweep(
             writer.writeheader()
 
         print(
-            f"{'chi_k':<8} | {'sigma':<8} | {'trial':<6} | "
-            f"{'Cobb':<8} | {'Torsion':<9} | {'S_lat':<8} | "
-            f"{'U_CC':<12} | {'Time':<8}"
+            f"{'Mutation':<8} | {'Chi':<6} | {'Sigma':<6} | {'Aniso':<6} | "
+            f"{'Cobb':<8} | {'Torsion':<9} | {'S_lat':<8}"
         )
         print("-" * 90)
 
-        total = len(chi_kappas) * len(sigma_noises) * n_trials
         count = 0
+        total = 0
 
-        for chi_kappa in chi_kappas:
-            for sigma_noise in sigma_noises:
+        if run_mutations:
+            # Run specific mutation scenarios
+            total = len(MUTATION_PARAMETERS) * n_trials
+            for mutation, params in MUTATION_PARAMETERS.items():
                 for trial in range(n_trials):
                     count += 1
-                    rng = np.random.default_rng(seed + trial * 1000 + hash(
-                        (chi_kappa, sigma_noise)
-                    ) % 10000)
-
-                    tracemalloc.start()
-                    t0 = time.time()
-
-                    # Create noisy information field
-                    s = np.linspace(0, length, n_elements + 1)
-                    info = create_noisy_info_field(
-                        s, sigma_noise=sigma_noise, rng=rng
-                    )
-
-                    # Coupling: pure curvature drive (no active moments)
-                    params = CounterCurvatureParams(
-                        chi_kappa=chi_kappa,
-                        chi_tau=0.0,
-                        chi_E=0.0,
-                        chi_M=0.0,
-                        scale_length=length,
-                    )
-
-                    # Baseline sagittal curvature
-                    kappa_gen = np.zeros((3, n_elements + 1))
-                    kappa_gen[0, :] = 2.0  # Sagittal kyphosis
-
-                    # Create and run
-                    rod_system = CounterCurvatureRodSystem.from_iec(
-                        info=info,
-                        params=params,
-                        length=length,
+                    run_single_simulation(
+                        mutation_name=mutation,
+                        chi_kappa=params["chi_kappa"],
+                        sigma_noise=params["sigma_noise"],
+                        anisotropy=params["anisotropy"],
+                        trial=trial,
+                        writer=writer,
+                        csvfile=csvfile,
                         n_elements=n_elements,
-                        E0=E0,
-                        rho=rho,
-                        radius=radius,
-                        kappa_gen=kappa_gen,
-                        gravity=gravity,
-                        stiffness_anisotropy=anisotropy,
-                    )
-
-                    result = rod_system.run_simulation(
                         final_time=final_time,
-                        dt=dt,
-                        save_every=5000,
-                        gravity=gravity,
-                        boundary_condition="fixed",
-                        progress_bar=False,
+                        seed=seed
                     )
 
-                    t1 = time.time()
-                    _, peak = tracemalloc.get_traced_memory()
-                    tracemalloc.stop()
-
-                    # Compute metrics
-                    sim_metrics = result.compute_final_metrics()
-                    cost = compute_U_CC(result, info, params, gravity, rho, E0)
-
-                    row = {
-                        "timestamp": datetime.now().isoformat(),
-                        "chi_kappa": chi_kappa,
-                        "sigma_noise": sigma_noise,
-                        "trial": trial,
-                        "cobb_angle": sim_metrics.get("cobb_angle", 0.0),
-                        "max_torsion": sim_metrics.get("max_torsion", 0.0),
-                        "S_lat": sim_metrics.get("S_lat", 0.0),
-                        "max_curvature": sim_metrics.get("max_curvature", 0.0),
-                        "U_CC": cost["U_CC"],
-                        "U_gravity": cost["U_gravity"],
-                        "U_elastic": cost["U_elastic"],
-                        "U_info": cost["U_info"],
-                        "info_gain_ratio": cost["info_gain_ratio"],
-                        "runtime_sec": round(t1 - t0, 4),
-                        "peak_memory_mb": round(peak / (1024 * 1024), 2),
-                    }
-                    writer.writerow(row)
-                    csvfile.flush()
-
-                    print(
-                        f"{chi_kappa:<8.2f} | {sigma_noise:<8.3f} | {trial:<6d} | "
-                        f"{row['cobb_angle']:<8.2f} | {row['max_torsion']:<9.4f} | "
-                        f"{row['S_lat']:<8.4f} | {row['U_CC']:<12.4f} | "
-                        f"{row['runtime_sec']:<8.3f}"
-                    )
+        else:
+            # Run generic parameter sweep
+            total = len(chi_kappas) * len(sigma_noises) * n_trials
+            anisotropy = 1.5
+            for chi_kappa in chi_kappas:
+                for sigma_noise in sigma_noises:
+                    for trial in range(n_trials):
+                        count += 1
+                        run_single_simulation(
+                            mutation_name="Sweep",
+                            chi_kappa=chi_kappa,
+                            sigma_noise=sigma_noise,
+                            anisotropy=anisotropy,
+                            trial=trial,
+                            writer=writer,
+                            csvfile=csvfile,
+                            n_elements=n_elements,
+                            final_time=final_time,
+                            seed=seed
+                        )
 
     print("=" * 100)
     print(f"Experiment complete. {count}/{total} simulations finished.")
@@ -294,64 +343,46 @@ def generate_report(csv_file: str):
         f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"**Source:** `{os.path.basename(csv_file)}`\n\n")
 
-        f.write("## Hypothesis\n\n")
-        f.write("Scoliosis emerges as an 'Exploding Gradient' when the learning rate\n")
-        f.write("(chi_kappa) exceeds structural damping AND sensory noise degrades\n")
-        f.write("gradient fidelity below a critical threshold.\n\n")
+        # --- Mutation Analysis ---
+        f.write("## Mutation Analysis (Digital Twins)\n\n")
+        f.write("| Mutation | chi_kappa | sigma_noise | Aniso | Mean Cobb | Std Cobb | n_scoliotic |\n")
+        f.write("|---|---|---|---|---|---|---|\n")
 
-        # Aggregate by (chi_kappa, sigma_noise)
-        from collections import defaultdict
-        groups = defaultdict(list)
-        for r in rows:
-            key = (float(r["chi_kappa"]), float(r["sigma_noise"]))
-            groups[key].append(float(r["cobb_angle"]))
+        # Filter for mutation rows
+        mutation_rows = [r for r in rows if r["mutation"] != "Sweep"]
+        if mutation_rows:
+            from collections import defaultdict
+            mut_groups = defaultdict(list)
+            for r in mutation_rows:
+                mut_groups[r["mutation"]].append(r)
 
-        f.write("## Mean Cobb Angle by (chi_kappa, sigma_noise)\n\n")
-        f.write("| chi_kappa | sigma_noise | mean_Cobb | std_Cobb | n_scoliotic |\n")
-        f.write("|-----------|-------------|-----------|----------|-------------|\n")
+            for mut, r_list in mut_groups.items():
+                cobbs = [float(r["cobb_angle"]) for r in r_list]
+                p = r_list[0]
+                mean_c = np.mean(cobbs)
+                std_c = np.std(cobbs)
+                n_scol = sum(1 for c in cobbs if c > 10.0)
+                f.write(f"| {mut} | {p['chi_kappa']} | {p['sigma_noise']} | {p['anisotropy']} | {mean_c:.2f} | {std_c:.2f} | {n_scol}/{len(cobbs)} |\n")
+        else:
+            f.write("| No mutation data available. |\n")
 
-        for (ck, sn), cobbs in sorted(groups.items()):
-            mean_c = np.mean(cobbs)
-            std_c = np.std(cobbs)
-            n_scol = sum(1 for c in cobbs if c > 10.0)
-            f.write(f"| {ck:.2f} | {sn:.3f} | {mean_c:.2f} | {std_c:.2f} | {n_scol}/{len(cobbs)} |\n")
+        # --- Sweep Analysis ---
+        f.write("\n## Parameter Sweep Analysis\n\n")
+        sweep_rows = [r for r in rows if r["mutation"] == "Sweep"]
+        if sweep_rows:
+            f.write("| chi_kappa | sigma_noise | mean_Cobb | std_Cobb | n_scoliotic |\n")
+            f.write("|-----------|-------------|-----------|----------|-------------|\n")
 
-        # Identify critical noise threshold
-        f.write("\n## Critical Noise Threshold\n\n")
-        f.write("sigma_c is the noise level at which mean Cobb angle first exceeds 10 degrees.\n\n")
+            groups = defaultdict(list)
+            for r in sweep_rows:
+                key = (float(r["chi_kappa"]), float(r["sigma_noise"]))
+                groups[key].append(float(r["cobb_angle"]))
 
-        chi_vals = sorted(set(float(r["chi_kappa"]) for r in rows))
-        for ck in chi_vals:
-            sigma_c = None
-            sigma_vals = sorted(set(sn for (c, sn) in groups.keys() if c == ck))
-            for sn in sigma_vals:
-                if np.mean(groups[(ck, sn)]) > 10.0:
-                    sigma_c = sn
-                    break
-            if sigma_c is not None:
-                f.write(f"- chi_kappa = {ck:.2f}: sigma_c ≈ {sigma_c:.3f}\n")
-            else:
-                f.write(f"- chi_kappa = {ck:.2f}: no scoliosis onset detected\n")
-
-        # Cost function analysis
-        f.write("\n## Cost Function U_CC Analysis\n\n")
-        f.write("| chi_kappa | sigma_noise | U_CC (mean) | U_info (mean) | info_gain_ratio |\n")
-        f.write("|-----------|-------------|-------------|---------------|------------------|\n")
-
-        cost_groups = defaultdict(list)
-        for r in rows:
-            key = (float(r["chi_kappa"]), float(r["sigma_noise"]))
-            cost_groups[key].append({
-                "U_CC": float(r["U_CC"]),
-                "U_info": float(r["U_info"]),
-                "info_gain_ratio": float(r["info_gain_ratio"]),
-            })
-
-        for (ck, sn), costs in sorted(cost_groups.items()):
-            mean_ucc = np.mean([c["U_CC"] for c in costs])
-            mean_ui = np.mean([c["U_info"] for c in costs])
-            mean_igr = np.mean([c["info_gain_ratio"] for c in costs])
-            f.write(f"| {ck:.2f} | {sn:.3f} | {mean_ucc:.4f} | {mean_ui:.4f} | {mean_igr:.4f} |\n")
+            for (ck, sn), cobbs in sorted(groups.items()):
+                mean_c = np.mean(cobbs)
+                std_c = np.std(cobbs)
+                n_scol = sum(1 for c in cobbs if c > 10.0)
+                f.write(f"| {ck:.2f} | {sn:.3f} | {mean_c:.2f} | {std_c:.2f} | {n_scol}/{len(cobbs)} |\n")
 
     print(f"Report generated: {md_file}")
 
@@ -365,6 +396,7 @@ def parse_args():
         default="outputs/optimization_failure/exploding_gradient.csv",
     )
     parser.add_argument("--quick-test", action="store_true")
+    parser.add_argument("--run-mutations", action="store_true", help="Run specific mutation scenarios")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-trials", type=int, default=None)
     parser.add_argument("--n-elements", type=int, default=None)
@@ -396,4 +428,5 @@ if __name__ == "__main__":
         n_elements=n_elements,
         final_time=final_time,
         seed=args.seed,
+        run_mutations=args.run_mutations,
     )

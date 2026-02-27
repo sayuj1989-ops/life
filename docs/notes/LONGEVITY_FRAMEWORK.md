@@ -184,15 +184,13 @@ Each cycle resets coupling. For N cycles/day, time-averaged coupling:
 |---------|------------------------|-------------------|
 | Energy deficit | Growth outpaces supply | Coupling decays without cycling |
 | VIM cascade | Collapse → scoliosis | Collapse → YAP exclusion → senescence |
-| PPARGC1A | Supply bottleneck | Mitochondrial decline |
-| ℬ_g transition | C→S (development) | S→C (aging regression) |
-| Coupling χ | Established during growth | Maintained by cycling |
-| Time window | Adolescent growth spurt | Lifetime (chronic) |
-| Intervention | Support during PHV | Regular floor-to-stand cycling |
+| PPARGC1A fragility | Supply bottleneck during growth | Mitochondrial decline during aging |
+| Bio-gravitational number ℬ_g | Controls C→S transition in development | Controls S→C regression in aging |
+| Coupling strengths χ_κ, χ_M | Set during development | Maintained by cycling, lost without it |
 
-**Bottom line:** The biological counter-curvature framework unifies scoliosis pathogenesis and longevity physiology through the same thermodynamic standing wave model. Scoliosis is what happens when the wave fails to establish during development. Frailty is what happens when the wave fails to be maintained during aging. Both are governed by the same 23-protein dissipation functional.
+This is the same physics, same proteins, same functional — just viewed from the opposite end of the lifespan.
 
 ---
 
-**Last updated:** 2026-02-26
+**Last updated:** 2026-02-27
 **Contact:** dr.sayujkrishnan@gmail.com

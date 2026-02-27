@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-05-22
+**Last Updated:** 2026-05-25
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -21,8 +21,8 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Experiment ID | Script Path | Purpose | Key Outputs | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **TOY_01_Thermostatic** | `scripts/experiments/toy_model_thermostatic.py` | **Toy Model A:** 1D Thermostatic Column. Validates "Metabolic Buckling" concept without rod mechanics. | `outputs/figures/toy_model_thermostatic.png` | ✅ **Implemented** | Simple demonstration of $L^5$ vs $L^2$ scaling mismatch. |
-| **TOY_02_Anisotropy** | `scripts/toy_model_anisotropy_link.py` | **Toy Model B:** Anisotropy-Stability Link. Validates $L_{crit} \propto A^{-0.5}$. | `outputs/figures/toy_model_anisotropy_bifurcation.png` | ✅ **Implemented** | Connects protein aspect ratio to spinal stability. |
+| **TOY_01_Thermostatic** | `scripts/experiments/toy_model_thermostatic.py` | **Toy Model A:** 1D Thermostatic Column. Validates "Metabolic Buckling" concept without rod mechanics. | `outputs/figures/toy_model_thermostatic.png` | ✅ **Active/Validated** | Simple demonstration of $L^5$ vs $L^2$ scaling mismatch. |
+| **TOY_02_Anisotropy** | `scripts/toy_model_anisotropy_link.py` | **Toy Model B:** Anisotropy-Stability Link. Validates $L_{crit} \propto A^{-0.5}$. | `outputs/figures/toy_model_anisotropy_bifurcation.png` | ✅ **Active/Validated** | Connects protein aspect ratio to spinal stability. |
 
 ## 3. Protein Structure Pipeline (AFCC)
 

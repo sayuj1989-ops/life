@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-05-22
+**Last Updated:** 2026-05-25
 **Status:** In Progress
 **Priority Level:** High (Blocking Submission)
 
@@ -27,7 +27,7 @@
 | **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Write final captions. | 3 days | CODE-03 | 🟡 **In Progress** |
 | **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | 🟡 **In Progress** |
 
-## 4. Theory & Validation (Low)
+## 4. Theory & Validation (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |

@@ -2,7 +2,7 @@
 
 **Purpose:** To de-risk the complex Cosserat simulation and provide intuitive validation for "Metabolic Buckling" and "Active Countercurvature".
 
-**Status:** ✅ Completed (2026-05-22)
+**Status:** ✅ Completed (2026-05-25)
 
 ## Toy Model A: 1D Thermostatic Column (Thermodynamic)
 
@@ -21,7 +21,7 @@
 
 **Implementation:**
 - Script: `scripts/experiments/toy_model_thermostatic.py`
-- **Output:** `outputs/figures/toy_model_thermostatic.png`
+- **Output:** [`outputs/figures/toy_model_thermostatic.png`](../outputs/figures/toy_model_thermostatic.png)
 - **Status:** ✅ **Implemented**
 
 ## Toy Model B: The "Active" Elastica (Mechanical)
@@ -38,7 +38,7 @@
 
 **Implementation:**
 - Script: `scripts/toy_model_anisotropy_link.py`
-- **Output:** `outputs/figures/toy_model_anisotropy_bifurcation.png`
+- **Output:** [`outputs/figures/toy_model_anisotropy_bifurcation.png`](../outputs/figures/toy_model_anisotropy_bifurcation.png)
 - **Status:** ✅ **Implemented**
 
 ## Schedule

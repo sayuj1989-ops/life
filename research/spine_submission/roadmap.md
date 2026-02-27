@@ -10,15 +10,15 @@
 - [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
 - [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (Simulated in `outputs/sim/2026-02-22/`).
 - [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature (`experiment_spinal_jetlag.py`).
-- [ ] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
+- [x] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis). (`scripts/weekly_sim_defect_sensitivity.py`)
 
 ## Phase 2: Clinical Validation (Weeks 3-4)
 
-- [ ] **Cohort Data Extraction:** Extract Weinstein 1983 / Lonstein 1984 curve progression data to `data/clinical_cohort_targets.csv`.
+- [x] **Cohort Data Extraction:** Extract Weinstein 1983 / Lonstein 1984 curve progression data to `data/clinical_cohort_targets.csv`.
+- [x] **Clinical Script:** Implement `scripts/validate_clinical_data.py` to automate these comparisons.
 - [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
 - [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
 - [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
-- [ ] **Clinical Script:** Implement `scripts/validate_clinical_data.py` to automate these comparisons.
 
 ## Phase 3: Manuscript Preparation (Weeks 5-6)
 

@@ -18,6 +18,7 @@ def parse_roadmap(filepath):
     completed_tasks = 0
     phases = {}
     current_phase = None
+    next_milestones = []
 
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
     target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
@@ -39,6 +40,17 @@ def parse_roadmap(filepath):
                 completed_tasks += 1
                 if current_phase:
                     phases[current_phase]['completed'] += 1
+            elif line.strip().startswith('- [ ]'):
+                # Collect up to 3 next milestones
+                if len(next_milestones) < 3:
+                    # Clean the line: remove '- [ ]', bold markers, and trailing info
+                    task = line.strip().replace('- [ ]', '').strip()
+                    # Remove bold markers
+                    task = task.replace('**', '')
+                    # Extract the main task name (before the colon if present)
+                    if ':' in task:
+                        task = task.split(':')[0]
+                    next_milestones.append(task)
 
     percent_complete = (completed_tasks / total_tasks * 100) if total_tasks > 0 else 0
 
@@ -48,7 +60,8 @@ def parse_roadmap(filepath):
         'percent_complete': percent_complete,
         'phases': phases,
         'start_date': start_date,
-        'target_date': target_date
+        'target_date': target_date,
+        'next_milestones': next_milestones
     }, None
 
 def calculate_projection(data):
@@ -109,9 +122,35 @@ def generate_report(data):
             active_phase = phase
 
     report += f"\n**Current Focus:** {active_phase}\n"
+
+    report += "\n## Next Milestones\n"
+    if data['next_milestones']:
+        for i, milestone in enumerate(data['next_milestones'], 1):
+            report += f"{i}. {milestone}\n"
+    else:
+        report += "No milestones remaining!\n"
+
     report += "\nRun `python scripts/spine_daily_update.py` to regenerate this report."
 
     return report
+
+def save_report(report):
+    """
+    Saves the report to a file with the current date.
+    """
+    today = datetime.date.today()
+    output_dir = "reports/daily_updates"
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    filename = f"{today}_spine_update.md"
+    filepath = os.path.join(output_dir, filename)
+
+    with open(filepath, 'w') as f:
+        f.write(report)
+
+    return filepath
 
 if __name__ == "__main__":
     roadmap_path = "research/spine_submission/roadmap.md"
@@ -121,4 +160,7 @@ if __name__ == "__main__":
         print(error)
         sys.exit(1)
     else:
-        print(generate_report(data))
+        report = generate_report(data)
+        print(report)
+        saved_path = save_report(report)
+        print(f"\nReport saved to: {saved_path}")

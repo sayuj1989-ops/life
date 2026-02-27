@@ -2,13 +2,17 @@
 import os
 import pytest
 import csv
+import sys
 from pathlib import Path
 
-# Import the module unconditionally
-import experiment_protein_physics
+# Ensure scripts/experiments is in path
+sys.path.append(str(Path(__file__).parent.parent / "scripts" / "experiments"))
+
+import experiment_protein_simulation_pyelastica
+from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE
 
 @pytest.mark.skipif(
-    not experiment_protein_physics.PYELASTICA_AVAILABLE,
+    not PYELASTICA_AVAILABLE,
     reason="PyElastica not installed"
 )
 def test_run_protein_experiment_integration(tmp_path):
@@ -19,15 +23,17 @@ def test_run_protein_experiment_integration(tmp_path):
     out_file = tmp_path / "test_protein_results.csv"
 
     # Use specific scenario to limit run time
-    selected_scenarios = ["Control"]
+    anisotropies = [2.0]
+    active_curvatures = [0.5]
 
     # Run with short time and few elements
-    experiment_protein_physics.run_protein_experiment(
+    experiment_protein_simulation_pyelastica.run_experiment(
         out_file=str(out_file),
-        selected_scenarios=selected_scenarios,
+        anisotropies=anisotropies,
+        active_curvatures=active_curvatures,
         n_elements=10,
-        final_time=0.01,
-        save_every=100
+        duration=0.01,
+        dt=1e-4
     )
 
     assert out_file.exists()
@@ -40,9 +46,9 @@ def test_run_protein_experiment_integration(tmp_path):
     row = rows[0]
 
     # Verify scenario data
-    assert row["scenario_name"] == "Control"
-    assert "stiffness_anisotropy" in row
-    assert float(row["stiffness_anisotropy"]) == 2.0  # Control has 2.0
+    # bio_label logic: 2.0 anisotropy, 0.5 active -> "Anisotropy=2.0 | Homeostatic (Low Gain)"
+    assert "Anisotropy=2.0" in row["bio_label"]
+    assert float(row["input_anisotropy"]) == 2.0
 
     # Verify metrics
     assert "max_curvature" in row
@@ -51,7 +57,7 @@ def test_run_protein_experiment_integration(tmp_path):
     assert "peak_memory_mb" in row
 
 @pytest.mark.skipif(
-    not experiment_protein_physics.PYELASTICA_AVAILABLE,
+    not PYELASTICA_AVAILABLE,
     reason="PyElastica not installed"
 )
 def test_run_protein_experiment_multiple_scenarios(tmp_path):
@@ -60,13 +66,15 @@ def test_run_protein_experiment_multiple_scenarios(tmp_path):
     """
     out_file = tmp_path / "test_multi_results.csv"
 
-    selected_scenarios = ["Control", "Fibrillin_Loss"]
+    anisotropies = [1.0, 5.0]
+    active_curvatures = [0.5]
 
-    experiment_protein_physics.run_protein_experiment(
+    experiment_protein_simulation_pyelastica.run_experiment(
         out_file=str(out_file),
-        selected_scenarios=selected_scenarios,
+        anisotropies=anisotropies,
+        active_curvatures=active_curvatures,
         n_elements=10,
-        final_time=0.01
+        duration=0.01
     )
 
     with open(out_file, "r") as f:
@@ -74,6 +82,8 @@ def test_run_protein_experiment_multiple_scenarios(tmp_path):
         rows = list(reader)
 
     assert len(rows) == 2
-    names = {r["scenario_name"] for r in rows}
-    assert "Control" in names
-    assert "Fibrillin_Loss" in names
+    bio_labels = {r["bio_label"] for r in rows}
+    # Anisotropy 1.0 -> Marfan
+    # Anisotropy 5.0 -> WildType
+    assert any("Marfan" in l for l in bio_labels)
+    assert any("WildType" in l for l in bio_labels)

@@ -9,7 +9,7 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 # Add scripts folder to python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts', 'experiments'))
 
 # Import the module under test
 import experiment_instability_wedge_elastica as wedge_script

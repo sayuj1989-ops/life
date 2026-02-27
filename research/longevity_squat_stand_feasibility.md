@@ -3,7 +3,7 @@
 ## The Squat-to-Stand Transition as Counter-Curvature Perturbation
 
 **Author:** Dr. Sayuj Krishnan S
-**Date:** 2026-02-23
+**Date:** 2026-02-27
 **Status:** Feasibility study — ready for simulation validation and manuscript development
 **Related:** `sit_rise_extended_abstract.md` (geodesic deviation perspective), `LONGEVITY_FRAMEWORK.md`
 
@@ -106,6 +106,8 @@ For N uniformly-spaced cycles per day:
 | Floor-sitter | 50 | 88.9% | High preservation |
 | Okinawan elder | 80 | 92.9% | Near-complete preservation |
 
+*Source: `outputs/sim/{date}/cycle_frequency_sweep.csv`*
+
 ---
 
 ## 3. Energy Budget Calculation
@@ -138,6 +140,8 @@ During a 30% height increase (L: 0.35 → 0.45 m), demand increases 1.65× (L²)
 ΔḞ_Γ_m (maint.)    ≈ 0.4 J    (negligible baseline over 4s)
 Total per cycle    ≈ 10,140 J
 ```
+
+*Source: `outputs/sim/{date}/single_cycle_dissipation.csv`*
 
 **Key insight:** The sensing term (η_p) accounts for ~58% of per-cycle energy, confirming that the **proprioceptive refresh** is the most metabolically expensive component of a single squat-to-stand cycle. This maps directly to PIEZO2 (anisotropy 4.44) and EGR3 (disorder 64%) being structurally expensive proteins.
 
@@ -290,6 +294,8 @@ High SRT performers have maintained their coupling strengths through regular cyc
 | European active | 10-20 | ~60% | 5-7 |
 | American sedentary | 2-5 | ~25% | 2-4 |
 | Bedridden/institutional | 0-1 | ~5% | 0-1 |
+
+*Source: `outputs/sim/{date}/chair_vs_floor_comparison.csv`*
 
 ---
 

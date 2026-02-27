@@ -1,6 +1,6 @@
 # Thermodynamic Cost of Countercurvature: Molecular Mapping via AlphaFold
 
-**Date:** 2026-02-22
+**Date:** 2026-02-26
 **Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)
 **Framework:** Free energy dissipation functional (manuscript Eq. 7)
 
@@ -35,7 +35,7 @@ The cost of **sensing curvature error**. These proteins maintain the propriocept
 | **NTRK3** | Q16288 | 1.94 | Intermediate | 32.5 | 76.8 | 839 | 9 | L (afferent neuron count) | TrkC receptor; proprioceptive neuron survival signal |
 | **PIEZO1** | Q92508 | 3.90 | Fibrous/Extended | 58.9 | 72.0 | 2521 | 3 | L^2 (membrane area) | Scalar mechanosensor; detects membrane tension (buckling threshold) |
 
-**Structural summary:** Mean anisotropy = **3.22**, Rg range = 15–58 Å, Mean pLDDT = 67.8, Total residues = 4871, Total hinges = 26
+**Structural summary:** Mean anisotropy = **3.22**, Rg range = 16–59 Å, Mean pLDDT = 67.8, Total residues = 4871, Total hinges = 26
 
 ### Thermodynamic Predictions
 
@@ -60,7 +60,7 @@ The cost of **tonic muscle contraction and cytoskeletal tension** that holds the
 | **LMNA** | P02545 | 4.75 | Fibrous/Extended | 71.2 | 76.4 | 664 | 0 | L^2 (load-bearing cross-section) | Lamin A/C; nuclear mechanostat scaling with tissue stiffness |
 | **CAV1** | Q03135 | 3.98 | Fibrous/Extended | 33.4 | 78.4 | 178 | 0 | L^2 (membrane area) | Caveolin-1; membrane curvature sensor and mechanotransducer |
 
-**Structural summary:** Mean anisotropy = **3.39**, Rg range = 22–71 Å, Mean pLDDT = 73.9, Total residues = 6675, Total hinges = 149
+**Structural summary:** Mean anisotropy = **3.39**, Rg range = 23–71 Å, Mean pLDDT = 73.9, Total residues = 6675, Total hinges = 149
 
 ### Thermodynamic Predictions
 
@@ -90,7 +90,7 @@ The cost of **maintaining the information field itself**: ECM turnover, morphoge
 | **GHR** | P10912 | 5.13 | Fibrous/Extended | 31.4 | 58.7 | 638 | 54 | L (growth signal) | Growth hormone receptor; master regulator of adolescent growth spurt rate |
 | **ARNTL** | O00327 | 3.32 | Fibrous/Extended | 32.1 | 65.5 | 626 | 6 | L (circadian entrainment) | BMAL1; circadian clock TF in intervertebral disc regulating metabolism |
 
-**Structural summary:** Mean anisotropy = **2.47**, Rg range = 16–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
+**Structural summary:** Mean anisotropy = **2.47**, Rg range = 17–43 Å, Mean pLDDT = 66.4, Total residues = 7532, Total hinges = 130
 
 ### Thermodynamic Predictions
 

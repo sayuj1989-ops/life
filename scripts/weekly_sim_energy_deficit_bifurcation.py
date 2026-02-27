@@ -40,7 +40,13 @@ except ImportError:
 E0 = 1.0e9  # Pa (1.0 GPa)
 rho = 1100.0  # kg/m^3
 g = 9.81  # m/s^2
-A_cross = 0.001 # m^2 (Fixed as per instructions)
+
+# Isometric Growth Model
+# A_cross ~ L^2
+# Reference: A=0.001 m^2 at L=0.4 m
+A_ref = 0.001
+L_ref = 0.4
+
 eta_a = 1.0
 
 # Information field parameters (Bimodal Gaussian)
@@ -92,6 +98,9 @@ def solve_system(L, chi_kappa, S0, L_calib):
     Solves the system for a given L and chi_kappa.
     Returns dict of metrics.
     """
+    # Implement Isometric Growth for Cross-Sectional Area
+    A_cross = A_ref * (L / L_ref)**2
+
     # Moment of Inertia (Circular approx)
     I_moment = (A_cross**2) / (4 * np.pi)
 
@@ -198,16 +207,16 @@ def calibrate_supply():
     Calibrate Supply S0 such that R=1 at a reference point.
     Reference: L=0.35m, chi_kappa=0.04 (Healthy-ish/At-Risk boundary)
     """
-    L_ref = 0.35
-    chi_ref = 0.04
+    L_ref_calib = 0.35
+    chi_ref_calib = 0.04
 
     # Temporary solve to get P_counter at reference
     # Pass dummy S0, L_calib
-    res = solve_system(L_ref, chi_ref, S0=1.0, L_calib=1.0)
+    res = solve_system(L_ref_calib, chi_ref_calib, S0=1.0, L_calib=1.0)
     P_ref = res["P_counter"]
 
-    print(f"Calibration: P_counter={P_ref:.6e} at L={L_ref}, chi={chi_ref}")
-    return P_ref, L_ref
+    print(f"Calibration: P_counter={P_ref:.6e} at L={L_ref_calib}, chi={chi_ref_calib}")
+    return P_ref, L_ref_calib
 
 def run_sweep():
     print("Starting 2D Energy Deficit Bifurcation Sweep...")
@@ -218,11 +227,11 @@ def run_sweep():
     figures_dir.mkdir(parents=True, exist_ok=True)
 
     # Parameter Ranges
-    # chi_kappa: 0.01 to 0.10 in 20 steps
-    chi_vals = np.linspace(0.01, 0.10, 20)
+    # chi_kappa: 0.01 to 0.10 in 30 steps for finer resolution
+    chi_vals = np.linspace(0.01, 0.10, 30)
 
-    # L: 0.25 to 0.55 m in 20 steps
-    L_vals = np.linspace(0.25, 0.55, 20)
+    # L: 0.25 to 0.55 m in 30 steps for finer resolution
+    L_vals = np.linspace(0.25, 0.55, 30)
 
     # Calibrate Supply
     S0, L_calib = calibrate_supply()
@@ -262,7 +271,6 @@ def generate_heatmaps(df, output_dir):
     # Plot 1: Energy Deficit Ratio
     plt.figure(figsize=(10, 8))
     # RdYlBu_r: Red (High Deficit), Blue (Low Deficit)
-    # Use log scale or levels centered around 1? Linear is fine.
     # Set levels to highlight R=1
     levels = np.linspace(0, max(2.0, pivot_R.values.max()), 21)
     cp = plt.contourf(X, Y, pivot_R.values, levels=levels, cmap='RdYlBu_r')

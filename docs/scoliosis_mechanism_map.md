@@ -646,3 +646,27 @@ The map categorizes the system into four layers:
 
 **Citations**:
 *   *Vasiliadis, E. S., et al. (2021). Sclerostin levels in adolescent idiopathic scoliosis. Journal of Children's Orthopaedics.*
+
+---
+
+### 36. The Fibrillin-TGF$\beta$ Tether (Marfanoid Mechanism)
+
+**Arc Added**: `FBN1` $\rightarrow$ `TGFB` $\rightarrow$ `TMD`, `TGFB` $\rightarrow$ `Fibrosis`, `TGFB` $\rightarrow$ `Stiffness`.
+
+*   **Source**: `FBN1` (Fibrillin-1), `TGFB` (TGF-Beta Signaling).
+*   **Mechanism**: **Sequestration Failure**.
+    1.  **Sequestration**: In healthy tissue, Fibrillin-1 microfibrils bind and sequester the Latent TGF-$\beta$ Binding Protein (LTBP), keeping TGF-$\beta$ in an inactive state.
+    2.  **Tether Failure**: Mutations in `FBN1` (Marfan Syndrome) or mechanical failure of the microfibrils disrupts this binding.
+    3.  **Chronic Activation**: This releases excessive active TGF-$\beta$ into the extracellular space.
+    4.  **Dual Damage**:
+        *   **Osteopenia**: High TGF-$\beta$ inhibits osteoblast maturation, leading to low bone density (**Low TMD**).
+        *   **Fibrosis**: High TGF-$\beta$ stimulates fibroblasts to deposit excessive collagen, leading to ligament/muscle stiffness (**Fibrosis**).
+*   **Property**: **TMD** and **Stiffness ($EI$)**.
+*   **Role**: **The worst of both worlds**. The spine loses its rigid "bone" struts (low TMD) while its "guy wires" (ligaments) become fibrotic and unadaptable.
+*   **Evidence**: Neptune et al. (2003) demonstrated that FBN1 deficiency leads to TGF-$\beta$ dysregulation, and that blocking TGF-$\beta$ rescues the phenotype.
+*   **Counter-Curvature Implication**: The "Counter-Curvature" system requires rigid bones and compliant muscles. This pathway inverts that ratio, creating a structure that is both "Soft" (Bone) and "Stiff" (Ligament), making it impossible to adapt to gravity.
+
+> **Hypothesis**: Marfanoid Scoliosis is not just a "Weak Tissue" disease; it is a "Signaling Overdose" disease. The structure fails because it is being screamed at by TGF-$\beta$ to dissolve its bone and scar its ligaments.
+
+**Citations**:
+*   *Neptune, E. R., et al. (2003). Dysregulation of TGF-beta activation contributes to pathogenesis in Marfan syndrome. Nature Genetics, 33(3), 407-411.* https://doi.org/10.1038/ng1116

@@ -166,15 +166,40 @@ where $\langle \cdot \rangle$ denotes the spatial average over the rod length. I
 \end{equation}
 where $\xi$ is a coupling coefficient reflecting the avascular diffusion efficiency of the intervertebral disc. We posit that the Countercurvature mechanism undergoes a \textbf{Thermodynamic Bifurcation} when $\InstabilityR > \InstabilityR_{crit}$, forcing the system to shed metabolic entropy by collapsing into a lower-information, asymmetric mode (scoliosis). Crucially, the maturation of the proprioceptive system (PIEZO2 channel density, muscle spindle innervation, RUNX3/EGR3 circuit refinement) does not necessarily keep pace with this rapid increase in demand, creating a transient \emph{energy deficit window} during which the information field cannot maintain full fidelity across the growing rod.
 
-\paragraph{Molecular grounding via AlphaFold structural analysis.} The three dissipation terms are not abstract---each maps to specific molecular players whose AlphaFold-predicted structures reveal how they bear the thermodynamic cost of countercurvature. We analyzed 16 proteins across the three terms using structural metrics from the AlphaFold Protein Structure Database~\cite{jumper2021alphafold, varadi2022alphafold}, focusing on anisotropy ratio (shape elongation), radius of gyration, per-residue confidence (pLDDT), and hinge candidates (refer to Table \ref{tab:thermodynamic_cost_proteins}).
+\subsection{Protein-Level Biophysical Foundations and Thermodynamic Constraints}
 
-The \emph{proprioceptive feedback term} $\eta_p$ is borne by five proteins: the vector mechanosensor PIEZO2 (anisotropy~4.44, fibrous/extended morphology), the scalar sensor PIEZO1 (anisotropy~3.90, 2521~residues), the spindle-maintenance transcription factor EGR3 (anisotropy~3.76, 64\% intrinsically disordered), the proprioceptive master regulator RUNX3 (56\% disordered, 12~hinge candidates), and the survival receptor NTRK3 (9~hinge candidates). Their mean anisotropy of 3.22 reflects the extended, orientation-dependent structures required for directional sensing---structures that are intrinsically expensive to maintain in proper alignment.
+While our Information-Elasticity Coupling (IEC) framework connects developmental patterning to macroscopic geometry, the mechanistic basis lies in protein-level biophysics. We bridge the gap between abstract field equations and molecular reality by integrating AlphaFold-derived structural energetics with non-equilibrium thermodynamics.
 
-The \emph{active moment term} $\eta_a$ is borne by the molecular machines that generate tonic contraction: the intermediate filament Vimentin (VIM; anisotropy~7.47, the highest in the dataset), Lamin~A/C (LMNA; anisotropy~4.75), Caveolin-1 (CAV1; anisotropy~3.98), Filamin~A (FLNA; 116~hinge candidates across 2647~residues), and the AIS-associated transcription factor LBX1~\cite{kou2013lbx1} (61\% disordered). Their mean anisotropy of 4.19---the highest of the three terms---reflects the extreme structural cost of the cytoskeletal-nuclear axis that transmits gravitational loads.
+\paragraph{Mechanosensory vs. Growth Protein Dichotomy.}
+We distinguish two functionally and energetically distinct classes of proteins governing spinal morphogenesis:
+\begin{itemize}
+    \item \textbf{Mechanosensory Proteins ($\eta_p, \eta_a$)}: These molecules (e.g., PIEZO2, Lamin A/C, Vimentin) act as the "sensors" and "actuators" of the countercurvature system. They are characterized by high structural anisotropy (mean $\sim 3.7$), extended conformations, and high metabolic maintenance costs due to continuous conformational cycling against thermal noise and mechanical stress. Their function is to detect alignment errors (vector mismatch) and generate corrective moments.
+    \item \textbf{Growth/Maintenance Proteins ($\Gamma_m$)}: These molecules (e.g., SIRT1, SOX9, COMP) constitute the "supply" side. They are generally more compact (mean anisotropy $\sim 2.1$) and govern the basal metabolic rate and tissue synthesis. Their primary role is to fuel the growth process itself.
+\end{itemize}
 
-The \emph{basal maintenance term} $\Gamma_m$ is borne by structurally more compact proteins: Type~I collagen (COL1A1; 67\% disordered in monomeric prediction, reflecting the triple-helix assembly requirement), the disc matrix protein COMP (pLDDT~88.1, the most confidently predicted), the metabolic sensor SIRT1 (47\% disordered), the growth plate driver SOX9, the morphogen SHH, and the growth arrest signal p21/CDKN1A. Their mean anisotropy of 2.11---significantly lower than the demand-side proteins---confirms that the energy supply apparatus is structurally cheaper than the mechanotransduction apparatus it must power.
+\paragraph{Thermodynamic Instability Windows.}
+During the adolescent growth spurt, these two systems compete for a finite metabolic energy pool $E_{total}$. We formalize this competition via a time-dependent energy balance equation:
+\begin{equation}
+\frac{dE_{mechano}}{dt} = k_{syn,m} \cdot [Resources] - k_{deg,m} \cdot [Mechano] - \dot{\mathcal{F}}_{load},
+\label{eq:protein_dynamics}
+\end{equation}
+where $\dot{\mathcal{F}}_{load} \propto L^4$ represents the increasing thermodynamic load of maintaining the mechanosensory apparatus against gravity. Conversely, the growth protein synthesis rate $dE_{growth}/dt$ is driven by a potent hormonal signal (GH/IGF-1) that scales with $L^2$ (surface area of nutrient diffusion).
+This scaling mismatch creates a transient \textbf{Energy Deficit Window} (Fig.~\ref{fig:energy_deficit_window}) during peak height velocity. In this window, the metabolic priority shifts to growth ($\Gamma_m$), starving the maintenance of the expensive mechanosensory array ($\eta_p$). The resulting degradation of sensor fidelity (e.g., loss of PIEZO2 density or Lamin A/C stiffness) renders the spine temporarily "blind" to geometric errors, allowing scoliotic deviations to nucleate.
 
-This structural asymmetry (demand anisotropy $\gg$ supply anisotropy) provides the molecular basis for the energy deficit window: the most expensive proteins to maintain are precisely those whose function must scale with $L$, while the supply-side regulators that must detect and respond to this increasing demand are compact sensors operating near their detection limits.
+\paragraph{Tensor Structure of IEC: The Vector Mismatch.}
+A critical innovation of our biophysical model is the recognition that Information-Elasticity Coupling is fundamentally tensorial, not scalar. The tissue's mechanical response depends on the alignment between the \emph{Information Gradient vector} $\hat{n}_{info} = \nabla I / |\nabla I|$ and the \emph{Principal Stress vector} $\hat{n}_{stress}$. We define an alignment parameter $\alpha(s)$:
+\begin{equation}
+\alpha(s) = |\hat{n}_{info}(s) \cdot \hat{n}_{stress}(s)|.
+\label{eq:alignment_param}
+\end{equation}
+The effective stiffness $E_{eff}(s)$ is then orientation-dependent:
+\begin{equation}
+E_{eff}(s) = E_{\parallel} \alpha(s)^2 + E_{\perp} (1 - \alpha(s)^2),
+\label{eq:tensor_stiffness}
+\end{equation}
+where $E_{\parallel} \gg E_{\perp}$ (typically 5:1 anisotropy ratio). In a healthy spine, $\hat{n}_{info}$ (aligned with the developmental axis) and $\hat{n}_{stress}$ (gravity) are largely parallel ($\alpha \approx 1$), maintaining high stiffness. However, a lateral perturbation creates an orthogonal component to the information gradient, driving $\alpha \to 0$. This "Vector Mismatch" drastically reduces the local bending stiffness ($E_{eff} \to E_{\perp}$), creating a localized zone of mechanical instability where the spine can buckle laterally (scoliosis) despite having normal scalar bone density.
+
+\paragraph{Molecular grounding via AlphaFold structural analysis.} The dissipation terms map to specific molecular players whose AlphaFold-predicted structures reveal this cost asymmetry. The \emph{proprioceptive feedback term} $\eta_p$ is borne by proteins like PIEZO2 (anisotropy~4.44) and EGR3 (64\% disordered), which are structurally expensive to maintain. The \emph{active moment term} $\eta_a$ relies on Vimentin (anisotropy~7.47) and Lamin~A/C (anisotropy~4.75), forming the high-cost cytoskeletal-nuclear axis. In contrast, the \emph{basal maintenance term} $\Gamma_m$ is borne by compact proteins like SIRT1 and SOX9 (mean anisotropy~2.11). This structural asymmetry confirms that the most expensive proteins---those required to sense and correct alignment---are the most vulnerable to the energy deficit.
 
 \subsection{The Spinal Clock and Convective Shutdown}
 

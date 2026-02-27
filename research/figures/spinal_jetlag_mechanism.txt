@@ -1,5 +1,18 @@
-A diagram illustrating "Spinal Jetlag" as the cause of twist-bend coupling.
-Show two parallel growth plates (Left and Right) behaving as coupled oscillators.
-Depict a phase shift (delta phi) between them, caused by a delay (tau) in the neural control loop.
-This phase shift causes one side to grow faster than the other at specific times, inducing a torque (twist) alongside the bending.
-Label "Left Clock", "Right Clock", "Neural Delay", and "Resulting Torsion".
+Title: Mechanism of Spinal Jetlag: Circadian Desynchronization
+
+Structure: Two-panel comparison diagram (Side-by-Side).
+
+Panel A: Synchronized (Healthy)
+- Visual: A stylized spine (S-curve) aligned with a vertical gravity vector arrow.
+- Key Element: A biological clock icon (circle with clock hands) is shown "in phase" (superimposed or connected) with the gravity vector.
+- Annotation: "Constructive Interference" and "phi = 0".
+- Result: The spine remains stable and aligned. Information flow (represented by golden threads or lines) matches the gravitational load.
+
+Panel B: Desynchronized (Scoliotic)
+- Visual: The same spine, but now buckling or twisting into a scoliotic shape.
+- Key Element: The biological clock icon is rotated or shifted (indicating phase shift), shown "out of phase" with the gravity vector.
+- Annotation: "Destructive Interference" and "phi = pi (Jetlag)".
+- Result: The information flow is disrupted/tangled, failing to correct the gravitational error. The spine collapses into a low-energy buckled state.
+
+Style: Clean, scientific schematic. Minimalist but clear. Use blue for gravity/stability and red for error/instability.
+Background: White or very light gray.

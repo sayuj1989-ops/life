@@ -1,1 +1,14 @@
-Visual Abstract for 'Biological Countercurvature of Spacetime'. A split comparison. Left side: A passive elastic rod bending downward under gravity (Gravity Dominated). Right side: A biological spine maintaining a robust S-curve against gravity, with a glowing mathematical grid overlay representing the 'effective metric' or 'countercurvature'. The background is a subtle mix of biological tissue textures and spacetime curvature grids. Title: 'Biological Countercurvature'. Style: High-end 3D render, scientific visualization.
+Title: Visual Abstract: Biological Countercurvature
+
+Concept: A glowing, ethereal human spine suspended in a dark, warped grid (representing spacetime/gravity).
+
+Central Element: A golden, S-shaped spine. It is not just bone, but composed of flowing "data streams" or "information threads" (like fiber optics) that are actively pushing back against the downward purple/blue arrows of gravity.
+
+Contrast:
+- Gravity: Represented by heavy, dark blue/purple arrows pushing down and trying to buckle the spine.
+- Countercurvature: Represented by the golden/white light of the spine, pushing upwards and outwards, maintaining the S-shape.
+
+Background: A faint grid (like a gravity well) that is warped by the presence of the spine.
+
+Style: High-end scientific illustration, 3D render style, glowing effects. "Cyber-biological".
+Annotation: "Information = Geometry".

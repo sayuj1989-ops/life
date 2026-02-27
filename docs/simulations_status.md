@@ -39,3 +39,4 @@
 | 2026-02-24 | weekly-sim: active-curvature-sweep | active_curvature | Critical threshold at Curvature=11.0; Sudden jump to >70 deg Cobb despite high anisotropy (5.0). | [Report](../outputs/sim/2026-02-24/report.md) |
 | 2026-03-05 | weekly-sim: taper-sweep | taper_ratio | Geometric Tapering (0.5) stabilizes high growth; Inverted Tapering (1.5) causes catastrophic collapse (Cobb 71 deg). | [Report](../outputs/sim/2026-03-05/report.md) |
 | 2026-02-26 | weekly-sim: anisotropy-growth-buckling | anisotropy, active_curvature | High stability (Cobb < 0.4 deg) maintained across all Anisotropy (1-5) and Growth (chi 5-25) in short (1s) duration without torsion. | [Report](../outputs/sim/2026-02-26/report.md) |
+| 2026-03-05 | weekly-sim: kyphosis-sweep | natural_kyphosis | Hyper-kyphosis (K>4.0) causes catastrophic buckling (Cobb >90 deg), contradicting simple 'hypokyphosis' instability models. | [Report](../outputs/sim/2026-03-05_kyphosis/report.md) |

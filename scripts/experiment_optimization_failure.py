@@ -373,6 +373,7 @@ def generate_report(csv_file: str):
             f.write("| chi_kappa | sigma_noise | mean_Cobb | std_Cobb | n_scoliotic |\n")
             f.write("|-----------|-------------|-----------|----------|-------------|\n")
 
+            from collections import defaultdict
             groups = defaultdict(list)
             for r in sweep_rows:
                 key = (float(r["chi_kappa"]), float(r["sigma_noise"]))

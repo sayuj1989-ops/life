@@ -1,9 +1,12 @@
 import pandas as pd
 import os
+import argparse
+from datetime import datetime
 
-INPUT_FILE = "outputs/afcc/2026-02-16/metrics.csv"
-OUTPUT_CSV = "outputs/afcc/confidence_weighted_ranking.csv"
-REPORT_FILE = "reports/confidence_weighted_structural_evidence.md"
+# Default paths
+DEFAULT_INPUT_FILE = "outputs/afcc/2026-02-16/metrics.csv"
+DEFAULT_OUTPUT_CSV = "outputs/afcc/confidence_weighted_ranking.csv"
+DEFAULT_REPORT_FILE = "reports/confidence_weighted_structural_evidence.md"
 
 def to_markdown_table(df):
     """
@@ -23,12 +26,15 @@ def to_markdown_table(df):
 
     return "\n".join([header, separator] + rows)
 
-def generate_ranking():
-    if not os.path.exists(INPUT_FILE):
-        print(f"Error: Input file {INPUT_FILE} not found.")
+def generate_confidence_ranking(input_csv, output_csv, report_path):
+    """
+    Generates confidence ranking and report from metrics CSV.
+    """
+    if not os.path.exists(input_csv):
+        print(f"Error: Input file {input_csv} not found.")
         return None, None
 
-    df = pd.read_csv(INPUT_FILE)
+    df = pd.read_csv(input_csv)
 
     # Calculate Weighted Score
     # Anisotropy * (pLDDT / 100)
@@ -70,19 +76,22 @@ def generate_ranking():
     cols = [c for c in cols if c in df.columns]
 
     df_out = df_sorted[cols]
-    df_out.to_csv(OUTPUT_CSV, index=False)
-    print(f"Ranking CSV written to {OUTPUT_CSV}")
 
-    return df, df_sorted
+    # Create output directory if it doesn't exist
+    os.makedirs(os.path.dirname(output_csv), exist_ok=True)
 
-def generate_report(df):
-    with open(REPORT_FILE, "w") as f:
+    df_out.to_csv(output_csv, index=False)
+    print(f"Ranking CSV written to {output_csv}")
+
+    # Generate Report
+    with open(report_path, "w") as f:
         f.write("# Confidence-Weighted Structural Evidence\n\n")
-        f.write("**Baseline Date:** 2026-02-16\n")
+        f.write(f"**Baseline Date:** {datetime.now().strftime('%Y-%m-%d')}\n")
+        f.write(f"**Source Data:** {input_csv}\n")
         f.write("**Metric:** Weighted Score = Anisotropy * (pLDDT / 100)\n\n")
 
         # Tier 1 Analysis
-        tier1 = df[df['confidence_tier'] == "Tier 1: High Anisotropy + High Confidence"]
+        tier1 = df_sorted[df_sorted['confidence_tier'] == "Tier 1: High Anisotropy + High Confidence"]
         f.write("## Tier 1: Confirmed Structural Drivers (High Anisotropy, High Confidence)\n")
         f.write("These candidates have robust structural evidence supporting their role as anisotropic mechanical elements.\n\n")
         if not tier1.empty:
@@ -92,7 +101,7 @@ def generate_report(df):
         f.write("\n\n")
 
         # Tier 2 Analysis
-        tier2 = df[df['confidence_tier'] == "Tier 2: High Anisotropy + Low Confidence"]
+        tier2 = df_sorted[df_sorted['confidence_tier'] == "Tier 2: High Anisotropy + Low Confidence"]
         f.write("## Tier 2: Speculative Structural Drivers (High Anisotropy, Low Confidence)\n")
         f.write("High anisotropy detected but structure is low confidence (IDR or flexible). **Interpret with caution.**\n\n")
         if not tier2.empty:
@@ -107,11 +116,11 @@ def generate_report(df):
 
         targets = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
         # Filter for targets present in df
-        target_df = df[df['gene_symbol'].isin(targets)].copy()
+        target_df = df_sorted[df_sorted['gene_symbol'].isin(targets)].copy()
 
         missing_targets = set(targets) - set(target_df['gene_symbol'])
         if missing_targets:
-            f.write(f"**Note:** The following targets were not found in the baseline dataset (2026-02-16): {', '.join(missing_targets)}.\n\n")
+            f.write(f"**Note:** The following targets were not found in the baseline dataset: {', '.join(missing_targets)}.\n\n")
 
         # Add commentary based on data
         def get_comment(row):
@@ -145,7 +154,7 @@ def generate_report(df):
         f.write("\n\n")
 
         # LBX1 Specific Interpretation
-        lbx1 = df[df['gene_symbol'] == 'LBX1']
+        lbx1 = df_sorted[df_sorted['gene_symbol'] == 'LBX1']
         if not lbx1.empty:
             lbx1_row = lbx1.iloc[0]
             f.write("### LBX1 Assessment\n")
@@ -158,9 +167,18 @@ def generate_report(df):
         else:
             f.write("LBX1 not found in dataset.\n")
 
-    print(f"Report written to {REPORT_FILE}")
+    print(f"Report written to {report_path}")
+    return df, df_sorted
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate confidence ranking from AFCC metrics.")
+    parser.add_argument("--input", default=DEFAULT_INPUT_FILE, help="Path to input metrics CSV")
+    parser.add_argument("--output", default=DEFAULT_OUTPUT_CSV, help="Path to output ranking CSV")
+    parser.add_argument("--report", default=DEFAULT_REPORT_FILE, help="Path to output report MD")
+
+    args = parser.parse_args()
+
+    generate_confidence_ranking(args.input, args.output, args.report)
 
 if __name__ == "__main__":
-    df_raw, df_ranked = generate_ranking()
-    if df_ranked is not None:
-        generate_report(df_ranked)
+    main()

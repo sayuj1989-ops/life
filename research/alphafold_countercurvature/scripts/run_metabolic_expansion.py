@@ -148,7 +148,8 @@ def main():
     # Add REPO_ROOT to sys.path to import from scripts
     sys.path.append(str(REPO_ROOT))
     try:
-        from scripts.analysis.confidence_ranking import generate_confidence_ranking
+        # Import correctly from scripts.analysis
+        from scripts.analysis.generate_confidence_ranking import generate_confidence_ranking
 
         report_path = REPO_ROOT / "reports" / "confidence_weighted_structural_evidence.md"
         ranking_csv = OUTPUTS_DIR / "confidence_weighted_ranking.csv"
@@ -160,7 +161,7 @@ def main():
         )
         print(f"✅ Confidence ranking updated: {report_path}")
     except ImportError as e:
-        print(f"❌ Failed to import confidence_ranking: {e}")
+        print(f"❌ Failed to import generate_confidence_ranking: {e}")
         # Don't exit, this is reporting
     except Exception as e:
         print(f"❌ Failed to run confidence ranking: {e}")

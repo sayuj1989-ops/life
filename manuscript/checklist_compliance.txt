@@ -1,19 +1,19 @@
 # Nature Submission Compliance Checklist
 
 **Target Journal:** Nature
-**Article Type:** Article / Letter
+**Article Type:** Article
 
 ## 1. Content Constraints
 - [x] **Title:** < 90 characters (Active voice, no jargon).
       *Current:* "Metabolic Buckling: An Energy Deficit Window Explains Adolescent Idiopathic Scoliosis" (83 chars).
 - [x] **Abstract:** ~150 words.
-      *Current:* ~160 words. Structured as "Basic Intro -> Specific Problem -> Solution -> Conclusion". Updated with "Allometric Trap" concept.
+      *Current:* ~135 words. Structured as "Basic Intro -> Specific Problem -> Solution -> Conclusion". Updated with "Allometric Trap" concept.
 - [x] **Main Text:** ~2000-2500 words.
-      *Status:* Compliant (~2200 words estimated). No subheadings used. Includes new "Cross-Species Scaling" paragraph.
+      *Status:* Compliant (~2200 words estimated). No subheadings in Introduction.
 - [x] **Methods:** Separate section at the end.
-      *Status:* Included. Updated with "Cross-Species Scaling" and "Toy Model".
+      *Status:* Included.
 - [x] **References:** Max 50.
-      *Status:* Selected 9 key references for the draft; full bibliography to be expanded (currently placeholder).
+      *Status:* Placeholder bibliography included.
 
 ## 2. Figures & Tables
 - [x] **Display Items:** Max 6.
@@ -36,3 +36,4 @@
 - [x] **Grand Challenge:** Clearly stated (Gravity vs. Growth).
 - [x] **Mechanism:** "Metabolic Buckling" is a distinct physical mechanism.
 - [x] **Impact:** Reframes a common disease (AIS) as a fundamental biological trade-off.
+- [x] **Rebuttal:** Addressed potential critique regarding invasive flux measurements in Discussion ("...allometric scaling laws provide a robust theoretical bound...").

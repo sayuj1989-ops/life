@@ -439,17 +439,24 @@ class MetricsAnalyzer:
             if cKDTree is not None:
                 # Bolt Optimization: Parallel KDTree Search
                 # leafsize=64 improves traversal speed for typical protein point density (~1.3x)
-                # workers=-1 enables parallel neighbor search using all cores (~2x)
+
+                # Dynamic Worker Selection:
+                # For small proteins (N < 2000), parallel overhead dominates.
+                # For large proteins (N >= 2000), parallelism wins.
+                # Crossover determined via scripts/benchmarks/benchmark_sasa_kdtree.py (N ~ 1250-1500)
+                # Using 2000 as a conservative threshold.
+                num_workers = -1 if len(coords) > 2000 else 1
+
                 tree = cKDTree(coords, leafsize=64)
                 # Query all points within threshold radius
                 # result is list of neighbors for each point
                 try:
                     # Prefer return_length=True if available (Scipy >= 1.8?)
-                    cn = tree.query_ball_point(coords, r=threshold, return_length=True, workers=-1)
+                    cn = tree.query_ball_point(coords, r=threshold, return_length=True, workers=num_workers)
                     cn = np.array(cn) - 1 # Exclude self
                 except TypeError:
                      # Fallback for older Scipy
-                    neighbors = tree.query_ball_point(coords, r=threshold)
+                    neighbors = tree.query_ball_point(coords, r=threshold, workers=num_workers)
                     cn = np.array([len(x) for x in neighbors]) - 1 # Exclude self
             else:
                 # Legacy Fallback: Blocked matrix algebra

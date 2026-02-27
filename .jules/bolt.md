@@ -113,3 +113,7 @@
    - RAM: `mmap` avoids loading full array into memory, preventing spikes for large proteins (e.g., Titin).
 
 **Action:** Refactored `StructureParser.parse_pae` to use `.npy` cache with `uint8` casting and `mmap` loading. Added backward compatibility to auto-upgrade legacy `.npz` caches.
+
+## 2026-05-25 - [Dynamic KDTree Parallelism]
+**Learning:** `scipy.spatial.cKDTree` parallelization (`workers=-1`) has significant thread spin-up overhead. Benchmarks show that for N < 1250, serial execution is faster. For N=500, serial is ~1.8x faster (1.25ms vs 2.23ms).
+**Action:** Implemented dynamic worker selection in `metrics.py`: `workers = -1 if len(coords) > 2000 else 1`. This optimizes the "SASA proxy" calculation for the majority of single-chain proteins while retaining speed for large complexes.

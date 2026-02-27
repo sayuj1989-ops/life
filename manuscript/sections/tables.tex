@@ -2,47 +2,7 @@
 
 \begin{table}[h!]
 \centering
-\caption{Computational model parameters and biological justification}
-\label{tab:parameters}
-\small
-\begin{tabular}{llll}
-\toprule
-\textbf{Parameter} & \textbf{Value} & \textbf{Units} & \textbf{Biological Basis} \\
-\midrule
-\multicolumn{4}{l}{\textit{Geometry}} \\
-Length $L$ & 0.40 & m & Adult spine (sacrum to cranium) \\
-Diameter $d$ & 0.03 & m & Typical vertebral body dimension \\
-$n$ elements & 50--100 & -- & Convergence-tested discretization \\
-\midrule
-\multicolumn{4}{l}{\textit{Material Properties}} \\
-Young's modulus $E_0$ & 1.0 & GPa & Effective modulus (bone + disc) \\
-Area moment $I_{\mathrm{area}}$ & $1.0 \times 10^{-8}$ & m$^4$ & Cylindrical cross-section \\
-Density $\rho$ & 1100 & kg/m$^3$ & Tissue-averaged density \\
-Cross-section $A$ & $7.1 \times 10^{-4}$ & m$^2$ & $\pi (d/2)^2$ \\
-\midrule
-\multicolumn{4}{l}{\textit{IEC Coupling Parameters}} \\
-$\chi_\kappa$ & 0--0.10 & m$^{-1}$ & Rest curvature coupling (sweep) \\
-$\chi_E$ & 0.10 & -- & Stiffness modulation (fixed) \\
-$\chi_M$ & 0--0.05 & N$\cdot$m & Active moment coupling \\
-$\beta_1, \beta_2$ & 0.1, 0.05 & -- & Metric coupling constants \\
-\midrule
-\multicolumn{4}{l}{\textit{Information Field (Spinal Profile)}} \\
-Cervical peak & $s/L = 0.80$ & -- & C1-C7 region \\
-Lumbar peak & $s/L = 0.25$ & -- & L1-L5 region \\
-Peak amplitude & 0.5--0.7 & -- & Normalized HOX expression \\
-Baseline $I_0$ & 0.3 & -- & Background patterning \\
-\midrule
-\multicolumn{4}{l}{\textit{Loading \& Dynamics}} \\
-Gravity $g$ & 0.01--1.0 & $g_\oplus$ & Microgravity to Earth \\
-Damping $\nu$ & 0.1--1.0 & s$^{-1}$ & Numerical dissipation \\
-Equilibrium criterion & $v_{\max} < 10^{-6}$ & m/s & Kinetic energy threshold \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\caption{List of thermodynamic cost proteins ($n=16$) grouped by dissipation term ($\eta_p, \eta_a, \Gamma_m$) and characterized by AlphaFold structural metrics. The anisotropy ratio and morphology indicate the structural cost of maintaining orientation (vector sensing) vs. volume (scalar maintenance). High-confidence structural anchors identified via AlphaFold 3 ranking ($\text{pLDDT} > 70$) are highlighted.}
+\caption{List of thermodynamic cost proteins ($n=16$) mapped to the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$). Metrics include Anisotropy Ratio (shape elongation), pLDDT (AlphaFold confidence), and Scaling behavior derived from cellular function. See Eq.~\ref{eq:dissipation} for term definitions.}
 \label{tab:thermodynamic_cost_proteins}
 \scriptsize
 \begin{tabular}{llcclllc}
@@ -50,26 +10,26 @@ Equilibrium criterion & $v_{\max} < 10^{-6}$ & m/s & Kinetic energy threshold \\
 \textbf{Gene} & \textbf{UniProt} & \textbf{Dissipation Term} & \textbf{Anisotropy} & \textbf{Morphology} & \textbf{pLDDT} & \textbf{Residues} & \textbf{L-Scaling} \\
 \midrule
 \multicolumn{8}{l}{\textit{Proprioceptive Channel Anchors ($\eta_p$)}} \\
-PIEZO2 & Q9H5I5 & $\eta_{p}$ & 4.44 & Extended & 79.4 & 2752 & $L^2$ \\
-PIEZO1 & Q92508 & $\eta_{p}$ & 3.90 & Extended & 72.0 & 2521 & $L^2$ \\
-EGR3 & Q06889 & $\eta_{p}$ & 3.76 & Extended & 50.0 & 387 & $L$ \\
-RUNX3 & Q13761 & $\eta_{p}$ & 2.06 & Intermediate & 60.6 & 415 & $L$ \\
-NTRK3 & Q16288 & $\eta_{p}$ & 1.94 & Intermediate & 76.8 & 839 & $L$ \\
+PIEZO2 & Q9H5I5 & $\eta_p$ & 4.44 & Fibrous/Extended & 79.4 & 2752 & $L$ \\
+PIEZO1 & Q92508 & $\eta_p$ & 3.90 & Fibrous/Extended & 72.0 & 2521 & $L^2$ \\
+EGR3 & Q06889 & $\eta_p$ & 3.76 & Fibrous/Extended & 50.0 & 387 & $L$ \\
+RUNX3 & Q13761 & $\eta_p$ & 2.06 & Intermediate & 60.6 & 415 & $L$ \\
+NTRK3 & Q16288 & $\eta_p$ & 1.94 & Intermediate & 76.8 & 839 & $L$ \\
 \midrule
 \multicolumn{8}{l}{\textit{Active Maintenance Anchors ($\eta_a$)}} \\
-VIM & P08670 & $\eta_{a}$ & 7.47 & Fibrous & 77.1 & 466 & $L^3$ \\
-LMNA & P02545 & $\eta_{a}$ & 4.75 & Extended & 76.4 & 664 & $L^2$ \\
-CAV1 & Q03135 & $\eta_{a}$ & 3.98 & Extended & 78.4 & 178 & $L^2$ \\
-FLNA & P21333 & $\eta_{a}$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
-LBX1 & P52954 & $\eta_{a}$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
+VIM & P08670 & $\eta_a$ & 7.47 & Fibrous/Extended & 77.1 & 466 & $L^3$ \\
+LMNA & P02545 & $\eta_a$ & 4.75 & Fibrous/Extended & 76.4 & 664 & $L^2$ \\
+CAV1 & Q03135 & $\eta_a$ & 3.98 & Fibrous/Extended & 78.4 & 178 & $L^2$ \\
+FLNA & P21333 & $\eta_a$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
+LBX1 & P52954 & $\eta_a$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
 \midrule
 \multicolumn{8}{l}{\textit{Metabolic Supply Scaling ($\Gamma_m$)}} \\
-COL1A1 & P02452 & $\Gamma_{m}$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
-COMP & P49747 & $\Gamma_{m}$ & 1.72 & Intermediate & 88.1 & 757 & $L$ \\
-SIRT1 & Q96EB6 & $\Gamma_{m}$ & 1.73 & Intermediate & 65.0 & 747 & Constant \\
-SOX9 & P48436 & $\Gamma_{m}$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
-SHH & Q15465 & $\Gamma_{m}$ & 2.12 & Intermediate & 78.4 & 462 & $L$ \\
-CDKN1A & P38936 & $\Gamma_{m}$ & 2.14 & Intermediate & 69.0 & 164 & Threshold \\
+COL1A1 & P02452 & $\Gamma_m$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
+COMP & P49747 & $\Gamma_m$ & 1.72 & Intermediate & 88.1 & 757 & $L$ \\
+SIRT1 & Q96EB6 & $\Gamma_m$ & 1.73 & Intermediate & 65.0 & 747 & Constant \\
+SOX9 & P48436 & $\Gamma_m$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
+SHH & Q15465 & $\Gamma_m$ & 2.12 & Intermediate & 78.4 & 462 & $L$ \\
+CDKN1A & P38936 & $\Gamma_m$ & 2.14 & Intermediate & 69.0 & 164 & Threshold \\
 \bottomrule
 \end{tabular}
 \end{table}

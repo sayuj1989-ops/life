@@ -107,13 +107,16 @@ def get_top_candidates(n: int = 10, filepath: str = CANDIDATES_FILE) -> pd.DataF
         return pd.DataFrame(columns=['gene_symbol', 'uniprot_id', 'organism', 'priority_score'])
 
     df = pd.read_csv(filepath)
-    # Ensure priority_score is numeric
-    df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce').fillna(0)
 
-    # Sort descending
-    df_sorted = df.sort_values(by='priority_score', ascending=False)
-
-    return df_sorted.head(n)
+    # If using custom file (like daily snapshot), it might not have priority_score or be pre-sorted
+    # If priority_score exists, use it. Otherwise assume file order is intentional.
+    if 'priority_score' in df.columns:
+        df['priority_score'] = pd.to_numeric(df['priority_score'], errors='coerce').fillna(0)
+        df_sorted = df.sort_values(by='priority_score', ascending=False)
+        return df_sorted.head(n)
+    else:
+        # Assume file is already sorted or just take top N
+        return df.head(n)
 
 def generate_summary(results_df: pd.DataFrame, failures: List[str], today_str: str) -> str:
     if results_df.empty:
@@ -153,6 +156,7 @@ def generate_summary(results_df: pd.DataFrame, failures: List[str], today_str: s
 def main():
     parser = argparse.ArgumentParser(description="AFCC Daily Refresh")
     parser.add_argument("--top-n", type=int, default=10, help="Number of top candidates to process")
+    parser.add_argument("--candidates-file", type=str, default=CANDIDATES_FILE, help="Path to candidates CSV file")
     args = parser.parse_args()
 
     ensure_dirs()
@@ -165,8 +169,8 @@ def main():
     metrics_file = os.path.join(daily_output_dir, "metrics.csv")
     summary_file = os.path.join(daily_output_dir, "summary.md")
 
-    candidates = get_top_candidates(args.top_n)
-    print(f"Processing top {len(candidates)} candidates for {today_str}...")
+    candidates = get_top_candidates(args.top_n, args.candidates_file)
+    print(f"Processing top {len(candidates)} candidates for {today_str} from {args.candidates_file}...")
 
     struct_parser = StructureParser()
     analyzer = MetricsAnalyzer()

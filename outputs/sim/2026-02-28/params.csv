@@ -1,0 +1,2 @@
+stiffness_mod_min,stiffness_mod_max,steps,anisotropy,active_curvature,initial_lateral_defect,duration,dt,n_elements,seed
+-0.8,0.8,20,2.0,12.0,0.05,2.0,0.0001,50,42

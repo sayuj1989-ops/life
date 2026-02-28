@@ -168,7 +168,7 @@ def run_phase_diagram_experiment(
             E_passive = np.full_like(s, E0)
             M_passive = np.zeros_like(s)
             _, kappa_passive = solve_beam_static(
-                s, kappa_rest_passive, E_passive, M_passive,
+                s, kappa_rest_passive[1], E_passive, M_passive,
                 I_moment=I_moment, distributed_load=gravity_load
             )
 
@@ -180,7 +180,7 @@ def run_phase_diagram_experiment(
             E_info_sym = compute_effective_stiffness(info_field_sym, params_info, E0, model="linear")
             M_info_sym = compute_active_moments(info_field_sym, params_info)
             _, kappa_info_sym = solve_beam_static(
-                s, kappa_rest_info_sym, E_info_sym, M_info_sym,
+                s, kappa_rest_info_sym[1], E_info_sym, M_info_sym,
                 I_moment=I_moment, distributed_load=gravity_load
             )
 
@@ -189,7 +189,7 @@ def run_phase_diagram_experiment(
             E_info_asym = compute_effective_stiffness(info_field_asym, params_info, E0, model="linear")
             M_info_asym = compute_active_moments(info_field_asym, params_info)
             theta_asym, kappa_info_asym = solve_beam_static(
-                s, kappa_rest_info_asym, E_info_asym, M_info_asym,
+                s, kappa_rest_info_asym[1], E_info_asym, M_info_asym,
                 I_moment=I_moment, distributed_load=gravity_load
             )
             centerline_asym = _reconstruct_centerline_2d(theta_asym, s)
@@ -201,7 +201,7 @@ def run_phase_diagram_experiment(
             
             # Also compute symmetric case for comparison
             theta_sym, _ = solve_beam_static(
-                s, kappa_rest_info_sym, E_info_sym, M_info_sym,
+                s, kappa_rest_info_sym[1], E_info_sym, M_info_sym,
                 I_moment=I_moment, distributed_load=gravity_load
             )
             centerline_sym = _reconstruct_centerline_2d(theta_sym, s)

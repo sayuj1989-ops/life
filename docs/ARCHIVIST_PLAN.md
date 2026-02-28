@@ -64,8 +64,8 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Clean Root of Drafts**:
     - [x] Move `.docx` files (`IEC_*.docx`, `NATURE_*.docx`) to `manuscript/drafts/`.
     - [x] Move template files (`*_Template.docx`) to `manuscript/templates/`.
-- [ ] **Organize Manuscript Scripts**:
-    - [ ] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
+- [x] **Organize Manuscript Scripts**:
+    - [x] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
 - [ ] **Organize Prompts**:
     - [ ] Move `AI_*.md` and `*_PROMPT.md` to `docs/prompts/` or `notes/prompts/`.
 - [ ] **Submission Checklist**:

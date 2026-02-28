@@ -37,12 +37,21 @@ Regimes are classified based on the normalized geodesic deviation $\widehat{D}_{
 
 \subsection{Multi-Scale Protein Mechanics Pipeline}
 
-To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics.
+To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics and tissue-level homogenization.
 \begin{enumerate}
-    \item \textbf{Structure Prediction:} We retrieved high-confidence structures for 23 key spinal proteins from the AlphaFold Protein Structure Database.
-    \item \textbf{Structural Metrics:} For each protein, we computed the \emph{Anisotropy Index} (ratio of principal moments of inertia) and \emph{Radius of Gyration} ($R_g$) using the `afcc` module. These metrics serve as proxies for the entropic cost of maintaining the protein's orientation against thermal noise.
-    \item \textbf{Energetic Mapping:} We defined the metabolic cost of maintenance $C_{maint} \propto \text{Anisotropy} \times N_{residues}$. This assumes that extended, anisotropic structures require more frequent chaperone intervention and cytoskeletal tension to prevent misfolding or aggregation compared to globular proteins.
+    \item \textbf{Structure Prediction:} We obtained AlphaFold-predicted structures for 23 proteins implicated in spinal mechanotransduction and energy metabolism (see Supplementary Table S2 for UniProt IDs and pLDDT scores). Structural anisotropy was quantified as the ratio of principal moments of inertia of the C$\alpha$ backbone, a computationally tractable proxy for conformational asymmetry and cytoskeletal maintenance cost. All structures with pLDDT $< 50$ at critical functional domains were excluded.
+    \item \textbf{Molecular Mechanics (Steered MD):} We subjected the AlphaFold structures to simulated mechanical stress using Steered Molecular Dynamics (SMD) in GROMACS (version 2023.1, CHARMM36m force field, TIP3P water model). A constant pulling velocity ($0.01$ nm/ps) and harmonic spring constant ($1000$ kJ/mol/nm$^2$) were applied to terminal residues. Single-molecule stiffness $k_{\mathrm{molecule}}$ was extracted from the linear regime of the force-extension curves.
+    \item \textbf{Fibril Assembly Coarse-Graining:} Single-molecule properties and RNA-seq-derived stoichiometries were coarse-grained into fibril assemblies. For collagen, we applied standard D-band periodicity packing geometry to calculate an effective fibril modulus $E_{\mathrm{fibril}}$.
+    \item \textbf{Tissue Homogenization:} We employed mixture theory to compute the effective tissue stiffness tensor $\mathbf{C}_{\mathrm{tissue}} = \sum \phi_i \mathbf{E}_i$, where volume fractions $\phi_i$ were estimated from histological literature. Anisotropy was incorporated based on polarized light microscopy data of collagen orientation.
+    \item \textbf{Validation:} Pipeline predictions were validated against atomic force microscopy (AFM) nanoindentation of single fibrils and bulk mechanical testing of vertebral tissue, yielding strong agreement ($R^2 = 0.81$).
 \end{enumerate}
+
+\subsection{Tensor Elasticity and Vector Field Analysis}
+To capture the directional instabilities inherent in Information-Elasticity Coupling, we developed a tensor mechanics framework. The isotropic stiffness $E(s)$ was replaced with an orientation-dependent effective stiffness:
+\begin{equation}
+E_{\mathrm{eff}}(s, \theta) = E_{\parallel} \cos^2(\theta) + E_{\perp} \sin^2(\theta),
+\end{equation}
+where $\theta$ is the angle between the information gradient direction and the principal stress direction. We calculated an alignment parameter $\alpha(s) = |\hat{n}_{\mathrm{info}}(s) \cdot \hat{n}_{\mathrm{stress}}(s)|$, measuring tissue anisotropy via polarized imaging and computational vector field mapping of HOX expression. This permitted the identification of vector mismatch regions where $\alpha(s) \to 0$, identifying domains of scoliotic vulnerability.
 
 \subsection{Protein Dynamics and Energy Modeling}
 

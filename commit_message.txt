@@ -1,0 +1,6 @@
+feat: add energy deficit window simulation and results
+
+- Compute metabolic power P_counter as a function of spinal length L using the IEC beam solver
+- Plot P_counter(L) vs proprioceptive supply capacity S_proprio(L)
+- Generate the "Energy Deficit Window" figure
+- Add results to manuscript section 4.6 (Energy Deficit Window and Metabolic Cost)

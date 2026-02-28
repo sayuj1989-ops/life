@@ -100,8 +100,10 @@ def generate_report(data):
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
+**Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
@@ -136,7 +138,7 @@ def generate_report(data):
 
 def save_report(report):
     """
-    Saves the report to a file with the current date.
+    Saves the report to a file with the current date, and updates the latest report link.
     """
     today = datetime.date.today()
     output_dir = "reports/daily_updates"
@@ -148,6 +150,10 @@ def save_report(report):
     filepath = os.path.join(output_dir, filename)
 
     with open(filepath, 'w') as f:
+        f.write(report)
+
+    latest_filepath = "reports/daily_update_latest.md"
+    with open(latest_filepath, 'w') as f:
         f.write(report)
 
     return filepath

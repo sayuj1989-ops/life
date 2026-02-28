@@ -1,0 +1,53 @@
+Loaded 10 merged candidates.
+
+Cluster Analysis:
+
+Cluster 0: N=2
+  Mean Anisotropy: 3.93
+  Mean Disorder: 0.13
+  Top Tags: ['Mechanotransduction', 'Proprioception', 'Signaling', 'Bone']
+  Target Score: 1.00
+
+Cluster 1: N=3
+  Mean Anisotropy: 1.56
+  Mean Disorder: 0.18
+  Top Tags: ['Thermodynamic_Cost', 'Muscle', 'Mechanotransduction', 'Cytoskeleton', 'Proprioception']
+  Target Score: 1.00
+
+Cluster 2: N=1
+  Mean Anisotropy: 1.46
+  Mean Disorder: 0.35
+  Top Tags: ['Muscle', 'Contraction', 'Signaling', 'Thermodynamic_Cost']
+  Target Score: 1.00
+
+Cluster 3: N=3
+  Mean Anisotropy: 2.63
+  Mean Disorder: 0.47
+  Top Tags: ['Thermodynamic_Cost', 'ECM', 'Cytoskeleton', 'Muscle']
+  Target Score: 1.00
+
+Cluster 4: N=1
+  Mean Anisotropy: 5.13
+  Mean Disorder: 0.50
+  Top Tags: ['Thermodynamic_Cost']
+  Target Score: 1.00
+
+Cluster (ID 0):
+- PIEZO2: Anisotropy=4.44, Disorder=0.14, Tags=Mechanotransduction,Proprioception
+- ACVR1: Anisotropy=3.41, Disorder=0.12, Tags=Signaling,Mechanotransduction,Bone
+
+Cluster (ID 1):
+- IGF1R: Anisotropy=1.43, Disorder=0.16, Tags=Thermodynamic_Cost
+- DMD: Anisotropy=1.32, Disorder=0.18, Tags=Muscle,Mechanotransduction,Cytoskeleton,Thermodynamic_Cost
+- NTRK3: Anisotropy=1.94, Disorder=0.20, Tags=Proprioception,Signaling
+
+Cluster (ID 2):
+- MYLK: Anisotropy=1.46, Disorder=0.35, Tags=Muscle,Contraction,Signaling,Thermodynamic_Cost
+
+Cluster (ID 3):
+- PPARGC1A: Anisotropy=2.19, Disorder=0.62, Tags=Thermodynamic_Cost
+- ARNTL: Anisotropy=3.32, Disorder=0.40, Tags=Thermodynamic_Cost
+- DAG1: Anisotropy=2.39, Disorder=0.38, Tags=ECM,Cytoskeleton,Muscle
+
+Cluster (ID 4):
+- GHR: Anisotropy=5.13, Disorder=0.50, Tags=Thermodynamic_Cost

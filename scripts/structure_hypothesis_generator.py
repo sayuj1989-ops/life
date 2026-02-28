@@ -87,18 +87,11 @@ def main():
             best_cluster_score = score
             best_cluster_id = cluster_id
 
-    # Print Best Cluster
-    print(f"\nBest Cluster (ID {best_cluster_id}):")
-    best_cluster = merged_df[merged_df['cluster'] == best_cluster_id]
-    for _, row in best_cluster.iterrows():
-        print(f"- {row['gene_symbol_x']}: Anisotropy={row['anisotropy_index']:.2f}, Disorder={row['disorder_fraction_proxy']:.2f}, Tags={row['pathway_tags']}")
-
-    # Also print the high anisotropy cluster if it's not the best one
-    high_anisotropy_cluster_id = merged_df.groupby('cluster')['anisotropy_index'].mean().idxmax()
-    if high_anisotropy_cluster_id != best_cluster_id:
-        print(f"\nHigh Anisotropy Cluster (ID {high_anisotropy_cluster_id}):")
-        high_cluster = merged_df[merged_df['cluster'] == high_anisotropy_cluster_id]
-        for _, row in high_cluster.iterrows():
+    # Print All Clusters
+    for cluster_id in range(k):
+        print(f"\nCluster (ID {cluster_id}):")
+        cluster_data = merged_df[merged_df['cluster'] == cluster_id]
+        for _, row in cluster_data.iterrows():
             print(f"- {row['gene_symbol_x']}: Anisotropy={row['anisotropy_index']:.2f}, Disorder={row['disorder_fraction_proxy']:.2f}, Tags={row['pathway_tags']}")
 
 if __name__ == "__main__":

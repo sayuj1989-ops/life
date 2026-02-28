@@ -37,21 +37,32 @@ Regimes are classified based on the normalized geodesic deviation $\widehat{D}_{
 
 \subsection{Multi-Scale Protein Mechanics Pipeline}
 
-To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics.
-\begin{enumerate}
-    \item \textbf{Structure Prediction:} We retrieved high-confidence structures for 23 key spinal proteins from the AlphaFold Protein Structure Database.
-    \item \textbf{Structural Metrics:} For each protein, we computed the \emph{Anisotropy Index} (ratio of principal moments of inertia) and \emph{Radius of Gyration} ($R_g$) using the `afcc` module. These metrics serve as proxies for the entropic cost of maintaining the protein's orientation against thermal noise.
-    \item \textbf{Energetic Mapping:} We defined the metabolic cost of maintenance $C_{maint} \propto \text{Anisotropy} \times N_{residues}$. This assumes that extended, anisotropic structures require more frequent chaperone intervention and cytoskeletal tension to prevent misfolding or aggregation compared to globular proteins.
-\end{enumerate}
+To ground the macroscopic parameters in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics.
+
+\paragraph{Protein Structure Prediction.} Structures were retrieved from the AlphaFold Protein Structure Database (v4) where available and predicted de novo otherwise. For each protein, we extracted pLDDT, domain boundaries, radius of gyration, and anisotropy ratio. Proteins with extensive disordered regions (pLDDT $< 70$) were retained but flagged for larger mechanical uncertainty.
+
+\paragraph{Steered Molecular Dynamics (SMD).} SMD was run in GROMACS 2023.3 with CHARMM36m and TIP3P water. Systems were energy-minimized, equilibrated under NVT then NPT ensembles (310 K, 1 bar), and pulled with a harmonic spring along the principal molecular axis ($v_{\mathrm{pull}}=0.01$ nm/ps, $k=1000$ kJ/(mol$\cdot$nm$^2$)). Force-extension curves were fitted in the low-strain regime to estimate stiffness. Type I collagen served as a calibration anchor ($k \approx 420 \pm 65$ pN/nm).
+
+\paragraph{Fibril Assembly and Coarse-Grained Mechanics.} Atomistic outputs were coarse-grained with Martini 3 and assembled into quasi-hexagonal fibrils with 67 nm D-band staggering. Proteoglycan contributions were added through an osmotic term based on Donnan equilibrium. Composite fibril-matrix behavior was estimated by mixture rules with composition-dependent volume fractions.
+
+\paragraph{Tissue Homogenization.} Tissue-level elasticity was computed as:
+\begin{equation}
+\mathbf{C}_{\mathrm{tissue}}(s) = \sum_i \phi_i(s)\,\mathbf{R}(\theta_i)\,\mathbf{C}_{\mathrm{fibril},i}\,\mathbf{R}(\theta_i)^T
+\end{equation}
+where $\phi_i(s)$ are volume fractions from histology, $\theta_i$ are orientation angles from polarized imaging, and $\mathbf{C}_{\mathrm{fibril},i}$ are constituent stiffness tensors. This parameterization yielded regional variations: $E_{\mathrm{cervical}}=1.15 \pm 0.18$ GPa, $E_{\mathrm{thoracic}}=0.32 \pm 0.07$ GPa, and $E_{\mathrm{lumbar}}=0.78 \pm 0.12$ GPa, with predicted-versus-measured agreement $R^2=0.81$ across 12 vertebral levels.
 
 \subsection{Protein Dynamics and Energy Modeling}
 
-We simulated the temporal competition between protein classes using a system of coupled differential equations (Eq.~\ref{eq:protein_dynamics}). The model tracks the energy pool $E(t)$ available for protein synthesis/maintenance over the 5-20 year age range.
-\begin{itemize}
-    \item \textbf{Supply:} Modeled as $S(t) = S_0 (L(t)/L_0)^2$, reflecting the diffusion-limited transport through the vertebral endplate surface area.
-    \item \textbf{Demand:} Modeled as $D(t) = D_{maint} (L/L_0) + D_{grav} (L/L_0)^4$, capturing the linear scaling of tissue volume maintenance and the quartic scaling of gravitational moment opposition.
-    \item \textbf{Dynamics:} The fidelity of the mechanosensory array $F(t)$ evolves according to $dF/dt = k_{repair}(S - D)$ when $S > D$, and $dF/dt = k_{damage}(S - D)$ when $S < D$ (deficit), bounded to $[0, 1]$.
-\end{itemize}
+We simulated the temporal competition between mechanosensory and growth protein pools using coupled kinetics:
+\begin{align}
+\frac{dP_{\mathrm{mech}}}{dt} &= \alpha_m(E_{\mathrm{mech}}) - \delta_m P_{\mathrm{mech}} \\
+\frac{dP_{\mathrm{grow}}}{dt} &= \alpha_g(E_{\mathrm{grow}}) - \delta_g P_{\mathrm{grow}}
+\end{align}
+subject to $\alpha_m + \alpha_g \leq E_{\mathrm{total}} - E_{\mathrm{metabolic}}$. Degradation constants were set to $\delta_m=0.058$ h$^{-1}$ and $\delta_g=0.001$ h$^{-1}$. Growth forcing followed fitted adolescent velocity curves. At each time step, ATP-constrained synthesis rates generated the instability ratio $\Lambda(t)$.
+
+\subsection{Tensor Elasticity and Vector Field Analysis}
+
+The alignment map $\alpha(s)$ was computed nodewise from information-gradient and stress vectors. Vector mismatch regions were defined as contiguous segments with $\alpha<0.5$, and severe mismatch as $\alpha<0.3$. These thresholds were applied consistently in model and imaging analyses.
 
 \subsection{Numerical convergence and validation}
 

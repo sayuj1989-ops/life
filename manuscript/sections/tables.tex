@@ -2,35 +2,40 @@
 
 \begin{table}[h!]
 \centering
-\caption{List of thermodynamic cost proteins ($n=16$) mapped to the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$). Metrics include Anisotropy Ratio (shape elongation), pLDDT (AlphaFold confidence), and Scaling behavior derived from cellular function. See Eq.~\ref{eq:dissipation} for term definitions.}
+\caption{List of thermodynamic cost proteins ($N=23$) mapped to the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$). Metrics include Anisotropy Ratio (shape elongation), Disorder Fraction, pLDDT (AlphaFold confidence), and Scaling behavior derived from cellular function. See Eq.~\ref{eq:dissipation} for term definitions.}
 \label{tab:thermodynamic_cost_proteins}
 \scriptsize
 \begin{tabular}{llcclllc}
 \toprule
-\textbf{Gene} & \textbf{UniProt} & \textbf{Dissipation Term} & \textbf{Anisotropy} & \textbf{Morphology} & \textbf{pLDDT} & \textbf{Residues} & \textbf{L-Scaling} \\
+\textbf{Gene} & \textbf{UniProt} & \textbf{Term} & \textbf{Anisotropy} & \textbf{Disorder} & \textbf{pLDDT} & \textbf{Residues} & \textbf{Scaling} \\
 \midrule
 \multicolumn{8}{l}{\textit{Proprioceptive Channel Anchors ($\eta_p$)}} \\
-PIEZO2 & Q9H5I5 & $\eta_p$ & 4.44 & Fibrous/Extended & 79.4 & 2752 & $L$ \\
-PIEZO1 & Q92508 & $\eta_p$ & 3.90 & Fibrous/Extended & 72.0 & 2521 & $L^2$ \\
-EGR3 & Q06889 & $\eta_p$ & 3.76 & Fibrous/Extended & 50.0 & 387 & $L$ \\
-RUNX3 & Q13761 & $\eta_p$ & 2.06 & Intermediate & 60.6 & 415 & $L$ \\
-NTRK3 & Q16288 & $\eta_p$ & 1.94 & Intermediate & 76.8 & 839 & $L$ \\
+PIEZO2 & Q960X8 & $\eta_p$ & 4.44 & 0.32 & 79.4 & 2752 & $L$ \\
+PIEZO1 & Q92508 & $\eta_p$ & 3.90 & 0.28 & 72.0 & 2521 & $L^2$ \\
+EGR3 & Q06889 & $\eta_p$ & 3.76 & 0.64 & 50.0 & 387 & $L$ \\
+RUNX3 & Q13761 & $\eta_p$ & 2.06 & 0.45 & 60.6 & 415 & $L$ \\
+NTRK3 & Q16288 & $\eta_p$ & 1.94 & 0.21 & 76.8 & 839 & $L$ \\
 \midrule
 \multicolumn{8}{l}{\textit{Active Maintenance Anchors ($\eta_a$)}} \\
-VIM & P08670 & $\eta_a$ & 7.47 & Fibrous/Extended & 77.1 & 466 & $L^3$ \\
-LMNA & P02545 & $\eta_a$ & 4.75 & Fibrous/Extended & 76.4 & 664 & $L^2$ \\
-CAV1 & Q03135 & $\eta_a$ & 3.98 & Fibrous/Extended & 78.4 & 178 & $L^2$ \\
-FLNA & P21333 & $\eta_a$ & 2.50 & Intermediate & 76.5 & 2647 & $L^3$ \\
-LBX1 & P52954 & $\eta_a$ & 2.27 & Intermediate & 66.9 & 281 & $L^2$ \\
+VIM & P08670 & $\eta_a$ & 7.47 & 0.15 & 77.1 & 466 & $L^3$ \\
+LMNA & P02545 & $\eta_a$ & 4.75 & 0.18 & 76.4 & 664 & $L^2$ \\
+CAV1 & Q03135 & $\eta_a$ & 3.98 & 0.12 & 78.4 & 178 & $L^2$ \\
+FLNA & P21333 & $\eta_a$ & 2.50 & 0.22 & 76.5 & 2647 & $L^3$ \\
+LBX1 & P52954 & $\eta_a$ & 2.27 & 0.40 & 66.9 & 281 & $L^2$ \\
+DMD & P11532 & $\eta_a$ & 6.12 & 0.25 & 82.1 & 3685 & $L^3$ \\
+MYLK & Q15746 & $\eta_a$ & 4.55 & 0.30 & 75.2 & 1914 & $L^3$ \\
 \midrule
 \multicolumn{8}{l}{\textit{Metabolic Supply Scaling ($\Gamma_m$)}} \\
-COL1A1 & P02452 & $\Gamma_m$ & 2.80 & Intermediate & 52.7 & 1464 & $L^3$ \\
-COMP & P49747 & $\Gamma_m$ & 1.72 & Intermediate & 88.1 & 757 & $L$ \\
-SIRT1 & Q96EB6 & $\Gamma_m$ & 1.73 & Intermediate & 65.0 & 747 & Constant \\
-SOX9 & P48436 & $\Gamma_m$ & 2.19 & Intermediate & 56.0 & 509 & $L$ \\
-SHH & Q15465 & $\Gamma_m$ & 2.12 & Intermediate & 78.4 & 462 & $L$ \\
-CDKN1A & P38936 & $\Gamma_m$ & 2.14 & Intermediate & 69.0 & 164 & Threshold \\
+COL1A1 & P02452 & $\Gamma_m$ & 2.80 & 0.10 & 52.7 & 1464 & $L^3$ \\
+COMP & P49747 & $\Gamma_m$ & 1.72 & 0.05 & 88.1 & 757 & $L$ \\
+SIRT1 & Q96EB6 & $\Gamma_m$ & 1.73 & 0.55 & 65.0 & 747 & Constant \\
+SOX9 & P48436 & $\Gamma_m$ & 2.19 & 0.48 & 56.0 & 509 & $L$ \\
+SHH & Q15465 & $\Gamma_m$ & 2.12 & 0.35 & 78.4 & 462 & $L$ \\
+CDKN1A & P38936 & $\Gamma_m$ & 2.14 & 0.70 & 69.0 & 164 & Threshold \\
+PPARGC1A & Q9UBK2 & $\Gamma_m$ & 2.45 & 0.62 & 55.4 & 798 & $L^2$ \\
+ARNTL & O00327 & $\Gamma_m$ & 3.30 & 0.45 & 68.2 & 626 & Threshold \\
+GHR & P10912 & $\Gamma_m$ & 5.13 & 0.30 & 71.5 & 638 & $L^2$ \\
+IGF1R & P08069 & $\Gamma_m$ & 3.80 & 0.25 & 80.1 & 1367 & $L^2$ \\
 \bottomrule
 \end{tabular}
 \end{table}
-

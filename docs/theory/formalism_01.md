@@ -458,6 +458,21 @@ $$ f_{cond} = f_{0} \left( 1 + \Gamma_{phase} \frac{\sigma_{nuc}}{\sigma_{crit}}
     *   **AIS Context**: We hypothesize that LBX1 acts as a "Condensate Sensor" where spinal curvature stress drives aberrant phase separation, locking the cell in a pro-scoliotic transcriptional state.
 *   **Measurable Proxy**: The shift in Fluorescence Recovery After Photobleaching (FRAP) half-time ($t_{1/2}$) or the Partition Coefficient ($K_p = I_{dense}/I_{dilute}$) of LBX1-GFP foci under applied nuclear strain.
 
+### 2.30. The Dendrite-Gain Coupling ($\Gamma_{dendrite}$)
+
+We postulate that osteocyte dendrites act as the physical substrate for the proprioceptive sensory network in bone. We define $\Gamma_{dendrite}$ as the sensitivity of the Proprioceptive Gain ($\gamma$) to the volumetric density of osteocyte dendrites ($\rho_{dendrite}$).
+
+$$ \gamma = \gamma_{basal} + \Gamma_{dendrite} \cdot \rho_{dendrite} $$
+
+*   **Symbols**:
+    *   $\gamma$: Proprioceptive straightening gain (rate of curvature decay) $[T^{-1}]$.
+    *   $\gamma_{basal}$: Basal gain in the absence of an extensive dendritic network $[T^{-1}]$.
+    *   $\rho_{dendrite}$: Volumetric density of osteocyte dendrites $[L^{-3}]$.
+    *   $\Gamma_{dendrite}$: Dendrite-Gain Coupling constant $[L^3 T^{-1}]$.
+*   **Physical Interpretation**: $\Gamma_{dendrite}$ represents the signal amplification provided per unit volume of the dendritic network. A high value implies that even sparse connections strongly enhance the structural "awareness" of the spine.
+*   **Biological Mechanism**: Mechanical loading activates Piezo1 channels in osteocytes, triggering YAP nuclear translocation, which upregulates CCN1/2 to promote dendrite formation. This expanded network increases the spatial resolution of mechanical sensing, thereby increasing $\gamma$.
+*   **Measurable Proxy**: The osteocyte dendrite density (e.g., measured via confocal microscopy of cleared bone) correlated with proprioceptive corrective responses.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -791,6 +806,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: RNA-seq of LBX1-overexpressing proprioceptive neurons treated with transient, low-dose 1,6-hexanediol.
 *   **Refutation**: If hexanediol treatment fails to normalize the expression of scoliotic drivers (e.g., *Ptk7*, *Adgrg6*) despite dissolving visible foci, the phase separation is epiphenomenal, not causal. (Reference: Sabari et al., 2018).
 
+### Test BG: The Osteocyte Dendrite Silencing
+*   **Hypothesis**: The Proprioceptive Gain $\gamma$ requires a physically extended osteocyte dendritic network. Specific ablation of dendrite formation (e.g., via targeted YAP inhibition in osteocytes) should reduce $\gamma$ toward $\gamma_{basal}$, increasing susceptibility to spinal buckling.
+*   **Data Needed**: Quantitative measurement of spinal curvature (Cobb angle equivalent) under varied mechanical loading protocols in osteocyte-specific YAP/TAZ knockout models vs. wild-type controls, correlated with dendrite density measurements.
+*   **Refutation**: If curvature regulation and proprioceptive recovery rates are maintained despite a stark reduction in dendrite network density (low $\rho_{dendrite}$), then $\Gamma_{dendrite} \approx 0$, and dendrites are not the required substrate for gain enhancement. (Reference: Hu et al., 2025).
+
+### Test BH: The Piezo-Dependent Dendrite Rescue
+*   **Hypothesis**: If dendrite-driven gain ($\Gamma_{dendrite}$) is downstream of Piezo1 activity, then pharmacological activation of Piezo1 (e.g., via Yoda1) should drive an increase in $\rho_{dendrite}$ and subsequently increase $\gamma$, even in unloaded conditions.
+*   **Data Needed**: Dendrite density maps and postural sway/correction measurements in unloaded (e.g., tail-suspended) animal models treated with Yoda1 vs vehicle.
+*   **Refutation**: If Yoda1 increases dendrite density but fails to alter proprioceptive alignment properties, or if gain increases without dendrite formation, the causal linkage between Piezo1, dendrites, and spinal gain is broken. (Reference: Ramli et al., 2024).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -859,3 +884,4 @@ The theory makes specific predictions about the relationship between genetic ani
 64. **Shin, Y., & Brangwynne, C. P. (2017).** "Liquid phase condensation in cell physiology and disease." *Science*, 357(6357). (Foundational review of phase separation in biology).
 65. **Sabari, B. R., et al. (2018).** "Coactivator condensation at super-enhancers links phase separation and gene control." *Science*, 361(6400). (Establishes the link between condensates and transcriptional control).
 66. **Elosegui-Artola, A., et al. (2017).** "Force triggers YAP nuclear entry by regulating transport across nuclear pores." *Cell*, 171(6). (Nuclear mechanotransduction mechanism).
+67. **Hu, X., et al. (2025).** "PIEZO1 triggers osteocyte dendrite formation through YAP-CCN1/2 signaling." *eLife*. (Establishes the Piezo1-YAP-CCN1/2 axis for osteocyte dendrite formation under mechanical stress).

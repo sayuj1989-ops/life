@@ -258,6 +258,45 @@ def run_sweep():
     # Generate Heatmaps
     generate_heatmaps(df, figures_dir)
 
+    # Extract Key Prediction: earlier onset (shorter L) for high-chi_kappa
+    extract_key_predictions(df, output_dir)
+
+def extract_key_predictions(df, output_dir):
+    """
+    Extracts and reports the L at which the Energy Deficit Window is entered
+    (R_deficit >= 1.0) for each chi_kappa value, verifying the hypothesis.
+    """
+    print("\n--- Key Prediction Verification (H_2026_02_08_EnergyPhase) ---")
+    predictions = []
+    chi_groups = df.groupby("chi_kappa")
+    for chi, group in chi_groups:
+        unstable = group[group["R_deficit"] >= 1.0]
+        if not unstable.empty:
+            onset_L = unstable["L"].min()
+            predictions.append({"chi_kappa": chi, "onset_L": onset_L})
+        else:
+            predictions.append({"chi_kappa": chi, "onset_L": np.nan})
+
+    pred_df = pd.DataFrame(predictions).dropna()
+    print("Onset L (m) vs Coupling Strength (chi_kappa):")
+    print(pred_df.to_string(index=False))
+
+    if not pred_df.empty:
+        chi_min = pred_df["chi_kappa"].min()
+        chi_max = pred_df["chi_kappa"].max()
+        L_at_chi_min = pred_df.loc[pred_df["chi_kappa"] == chi_min, "onset_L"].values[0]
+        L_at_chi_max = pred_df.loc[pred_df["chi_kappa"] == chi_max, "onset_L"].values[0]
+        print(f"\nVerification:")
+        print(f"- At low coupling (chi={chi_min:.4f}), onset L = {L_at_chi_min:.3f} m")
+        print(f"- At high coupling (chi={chi_max:.4f}), onset L = {L_at_chi_max:.3f} m")
+        if L_at_chi_max < L_at_chi_min:
+            print("=> CONFIRMED: High-chi_kappa patients enter the Energy Deficit Window at shorter L (earlier onset).")
+        else:
+            print("=> FAILED: Key prediction not met.")
+    else:
+        print("=> No instability region found in parameter range.")
+    print("----------------------------------------------------------\n")
+
 def generate_heatmaps(df, output_dir):
     pivot_R = df.pivot(index="chi_kappa", columns="L", values="R_deficit")
     pivot_Cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb_angle")

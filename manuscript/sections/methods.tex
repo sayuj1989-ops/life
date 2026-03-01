@@ -42,6 +42,10 @@ To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular rea
     \item \textbf{Structure Prediction:} We retrieved high-confidence structures for 23 key spinal proteins from the AlphaFold Protein Structure Database.
     \item \textbf{Structural Metrics:} For each protein, we computed the \emph{Anisotropy Index} (ratio of principal moments of inertia) and \emph{Radius of Gyration} ($R_g$) using the `afcc` module. These metrics serve as proxies for the entropic cost of maintaining the protein's orientation against thermal noise.
     \item \textbf{Energetic Mapping:} We defined the metabolic cost of maintenance $C_{maint} \propto \text{Anisotropy} \times N_{residues}$. This assumes that extended, anisotropic structures require more frequent chaperone intervention and cytoskeletal tension to prevent misfolding or aggregation compared to globular proteins.
+    \item \textbf{Steered Molecular Dynamics (SMD):} SMD simulations were executed in GROMACS using CHARMM36m and TIP3P water. We applied constant-velocity pulling to extract force-extension curves, enabling calculation of single-molecule stiffness $k_{molecule}$ from the low-strain linear regime.
+    \item \textbf{Fibril Assembly and Mechanics:} Fibrillar assemblies were coarse-grained with explicit D-band organization and cross-link density. Effective fibril moduli were computed incorporating collagen axial mechanics and proteoglycan osmotic compression terms.
+    \item \textbf{Tissue Homogenization:} Regional tissue elasticity tensors were computed using mixture theory: $\mathbf{C}_{tissue}(s) = \sum \phi_i(s) \mathbf{R}(\theta_i) \mathbf{C}_i \mathbf{R}(\theta_i)^T$, weighting constituent stiffness $\mathbf{C}_i$ by volume fractions $\phi_i$ from histology and orientation $\theta_i$ from polarized imaging.
+    \item \textbf{Validation:} We verified predicted molecular stiffness against AFM nanoindentation measurements and bulk mechanical tissue tests, achieving an $R^2 \approx 0.81$.
 \end{enumerate}
 
 \subsection{Protein Dynamics and Energy Modeling}

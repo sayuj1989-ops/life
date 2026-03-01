@@ -172,11 +172,21 @@ We distinguish two functionally and energetically distinct classes of proteins g
 \paragraph{Thermodynamic Instability Windows.}
 During the adolescent growth spurt, these two systems compete for a finite metabolic energy pool $E_{total}$. We formalize this competition via a time-dependent energy balance equation:
 \begin{equation}
+E_{total}(t) = E_{mechano}(t) + E_{growth}(t) + E_{metabolic}
+\end{equation}
+\begin{equation}
 \frac{dE_{mechano}}{dt} = k_{syn,m} \cdot [Resources] - k_{deg,m} \cdot [Mechano] - \dot{\mathcal{F}}_{load},
 \label{eq:protein_dynamics}
 \end{equation}
+\begin{equation}
+\frac{dE_{growth}}{dt} = k_{syn,g} \cdot [Resources] - k_{deg,g} \cdot [Growth],
+\end{equation}
 where $\dot{\mathcal{F}}_{load} \propto L^4$ represents the increasing thermodynamic load of maintaining the mechanosensory apparatus against gravity. Conversely, the growth protein synthesis rate $dE_{growth}/dt$ is driven by a potent hormonal signal (GH/IGF-1) that scales with $L^2$ (surface area of nutrient diffusion).
-This scaling mismatch creates a transient \textbf{Energy Deficit Window} (Fig.~\ref{fig:energy_deficit_window}) during peak height velocity. In this window, the metabolic priority shifts to growth ($\Gamma_m$), starving the maintenance of the expensive mechanosensory array ($\eta_p$). The resulting degradation of sensor fidelity (e.g., loss of PIEZO2 density or Lamin A/C stiffness) renders the spine temporarily "blind" to geometric errors, allowing scoliotic deviations to nucleate.
+This scaling mismatch creates a transient \textbf{Energy Deficit Window} (Fig.~\ref{fig:energy_deficit_window}) during peak height velocity, defined as $\Delta E(t) = E_{required}(t) - E_{available}(t)$. In this window, the metabolic priority shifts to growth ($\Gamma_m$), starving the maintenance of the expensive mechanosensory array ($\eta_p$). The resulting degradation of sensor fidelity renders the spine temporarily "blind" to geometric errors. We quantify this vulnerability via the Instability Parameter:
+\begin{equation}
+\Lambda(t) = \frac{dV/dt}{\tau_{adapt}}
+\end{equation}
+where $dV/dt$ is volumetric growth rate and $\tau_{adapt}$ is the mechanosensory adaptation time constant. Scoliosis risk is thus proportional to $\max(\Lambda(t))$ during adolescence, allowing scoliotic deviations to nucleate.
 
 \paragraph{Tensor Structure of IEC: The Vector Mismatch.}
 A critical innovation of our biophysical model is the recognition that Information-Elasticity Coupling is fundamentally tensorial, not scalar. The tissue's mechanical response depends on the alignment between the \emph{Information Gradient vector} $\hat{n}_{info} = \nabla I / |\nabla I|$ and the \emph{Principal Stress vector} $\hat{n}_{stress}$. We define an alignment parameter $\alpha(s)$:

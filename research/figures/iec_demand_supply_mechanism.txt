@@ -1,0 +1,19 @@
+A conceptual diagram explaining the Information-Elasticity Coupling (IEC) and the Mechanogenetic Demand-Supply Gap in spinal development.
+
+The diagram should be split into two sides: "Healthy" and "Scoliosis (Vulnerable)".
+
+Left Side (Healthy):
+- A vertical "Supply" bar matching a vertical "Demand" bar.
+- "Supply" is labeled with metabolic regulators (e.g., AMPK, SIRT1) providing energy.
+- "Demand" is labeled with mechanical stress sensors (e.g., PIEZO2, Fibrillin) demanding structural support against gravity.
+- An arrow from "Supply" to "Demand" indicates sufficient energy transfer.
+- Below this, a glowing S-shaped spine represents the cooperative, stable ground state where Information and Gravity balance perfectly.
+
+Right Side (Scoliosis):
+- A shortened "Supply" bar next to a significantly taller "Demand" bar, indicating a 34% deficit.
+- "Supply" shows depleted energy.
+- "Demand" shows heightened mechanosensory stress during rapid adolescent growth.
+- A jagged lightning bolt between them labeled "Thermodynamic Instability Boundary (R > 1)".
+- Below this, a distorted, twisted spine represents the information-dominated scoliotic state, where small perturbations have amplified into major deformity due to feedback loop failure.
+
+Style: High-impact scientific publication style (Nature/Science). Clean lines, clear typography, and a cohesive color palette (e.g., Blue for Supply/Healthy, Red for Demand/Scoliosis). Use professional iconography for biological components.

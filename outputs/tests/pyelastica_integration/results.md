@@ -1,6 +1,6 @@
 # Protein-to-Geometry Mapping Report
 
-**Date:** 2026-03-01 13:32:39
+**Date:** 2026-03-01 07:04:31
 **Source Data:** `results.csv`
 
 ## Experiment Summary
@@ -10,7 +10,7 @@ This experiment maps biological parameters to mechanical spine outcomes.
 
 ## Performance Metrics
 - **Total Simulations:** 2
-- **Average Runtime:** 0.7933 s
+- **Average Runtime:** 0.9149 s
 - **Peak Memory:** 15.49 MB
 
 ## Results Table

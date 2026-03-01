@@ -98,3 +98,4 @@ data/processed/
 chroma_db/
 chroma_db_llama/
 data/afdb_cache/
+temp/afdb/*

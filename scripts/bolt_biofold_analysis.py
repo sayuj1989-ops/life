@@ -210,6 +210,11 @@ def main():
     print(df.to_csv(index=False))
     print("```")
 
+    # Save standalone CSV
+    csv_path = os.path.join(OUTPUT_DIR, "bolt_biofold_results.csv")
+    df.to_csv(csv_path, index=False)
+    print(f"\nSaved CSV to {csv_path}")
+
     # Plotting
     plt.figure(figsize=(10, 6))
     for symbol, plddt in plot_data.items():

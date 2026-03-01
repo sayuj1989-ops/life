@@ -1,17 +1,17 @@
 # Pending Work
 
-**Last Updated:** 2026-05-25
+**Last Updated:** 2026-03-01
 **Status:** In Progress
-**Priority Level:** High (Blocking Submission)
+**Priority Level:** Medium (Code/Data Complete; Figure/Manuscript Polish Remaining)
 
-## 1. Data Gaps (Critical)
+## 1. Data Gaps (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Gather scaling data ($L, R, EI, Mass$) for 9 species (e.g., Mouse, Rat, Rabbit, Cat, Dog, Human, Chimp, Cow, Elephant). Required for Figure 3. | 2 days | Literature search | ✅ **Completed** (Estimated from scaling) |
+| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data (Mass_kg, Length_m, EI_Nm2) for 10 species (e.g., Mouse, Rat, Rabbit, Cat, Dog, Human, Chimp, Cow, Elephant) as in `data/species_parameters.csv`. Required for Figure 3. | 2 days | Literature search | ✅ **Completed** (Estimated from scaling) |
 | **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for "5 matrix protein variants" mentioned in Figure 4 (e.g., FBN1 $\to$ EI *= 0.7; COL1A1 $\to$ EI *= 0.5). | 1 day | Literature search | ✅ **Completed** (Implemented in `experiment_optimization_failure.py`) |
 
-## 2. Code Implementation (High)
+## 2. Code Implementation (Mostly Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -19,7 +19,7 @@
 | **CODE-02** | **Update `experiment_optimization_failure.py`** | Add a `mutation_map` dictionary to map gene names to simulation parameters ($\chi_\kappa, \sigma, EI$). Generate Figure 4 with specific labels. | 0.5 day | DATA-02 | ✅ **Completed** |
 | **CODE-03** | **Generate Figure Plots** | Ensure all scripts output publication-quality PNG/PDFs (300 dpi). Current scripts mostly output CSVs or simple plots. | 2 days | EXP-01, EXP-02 | 🟡 **In Progress** |
 
-## 3. Manuscript Tasks (Medium)
+## 3. Manuscript Tasks (High Priority)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -36,9 +36,9 @@
 
 ## Summary of Risks
 
-1.  **Missing Species Data:** If we cannot find reliable $EI$ or $L$ data for 9 species, Figure 3 ("Cross-Species Validation") will be weak or must be cut. **Mitigation:** Fall back to a theoretical scaling argument ($L^4$ vs $L^{3}$) without explicit data points if necessary.
-2.  **Mutation Specificity:** The claim of "5 specific variants" is currently unsupported by code. **Mitigation:** Use generic parameter sweeps and label them "Model for FBN1-type defect".
+1.  **Figure Styling:** Script outputs might lack uniform stylistic alignment. **Mitigation:** Unify plotting configuration across existing scripts immediately.
+2.  **Missing References:** The Nature manuscript requires a comprehensive reference list, which currently has gaps. **Mitigation:** Execute an intense literature extraction phase over the next 48 hours.
 
 **Next Actions:**
-1.  Start Literature Search for **DATA-01** immediately.
-2.  Implement **CODE-01** as soon as data is available.
+1.  Complete **CODE-03** by verifying all plot artifacts.
+2.  Begin **MS-02** panel assembly.

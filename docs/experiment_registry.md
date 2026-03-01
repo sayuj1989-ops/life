@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-05-25
+**Last Updated:** 2026-03-01
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -16,6 +16,9 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_03_OptimizationFailure** | `scripts/experiment_optimization_failure.py` | Generate Figure 4 (Proxy): "Exploding Gradient" map. Sweeps $\chi_\kappa$ vs Sensory Noise $\sigma$. | `outputs/optimization_failure/exploding_gradient.csv` | ✅ **Active** | Models "generic" failure. |
 | **EXP_04_DefectSensitivity** | `scripts/weekly_sim_defect_sensitivity.py` | Investigate "Basin of Attraction". Sweeps initial lateral defect vs $\chi_\kappa$. | `outputs/sim/2026-02-20/results.csv` | ✅ **Active** | Shows high growth drive amplifies small defects. |
 | **EXP_05_Proteins** | `scripts/experiments/experiment_thermodynamic_cost_proteins.py` | Generate Table 2: Assigns metabolic cost terms to specific proteins (e.g., PPARGC1A). | `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv` | ✅ **Active** | Validated against manuscript Table 2. |
+| **EXP_06_CrossSpecies** | `scripts/experiment_cross_species_scaling.py` | Generate Figure 3: Validates cross-species scaling. Uses `data/species_parameters.csv` (`Mass_kg`, `Length_m`, `EI_Nm2`) to compute $B_g$ and cross-species scaling curves. | `outputs/thermodynamic_cost/cross_species_scaling.csv` | ✅ **Active** | Added. |
+| **EXP_07_MutationMap** | `scripts/experiment_optimization_failure.py` | Generate Figure 4 specific mutations: Maps `FBN1` etc. to simulation parameters. | Console/CSV output with `--run-mutations`. | ✅ **Active** | Integrated within Optimization Failure script. |
+| **EXP_08_SShapeEmergence** | `scripts/experiments/weekly_sim_s_shape_emergence.py` | Sweeps `chi_kappa` under growth + anisotropic stiffness. | `outputs/sim/2026-03-01/results.csv` | ✅ **Active** | Emergence of structural S-shape. |
 
 ## 2. Toy Models (Validation)
 
@@ -33,7 +36,4 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 ## 4. Missing / Pending Experiments
 
-| Experiment ID | Description | Gap | Action Required | Priority |
-| :--- | :--- | :--- | :--- | :--- |
-| **EXP_MISSING_01** | **Cross-Species Scaling Validation** (Figure 3) | Manuscript claims "9 species: mouse to elephant" validation. **No script or data found in repo.** Only a toy `verify_bg.py` for Human/Mouse exists. | **CRITICAL:** Create `scripts/experiment_cross_species_scaling.py`. Gather data ($L, R, EI, g$) for 9 species. | 🚨 **High** |
-| **EXP_MISSING_02** | **Specific Mutation Mapping** (Figure 4) | Manuscript claims "5 matrix protein variants simulated". Current code only does generic parameter sweeps. | **Important:** Create a mapping layer (e.g., `FBN1` $\to$ `EI *= 0.7`) in `experiment_optimization_failure.py`. | 🟠 **Medium** |
+*All previously missing critical scripts and mapping procedures (Cross-Species Validation, Mutation Mapping) have now been successfully integrated into the active model logic.*

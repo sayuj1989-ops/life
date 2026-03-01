@@ -449,14 +449,24 @@ class CounterCurvatureRodSystem:
         # We pass kappa_gen=None initially to constructor, then set it.
         # But we need active_torques first.
         
-        # Compute active moments (scalar field on nodes) if chi_M != 0
+        # Compute active moments (scalar field on nodes) if chi_M != 0 or chi_tau != 0
         active_torques = None
-        if params.chi_M != 0.0:
-            M_active_nodes = compute_active_moments(info, params)
-            # Interpolate to elements
-            M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
+        if params.chi_M != 0.0 or params.chi_tau != 0.0:
             active_torques = np.zeros((3, n_elements))
-            active_torques[1, :] = M_active_elems
+
+            # Sagittal bending moment (from scalar growth drive)
+            if params.chi_M != 0.0:
+                M_active_nodes = compute_active_moments(info, params)
+                M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
+                active_torques[1, :] = M_active_elems
+
+            # Torsion moment (from chiral packing or twisting drive)
+            if params.chi_tau != 0.0:
+                # Torsion drive maps to moments about the tangent axis (d3)
+                # T_active ~ chi_tau * I
+                T_active_nodes = params.chi_tau * info.I
+                T_active_elems = np.interp(s_elements, info.s, T_active_nodes)
+                active_torques[2, :] = T_active_elems
 
         system = cls(rod=rod, info_field=info, params=params, active_torques=active_torques, kappa_gen=kappa_gen)
 

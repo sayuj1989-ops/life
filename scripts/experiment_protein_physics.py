@@ -51,63 +51,72 @@ def main():
     #    Range: 0.0 (Passive) to 2.0 (Strong Active Drive).
     active_curvature_levels = [0.0, 0.5, 1.0, 1.5, 2.0]
 
+    # 3. Torsion Drive (T): Magnitude of active twisting drive.
+    #    Biological proxy: Asymmetric growth or chiral packing in ECM.
+    torsion_levels = [0.0, 0.5, 1.0]
+
     # Fixed Parameters
-    torsion_drive = 0.0          # Assume no intrinsic twist for this baseline
     stiffness_modulation = 0.0   # Uniform stiffness for now
     initial_lateral_defect = 0.05 # Small perturbation to seed symmetry breaking (5% curvature)
 
     results = []
 
-    total_runs = len(anisotropy_levels) * len(active_curvature_levels)
+    total_runs = len(anisotropy_levels) * len(active_curvature_levels) * len(torsion_levels)
     count = 0
 
     start_time_global = time.time()
 
     print(f"Running {total_runs} simulations...")
-    print(f"{'Anisotropy':<12} | {'ActiveCurv':<12} | {'Cobb (deg)':<12} | {'Energy (J)':<12} | {'Time (s)':<10}")
-    print("-" * 70)
+    print(f"{'Aniso (A)':<10} | {'ActCurv (C)':<12} | {'TorDrive (T)':<13} | {'Cobb (deg)':<10} | {'MaxTorsion':<10} | {'Energy (J)':<10} | {'Time (s)':<8} | {'Mem (MB)':<8}")
+    print("-" * 105)
 
     for A in anisotropy_levels:
         for C in active_curvature_levels:
-            count += 1
+            for T in torsion_levels:
+                count += 1
 
-            # Run Simulation
-            # using default duration=2.0s, dt=1e-4, n_elements=50
-            sim_output = run_protein_simulation(
-                anisotropy=A,
-                active_curvature=C,
-                torsion_drive=torsion_drive,
-                stiffness_modulation=stiffness_modulation,
-                initial_lateral_defect=initial_lateral_defect,
-                show_progress=False  # Keep stdout clean
-            )
+                # Run Simulation
+                # using default duration=2.0s, dt=1e-4, n_elements=50
+                sim_output = run_protein_simulation(
+                    anisotropy=A,
+                    active_curvature=C,
+                    torsion_drive=T,
+                    stiffness_modulation=stiffness_modulation,
+                    initial_lateral_defect=initial_lateral_defect,
+                    show_progress=False  # Keep stdout clean
+                )
 
-            # Collect Metrics
-            if sim_output.get("success"):
-                cobb = sim_output.get("cobb_angle", 0.0)
-                energy = sim_output.get("U_CC", 0.0)
-                runtime = sim_output.get("runtime_sec", 0.0)
+                # Collect Metrics
+                if sim_output.get("success"):
+                    cobb = sim_output.get("cobb_angle", 0.0)
+                    energy = sim_output.get("U_CC", 0.0)
+                    runtime = sim_output.get("runtime_sec", 0.0)
+                    memory = sim_output.get("peak_memory_mb", 0.0)
+                    max_torsion = sim_output.get("max_torsion", 0.0)
 
-                print(f"{A:<12.1f} | {C:<12.1f} | {cobb:<12.2f} | {energy:<12.4f} | {runtime:<10.2f}")
+                    print(f"{A:<10.1f} | {C:<12.1f} | {T:<13.1f} | {cobb:<10.2f} | {max_torsion:<10.4f} | {energy:<10.4f} | {runtime:<8.2f} | {memory:<8.2f}")
 
-                results.append({
-                    "anisotropy": A,
-                    "active_curvature": C,
-                    "cobb_angle": cobb,
-                    "max_curvature": sim_output.get("max_curvature"),
-                    "U_CC": energy,
-                    "U_elastic": sim_output.get("U_elastic"),
-                    "U_info": sim_output.get("U_info"),
-                    "runtime_sec": runtime,
-                    "peak_memory_mb": sim_output.get("peak_memory_mb")
-                })
-            else:
-                print(f"{A:<12.1f} | {C:<12.1f} | {'FAILED':<12} | {'N/A':<12} | {'N/A':<10}")
-                results.append({
-                    "anisotropy": A,
-                    "active_curvature": C,
-                    "error": sim_output.get("error")
-                })
+                    results.append({
+                        "anisotropy": A,
+                        "active_curvature": C,
+                        "torsion_drive": T,
+                        "cobb_angle": cobb,
+                        "max_curvature": sim_output.get("max_curvature"),
+                        "max_torsion": max_torsion,
+                        "U_CC": energy,
+                        "U_elastic": sim_output.get("U_elastic"),
+                        "U_info": sim_output.get("U_info"),
+                        "runtime_sec": runtime,
+                        "peak_memory_mb": memory
+                    })
+                else:
+                    print(f"{A:<10.1f} | {C:<12.1f} | {T:<13.1f} | {'FAILED':<10} | {'N/A':<10} | {'N/A':<10} | {'N/A':<8} | {'N/A':<8}")
+                    results.append({
+                        "anisotropy": A,
+                        "active_curvature": C,
+                        "torsion_drive": T,
+                        "error": sim_output.get("error")
+                    })
 
     # Save Results
     df = pd.DataFrame(results)

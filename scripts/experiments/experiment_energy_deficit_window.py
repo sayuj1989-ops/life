@@ -170,11 +170,16 @@ def run_experiment():
     print(f"Ratio P/S = {deficit_ratio:.4f} (Deficit: {(deficit_ratio-1)*100:.1f}%)")
     print("--------------------------------------\n")
 
+    from pathlib import Path
+
     # Ensure output directories exist
     # Using the standard output_dir from setup_experiment
     output_dir_cost = output_dir
     output_dir_figs = output_dir / "figures"
     output_dir_figs.mkdir(exist_ok=True)
+
+    manuscript_figs = Path(project_root) / "manuscript" / "figures"
+    manuscript_figs.mkdir(exist_ok=True, parents=True)
 
     # Save CSV
     csv_path = output_dir_cost / "energy_deficit_window.csv"
@@ -207,6 +212,10 @@ def run_experiment():
     fig_path = output_dir_figs / "energy_deficit_window.png"
     plt.savefig(fig_path, dpi=300)
     print(f"Figure saved to {fig_path}")
+
+    manuscript_fig_path = manuscript_figs / "energy_deficit_window.png"
+    plt.savefig(manuscript_fig_path, dpi=300)
+    print(f"Figure also saved to {manuscript_fig_path}")
 
 if __name__ == "__main__":
     run_experiment()

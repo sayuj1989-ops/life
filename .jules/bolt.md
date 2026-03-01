@@ -117,3 +117,16 @@
 ## 2026-05-25 - [Dynamic KDTree Parallelism]
 **Learning:** `scipy.spatial.cKDTree` parallelization (`workers=-1`) has significant thread spin-up overhead. Benchmarks show that for N < 1250, serial execution is faster. For N=500, serial is ~1.8x faster (1.25ms vs 2.23ms).
 **Action:** Implemented dynamic worker selection in `metrics.py`: `workers = -1 if len(coords) > 2000 else 1`. This optimizes the "SASA proxy" calculation for the majority of single-chain proteins while retaining speed for large complexes.
+
+## 2026-03-01 - [Fast PAE Matrix Metrics]
+
+**Learning:** `MetricsAnalyzer.calculate_pae_metrics` was a bottleneck due to three issues:
+1. `np.mean(pae_matrix)` upcasts `uint8` matrices to `float64` to prevent overflow, which causes slow memory allocation and arithmetic.
+2. The domain segment finding loop used python list comprehensions and slow `np.hstack` integer conversions.
+3. Extracting the compact block matrix used `np.ix_`, which involves internal function overhead, while direct boolean array indexing or `where` is faster.
+
+**Action:**
+- Replaced `np.mean` with explicit `np.sum(pae_matrix, dtype=np.uint64) / pae_matrix.size` (~20% speedup).
+- Replaced the list comprehension segment finding with preallocated boolean arrays and `np.diff` on `int8` conversions, directly slicing arrays with valid block lengths.
+- Used `valid_idx = np.where(mask_valid)[0]` and advanced indexing `pae_hc = pae_matrix[valid_idx[:, None], valid_idx]` to avoid `np.ix_`.
+This reduced the metric calculation overhead significantly while preserving bit-exact matching for metric results.

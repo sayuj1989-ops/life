@@ -1,0 +1,7 @@
+Parameter,Value
+anisotropy_ratio,3.0
+chi_E,0.0
+chi_M,0.0
+chi_tau,0.0
+gravity,9.81
+Description,Sweep Growth Gain (chi_kappa) from 0 to 30 under gravity and anisotropy

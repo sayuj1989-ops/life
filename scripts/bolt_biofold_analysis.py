@@ -38,9 +38,11 @@ PROTEINS = [
     {"symbol": "MYLK", "uniprot": "Q15746", "species": "Homo sapiens"},
 ]
 
-OUTPUT_DIR = "outputs"
+OUTPUT_DIR = "outputs/bolt_biofold"
+FIG_DIR = "outputs/bolt_biofold/figures"
 TEMP_DIR = "temp/afdb"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(FIG_DIR, exist_ok=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
 
 def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
@@ -101,22 +103,6 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         print(f"Exception fetching data for {uniprot_id}: {e}")
         return None
 
-def print_markdown_table(df: pd.DataFrame):
-    """Prints a DataFrame as a Markdown table manually."""
-    if df.empty:
-        print("No data to display.")
-        return
-
-    cols = df.columns.tolist()
-    # Header
-    print("| " + " | ".join(cols) + " |")
-    # Separator
-    print("| " + " | ".join(["---"] * len(cols)) + " |")
-    # Rows
-    for _, row in df.iterrows():
-        row_str = [str(val) for val in row.values]
-        print("| " + " | ".join(row_str) + " |")
-
 def main():
     # ⚡ Bolt Optimization: Use shared StructureParser for caching and fast parsing
     parser = StructureParser()
@@ -125,8 +111,16 @@ def main():
 
     # Store data for plotting
     plot_data = {}
+    pae_data = {}
 
     print(f"Starting Bolt-BioFold Analysis Cycle on {len(PROTEINS)} proteins...")
+
+    md_report = []
+    md_report.append("# Bolt-BioFold ⚡ Analysis Report\n")
+    md_report.append("## Mission")
+    md_report.append("Analyze a focused set of proteins derived from our default seed list (ECM, mechanotransducers, and morphogens) relevant to spine morphogenesis and the Biological Countercurvature hypothesis using Google AlphaFold data.\n")
+
+    md_report.append("## A) Results Table\n")
 
     for prot in PROTEINS:
         uid = prot['uniprot']
@@ -145,6 +139,8 @@ def main():
             continue
 
         pae_matrix = parser.parse_pae(Path(paths['pae'])) if paths['pae'] else None
+        if pae_matrix is not None and symbol in ["PIEZO2", "ARNTL", "COL1A1"]:
+            pae_data[symbol] = pae_matrix
 
         # Run Analysis
         metrics = analyzer.analyze_structure(
@@ -200,15 +196,19 @@ def main():
     # Generate Outputs
     df = pd.DataFrame(results)
 
-    # Markdown Table
-    print("\n### Results Table")
-    print_markdown_table(df)
+    md_report.append(df.to_markdown(index=False) + "\n")
 
-    # CSV Block
-    print("\n### CSV Output")
-    print("```csv")
-    print(df.to_csv(index=False))
-    print("```")
+    md_report.append("<details>")
+    md_report.append("<summary>CSV Data Block</summary>\n")
+    md_report.append("```csv")
+    md_report.append(df.to_csv(index=False).strip())
+    md_report.append("```")
+    md_report.append("</details>\n")
+
+    md_report.append("Note: Strict explicit true SASA (Solvent Accessible Surface Area) was not computed as to avoid introducing new dependency packages. Surface proxy utilizes internal CA geometry approximations.\n")
+
+    md_report.append("## B) Key Plots Summary\n")
+    md_report.append("Generated output files under `outputs/bolt_biofold/figures/`:\n")
 
     # Save standalone CSV
     csv_path = os.path.join(OUTPUT_DIR, "bolt_biofold_results.csv")
@@ -216,29 +216,45 @@ def main():
     print(f"\nSaved CSV to {csv_path}")
 
     # Plotting
-    plt.figure(figsize=(10, 6))
     for symbol, plddt in plot_data.items():
-        plt.plot(plddt, label=symbol, alpha=0.7, linewidth=1)
+        plt.figure(figsize=(10, 4))
+        plt.plot(plddt, color='blue', alpha=0.7)
+        plt.title(f"{symbol} - Per-Residue Confidence (pLDDT)")
+        plt.xlabel("Residue Index")
+        plt.ylabel("pLDDT")
+        plt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
+        plt.axhline(50, color='orange', linestyle='--', alpha=0.5, label='Threshold (50)')
+        plt.legend(loc='upper right')
+        plt.tight_layout()
+        plddt_path = os.path.join(FIG_DIR, f"{symbol}_plddt.png")
+        plt.savefig(plddt_path)
+        plt.close()
 
-    plt.title("Per-Residue Confidence (pLDDT)")
-    plt.xlabel("Residue Index")
-    plt.ylabel("pLDDT")
-    plt.axhline(70, color='gray', linestyle='--', alpha=0.5, label='Confidence Threshold (70)')
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, "bolt_biofold_plddt.png"))
-    print(f"\nSaved plot to {os.path.join(OUTPUT_DIR, 'bolt_biofold_plddt.png')}")
+    md_report.append("* `*_plddt.png`: Plots showing confidence per residue vs threshold bounds (50, 70).")
+
+    for symbol, pae_mat in pae_data.items():
+        plt.figure(figsize=(6, 5))
+        plt.imshow(pae_mat, cmap='viridis_r', vmin=0, vmax=31)
+        plt.colorbar(label='Expected Position Error (Å)')
+        plt.title(f"{symbol} PAE")
+        plt.tight_layout()
+        pae_path = os.path.join(FIG_DIR, f"{symbol}_pae.png")
+        plt.savefig(pae_path)
+        plt.close()
+
+    md_report.append("* `*_pae.png`: Selected expected position error correlation matrices mapping domain isolation and interaction likelihood.\n")
 
     # Interpretation
-    print("\n### Interpretation")
+    md_report.append("## C) Interpretation\n")
     for row in results:
-        symbol = row['protein_id'].split()[0]
+        full_name = row['protein_id']
+        symbol = full_name.split()[0]
         anisotropy = float(row['anisotropy_index'])
         hinges = int(row['hinge_candidates'])
         plddt_high = float(row['pLDDT_fraction_high'])
         curvature = float(row['curvature_summary'])
 
-        interp = f"- **{symbol}**: "
+        interp = f"* **{full_name}**: "
         conf_level = "High" if plddt_high > 0.8 else ("Medium" if plddt_high > 0.5 else "Low")
 
         # Heuristics
@@ -250,33 +266,49 @@ def main():
         if hinges > 0: what_we_see.append(f"{hinges} potential hinge(s)")
         if curvature > 0.1: what_we_see.append("High local curvature")
 
-        interp += f"({conf_level} Confidence). We see: {', '.join(what_we_see)}. "
+        interp += f"**Confidence level: {conf_level}**. What we see: {', '.join(what_we_see)}. "
 
         # Why it matters
         if "PIEZO" in symbol:
-            interp += "Matters: Mechanosensitive channel; curvature/hinges likely relate to gating mechanics under membrane tension."
+            interp += "Why it matters: Mechanosensitive channel; curvature/hinges likely relate to gating mechanics under membrane tension."
         elif "FBN1" in symbol or "COL" in symbol:
-            interp += "Matters: ECM structural component; anisotropy defines load-bearing axis and tissue stiffness."
+            interp += "Why it matters: ECM structural component; anisotropy defines load-bearing axis and tissue stiffness."
         elif "YAP" in symbol:
-            interp += "Matters: Mechanotransducer; structural disorder likely facilitates binding versatility under stress."
+            interp += "Why it matters: Mechanotransducer; structural disorder likely facilitates binding versatility under stress."
         elif "DMD" in symbol:
-            interp += "Matters: Muscle-ECM linker; massive length and flexibility essential for shock absorption."
+            interp += "Why it matters: Muscle-ECM linker; massive length and flexibility essential for shock absorption."
         else:
-            interp += "Matters: Structural metrics imply role in mechanical integrity or sensing."
+            interp += "Why it matters: Structural metrics imply role in mechanical integrity or sensing."
 
         # Next Test
         if hinges > 0 and anisotropy > 2:
-            next_test = "Next: Test mechanical gating/unfolding under force."
+            next_test = "Next test: Test mechanical gating/unfolding under force."
         elif row['likely_IDR_heavy']:
-             next_test = "Next: Analyze IDR phase separation potential."
+             next_test = "Next test: Analyze IDR phase separation potential."
         else:
-            next_test = "Next: Compare with orthologs to check conservation of geometry."
+            next_test = "Next test: Compare with orthologs to check conservation of geometry."
 
-        print(f"{interp} {next_test}")
+        md_report.append(f"{interp} {next_test}")
 
     # Best Next Move
-    print("\n### Best Next Move")
-    print("Correlate curvature metrics (especially hinge locations) with known pathogenic variants in these genes.")
+    md_report.append("\n## D) Best Next Move")
+    md_report.append("Correlate curvature metrics (especially hinge locations) with known pathogenic variants in these genes to identify if mechanical geometry failure drives scoliosis.\n")
+
+    md_report.append("---\n")
+    md_report.append("## Quality & Reproducibility Checklist")
+    md_report.append("- [x] Data source: AlphaFold DB (fetched dynamically/cached)")
+    import datetime
+    md_report.append(f"- [x] Date/time of run: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    md_report.append("- [x] Code version: Current HEAD")
+    md_report.append("- [x] Parameters: pLDDT >= 70 threshold for structure, discrete curvature computation")
+    md_report.append("- [x] Notes: SASA not computed to strictly adhere to zero new dependency rules.")
+
+    report_path = os.path.join(OUTPUT_DIR, "Bolt_BioFold_Report.md")
+    with open(report_path, "w") as f:
+        f.write("\n".join(md_report))
+
+    df.to_csv(os.path.join(OUTPUT_DIR, "bolt_biofold_results.csv"), index=False)
+    print(f"Done. Wrote report to {report_path}")
 
 if __name__ == "__main__":
     main()

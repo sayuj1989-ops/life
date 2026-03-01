@@ -227,11 +227,11 @@ def run_sweep():
     figures_dir.mkdir(parents=True, exist_ok=True)
 
     # Parameter Ranges
-    # chi_kappa: 0.01 to 0.10 in 30 steps for finer resolution
-    chi_vals = np.linspace(0.01, 0.10, 30)
+    # chi_kappa: 0.01 to 0.10 in 20 steps
+    chi_vals = np.linspace(0.01, 0.10, 20)
 
-    # L: 0.25 to 0.55 m in 30 steps for finer resolution
-    L_vals = np.linspace(0.25, 0.55, 30)
+    # L: 0.25 to 0.55 m in 20 steps
+    L_vals = np.linspace(0.25, 0.55, 20)
 
     # Calibrate Supply
     S0, L_calib = calibrate_supply()

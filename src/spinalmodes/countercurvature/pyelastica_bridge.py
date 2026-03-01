@@ -19,7 +19,7 @@ from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Union
 import time
 import tracemalloc
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 import math
 
 import numpy as np
@@ -127,6 +127,9 @@ class SimulationResult:
     def compute_final_metrics(self) -> Dict[str, float]:
         """Compute scalar metrics for the final state of the simulation.
 
+        This method processes the emergent geometry from the Cosserat rod
+        simulation to output clinically-relevant macroscopic shape metrics.
+
         Returns:
             Dict containing:
                 - max_curvature: Maximum curvature magnitude.
@@ -140,25 +143,27 @@ class SimulationResult:
         if len(self.time) == 0:
             return {}
 
-        # Use final state
-        pos = self.centerline[-1] # (n_nodes, 3)
-        kappa = self.kappa[-1]    # (n_nodes, 3)
+        # Extract final state arrays
+        pos = self.centerline[-1] # Shape: (n_nodes, 3)
+        kappa = self.kappa[-1]    # Shape: (n_nodes, 3)
 
-        # Basic geometry
+        # Compute basic geometry (compression/buckling indicator)
         end_to_end = np.linalg.norm(pos[-1] - pos[0])
 
-        # Curvature/Torsion metrics
-        # kappa shape (n_nodes, 3). Bending is first two components.
+        # Parse intrinsic curvature/torsion metrics
+        # kappa array shape is (n_nodes, 3).
+        # Components: kappa[0]=lateral bending, kappa[1]=sagittal bending, kappa[2]=torsion
         bending_mag = np.linalg.norm(kappa[:, :2], axis=1)
         max_curvature = float(np.max(bending_mag))
 
         torsion_mag = np.abs(kappa[:, 2])
         max_torsion = float(np.max(torsion_mag))
 
-        # Scoliosis metrics
-        # Assuming rod is vertical along Z.
-        # Longitudinal = Z (index 2).
-        # Lateral = X (index 0). Y (index 1) is sagittal depth.
+        # Scoliosis (Clinical) metrics mapping
+        # PyElastica rod orientation assumed vertical:
+        # - Longitudinal axis = Z (index 2).
+        # - Coronal/Lateral plane = X (index 0).
+        # - Sagittal plane = Y (index 1).
         z_coord = pos[:, 2]
         x_coord = pos[:, 0]
 
@@ -444,14 +449,24 @@ class CounterCurvatureRodSystem:
         # We pass kappa_gen=None initially to constructor, then set it.
         # But we need active_torques first.
         
-        # Compute active moments (scalar field on nodes) if chi_M != 0
+        # Compute active moments (scalar field on nodes) if chi_M != 0 or chi_tau != 0
         active_torques = None
-        if params.chi_M != 0.0:
-            M_active_nodes = compute_active_moments(info, params)
-            # Interpolate to elements
-            M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
+        if params.chi_M != 0.0 or params.chi_tau != 0.0:
             active_torques = np.zeros((3, n_elements))
-            active_torques[1, :] = M_active_elems
+
+            # Sagittal bending moment (from scalar growth drive)
+            if params.chi_M != 0.0:
+                M_active_nodes = compute_active_moments(info, params)
+                M_active_elems = np.interp(s_elements, info.s, M_active_nodes)
+                active_torques[1, :] = M_active_elems
+
+            # Torsion moment (from chiral packing or twisting drive)
+            if params.chi_tau != 0.0:
+                # Torsion drive maps to moments about the tangent axis (d3)
+                # T_active ~ chi_tau * I
+                T_active_nodes = params.chi_tau * info.I
+                T_active_elems = np.interp(s_elements, info.s, T_active_nodes)
+                active_torques[2, :] = T_active_elems
 
         system = cls(rod=rod, info_field=info, params=params, active_torques=active_torques, kappa_gen=kappa_gen)
 

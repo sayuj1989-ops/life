@@ -150,6 +150,10 @@ def save_report(report):
     with open(filepath, 'w') as f:
         f.write(report)
 
+    latest_filepath = os.path.join("reports", "daily_update_latest.md")
+    with open(latest_filepath, 'w') as f:
+        f.write(report)
+
     return filepath
 
 if __name__ == "__main__":

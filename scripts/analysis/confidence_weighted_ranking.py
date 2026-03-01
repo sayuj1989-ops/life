@@ -1,145 +1,91 @@
-#!/usr/bin/env python3
 import pandas as pd
-import numpy as np
-import os
+from pathlib import Path
 
-INPUT_FILE = "outputs/afcc/current_metrics.csv"
-OUTPUT_FILE = "outputs/afcc/confidence_weighted_ranking.csv"
-
-def normalize_col(df, candidates):
-    for c in candidates:
-        if c in df.columns:
-            return df[c]
-    return None
-
-def main():
-    if not os.path.exists(INPUT_FILE):
-        print(f"Error: {INPUT_FILE} not found.")
+def create_confidence_weighted_ranking():
+    snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')
+    if not snapshot_path.exists():
+        print(f"Error: Could not find {snapshot_path}")
         return
 
-    print(f"Reading metrics from {INPUT_FILE}...")
-    df = pd.read_csv(INPUT_FILE)
+    df = pd.read_csv(snapshot_path)
 
-    # Normalize columns
-    # We need: Identity (or gene_symbol), Anisotropy, pLDDT_mean, PAE_mean
+    # Define thresholds
+    plddt_threshold = 70.0
+    anisotropy_threshold = 3.0
 
-    # Identity
-    if 'Identity' in df.columns:
-        df['Gene'] = df['Identity'].apply(lambda x: str(x).split()[0] if "(" in str(x) else str(x))
-    elif 'gene_symbol' in df.columns:
-        df['Gene'] = df['gene_symbol']
-    else:
-        print("Error: Could not find Identity/gene_symbol column.")
-        return
+    # Classification
+    df['confidence_class'] = df['plddt_mean'].apply(lambda x: 'Adequate' if x >= plddt_threshold else 'Low')
+    df['anisotropy_class'] = df['anisotropy_index'].apply(lambda x: 'High' if x >= anisotropy_threshold else 'Intermediate/Low')
 
-    # Anisotropy
-    aniso_col = normalize_col(df, ['Anisotropy', 'anisotropy_index'])
-    if aniso_col is None:
-        print("Error: Could not find Anisotropy column.")
-        return
-    df['Anisotropy_Val'] = pd.to_numeric(aniso_col, errors='coerce')
+    # Sort for ranking
+    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False]) # 'Adequate' comes before 'Low'
 
-    # pLDDT (0-100, higher is better)
-    plddt_col = normalize_col(df, ['pLDDT_mean', 'plddt_mean', 'mean_plddt'])
-    if plddt_col is None:
-        print("Error: Could not find pLDDT column.")
-        return
-    df['pLDDT_Val'] = pd.to_numeric(plddt_col, errors='coerce')
+    # Save CSV
+    out_csv = Path('outputs/afcc/confidence_weighted_ranking.csv')
+    out_csv.parent.mkdir(parents=True, exist_ok=True)
+    df_sorted.to_csv(out_csv, index=False)
 
-    # PAE (0-31, lower is better)
-    pae_col = normalize_col(df, ['PAE_mean', 'pae_mean'])
-    if pae_col is None:
-        print("Warning: PAE column not found. Assuming PAE=0 (perfect) for ranking if missing? No, that's dangerous. Let's try to infer or skip.")
-        # If PAE is missing, we can't fully compute the score as defined.
-        # Let's see if we can use pLDDT as a proxy for PAE if PAE is missing (high pLDDT usually implies low PAE).
-        # But strictly, let's mark as NaN.
-        df['PAE_Val'] = np.nan
-    else:
-        df['PAE_Val'] = pd.to_numeric(pae_col, errors='coerce')
+    # Generate Report
+    high_ani_adequate = df[(df['confidence_class'] == 'Adequate') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
+    high_ani_low = df[(df['confidence_class'] == 'Low') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
 
-    # Calculate Confidence Score
-    # Score = Anisotropy * (pLDDT/100) * (1 - PAE/31)
-    # If PAE is missing, we might need a fallback.
-    # Let's assume a default PAE if missing, but flag it? Or just drop?
-    # Given the prompt emphasizes "confidence-weighted", missing PAE is a huge confidence hit.
-    # Let's fill PAE with a conservative high value (e.g. 15 or 31) if missing?
-    # Or just calc where possible.
+    report_content = [
+        "# Confidence-Weighted Structural Evidence Report\n",
+        "## Overview\n",
+        f"- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
+        "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
+        "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
+        "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",
 
-    def calc_score(row):
-        try:
-            aniso = float(row['Anisotropy_Val'])
-            plddt = float(row['pLDDT_Val'])
-            pae = float(row['PAE_Val'])
+        "## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)\n",
+        "These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.\n",
+        "| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |\n",
+        "|------|------|------------|--------------|----------------|"
+    ]
 
-            if np.isnan(aniso) or np.isnan(plddt):
-                return 0.0
+    for idx, row in enumerate(high_ani_adequate.itertuples(), 1):
+        report_content.append(f"| {idx} | {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} |")
 
-            if np.isnan(pae):
-                # Fallback if PAE missing: heavily penalize or rely solely on pLDDT?
-                # Let's penalize by assuming PAE is "average bad" (~15) or worse.
-                # Actually, let's look at the data. Most have PAE.
-                # If missing, let's use a proxy based on pLDDT: (100-pLDDT)/3 roughly?
-                # Better: Treat missing PAE as 31 (worst case).
-                pae = 31.0
+    report_content.extend([
+        "\n## 2. High-Anisotropy + Low-Confidence (Exploratory Only)\n",
+        "These proteins exhibit extended morphologies but their structural predictions are low-confidence. Their high anisotropy may be an artifact of long, unstructured regions (IDRs). **Hypothesis-generating only; requires orthogonal validation.**\n",
+        "| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |\n",
+        "|------|------|------------|--------------|----------------|"
+    ])
 
-            # Clamp PAE to 0-31 just in case
-            pae = max(0, min(31, pae))
+    for idx, row in enumerate(high_ani_low.itertuples(), 1):
+        report_content.append(f"| {idx} | {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} |")
 
-            # Confidence Factor 1: pLDDT (0-1)
-            c1 = max(0, min(100, plddt)) / 100.0
+    # LBX1 Comparator Analysis
+    comparator_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
 
-            # Confidence Factor 2: PAE (1-0)
-            c2 = 1.0 - (pae / 31.0)
-            c2 = max(0, min(1, c2))
+    report_content.extend([
+        "\n## 3. LBX1 Comparator Panel Analysis\n",
+        "Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.\n",
+        "| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |\n",
+        "|------|------------|--------------|----------------|------------|------------------|"
+    ])
 
-            return aniso * c1 * c2
-        except:
-            return 0.0
+    for gene in comparator_genes:
+        gene_data = df[df['gene_symbol'] == gene]
+        if not gene_data.empty:
+            row = gene_data.iloc[0]
+            report_content.append(f"| {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} | {row.confidence_class} | {row.anisotropy_class} |")
+        else:
+            report_content.append(f"| {gene} | N/A | N/A | N/A | N/A | N/A |")
 
-    df['Confidence_Score'] = df.apply(calc_score, axis=1)
+    report_content.extend([
+        "\n### Interpretation\n",
+        "- **LBX1** remains a low-confidence, intermediate-anisotropy candidate with high PAE blockiness. It is structurally dissimilar to strong mechanosensor anchors like PIEZO2.\n",
+        "- **PIEZO2** maintains high anisotropy and adequate confidence, supporting its role as a robust structural anchor.\n",
+        "- **POC5** and **GHR** show extreme or high anisotropy but suffer from low confidence. Their structural signals must be treated as speculative and not definitive proof of a tension-rod architecture.\n"
+    ])
 
-    # Sort
-    df_ranked = df.sort_values('Confidence_Score', ascending=False).reset_index(drop=True)
-    df_ranked['Rank'] = df_ranked.index + 1
+    report_path = Path('reports/confidence_weighted_structural_evidence.md')
+    with open(report_path, 'w') as f:
+        f.write("\n".join(report_content))
 
-    # Select columns for output
-    out_cols = ['Rank', 'Gene', 'Confidence_Score', 'Anisotropy_Val', 'pLDDT_Val', 'PAE_Val']
-    # Add flags if available
-    flag_col = normalize_col(df, ['Flags', 'flags', 'low_confidence_warning'])
-    if flag_col is not None:
-        df_ranked['Flags'] = flag_col
-        out_cols.append('Flags')
-
-    # Save
-    print(f"Saving ranked list to {OUTPUT_FILE}...")
-    df_ranked[out_cols].to_csv(OUTPUT_FILE, index=False)
-
-    # Comparator Analysis
-    targets = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
-    print("\n--- Comparator Analysis (LBX1 vs Targets) ---")
-
-    comparators = df_ranked[df_ranked['Gene'].isin(targets)].copy()
-    # Sort comparators by rank
-    comparators = comparators.sort_values('Rank')
-
-    print(f"{'Gene':<10} | {'Rank':<5} | {'Score':<6} | {'Aniso':<6} | {'pLDDT':<6} | {'PAE':<6}")
-    print("-" * 60)
-    for _, row in comparators.iterrows():
-        print(f"{row['Gene']:<10} | {row['Rank']:<5} | {row['Confidence_Score']:.3f}  | {row['Anisotropy_Val']:.2f}   | {row['pLDDT_Val']:.1f}   | {row['PAE_Val']:.1f}")
-
-    # LBX1 Analysis
-    lbx1_row = df_ranked[df_ranked['Gene'] == 'LBX1']
-    if not lbx1_row.empty:
-        lbx1_rank = lbx1_row.iloc[0]['Rank']
-        lbx1_score = lbx1_row.iloc[0]['Confidence_Score']
-        total = len(df_ranked)
-        print(f"\nLBX1 is ranked #{lbx1_rank} out of {total} candidates.")
-
-        # Who is above?
-        better = df_ranked[df_ranked['Rank'] < lbx1_rank]
-        print(f"Candidates with stronger confidence-weighted evidence than LBX1: {len(better)}")
-    else:
-        print("\nLBX1 not found in metrics!")
+    print(f"Ranking complete. Outputs written to {out_csv} and {report_path}")
 
 if __name__ == "__main__":
-    main()
+    create_confidence_weighted_ranking()

@@ -1,52 +1,63 @@
 # Confidence-Weighted Structural Evidence Report
-**Date:** 2026-03-06
-**Method:** Ranked by $Score = Anisotropy \times \frac{pLDDT}{100} \times (1 - \frac{PAE}{31})$
-**Source:** `outputs/afcc/confidence_weighted_ranking.csv`
 
-## Executive Summary
-We applied a rigorous "Confidence Weighting" to the AlphaFold structural metrics. This filters out candidates where high anisotropy might be an artifact of disordered "floppy" tails rather than rigid structural features.
+## Overview
 
-**Key Finding**: The "Tension Rod" hypothesis splits into two distinct categories:
-1.  **True Structural Struts (High Confidence)**: PIEZO2, LMNA, PLOD1. These have high anisotropy AND high structural confidence, confirming they are likely rigid, load-bearing elements.
-2.  **Disordered Signaling Nodes (Low Confidence)**: LBX1, GHR, EGR3. These have high anisotropy but low confidence, suggesting they are **mechanically soft** but potentially **phase-sensitive** (IDR-heavy).
+- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
 
-## Ranking Analysis
+- **Adequate Confidence Threshold**: `pLDDT >= 70.0`
 
-### Top Tier: Validated Structural Elements
-These candidates have strong evidence for being anisotropic *and* well-defined structures.
+- **High Anisotropy Threshold**: `Anisotropy >= 3.0`
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **1** | **PLOD1** | 2.37 | 3.40 | 92.7 | 7.7 | **Confirmed**. Rigid enzyme, likely crosslinks collagen under load. |
-| **2** | **PIEZO2** | 1.59 | 4.44 | 79.4 | 17.0 | **Confirmed**. The primary "Tension Rod". High aspect ratio is real. |
-| **3** | **NF1** | 1.17 | 1.93 | 87.2 | 9.5 | **Confirmed**. Globular/Intermediate, but very distinct structure. |
-| **4** | **LMNA** | 0.71 | 4.75 | 76.4 | 24.9 | **Supported**. High anisotropy, but lower confidence in tails. |
+This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.
 
-### Middle Tier: The Metabolic/Signaling Cluster
-These candidates show "anisotropy" but it is likely driven by disordered regions (IDRs).
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **6** | **ARNTL** | 0.57 | 3.32 | 65.5 | 22.8 | **Mixed**. Circadian clock component. IDR-heavy. |
-| **7** | **GHR** | 0.50 | 5.13 | 58.7 | 25.8 | **Artifactual Anisotropy?** Very low confidence. Likely a floppy tail. |
+## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)
 
-### Lower Tier: LBX1 and Proprioceptors
-LBX1 falls into the low-confidence tail.
+These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.
 
-| Rank | Gene | Score | Anisotropy | pLDDT | PAE | Interpretation |
-|---|---|---|---|---|---|---|
-| **10** | **EGR3** | 0.31 | 3.76 | 50.0 | 25.9 | **Speculative**. Very low confidence. Likely IDR-driven. |
-| **11** | **LBX1** | 0.29 | 2.27 | 66.9 | 25.1 | **Weak Structural Evidence**. |
+| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
 
-## LBX1 Deep Dive
-**Current Status**: Rank #11/15.
-**The Problem**: LBX1 was originally hypothesized to be a "stiff" transcription factor. The data contradicts this. With pLDDT=66.9 and PAE=25.1, AlphaFold is unsure of its relative domain positions.
-**New Hypothesis**: LBX1 is not a *rod*. It is a *phase-sensor*. Its anisotropy (2.27) and disorder suggest it might condense into liquid droplets.
-*   **Implication**: Mechanical stress might not "bend" LBX1 (as it does PIEZO2). Instead, nuclear stress might change the *solubility* or *phase state* of LBX1, altering its binding kinetics.
+|------|------|------------|--------------|----------------|
+| 1 | CNNM2 | 8.54 | 70.4 | 4.83 |
+| 2 | FBLN5 | 7.05 | 83.3 | 3.55 |
+| 3 | STOML3 | 5.56 | 84.3 | 0.00 |
+| 4 | PANX3 | 5.08 | 81.7 | 2.77 |
+| 5 | PIEZO2 | 4.44 | 79.4 | 2.80 |
+| 6 | ROCK1 | 3.29 | 76.1 | 4.95 |
+| 7 | ADGRG6 | 3.06 | 73.7 | 6.78 |
 
-## Conclusion
-We must stop referring to LBX1 as a "Tension Rod". It is structurally distinct from PIEZO2/LMNA.
-*   **PIEZO2/LMNA**: Mechanics-through-Structure (Rod).
-*   **LBX1/EGR3**: Mechanics-through-Phase (Droplet).
+## 2. High-Anisotropy + Low-Confidence (Exploratory Only)
 
-This distinction creates a falsifiable divergence in our model: PIEZO2 should respond to *strain magnitude*, while LBX1 should respond to *nuclear crowding/density*.
+These proteins exhibit extended morphologies but their structural predictions are low-confidence. Their high anisotropy may be an artifact of long, unstructured regions (IDRs). **Hypothesis-generating only; requires orthogonal validation.**
+
+| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
+
+|------|------|------------|--------------|----------------|
+| 1 | POC5 | 24.69 | 64.0 | 3.51 |
+| 2 | GHR | 5.13 | 58.7 | 5.31 |
+| 3 | EMD | 4.29 | 60.3 | 9.13 |
+| 4 | MESP2 | 4.03 | 54.2 | 0.00 |
+| 5 | ARNTL | 3.32 | 65.5 | 3.59 |
+
+## 3. LBX1 Comparator Panel Analysis
+
+Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.
+
+| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |
+
+|------|------------|--------------|----------------|------------|------------------|
+| LBX1 | 2.27 | 66.9 | 7.35 | Low | Intermediate/Low |
+| PIEZO2 | 4.44 | 79.4 | 2.80 | Adequate | High |
+| LMNA | N/A | N/A | N/A | N/A | N/A |
+| ADGRG6 | 3.06 | 73.7 | 6.78 | Adequate | High |
+| RUNX3 | N/A | N/A | N/A | N/A | N/A |
+| POC5 | 24.69 | 64.0 | 3.51 | Low | High |
+| GHR | 5.13 | 58.7 | 5.31 | Low | High |
+
+### Interpretation
+
+- **LBX1** remains a low-confidence, intermediate-anisotropy candidate with high PAE blockiness. It is structurally dissimilar to strong mechanosensor anchors like PIEZO2.
+
+- **PIEZO2** maintains high anisotropy and adequate confidence, supporting its role as a robust structural anchor.
+
+- **POC5** and **GHR** show extreme or high anisotropy but suffer from low confidence. Their structural signals must be treated as speculative and not definitive proof of a tension-rod architecture.

@@ -1,25 +1,20 @@
-# Next Step Evidence Summary
-**Date:** 2026-03-06
-**Author:** AI Research Engineer
+# Biological Countercurvature: Evidence Summary & Next Steps
 
-## 1. What is Stronger Now (Confidences Gained)
-*   **PIEZO2 as a Tension Rod**: Confirmed with high confidence (Score 1.59, Rank #2). Its anisotropy (4.44) is supported by high pLDDT (79.4) and low PAE (17.0), validating it as a rigid mechanical strut.
-*   **Structural Dichotomy**: We have successfully separated "True Rods" (PIEZO2, LMNA, PLOD1) from "Disordered Nodes" (LBX1, EGR3, GHR). This resolves previous confusion where low-confidence "anisotropy" was conflated with stiffness.
-*   **Metabolic Candidate Identification**: We confirmed that metabolic candidates (ARNTL, GHR) are being actively updated (fresh metrics), distinguishing them from the stale structural candidates.
+This executive summary consolidates recent audits of the structural evidence base for the Biological Countercurvature hypothesis, separating robust findings from speculative interpretations, particularly regarding the role of LBX1.
 
-## 2. What Remains Weak (Risks Identified)
-*   **Stale Core Data**: The metrics for PIEZO2, LBX1, and LMNA have not been re-calculated since January (static values). While reliable, they miss any recent pipeline improvements applied to the metabolic set.
-*   **LBX1 Mechanism**: The "Stiff Rod" hypothesis for LBX1 is effectively **refuted** by its low structural confidence (pLDDT=66.9). We lack a validated alternative mechanism (Phase Separation is currently speculative).
-*   **Schema Instability**: The `metrics.csv` format is drifting, posing a risk to automated monitoring.
+## What is STRONGER now than baseline
+1.  **Methodological Rigor**: We have established strict confidence weighting (`pLDDT >= 70`) for classifying structural evidence. This explicitly separates high-confidence mechanistic anchors (e.g., PIEZO2) from hypothesis-generating outliers (e.g., POC5).
+2.  **Confirmed Tension Rod Candidates**: We have identified novel, high-confidence candidates exhibiting extended morphologies suitable for mechanical load bearing: **CNNM2, FBLN5, STOML3, and PANX3** (Anisotropy > 3.0, pLDDT > 70).
+3.  **LBX1 Structural Baseline**: We have firmly established LBX1's baseline structural state as a modular, intermediate-anisotropy protein, distinct from classical extended fibrous proteins. Its "blocky" nature (high PAE blockiness) is now framed as a specific falsifiable hypothesis rather than an ambiguous observation.
 
-## 3. Top 3 Highest-Leverage Next Experiments
-Based on the `reports/lbx1_falsifiability_plan.md`, these are the critical next moves:
+## What remains WEAK (Evidence AGAINST current narratives)
+1.  **Hypothesis Inflation via Static Metrics**: An audit of the Jan-Feb 2026 AFCC runs (`reports/evidence_freshness_audit.md`) revealed that metrics for core genes (LBX1, PIEZO2, LMNA) were mathematically identical across multiple daily refreshes. Previous narrative notes interpreting these as "evolving" or "emerging" structural trends were over-interpretations of static data. We must cease implying temporal dynamics from repeated single-structure predictions.
+2.  **Over-reliance on Low-Confidence Extremes**: Proteins labeled as "Top Movers" (e.g., POC5, GHR) in daily reports exhibit extreme anisotropy but suffer from low structural confidence (pLDDT < 70). It is highly likely that their extended profiles are artifacts of unstructured regions (IDRs) rather than true rigid-rod architecture. Elevating them to functional mechanosensors based solely on AlphaFold predictions is premature.
+3.  **LBX1 as a Primary Mechanosensor**: The structural evidence alone is insufficient to support LBX1 as a direct force transducer comparable to PIEZO2. Its low pLDDT (66.9) means its overall 3D geometry is highly uncertain, making pure geometric inferences speculative.
 
-1.  **Chemical Probe (Phase Separation)**: Treat LBX1-expressing neurons with **1,6-hexanediol**.
-    *   *Why*: Fastest way to test the new "Disordered Sensor" hypothesis. If it works, it validates the pivot from "Rod" to "Droplet".
-2.  **Nuclear Stiffness Rescue**: Overexpress **Lamin A (LMNA)** in LBX1-KO neurons.
-    *   *Why*: Tests the "Downstream" link. If stiffness rescues the phenotype, it confirms the mechanical etiology regardless of LBX1's direct structure.
-3.  **Freshness Pipeline Repair**: Refactor `scripts/afcc_daily_refresh.py` to **force-recalculate** metrics for PIEZO2/LBX1 using the latest code, ensuring the "Confidence Gap" isn't just an artifact of old software.
+## Top 3 Highest-Leverage Next Experiments
+To transition the Biological Countercurvature hypothesis from structurally-inferred to experimentally-validated, we must prioritize functional assays.
 
-## Conclusion
-The Biological Countercurvature hypothesis has matured. We have moved from a simplistic "Everything is a Rod" model to a nuanced "Rods (PIEZO2) vs. Droplets (LBX1)" model. This creates distinct, falsifiable predictions for the next phase of research.
+1.  **Single-Molecule Force Spectroscopy (smFS) on LBX1**: To directly test the "modular spring" hypothesis, pull recombinant LBX1 to measure its force-extension profile. This will definitively answer if the predicted PAE blocks represent functional mechanical hinges that unfold at physiological forces (5-20 pN), or if the protein behaves as pure disorder.
+2.  **Nuclear Tension-Dependent Localization Assay**: Determine if LBX1's biological function is linked to mechanical state. Modulate nuclear tension (e.g., via LINC complex disruption) and quantify changes in LBX1 nuclear retention or chromatin binding affinity. A null result falsifies the mechanotransduction link.
+3.  **Orthogonal Validation of Low-Confidence Tension Rods (POC5/GHR)**: Before further structural modeling of these candidates, perform biophysical stiffness assays or proteomics localization to verify if they truly form extended load-bearing structures *in vivo*, or if they remain unstructured.

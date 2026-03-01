@@ -1,0 +1,22 @@
+Title: The Anisotropic Supply Hypothesis
+
+Structure: A flowchart detailing metabolic crowding and the resulting anisotropic supply of stability.
+
+Start Node: Metabolic Expansion (GHR, IGF1R)
+- Arrow pointing down, labeled "Growth Phase"
+
+Middle Left Node: Demand (Signaling)
+Middle Right Node: Supply (Proprioception/Osmotic Compression)
+
+- Arrow from Start to Demand labeled "Increased Target Demand"
+- Arrow from Start to Supply labeled "Metabolic Crowding"
+
+Convergence Node: Spinal Anisotropy
+- Arrow from Demand pointing to Anisotropy (Red color, indicating failure to match demand)
+- Arrow from Supply pointing to Anisotropy (Red color, indicating uneven distribution)
+
+Final State:
+- Node labeled "Instability & Curvature Defect"
+- Illustration: A small curved spine segment experiencing buckling under asymmetric force arrows.
+
+Style: Clean, professional scientific diagram, using distinct colors for Demand (blue) and Supply (red) pathways.

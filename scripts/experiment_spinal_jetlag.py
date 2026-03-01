@@ -38,6 +38,7 @@ References:
 
 import argparse
 import csv
+import json
 import os
 import sys
 import time
@@ -51,6 +52,9 @@ from typing import Dict, List, Tuple
 import numpy as np
 
 sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parent))
+
+from experiments.experiment_utils import StandardExperimentParser, setup_experiment, get_default_output_dir
 
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D
@@ -440,22 +444,32 @@ def generate_jetlag_report(csv_file: str):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Spinal Jetlag: Time-Dependent Learning Rate Experiment"
+    default_out = str(get_default_output_dir() / "spinal_jetlag")
+    parser = StandardExperimentParser(
+        description="Spinal Jetlag: Time-Dependent Learning Rate Experiment",
+        default_out_dir=default_out
     )
     parser.add_argument(
         "--out-file", type=str,
-        default="outputs/spinal_jetlag/jetlag_cycles.csv",
+        default=None,
+        help="Specific output CSV file (overrides standard output directory)"
     )
-    parser.add_argument("--quick-test", action="store_true")
+    parser.add_argument("--quick-test", action="store_true", help="Alias for --quick")
     parser.add_argument("--n-cycles", type=int, default=24)
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
+    out_dir = setup_experiment(args)
 
-    if args.quick_test:
+    if args.out_file:
+        out_file = args.out_file
+    else:
+        out_file = str(out_dir / "jetlag_cycles.csv")
+
+    is_quick = getattr(args, "quick", False) or getattr(args, "quick_test", False)
+    if is_quick:
         conditions = [
             {"name": "entrained", "chi_0": 10.0, "amplitude": 0.5,
              "phi": 0.0, "gravity": 9.81, "K_ent": 1.0},
@@ -503,8 +517,20 @@ if __name__ == "__main__":
         n_elements = 30
         cycle_duration = 0.5
 
+    # Save experiment config
+    config = {
+        "experiment": "spinal_jetlag",
+        "quick": is_quick,
+        "n_cycles": n_cycles,
+        "n_elements": n_elements,
+        "cycle_duration": cycle_duration,
+        "conditions": conditions
+    }
+    with open(out_dir / "experiment_config.json", "w") as f:
+        json.dump(config, f, indent=4)
+
     run_spinal_jetlag_experiment(
-        out_file=args.out_file,
+        out_file=out_file,
         conditions=conditions,
         n_cycles=n_cycles,
         n_elements=n_elements,

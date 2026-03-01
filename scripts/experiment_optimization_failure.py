@@ -31,6 +31,7 @@ References:
 
 import argparse
 import csv
+import json
 import os
 import sys
 import time
@@ -44,6 +45,9 @@ from typing import List, Dict, Optional
 import numpy as np
 
 sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parent))
+
+from experiments.experiment_utils import StandardExperimentParser, setup_experiment, get_default_output_dir
 
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D
@@ -389,14 +393,17 @@ def generate_report(csv_file: str):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Optimization Failure: Exploding Gradient Experiment"
+    default_out = str(get_default_output_dir() / "optimization_failure")
+    parser = StandardExperimentParser(
+        description="Optimization Failure: Exploding Gradient Experiment",
+        default_out_dir=default_out
     )
     parser.add_argument(
         "--out-file", type=str,
-        default="outputs/optimization_failure/exploding_gradient.csv",
+        default=None,
+        help="Specific output CSV file (overrides standard output directory)"
     )
-    parser.add_argument("--quick-test", action="store_true")
+    parser.add_argument("--quick-test", action="store_true", help="Alias for --quick")
     parser.add_argument("--run-mutations", action="store_true", help="Run specific mutation scenarios")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-trials", type=int, default=None)
@@ -407,8 +414,15 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
+    out_dir = setup_experiment(args)
 
-    if args.quick_test:
+    if args.out_file:
+        out_file = args.out_file
+    else:
+        out_file = str(out_dir / "exploding_gradient.csv")
+
+    is_quick = getattr(args, "quick", False) or getattr(args, "quick_test", False)
+    if is_quick:
         chi_kappas = [0.0, 10.0, 20.0]
         sigma_noises = [0.0, 0.5, 1.0]
         n_trials = args.n_trials if args.n_trials is not None else 2
@@ -421,8 +435,24 @@ if __name__ == "__main__":
         n_elements = args.n_elements if args.n_elements is not None else 50
         final_time = args.final_time if args.final_time is not None else 2.0
 
+    # Save experiment config
+    config = {
+        "experiment": "optimization_failure",
+        "quick": is_quick,
+        "run_mutations": args.run_mutations,
+        "seed": args.seed,
+        "n_trials": n_trials,
+        "n_elements": n_elements,
+        "final_time": final_time,
+        "chi_kappas": chi_kappas,
+        "sigma_noises": sigma_noises,
+        "mutations": MUTATION_PARAMETERS if args.run_mutations else None
+    }
+    with open(out_dir / "experiment_config.json", "w") as f:
+        json.dump(config, f, indent=4)
+
     run_optimization_failure_sweep(
-        out_file=args.out_file,
+        out_file=out_file,
         chi_kappas=chi_kappas,
         sigma_noises=sigma_noises,
         n_trials=n_trials,

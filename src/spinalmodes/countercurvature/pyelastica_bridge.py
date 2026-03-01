@@ -19,7 +19,7 @@ from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Union
 import time
 import tracemalloc
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 import math
 
 import numpy as np

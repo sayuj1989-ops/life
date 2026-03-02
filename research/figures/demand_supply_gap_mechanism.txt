@@ -1,0 +1,17 @@
+Title: Mechanogenetic Demand-Supply Gap Mechanism
+
+Structure: Flowchart outlining the "Mechanogenetic Feedback Loop" and how it leads to "Thermodynamic Vulnerability" and Scoliosis.
+
+Nodes and Flow:
+1. "Genetic Information (HOX)" -> Arrow ("Target Geometry") -> "Mechanical Stress"
+2. "Mechanical Stress" -> Arrow ("Sensor Activation") -> "Mechanosensors (Demand)"
+3. "Mechanosensors (Demand)" -> Arrow ("Metabolic Trigger") -> "Metabolic Regulators (Supply)"
+
+Comparison / Conditional Split from "Mechanosensors (Demand)":
+- Path A (Healthy): "Demand <= Supply". Arrow pointing to "Thermodynamic Stability" (A stable, aligned spine).
+- Path B (Pathological): "Demand > Supply" (The Mechanogenetic Demand-Supply Gap). Arrow pointing to "Thermodynamic Vulnerability".
+
+Final Consequence of Path B:
+- "Thermodynamic Vulnerability" -> Arrow ("Control Loop Failure") -> "Adolescent Idiopathic Scoliosis" (A buckled, scoliotic spine).
+
+Style: High-contrast scientific schematic. Use distinct colors for Demand (blue/cyan) and Supply (red/orange) to highlight the gap. Background should be clean and professional.

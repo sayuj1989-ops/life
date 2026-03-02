@@ -2,62 +2,56 @@
 
 ## Overview
 
-- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
+This report re-ranks structural candidates by prioritizing adequate-confidence predictions (pLDDT >= 70) over low-confidence predictions. This distinguishes reproducible geometric features from potentially disordered or spurious extended geometries.
 
-- **Adequate Confidence Threshold**: `pLDDT >= 70.0`
-
-- **High Anisotropy Threshold**: `Anisotropy >= 3.0`
-
-This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.
+**Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
 
 
-## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)
+## High-Anisotropy + Adequate-Confidence (Strongest Evidence)
 
-These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.
+| Gene | Anisotropy | pLDDT | PAE Blockiness |
 
-| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
+|------|------------|-------|----------------|
+| CNNM2 | 8.54 | 70.4 | 4.83 |
+| FBLN5 | 7.05 | 83.3 | 3.55 |
+| STOML3 | 5.56 | 84.3 | 0.00 |
+| PANX3 | 5.08 | 81.7 | 2.77 |
+| PIEZO2 | 4.44 | 79.4 | 2.80 |
+| ROCK1 | 3.29 | 76.1 | 4.95 |
+| ADGRG6 | 3.06 | 73.7 | 6.78 |
 
-|------|------|------------|--------------|----------------|
-| 1 | CNNM2 | 8.54 | 70.4 | 4.83 |
-| 2 | FBLN5 | 7.05 | 83.3 | 3.55 |
-| 3 | STOML3 | 5.56 | 84.3 | 0.00 |
-| 4 | PANX3 | 5.08 | 81.7 | 2.77 |
-| 5 | PIEZO2 | 4.44 | 79.4 | 2.80 |
-| 6 | ROCK1 | 3.29 | 76.1 | 4.95 |
-| 7 | ADGRG6 | 3.06 | 73.7 | 6.78 |
+## High-Anisotropy + Low-Confidence (Exploratory Only)
 
-## 2. High-Anisotropy + Low-Confidence (Exploratory Only)
+These candidates exhibit high anisotropy but low confidence, suggesting possible extended structures that require experimental validation or ensemble modeling.
 
-These proteins exhibit extended morphologies but their structural predictions are low-confidence. Their high anisotropy may be an artifact of long, unstructured regions (IDRs). **Hypothesis-generating only; requires orthogonal validation.**
+| Gene | Anisotropy | pLDDT | PAE Blockiness |
 
-| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
+|------|------------|-------|----------------|
+| POC5 | 24.69 | 64.0 | 3.51 |
+| GHR | 5.13 | 58.7 | 5.31 |
+| EMD | 4.29 | 60.3 | 9.13 |
+| MESP2 | 4.03 | 54.2 | 0.00 |
+| ARNTL | 3.32 | 65.5 | 3.59 |
 
-|------|------|------------|--------------|----------------|
-| 1 | POC5 | 24.69 | 64.0 | 3.51 |
-| 2 | GHR | 5.13 | 58.7 | 5.31 |
-| 3 | EMD | 4.29 | 60.3 | 9.13 |
-| 4 | MESP2 | 4.03 | 54.2 | 0.00 |
-| 5 | ARNTL | 3.32 | 65.5 | 3.59 |
+## LBX1 Comparator Analysis
 
-## 3. LBX1 Comparator Panel Analysis
+Analysis of LBX1 relative to key reference proteins to contextualize its structural plausibility:
 
-Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.
+| Gene | Anisotropy | pLDDT | PAE Blockiness | Confidence | Source Run |
 
-| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |
-
-|------|------------|--------------|----------------|------------|------------------|
-| LBX1 | 2.27 | 66.9 | 7.35 | Low | Intermediate/Low |
-| PIEZO2 | 4.44 | 79.4 | 2.80 | Adequate | High |
-| LMNA | N/A | N/A | N/A | N/A | N/A |
-| ADGRG6 | 3.06 | 73.7 | 6.78 | Adequate | High |
-| RUNX3 | N/A | N/A | N/A | N/A | N/A |
-| POC5 | 24.69 | 64.0 | 3.51 | Low | High |
-| GHR | 5.13 | 58.7 | 5.31 | Low | High |
+|------|------------|-------|----------------|------------|------------|
+| LBX1 | 2.27 | 66.9 | 7.35 | Low | 2026-02-16 |
+| PIEZO2 | 4.44 | 79.4 | 2.80 | Adequate | 2026-02-16 |
+| LMNA | 4.75 | 76.4 | 2.56 | Adequate | 2026-02-26 |
+| ADGRG6 | 3.06 | 73.7 | 6.78 | Adequate | 2026-02-16 |
+| RUNX3 | 2.06 | 60.6 | 0.00 | Low | 2026-02-18 |
+| POC5 | 24.69 | 64.0 | 3.51 | Low | 2026-02-16 |
+| GHR | 5.13 | 58.7 | 5.31 | Low | 2026-02-16 |
 
 ### Interpretation
 
-- **LBX1** remains a low-confidence, intermediate-anisotropy candidate with high PAE blockiness. It is structurally dissimilar to strong mechanosensor anchors like PIEZO2.
+- **LBX1** exhibits intermediate anisotropy and low confidence, with high PAE blockiness. This contrasts sharply with robust mechanosensors like **PIEZO2** and **LMNA**, which maintain high anisotropy with adequate confidence.
 
-- **PIEZO2** maintains high anisotropy and adequate confidence, supporting its role as a robust structural anchor.
+- **POC5** and **GHR** show extremely high anisotropy but fall into the low-confidence tier, meaning their extended morphologies are currently speculative.
 
-- **POC5** and **GHR** show extreme or high anisotropy but suffer from low confidence. Their structural signals must be treated as speculative and not definitive proof of a tension-rod architecture.
+- Any strong mechanical or structural claims regarding LBX1 must be framed as hypotheses requiring experimental confirmation, rather than confirmed geometry.

@@ -1,0 +1,14 @@
+A conceptual diagram visualizing the "Mechanogenetic Demand-Supply Gap" central to the Information-Elasticity Coupling (IEC) framework.
+
+The image should be split into two contrasting regimes:
+1.  Left Regime (Healthy/Synchronized):
+    *   Label: "Metabolic Equilibrium (Sufficient Supply)"
+    *   Visuals: A vertical bar chart showing a blue "Metabolic Supply" bar (AMPK, SIRT1) equal in height to a red "Mechanotransduction Demand" bar (PIEZO2, Fibrillin). Below this, show a well-aligned, S-shaped human spine maintaining its geometry stably against a downward "Gravity (g)" vector.
+    *   Color Palette: Calming blues and stable greens.
+
+2.  Right Regime (Pathological/Scoliotic):
+    *   Label: "Adolescent Growth Spurt (34% Demand-Supply Gap)"
+    *   Visuals: The red "Mechanotransduction Demand" bar is significantly taller than the stunted blue "Metabolic Supply" bar, highlighting a 34% gap. The area between them should feature a jagged, energetic warning symbol labeled "Thermodynamic Instability Boundary (R > 1)". Below this, the human spine is twisted and distorted (scoliosis), buckling under the same "Gravity (g)" vector due to the energy deficit.
+    *   Color Palette: Urgent reds and high-contrast warnings.
+
+The overall style should be highly polished, professional, and suitable for a high-impact scientific journal (e.g., Nature, Science). It should clearly communicate the concept of thermodynamic instability causing structural failure.

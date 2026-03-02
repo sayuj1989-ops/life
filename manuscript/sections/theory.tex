@@ -143,32 +143,21 @@ A central mechanistic distinction exists between mechanosensory proteins and gro
 \paragraph{Thermodynamic Instability Windows.}
 These classes are dynamically coupled through a shared metabolic pool. We represent the energy budget per unit tissue volume as:
 \begin{equation}
-<<<<<<< HEAD
-E_{total}(t) = E_{mechano}(t) + E_{growth}(t) + E_{metabolic}
-\end{equation}
-\begin{equation}
-\frac{dE_{mechano}}{dt} = k_{syn,m} \cdot [Resources] - k_{deg,m} \cdot [Mechano] - \dot{\mathcal{F}}_{load},
-\label{eq:protein_dynamics}
-\end{equation}
-\begin{equation}
-\frac{dE_{growth}}{dt} = k_{syn,g} \cdot [Resources] - k_{deg,g} \cdot [Growth],
-\end{equation}
-where $\dot{\mathcal{F}}_{load} \propto L^4$ represents the increasing thermodynamic load of maintaining the mechanosensory apparatus against gravity. Conversely, the growth protein synthesis rate $dE_{growth}/dt$ is driven by a potent hormonal signal (GH/IGF-1) that scales with $L^2$ (surface area of nutrient diffusion).
-This scaling mismatch creates a transient \textbf{Energy Deficit Window} (Fig.~\ref{fig:energy_deficit_window}) during peak height velocity, defined as $\Delta E(t) = E_{required}(t) - E_{available}(t)$. In this window, the metabolic priority shifts to growth ($\Gamma_m$), starving the maintenance of the expensive mechanosensory array ($\eta_p$). The resulting degradation of sensor fidelity renders the spine temporarily "blind" to geometric errors. We quantify this vulnerability via the Instability Parameter:
-\begin{equation}
-\Lambda(t) = \frac{dV/dt}{\tau_{adapt}}
-\end{equation}
-where $dV/dt$ is volumetric growth rate and $\tau_{adapt}$ is the mechanosensory adaptation time constant. Scoliosis risk is thus proportional to $\max(\Lambda(t))$ during adolescence, allowing scoliotic deviations to nucleate.
-=======
 E_{\mathrm{total}}(t) = E_{\mathrm{mechano}}(t) + E_{\mathrm{growth}}(t) + E_{\mathrm{metabolic}}(t),
+\label{eq:protein_energy_budget}
+\end{equation}
+\begin{equation}
+\frac{dE_{\mathrm{mechano}}}{dt} = k_{\mathrm{syn},m}\,[\mathrm{Resources}] - k_{\mathrm{deg},m}\,[\mathrm{Mechano}] - \dot{\mathcal{F}}_{\mathrm{load}},
 \label{eq:protein_dynamics}
 \end{equation}
-During adolescence, $E_{\mathrm{growth}}$ rises with growth velocity, while effective supply can remain transport-limited. The result is a transient deficit in control-relevant energy allocation. We quantify this imbalance using an instability ratio based on growth versus adaptation velocities:
 \begin{equation}
-\Lambda(t) = \frac{v_{\mathrm{growth}}(t)}{v_{\mathrm{adapt}}(t)},
+\frac{dE_{\mathrm{growth}}}{dt} = k_{\mathrm{syn},g}\,[\mathrm{Resources}] - k_{\mathrm{deg},g}\,[\mathrm{Growth}],
 \end{equation}
-When $\Lambda(t) > \Lambda_{\mathrm{crit}}$, the system enters an unstable regime where $\partial\kappa/\partial\varepsilon \gg 1$. In this Energy Deficit Window, perturbations that would ordinarily be corrected are amplified because corrective sensing lags behind growth-driven geometric change. The resulting degradation of sensor fidelity renders the spine temporarily blind to geometric errors, allowing scoliotic deviations to nucleate.
->>>>>>> 07d82240 (WIP: stash changes for rebase)
+where $\dot{\mathcal{F}}_{\mathrm{load}} \propto L^4$ represents the increasing thermodynamic load of maintaining the mechanosensory apparatus against gravity, while growth-driven supply scales approximately with $L^2$ under diffusion-limited transport. This scaling mismatch creates a transient \textbf{Energy Deficit Window} (Fig.~\ref{fig:energy_deficit_window}) during peak height velocity, defined as $\Delta E(t)=E_{\mathrm{required}}(t)-E_{\mathrm{available}}(t)$. In this window, metabolic priority shifts to growth ($\Gamma_m$), starving maintenance of the expensive mechanosensory array ($\eta_p$). The resulting degradation of sensor fidelity renders the spine temporarily blind to geometric errors. We quantify this vulnerability using:
+\begin{equation}
+\Lambda(t) = \frac{v_{\mathrm{growth}}(t)}{v_{\mathrm{adapt}}(t)} = \frac{dV/dt}{\tau_{\mathrm{adapt}}},
+\end{equation}
+where $dV/dt$ is volumetric growth rate and $\tau_{\mathrm{adapt}}$ is the mechanosensory adaptation time constant. When $\Lambda(t) > \Lambda_{\mathrm{crit}}$, perturbations that would ordinarily be corrected are amplified because corrective sensing lags behind growth-driven geometric change.
 
 \paragraph{Tensor Structure of IEC: The Vector Mismatch.}
 A scalar coupling law cannot capture directional susceptibility. The mechanically relevant object is an anisotropic stiffness $C_{ijkl}(s)$ coupled to a vectorial information gradient $\nabla I(s)$. We define an alignment parameter $\alpha(s)$ between the information gradient direction $\hat{n}_{info} = \nabla I / |\nabla I|$ and the principal stress direction $\hat{n}_{stress}$:

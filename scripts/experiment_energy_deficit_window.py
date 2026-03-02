@@ -57,6 +57,7 @@ def main():
     # Store results
     L_vals = []
     P_counter_vals = []
+    mean_sq_diff_vals = []
     Cobb_vals = []
     D_geo_vals = []
 
@@ -113,11 +114,13 @@ def main():
 
         L_vals.append(L)
         P_counter_vals.append(P_counter)
+        mean_sq_diff_vals.append(mean_diff_sq)
         Cobb_vals.append(Cobb_angle)
         D_geo_vals.append(D_geo)
 
     L_vals = np.array(L_vals)
     P_counter_vals = np.array(P_counter_vals)
+    mean_sq_diff_vals = np.array(mean_sq_diff_vals)
     Cobb_vals = np.array(Cobb_vals)
     D_geo_vals = np.array(D_geo_vals)
 
@@ -134,15 +137,18 @@ def main():
 
     out_dir_fig = Path("outputs/figures")
     out_dir_fig.mkdir(parents=True, exist_ok=True)
+    out_dir_manuscript_fig = Path("manuscript/figures")
+    out_dir_manuscript_fig.mkdir(parents=True, exist_ok=True)
 
     # 5. Save results to CSV
     df = pd.DataFrame({
         "L": L_vals,
         "P_counter": P_counter_vals,
+        "mean_sq_diff": mean_sq_diff_vals,
+        "Cobb_angle": Cobb_vals,
+        "D_geo": D_geo_vals,
         "S_proprio_alpha05": S_proprio_alpha05,
         "S_proprio_alpha10": S_proprio_alpha10,
-        "Cobb_angle": Cobb_vals,
-        "D_geo": D_geo_vals
     })
 
     csv_path = out_dir_csv / "energy_deficit_window.csv"
@@ -172,10 +178,13 @@ def main():
     ax.grid(True, alpha=0.3)
 
     fig_path = out_dir_fig / "energy_deficit_window.png"
+    manuscript_fig_path = out_dir_manuscript_fig / "energy_deficit_window.png"
     plt.tight_layout()
     plt.savefig(fig_path, dpi=300)
+    plt.savefig(manuscript_fig_path, dpi=300)
     plt.close()
     print(f"Figure saved to {fig_path}")
+    print(f"Figure saved to {manuscript_fig_path}")
 
 if __name__ == "__main__":
     main()

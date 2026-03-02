@@ -1,11 +1,6 @@
 # Hydraulic Buckling Experiment Report
 
-<<<<<<< HEAD
-**Date:** 2026-02-28 15:01:13
-**Date:** 2026-02-28 21:55:14
-=======
-**Date:** 2026-02-28 14:57:51
->>>>>>> 07d82240 (WIP: stash changes for rebase)
+**Date:** 2026-03-02 00:53:39
 
 ## Hypothesis: The Inflamed Torsion Pathway
 Microgravity leads to hydraulic stagnation (swelling), which degrades annular fibers.

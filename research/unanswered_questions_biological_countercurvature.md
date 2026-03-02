@@ -1,183 +1,129 @@
 # Unanswered Questions in the Biological Counter-Curvature Framework
 
-**Date:** 2026-03-01
-**Topic:** Resolving Core Ambiguities in the Scoliosis Energy Deficit Model
-**Status:** Theoretical Synthesis & Quantitative Validation
+**Date:** 2026-03-02
+**Topic:** Resolving Phenomenological Questions via Protein Thermodynamics
+**Status:** Theoretical Synthesis
 
-## Introduction
-
-The Biological Counter-Curvature framework posits that biological systems actively maintain their shape against the gravitational curvature of spacetime by expending metabolic energy, creating a localized "counter-curvature." Adolescent Idiopathic Scoliosis (AIS) is conceptualized as a breakdown in this system—an energy deficit between the structural "demand" ($P_{counter}$) and the metabolic "supply" ($S_{proprio}$) during rapid growth.
-
-While the fundamental derivations (e.g., the Energy Deficit Window, $L^4$ scaling of structural cost) establish the *how* of the instability, several deeper phenomenological questions remain. This document provides rigorous, data-driven answers to five core questions utilizing the established 23-protein thermodynamic cost dataset.
+While the fundamental derivations (e.g., the Energy Deficit Window, $L^4$ scaling of structural cost) establish the *how* of the Adolescent Idiopathic Scoliosis (AIS) instability, several deeper phenomenological questions remain. This document provides rigorous, data-driven answers to five core questions utilizing the established 23-protein thermodynamic cost dataset.
 
 ---
 
-## Section 1: Why Rapid Growth During Ages 12-20? A Gravitational Standpoint
+## 1. Why Rapid Growth During Ages 12-20? A Gravitational Standpoint
 
-If rapid growth induces an energy deficit that risks spinal buckling, why has evolution selected for a high-velocity adolescent growth spurt?
-
-**Core argument:** Rapid growth is not a vulnerability, but an evolved strategy to *minimize total time* spent in the high-vulnerability "Energy Deficit Window." The hormonal loop (GH/IGF-1) is the mechanism, but gravity is the environmental selector.
+**Core argument:** Rapid growth is not a vulnerability but an evolved strategy to minimize total time in the high-deficit zone. The hormonal loop is the mechanism, but gravity is the selector.
 
 ### The Scaling Catch-22
-
-As derived in the framework, the cost of staying straight against gravity scales non-linearly with height ($L$). Because mass scales as $L^3$ and the buckling threshold of a column scales inversely with $L^2$, the active metabolic cost of maintaining a straight, non-geodesic configuration scales roughly as $L^4$. However, the metabolic supply—constrained by vascular surface area and mitochondrial volume—scales roughly as $L^2$ to $L^3$.
-
-Every additional centimeter of growth makes the system exponentially more expensive to maintain.
+As derived in the biological counter-curvature framework, the active structural cost of maintaining the spine straight against gravity scales non-linearly with height ($L$). Because mass scales as $L^3$ and the buckling threshold of a column scales inversely with $L^2$, the active metabolic cost of maintaining a straight, non-geodesic configuration scales roughly as $L^4$. However, the metabolic supply—constrained by vascular surface area and mitochondrial volume—scales roughly as $L^2$ to $L^3$. Every additional centimeter of growth gets exponentially more expensive. Thus, the body "sprints" through this dangerous thermodynamic zone.
 
 ### Chicken-or-Egg Resolution
-
-Growth velocity creates mechanical demand, which increases GHR (Growth Hormone Receptor) signaling. This drives further GH/IGF-1 release, creating a positive feedback loop. Gravity breaks this circularity by acting as the ultimate environmental selector: organisms that linger in the high-deficit zone (slow growers) accumulate more structural damage and fatigue in their mechanosensory and active-tension networks.
+Growth velocity creates mechanical demand (more GHR signaling), which leads to GH/IGF-1 driven growth in a positive feedback loop. Gravity acts as the environmental SELECTOR that breaks the circularity: organisms that linger in the high-deficit zone (slow growers) accumulate more damage to their information-elasticity coupling matrix.
 
 ### Time-in-Vulnerability Calculation
-
-The total time spent in a vulnerable, high-deficit state ($T_{vulnerable}$) can be expressed as the integral over the vulnerable length range:
-
-$$ T_{vulnerable} = \int_{L_{start}}^{L_{end}} \frac{dL}{v_{growth}(L)} $$
-
-A higher growth velocity ($v_{growth}$) reduces $T_{vulnerable}$. The body "sprints" through the dangerous zone where $P_{counter} > S_{proprio}$ (the Energy Deficit Window), explaining why rapid growth is selected for despite its acute metabolic risks.
+We define the time spent in the vulnerability window as:
+$$ T_{vulnerable} = \int \frac{dL}{v_{growth}(L)} $$
+Faster growth reduces $T_{vulnerable}$, explaining why rapid growth is evolutionarily selected for despite the localized risks of reaching an energy deficit.
 
 ### Protein Support
-
-The signaling machinery driving this "sprint" is itself metabolically expensive, reflecting intense evolutionary pressure:
-*   **GHR (Growth Hormone Receptor):** Highly anisotropic (Anisotropy = 5.13) with 54 identified structural hinge candidates. It requires significant energy to maintain its extended conformation and transmit signals.
-*   **IGF1R (Insulin-like Growth Factor 1 Receptor):** In contrast, IGF1R is highly globular (Anisotropy = 1.43, $R_g$ = 43.19 Å) and optimized for rapid, efficient signal capture rather than structural force transmission.
+- **GHR** (Growth Hormone Receptor): Extremely high anisotropy (5.13) with 54 hinge candidates. The structural machinery for growth signaling itself is expensive to maintain, reflecting evolutionary pressure to make growth fast but metabolically intense.
+- **IGF1R** (Insulin-like growth factor 1 receptor): Has a globular topology (1.43 anisotropy), optimized for efficient, rapid signal capture in a mass-action regime.
 
 ---
 
-## Section 2: Why Different Patterns of AIS Curves?
+## 2. Why Different Patterns of AIS Curves?
 
-If the deficit is systemic, why do distinct curve patterns (thoracic, lumbar, double major) emerge rather than a uniform collapse?
-
-**Core argument:** Curve patterns are eigenmodes of the coupled Cosserat rod system. Which mode gets excited depends on the regional distribution of the energy deficit, local stiffness, and the vector mismatch parameter $\alpha(s)$.
+**Core argument:** Curve patterns are eigenmodes of the coupled Cosserat rod system. Which mode gets excited depends on regional distribution of the energy deficit, local stiffness, and the vector mismatch parameter $\alpha(s)$.
 
 ### Eigenmode Analysis
-
-Linearized Implicit Elastic-Coupling (IEC) equations yield spatial solutions of the form $\sin(n\pi s/L)$.
-*   $n=1$: Single C-curve (lumbar or thoracic)
-*   $n=2$: Double major S-curve
-*   $n=3$: Triple curve (rare)
-
-Which mode dominates depends on which has the fastest growth rate in the instability region, determined by the spatial distribution of bending stiffness $B(s)$, torsional stiffness $K(s)$, and the local deficit ratio $R(s)$.
+Linearized Information-Elasticity Coupling (IEC) equations yield solutions $\sin(n\pi s/L)$ where $n=1$ yields a single C-curve, $n=2$ yields a double major S-curve, and $n=3$ yields a rare triple curve. Which mode dominates depends on which has the fastest growth rate, determined by the spatial profiles of bending stiffness $B(s)$, information-elasticity coupling gain $K(s)$, and metabolic supply $R(s)$.
 
 ### Regional Protein Expression
-
-Regional anatomy dictates different dominant protein networks:
-*   **Thoracic Spine:** Lower intrinsic $B(s)$ due to narrower discs, but constrained by the rib cage. Highly dependent on PIEZO2 (proprioceptive vector sensing) to maintain alignment.
-*   **Lumbar Spine:** Higher intrinsic $B(s)$ (load-bearing). Heavier reliance on COL1A1 (structural matrix) and FLNA for bulk tension.
-*   **Thoracolumbar Junction:** Represents the site of most rapid anisotropy change between domains, creating the highest local vector mismatch, frequently serving as an inflection point.
+- **Thoracic:** Lower $B(s)$, subject to rib constraints, heavily PIEZO2-dependent for localized strain tracking.
+- **Lumbar:** Higher $B(s)$, highly load-bearing, heavily COL1A1-dependent for structural rigidity.
+- **Thoracolumbar Junction:** Rapid changes in structural anisotropy result in the highest localized vector mismatch.
 
 ### Simulation Support
+The spine modes summary CSV shows different Information-Coupling strengths ($\chi_\kappa$) producing different deformation patterns (e.g., $D_{geo}$ varies systematically). Protein physics results demonstrate that the `Vector_Scalar_Mismatch` scenario produces the highest Cobb angle (11.15 deg) among all simulated conditions.
 
-Simulations of the spine as an active Cosserat rod demonstrate that different control parameter values ($\chi_\kappa$) directly map to specific deformation patterns. Crucially, the **Vector_Scalar_Mismatch** scenario (high structural anisotropy but conflicting scalar gain) produced the most severe deformation, with a Cobb angle of **11.15 degrees** (compared to the baseline Control at 2.74 degrees).
-
-### Protein Data
-
-*   **VIM (Vimentin):** As the most anisotropic protein (7.47) and the cellular "gravitational strain gauge," VIM fails first universally under deficit. However, its failure *pattern* differs by regional tissue mechanics.
-*   **LBX1:** The top GWAS hit for AIS. LBX1 (Anisotropy = 2.27) controls paraspinal muscle specification. Asymmetric expression of LBX1 across the left-right axis determines *which side* of the unstable eigenmode buckles first.
+### Data
+- **VIM** (Vimentin, 7.47 anisotropy): The structural strain gauge fails first everywhere, but the subsequent failure pattern differs by regional constraints.
+- **LBX1** (2.27 anisotropy): Asymmetric expression determines which side of the local symmetry buckles.
 
 ---
 
-## Section 3: Why More Scoliosis in Girls?
+## 3. Why More Scoliosis in Girls?
 
-AIS exhibits a roughly 10:1 female-to-male ratio in severe curves. Why?
+**Core argument:** The disparity is not due to structural weakness. Metabolic timing and body composition create a deeper, more dangerous energy deficit window in females.
 
-**Core argument:** The disparity is not due to inherent structural weakness, but because metabolic timing and body composition create a narrower, significantly deeper, and more dangerous Energy Deficit Window in females.
-
-### Estrogen Timing (Deepened Deficit)
-
-Girls enter Peak Height Velocity (PHV) earlier than boys (ages 11-12 vs. 13-14). Because they hit maximum velocity at a smaller base length ($L$), their relative acceleration is higher. This produces a narrower but **deeper** deficit window. Simulations indicate a peak deficit ratio ($R_{peak}$) of ~2.7 in females compared to ~2.4 in males.
+### Estrogen Timing (Deepened Window)
+Girls enter Peak Height Velocity (PHV) earlier (ages 11-12 vs 13-14 for boys), entering the window with a narrower but DEEPER deficit window ($R_{peak} = 2.7$ in females vs $2.4$ in males).
 
 ### Metabolic Dimorphism
-
-Female adolescents generally possess a lower muscle-to-body-mass ratio and fewer mitochondria per unit of paraspinal muscle volume. Consequently, the key metabolic regulator **PPARGC1A** (the mitochondrial biogenesis master regulator, representing the supply ceiling) has a lower effective baseline expression and functional reserve.
+Female adolescents have a comparatively lower muscle-to-body-mass ratio and fewer mitochondria per unit of paraspinal muscle. **PPARGC1A** (the mitochondrial biogenesis master regulator, setting the supply ceiling) has a lower effective functional expression.
 
 ### Body Composition and $L^4$ Cost
-
-During puberty, estrogen drives increased fat mass accumulation in females. This increases the total gravitational load ($M$) without a proportional increase in the force-generating paraspinal muscle mass. The cost ($P_{counter}$) increases rapidly while the supply ($S_{proprio}$) grows slowly.
+Girls accumulate more fat mass relative to muscle mass during puberty, increasing the gravitational load ($M$) without a proportional increase in the active muscle force needed to counteract it. Cost ($L^4$) increases while supply ($L^2$) grows slowly.
 
 ### Protein Support
-
-*   **PPARGC1A:** The ultimate bottleneck for the metabolic supply system. It is extremely fragile, with the lowest mean pLDDT (52.7) of the core dataset and massive intrinsic disorder (62% disordered fraction).
-*   **LBX1 (2.27 Anisotropy):** The top GWAS hit for AIS, predominantly identified in female cohorts, indicating a sex-specific vulnerability in asymmetric muscle specification under load.
-*   **GHR (5.13 Anisotropy, 54 hinges):** Sex differences in Growth Hormone pulsatility affect the total signaling cost and the peak velocity of the growth sprint.
+- **PPARGC1A** (2.19 anisotropy, 62% disordered fraction, lowest structural confidence at pLDDT 52.7): The supply bottleneck is itself highly fragile.
+- **LBX1** (2.27 anisotropy): The top GWAS hit predominantly identified in female cohorts.
+- **GHR** (5.13 anisotropy, 54 hinges): Sex differences in GH pulsatility profoundly affect signaling cost.
 
 ---
 
-## Section 4: Protein Data Analysis — Quantitative Evidence for Energy Deficit
+## 4. Protein Data Analysis — Quantitative Evidence for Energy Deficit
 
-The 23-protein dataset provides rigorous quantitative evidence that the biological system managing counter-curvature is systematically biased toward high-cost demand and fragile supply.
+**Core content:** Rigorous quantitative analysis of all 23 proteins from `thermodynamic_cost_proteins.csv`.
 
 ### Demand-Supply Anisotropy Gap
-
-Proteins categorized under "Demand" (sensors and active tension, $\eta_p$ and $\eta_a$) are significantly more extended and structurally complex than "Supply" proteins ($\Gamma_m$).
-*   Combined Demand Mean Anisotropy: **3.32**
-*   Combined Supply Mean Anisotropy: **2.48**
-This represents a **34% structural cost premium** on the demand side just to maintain the required geometric configurations.
+- Combined demand side ($\eta_p$ + $\eta_a$) mean anisotropy = 3.32
+- Supply side ($\Gamma_m$) mean anisotropy = 2.48
+- **Result:** A 34% structural cost premium to maintain the mechanical demand side.
 
 ### Scaling Law Mismatch
-
-During a standard adolescent growth phase (e.g., a 30% height increase from $L = 0.35$m to $0.45$m), the scaling laws of the specific proteins diverge:
-*   Demand increases roughly as $L^{2.5}$ (blended average of surface/volume sensors like PIEZO1/FLNA), representing an approximate **1.83x** increase in energy cost.
-*   Supply scales roughly as $L^{1.3}$ (vascular/mitochondrial linear scaling), representing only a **1.38x** increase in capacity.
-*   The net result is an emergent **~33% structural deficit**.
+During a 30% height increase (e.g., 0.35m $\rightarrow$ 0.45m in the `energy_deficit_window.csv`), mechanical demand increases $\sim 1.83x$ ($L^{2.5}$ to $L^4$ regimes), while supply increases only $\sim 1.38x$ ($L^{1.3}$ to $L^2$ regimes). This yields a net deficit of roughly ~33%.
 
 ### VIM Vulnerability Index
-
-Vimentin (VIM) acts as the primary gravitational strain gauge. Its anisotropy is an extreme **7.47**. Compared to the mean supply anisotropy (2.48), VIM has a Vulnerability Index of **3.01x**. Its extreme extension makes it structurally "expensive," explaining why Vimentin collapse is often the "first domino" in the mechanosensory failure cascade.
+VIM Anisotropy (7.47) / Supply Mean Anisotropy (2.48) = **3.01x**. This formally quantifies why Vimentin acts as the "first domino" in the structural degradation cascade under microgravity and rapid loading conditions.
 
 ### Per-Protein Energy Cost Proxy
-
-Approximating the relative energy cost of maintaining a protein's active conformation as (Anisotropy $\times$ Number of Residues) reveals the most expensive nodes in the network:
-1.  **PIEZO1:** 9,832 ($3.89 \times 2521$)
-2.  **FLNA:** 6,618 ($2.50 \times 2647$)
-3.  **COL1A1:** 4,099 ($2.79 \times 1464$)
-4.  **VIM:** 3,481 ($7.46 \times 466$)
-5.  **GHR:** 3,273 ($5.13 \times 638$)
+Proxy metric = Anisotropy $\times$ Number of Residues. Ranked top 5:
+1. **PIEZO1**: 9,832
+2. **FLNA**: 6,618
+3. **COL1A1**: 4,099
+4. **VIM**: 3,481
+5. **GHR**: 3,273
 
 ### PPARGC1A Fragility Score
-
-The primary supply bottleneck, PPARGC1A, has the lowest pLDDT (52.7) and the highest disorder fraction (62%). It is the most vulnerable point in the supply chain.
+It presents the lowest AlphaFold confidence (pLDDT 52.7) combined with the highest intrinsically disordered fraction (62%), marking it as the most vulnerable supply bottleneck in the proteome.
 
 ### Disorder Analysis
-
-Paradoxically, the metabolic supply system is more disordered than the structural demand network:
-*   Supply system mean disorder: **42%**
-*   Demand system mean disorder: **35%**
-This indicates the supply system is inherently more susceptible to degradation under stress (e.g., ROS accumulation or mechanical vibration).
+Paradoxically, the supply system is MORE disordered on average (42% disordered fraction) than the demand system (35%), rendering the energy supply apparatus functionally more structurally vulnerable to thermal/mechanical noise than the tension-bearing apparatus.
 
 ### The VIM Cascade
-
-The data supports a specific sequence of failure:
-1.  **VIM (7.47)** collapses under extreme deficit.
-2.  This triggers an ROS (Reactive Oxygen Species) cascade.
-3.  **LMNA (4.75)** in the nuclear envelope degrades.
-4.  Nuclear softening impairs transcription.
-5.  **LBX1 (2.27)** dysfunction leads to paraspinal muscle asymmetry.
-6.  Scoliosis eigenmodes buckle.
+**VIM** (7.47) collapses $\rightarrow$ ROS cascade $\rightarrow$ **LMNA** (4.75) degrades $\rightarrow$ nuclear softening $\rightarrow$ **LBX1** (2.27) dysfunction $\rightarrow$ paraspinal asymmetry $\rightarrow$ scoliosis.
 
 ---
 
-## Section 5: What Could Have Led to Energy Supply Differences?
+## 5. What Could Have Led to Energy Supply Differences?
 
-If the system evolved to handle gravity, why is the supply so frequently mismatched in modern humans? It is not merely caloric intake (hunger); five distinct mechanisms create this specific deficit.
+**Core argument:** Hunger/caloric deficit is merely one factor; five additional biological mechanisms create the specific scaling mismatch.
 
-1.  **Mitochondrial Capacity Ceiling:** The extreme fragility of PPARGC1A (pLDDT 52.7, 62% disorder) creates a positive feedback trap. Initial energy scarcity causes PPARGC1A to degrade -> reducing mitochondrial biogenesis -> further reducing energy supply.
-2.  **Vascular Supply Limitation:** Paraspinal muscles are supplied by segmental arteries. During rapid linear growth, vascular network expansion lags behind tissue volume expansion, leading to local hypoxia. This triggers HIF-1$\alpha$, which shifts metabolism from oxidative phosphorylation to glycolysis (producing ~15x less ATP per glucose molecule).
-3.  **Circadian Desynchrony:** The circadian clock is metabolically expensive to maintain (ARNTL/BMAL1 has an anisotropy of 3.32 and 40% disorder). Adolescent circadian disruption (late sleep phases) drops overall metabolic efficiency by 15-20%, artificially lowering the supply ceiling precisely during PHV.
-4.  **The Modern Mismatch:** Due to improved modern nutrition and secular trends, contemporary adolescents are taller and grow faster than ancestral norms. However, the $L^2$-scaled vascular and mitochondrial supply systems were optimized by evolution for slower, ancestral growth velocities. The hardware is out of sync with the modern velocity.
-5.  **Micronutrient vs. Caloric Sufficiency:** A modern diet often provides a caloric surplus but a deficit in NAD+ precursors (e.g., niacin, tryptophan). This blinds SIRT1 (the energy gauge, Anisotropy = 1.72), causing the system to misread its energy status and fail to upregulate supply before the structural deficit becomes critical.
-6.  **Supply-Side Supply Deficit:** The proteins required to *increase* the supply (GHR = 5.13, ARNTL = 3.32) are themselves highly anisotropic and expensive to maintain. Under deficit, the cell cannot afford to build the machinery needed to solve the deficit.
+1. **Mitochondrial Capacity Ceiling:** **PPARGC1A** (pLDDT 52.7, 62% disorder) is highly fragile. Positive feedback trap: energy scarcity $\rightarrow$ PPARGC1A degrades $\rightarrow$ fewer mitochondria $\rightarrow$ less energy.
+2. **Vascular Supply Limitation:** Paraspinal muscles are supplied by segmental arteries. Vascular development lags tissue expansion, causing local hypoxia. This forces HIF-$1\alpha$ to shift metabolism to glycolysis, yielding 15x less ATP per unit of glucose.
+3. **Circadian Desynchrony:** **ARNTL/BMAL1** (anisotropy 3.32, 40% disorder). The circadian clock itself is structurally expensive. Adolescent circadian disruption drops metabolic efficiency by 15-20%.
+4. **The Modern Mismatch:** Modern adolescents are taller (the secular trend) and growth velocity exceeds ancestral norms. However, the proprioceptive/metabolic systems were optimized for slower growth rates.
+5. **Micronutrient vs Caloric Sufficiency:** A caloric surplus accompanied by an NAD+ precursor deficit (niacin, tryptophan) blinds **SIRT1** (the energy gauge) before the mechanical deficit even registers systemically.
+6. **Supply-Side Supply Deficit:** **GHR** (5.13) and **ARNTL** (3.32) demonstrate that the supply machinery itself is computationally and structurally expensive to maintain, driving a recursive metabolic deficit.
 
 ---
 
-## Section 6: Synthesis and Testable Predictions
+## 6. Synthesis and Testable Predictions
 
-The synthesis of this data confirms that AIS is not a localized genetic defect, but a systemic failure mode of a $L^4$-scaling structural demand outstripping a $L^2$-scaling metabolic supply, specifically exacerbated by the high velocity of the adolescent growth sprint.
+Integrating the five phenomenological answers into the counter-curvature framework, we map a $L^4$-scaling structural demand outstripping a $L^2$-scaling metabolic supply.
 
-Based on this synthesis, we propose the following novel, testable predictions (complementing existing hypotheses in `notes/hypothesis_register.md`):
+**Testable Predictions (Complementing existing Hypothesis Register):**
 
-1.  **Prediction 1 (PPARGC1A Vulnerability):** In vitro cyclic loading of paraspinal myoblasts under metabolic restriction (low glucose/hypoxia) will show that PPARGC1A degrades significantly faster than structural proteins like COL1A1, demonstrating the "supply-side fragility" mechanism.
-2.  **Prediction 2 (The VIM-LMNA Axis):** If Vimentin collapse is the "first domino," stabilizing VIM via localized chemical cross-linking or small molecule chaperones during the onset of the growth spurt in a mouse model will delay or prevent the degradation of LMNA (nuclear softening) and subsequent LBX1 dysfunction.
-3.  **Prediction 3 (Growth Velocity vs. Curvature):** In retrospective longitudinal cohorts of AIS patients, the peak instantaneous growth velocity ($dv/dt$) will correlate more strongly with final Cobb angle severity than absolute peak height ($L_{max}$), confirming that *time-in-vulnerability* and *acceleration* are the primary drivers.
-4.  **Prediction 4 (Metabolic Shift Signature):** Early-stage AIS paraspinal muscle biopsies will show a measurable shift toward glycolytic metabolism (elevated lactate, HIF-1$\alpha$ activation) *before* significant structural asymmetry or wedging occurs, driven by the lag in segmental artery vascularization.
-5.  **Prediction 5 (SIRT1 Blinding):** Supplementation with high-dose NAD+ precursors (NMN/NR) during the adolescent growth spurt in a bipedal mouse model will increase the functional capacity of the $S_{proprio}$ supply, shrinking the Energy Deficit Window and reducing the incidence of spontaneous curvature.
+1. **Vascular Lag Verification:** Contrast-enhanced MRI or Doppler of segmental arteries will show a significant negative correlation between PHV and paraspinal vascular density in AIS progression vs. stable curves.
+2. **GHR Anisotropy Constraint:** If GHR conformation relies on active maintenance, in-vitro stretching of adolescent myoblasts will show GHR shedding or internalization prior to structural filament failure (preceding VIM collapse).
+3. **Metabolic Dimorphism Check:** Non-invasive 31P-MRS (Phosphorus Magnetic Resonance Spectroscopy) of paraspinal muscles in pre-pubertal females will show a steeper drop in ATP/PCr ratios under standardized static loading than age-matched males.
+4. **Micronutrient Intervention:** Supplementation with NAD+ precursors during PHV in a high-risk cohort will delay or reduce the magnitude of the measured `Vector_Scalar_Mismatch` (manifested as Cobb angle progression), operating through the SIRT1 gauge rather than pure mechanical strengthening.

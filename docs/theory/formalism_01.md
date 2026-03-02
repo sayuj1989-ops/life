@@ -497,6 +497,22 @@ $$ E_{eff} = E_0 + \Gamma_{ECM} \cdot \rho_{ECM} $$
     *   **Data Needed**: High-resolution ECM density mapping (e.g., via micro-CT or quantitative histology) of the convex vs. concave sides of scoliotic animal models compared to straight spines.
     *   **Refutation**: If the ECM density ($\rho_{ECM}$) gradient is uniform or uncorrelated with the onset of geometric instability (buckling), then matrix density is not the primary proxy dictating the local mechanical control gain.
 
+### 2.32. The Curvature-Metabolic Anisotropy Tensor ($\mathbf{M}_{curve}$)
+
+We formalize the "Hypoxia-Curvature Coupling" hypothesis where the local gradient of curvature alters the metabolic supply via mechanical compression of capillary beds. We define $\mathbf{M}_{curve}$ as a rank-2 tensor mapping the local curvature gradient ($\nabla \boldsymbol{\kappa}$) to the anisotropic metabolic supply flux ($\mathbf{J}_{met}$).
+
+$$ \mathbf{J}_{met} = \mathbf{J}_0 - \mathbf{M}_{curve} \cdot \nabla \boldsymbol{\kappa} $$
+
+*   **Symbols**:
+    *   $\mathbf{J}_{met}$: Anisotropic metabolic supply flux (e.g., $O_2$ delivery rate per unit area) $[M L^{-2} T^{-1}]$.
+    *   $\mathbf{J}_0$: Basal metabolic supply flux in the uncurved, straight spine state $[M L^{-2} T^{-1}]$.
+    *   $\nabla \boldsymbol{\kappa}$: Spatial gradient of the curvature vector along the spinal axis $[L^{-2}]$.
+    *   $\mathbf{M}_{curve}$: Curvature-Metabolic Anisotropy Tensor $[M T^{-1}]$.
+*   **Physical Interpretation**:
+    *   $\mathbf{M}_{curve}$ dictates how strongly a change in local geometric curvature restricts metabolic supply. A large tensor magnitude implies that bending mechanically occludes the microvasculature, specifically on the concave (compressed) side, driving an asymmetric hypoxic response.
+*   **Biological Mechanism**: On the concave side of a scoliotic curve, local tissue compression physically collapses paraspinal capillary beds, reducing local perfusion ($v_{flow}$) and generating a local hypoxic zone, which stabilizes HIF-1$\alpha$ and triggers remodeling.
+*   **Measurable Proxy**: The spatial gradient of capillary density (via CD31 immunofluorescence) or HIF-1$\alpha$ expression across the transverse section (convex vs. concave sides) of a vertebral body or intervertebral disc.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -840,6 +856,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Dendrite density maps and postural sway/correction measurements in unloaded (e.g., tail-suspended) animal models treated with Yoda1 vs vehicle.
 *   **Refutation**: If Yoda1 increases dendrite density but fails to alter proprioceptive alignment properties, or if gain increases without dendrite formation, the causal linkage between Piezo1, dendrites, and spinal gain is broken. (Reference: Ramli et al., 2024).
 
+### Test BI: The Curvature-Hypoxia Induction
+*   **Hypothesis**: Induced mechanical curvature physically obstructs capillary beds on the concave side, driving a localized hypoxic response via HIF-1$\alpha$ that alters metabolic flux ($\mathbf{J}_{met}$).
+*   **Data Needed**: Spatial transcriptomics or CD31/HIF-1$\alpha$ co-immunofluorescence in mechanically tethered (curved) vs. sham-operated straight murine tails or spines.
+*   **Refutation**: If HIF-1$\alpha$ stabilization is uniform across the cross-section or does not correlate with the imposed curvature gradient, mechanical bending does not restrict metabolic supply asymmetrically. (Reference: Schipani et al., 2001).
+
+### Test BJ: The Vascular Blockade Exacerbation
+*   **Hypothesis**: Pharmacologically inhibiting angiogenesis (e.g., via VEGFR2 blockade) under mechanical loading will exacerbate the asymmetric metabolic deficit ($\mathbf{M}_{curve}$ effect) and accelerate scoliotic progression by preventing vascular adaptation.
+*   **Data Needed**: Measurement of Cobb angle progression and vertebral wedging in a mechanically loaded mouse model treated with a VEGFR inhibitor (e.g., SU5416) versus vehicle control.
+*   **Refutation**: If the progression of the curve is identical or slower with VEGFR inhibition, the adaptive vascular response is not a critical buffering mechanism against mechanically-induced hypoxia. (Reference: Grosso et al., 2017).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -909,3 +935,5 @@ The theory makes specific predictions about the relationship between genetic ani
 65. **Sabari, B. R., et al. (2018).** "Coactivator condensation at super-enhancers links phase separation and gene control." *Science*, 361(6400). (Establishes the link between condensates and transcriptional control).
 66. **Elosegui-Artola, A., et al. (2017).** "Force triggers YAP nuclear entry by regulating transport across nuclear pores." *Cell*, 171(6). (Nuclear mechanotransduction mechanism).
 67. **Hu, X., et al. (2025).** "PIEZO1 triggers osteocyte dendrite formation through YAP-CCN1/2 signaling." *eLife*. (Establishes the Piezo1-YAP-CCN1/2 axis for osteocyte dendrite formation under mechanical stress).
+68. **Schipani, E., et al. (2001).** "Hypoxia in cartilage: HIF-1alpha is essential for chondrocyte growth arrest and survival." *Genes & Development*, 15(21). (Foundational work on hypoxia in avascular skeletal tissues).
+69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).

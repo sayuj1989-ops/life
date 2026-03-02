@@ -22,9 +22,15 @@ def parse_roadmap(filepath):
 
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
     target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
+    why_match = re.search(r'\*\*Why:\*\* (.*)', content)
+    fit_score_match = re.search(r'\*\*Fit score:\*\* (.*)', content)
+    strategy_match = re.search(r'\*\*Strategy:\*\* (.*)', content)
 
     start_date = datetime.datetime.strptime(start_date_match.group(1), '%Y-%m-%d').date() if start_date_match else None
     target_date = datetime.datetime.strptime(target_date_match.group(1), '%Y-%m-%d').date() if target_date_match else None
+    why = why_match.group(1).strip() if why_match else "Not specified"
+    fit_score = fit_score_match.group(1).strip() if fit_score_match else "Not specified"
+    strategy = strategy_match.group(1).strip() if strategy_match else "Not specified"
 
     for line in lines:
         if line.startswith('## Phase'):
@@ -61,7 +67,10 @@ def parse_roadmap(filepath):
         'phases': phases,
         'start_date': start_date,
         'target_date': target_date,
-        'next_milestones': next_milestones
+        'next_milestones': next_milestones,
+        'why': why,
+        'fit_score': fit_score,
+        'strategy': strategy
     }, None
 
 def calculate_projection(data):
@@ -100,8 +109,10 @@ def generate_report(data):
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** {data['why']}
+**Fit score:** {data['fit_score']}
+**Strategy:** {data['strategy']}
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%

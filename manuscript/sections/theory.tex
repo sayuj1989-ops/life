@@ -24,13 +24,7 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We model the human spine as a Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. This dimensionality reduction from 3D elasticity to a 1D director theory is justified by the high aspect ratio of the vertebral column ($L/d \approx 13$). To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
-\begin{align}
-\mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
-\mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
-\label{eq:cosserat_kinematics}
-\end{align}
-where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
+We model the human spine as a Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. This dimensionality reduction from 3D elasticity to a 1D director theory is justified by the high aspect ratio of the vertebral column ($L/d \approx 13$). To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The full kinematic equations, involving tangent vectors, shear and extension strains, and the Darboux vector encoding flexural curvature and torsional twist, are detailed in the Supplementary Material. Physically, we identify $s=0$ with the sacrum (clamped boundary condition) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
@@ -87,22 +81,7 @@ The weighting $w(I) = (1 + \chi_E I(s))$ penalizes deviations from the informati
 
 \subsection{Cosserat force and moment balance}
 
-The equilibrium configuration is found by finding the stationary state of the total potential energy. For a static rod subject to gravity $\mathbf{f}_g = \rho A \mathbf{g}$ and active moments induced by the information field gradients, the balance equations for internal force $\mathbf{n}$ and moment $\mathbf{m}$ are:
-
-\begin{align}
-\mathbf{n}'(s) + \mathbf{f}_g &= \mathbf{0}, \nonumber \\
-\mathbf{m}'(s) + \mathbf{r}'(s) \times \mathbf{n}(s) + \mathbf{m}_{\mathrm{info}}'(s) &= \mathbf{0},
-\label{eq:cosserat_balance}
-\end{align}
-where $\mathbf{m}_{\mathrm{info}}$ represents the active couple.
-
-\paragraph{Boundary Conditions:} To model the human spine, we impose clamped-free boundary conditions. The sacral base ($s=0$) is rigidly fixed, while the cranial tip ($s=L$) is free of external loads:
-\begin{align}
-\mathbf{r}(0) = \mathbf{0}, \quad &\mathbf{d}_i(0) = \mathbf{e}_i \quad (\text{Clamped Base}) \nonumber \\
-\mathbf{n}(L) = \mathbf{0}, \quad &\mathbf{m}(L) = \mathbf{0} \quad (\text{Free Tip})
-\label{eq:boundary_conditions}
-\end{align}
-where $\{\mathbf{e}_i\}$ is the laboratory frame.
+The equilibrium configuration is found by finding the stationary state of the total potential energy. For a static rod subject to gravity and active moments induced by the information field gradients, the balance equations for internal force $\mathbf{n}$ and moment $\mathbf{m}$, as well as clamped-free boundary conditions, are detailed in the Supplementary Material.
 
 \subsection{Mode selection and spinal geometry}
 

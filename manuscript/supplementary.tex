@@ -3,6 +3,32 @@
 \setcounter{table}{0}
 \renewcommand{\thetable}{S\arabic{table}}
 
+\subsection*{Rod Geometry and Kinematic Parameterization}
+The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
+\begin{align}
+\mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
+\mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
+\label{eq:cosserat_kinematics}
+\end{align}
+where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$.
+
+\subsection*{Cosserat force and moment balance}
+For a static rod subject to gravity $\mathbf{f}_g = \rho A \mathbf{g}$ and active moments induced by the information field gradients, the balance equations for internal force $\mathbf{n}$ and moment $\mathbf{m}$ are:
+\begin{align}
+\mathbf{n}'(s) + \mathbf{f}_g &= \mathbf{0}, \nonumber \\
+\mathbf{m}'(s) + \mathbf{r}'(s) \times \mathbf{n}(s) + \mathbf{m}_{\mathrm{info}}'(s) &= \mathbf{0},
+\label{eq:cosserat_balance}
+\end{align}
+where $\mathbf{m}_{\mathrm{info}}$ represents the active couple.
+
+To model the human spine, we impose clamped-free boundary conditions. The sacral base ($s=0$) is rigidly fixed, while the cranial tip ($s=L$) is free of external loads:
+\begin{align}
+\mathbf{r}(0) = \mathbf{0}, \quad &\mathbf{d}_i(0) = \mathbf{e}_i \quad (\text{Clamped Base}) \nonumber \\
+\mathbf{n}(L) = \mathbf{0}, \quad &\mathbf{m}(L) = \mathbf{0} \quad (\text{Free Tip})
+\label{eq:boundary_conditions}
+\end{align}
+where $\{\mathbf{e}_i\}$ is the laboratory frame.
+
 \begin{table}[h!]
   \centering
   \caption{\textbf{The Biological Equivalence Principle.} Correspondence between the geometric variables of General Relativity (GR) and the morphoelastic variables of the Information-Energy-Countercurvature (IEC) framework. This analogy motivates the mathematical structure of the cost functional in Eq.~\ref{eq:cost_functional}.}

@@ -1,11 +1,14 @@
-Species,Mass_kg,Length_m,EI_Nm2,Posture,Notes
-Mouse,0.03,0.05,0.00008,Quadruped,Estimated from scaling
-Rat,0.3,0.15,0.002,Quadruped,Estimated from scaling
-Rabbit,2.5,0.35,0.03,Quadruped,Estimated from scaling
-Cat,4.0,0.45,0.06,Quadruped,Estimated from scaling
-Dog,20.0,0.75,0.5,Quadruped,Estimated from scaling
-Chimpanzee,50.0,0.5,1.6,Facultative_Biped,Estimated from scaling
-Human_Child,30.0,0.45,1.2,Biped,Critical AIS Window
-Human_Adult,70.0,0.6,2.5,Biped,Reference Literature
-Horse,500.0,1.5,40.0,Quadruped,Estimated from scaling
-Elephant,4000.0,2.5,550.0,Quadruped,Estimated from scaling
+Species,Mass_kg,Length_m,EI_Nm2,Posture,Notes,Gravity_G
+Mouse,0.03,0.05,0.00008,Quadruped,Estimated from scaling,1.0
+Rat,0.3,0.15,0.002,Quadruped,Estimated from scaling,1.0
+Rabbit,2.5,0.35,0.03,Quadruped,Estimated from scaling,1.0
+Cat,4.0,0.45,0.06,Quadruped,Estimated from scaling,1.0
+Dog,20.0,0.75,0.5,Quadruped,Estimated from scaling,1.0
+Chimpanzee,50.0,0.5,1.6,Facultative_Biped,Estimated from scaling,1.0
+Human_Child,30.0,0.45,1.2,Biped,Critical AIS Window,1.0
+Human_Adult,70.0,0.6,2.5,Biped,Reference Literature,1.0
+Horse,500.0,1.5,40.0,Quadruped,Estimated from scaling,1.0
+Elephant,4000.0,2.5,550.0,Quadruped,Estimated from scaling,1.0
+Brachiosaurus,50000.0,9.0,25000.0,Quadruped,Extinct megafauna test case,1.0
+Mars_Human_Adult,70.0,0.6,2.5,Biped,Extraterrestrial adaptation (Mars 0.38G),0.38
+Moon_Human_Adult,70.0,0.6,2.5,Biped,Extraterrestrial adaptation (Moon 0.16G),0.16

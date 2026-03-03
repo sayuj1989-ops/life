@@ -513,6 +513,31 @@ $$ \mathbf{J}_{met} = \mathbf{J}_0 - \mathbf{M}_{curve} \cdot \nabla \boldsymbol
 *   **Biological Mechanism**: On the concave side of a scoliotic curve, local tissue compression physically collapses paraspinal capillary beds, reducing local perfusion ($v_{flow}$) and generating a local hypoxic zone, which stabilizes HIF-1$\alpha$ and triggers remodeling.
 *   **Measurable Proxy**: The spatial gradient of capillary density (via CD31 immunofluorescence) or HIF-1$\alpha$ expression across the transverse section (convex vs. concave sides) of a vertebral body or intervertebral disc.
 
+### 2.33. The Epaxial-Hypaxial Asymmetry Ratio ($\mathcal{A}_{musc}$)
+
+We define a dimensionless ratio representing the structural and metabolic imbalance between the dorsal (epaxial) muscle groups that maintain counter-curvature, and the ventral (hypaxial) body mass that gravity acts upon.
+
+$$ \mathcal{A}_{musc} = \frac{M_{epaxial}}{M_{hypaxial}} $$
+
+*   **Symbols**:
+    *   $M_{epaxial}$: Mass or physiological cross-sectional area (PCSA) of the epaxial (paraspinal) muscles $[M]$ or $[L^2]$.
+    *   $M_{hypaxial}$: Mass of the anterior/ventral body segments (hypaxial muscles and viscera) supported by the spine $[M]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{A}_{musc} \gg 1$: Robust counter-curvature capability. The epaxial musculature can easily generate the required biological moment ($\mathbf{M}_{bio}$) to prevent gravitational buckling.
+    *   $\mathcal{A}_{musc} \ll 1$: Structural vulnerability. The dorsal metabolic supply/mass is marginal compared to the ventral demand, reducing the safety factor against buckling.
+*   **Biological Mechanism**: During human bipedal evolution, the transition to upright posture fundamentally shifted the gravitational load vector, demanding chronic epaxial activation, while the relative mass of these muscles decreased compared to quadrupeds. During the adolescent growth spurt, differential allometric scaling can cause $\mathcal{A}_{musc}$ to transiently dip below a critical stability threshold.
+*   **Measurable Proxy**: The ratio of paraspinal muscle cross-sectional area (PCSA) to the total cross-sectional area of the torso at the apical vertebral level, measured via T2-weighted MRI.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Asymmetry Vulnerability**
+    *   **Data Needed**: Longitudinal MRI measuring the scaling of epaxial vs. hypaxial PCSA relative to spinal length ($L$) during the adolescent growth spurt in both AIS progressors and healthy controls.
+    *   **Refutation**: If the onset and progression of spinal curvature (Cobb angle) do not correlate temporally with a critical, transient dip in $\mathcal{A}_{musc}$, or if healthy controls exhibit identical severe dips without buckling, then gross muscular mass asymmetry is not the primary structural bottleneck for stability.
+*   **Test 2: The Dimorphic Scaling**
+    *   **Data Needed**: Cross-sectional and longitudinal comparison of the $\mathcal{A}_{musc}$ ratio between male and female cohorts across Tanner stages of development.
+    *   **Refutation**: If females do not exhibit a significantly lower basal $\mathcal{A}_{musc}$ or a more rapid degradation of this ratio during peak height velocity compared to males, then the hypothesis that metabolic/muscular dimorphism drives the 10:1 female-to-male prevalence ratio of severe AIS is unsupported by gross anatomical scaling.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -937,3 +962,5 @@ The theory makes specific predictions about the relationship between genetic ani
 67. **Hu, X., et al. (2025).** "PIEZO1 triggers osteocyte dendrite formation through YAP-CCN1/2 signaling." *eLife*. (Establishes the Piezo1-YAP-CCN1/2 axis for osteocyte dendrite formation under mechanical stress).
 68. **Schipani, E., et al. (2001).** "Hypoxia in cartilage: HIF-1alpha is essential for chondrocyte growth arrest and survival." *Genes & Development*, 15(21). (Foundational work on hypoxia in avascular skeletal tissues).
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
+70. **Schlosser, T. P., et al. (2014).** "Evolution of the spine: human anatomy and adolescent idiopathic scoliosis." *Journal of Anatomy*, 224(5), 555-561. (Links human evolutionary postural shifts to structural spine vulnerability and adolescent idiopathic scoliosis).
+71. **Piazzolla, A., et al. (2020).** "Paraspinal muscle composition in adolescent idiopathic scoliosis: a narrative review." *European Spine Journal*, 29, 584-593. (Highlights muscular and metabolic asymmetries in the scoliotic spine).

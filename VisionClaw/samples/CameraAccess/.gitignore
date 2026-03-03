@@ -1,0 +1,17 @@
+*.xcframework/
+.DS_Store
+xcuserdata/
+
+# FastVLM model files (large binaries, download separately)
+CameraAccess/FastVLM/models/
+
+# Local secrets (API keys, tokens)
+# NOTE: Secrets.swift template is tracked. Replace placeholder values with your real keys locally.
+# CameraAccess/Secrets.swift
+
+# Xcode workspace metadata
+*.xcworkspace/
+
+# Node server
+server/node_modules/
+server/package-lock.json

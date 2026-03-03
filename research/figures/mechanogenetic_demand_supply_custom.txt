@@ -1,0 +1,14 @@
+Title: Mechanogenetic Demand-Supply Gap Diagram
+
+Concept: A flowchart or cyclical causal diagram illustrating the Mechanogenetic Feedback Loop, which forms the core mechanism of the Information-Elasticity Coupling (IEC) framework. This diagram demonstrates how Thermodynamic Vulnerability causes scoliosis when metabolic supply fails to meet mechanogenetic demand.
+
+Key Elements:
+1. Genetic Information (HOX): Represented as a developmental blueprint or DNA helix, initiating the process.
+2. Target Geometry: The ideal S-shaped spinal profile.
+3. Mechanical Stress: Vectors or forces acting on the spine due to gravitational loading.
+4. Mechanosensors (Demand): Proteins like PIEZO2 or Fibrillin sensing the structural mechanical stress, generating a metabolic "Demand".
+5. Metabolic Regulators (Supply): The energetic "Supply" mechanisms attempting to maintain the countercurvature.
+
+Flow: An arrowed loop connecting these 5 elements. A critical "Gap" or "Fracture" should be depicted between Mechanosensors (Demand) and Metabolic Regulators (Supply), illustrating that Demand > Supply. This gap is labeled "Thermodynamic Vulnerability" or "34% Demand-Supply Anisotropy Gap".
+
+Style: Clean, professional scientific flowchart suitable for Nature or Science. Clear nodes, distinct arrows, contrasting colors for "Demand" (e.g., red/orange) and "Supply" (e.g., blue/green). The "Gap" should be the visual focal point.

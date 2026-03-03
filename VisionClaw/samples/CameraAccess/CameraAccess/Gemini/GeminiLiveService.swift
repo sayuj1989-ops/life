@@ -27,12 +27,18 @@ class GeminiLiveService: ObservableObject {
   private var lastUserSpeechEnd: Date?
   private var responseLatencyLogged = false
 
-  private var webSocketTask: URLSessionWebSocketTask?
   private var receiveTask: Task<Void, Never>?
   private var connectContinuation: CheckedContinuation<Bool, Never>?
-  private let delegate = WebSocketDelegate()
+  private let delegate = GeminiWebSocketDelegate()
   private var urlSession: URLSession!
+
+  // Thread-safe WebSocket access: all reads/writes go through sendQueue
   private let sendQueue = DispatchQueue(label: "gemini.send", qos: .userInitiated)
+  private var _webSocketTask: URLSessionWebSocketTask?
+  private var webSocketTask: URLSessionWebSocketTask? {
+    get { sendQueue.sync { _webSocketTask } }
+    set { sendQueue.sync { _webSocketTask = newValue } }
+  }
 
   init() {
     let config = URLSessionConfiguration.default
@@ -82,8 +88,9 @@ class GeminiLiveService: ObservableObject {
         }
       }
 
-      self.webSocketTask = self.urlSession.webSocketTask(with: url)
-      self.webSocketTask?.resume()
+      let task = self.urlSession.webSocketTask(with: url)
+      self.webSocketTask = task
+      task.resume()
 
       // Timeout after 15 seconds
       Task {
@@ -103,8 +110,9 @@ class GeminiLiveService: ObservableObject {
   func disconnect() {
     receiveTask?.cancel()
     receiveTask = nil
-    webSocketTask?.cancel(with: .normalClosure, reason: nil)
+    let task = webSocketTask
     webSocketTask = nil
+    task?.cancel(with: .normalClosure, reason: nil)
     delegate.onOpen = nil
     delegate.onClose = nil
     delegate.onError = nil
@@ -117,7 +125,8 @@ class GeminiLiveService: ObservableObject {
 
   func sendAudio(data: Data) {
     guard connectionState == .ready else { return }
-    sendQueue.async { [weak self] in
+    let task = webSocketTask
+    sendQueue.async {
       let base64 = data.base64EncodedString()
       let json: [String: Any] = [
         "realtimeInput": [
@@ -127,13 +136,14 @@ class GeminiLiveService: ObservableObject {
           ]
         ]
       ]
-      self?.sendJSON(json)
+      Self.sendJSON(json, via: task)
     }
   }
 
   func sendVideoFrame(image: UIImage) {
     guard connectionState == .ready else { return }
-    sendQueue.async { [weak self] in
+    let task = webSocketTask
+    sendQueue.async {
       guard let jpegData = image.jpegData(compressionQuality: GeminiConfig.videoJPEGQuality) else { return }
       let base64 = jpegData.base64EncodedString()
       let json: [String: Any] = [
@@ -144,13 +154,14 @@ class GeminiLiveService: ObservableObject {
           ]
         ]
       ]
-      self?.sendJSON(json)
+      Self.sendJSON(json, via: task)
     }
   }
 
   func sendToolResponse(_ response: [String: Any]) {
-    sendQueue.async { [weak self] in
-      self?.sendJSON(response)
+    let task = webSocketTask
+    sendQueue.async {
+      Self.sendJSON(response, via: task)
     }
   }
 
@@ -198,15 +209,19 @@ class GeminiLiveService: ObservableObject {
         "outputAudioTranscription": [:] as [String: Any]
       ]
     ]
-    sendJSON(setup)
+    let task = webSocketTask
+    sendQueue.async {
+      Self.sendJSON(setup, via: task)
+    }
   }
 
-  private func sendJSON(_ json: [String: Any]) {
+  /// Nonisolated static method — safe to call from sendQueue without actor hop
+  private nonisolated static func sendJSON(_ json: [String: Any], via task: URLSessionWebSocketTask?) {
     guard let data = try? JSONSerialization.data(withJSONObject: json),
           let string = String(data: data, encoding: .utf8) else {
       return
     }
-    webSocketTask?.send(.string(string)) { _ in }
+    task?.send(.string(string)) { _ in }
   }
 
   private func startReceiving() {
@@ -333,9 +348,9 @@ class GeminiLiveService: ObservableObject {
   }
 }
 
-// MARK: - WebSocket Delegate
+// MARK: - Gemini WebSocket Delegate
 
-private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
+private class GeminiWebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
   var onOpen: ((String?) -> Void)?
   var onClose: ((URLSessionWebSocketTask.CloseCode, Data?) -> Void)?
   var onError: ((Error?) -> Void)?

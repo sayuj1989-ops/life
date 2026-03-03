@@ -22,7 +22,7 @@ class SignalingClient {
 
   private var webSocketTask: URLSessionWebSocketTask?
   private var urlSession: URLSession!
-  private let delegate = WebSocketDelegate()
+  private let delegate = SignalingWebSocketDelegate()
   private let sendQueue = DispatchQueue(label: "signaling.send")
   private var receiveTask: Task<Void, Never>?
 
@@ -184,9 +184,9 @@ class SignalingClient {
   }
 }
 
-// MARK: - WebSocket Delegate
+// MARK: - Signaling WebSocket Delegate
 
-private class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
+private class SignalingWebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
   var onOpen: (() -> Void)?
   var onClose: ((String?) -> Void)?
 

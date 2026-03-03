@@ -1,8 +1,8 @@
 import AVFoundation
 import Foundation
 
-class AudioManager {
-  var onAudioCaptured: ((Data) -> Void)?
+class AudioManager: @unchecked Sendable {
+  var onAudioCaptured: (@Sendable (Data) -> Void)?
 
   private let audioEngine = AVAudioEngine()
   private let playerNode = AVAudioPlayerNode()

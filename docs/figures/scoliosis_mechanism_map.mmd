@@ -36,6 +36,7 @@ graph TD
         FBN1[FBN1<br/>Fibrillin-1]
         CCN[CCN1/2<br/>Matrix Protein]
         PPARGC1A[PPARGC1A<br/>Mitochondrial Biogenesis]
+        SLC39A8[SLC39A8<br/>Manganese Transporter]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -74,6 +75,8 @@ graph TD
         Fibrosis[Fibrosis<br/>Scarring]
         TGFB[TGF-Beta Signaling<br/>Sequestration Failure]
         Osteocyte_Dendrite[Osteocyte Dendrites<br/>Network Formation]
+        Mn_Transport[Manganese Transport<br/>Cofactor Supply]
+        Glycosylation[GAG Synthesis<br/>Proteoglycan Maturation]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -288,7 +291,12 @@ graph TD
     TGFB -- "Fibrosis" --> Fibrosis
     TGFB -- "Stiffening" --> Stiffness
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite process;
+    %% NEW ARC: Manganese-Dependent Matrix Axis (Haller et al., 2018)
+    SLC39A8 --> Mn_Transport
+    Mn_Transport --> Glycosylation
+    Glycosylation --> ECM_Assembly
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A,SLC39A8 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite,Mn_Transport,Glycosylation process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber tissue;
     class S_Curve,Stability,Scoliosis outcome;

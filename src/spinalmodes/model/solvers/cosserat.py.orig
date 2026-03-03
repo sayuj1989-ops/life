@@ -123,9 +123,6 @@ def simulate_cosserat(params: dict[str, Any]) -> dict[str, Any]:
                 "centerline": result.centerline,
                 "curvature": result.curvature,
                 "info_field": result.info_field,
-                "runtime_sec": t1 - t0,
-                "peak_memory_mb": peak / (1024 * 1024),
-                **final_metrics
             },
         }
 

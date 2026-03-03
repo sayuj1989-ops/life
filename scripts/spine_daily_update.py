@@ -20,9 +20,17 @@ def parse_roadmap(filepath):
     current_phase = None
     next_milestones = []
 
+    target_match = re.search(r'\*\*Target:\*\* (.*)', content)
+    why_match = re.search(r'\*\*Why:\*\* (.*)', content)
+    fit_score_match = re.search(r'\*\*Fit score:\*\* (.*)', content)
+    strategy_match = re.search(r'\*\*Strategy:\*\* (.*)', content)
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
     target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
 
+    target = target_match.group(1) if target_match else "Unknown"
+    why = why_match.group(1) if why_match else "Unknown"
+    fit_score = fit_score_match.group(1) if fit_score_match else "Unknown"
+    strategy = strategy_match.group(1) if strategy_match else "Unknown"
     start_date = datetime.datetime.strptime(start_date_match.group(1), '%Y-%m-%d').date() if start_date_match else None
     target_date = datetime.datetime.strptime(target_date_match.group(1), '%Y-%m-%d').date() if target_date_match else None
 
@@ -59,6 +67,10 @@ def parse_roadmap(filepath):
         'completed_tasks': completed_tasks,
         'percent_complete': percent_complete,
         'phases': phases,
+        'target': target,
+        'why': why,
+        'fit_score': fit_score,
+        'strategy': strategy,
         'start_date': start_date,
         'target_date': target_date,
         'next_milestones': next_milestones
@@ -100,8 +112,10 @@ def generate_report(data):
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** {data.get('target', 'Unknown')}
+**Why:** {data.get('why', 'Unknown')}
+**Fit score:** {data.get('fit_score', 'Unknown')}
+**Strategy:** {data.get('strategy', 'Unknown')}
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%

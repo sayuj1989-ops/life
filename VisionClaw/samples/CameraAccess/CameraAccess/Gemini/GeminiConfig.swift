@@ -59,8 +59,13 @@ enum GeminiConfig {
   }
 
   static var isOpenClawConfigured: Bool {
-    return openClawGatewayToken != "YOUR_OPENCLAW_GATEWAY_TOKEN"
-      && !openClawGatewayToken.isEmpty
-      && openClawHost != "http://YOUR_MAC_HOSTNAME.local"
+    let token = openClawGatewayToken
+    let host = openClawHost
+    return !token.isEmpty
+      && token != "YOUR_OPENCLAW_GATEWAY_TOKEN"
+      && !host.isEmpty
+      && !host.contains("YOUR_MAC_HOSTNAME")
+      && !host.contains("your-mac")
+      && !host.contains("YOUR_MAC_IP")
   }
 }

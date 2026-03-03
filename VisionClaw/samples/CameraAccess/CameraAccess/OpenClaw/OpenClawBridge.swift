@@ -30,16 +30,38 @@ class OpenClawBridge: ObservableObject {
     self.sessionKey = OpenClawBridge.newSessionKey()
   }
 
+  /// Build the gateway URL, normalizing host to include http:// if missing
+  private static func gatewayURL() -> URL? {
+    var host = GeminiConfig.openClawHost
+      .trimmingCharacters(in: .whitespacesAndNewlines)
+    // Ensure the host has a scheme
+    if !host.hasPrefix("http://") && !host.hasPrefix("https://") {
+      host = "http://\(host)"
+    }
+    // Remove trailing slash before appending port
+    if host.hasSuffix("/") {
+      host = String(host.dropLast())
+    }
+    let urlString = "\(host):\(GeminiConfig.openClawPort)/v1/chat/completions"
+    let url = URL(string: urlString)
+    if url == nil {
+      NSLog("[OpenClaw] Invalid gateway URL: %@", urlString)
+    }
+    return url
+  }
+
   func checkConnection() async {
     guard GeminiConfig.isOpenClawConfigured else {
       connectionState = .notConfigured
+      NSLog("[OpenClaw] Not configured — set host, port, and gateway token in Settings or Secrets.swift")
       return
     }
     connectionState = .checking
-    guard let url = URL(string: "\(GeminiConfig.openClawHost):\(GeminiConfig.openClawPort)/v1/chat/completions") else {
-      connectionState = .unreachable("Invalid URL")
+    guard let url = Self.gatewayURL() else {
+      connectionState = .unreachable("Invalid URL — check host format")
       return
     }
+    NSLog("[OpenClaw] Checking gateway at %@", url.absoluteString)
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     request.setValue("Bearer \(GeminiConfig.openClawGatewayToken)", forHTTPHeaderField: "Authorization")
@@ -76,9 +98,9 @@ class OpenClawBridge: ObservableObject {
   ) async -> ToolResult {
     lastToolCallStatus = .executing(toolName)
 
-    guard let url = URL(string: "\(GeminiConfig.openClawHost):\(GeminiConfig.openClawPort)/v1/chat/completions") else {
+    guard let url = Self.gatewayURL() else {
       lastToolCallStatus = .failed(toolName, "Invalid URL")
-      return .failure("Invalid gateway URL")
+      return .failure("Invalid gateway URL — check host format (should be http://your-mac.local)")
     }
 
     // Append the new user message to conversation history
@@ -101,7 +123,7 @@ class OpenClawBridge: ObservableObject {
       "stream": false
     ]
 
-    NSLog("[OpenClaw] Sending %d messages in conversation", conversationHistory.count)
+    NSLog("[OpenClaw] Sending %d messages in conversation to %@", conversationHistory.count, url.absoluteString)
 
     do {
       request.httpBody = try JSONSerialization.data(withJSONObject: body)

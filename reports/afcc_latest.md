@@ -466,3 +466,28 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
 - **Structural Confidence**: 4 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
 - **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+# AFCC Daily Refresh: 2026-03-03
+
+## Run Summary
+- **Candidates Processed**: 6
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| PPARGC1A | 2.19 | 52.7 | Intermediate |
+| MYLK | 1.46 | 65.8 | Globular |
+| IGF1R | 1.43 | 78.0 | Globular |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 4 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+### Manual Insights
+- **GHR and ARNTL as Mechanical Antennas**: The highly extended morphologies of GHR (Anisotropy 5.13) and ARNTL (3.32) suggest they may physically couple to structural strain, serving as direct mechanosensors for growth rate and circadian metabolic timing.
+- **Intrinsic Disorder in Energy Supply Hub**: PPARGC1A exhibits significant disorder (pLDDT 52.7) with intermediate anisotropy (2.19), supporting its role as a flexible regulatory hub that can dynamically complex with multiple partners to coordinate the mitochondrial biogenesis bottleneck.
+- **Stable Effectors vs. Flexible Sensors**: IGF1R, DMD, and MYLK possess more globular, highly confident structures, functioning as stable functional effectors of metabolic supply and cytoskeletal tone, in contrast to the extended, flexible regulatory sensors.

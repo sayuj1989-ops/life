@@ -5,13 +5,14 @@
 Computes geometric and confidence metrics for all downloaded structures.
 """
 
-import sys
-import os
 import json
+import os
+import sys
+import warnings
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-import warnings
 
 # Suppress Bio.PDB warnings
 warnings.filterwarnings("ignore")
@@ -19,8 +20,9 @@ warnings.filterwarnings("ignore")
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
-from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+from research.alphafold_countercurvature.src.afcc.structure import StructureParser
+
 
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):

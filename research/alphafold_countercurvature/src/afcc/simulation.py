@@ -15,17 +15,18 @@ This allows us to predict the "mechanical phenotype" of a protein assembly or ti
 
 import time
 import tracemalloc
-from typing import Dict, Any, Optional, Tuple
+from typing import Any, Dict
+
 import numpy as np
 
 # Try to import spinalmodes components
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import (
-        CounterCurvatureRodSystem,
-        PYELASTICA_AVAILABLE,
-    )
     from spinalmodes.countercurvature.coupling import CounterCurvatureParams
     from spinalmodes.countercurvature.info_fields import InfoField1D
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        CounterCurvatureRodSystem,
+    )
 except ImportError:
     # If spinalmodes is not installed as a package, we might need sys.path hack or fail
     # For now, we assume it is available as per environment setup.

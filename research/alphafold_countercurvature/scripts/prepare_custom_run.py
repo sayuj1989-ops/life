@@ -5,8 +5,9 @@ prepare_custom_run.py
 Prepares a custom candidates.csv for the Week 6 Gravity Expansion cycle.
 """
 
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # Define paths
 BASE_DIR = Path(__file__).resolve().parent.parent

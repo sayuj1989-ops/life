@@ -1,5 +1,6 @@
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # Paths
 MASTER_FILE = Path("data/candidates_master.csv")

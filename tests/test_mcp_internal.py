@@ -5,7 +5,7 @@ from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(project_root))
 
-from mcp_server.server import read_manuscript_abstract, list_experiments, run_experiment
+from mcp_server.server import list_experiments, read_manuscript_abstract, run_experiment
 
 
 def test_read_abstract():

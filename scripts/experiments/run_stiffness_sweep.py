@@ -1,19 +1,21 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
-import time
-import tracemalloc
 import csv
 import sys
-from typing import List, Dict, Any
+import time
+import tracemalloc
+from pathlib import Path
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment():
     print("Starting Stiffness Modulation (chi_E) Parameter Sweep...")
@@ -136,7 +138,7 @@ def run_experiment():
 
     plt.xlabel(r"Stiffness Modulation Gain $\chi_E$")
     plt.ylabel("Vertical Tip Deflection (m)")
-    plt.title(f"Effect of Stiffness Patterning on Sag (Fixed $\chi_\kappa={chi_kappa_fixed}$)")
+    plt.title(rf"Effect of Stiffness Patterning on Sag (Fixed $\chi_\kappa={chi_kappa_fixed}$)")
     plt.grid(True, alpha=0.3)
     plt.legend()
 
@@ -153,7 +155,7 @@ def run_experiment():
         f.write("## Setup\n")
         f.write(f"- Fixed `chi_kappa = {chi_kappa_fixed}` (Geometric Counter-Curvature)\n")
         f.write(f"- Swept `chi_E` from {min(chi_E_values)} to {max(chi_E_values)}\n")
-        f.write("- Information Field: $I = \sin^2(4\pi s)$, simulating 4 segments.\n")
+        f.write("- Information Field: $I = \\sin^2(4\\pi s)$, simulating 4 segments.\n")
         f.write("- Gravity: 9.81 m/s², Rod horizontal.\n\n")
 
         f.write("## Results\n")

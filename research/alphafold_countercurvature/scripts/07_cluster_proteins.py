@@ -7,8 +7,8 @@ Performs clustering on protein metrics to identify structural classes.
 
 import sys
 from pathlib import Path
+
 import pandas as pd
-import numpy as np
 from scipy.cluster.vq import kmeans2, whiten
 
 # Set up paths

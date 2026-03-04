@@ -10,12 +10,13 @@ Orchestrates the daily AlphaFold Counter-Curvature pipeline cycle.
 5. Archives outputs to versioned directory.
 """
 
-import sys
-import pandas as pd
-import subprocess
-import shutil
 import datetime
+import shutil
+import subprocess
+import sys
 from pathlib import Path
+
+import pandas as pd
 
 # Paths
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -46,7 +47,7 @@ def run_step(script_name, description, output_dir):
         output_dir.mkdir(parents=True, exist_ok=True)
         failure_file = output_dir / "failure.md"
         with open(failure_file, "w") as f:
-            f.write(f"# Failure Report\n\n")
+            f.write("# Failure Report\n\n")
             f.write(f"**Step Failed:** {script_name}\n")
             f.write(f"**Description:** {description}\n")
             f.write(f"**Exit Code:** {e.returncode}\n")
@@ -130,9 +131,9 @@ def main():
             daily_output_dir.mkdir(parents=True, exist_ok=True)
             failure_file = daily_output_dir / "failure.md"
             with open(failure_file, "w") as f:
-                f.write(f"# Failure Report\n\n")
-                f.write(f"**Step Failed:** AlphaFold DB API Fetch\n")
-                f.write(f"**Description:** Failed to download structures for the following candidates.\n")
+                f.write("# Failure Report\n\n")
+                f.write("**Step Failed:** AlphaFold DB API Fetch\n")
+                f.write("**Description:** Failed to download structures for the following candidates.\n")
                 for _, row in failed_targets.iterrows():
                     f.write(f"- {row['gene_symbol']}: {row['status']}\n")
                 f.write(f"\n**Timestamp:** {datetime.datetime.now().isoformat()}\n")
@@ -189,7 +190,7 @@ def main():
     # We'll just take the "Interpretation" section or make a simple bullet list
 
     dashboard_entry = f"\n## AFCC Daily Refresh: {today}\n\n"
-    dashboard_entry += f"## Run Summary\n"
+    dashboard_entry += "## Run Summary\n"
 
     num_processed = len(target_metrics) if (METRICS_FILE.exists() and not target_metrics.empty) else len(target_genes)
     dashboard_entry += f"- **Candidates Processed**: {num_processed}\n"
@@ -202,9 +203,9 @@ def main():
         top_aniso_val = top_aniso['anisotropy_index']
     dashboard_entry += f"- **Top Candidate**: {top_aniso_gene} (Anisotropy: {top_aniso_val:.2f})\n\n"
 
-    dashboard_entry += f"## Top 5 High-Anisotropy Structures\n"
-    dashboard_entry += f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n"
-    dashboard_entry += f"|------|------------|--------------|------------|\n"
+    dashboard_entry += "## Top 5 High-Anisotropy Structures\n"
+    dashboard_entry += "| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n"
+    dashboard_entry += "|------|------------|--------------|------------|\n"
 
     if METRICS_FILE.exists() and not target_metrics.empty and 'anisotropy_index' in target_metrics.columns:
         top_5 = target_metrics.sort_values('anisotropy_index', ascending=False).head(5)
@@ -216,7 +217,7 @@ def main():
             morphology = row.get('morphology', 'Unknown')
             dashboard_entry += f"| {gene} | {aniso:.2f} | {plddt:.1f} | {morphology} |\n"
 
-    dashboard_entry += f"\n## Key Observations\n"
+    dashboard_entry += "\n## Key Observations\n"
     if METRICS_FILE.exists() and not target_metrics.empty:
         high_aniso_count = (target_metrics['anisotropy_index'] > 4.0).sum() if 'anisotropy_index' in target_metrics.columns else 0
         plddt_col = 'plddt_mean' if 'plddt_mean' in target_metrics.columns else 'mean_plddt'
@@ -226,7 +227,7 @@ def main():
         dashboard_entry += f"- **Structural Confidence**: {low_conf_count} candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.\n"
         dashboard_entry += f"- **Top Mover**: {top_aniso_gene} remains the most anisotropic structure in this batch.\n"
     else:
-        dashboard_entry += f"- Metrics data not available to extract insights.\n"
+        dashboard_entry += "- Metrics data not available to extract insights.\n"
 
     with open(DASHBOARD_FILE, "a") as f:
         f.write(dashboard_entry)

@@ -1,5 +1,6 @@
 import time
 from pathlib import Path
+
 from alphafold_analysis.analyze_bcc_structures import analyze_structure
 
 pdb_dir = Path("alphafold_analysis/predictions")

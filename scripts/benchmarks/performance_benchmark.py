@@ -16,12 +16,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 import numpy as np
+
 from spinalmodes.iec import (
+    IECParameters,
+    apply_iec_coupling,
     compute_node_positions,
     generate_coherence_field,
-    IECParameters,
     solve_beam_static,
-    apply_iec_coupling,
 )
 
 

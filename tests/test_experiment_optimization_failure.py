@@ -1,8 +1,8 @@
+import csv
 import sys
 from pathlib import Path
+
 import pytest
-import csv
-import os
 
 # Add scripts directory to path to import experiment scripts
 scripts_dir = Path(__file__).resolve().parent.parent / "scripts"

@@ -1,16 +1,18 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
 import csv
 import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
+from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def main():
     parser = StandardExperimentParser(

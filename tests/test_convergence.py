@@ -1,8 +1,8 @@
 import numpy as np
 
 from spinalmodes.model.solvers.euler_bernoulli import (
-    integrate_shape_from_curvature,
     analytic_sinusoid,
+    integrate_shape_from_curvature,
     l2_error,
 )
 

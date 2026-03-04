@@ -1,15 +1,15 @@
 import os
-import pandas as pd
-import pytest
-from unittest.mock import patch, MagicMock
-from pathlib import Path
-import datetime
 
 # Import the module to be tested
 # Ensure sys.path is correct for import
 import sys
+from unittest.mock import MagicMock, patch
+
+import pandas as pd
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../scripts')))
 import afcc_daily_refresh
+
 
 def test_get_top_candidates(tmp_path):
     # Create a dummy candidates file

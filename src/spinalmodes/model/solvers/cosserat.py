@@ -8,13 +8,10 @@ from __future__ import annotations
 
 from typing import Any
 
-import numpy as np
-
 
 def available() -> bool:
     """Return True if PyElastica is importable."""
     try:
-        import elastica  # type: ignore
 
         return True
     except Exception:

@@ -9,21 +9,19 @@ Computes the free energy dissipation per cycle:
 F_dot = integral[ eta_p |dkappa/dt|^2 + eta_a (kappa - kappa_passive)^2 + Gamma_m ] ds
 """
 
-import sys
-import os
 import csv
-import time
-import numpy as np
+import os
+import sys
+
 import matplotlib.pyplot as plt
-from pathlib import Path
-from dataclasses import dataclass
+import numpy as np
 
 sys.path.append(os.getcwd())
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
+from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 
 # Biological constants
 ETA_P = 1.0     # cost of sensory feedback

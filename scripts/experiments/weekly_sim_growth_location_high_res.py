@@ -1,6 +1,7 @@
 import csv
 import os
 import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -152,7 +153,7 @@ def write_report(out_dir, centers, cobbs, s_lats):
         f.write("Investigating how the vertical position of a growth defect (Info Center) influences spinal shape stability. "
                 "We sweep the center from base (0.1) to apex (0.9) to identify critical locations for S-curve emergence.\n\n")
         f.write("## Parameters\n")
-        f.write(f"- **Info Centers**: 0.1 to 0.9 (Step 0.1)\n")
+        f.write("- **Info Centers**: 0.1 to 0.9 (Step 0.1)\n")
         f.write("- **Fixed Anisotropy**: 2.0\n")
         f.write("- **Growth Drive (chi_kappa)**: 15.0\n")
         f.write("- **Boundary Condition**: Fixed\n\n")

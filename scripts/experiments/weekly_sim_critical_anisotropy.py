@@ -10,14 +10,14 @@ Hypothesis:
     growth gain, and above which it remains stable (or confined to sagittal plane).
 """
 
-import sys
 import csv
+import sys
 import time
-import datetime
 import tracemalloc
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
@@ -28,6 +28,7 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
     PYELASTICA_AVAILABLE,
     CounterCurvatureRodSystem,
 )
+
 
 def run_experiment():
     # 1. Setup Output

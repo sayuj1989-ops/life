@@ -1,10 +1,11 @@
-import warnings
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
-import numpy as np
 import json
+from pathlib import Path
+from typing import Optional, Tuple
+
+import numpy as np
 from Bio.PDB import PDBParser
 from Bio.PDB.Structure import Structure
+
 
 class StructureParser:
     _warned_cache_write = False

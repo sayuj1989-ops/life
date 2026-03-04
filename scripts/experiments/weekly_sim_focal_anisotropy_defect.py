@@ -13,16 +13,16 @@ We sweep the LOCATION of the defect along the spine (0.0 to 1.0).
 Hypothesis: Apical defects (0.6-0.8) will cause the most severe S-shaped buckling.
 """
 
-import sys
-import os
 import csv
+import random
+import sys
 import time
-import numpy as np
-import matplotlib.pyplot as plt
+import tracemalloc
 from datetime import date
 from pathlib import Path
-import random
-import tracemalloc
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in python path
 current_file = Path(__file__).resolve()
@@ -32,10 +32,10 @@ if str(src_path) not in sys.path:
 
 try:
     from spinalmodes.countercurvature.pyelastica_bridge import (
-        CounterCurvatureRodSystem,
         PYELASTICA_AVAILABLE,
         CounterCurvatureParams,
-        InfoField1D
+        CounterCurvatureRodSystem,
+        InfoField1D,
     )
 except ImportError as e:
     print(f"Error importing spinalmodes: {e}")

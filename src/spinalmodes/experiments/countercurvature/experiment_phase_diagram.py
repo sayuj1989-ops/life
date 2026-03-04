@@ -22,10 +22,10 @@ import pandas as pd
 from spinalmodes.countercurvature import (
     CounterCurvatureParams,
     InfoField1D,
-    make_uniform_grid,
     compute_countercurvature_metric,
-    geodesic_curvature_deviation,
     compute_scoliosis_metrics,
+    geodesic_curvature_deviation,
+    make_uniform_grid,
 )
 from spinalmodes.countercurvature.coupling import (
     compute_active_moments,
@@ -193,12 +193,12 @@ def run_phase_diagram_experiment(
                 I_moment=I_moment, distributed_load=gravity_load
             )
             centerline_asym = _reconstruct_centerline_2d(theta_asym, s)
-            
+
             # Extract pseudo-coronal coordinates for scoliosis metrics
             # Note: This is a 2D approximation; full 3D would use actual coronal-plane coordinates
             z_asym, y_asym = extract_pseudo_coronal_coords(centerline_asym)
             scoliosis_metrics_asym = compute_scoliosis_metrics(z_asym, y_asym, frac=0.2)
-            
+
             # Also compute symmetric case for comparison
             theta_sym, _ = solve_beam_static(
                 s, kappa_rest_info_sym[1], E_info_sym, M_info_sym,
@@ -257,13 +257,13 @@ def run_phase_diagram_experiment(
     # Create contour plot
     contour = ax.contourf(X, Y, Z, levels=20, cmap="viridis")
     ax.contour(X, Y, Z, levels=[0.05, 0.1, 0.2, 0.5], colors="white", linewidths=1, alpha=0.5)
-    
+
     # Overlay scoliosis regime (where S_lat >= 0.05 or Cobb >= 5°)
     scoliosis_mask = pivot_scoliosis.values.astype(bool)
     ax.contour(X, Y, scoliosis_mask.astype(float), levels=[0.5], colors="red", linewidths=2, linestyle="--")
     # Also show S_lat contour at threshold
     ax.contour(X, Y, pivot_S_lat.values, levels=[0.05], colors="orange", linewidths=1.5, linestyle=":", alpha=0.7)
-    
+
     cbar = plt.colorbar(contour, ax=ax)
     cbar.set_label("D̂_geo (normalized geodesic deviation)", fontsize=11)
 

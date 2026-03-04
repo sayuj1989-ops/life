@@ -1,5 +1,10 @@
 import pytest
-from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    run_protein_simulation,
+)
+
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not available")
 def test_run_protein_simulation_defaults():

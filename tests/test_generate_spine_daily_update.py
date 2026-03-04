@@ -1,7 +1,7 @@
-import unittest
 import os
-import sys
-from scripts.generate_spine_daily_update import parse_roadmap, generate_report
+import unittest
+
+from scripts.generate_spine_daily_update import generate_report, parse_roadmap
 
 # Create a temporary roadmap file for testing
 TEMP_ROADMAP = "tests/temp_roadmap.md"

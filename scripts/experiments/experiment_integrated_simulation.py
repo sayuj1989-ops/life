@@ -21,12 +21,12 @@ Outputs:
 - Report: `outputs/integrated_sim/results.md`
 """
 
-import sys
-import os
 import csv
+import os
+import sys
 import time
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # Ensure we can import from research/alphafold_countercurvature/src and root src
 root_path = Path(__file__).parent.parent.parent

@@ -6,13 +6,14 @@ Restores PDB files from the local archive for the selected candidates,
 bypassing external AlphaFold DB fetching.
 """
 
-import sys
-import pandas as pd
-from pathlib import Path
-import shutil
-import hashlib
 import datetime
+import hashlib
 import os
+import shutil
+import sys
+from pathlib import Path
+
+import pandas as pd
 
 # Add repo root to path
 repo_root = Path(__file__).resolve().parent.parent.parent.parent

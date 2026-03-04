@@ -6,8 +6,9 @@ Sets up the focused target list for the Bolt-BioFold analysis cycle.
 Creates a run-specific target file 'bolt_targets.csv' to avoid overwriting the master candidates list.
 """
 
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # Define paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,7 +55,7 @@ def main():
             master_genes = set(master_df['gene_symbol'])
             missing = [g for g in genes if g not in master_genes]
             if missing:
-                print(f"⚠️ Warning: The following targets are NOT in the master candidates.csv and might be skipped by the pipeline:")
+                print("⚠️ Warning: The following targets are NOT in the master candidates.csv and might be skipped by the pipeline:")
                 print(missing)
                 print("   (You may need to add them to the master list manually or via 00_build_candidate_list.py)")
             else:

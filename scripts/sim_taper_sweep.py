@@ -1,24 +1,25 @@
-import sys
 import os
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
+import sys
 import time
 import tracemalloc
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 # Import from spinalmodes
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import (
-        CounterCurvatureRodSystem,
-        compute_U_CC,
-        PYELASTICA_AVAILABLE
-    )
     from spinalmodes.countercurvature.coupling import CounterCurvatureParams
     from spinalmodes.countercurvature.info_fields import InfoField1D
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        CounterCurvatureRodSystem,
+        compute_U_CC,
+    )
 except ImportError as e:
     print(f"Error importing simulation module: {e}")
     sys.exit(1)

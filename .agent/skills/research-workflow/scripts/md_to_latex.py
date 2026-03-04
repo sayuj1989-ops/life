@@ -6,9 +6,9 @@ Usage:
     python md_to_latex.py input.md --output manuscript.tex
 """
 
+import argparse
 import re
 import sys
-import argparse
 from pathlib import Path
 
 

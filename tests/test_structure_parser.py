@@ -1,10 +1,11 @@
-import pytest
-import numpy as np
 import json
 import os
-from pathlib import Path
+
+import numpy as np
+import pytest
 
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
+
 
 def test_fast_parse_pdb_arrays_standard(tmp_path):
     """Test fast parsing of standard ATOM records."""

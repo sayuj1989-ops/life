@@ -2,18 +2,21 @@
 Test for the instability wedge experiment script.
 """
 
-import sys
 import os
-import pytest
+import sys
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
+
+import pytest
 
 # Add scripts folder to python path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts', 'experiments'))
 
 # Import the module under test
 import experiment_instability_wedge_elastica as wedge_script
+
 from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE
+
 
 def test_instability_wedge_quick_run(tmp_path):
     """Test that the script runs in quick-test mode without errors."""

@@ -11,13 +11,12 @@ Usage:
     python3 experiment_protein_simulation_mapping.py [--test-mode]
 """
 
-import sys
-import os
 import argparse
 import itertools
-import pandas as pd
-import numpy as np
+import sys
 from pathlib import Path
+
+import pandas as pd
 from tqdm import tqdm
 
 # Ensure src is in path
@@ -39,7 +38,7 @@ def run_experiment(test_mode: bool = False):
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "protein_simulation_mapping.csv"
 
-    print(f"Starting Protein Simulation Mapping Experiment...")
+    print("Starting Protein Simulation Mapping Experiment...")
     print(f"Output will be saved to: {output_file}")
 
     # Parameter Grid

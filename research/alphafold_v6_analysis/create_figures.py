@@ -2,13 +2,15 @@
 Create publication-quality figures for the IEC manuscript AlphaFold analysis.
 """
 import json
-import numpy as np
+
 import matplotlib
+import numpy as np
+
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.gridspec import GridSpec
 import os
+
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
 
 # Load data
 with open("/sessions/youthful-pensive-allen/alphafold_data/protein_metrics.json") as f:

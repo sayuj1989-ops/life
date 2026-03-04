@@ -6,9 +6,10 @@ Prepares the candidates.csv and uniprot_mapping.csv for the top N candidates
 from the master candidates list.
 """
 
-import pandas as pd
-from pathlib import Path
 import sys
+from pathlib import Path
+
+import pandas as pd
 
 # Define paths
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent.parent

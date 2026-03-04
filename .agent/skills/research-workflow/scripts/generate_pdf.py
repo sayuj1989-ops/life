@@ -6,9 +6,9 @@ Usage:
     python generate_pdf.py manuscript.tex
 """
 
+import argparse
 import subprocess
 import sys
-import argparse
 from pathlib import Path
 
 

@@ -1,9 +1,11 @@
 
-import pandas as pd
-import numpy as np
-from scipy.cluster.vq import kmeans2, whiten
-import os
 import datetime
+import os
+
+import numpy as np
+import pandas as pd
+from scipy.cluster.vq import kmeans2, whiten
+
 
 def main():
     # Paths
@@ -17,7 +19,7 @@ def main():
         candidates_path = '../../data/candidates_master.csv'
 
     today = datetime.datetime.now().strftime("%Y-%m-%d")
-    report_dir = f'reports/structure_clusters/'
+    report_dir = 'reports/structure_clusters/'
     if not os.path.exists(report_dir):
         os.makedirs(report_dir)
 

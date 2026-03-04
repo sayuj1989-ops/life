@@ -4,10 +4,10 @@ Test for Hydraulic Buckling Experiment.
 Verifies that the experiment script runs successfully and produces expected artifacts.
 """
 
-import sys
-import os
 import subprocess
+import sys
 from pathlib import Path
+
 
 def test_hydraulic_buckling_execution():
     """

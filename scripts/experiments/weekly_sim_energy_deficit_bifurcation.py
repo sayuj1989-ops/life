@@ -12,13 +12,13 @@ Scaling:
 - S_proprio scales as L^0.7 (Supply constraint).
 """
 
-import sys
 import os
-import time
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
+import sys
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))

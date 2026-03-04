@@ -1,7 +1,7 @@
-import os
-import glob
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 
 def audit_afcc_freshness():
     afcc_dir = Path('outputs/afcc')

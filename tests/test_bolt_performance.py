@@ -1,8 +1,10 @@
 
+import time
+
 import numpy as np
 import pytest
-import time
 from afcc.metrics import MetricsAnalyzer
+
 
 def test_compute_surface_metrics_correctness():
     analyzer = MetricsAnalyzer()

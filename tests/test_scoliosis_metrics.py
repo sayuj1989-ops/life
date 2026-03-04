@@ -4,8 +4,8 @@ import numpy as np
 
 from spinalmodes.countercurvature.scoliosis_metrics import (
     RegimeThresholds,
-    compute_scoliosis_metrics,
     classify_scoliotic_regime,
+    compute_scoliosis_metrics,
 )
 
 

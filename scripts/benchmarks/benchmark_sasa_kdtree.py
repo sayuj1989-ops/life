@@ -1,8 +1,9 @@
 
 import time
+
 import numpy as np
 from scipy.spatial import cKDTree
-import sys
+
 
 def benchmark_sasa_kdtree():
     """

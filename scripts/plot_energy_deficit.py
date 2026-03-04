@@ -1,7 +1,9 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
 
 def generate_energy_deficit_plot():
     # File paths

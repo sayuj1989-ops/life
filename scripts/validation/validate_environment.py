@@ -4,9 +4,10 @@ Validate solver implementations and required dependencies.
 This script runs during CI to ensure all solver modules are properly installed.
 """
 
-import sys
-import os
 import importlib.util
+import os
+import sys
+
 
 def check_module(module_name, module_path=None):
     """Check if a module is available and importable."""
@@ -32,15 +33,15 @@ def check_module(module_name, module_path=None):
 def validate_solvers():
     """Validate solver availability and core module structure."""
     print("Validating solver dependencies...\n")
-    
+
     success = True
-    
+
     # Check for Python environment
     print(f"Python version: {sys.version}")
     print(f"Python executable: {sys.executable}")
     print(f"Current directory: {os.getcwd()}")
     print()
-    
+
     # Try to import spinalmodes from current Python path
     if not check_module("spinalmodes"):
         print("\n⚠ spinalmodes not in Python path")
@@ -54,27 +55,27 @@ def validate_solvers():
         else:
             print(f"✗ src/ directory not found at {src_path}")
             success = False
-    
+
     # Check for optional analysis modules
     print("\nChecking optional modules...")
     check_module("numpy")
     check_module("scipy")
     check_module("matplotlib")
-    
+
     # Check for required files
     print("\nChecking required project files...")
     required_files = [
         "pyproject.toml",
         "src/spinalmodes/__init__.py",
     ]
-    
+
     for filepath in required_files:
         if os.path.exists(filepath):
             print(f"✓ {filepath} found")
         else:
             print(f"✗ {filepath} not found")
             # Don't fail on this - might be in different location during CI
-    
+
     if success:
         print("\n✓ Solver validation completed successfully")
         return 0

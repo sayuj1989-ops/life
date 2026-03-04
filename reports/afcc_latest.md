@@ -489,3 +489,26 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Metabolic Dimorphism**: PPARGC1A (2.19) acts as a flexible regulatory hub (pLDDT=52.7), contrasting with the more rigid, structural effector DMD (1.32, pLDDT=76.3).
 - **Growth Sensors**: GHR shows extended fibrous architecture (Anisotropy 5.13) characteristic of a mechanosensor, while IGF1R is structurally globular (Anisotropy 1.43).
 - **Circadian Rhythms**: ARNTL (Anisotropy 3.32) represents an extended circadian regulator likely coupling diurnal cycles with mechanical status.
+
+# AFCC Daily Refresh: 2026-03-04
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| JAG1 | 2.76 | 73.1 | Intermediate |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| PPARGC1A | 2.19 | 52.7 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 6 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+- **Structural Tension Potential**: JAG1 exhibits an intermediate morphology (Anisotropy 2.76) with moderate structural confidence (pLDDT 73.1), hinting at partial mechanotransductive capability.
+- **Transmembrane Complexity**: Both DAG1 and JAG1 show intermediate anisotropies and pLDDTs (2.39/68.2 and 2.76/73.1 respectively), possibly reflecting the disorder often associated with large multi-domain or transmembrane proteins.
+- **Top Globular Contenders**: Based on the data, DMD remains one of the more rigid, structural effectors evaluated so far, while GHR consistently sits at the top for highest structural extension.

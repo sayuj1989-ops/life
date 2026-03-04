@@ -282,6 +282,10 @@ graph TD
     PIEZO1 -- "Inhibition (Brake)" --> SOST
     SOST -- "Inhibition (Wnt)" --> Beta_Catenin
 
+    %% NEW ARC: PIEZO1-YAP Disc Degeneration Axis (Peng et al., 2025)
+    PIEZO1 -- "Ca2+/F-actin" --> YAP
+    YAP -- "Over-activation" --> MMP
+
     %% NEW ARC: Fibrillin-TGFB Tether (Marfanoid Mechanism)
     FBN1 -- "Sequestration Failure" --> TGFB
     TGFB -- "Osteopenia" --> TMD

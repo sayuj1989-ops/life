@@ -64,7 +64,12 @@ The causal map is divided into:
 * **Path**: `PIEZO1` $\rightarrow$ `Ciliary Tuning` $\rightarrow$ `Osteogenesis`
 * **Mechanism**: High asymmetric compression causes Piezo1-mediated calcium influx that destroys the primary cilium, permanently derepressing osteogenesis on the concave side and locking the curve.
 
-### 11. Metabolic Bottleneck
+### 11. The PIEZO1-YAP Disc Degeneration Axis
+* **Path**: `PIEZO1` $\rightarrow$ `YAP` $\rightarrow$ `MMP`
+* **Mechanism**: Excessive mechanical load overactivates PIEZO1, triggering a Ca2+/F-actin signaling axis that promotes YAP nuclear translocation. This upregulates Matrix Metalloproteinases (MMPs), driving intervertebral disc (IVD) degradation (Peng et al., 2025).
+* **Role**: The intervertebral disc relies on finely-tuned stiffness to maintain the active "counter-curvature" of the spine. When overactive PIEZO1 signaling causes structural degradation, this critical mechanical stiffness drops, increasing vulnerability to scoliotic collapse.
+
+### 12. Metabolic Bottleneck
 * **Path**: `PPARGC1A` $\rightarrow$ `Mitochondrial Biogenesis` $\rightarrow$ `Energy Deficit`
 * **Mechanism**: The energetic demands of adolescent growth are massive. PPARGC1A (PGC-1$\alpha$) regulates mitochondrial biogenesis to meet this supply.
 * **Role**: Determines the metabolic ceiling. If rapid growth signals (via IGF1R/GHR) force tissue scaling that outpaces PPARGC1A-driven metabolic supply, an "Energy Deficit Window" emerges, severely compromising active postural control networks.

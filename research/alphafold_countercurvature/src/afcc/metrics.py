@@ -1,7 +1,7 @@
+from typing import Any, Dict, Optional
+
 import numpy as np
-import pandas as pd
 from Bio.PDB.Structure import Structure
-from typing import Dict, Any, Optional
 
 try:
     from scipy.spatial import cKDTree

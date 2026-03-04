@@ -9,13 +9,13 @@ Hypothesis:
     3D helical buckling, manifesting as lateral deviation (S_lat) and Cobb angle.
 """
 
-import sys
 import csv
+import sys
 import time
-import datetime
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
@@ -26,6 +26,7 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
     PYELASTICA_AVAILABLE,
     CounterCurvatureRodSystem,
 )
+
 
 def run_experiment():
     # 1. Setup Output

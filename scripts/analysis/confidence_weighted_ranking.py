@@ -1,5 +1,7 @@
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 
 def create_confidence_weighted_ranking():
     snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')
@@ -32,7 +34,7 @@ def create_confidence_weighted_ranking():
     report_content = [
         "# Confidence-Weighted Structural Evidence Report\n",
         "## Overview\n",
-        f"- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
+        "- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
         "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
         "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
         "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",

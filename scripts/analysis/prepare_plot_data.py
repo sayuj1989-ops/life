@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 # Load data
 df = pd.read_csv("outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv")

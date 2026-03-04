@@ -9,8 +9,9 @@ Usage:
 
 import argparse
 import sys
-import json
+
 from .ebi_client import AlphaFoldEbiClient
+
 
 def main():
     parser = argparse.ArgumentParser(description="AlphaFold EBI API Client CLI")

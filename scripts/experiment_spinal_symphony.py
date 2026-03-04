@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-import sys
 import os
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.io.wavfile as wav
-import matplotlib.pyplot as plt
-from scipy.signal import spectrogram
+
 
 def higuchi_fd(x, kmax):
     """Calculates the Higuchi Fractal Dimension of a time series x."""

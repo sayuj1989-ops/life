@@ -18,11 +18,12 @@ Output:
 - CSV data for manuscript plotting.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 from pathlib import Path
-import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 
 def run_experiment():
     # Setup output directory

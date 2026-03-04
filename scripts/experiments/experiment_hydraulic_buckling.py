@@ -21,26 +21,24 @@ Where:
     alpha: Sensitivity of stiffness to swelling (e.g., 0.8 = 80% loss).
 """
 
-import sys
-import os
-import time
 import argparse
-import numpy as np
-import matplotlib.pyplot as plt
+import sys
+import time
+from dataclasses import dataclass
 from pathlib import Path
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional
+from typing import Dict
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
 from spinalmodes.countercurvature.pyelastica_bridge import (
-    CounterCurvatureRodSystem,
-    SimulationResult,
-    compute_U_CC,
-    verify_pyelastica_installation,
     CounterCurvatureParams,
+    CounterCurvatureRodSystem,
     InfoField1D,
+    compute_U_CC,
 )
 
 # Ensure output directory exists

@@ -1,6 +1,7 @@
 
 import re
 
+
 def force_update_theory():
     filepath = 'manuscript/sections/theory.tex'
     with open(filepath, 'r') as f:

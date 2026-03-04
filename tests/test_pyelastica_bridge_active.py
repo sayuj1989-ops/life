@@ -1,10 +1,16 @@
 """Unit tests for PyElastica bridge integration."""
 
-import pytest
 import numpy as np
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, ActiveMuscleTorques, PYELASTICA_AVAILABLE
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
+import pytest
+
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    ActiveMuscleTorques,
+    CounterCurvatureRodSystem,
+)
+
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not available")
 class TestPyElasticaBridge:

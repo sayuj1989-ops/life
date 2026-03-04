@@ -4,11 +4,12 @@ Smoke test for the end-to-end countercurvature pipeline.
 This test validates that the full mathematical pipeline works:
     Info field → Metric → Coupling → Solver → Deviation
 """
-import pytest
 import numpy as np
+import pytest
+
 from spinalmodes.countercurvature.api import (
-    InfoField1D,
     CounterCurvatureParams,
+    InfoField1D,
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
 )

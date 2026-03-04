@@ -37,8 +37,8 @@ from spinalmodes.countercurvature.coupling import (
 )
 from spinalmodes.countercurvature.validation_and_metrics import (
     compute_countercurvature_energy,
-    compute_shape_preservation_index,
     compute_countercurvature_metric,
+    compute_shape_preservation_index,
     geodesic_curvature_deviation,
 )
 from spinalmodes.iec import solve_beam_static

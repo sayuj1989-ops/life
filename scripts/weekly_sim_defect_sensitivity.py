@@ -10,17 +10,17 @@ Hypothesis ID: H_2026_02_27_DefectSensitivity
 """
 
 import sys
-import os
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
-from datetime import datetime
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent / "src"))
 
 from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation
+
 
 def run_sweep():
     # Reproducibility

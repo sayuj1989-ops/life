@@ -1,12 +1,20 @@
-import sys
 import os
+import sys
+
 import numpy as np
-import pytest
 
 # Add repo root to path so we can import scripts
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from scripts.experiment_energy_phase_diagram import compute_energy_cost, compute_supply, E0, RHO, A_REF, L_REF, G, L_CROSSING, CHI_BASELINE
+from scripts.experiment_energy_phase_diagram import (
+    A_REF,
+    CHI_BASELINE,
+    L_CROSSING,
+    L_REF,
+    compute_energy_cost,
+    compute_supply,
+)
+
 
 def test_constants():
     """Verify that constants match the specific experimental design (Prompt 2 alignment)."""

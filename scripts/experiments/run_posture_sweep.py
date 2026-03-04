@@ -1,18 +1,20 @@
-import sys
-import os
 import csv
+import os
+import sys
 import time
 import tracemalloc
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in path
 sys.path.append(os.getcwd())
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_sweep():
     # 1. Setup paths
@@ -196,7 +198,7 @@ def run_sweep():
         f.write("# Simulation Report: Posture (Tilt) Sweep\n\n")
         f.write(f"**Date**: {date_str}\n\n")
         f.write("## Overview\n")
-        f.write("Investigated the stability of the emergent S-shape (driven by $\chi_M=15$) as the rod's posture changes from Horizontal (0°) to Vertical (90°) under gravity.\n\n")
+        f.write("Investigated the stability of the emergent S-shape (driven by $\\chi_M=15$) as the rod's posture changes from Horizontal (0°) to Vertical (90°) under gravity.\n\n")
 
         f.write("## Findings\n")
         f.write("- **Horizontal (0°)**: Max gravitational moment. S-shape is prominent as active torque fights sag.\n")

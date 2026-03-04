@@ -1,6 +1,8 @@
-import requests
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+import requests
+
 
 def fetch_alphafold_metadata(uniprot_id: str):
     """Fetch metadata from AlphaFold Database API."""
@@ -23,7 +25,7 @@ def analyze_structural_information():
         "HOXB13": "Q92826",  # Sacral identity
         "ADGRG6": "Q86SQ4"   # Linked to AIS morphology
     }
-    
+
     results = []
     print("Connecting to AlphaFold API...")
     for name, uid in proteins.items():
@@ -40,13 +42,13 @@ def analyze_structural_information():
                 "length": meta.get("uniprotEnd", 0) - meta.get("uniprotStart", 0) + 1,
                 "confidence_high_frac": meta.get("fractionPlddtConfident", 0) + meta.get("fractionPlddtVeryHigh", 0)
             })
-    
+
     df = pd.DataFrame(results)
     output_path = Path("src/spinalmodes/external/protein_structural_data.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False)
     print(f"\n✅ Saved AlphaFold structural data to {output_path}")
-    
+
     # Generate a small summary for the manuscript
     summary_path = Path("src/spinalmodes/external/alphafold_summary.txt")
     with open(summary_path, "w") as f:
@@ -56,8 +58,8 @@ def analyze_structural_information():
             f.write(f"Protein: {row['protein']} ({row['uniprot_id']})\n")
             f.write(f"  - Avg pLDDT: {row['plddt_avg']:.2f}\n")
             f.write(f"  - Stable Regions: {row['confidence_high_frac']*100:.1f}%\n")
-            f.write(f"  - Interpretation: High confidence domains provide binding specificity which anchors the IEC information field.\n\n")
-    
+            f.write("  - Interpretation: High confidence domains provide binding specificity which anchors the IEC information field.\n\n")
+
     return df
 
 if __name__ == "__main__":

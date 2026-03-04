@@ -19,7 +19,6 @@ import pandas as pd
 from spinalmodes.countercurvature import (
     InfoField1D,
     compute_countercurvature_metric,
-    geodesic_curvature_deviation,
 )
 
 
@@ -138,8 +137,8 @@ def generate_figure(
                 info_field = InfoField1D(s=s, I=I, dIds=dIds)
             else:
                 # Last resort: reconstruct from canonical pattern (documented as fallback)
-                print(f"⚠️  Warning: No I(s) data found. Using canonical pattern for Panel B.")
-                print(f"   To fix: Run experiment_spine_modes_vs_gravity.py with I(s) saved to CSV or NPZ.")
+                print("⚠️  Warning: No I(s) data found. Using canonical pattern for Panel B.")
+                print("   To fix: Run experiment_spine_modes_vs_gravity.py with I(s) saved to CSV or NPZ.")
                 s_norm = s / length
                 I = 0.5 + 0.3 * np.exp(-((s_norm - 0.3) ** 2) / (2 * 0.1**2))
                 info_field = InfoField1D.from_array(s, I)

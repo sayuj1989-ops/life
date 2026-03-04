@@ -1,6 +1,6 @@
-import pandas as pd
 from pathlib import Path
-import numpy as np
+
+import pandas as pd
 
 # Paths
 METRICS_FILE = Path("research/alphafold_countercurvature/data/processed/protein_metrics.csv")

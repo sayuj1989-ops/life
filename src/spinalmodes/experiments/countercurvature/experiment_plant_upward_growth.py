@@ -24,9 +24,9 @@ import pandas as pd
 from spinalmodes.countercurvature import (
     CounterCurvatureParams,
     InfoField1D,
-    make_uniform_grid,
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
+    make_uniform_grid,
 )
 from spinalmodes.countercurvature.coupling import (
     compute_active_moments,
@@ -38,8 +38,8 @@ from spinalmodes.iec import solve_beam_static
 # Try to use PyElastica if available, otherwise fall back to beam solver
 try:
     from spinalmodes.countercurvature.pyelastica_bridge import (
-        CounterCurvatureRodSystem,
         PYELASTICA_AVAILABLE,
+        CounterCurvatureRodSystem,
     )
 except ImportError:
     PYELASTICA_AVAILABLE = False

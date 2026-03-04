@@ -1,6 +1,5 @@
+
 import pandas as pd
-import sys
-from datetime import datetime
 
 # Paths
 BOLT_RESULTS = "outputs/bolt_biofold_analysis/bolt_biofold_results.csv"
@@ -38,28 +37,28 @@ def analyze_clusters():
     target_cluster = valid_anisotropy[valid_anisotropy['gene_symbol'].isin(target_genes)]
 
     # Print Report
-    print(f"# Cluster Note: The Anisotropic Supply Hypothesis")
-    print(f"**Date:** 2026-06-03")
-    print(f"**Cluster:** Metabolic Expansion Scaffolds")
+    print("# Cluster Note: The Anisotropic Supply Hypothesis")
+    print("**Date:** 2026-06-03")
+    print("**Cluster:** Metabolic Expansion Scaffolds")
     print(f"**Members:** {', '.join(target_cluster['gene_symbol'].tolist())}")
     print(f"**Anisotropy Range:** {target_cluster['anisotropy_index'].min():.2f} - {target_cluster['anisotropy_index'].max():.2f}")
-    print(f"\n## Shared Properties")
-    print(f"- **Structural:** High Anisotropy (> 2.0) relative to globular enzymes. Significant intrinsic disorder or extended domains.")
-    print(f"- **Functional:** Regulators of metabolic supply ($\\Gamma_m$) and growth rate (GHR, IGF1R, PPARGC1A).")
-    print(f"- **Context:** Unlike compact enzymes, these proteins have extended conformations that scale with cell volume.")
+    print("\n## Shared Properties")
+    print("- **Structural:** High Anisotropy (> 2.0) relative to globular enzymes. Significant intrinsic disorder or extended domains.")
+    print("- **Functional:** Regulators of metabolic supply ($\\Gamma_m$) and growth rate (GHR, IGF1R, PPARGC1A).")
+    print("- **Context:** Unlike compact enzymes, these proteins have extended conformations that scale with cell volume.")
 
-    print(f"\n## Hypothesized Mechanical Role")
-    print(f"**The Anisotropic Supply Hypothesis:**")
-    print(f"The extended, anisotropic nature of key metabolic receptors (GHR, IGF1R) and coactivators (PPARGC1A) makes their signaling efficiency highly sensitive to **cytoplasmic crowding** and **compressive stress**.")
-    print(f"Under conditions of 'Metabolic Buckling' (scoliosis concave side), increased macromolecular crowding or osmotic compression reduces the diffusion volume available to these anisotropic scaffolds more severely than for globular proteins, dampening the anabolic signal.")
-    print(f"This creates a direct coupling between tissue compression and metabolic downregulation, exacerbating the 'Energy Deficit Window'.")
+    print("\n## Hypothesized Mechanical Role")
+    print("**The Anisotropic Supply Hypothesis:**")
+    print("The extended, anisotropic nature of key metabolic receptors (GHR, IGF1R) and coactivators (PPARGC1A) makes their signaling efficiency highly sensitive to **cytoplasmic crowding** and **compressive stress**.")
+    print("Under conditions of 'Metabolic Buckling' (scoliosis concave side), increased macromolecular crowding or osmotic compression reduces the diffusion volume available to these anisotropic scaffolds more severely than for globular proteins, dampening the anabolic signal.")
+    print("This creates a direct coupling between tissue compression and metabolic downregulation, exacerbating the 'Energy Deficit Window'.")
 
-    print(f"\n## Concrete Test")
-    print(f"**Test: The Crowding-Gain Test**")
-    print(f"1. **System:** Chondrocytes or Osteoblasts in vitro.")
-    print(f"2. **Perturbation:** Apply graded osmotic compression (PEG-400) or inert macromolecular crowding agents (Ficoll) to simulate compressive stress without direct mechanotransduction (Piezo1 inhibition).")
-    print(f"3. **Readout:** Measure downstream signaling phosphorylation (pSTAT5 for GHR, pAKT for IGF1R) in response to ligand stimulation.")
-    print(f"4. **Prediction:** Signaling gain for anisotropic receptors (GHR, IGF1R) will decay faster with increasing crowding density compared to a globular control receptor (e.g., Transferrin Receptor or a compact cytokine receptor).")
+    print("\n## Concrete Test")
+    print("**Test: The Crowding-Gain Test**")
+    print("1. **System:** Chondrocytes or Osteoblasts in vitro.")
+    print("2. **Perturbation:** Apply graded osmotic compression (PEG-400) or inert macromolecular crowding agents (Ficoll) to simulate compressive stress without direct mechanotransduction (Piezo1 inhibition).")
+    print("3. **Readout:** Measure downstream signaling phosphorylation (pSTAT5 for GHR, pAKT for IGF1R) in response to ligand stimulation.")
+    print("4. **Prediction:** Signaling gain for anisotropic receptors (GHR, IGF1R) will decay faster with increasing crowding density compared to a globular control receptor (e.g., Transferrin Receptor or a compact cytokine receptor).")
 
 if __name__ == "__main__":
     analyze_clusters()

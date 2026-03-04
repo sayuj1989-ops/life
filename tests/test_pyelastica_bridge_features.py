@@ -1,11 +1,13 @@
-import pytest
 import numpy as np
-from src.spinalmodes.countercurvature.pyelastica_bridge import (
-    CounterCurvatureRodSystem,
-    PYELASTICA_AVAILABLE,
-)
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
+import pytest
+
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
+
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not installed")
 def test_boundary_conditions_effect():

@@ -6,12 +6,14 @@ maps biological parameters (anisotropy, active curvature) to mechanical outcomes
 and ensures that the simulation infrastructure is robust.
 """
 
-import pytest
 import numpy as np
+import pytest
+
 from spinalmodes.countercurvature.pyelastica_bridge import (
-    run_protein_simulation,
     PYELASTICA_AVAILABLE,
+    run_protein_simulation,
 )
+
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not installed")
 def test_run_protein_simulation_basic():
@@ -55,8 +57,11 @@ def test_anisotropy_configuration():
     Test that the anisotropy parameter is correctly applied to the bending matrix.
     We check the CounterCurvatureRodSystem internals directly.
     """
-    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, InfoField1D, CounterCurvatureParams
-    import numpy as np
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        CounterCurvatureParams,
+        CounterCurvatureRodSystem,
+        InfoField1D,
+    )
 
     # Setup minimal system
     length = 1.0

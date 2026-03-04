@@ -9,12 +9,13 @@ Orchestrates the daily refresh of AlphaFold Counter-Curvature metrics.
 4. Generates daily outputs and updates dashboard.
 """
 
-import sys
 import argparse
-import pandas as pd
-import subprocess
 import datetime
+import subprocess
+import sys
 from pathlib import Path
+
+import pandas as pd
 
 # Paths
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -132,30 +133,30 @@ def generate_outputs():
 
     lines = []
     lines.append(f"# AFCC Daily Refresh: {today}")
-    lines.append(f"")
-    lines.append(f"## Run Summary")
+    lines.append("")
+    lines.append("## Run Summary")
     lines.append(f"- **Candidates Processed**: {len(df)}")
     if not top_aniso.empty and 'anisotropy_index' in top_aniso.columns:
         lines.append(f"- **Top Candidate**: {top_aniso.iloc[0]['gene_symbol']} (Anisotropy: {top_aniso.iloc[0]['anisotropy_index']:.2f})")
 
-    lines.append(f"")
-    lines.append(f"## Top 5 High-Anisotropy Structures")
-    lines.append(f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |")
-    lines.append(f"|------|------------|--------------|------------|")
+    lines.append("")
+    lines.append("## Top 5 High-Anisotropy Structures")
+    lines.append("| Gene | Anisotropy | pLDDT (Mean) | Morphology |")
+    lines.append("|------|------------|--------------|------------|")
     for _, row in top_aniso.iterrows():
         aniso = row.get('anisotropy_index', 0)
         plddt = row.get('plddt_mean', row.get('mean_plddt', 0))
         lines.append(f"| {row['gene_symbol']} | {aniso:.2f} | {plddt:.1f} | {row.get('morphology', 'N/A')} |")
 
-    lines.append(f"")
-    lines.append(f"## Key Observations")
+    lines.append("")
+    lines.append("## Key Observations")
 
     if 'anisotropy_index' in df.columns:
         high_aniso_count = len(df[df['anisotropy_index'] > 4.0])
         if high_aniso_count > 0:
             lines.append(f"- **Tension Rods**: Found {high_aniso_count} candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.")
         else:
-            lines.append(f"- **Tension Rods**: No candidates with Anisotropy > 4.0 found.")
+            lines.append("- **Tension Rods**: No candidates with Anisotropy > 4.0 found.")
 
         plddt_col = 'plddt_mean' if 'plddt_mean' in df.columns else 'mean_plddt'
         if plddt_col in df.columns:

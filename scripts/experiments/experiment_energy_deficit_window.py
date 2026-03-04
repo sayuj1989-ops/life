@@ -1,9 +1,10 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 import os
 import sys
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Ensure src is in path correctly regardless of execution context
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -18,13 +19,14 @@ if script_dir not in sys.path:
     sys.path.append(script_dir)
 
 try:
-    from spinalmodes.iec import solve_beam_static
     from experiment_utils import StandardExperimentParser, setup_experiment
+
+    from spinalmodes.iec import solve_beam_static
 except ImportError:
     # Fallback for when running from root without src being a package root
     try:
-        from src.spinalmodes.iec import solve_beam_static
         from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
+        from src.spinalmodes.iec import solve_beam_static
     except ImportError as e:
         print(f"Error: Could not import solve_beam_static or experiment_utils. {e}")
         sys.exit(1)

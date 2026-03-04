@@ -1,6 +1,7 @@
-import math
 import csv
+import math
 import os
+
 
 def organism(x, y, t):
     k = 5 * math.cos(x / 14) * math.cos(y / 30)

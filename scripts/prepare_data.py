@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 
 # Create directory if not exists
 os.makedirs("research/figures", exist_ok=True)

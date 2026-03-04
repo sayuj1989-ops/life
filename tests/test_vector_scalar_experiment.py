@@ -2,14 +2,15 @@
 Test for the Vector-Scalar Mismatch experiment configuration.
 Ensures the specific parameters (High Anisotropy + High chi_kappa) run without error.
 """
-import pytest
 import numpy as np
+import pytest
+
+from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.pyelastica_bridge import (
     PYELASTICA_AVAILABLE,
     CounterCurvatureRodSystem,
 )
-from spinalmodes.countercurvature.info_fields import InfoField1D
-from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not available")

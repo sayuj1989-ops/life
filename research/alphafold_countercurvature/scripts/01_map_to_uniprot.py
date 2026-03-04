@@ -5,11 +5,12 @@
 Maps candidate gene symbols to UniProt Accessions using the UniProt Async ID Mapping API.
 """
 
-import sys
-import os
 import argparse
-import pandas as pd
+import os
+import sys
 from pathlib import Path
+
+import pandas as pd
 
 # Add repo root to path
 repo_root = Path(__file__).resolve().parent.parent.parent.parent

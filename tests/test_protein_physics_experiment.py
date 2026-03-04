@@ -1,15 +1,17 @@
 
-import os
-import pytest
 import csv
 import sys
 from pathlib import Path
+
+import pytest
 
 # Ensure scripts/experiments is in path
 sys.path.append(str(Path(__file__).parent.parent / "scripts" / "experiments"))
 
 import experiment_protein_simulation_pyelastica
+
 from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE
+
 
 @pytest.mark.skipif(
     not PYELASTICA_AVAILABLE,

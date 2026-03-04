@@ -12,13 +12,14 @@ It performs a parameter sweep over:
 Results are saved to `outputs/parameter_map_results.csv`.
 """
 
-import sys
 import os
+import sys
+import time
+import tracemalloc
+from itertools import product
+
 import numpy as np
 import pandas as pd
-import tracemalloc
-import time
-from itertools import product
 
 # Ensure src is in path
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../src'))
@@ -37,9 +38,10 @@ except ImportError:
     print("2. Re-run this script.")
     sys.exit(0)
 
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment():
     print("Running PyElastica Parameter Map Experiment...")

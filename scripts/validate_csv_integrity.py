@@ -1,6 +1,6 @@
+import collections
 import csv
 import sys
-import collections
 
 MASTER_FILE = "data/candidates_master.csv"
 EXPECTED_COLUMNS = 8

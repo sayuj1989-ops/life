@@ -1,12 +1,18 @@
 import os
 import sys
+
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from src.spinalmodes.iec import IECParameters, apply_iec_coupling, solve_beam_static, compute_amplitude
+
+from src.spinalmodes.iec import (
+    compute_amplitude,
+    solve_beam_static,
+)
+
 
 def bimodal_gaussian(s, L, Ac=0.5, sc=0.80, sigmac=0.08, Al=0.7, sl=0.25, sigmal=0.10, I0=0.3):
     s_norm = s / L

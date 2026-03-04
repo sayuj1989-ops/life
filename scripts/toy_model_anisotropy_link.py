@@ -24,9 +24,10 @@ Parameters:
     alpha = 1.0 (Cost Coefficient)
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Create output directory
 os.makedirs("outputs/figures", exist_ok=True)

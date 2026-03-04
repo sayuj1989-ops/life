@@ -1,5 +1,4 @@
 
-import re
 
 def fix_piezo2_simple():
     filepath = 'manuscript/sections/tables.tex'

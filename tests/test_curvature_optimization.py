@@ -1,9 +1,9 @@
-import unittest
-import pytest
-import numpy as np
-from numpy.lib.stride_tricks import sliding_window_view
 import sys
+import unittest
 from pathlib import Path
+
+import numpy as np
+import pytest
 
 pytest.importorskip("Bio")
 
@@ -12,6 +12,7 @@ pytest.importorskip("Bio")
 sys.path.append(str(Path(__file__).parent.parent / "archive/alphafold_analysis_legacy"))
 
 from analyze_bcc_structures import calculate_backbone_curvature
+
 
 class TestCurvatureOptimization(unittest.TestCase):
     def test_calculate_backbone_curvature(self):

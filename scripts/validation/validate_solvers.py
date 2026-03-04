@@ -1,10 +1,12 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
 import json
-from datetime import datetime
 import sys
+from datetime import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def run_validation():
     """

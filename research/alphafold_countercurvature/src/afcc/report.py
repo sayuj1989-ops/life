@@ -1,7 +1,9 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
 
 class ReportGenerator:
     def __init__(self, data_dir: Path, output_dir: Path):

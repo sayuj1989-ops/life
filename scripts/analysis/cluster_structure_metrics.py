@@ -16,8 +16,9 @@ Clusters:
 """
 
 import sys
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 # Default path to latest metrics
 DEFAULT_METRICS_PATH = Path("outputs/afcc/current_metrics.csv")

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import os
-import glob
-import pandas as pd
 import subprocess
+
+import pandas as pd
 
 OUTPUT_BASE = "outputs/afcc"
 CURRENT_METRICS_FILE = os.path.join(OUTPUT_BASE, "current_metrics.csv")

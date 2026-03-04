@@ -5,8 +5,8 @@ This script runs the core analysis pipeline for the
 """
 
 import os
-import sys
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -31,7 +31,7 @@ def main():
     results_dir = Path(os.environ["RESULTS_DIR"])
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Starting master analysis pipeline.")
+    print("Starting master analysis pipeline.")
     print(f"Results will be saved to: {results_dir.absolute()}\n")
 
     # 1. Integrated Bio-Gravitational Simulation

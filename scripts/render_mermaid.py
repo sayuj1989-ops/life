@@ -1,6 +1,7 @@
-import sys
-import os
 import asyncio
+import os
+import sys
+
 from playwright.async_api import async_playwright
 
 MMD_FILE = "docs/figures/scoliosis_mechanism_map.mmd"

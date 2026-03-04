@@ -42,11 +42,11 @@ Outputs:
 - Rescue simulation: Effect of ciliary stabilization (Tubacin).
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import odeint
-import os
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import odeint
 
 # --- Parameters ---
 PARAMS = {

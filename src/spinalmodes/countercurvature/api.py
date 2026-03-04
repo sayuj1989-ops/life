@@ -15,27 +15,27 @@ Usage
 >>> D_geo = api.geodesic_curvature_deviation(s, kappa_0, kappa_I, g_eff)
 """
 
+from .coupling import (
+    CounterCurvatureParams,
+    compute_active_moments,
+    compute_effective_stiffness,
+    compute_rest_curvature,
+)
 from .info_fields import (
     InfoField1D,
     InfoFieldTimeSeries,
     make_uniform_grid,
 )
-from .coupling import (
-    CounterCurvatureParams,
-    compute_rest_curvature,
-    compute_effective_stiffness,
-    compute_active_moments,
+from .pyelastica_bridge import CounterCurvatureRodSystem
+from .scoliosis_metrics import (
+    RegimeThresholds,
+    ScoliosisMetrics,
+    classify_scoliotic_regime,
+    compute_scoliosis_metrics,
 )
 from .validation_and_metrics import (
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
-)
-from .pyelastica_bridge import CounterCurvatureRodSystem
-from .scoliosis_metrics import (
-    ScoliosisMetrics,
-    RegimeThresholds,
-    compute_scoliosis_metrics,
-    classify_scoliotic_regime,
 )
 
 __all__ = [

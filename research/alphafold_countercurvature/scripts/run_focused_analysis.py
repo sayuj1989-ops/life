@@ -1,11 +1,9 @@
 
 import sys
-import os
 from pathlib import Path
-import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
-from Bio.PDB import PDBParser
+import pandas as pd
 
 # Add src to path
 current_dir = Path(__file__).resolve().parent
@@ -14,6 +12,7 @@ sys.path.append(str(src_path))
 
 from afcc.metrics import MetricsAnalyzer
 from afcc.structure import StructureParser
+
 
 def main():
     print("⚡ Bolt-BioFold: Starting Focused Analysis Cycle 1")

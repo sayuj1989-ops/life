@@ -13,24 +13,23 @@ Usage:
 
 import argparse
 import csv
-import math
+import json
 import sys
 import time
-import json
-from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Tuple, Optional, Any
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from scipy.spatial import cKDTree
-import pandas as pd
 
 # Add research module to path to import StructureParser
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent / "research" / "alphafold_countercurvature" / "src"))
-from afcc.structure import StructureParser
 from afcc.afdb import AlphaFoldFetcher
+from afcc.structure import StructureParser
+
 
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -682,8 +681,8 @@ def main():
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold Analysis Report\n\n")
         f.write(f"**Date:** {date_str}\n")
-        f.write(f"**Source:** AlphaFold DB (Default Seed List)\n")
-        f.write(f"**Code Version:** Bolt-BioFold 2.1 (PAE Integration)\n\n")
+        f.write("**Source:** AlphaFold DB (Default Seed List)\n")
+        f.write("**Code Version:** Bolt-BioFold 2.1 (PAE Integration)\n\n")
 
         f.write("## Results Summary\n\n")
         f.write("| Gene | Anisotropy | Rg (A) | Curvature | pLDDT | Domains | PAE Blockiness | Surface | Charge |\n")
@@ -704,7 +703,7 @@ def main():
             f.write(f"### {r['gene_symbol']} ({r['uniprot_id']})\n")
 
             # What we see
-            f.write(f"**What we see:**\n")
+            f.write("**What we see:**\n")
             f.write(f"- Geometry: Anisotropy {r['anisotropy_index']:.2f}, Rg {r['radius_of_gyration']:.1f}A.\n")
             if r['mean_curvature_hc'] > 0.1:
                 f.write(f"- Curvature: High mean curvature ({r['mean_curvature_hc']:.3f}) with hotspots at {r['bending_hotspots']}.\n")
@@ -718,7 +717,7 @@ def main():
                  f.write(f"- Flexibility: Potential hinges at {r['hinge_candidates']}.\n")
 
             # Why it matters
-            f.write(f"**Why it matters:**\n")
+            f.write("**Why it matters:**\n")
             if r['anisotropy_index'] > 3.0:
                 f.write("- High anisotropy suggests a structural role (fiber/rod) capable of transmitting directional force or resisting gravity.\n")
             elif r['anisotropy_index'] < 1.5:
@@ -727,14 +726,14 @@ def main():
                  f.write("- Mixed geometry suggests a multifunctional role.\n")
 
             # Confidence
-            f.write(f"**Confidence:** ")
+            f.write("**Confidence:** ")
             if r['low_confidence_warning']:
                 f.write("LOW. (Caution: IDRs or poor prediction).\n")
             else:
                 f.write("HIGH. (Reliable backbone geometry).\n")
 
             # Next test
-            f.write(f"**Next test:** ")
+            f.write("**Next test:** ")
             if r['hinge_candidates'] != "None":
                 f.write("Simulate dynamics of hinge regions under tensile load.\n")
             elif r['anisotropy_index'] > 3.0:

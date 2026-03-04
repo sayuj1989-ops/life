@@ -4,20 +4,21 @@ Goal: Test if localized growth gradients (small info_width) trigger S-shaped buc
 more effectively than broad, distributed growth, under high growth drive and stiffness anisotropy.
 """
 
-import os
-import sys
 import datetime
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, SimulationResult
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment(
     info_width: float,

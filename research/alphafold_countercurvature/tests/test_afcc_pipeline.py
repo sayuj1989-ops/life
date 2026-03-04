@@ -1,14 +1,16 @@
 import unittest
-import numpy as np
-from Bio.PDB.Structure import Structure
-from Bio.PDB.Model import Model
-from Bio.PDB.Chain import Chain
-from Bio.PDB.Residue import Residue
-from Bio.PDB.Atom import Atom
 from pathlib import Path
 
-from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+import numpy as np
+from Bio.PDB.Atom import Atom
+from Bio.PDB.Chain import Chain
+from Bio.PDB.Model import Model
+from Bio.PDB.Residue import Residue
+from Bio.PDB.Structure import Structure
+
 from research.alphafold_countercurvature.src.afcc.afdb import AlphaFoldFetcher
+from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
 
 class TestAFCCPipeline(unittest.TestCase):
 

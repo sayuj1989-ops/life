@@ -7,15 +7,18 @@ Maps longevity proteins to the dissipation cascade.
 """
 
 import csv
-import sys
 import os
-import time
-from pathlib import Path
+import sys
 from dataclasses import dataclass
 
 sys.path.append(os.getcwd())
 
-from scripts.experiments.experiment_thermodynamic_cost_proteins import TARGETS, load_all_metrics, OUTPUT_DIR
+from scripts.experiments.experiment_thermodynamic_cost_proteins import (
+    OUTPUT_DIR,
+    TARGETS,
+    load_all_metrics,
+)
+
 
 @dataclass
 class LongevityTarget:

@@ -4,20 +4,18 @@ Enhanced version for Nature manuscript with 3D traces and growth spurt simulatio
 """
 
 from pathlib import Path
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
 from spinalmodes.countercurvature import (
     CounterCurvatureParams,
     InfoField1D,
-    make_uniform_grid,
-    compute_countercurvature_metric,
-    geodesic_curvature_deviation,
     compute_scoliosis_metrics,
+    make_uniform_grid,
 )
 from spinalmodes.countercurvature.coupling import (
-    compute_active_moments,
-    compute_effective_stiffness,
     compute_rest_curvature,
 )
 from spinalmodes.iec import solve_beam_static
@@ -71,7 +69,7 @@ def run_scoliosis_bifurcation_experiment(
     kappa_gen = create_spine_kappa_gen(s, length)
     bifurcation_data = []
 
-    print(f"Running ENHANCED scoliosis experiment...")
+    print("Running ENHANCED scoliosis experiment...")
     for chi_k in chi_kappa_values:
         for eps_asym in asymmetry_values:
             info_field = create_neural_control_info_field(s, length, epsilon_asym=eps_asym)
@@ -80,7 +78,7 @@ def run_scoliosis_bifurcation_experiment(
             th, _ = solve_beam_static(s, kappa_rest, np.full_like(s, E0), np.zeros_like(s), I_moment=I_moment, distributed_load=gravity_load)
             c = _reconstruct_centerline_2d(th, s)
             m = compute_scoliosis_metrics(c[:, 1], c[:, 0], frac=0.2)
-            
+
             bifurcation_data.append({
                 "chi_kappa": chi_k,
                 "epsilon_asym": eps_asym,
@@ -110,7 +108,7 @@ def run_scoliosis_bifurcation_experiment(
     th_asym, _ = solve_beam_static(s_hr, kappa_rest_asym, np.full_like(s_hr, E0), np.zeros_like(s_hr), I_moment=I_moment, distributed_load=gravity_load)
     c_sym = _reconstruct_centerline_2d(th_sym, s_hr)
     c_asym = _reconstruct_centerline_2d(th_asym, s_hr)
-    
+
     ax_a.plot(c_sym[:, 0], np.zeros_like(s_hr), c_sym[:, 1], "b--", label="Healthy")
     ax_a.plot(c_asym[:, 0], c_asym[:, 0] * 0.5, c_asym[:, 1], "r-", linewidth=3, label="Scoliotic")
     ax_a.set_xlabel("x")
@@ -157,7 +155,7 @@ def run_scoliosis_bifurcation_experiment(
         c_g = _reconstruct_centerline_2d(th_g, s_g)
         m = compute_scoliosis_metrics(c_g[:, 1], c_g[:, 0], frac=0.2)
         cobb_growth.append(m.cobb_like_deg)
-    
+
     ax_d.plot(lengths, cobb_growth, "go-", linewidth=3, markersize=10)
     ax_d.axvline(0.38, color="r", linestyle="--", label="Adolescent Threshold (approx)")
     ax_d.set_xlabel("Spinal Length L (m) [Growth Proxy]")

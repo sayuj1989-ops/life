@@ -20,8 +20,8 @@ Hypothesis:
 - Mouse Bg > 1 (Stable, dominated by stiffness/scaling)
 """
 
-import sys
 import os
+import sys
 
 # Add src to path to import actual project classes if needed
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))

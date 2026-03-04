@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-import sys
 import os
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import requests
 import scipy.io.wavfile as wav
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Add afcc to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../research/alphafold_countercurvature/src')))

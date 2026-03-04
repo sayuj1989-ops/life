@@ -1,11 +1,12 @@
-import urllib.parse
-import urllib.request
-import urllib.error
 import json
 import time
-import pandas as pd
+import urllib.error
+import urllib.parse
+import urllib.request
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+import pandas as pd
 
 UNIPROT_API_URL = "https://rest.uniprot.org/idmapping"
 POLLING_INTERVAL = 5

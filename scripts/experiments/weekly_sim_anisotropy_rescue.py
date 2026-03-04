@@ -14,26 +14,31 @@ Parameters:
 - Constant: Gravity = 9.81 m/s^2
 """
 
-import sys
-import os
-import time
 import datetime
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Ensure we can import from src
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(REPO_ROOT / "src"))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError:
     # Fallback for some execution environments
     sys.path.append(str(REPO_ROOT))
     try:
-        from src.spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+        from src.spinalmodes.countercurvature.pyelastica_bridge import (
+            PYELASTICA_AVAILABLE,
+            run_protein_simulation,
+        )
     except ImportError:
         print("Error: Could not import run_protein_simulation. Check python path.")
         sys.exit(1)
@@ -103,13 +108,13 @@ def main():
     params_csv_path = output_dir / "params.csv"
     with open(params_csv_path, "w") as f:
         f.write("parameter,value\n")
-        f.write(f"sweep_variable,anisotropy\n")
+        f.write("sweep_variable,anisotropy\n")
         f.write(f"anisotropy_min,{anisotropy_values[0]}\n")
         f.write(f"anisotropy_max,{anisotropy_values[-1]}\n")
         f.write(f"anisotropy_steps,{len(anisotropy_values)}\n")
         f.write(f"fixed_active_curvature,{fixed_active_curvature}\n")
-        f.write(f"gravity,9.81\n")
-        f.write(f"duration,3.0\n")
+        f.write("gravity,9.81\n")
+        f.write("duration,3.0\n")
     print(f"Params saved to {params_csv_path}")
 
     # Plotting

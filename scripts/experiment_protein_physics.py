@@ -9,11 +9,10 @@ It performs a parameter sweep and saves metrics to 'outputs/protein_physics/expe
 """
 
 import sys
-import os
 import time
-import pandas as pd
-import numpy as np
 from pathlib import Path
+
+import pandas as pd
 
 # Ensure src is in python path
 current_dir = Path(__file__).resolve().parent
@@ -21,7 +20,10 @@ src_path = current_dir.parent / "src"
 sys.path.append(str(src_path))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError as e:
     print(f"Error importing simulation bridge: {e}")
     print("Ensure you are running from the repo root or have installed the package.")

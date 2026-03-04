@@ -1,7 +1,9 @@
-import yaml
-import pandas as pd
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict
+
+import pandas as pd
+import yaml
+
 
 def load_config(config_path: Path) -> Dict[str, Any]:
     with open(config_path, 'r') as f:

@@ -1,7 +1,9 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def compute_creature_vars(x, y, t, mutations=None):
     """

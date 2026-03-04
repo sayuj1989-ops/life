@@ -47,6 +47,7 @@
 | :--- | :--- | :--- | :--- |
 | **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
 | **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
+| **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
 
 ---
 

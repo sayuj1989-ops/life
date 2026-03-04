@@ -4,6 +4,7 @@ Usage: python scripts/check_pyelastica.py
 """
 import sys
 
+
 def check_pyelastica():
     try:
         import elastica

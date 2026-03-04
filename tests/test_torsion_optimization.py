@@ -1,10 +1,11 @@
 
-import pytest
 import numpy as np
+import pytest
 
 pytest.importorskip("Bio")
 
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
 
 def test_torsion_optimization_correctness():
     """

@@ -5,12 +5,13 @@ This test ensures that `scripts/experiments/experiment_protein_simulation_pyelas
 can be executed successfully and produces the expected artifacts.
 """
 
+import csv
+import os
 import subprocess
 import sys
-import os
-import csv
-import pytest
 from pathlib import Path
+
+import pytest
 
 # Path to the experiment script
 SCRIPT_PATH = Path("scripts/experiments/experiment_protein_simulation_pyelastica.py")

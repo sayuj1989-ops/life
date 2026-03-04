@@ -13,11 +13,12 @@ Output:
 - CSV data for vector field visualization.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 from pathlib import Path
-import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 
 def run_experiment():
     output_dir = Path("outputs/thermodynamic_cost")

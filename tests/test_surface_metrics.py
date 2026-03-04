@@ -1,7 +1,9 @@
 
 import unittest
+
 import numpy as np
 from afcc.metrics import MetricsAnalyzer
+
 
 class TestSurfaceMetrics(unittest.TestCase):
     def setUp(self):

@@ -1,14 +1,16 @@
 import matplotlib
+
 matplotlib.use("Agg")
 """Demonstrate IEC-1 phase drift and IEC-2 amplitude modulation metrics."""
 
 from pathlib import Path
-import numpy as np
-import matplotlib.pyplot as plt
 
-from spinalmodes.model.core import Params, State, uniform_grid, iec_kappa_target
+import matplotlib.pyplot as plt
+import numpy as np
+
+from spinalmodes.model.core import Params, State, iec_kappa_target, uniform_grid
 from spinalmodes.model.solvers.euler_bernoulli import integrate_shape_from_curvature
-from spinalmodes.utils.metrics import wavelength_via_fft, phase_shift_via_xcorr, amplitude
+from spinalmodes.utils.metrics import amplitude, phase_shift_via_xcorr, wavelength_via_fft
 from spinalmodes.utils.provenance import write_provenance
 from spinalmodes.utils.seeds import set_seed
 

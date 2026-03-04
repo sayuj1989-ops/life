@@ -41,12 +41,11 @@ import csv
 import os
 import sys
 import time
-import tracemalloc
 from datetime import datetime
 
 __version__ = "1.0.1"
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 import numpy as np
 
@@ -56,11 +55,9 @@ from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.pyelastica_bridge import (
     CounterCurvatureRodSystem,
-    SimulationResult,
     compute_U_CC,
     verify_pyelastica_installation,
 )
-
 
 # ---------------------------------------------------------------------------
 # Circadian coupling model

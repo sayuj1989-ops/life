@@ -1,10 +1,11 @@
-import subprocess
-import json
-import time
 import hashlib
-import pandas as pd
+import json
+import subprocess
+import time
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Any, Dict, Optional
+
+import pandas as pd
 
 ALPHAFOLD_API_BASE = "https://alphafold.ebi.ac.uk/api/prediction"
 # Note: PAE URL pattern: https://alphafold.ebi.ac.uk/files/AF-{uniprot}-F1-predicted_aligned_error_v4.json
@@ -116,7 +117,7 @@ class AlphaFoldFetcher:
                     return True
 
                 time.sleep(1 * (attempt + 1))
-            except Exception as e:
+            except Exception:
                 time.sleep(1 * (attempt + 1))
 
         print(f"   ❌ Failed to download {url}")

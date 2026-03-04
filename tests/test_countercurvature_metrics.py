@@ -3,15 +3,14 @@
 Tests g_eff, D_geo, D_geo_norm, and shape preservation metrics.
 """
 
-import pytest
 import numpy as np
-from numpy.typing import NDArray
+import pytest
 
 from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.validation_and_metrics import (
     compute_countercurvature_metric,
-    geodesic_curvature_deviation,
     compute_shape_preservation_index,
+    geodesic_curvature_deviation,
 )
 
 

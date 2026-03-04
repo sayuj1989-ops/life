@@ -15,7 +15,6 @@ from numpy.typing import NDArray
 from spinalmodes.countercurvature import (
     CounterCurvatureParams,
     InfoField1D,
-    make_uniform_grid,
 )
 
 ArrayF64 = NDArray[np.float64]

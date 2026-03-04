@@ -6,10 +6,11 @@ Selects candidates from the master list that have corresponding PDB files
 in the local archive, ensuring we can run the analysis offline.
 """
 
-import sys
-import pandas as pd
-from pathlib import Path
 import os
+import sys
+from pathlib import Path
+
+import pandas as pd
 
 # Add repo root to path
 repo_root = Path(__file__).resolve().parent.parent.parent.parent

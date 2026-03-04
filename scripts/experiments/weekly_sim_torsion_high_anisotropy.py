@@ -11,7 +11,6 @@ import time
 import tracemalloc
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -21,7 +20,11 @@ sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, PYELASTICA_AVAILABLE
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
+
 
 def run_experiment(
     out_file: str,

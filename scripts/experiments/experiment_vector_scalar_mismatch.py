@@ -18,6 +18,7 @@ import sys
 import time
 import tracemalloc
 from pathlib import Path
+
 import numpy as np
 
 # Ensure src is in python path

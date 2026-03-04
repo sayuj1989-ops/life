@@ -13,7 +13,7 @@ The key metrics are:
 
 from __future__ import annotations
 
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import numpy as np
 from numpy.typing import NDArray
@@ -108,7 +108,7 @@ def compute_comprehensive_metrics(
     g_eff: Optional[ArrayF64] = None,
 ) -> dict[str, float]:
     """Compute all quantitative metrics for a simulation result."""
-    from .scoliosis_metrics import compute_lateral_scoliosis_index, cobb_like_angle
+    from .scoliosis_metrics import cobb_like_angle, compute_lateral_scoliosis_index
 
     # Extract final state
     centerline = result.centerline[-1]
@@ -136,7 +136,7 @@ def compute_comprehensive_metrics(
         kappa_passive = passive_result.curvature[-1]
         if g_eff is None:
             g_eff = np.ones_like(s)
-        
+
         geo_dev = geodesic_curvature_deviation(s, kappa_passive, curvature, g_eff)
         metrics["D_geo_hat"] = geo_dev["D_geo_norm"]
         metrics["D_geo"] = geo_dev["D_geo"]
@@ -145,7 +145,7 @@ def compute_comprehensive_metrics(
     s_norm = s / s[-1]
     target_s = np.sin(2 * np.pi * s_norm) # Ideal S-shape
     target_c = np.ones_like(s) # Ideal C-shape
-    
+
     score_s = np.corrcoef(curvature, target_s)[0, 1]
     score_c = np.corrcoef(curvature, target_c)[0, 1]
     metrics["mode_score_s"] = float(score_s)
@@ -170,7 +170,7 @@ def compute_countercurvature_energy(
 ) -> float:
     """Compute the energy-like metric quantifying countercurvature deviation."""
     if centerline_passive.shape != centerline_info.shape:
-        raise ValueError(f"Centerline shapes must match")
+        raise ValueError("Centerline shapes must match")
     if method == "l2_distance":
         diff = centerline_info - centerline_passive
         squared_distances = np.sum(diff**2, axis=-1)

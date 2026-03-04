@@ -14,7 +14,7 @@
 ## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
 
 - [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
-- [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
+- [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion). Format updated to Nature standards.
 - [ ] **References:** Complete Bibliography (80-100 refs).
 
 ## Phase 3: Review & Submission (Weeks 3-4: March 16 - March 29)
@@ -28,7 +28,7 @@
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
 | **Week 1 (Mar 01)** | Figure Assembly (1-7) | PI / Design | 🚨 **Starting** |
-| **Week 2 (Mar 08)** | Manuscript Final Text | PI | ⚪ Planned |
+| **Week 2 (Mar 08)** | Manuscript Final Text | PI | ✅ **Completed** |
 | **Week 3 (Mar 15)** | Internal Review & Polish | Team | ⚪ Planned |
 | **Week 4 (Mar 22)** | **SUBMISSION** | PI | ⚪ Planned |
 

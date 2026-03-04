@@ -1,7 +1,9 @@
-import pandas as pd
-import matplotlib.pyplot as plt
 import os
 import sys
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
 
 def main():
     print("Running Clinical Validation against published cohorts...")

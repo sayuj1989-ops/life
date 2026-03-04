@@ -18,7 +18,7 @@
 - [x] **Clinical Script:** Implement `scripts/validate_clinical_data.py` to automate these comparisons.
 - [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
 - [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
-- [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
+- [x] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
 
 ## Phase 3: Manuscript Preparation (Weeks 5-6)
 

@@ -1,5 +1,8 @@
 # Biological Countercurvature Claims Matrix
 
+**Generated**: 2026-03-04
+**Source Data**: `outputs/afcc/2026-02-16/metrics.csv`, `outputs/afcc/confidence_weighted_ranking.csv`, `reports/evidence_freshness_audit.md`
+
 This document explicitly categorizes claims regarding the Biological Countercurvature hypothesis, distinguishing direct quantitative measurements from derived support and speculative narrative.
 
 ## Claim Discipline Tiers
@@ -48,7 +51,7 @@ These claims have a basis in data but suffer from methodological caveats, primar
 These claims represent hypothesis inflation where static data was over-interpreted as causal or temporal trends in previous narrative reports.
 
 *   **Claim 3.1**: **LBX1 or PIEZO2 structural geometry "evolved" or "emerged" over the Jan-Feb 2026 observation window.**
-    *   **Source Data**: E.g., `2026-01-20__cluster_note.md`, `reports/alphafold_data_assessment_2026-02-16.md` (Potential hypothesis inflation flags).
+    *   **Source Data**: E.g., `reports/structure_clusters/2026-01-20__cluster_note.md`, `reports/alphafold_data_assessment_2026-02-16.md` (Potential hypothesis inflation flags).
     *   **Evidence AGAINST**: The metrics for LBX1 and PIEZO2 were completely static across this window (`reports/evidence_freshness_audit.md`). Narrative updates implying dynamic changes were inferring motion from repeated identical snapshots.
 *   **Claim 3.2**: **High-anisotropy/low-confidence proteins (like POC5) are definitively novel mechanosensors driving scoliotic progression.**
     *   **Source Data**: Various daily refresh summaries highlighting POC5 as "Top Mover" (`reports/afcc_latest.md`).

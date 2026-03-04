@@ -1,10 +1,14 @@
-# Evidence Freshness Audit Report
+# Evidence Freshness Audit Report (Generated 2026-03-04)
 
 ## Data Integrity and Freshness
 
-- **Runs Audited**: 29
+- **Script Source**: `scripts/analysis/evidence_freshness_audit.py`
 
-- **Missing Linked Outputs**: 0 (None)
+- **Authoritative Target Data**: `outputs/afcc/2026-02-16/metrics.csv`
+
+- **Runs Audited**: 30
+
+- **Missing Linked Outputs**: 1 (2026-01-23)
 
 - **Schema Drifts**: None detected in scoped files with `gene_symbol`.
 
@@ -65,6 +69,8 @@ The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) a
 | COL1A2 | 2 | 2026-02-13 | 2026-02-18 | 2.876180753979266 | 53.64081991215226 |
 
 ## When 'New' Reports Reuse Unchanged Values
+
+These dates correspond to runs in `outputs/afcc/YYYY-MM-DD/metrics.csv` where the underlying structural data was unchanged.
 
 - **2026-01-18**: Reused static metrics for 2 genes (e.g., IFT88, LMNA...)
 

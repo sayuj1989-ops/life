@@ -12,6 +12,19 @@ def audit_afcc_freshness():
     metrics_history = {}
     missing_metrics = []
 
+    # Parse for missing linked outputs in reports
+    reports_to_check = [Path('reports/afcc_latest.md')] + list(Path('reports/structure_clusters').glob('*.md'))
+    for report in reports_to_check:
+        if report.exists():
+            content = report.read_text()
+            import re
+            # look for things like outputs/afcc/YYYY-MM-DD/metrics.csv
+            links = re.findall(r'outputs/afcc/(\d{4}-\d{2}-\d{2})/(?:metrics\.csv|summary\.md)', content)
+            for link in links:
+                if not (afcc_dir / link / 'metrics.csv').exists():
+                    if link not in missing_metrics:
+                        missing_metrics.append(link)
+
     for d in date_dirs:
         date = d.name
         metrics_file = d / 'metrics.csv'
@@ -75,9 +88,14 @@ def audit_afcc_freshness():
                     reused_reports.append({'date': date, 'gene': gene})
 
     # Generate Report
+    from datetime import datetime
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
     report_content = [
-        "# Evidence Freshness Audit Report\n",
+        f"# Evidence Freshness Audit Report (Generated {current_date})\n",
         "## Data Integrity and Freshness\n",
+        "- **Script Source**: `scripts/analysis/evidence_freshness_audit.py`\n",
+        "- **Authoritative Target Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
         f"- **Runs Audited**: {len(date_dirs)}\n",
         f"- **Missing Linked Outputs**: {len(missing_metrics)} ({', '.join(missing_metrics) if missing_metrics else 'None'})\n",
         "- **Schema Drifts**: None detected in scoped files with `gene_symbol`.\n\n",
@@ -91,6 +109,7 @@ def audit_afcc_freshness():
         report_content.append(f"| {item['gene']} | {item['runs']} | {item['first_date']} | {item['last_date']} | {item['anisotropy']} | {item['plddt']} |")
 
     report_content.append("\n## When 'New' Reports Reuse Unchanged Values\n")
+    report_content.append("These dates correspond to runs in `outputs/afcc/YYYY-MM-DD/metrics.csv` where the underlying structural data was unchanged.\n")
 
     # Group reused reports by date
     reused_by_date = {}

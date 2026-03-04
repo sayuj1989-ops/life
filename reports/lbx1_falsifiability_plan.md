@@ -1,5 +1,8 @@
 # LBX1 Falsifiability Plan
 
+**Generated**: 2026-03-04
+**Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
+
 This document outlines three concrete, quantitative experiments designed to explicitly falsify the hypothesis that LBX1 acts as a mechanosensor or structural tension rod in the context of biological countercurvature.
 
 ## Core Hypothesis
@@ -12,7 +15,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 ---
 
 ## Experiment 1: Nuclear Tension-Dependent Localization
-**Hypothesis**: If LBX1 responds to mechanical cues, modulating nuclear tension via LMNA/LINC complex disruption will alter LBX1 nuclear localization or chromatin binding affinity.
+**Hypothesis (Inference)**: If LBX1 responds to mechanical cues, modulating nuclear tension via LMNA/LINC complex disruption will alter LBX1 nuclear localization or chromatin binding affinity.
 **Assay Design**:
 - Cell line expressing tagged LBX1.
 - Perturb nuclear tension using LINC complex dominant-negative constructs (e.g., KASH domain overexpression) or direct LMNA knockdown.
@@ -24,7 +27,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 ---
 
 ## Experiment 2: Single-Molecule Force Spectroscopy (smFS)
-**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
+**Hypothesis (Inference)**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
 **Assay Design**:
 - Purify recombinant LBX1 protein.
 - Perform Atomic Force Microscopy (AFM) based single-molecule force spectroscopy.
@@ -36,7 +39,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 ---
 
 ## Experiment 3: In Vivo Mechanotransduction via Orthogonal Reporter
-**Hypothesis**: If LBX1 is a critical upstream mechanotransducer in spinal tissue, its targeted degradation will abolish tension-induced downstream transcriptional responses (e.g., YAP/TAZ target gene expression) under cyclical mechanical loading.
+**Hypothesis (Inference)**: If LBX1 is a critical upstream mechanotransducer in spinal tissue, its targeted degradation will abolish tension-induced downstream transcriptional responses (e.g., YAP/TAZ target gene expression) under cyclical mechanical loading.
 **Assay Design**:
 - Engineered 3D somite/myotome tissue culture.
 - Inducible degron (AID) tagged LBX1.

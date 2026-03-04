@@ -1,8 +1,10 @@
-# Confidence-Weighted Structural Evidence Report
+# Confidence-Weighted Structural Evidence Report (Generated 2026-03-04)
 
 ## Overview
 
 - **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
+
+- **Script Source**: `scripts/analysis/confidence_weighted_ranking.py`
 
 - **Adequate Confidence Threshold**: `pLDDT >= 70.0`
 

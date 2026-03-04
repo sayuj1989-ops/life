@@ -31,10 +31,14 @@ def create_confidence_weighted_ranking():
     high_ani_adequate = df[(df['confidence_class'] == 'Adequate') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
     high_ani_low = df[(df['confidence_class'] == 'Low') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
 
+    from datetime import datetime
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
     report_content = [
-        "# Confidence-Weighted Structural Evidence Report\n",
+        f"# Confidence-Weighted Structural Evidence Report (Generated {current_date})\n",
         "## Overview\n",
         "- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
+        "- **Script Source**: `scripts/analysis/confidence_weighted_ranking.py`\n",
         "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
         "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
         "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",

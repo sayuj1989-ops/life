@@ -1,5 +1,8 @@
 # Next Step Evidence Summary
 
+**Generated**: 2026-03-04
+**Source Data**: `outputs/afcc/2026-02-16/metrics.csv`, `outputs/afcc/confidence_weighted_ranking.csv`, `reports/evidence_freshness_audit.md`
+
 ## 1. What is stronger now than baseline
 * **Clear separation of Confidence vs. Shape**: We have explicitly separated candidates with high anisotropy into those with adequate confidence (`pLDDT >= 70`) versus those with low confidence. For instance, `PIEZO2` (anisotropy 4.44, pLDDT 79.4, per `outputs/afcc/2026-02-16/metrics.csv`), `CNNM2`, `FBLN5`, and `STOML3` are now confirmed as robust tension-rod models, whereas `POC5` and `GHR` are downgraded to speculative due to low pLDDT.
 * **Refined understanding of LBX1**: LBX1's profile is now rigorously defined as an intermediate-anisotropy (2.27), highly blocky (PAE blockiness 7.35) structure with low confidence (pLDDT 66.9) per `outputs/afcc/2026-02-16/metrics.csv`. This falsifies simplistic "LBX1 is a rigid tension rod" narratives and properly bounds its hypothesized function to a modular or spring-like role.
@@ -11,8 +14,8 @@
 * **Low-Confidence Outliers**: Extreme anisotropy candidates (like `POC5` at 24.69, per `outputs/afcc/2026-02-16/metrics.csv`) remain entirely speculative. Their high anisotropy might simply be an AlphaFold artifact for long, natively unstructured sequences.
 
 ## 3. Evidence AGAINST or weakening the current hypothesis
-* **LBX1 is not a strong structural anchor**: The data directly contradicts the hypothesis that LBX1 is a purely structural, fibrous tension rod. Its intermediate anisotropy (2.27) and low pLDDT (66.9) (per `outputs/afcc/2026-02-16/metrics.csv`) position it closer to a standard globular or modular protein, significantly weakening claims of its direct load-bearing capacity.
-* **Static "Evolution" of Structural Narratives**: The freshness audit (`reports/evidence_freshness_audit.md`) demonstrates that previously hypothesized "emerging structural classes" or "evolution" of candidate geometries over Jan-Feb 2026 were based on static, unchanged AlphaFold inputs. The narrative outpaced the measured evidence, meaning any temporal or causal inferences drawn during that period are unsupported by the underlying data.
+* **LBX1 is not a strong structural anchor (Direct Measurement)**: The data directly contradicts the hypothesis that LBX1 is a purely structural, fibrous tension rod. Its intermediate anisotropy (2.27) and low pLDDT (66.9) (per `outputs/afcc/2026-02-16/metrics.csv`) position it closer to a standard globular or modular protein, significantly weakening claims of its direct load-bearing capacity.
+* **Static "Evolution" of Structural Narratives (Inference from Audit)**: The freshness audit (`reports/evidence_freshness_audit.md`) demonstrates that previously hypothesized "emerging structural classes" or "evolution" of candidate geometries over Jan-Feb 2026 were based on static, unchanged AlphaFold inputs. The narrative outpaced the measured evidence, meaning any temporal or causal inferences drawn during that period are unsupported by the underlying data.
 
 ## 4. Top 3 highest-leverage next experiments
 1. **smFS of LBX1 and Modular Candidates**: Perform single-molecule force spectroscopy on recombinant LBX1 to test if its "blocky" domains exhibit discrete, force-dependent unfolding steps characteristic of a mechanical spring, thereby validating the PAE-based hypothesis.

@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 
 # Paths
-METRICS_PATH = Path("outputs/afcc/2026-02-20/metrics.csv")
+METRICS_PATH = Path("outputs/afcc/2026-03-04/metrics.csv")
 CANDIDATES_PATH = Path("data/candidates_master.csv")
 
 def main():
@@ -12,7 +12,7 @@ def main():
     candidates_df = pd.read_csv(CANDIDATES_PATH)
 
     # Merge on UniProt ID
-    merged_df = pd.merge(metrics_df, candidates_df, left_on='uniprot', right_on='uniprot_id', how='inner')
+    merged_df = pd.merge(metrics_df, candidates_df, left_on='uniprot_id', right_on='uniprot_id', how='inner')
 
     print(f"Loaded {len(merged_df)} merged candidates.")
 

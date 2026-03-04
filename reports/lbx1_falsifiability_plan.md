@@ -7,6 +7,8 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 
 *If this hypothesis is false, LBX1 will not exhibit tension-dependent localization, conformational changes under physiological stress, or structural integrity under mechanical load.*
 
+**Source Data / Rationale**: Based on `outputs/afcc/2026-02-16/metrics.csv`, LBX1 has an `anisotropy_index` of 2.27, a `plddt_mean` of 66.9 (Low confidence), and a high `PAE_domain_blockiness_score` of 7.35.
+
 ---
 
 ## Experiment 1: Nuclear Tension-Dependent Localization
@@ -22,7 +24,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 ---
 
 ## Experiment 2: Single-Molecule Force Spectroscopy (smFS)
-**Hypothesis**: If LBX1's "blocky" PAE domains represent mechanically functional hinges or springs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
+**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
 **Assay Design**:
 - Purify recombinant LBX1 protein.
 - Perform Atomic Force Microscopy (AFM) based single-molecule force spectroscopy.

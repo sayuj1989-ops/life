@@ -1,0 +1,14 @@
+Title: Mechanogenetic Demand-Supply Gap (Information-Elasticity Coupling)
+
+Concept: A professional, high-impact scientific flowchart depicting the Information-Elasticity Coupling (IEC) framework and the resulting Mechanogenetic Demand-Supply Gap that drives adolescent idiopathic scoliosis (AIS).
+
+Key Components:
+1. Genetic Information Field: A representation of HOX gene patterning establishing the target S-shaped spinal geometry.
+2. Mechanical Stress & Gravity: Vectors showing gravitational loading acting on the spine.
+3. Mechanosensor Demand: Structural sensors like PIEZO2 and Fibrillin detecting deviations and generating a metabolic 'Demand' signal.
+4. Metabolic Supply: Longevity and metabolic proteins attempting to provide energetic 'Supply' to maintain the active countercurvature.
+5. The 34% Anisotropy Gap: A critical fracture or bottleneck between 'Demand' and 'Supply', highlighted in red, labeled 'Thermodynamic Vulnerability'. This gap represents the failure of the biological control loop during rapid adolescent growth.
+
+Layout: A cyclical feedback loop connecting Genetic Information -> Target Geometry -> Mechanical Stress -> Mechanosensor Demand -> Metabolic Supply. The cycle is broken at the Supply-Demand interface.
+
+Style: Clean, modern, journal-quality (Nature/Science) vector-style diagram. Contrasting colors for Demand (warm colors like orange/red) and Supply (cool colors like blue/green). Use elegant scientific typography and clear, directional arrows.

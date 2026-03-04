@@ -287,12 +287,13 @@ class MetricsAnalyzer:
         offsets = np.cumsum([0] + valid_lengths)
         indices = offsets[:-1]
 
-        # 1. Sum over rows (sum each segment row-wise)
-        row_sums = np.add.reduceat(pae_hc, indices, axis=0)
+        # 1. Sum over cols (sum each segment col-wise)
+        # Bolt Optimization: reduce over axis=1 first for C-contiguous array to minimize cache misses
+        col_sums = np.add.reduceat(pae_hc, indices, axis=1)
 
-        # 2. Sum over cols (sum resulting blocks col-wise)
+        # 2. Sum over rows (sum resulting blocks row-wise)
         # Result is matrix of size (S, S) where element (i, j) is sum of block ij
-        block_sums = np.add.reduceat(row_sums, indices, axis=1)
+        block_sums = np.add.reduceat(col_sums, indices, axis=0)
 
         # Compute block sizes to get means
         sizes_vec = np.array(valid_lengths)

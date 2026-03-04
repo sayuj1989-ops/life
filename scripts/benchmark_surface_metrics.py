@@ -1,8 +1,9 @@
 
-import numpy as np
-import time
 import sys
+import time
 from pathlib import Path
+
+import numpy as np
 
 # Add scripts/data_management to path to import the actual function
 sys.path.append(str(Path(__file__).parent / "data_management"))
@@ -52,7 +53,7 @@ def main():
         t_orig = time.time() - t0
 
         if res_orig is None:
-            print(f"Original: OOM (Out of Memory)")
+            print("Original: OOM (Out of Memory)")
             t_orig = -1.0
         else:
             print(f"Original Logic: {t_orig:.4f}s")

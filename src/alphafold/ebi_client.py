@@ -1,6 +1,9 @@
+from typing import Any, Dict, List, Optional
+
 import requests
-from typing import List, Optional, Dict, Any
-from .models import PredictionEntry, UniprotSummary, AnnotationResponse
+
+from .models import AnnotationResponse, PredictionEntry, UniprotSummary
+
 
 class AlphaFoldEbiClient:
     """

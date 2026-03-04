@@ -26,7 +26,7 @@ import time
 import tracemalloc
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 import numpy as np
 

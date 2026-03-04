@@ -10,30 +10,30 @@ Solver: spinalmodes.iec.solve_beam_static (Fast Static Equilibrium)
 """
 
 import sys
-import os
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Ensure src is in path to import spinalmodes
 sys.path.append("src")
 try:
-    from spinalmodes.iec import solve_beam_static
     from spinalmodes.countercurvature.api import (
-        geodesic_curvature_deviation,
         InfoField1D,
-        compute_countercurvature_metric
+        compute_countercurvature_metric,
+        geodesic_curvature_deviation,
     )
+    from spinalmodes.iec import solve_beam_static
 except ImportError:
     # Fallback if running from a different directory structure
     sys.path.append(str(Path(__file__).parent.parent / "src"))
-    from spinalmodes.iec import solve_beam_static
     from spinalmodes.countercurvature.api import (
-        geodesic_curvature_deviation,
         InfoField1D,
-        compute_countercurvature_metric
+        compute_countercurvature_metric,
+        geodesic_curvature_deviation,
     )
+    from spinalmodes.iec import solve_beam_static
 
 # --- Parameters ---
 # Fixed parameters
@@ -286,7 +286,7 @@ def extract_key_predictions(df, output_dir):
         chi_max = pred_df["chi_kappa"].max()
         L_at_chi_min = pred_df.loc[pred_df["chi_kappa"] == chi_min, "onset_L"].values[0]
         L_at_chi_max = pred_df.loc[pred_df["chi_kappa"] == chi_max, "onset_L"].values[0]
-        print(f"\nVerification:")
+        print("\nVerification:")
         print(f"- At low coupling (chi={chi_min:.4f}), onset L = {L_at_chi_min:.3f} m")
         print(f"- At high coupling (chi={chi_max:.4f}), onset L = {L_at_chi_max:.3f} m")
         if L_at_chi_max < L_at_chi_min:

@@ -1,7 +1,6 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
-import numpy as np
 
 # Load data
 df = pd.read_csv("outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv")
@@ -24,7 +23,7 @@ plt.gca().invert_yaxis()
 
 plt.title('Energy Deficit Phase Diagram: The "Danger Zone"', fontsize=16)
 plt.ylabel("Spinal Length $L$ (Growth)", fontsize=14)
-plt.xlabel("Coupling Strength $\chi_\kappa$", fontsize=14)
+plt.xlabel(r"Coupling Strength $\chi_\kappa$", fontsize=14)
 
 # Highlight Danger Zone
 plt.text(

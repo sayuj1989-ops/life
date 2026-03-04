@@ -4,17 +4,16 @@ Tests that PyElastica integration works and produces reasonable results
 compared to the beam solver.
 """
 
-import pytest
 import numpy as np
-from numpy.typing import NDArray
+import pytest
 
-from spinalmodes.countercurvature.pyelastica_bridge import (
-    CounterCurvatureRodSystem,
-    PYELASTICA_AVAILABLE,
-)
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
-from spinalmodes.iec import solve_beam_static, IECParameters
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
+from spinalmodes.iec import solve_beam_static
 
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not available")

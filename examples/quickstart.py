@@ -13,7 +13,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from spinalmodes import IECParameters, solve_beam_static
+from spinalmodes import solve_beam_static
 from spinalmodes.countercurvature.api import (
     CounterCurvatureParams,
     InfoField1D,

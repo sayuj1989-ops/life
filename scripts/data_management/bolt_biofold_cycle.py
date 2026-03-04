@@ -6,11 +6,11 @@ Orchestrates a focused "Bolt-BioFold" analysis cycle on a default seed list.
 Generates inputs, fetches data, runs metrics, and produces a report.
 """
 
-import os
-import sys
-import pandas as pd
 import subprocess
+import sys
 from pathlib import Path
+
+import pandas as pd
 
 # Setup Paths
 # This script is in scripts/ (repo root/scripts)

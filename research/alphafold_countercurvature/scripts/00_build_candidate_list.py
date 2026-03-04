@@ -6,10 +6,9 @@ Generates the initial candidate list based on seed configurations and manual ove
 Applies the discrete ranking/scoring rubric (initial automated pass).
 """
 
-import sys
 import os
+import sys
 from pathlib import Path
-import pandas as pd
 
 # Add repo root to path to import src
 repo_root = Path(__file__).resolve().parent.parent.parent.parent

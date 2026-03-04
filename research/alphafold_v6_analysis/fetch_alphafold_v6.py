@@ -2,11 +2,12 @@
 Fetch AlphaFold v6 structural data for all 23 IEC framework proteins.
 Uses API to get correct URLs, then downloads PDB for structural analysis.
 """
-import requests
 import json
-import numpy as np
-import time
 import os
+import time
+
+import numpy as np
+import requests
 from scipy.spatial.distance import pdist
 
 PROTEINS = {
@@ -133,12 +134,12 @@ def main():
         # Step 1: Get metadata from API (includes correct PDB URL)
         api_data = fetch_api_data(uid)
         if not api_data:
-            print(f"  ✗ API returned nothing")
+            print("  ✗ API returned nothing")
             continue
 
         pdb_url = api_data.get("pdbUrl")
         if not pdb_url:
-            print(f"  ✗ No PDB URL in API response")
+            print("  ✗ No PDB URL in API response")
             continue
 
         print(f"  PDB: {pdb_url}")
@@ -157,7 +158,7 @@ def main():
         # Step 3: Compute metrics
         metrics = compute_structural_metrics(pdb_resp.text)
         if not metrics:
-            print(f"  ✗ Metric computation failed")
+            print("  ✗ Metric computation failed")
             continue
 
         # Merge API-level data
@@ -228,7 +229,7 @@ def main():
 
     # Print sorted table
     print(f"\n{'='*70}")
-    print(f"PROTEIN TABLE (sorted by anisotropy, descending)")
+    print("PROTEIN TABLE (sorted by anisotropy, descending)")
     print(f"{'='*70}")
     print(f"{'Gene':<12} {'Cat':<8} {'SubCat':<15} {'Len':>5} {'pLDDT':>6} {'Anis':>6} {'Disord':>7} {'Hinges':>7} {'Rg(Å)':>7}")
     print("-" * 80)

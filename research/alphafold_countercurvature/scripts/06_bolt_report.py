@@ -6,22 +6,24 @@ Generates the "Bolt-BioFold" report compliant with specific user requirements.
 Writes directly to research/alphafold_countercurvature/data/processed/bolt_biofold_results.md
 """
 
-import sys
-import pandas as pd
-import numpy as np
-from pathlib import Path
-import matplotlib.pyplot as plt
+import datetime
+
 # import seaborn as sns # Removed to avoid new dependencies
 import json
-import datetime
 import subprocess
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Add repo root to path to import src
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
-from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -405,10 +407,10 @@ def main():
         f.write(best_move + "\n")
 
         f.write("\n## 5. Quality & Reproducibility Checklist\n")
-        f.write(f"- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)\n")
+        f.write("- Data Source: AlphaFold DB (fetched via scripts/02_fetch_afdb.py)\n")
         f.write(f"- Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"- Code Version: {commit_hash}\n")
-        f.write(f"- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
+        f.write("- Parameters: pLDDT threshold >= 70 for geometry; Smoothing window = default\n")
         f.write(f"- Notes: {len(df)} structures analyzed. Source config: research/alphafold_countercurvature/config/targets.yaml\n")
 
     print("✅ Report generated successfully.")

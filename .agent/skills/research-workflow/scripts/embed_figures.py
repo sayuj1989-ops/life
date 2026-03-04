@@ -8,10 +8,9 @@ Usage:
     python embed_figures.py document.md --figures-dir ../figures
 """
 
-import re
 import argparse
+import re
 from pathlib import Path
-from typing import List, Tuple
 
 
 def find_figure_references(text):

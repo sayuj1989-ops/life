@@ -7,4 +7,10 @@ for response validation.
 """
 
 from .ebi_client import AlphaFoldEbiClient
-from .models import PredictionEntry, UniprotSummary, AnnotationResponse, StructureSummary, UniprotEntry
+from .models import (
+    AnnotationResponse,
+    PredictionEntry,
+    StructureSummary,
+    UniprotEntry,
+    UniprotSummary,
+)

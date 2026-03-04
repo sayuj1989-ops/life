@@ -1,6 +1,8 @@
 
 import time
+
 import numpy as np
+
 
 def benchmark_b_len():
     print("Benchmarking b_len calculation (10k residues, 100 runs)")

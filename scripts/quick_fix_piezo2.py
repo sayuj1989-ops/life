@@ -1,6 +1,8 @@
 
-import pandas as pd
 import re
+
+import pandas as pd
+
 
 def fix_piezo2_residues():
     filepath = 'manuscript/sections/tables.tex'

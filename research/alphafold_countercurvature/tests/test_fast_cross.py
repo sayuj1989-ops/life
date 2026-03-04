@@ -1,7 +1,10 @@
 
 import unittest
+
 import numpy as np
+
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
 
 class TestFastCrossProduct(unittest.TestCase):
     def test_random_vectors(self):

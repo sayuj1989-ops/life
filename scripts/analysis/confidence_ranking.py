@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 
 INPUT_FILE = "outputs/afcc/current_metrics.csv"
 FALLBACK_FILE = "outputs/afcc/2026-02-16/metrics.csv"

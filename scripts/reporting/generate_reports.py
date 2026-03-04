@@ -1,6 +1,7 @@
-import pandas as pd
-import os
 import datetime
+import os
+
+import pandas as pd
 
 # Paths
 REPO_ROOT = os.getcwd()

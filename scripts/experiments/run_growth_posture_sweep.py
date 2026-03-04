@@ -1,18 +1,20 @@
 
-import sys
-import os
 import csv
 import datetime
-import numpy as np
-import matplotlib.pyplot as plt
+import os
+import sys
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in path
 sys.path.append(os.getcwd())
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_sweep():
     # 1. Setup paths

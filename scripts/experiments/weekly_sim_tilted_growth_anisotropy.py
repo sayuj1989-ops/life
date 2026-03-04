@@ -1,18 +1,19 @@
 
-import os
-import sys
 import datetime
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, SimulationResult
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_simulation(
     tilt_deg: float,
@@ -187,7 +188,7 @@ def generate_report(df, output_dir, seed, chi_kappa, tilts, anisotropies):
     report_path = output_dir / "report.md"
 
     with open(report_path, "w") as f:
-        f.write(f"# Weekly Simulation: Tilted Growth Anisotropy\n\n")
+        f.write("# Weekly Simulation: Tilted Growth Anisotropy\n\n")
         f.write(f"**Date**: {datetime.date.today().isoformat()}\n\n")
 
         f.write("## Hypothesis\n")

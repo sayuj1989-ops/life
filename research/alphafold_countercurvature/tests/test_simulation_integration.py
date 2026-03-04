@@ -2,13 +2,12 @@
 Integration tests for the protein mechanics simulation module.
 """
 
+
 import pytest
-import numpy as np
-from pathlib import Path
 
 from research.alphafold_countercurvature.src.afcc.simulation import simulate_protein_mechanics
-
 from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE
+
 
 @pytest.mark.skipif(not PYELASTICA_AVAILABLE, reason="PyElastica not installed")
 def test_simulate_protein_mechanics_basic():

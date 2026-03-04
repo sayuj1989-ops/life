@@ -5,11 +5,11 @@ bolt_biofold_report.py
 Generates a Bolt-BioFold ⚡ style analysis report.
 """
 
-import pandas as pd
 import argparse
 import sys
 from pathlib import Path
-import numpy as np
+
+import pandas as pd
 
 # Default targets (Metabolic Expansion + Seed)
 DEFAULT_TARGETS = [
@@ -118,7 +118,7 @@ def main():
 
         print(f"\n**{gene} ({conf} Confidence)**")
         print(f"*   **What we see:** Anisotropy {anisotropy:.2f}. " +
-              (f"Extended/Fibrous structure." if anisotropy > 3.0 else "Globular/Compact structure.") +
+              ("Extended/Fibrous structure." if anisotropy > 3.0 else "Globular/Compact structure.") +
               f" {int(row.get('predicted_domain_segments', 0))} domain(s).")
 
         # Simple Interpretation Logic
@@ -137,7 +137,7 @@ def main():
              matter_text = "Globular nature suggests enzymatic or localized signaling role rather than load bearing."
 
         print(f"*   **Why it matters:** {matter_text}")
-        print(f"*   **Next test:** Correlate curvature hotspots with known mutations or interaction sites.")
+        print("*   **Next test:** Correlate curvature hotspots with known mutations or interaction sites.")
 
     print("\n### D) Best Next Move")
     print("*   **Prioritize High-Anisotropy Candidates:** Focus simulation efforts on **VIM**, **PIEZO2**, and **GHR** as they exhibit the structural characteristics (High Anisotropy > 4) required for the 'Thermodynamic Standing Wave' mechanics.")

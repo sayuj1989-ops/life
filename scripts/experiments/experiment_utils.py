@@ -7,11 +7,10 @@ argument parsing, logging, and output directory management.
 
 import argparse
 import logging
-import os
-import sys
 from datetime import date
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional
+
 
 def get_default_output_dir() -> Path:
     """Return the default output directory based on today's date."""
@@ -70,7 +69,7 @@ def setup_experiment(args: argparse.Namespace) -> Path:
     out_path = Path(args.out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
-    logging.info(f"Experiment setup complete.")
+    logging.info("Experiment setup complete.")
     logging.info(f"Output directory: {out_path}")
     if args.quick:
         logging.warning("Running in QUICK mode (reduced parameters).")

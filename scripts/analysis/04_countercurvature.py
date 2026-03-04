@@ -1,10 +1,12 @@
 import matplotlib
+
 matplotlib.use("Agg")
 """Toy countercurvature phase diagram mapping (alpha, chi_kappa)."""
 
 from pathlib import Path
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 from spinalmodes.utils.provenance import write_provenance
 from spinalmodes.utils.seeds import set_seed

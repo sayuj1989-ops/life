@@ -1,20 +1,20 @@
 
-import sys
-import os
-from pathlib import Path
-import numpy as np
-import matplotlib.pyplot as plt
 import csv
 import datetime
-import time
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Add repository root to sys.path
 repo_root = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(repo_root))
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_sweep():
     print("Starting Active Muscle Torque (chi_M) Parameter Sweep...")
@@ -147,7 +147,7 @@ def run_sweep():
     plt.figure(figsize=(10, 6))
     plt.plot(chi_M_list, tip_z_list, 'o-', label="Tip Deflection Z")
     plt.plot(chi_M_list, mid_z_list, 's--', label="Mid-point Deflection Z")
-    plt.xlabel("Active Torque Gain $\chi_M$")
+    plt.xlabel(r"Active Torque Gain $\chi_M$")
     plt.ylabel("Deflection (m)")
     plt.title("Effect of Active Muscle Moments on Rod Shape under Gravity")
     plt.legend()
@@ -160,12 +160,12 @@ def run_sweep():
     with open(report_path, "w") as f:
         f.write(f"# Weekly Simulation Report: Active Torque Sweep ({today})\n\n")
         f.write("## Overview\n")
-        f.write("This parameter sweep investigates the effect of **Active Muscle Torques ($\chi_M$)** ")
+        f.write(r"This parameter sweep investigates the effect of **Active Muscle Torques ($\chi_M$)** ")
         f.write("on a horizontal rod subject to gravity. The hypothesis is that increasing active moments ")
         f.write("driven by an information gradient (sinusoidal) can counteract gravitational sagging and induce S-shaped curvature.\n\n")
 
         f.write("## Parameters\n")
-        f.write("- **Variable**: $\chi_M$ (Active Torque Gain)\n")
+        f.write("- **Variable**: $\\chi_M$ (Active Torque Gain)\n")
         f.write("- **Range**: 0.0 to 10.0\n")
         f.write("- **Constant**: Gravity=9.81, E0=1e6, L=1.0\n")
         f.write("- **Info Field**: Sinusoidal `sin(2*pi*s/L)^2`\n\n")
@@ -178,7 +178,7 @@ def run_sweep():
             f.write(f"| {r['chi_M']} | {r['tip_deflection_z']:.4f} | {r['mid_deflection_z']:.4f} |\n")
 
         f.write("\n### Observations\n")
-        f.write("- **What changed**: As $\chi_M$ increases, the rod's deflection profile changes.\n")
+        f.write("- **What changed**: As $\\chi_M$ increases, the rod's deflection profile changes.\n")
 
         # Analyze outcome for report
         if len(results_summary) > 1:
@@ -190,10 +190,10 @@ def run_sweep():
                  f.write("- **Emergent Shapes**: Active torques altered the shape, potentially increasing curvature in specific regions.\n")
 
         f.write("- **Scoliosis Relevance**: This mechanism demonstrates how active muscle tone (driven by information/proprioception) ")
-        f.write("can dynamically maintain spinal alignment against gravity. Failure of this active component (low $\chi_M$) leads to passive gravitational collapse (sag).\n")
+        f.write("can dynamically maintain spinal alignment against gravity. Failure of this active component (low $\\chi_M$) leads to passive gravitational collapse (sag).\n")
 
         f.write("\n## Next Steps\n")
-        f.write("- Suggestion: Sweep **Stiffness Anisotropy ($\chi_E$)** combined with active moments to see if stiffer regions can lock in the corrective shape.\n")
+        f.write("- Suggestion: Sweep **Stiffness Anisotropy ($\\chi_E$)** combined with active moments to see if stiffer regions can lock in the corrective shape.\n")
 
     print(f"Report saved to {report_path}")
 

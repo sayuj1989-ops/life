@@ -10,22 +10,24 @@ It uses the `stiffness_anisotropy` parameter in `CounterCurvatureRodSystem` to m
 protein anisotropy to the rod's lateral stiffness ratio.
 """
 
-import sys
+import csv
 import os
+import sys
 import time
 import tracemalloc
-import csv
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
 from dataclasses import dataclass
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(os.getcwd())
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 @dataclass
 class ClusterParams:

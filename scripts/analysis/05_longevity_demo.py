@@ -1,11 +1,14 @@
 import matplotlib
+
 matplotlib.use("Agg")
 """Synthetic longevity demo: sit-to-stand frequency vs survival."""
 
 from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+
 try:
     from lifelines import CoxPHFitter, KaplanMeierFitter
 except Exception as e:

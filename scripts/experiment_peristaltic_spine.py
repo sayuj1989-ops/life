@@ -33,10 +33,9 @@ import csv
 import os
 import sys
 import time
-import math
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, List
 
 import numpy as np
 

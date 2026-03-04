@@ -1,6 +1,7 @@
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+
 
 def organism(x, y, t):
     k = 5 * np.cos(x / 14) * np.cos(y / 30)

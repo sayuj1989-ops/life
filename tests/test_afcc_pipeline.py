@@ -1,10 +1,11 @@
 import os
-import sys
-import pytest
-import pandas as pd
-import yaml
-from pathlib import Path
 import subprocess
+import sys
+from pathlib import Path
+
+import pandas as pd
+import pytest
+import yaml
 
 # Add repo root to path
 REPO_ROOT = Path(__file__).resolve().parent.parent

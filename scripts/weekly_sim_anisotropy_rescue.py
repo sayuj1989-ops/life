@@ -10,17 +10,21 @@ Hypothesis ID: H_2026_02_21_AnisotropyRescue
 """
 
 import sys
-import os
+from datetime import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
-from datetime import datetime
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent / "src"))
 
-from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, verify_pyelastica_installation
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    run_protein_simulation,
+    verify_pyelastica_installation,
+)
+
 
 def run_sweep():
     # Verify dependencies

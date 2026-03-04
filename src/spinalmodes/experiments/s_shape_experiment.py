@@ -1,20 +1,22 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
-import time
-import tracemalloc
 import csv
 import sys
-from typing import List, Dict, Any, Tuple
+import time
+import tracemalloc
+from pathlib import Path
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.countercurvature.scoliosis_metrics import compute_lateral_scoliosis_index
+
 
 def count_zero_crossings(signal: np.ndarray) -> int:
     """Count the number of times the signal crosses zero."""

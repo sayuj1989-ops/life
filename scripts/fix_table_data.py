@@ -1,6 +1,8 @@
 
-import pandas as pd
 import re
+
+import pandas as pd
+
 
 def fix_table_data():
     # 1. Read and filter CSV

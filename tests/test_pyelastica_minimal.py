@@ -2,11 +2,10 @@
 Test for the minimal PyElastica experiment script.
 """
 
-import sys
 import os
+import sys
+
 import pytest
-from pathlib import Path
-from unittest.mock import patch
 
 # Add scripts/experiments folder to python path so we can import the script
 # The script is at scripts/experiments/experiment_pyelastica_minimal.py
@@ -16,7 +15,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts', 'experi
 # Note: Since the file is scripts/experiments/experiment_pyelastica_minimal.py, and we added scripts/experiments to path
 import experiment_pyelastica_minimal as minimal_script
 
-from spinalmodes.countercurvature.pyelastica_bridge import PYELASTICA_AVAILABLE, run_protein_simulation
+from spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    run_protein_simulation,
+)
+
 
 def test_run_protein_simulation_args():
     """Test that run_protein_simulation accepts new arguments radius and E0."""

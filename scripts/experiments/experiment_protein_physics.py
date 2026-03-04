@@ -1,10 +1,9 @@
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 import os
-import sys
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 # Ensure output directory exists
 output_dir = "outputs/thermodynamic_cost/figures"

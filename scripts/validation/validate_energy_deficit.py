@@ -5,10 +5,11 @@ Validates the Energy Deficit Window simulation results.
 Ensures that the metabolic deficit at L=0.45m is approximately 45.7%.
 """
 
-import sys
 import os
-import pandas as pd
+import sys
+
 import numpy as np
+import pandas as pd
 
 # Ensure we can import from scripts
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))

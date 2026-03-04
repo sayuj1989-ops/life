@@ -17,23 +17,28 @@ Outputs:
 """
 
 import sys
-import os
-import time
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 from datetime import datetime
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError:
     # Fallback if run from different CWD
     try:
-        from src.spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+        from src.spinalmodes.countercurvature.pyelastica_bridge import (
+            PYELASTICA_AVAILABLE,
+            run_protein_simulation,
+        )
     except ImportError:
         print("Error: Could not import run_protein_simulation from src.spinalmodes.countercurvature.pyelastica_bridge")
         sys.exit(1)
@@ -167,9 +172,9 @@ def generate_report(report_path, df, plot_path, date_str):
     total_count = len(df)
 
     with open(report_path, "w") as f:
-        f.write(f"# Weekly Simulation Report: Anisotropy-Growth Buckling\n\n")
+        f.write("# Weekly Simulation Report: Anisotropy-Growth Buckling\n\n")
         f.write(f"**Date:** {date_str}\n\n")
-        f.write(f"**Objective:** Test emergent S-shaped profiles under varying stiffness anisotropy and growth drive.\n\n")
+        f.write("**Objective:** Test emergent S-shaped profiles under varying stiffness anisotropy and growth drive.\n\n")
 
         f.write("## Summary\n")
         f.write(f"- **Total Runs:** {total_count}\n")
@@ -180,7 +185,7 @@ def generate_report(report_path, df, plot_path, date_str):
         f.write("The simulation maps the 'Metabolic Buckling' transition. Key observations:\n")
         if max_cobb > 20.0:
             f.write("- **Buckling Observed:** High growth drive combined with low anisotropy triggers significant spinal buckling (S-curve formation).\n")
-            f.write(f"- **Critical Threshold:** Instability typically emerges when Anisotropy < 2.5 at high growth rates.\n")
+            f.write("- **Critical Threshold:** Instability typically emerges when Anisotropy < 2.5 at high growth rates.\n")
         else:
             f.write("- **Stability Maintained:** No significant buckling observed in this parameter range.\n")
 

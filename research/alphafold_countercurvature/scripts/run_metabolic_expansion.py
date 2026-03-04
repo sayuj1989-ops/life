@@ -9,12 +9,12 @@ This script manually creates the Uniprot mapping to bypass the API,
 fetches PDB structures, computes metrics, and updates the thermodynamic cost analysis.
 """
 
-import sys
-import pandas as pd
-import subprocess
-import shutil
 import datetime
+import subprocess
+import sys
 from pathlib import Path
+
+import pandas as pd
 
 # Paths
 SCRIPT_DIR = Path(__file__).resolve().parent

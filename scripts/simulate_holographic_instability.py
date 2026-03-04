@@ -1,7 +1,8 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.signal import find_peaks
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.signal import find_peaks
 
 # Ensure output directory exists
 output_dir = "outputs/figures"

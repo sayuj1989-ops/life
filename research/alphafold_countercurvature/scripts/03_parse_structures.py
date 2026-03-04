@@ -7,9 +7,10 @@ This step is largely implicit in the next metrics step, but useful for validatio
 """
 
 import sys
-import pandas as pd
 from pathlib import Path
+
 import numpy as np
+import pandas as pd
 
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))

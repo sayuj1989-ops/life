@@ -1,7 +1,7 @@
 
 import numpy as np
-import pytest
 from afcc.metrics import MetricsAnalyzer
+
 
 def test_compute_curvature_torsion():
     analyzer = MetricsAnalyzer()

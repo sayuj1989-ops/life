@@ -1,7 +1,8 @@
+import csv
 import sys
 from pathlib import Path
+
 import pytest
-import csv
 
 # Add scripts directory to path to import experiment scripts
 # Assuming this test is run from repo root or tests/, scripts is one level up or sibling

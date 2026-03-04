@@ -14,17 +14,17 @@ Key Concepts:
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, TYPE_CHECKING, Type, Dict, Any, Union
 import time
 import tracemalloc
+from dataclasses import dataclass
+from typing import Any, Dict, Optional, Type, Union
 
 __version__ = "1.0.1"
 import math
 
 import numpy as np
-from numpy.typing import NDArray
 import scipy.integrate
+from numpy.typing import NDArray
 
 from .coupling import (
     CounterCurvatureParams,
@@ -33,7 +33,7 @@ from .coupling import (
     compute_rest_curvature,
 )
 from .info_fields import InfoField1D
-from .scoliosis_metrics import compute_scoliosis_metrics, ScoliosisMetrics
+from .scoliosis_metrics import compute_scoliosis_metrics
 
 ArrayF64 = NDArray[np.float64]
 
@@ -448,7 +448,7 @@ class CounterCurvatureRodSystem:
         # Create instance to use update_rest_curvature
         # We pass kappa_gen=None initially to constructor, then set it.
         # But we need active_torques first.
-        
+
         # Compute active moments (scalar field on nodes) if chi_M != 0 or chi_tau != 0
         active_torques = None
         if params.chi_M != 0.0 or params.chi_tau != 0.0:

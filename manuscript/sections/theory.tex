@@ -24,37 +24,43 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-We model the human spine as a Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. This dimensionality reduction from 3D elasticity to a 1D director theory is justified by the high aspect ratio of the vertebral column ($L/d \approx 13$). To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
+The human vertebral column is structurally modeled as an active, continuous Cosserat rod embedded in $\mathbb{R}^3$, an idealization rigorously justified by its high aspect ratio ($L/d \approx 13$) and the dense, segmented distribution of intervertebral joints which act as quasi-continuous elastic hinges~\cite{goriely2017mathematics, gazzola2018forward}. Let the centerline curve be denoted by $\mathbf{r}(s,t) \in \mathbb{R}^3$, where $s \in [0, L]$ is the reference arc length from the sacral base ($s=0$) to the cranium ($s=L$). To fully capture the macroscopic 3D kinematics, including flexural bending, shear, and torsional deformations, an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ is attached to each cross-section.
+
+By convention, $\mathbf{d}_3(s,t)$ defines the local tangent vector in the absence of shear strains, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ align with the principal anatomic axes of the vertebral body (e.g., the anteroposterior and mediolateral axes). The spatial evolution of the rod's configuration is thus strictly governed by the kinematic equations:
 \begin{align}
-\mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
-\mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
+\partial_s \mathbf{r}(s, t) &= \mathbf{v}(s, t) = \mathbf{d}_3(s, t) + \boldsymbol{\varepsilon}(s, t), \\
+\partial_s \mathbf{d}_i(s, t) &= \mathbf{u}(s, t) \times \mathbf{d}_i(s, t),
 \label{eq:cosserat_kinematics}
 \end{align}
-where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
+where $\boldsymbol{\varepsilon}(s,t)$ captures the shear and axial extension strains. The Darboux vector $\mathbf{u}(s,t) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ encodes the bending curvatures $\kappa_1, \kappa_2$ and the torsional twist $\tau$. We explicitly impose a clamped boundary condition at the sacrum ($\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) reflecting pelvic anchoring, and a free-end condition at the cranium, subject solely to the localized mass of the skull.
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-We define a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). This field serves as a coarse-grained representation of the complex gene regulatory networks governing axial patterning. Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks at the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) enlargements, corresponding to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a "curvature generator" via the geometric coupling $\chi_\kappa$:
+Rather than treating the spine as a passive beam reacting to gravitational loading, our framework strictly formalizes developmental inputs as a time-dependent, macroscopic scalar information field $I(s, t) \in [0, 1]$. This field acts as a coarse-grained, physical representation of anterior-posterior patterning morphogens (such as the highly conserved HOX gene clusters) and segmentation clock outputs that prescribe regional identity.
+
+Empirically, we map $I(s)$ via a bimodal Gaussian parameterization (Eq.~\ref{eq:info_field_spinal}) exhibiting distinct maxima at the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) enlargements. These peaks physically correspond to zones of heightened morphogenetic specification required for lordotic posture. The gradient of this morphogenetic field, $\nabla I$, acts as an active ``curvature generator.'' It induces a non-zero rest curvature through a direct geometric coupling parameter $\chi_\kappa$:
 \begin{equation}
 \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
 \label{eq:kappa_rest}
 \end{equation}
-We quantify the information content of this patterning field using the local Shannon entropy $\ShannonH[I]$, which bounds the precision of the target metric specification:
+
+Furthermore, to quantify the patterning precision, we evaluate the local Shannon entropy $\ShannonH[I]$:
 \begin{equation}
 \ShannonH[I] = -\int I(s) \log I(s) \, ds.
 \label{eq:shannon_entropy}
 \end{equation}
-Simultaneously, the field exerts a stiffness via the morphomechanical coupling $\chi_M$, generating the active biological moment $\mathbf{M}_{bio}$ to oppose gravity:
+This bounds the fidelity of the target metric specification. Simultaneously, the information field stiffens the local tissue via a morphomechanical coupling $\chi_M$, which orchestrates an active biological moment $\mathbf{M}_{bio}$ to counter gravitational collapse:
 \begin{equation}
 \mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
 \label{eq:active_moment}
 \end{equation}
-Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
+
+The stability of this active structure is governed by the dimensionless Bio-Gravitational Number $\mathcal{B}_g$:
 \begin{equation}
 \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
 \label{eq:bg_number}
 \end{equation}
-When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins. For example, AlphaFold analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) demonstrates that these proteins possess rigid DNA-binding domains capable of enforcing the sharp identity boundaries necessary for this parameterization.
+Crucially, when $\mathcal{B}_g > 1$, the biological system effectively dominates gravitational mechanics. At the molecular level, this coupling relies on the structural rigidity of patterning transcription factors; AlphaFold structural analysis of critical HOX proteins (e.g., HOXC8, UniProt P31273; HOXB13, UniProt Q92826) reveals conserved, high-confidence DNA-binding domains capable of enforcing the sharp spatial identity boundaries required by our field parameterization.
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. In the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of space is determined by the mass-energy distribution. For interested readers, the full mathematical details of this analogy, including the mapping of GR variables to IEC morphoelastic variables and the derivation of the effective biological metric using the Fisher Information metric $\FisherInfo(s)$, are provided in the Supplementary Material.

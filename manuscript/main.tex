@@ -14,8 +14,10 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{lmodern}
 \usepackage{tikz}
+\graphicspath{{figures/}{../alphafold_figures/}}
 \usepackage{lineno}
 \graphicspath{{figures/}}
 
@@ -27,6 +29,7 @@
     linkcolor=blue,
     citecolor=blue,
     urlcolor=blue,
+    pdftitle={The Allometric Trap: Scaling Laws Predict When Growing Organisms Cannot Afford Their Own Shape},
     pdftitle={Biological Counter-Curvature: An Information-Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis},
     pdfauthor={Dr. Sayuj Krishnan S},
 }
@@ -79,7 +82,7 @@
 % ---------------------------------------------------------------------------
 % Title / Authors
 % ---------------------------------------------------------------------------
-\title{Biological Counter-Curvature: An Information--Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis}
+\title{The Allometric Trap: Scaling Laws Predict When Growing Organisms Cannot Afford Their Own Shape}
 
 \author{Dr.~Sayuj Krishnan S, MBBS, DNB (Neurosurgery)\\
 Consultant Neurosurgeon and Spine Surgeon, Yashoda Hospitals, Malakpet, Hyderabad, India\\
@@ -97,15 +100,18 @@ Consultant Neurosurgeon and Spine Surgeon, Yashoda Hospitals, Malakpet, Hyderaba
 
 \input{sections/abstract}
 
-\begin{mathbox}[Model Summary: The Information--Elasticity Coupling (IEC) Framework]
-\textbf{The Clinical Problem:} Why does the spine buckle laterally (scoliosis) during the adolescent growth spurt?\\
-\textbf{The Core Hypothesis:} The S-shaped human spine is not a passive mechanical structure but an active \emph{counter-curvature} maintained by metabolic energy and guided by developmental information fields (e.g., HOX genes).\\
+\vspace{0.5em}
+\noindent\textbf{Impact Statement:} We identify a universal scaling law governing the metabolic cost of maintaining body shape against gravity, explaining why human spines are uniquely vulnerable to scoliosis during adolescent growth and reclassifying a common disease as a predictable thermodynamic scaling failure.
+\vspace{0.5em}
+
+\begin{mathbox}[Model Summary: The Allometric Trap]
+\textbf{The Question:} What physical law governs how organisms maintain shape against gravity, and why does this maintenance fail during adolescent growth?\\[4pt]
+\textbf{The Scaling Law:} The Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$ predicts that humans ($\mathcal{B}_g \approx 0.01$) cannot passively resist gravity and must actively maintain spinal geometry at metabolic cost.\\[4pt]
 \textbf{The Mechanism:}
 \begin{itemize}
-    \item \textbf{Information Field $I(s)$}: Defines the target healthy curvature at each spinal level $s$.
-    \item \textbf{Metabolic Cost ($L^4$ vs $L^2$)}: Maintaining this target shape against gravity requires energy that scales with the spine's length to the fourth power ($L^4$), while nutrient supply scales only with surface area ($L^2$).
-    \item \textbf{Energy Deficit Window}: During rapid adolescent growth, the system hits a metabolic deficit, forcing a down-regulation of expensive mechanosensors (e.g., PIEZO2).
-    \item \textbf{Vector Mismatch \& Buckling}: Loss of sensory fidelity creates a "vector mismatch," drastically reducing the spine's lateral stiffness. The system minimizes energy by collapsing into a scoliotic spiral.
+    \item \textbf{Metabolic Scaling Mismatch}: The cost of anti-gravitational form maintenance scales as $L^4$, while biological supply scales as $L^2$, creating a critical Energy Deficit Window at $L > 0.35$\,m.
+    \item \textbf{Molecular Asymmetry}: AlphaFold analysis reveals that mechanosensory proteins (mean anisotropy 3.08) are structurally expensive, while their metabolic regulators are intrinsically disordered and fragile --- a 72\% gap ($p = 0.011$).
+    \item \textbf{Scoliosis as Scaling Failure}: During adolescent growth, this deficit forces collapse from the active S-curve into a lower-energy scoliotic mode --- a predictable thermodynamic transition, not a random genetic error.
 \end{itemize}
 \end{mathbox}
 
@@ -131,5 +137,7 @@ Consultant Neurosurgeon and Spine Surgeon, Yashoda Hospitals, Malakpet, Hyderaba
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
+
+\input{sections/supplementary}
 
 \end{document}

@@ -8,7 +8,7 @@ To explore the mode selection mechanism (Eq.~\ref{eq:mode_selection}), we discre
 
 \subsection{3D Cosserat Rod Implementation (PyElastica)}
 
-For full 3D simulations, we utilize \texttt{PyElastica}~\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory. Model parameters are listed in Table~\ref{tab:parameters}. The spine is modeled as a Cosserat rod with the following specifications:
+For full 3D simulations, we utilize \texttt{PyElastica}~\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory. Model parameters are listed in the Supplementary Information. The spine is modeled as a Cosserat rod with the following specifications:
 
 \begin{itemize}
     \item \textbf{Discretization}: The rod is discretized into $n=50$--$100$ elements.
@@ -50,7 +50,7 @@ To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular rea
 
 \subsection{Protein Dynamics and Energy Modeling}
 
-We simulated the temporal competition between protein classes using a system of coupled differential equations (Eq.~\ref{eq:protein_dynamics}). The model tracks the energy pool $E(t)$ available for protein synthesis/maintenance over the 5-20 year age range.
+We simulated the temporal competition between protein classes using a system of coupled differential equations (see Supplementary Information, Section~S7). The model tracks the energy pool $E(t)$ available for protein synthesis/maintenance over the 5--20 year age range.
 \begin{itemize}
     \item \textbf{Supply:} Modeled as $S(t) = S_0 (L(t)/L_0)^2$, reflecting the diffusion-limited transport through the vertebral endplate surface area.
     \item \textbf{Demand:} Modeled as $D(t) = D_{maint} (L/L_0) + D_{grav} (L/L_0)^4$, capturing the linear scaling of tissue volume maintenance and the quartic scaling of gravitational moment opposition.

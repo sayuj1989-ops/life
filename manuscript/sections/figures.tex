@@ -1,24 +1,34 @@
 \section*{Figures}
 
-% Figure 1: Gene to Geometry
+% Figure 1: The Allometric Trap and Energy Deficit
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig_gene_to_geometry.pdf}
-    \caption{\textbf{Counter-Curvature as Active Morphogenesis.} (A) \textbf{Passive Gravitational Prior}: In the absence of active correction, gravity dictates a low-energy, monotonic C-shaped sag (blue curve). (B) \textbf{Active Counter-Curvature Posterior}: Biological growth, guided by the ``Genetic Prior'' (HOX genes), generates an S-shaped ``Counter-Curvature'' (orange curve) that actively opposes the gravitational metric. This high-energy state is maintained by the continuous expenditure of metabolic work ($P_{\mathrm{counter}}$). (C) \textbf{The Energy Deficit Window}: During rapid adolescent growth, the thermodynamic cost of maintaining this active posterior (scaling as $L^3$) outpaces the diffusive nutrient supply ($L^2$). This triggers a ``Vector-Scalar Mismatch'' where high-cost Vector Sensors (Piezo2) fail, leading to a collapse into the passive, gravity-dominated scoliotic mode.}
-    \label{fig:iec_landscape}
+    \caption{\textbf{The Allometric Trap.} (A)~The fundamental problem: a passive beam sags into a C-shape under gravity (blue), while the living spine actively maintains an S-shaped counter-curvature (orange) at continuous metabolic cost $P_{\mathrm{counter}}$. (B)~The Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$ across vertebrate species. Species above the threshold ($\mathcal{B}_g > 0.1$, dashed line) are passively stable; humans ($\mathcal{B}_g \approx 0.01$) are deep within the Allometric Trap, requiring active metabolic maintenance. (C)~The Energy Deficit Window: the metabolic cost of counter-curvature (red, scaling as $L^2$) outpaces the proprioceptive supply capacity (blue, scaling as $L^{0.5}$) beyond a critical length $L_{\mathrm{crit}} \approx 0.35$\,m. At $L = 0.45$\,m (adolescent spine), the deficit reaches ${\sim}41\%$.}
+    \label{fig:allometric_trap}
 \end{figure}
 
-% Figure 2: Mode Spectrum
+% Figure 2: Protein Cost Landscape
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../alphafold_figures/fig_scatter_panels.pdf}
+    \caption{\textbf{Molecular Architecture of the Allometric Trap.} AlphaFold v6 structural analysis of 23 spinal mechanotransduction proteins. (A)~Structural anisotropy versus intrinsic disorder fraction, showing the demand--supply separation. Demand-side mechanosensors (red) are highly anisotropic but well-ordered; supply-side regulators (blue) are compact but disordered. (B)~Anisotropy versus AlphaFold confidence (pLDDT). (C)~Box plot of the 72\% demand--supply anisotropy gap ($p = 0.011$, Mann--Whitney U; Cohen's $d = 1.19$). The molecular asymmetry --- expensive sensors, fragile regulators --- is the structural basis of the Energy Deficit Window.}
+    \label{fig:protein_landscape}
+\end{figure}
+
+% Figure 3: Mode Spectrum and S-Curve Emergence
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig_mode_spectrum.pdf}
-    \caption{\textbf{Gravity-Selected vs. Information-Selected Modes.} (A) First three eigenmodes of a passive uniform beam in gravity; the ground state (Mode 0, blue) is a monotonic C-shaped sag. (B) Eigenmodes of the IEC-coupled beam ($\chi_\kappa=0.05$); the shift in effective stiffness $B_{\mathrm{eff}}(s)$ reorders the spectrum, selecting the S-shaped mode as the new energetic ground state. (C) Normalized eigenvalue spectrum $\lambda_n/\lambda_0$ showing the shift in the lowest energy mode.}
+    \caption{\textbf{The S-Curve as Energetic Ground State.} (A)~Eigenmodes of a passive beam in gravity: the ground state (Mode~0, blue) is a monotonic C-shaped sag. (B)~Eigenmodes of the IEC-coupled beam ($\chi_\kappa = 0.05$): the information field reorders the spectrum, selecting the S-shaped mode as the new ground state. (C)~Normalized eigenvalue spectrum showing the mode crossing. The S-curve is not imposed but \emph{emerges} as the lowest-energy configuration of the coupled system.}
     \label{fig:mode_spectrum}
 \end{figure}
 
-% Figure 3: 3D Solutions (Main Panel)
+% Figure 4: 3D Cosserat Rod Solutions
 \begin{figure}[h!]
     \centering
+    \includegraphics[width=0.9\textwidth]{fig_countercurvature_metrics.png}
+    \caption{\textbf{Spinal Geometry from First Principles.} (A)~Curvature profiles showing the transition from passive gravitational sag (blue) to the active S-shaped counter-curvature (orange), reproducing clinical lordosis (${\sim}42^\circ$) and kyphosis (${\sim}35^\circ$). (B)~The effective biological metric $g_{\mathrm{eff}}(s)$ shows dilation at lordotic regions. (C)~Geodesic deviation $\Dgeohat$ versus coupling strength, confirming robust counter-curvature above $\chi_\kappa \approx 0.03$. (D)~Microgravity prediction: $\Dgeohat$ remains stable at $\approx 0.091$ even as $g \to 0$, explaining astronaut S-curve persistence.}
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{fig_countercurvature_panelA.pdf}
     \end{subfigure}
@@ -43,42 +53,28 @@
     \label{fig:countercurvature_main}
 \end{figure}
 
-% Figure 4: Phase Diagram
+% Figure 5: Phase Diagram
 \begin{figure}[h!]
     \centering
+    \includegraphics[width=1.0\textwidth]{phase_diagram.png}
+    \caption{\textbf{Phase Diagram of Counter-Curvature Regimes.} Heatmap of normalized geodesic deviation $\Dgeohat$ in the $(\chi_\kappa, g)$ plane. Three regimes: (I)~Gravity-dominated (passive sag), (II)~Cooperative (stable S-curve, normal physiology), and (III)~Information-dominated (high $\chi_\kappa$, scoliosis-prone). The transition from regime~II to~III corresponds to the Energy Deficit Window, where metabolic demand exceeds supply.}
     \includegraphics[width=1.0\textwidth]{fig_phase_diagram_scoliosis.pdf}
     \caption{\textbf{Phase Diagram of Countercurvature Regimes.} Heatmap of normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ in the $(\chi_{\kappa},g)$ plane. Three distinct regimes are identified: (I) Gravity-dominated (sag), (II) Cooperative (stable S-curves matching biological norms), and (III) Information-dominated (high $\chi_\kappa$, leading to metric distortions and potential instability).}
     \label{fig:phase_diagram}
 \end{figure}
 
-% Figure 5: Scoliosis Emergence
+% Figure 6: Scoliosis Emergence and Bifurcation
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1.0\textwidth]{fig_scoliosis_emergence.png}
-    \caption{\textbf{Scoliosis as Countercurvature Failure.} (A) Lateral scoliosis index $S_{\mathrm{lat}}$ vs coupling strength $\chi_\kappa$ for varying asymmetry levels $\varepsilon$. (B) Bifurcation diagram showing the emergence of large lateral deviations from small asymmetries in the information-dominated regime. (C) Scoliosis regime map in $(\chi_\kappa, \varepsilon)$ space; the shaded region indicates scoliotic configurations (Cobb $> 10^\circ$). (D) Amplification factor ($S_{\mathrm{lat}}/\varepsilon$), showing that in the high-$\chi_\kappa$ regime, small patterning errors are amplified by over 100-fold. This instability models the 'Frustrated Repair' mechanism driven by \textbf{Vector-Scalar Mismatch}. When gravity-dependent Vector Sensors (e.g., Piezo2, Lamin A/C) are silenced by unloading or mutation~\cite{steger2025gravity, touchstone2024nuclear}, the system loses its directional reference. However, Scalar Sensors (e.g., Piezo1) remain active, detecting localized stress concentrations. The system responds by ramping up ``gain'' ($\chi_\kappa$) to correct an error it cannot spatially resolve, amplifying small asymmetries into macroscopic deformities~\cite{djebar2024astrogliosis}. This high-gain instability is consistent with the loss of voltage-dependent gain control in Piezo2 sensors~\cite{sanchez2024piezo}. Furthermore, the 'Inflamed Torsion' pathway—driven by unchecked MMP1/3 activity in the absence of gravitational loading~\cite{chen2025mmp}—degrades torsional stiffness ($GJ$), effectively lowering the critical buckling threshold. This instability is mechanistically underpinned by the Piezo1-Cilia Stress Lock, where compressive stress drives osteogenic differentiation via the Piezo1-Runx2 axis~\cite{chen2025piezo_cilia}, permanently locking the spine into this scoliotic state.}
+    \caption{\textbf{Scoliosis as Metabolic Buckling.} (A)~Lateral scoliosis index $S_{\mathrm{lat}}$ versus coupling strength $\chi_\kappa$ for varying asymmetry levels. (B)~Bifurcation diagram showing amplification of small patterning errors ($\varepsilon_{\mathrm{asym}} \sim 5\%$) into macroscopic deformities (Cobb $> 15^\circ$) in the information-dominated regime. (C)~Scoliosis regime map in $(\chi_\kappa, \varepsilon)$ space. (D)~Amplification factor ($S_{\mathrm{lat}}/\varepsilon$): in the high-$\chi_\kappa$ regime, small asymmetries are amplified over 100-fold via the Vector Mismatch mechanism.}
     \label{fig:scoliosis_emergence}
 \end{figure}
 
-% Figure 6: Energy Deficit Window
+% Figure 7: Energy Deficit Window
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{energy_deficit_window.png}
-    \caption{\textbf{Thermodynamic Collapse: The Energy Deficit Window.} (A) While the gravitational moment scales as $M \propto L^4$ (The Gravity Paradox), the metabolic power $P_{\mathrm{counter}}$ (red) required to maintain the Counter-Curvature active standing wave scales as $L^2$ (assuming isometric growth). (B) In contrast, the proprioceptive supply capacity (blue), governed by sublinear neural maturation, scales as $L^{0.5}$. The intersection at $L_{\mathrm{crit}} \approx 0.35$~m marks the onset of the \textbf{Energy Deficit Window} ($L > L_{\mathrm{crit}}$), resulting in a 41.3\% metabolic deficit at $L=0.45$~m. Structural analysis of \textbf{Thermodynamic Cost Proteins} (Table 2) reveals the molecular basis of this deficit: high-anisotropy sensors like Piezo2 and Lamin A/C (demand-side) are structurally expensive to maintain~\cite{lynch2015bioenergetic}, while compact supply-side enzymes (PLOD1, MMPs) are cheaper but rate-limited. In the deficit regime, the system cannot afford the high-fidelity state, triggering a \textbf{Convective Shutdown}~\cite{sato2025convective} and a collapse into the low-energy scoliotic mode.}
-    \label{fig:energy_deficit_window} % Verified
-\end{figure}
-
-% Figure 7: Energy Deficit Bifurcation
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{energy_deficit_bifurcation.png}
-    \caption{\textbf{Bifurcation and Stability Transition in the Energy Deficit Regime.} (A) Equilibrium Cobb angle as a function of the Thermodynamic Instability Ratio $\InstabilityR$. For $\InstabilityR < 1$ (cooperative regime), the sagittal S-curve is stable against lateral perturbations. As $\InstabilityR$ crosses unity, the system undergoes a supercritical pitchfork bifurcation, where the sagittal mode becomes unstable and the scoliotic mode emerges as the global energetic minimum. (B) Phase-space trajectories of the spinal geometry $G(s)$ showing the attractor transition from the Information-Geodesic (S-shape) to the Torsional attractor. This transition quantitatively predicts the critical Cobb angle spike observed in clinical datasets upon crossing the volumetric metabolic threshold.}
-    \label{fig:energy_bifurcation}
-\end{figure}
-
-% Figure 8: AlphaFold Morphology Landscape
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{morphology_space_afcc.png}
-    \caption{\textbf{Structural Hierarchy of Thermodynamic Cost Proteins.} Morphology landscape mapping key proteins involved in proprioception ($\eta_p$), active maintenance ($\eta_a$), and basal metabolism ($\Gamma_m$) based on their AlphaFold-predicted anisotropy (extension) and radius of gyration (size). Proteins in the high-anisotropy regime (e.g., Piezo2, Vimentin, Lamin A/C) represent the primary ``Thermodynamic Tax'' on the counter-curvature standing wave. Their extended conformations are structurally expensive to maintain, making them the first points of failure when the system enters the Energy Deficit Window ($L > L_{\mathrm{crit}}$). In contrast, supply-side enzymes (Sirt1, SOX9) cluster in the globular, low-anisotropy regime, creating a molecular mismatch between sensory demand and metabolic supply.}
-    \label{fig:morphology_landscape}
+    \caption{\textbf{The Energy Deficit Window.} Metabolic power $P_{\mathrm{counter}}$ (red) required to maintain counter-curvature scales as $L^2$, while proprioceptive supply capacity (blue) scales as $L^{0.5}$. Their intersection at $L_{\mathrm{crit}} \approx 0.35$\,m marks the opening of the Energy Deficit Window. At $L = 0.45$\,m (adolescent spine), the deficit reaches ${\sim}41\%$.}
+    \label{fig:energy_deficit_window}
 \end{figure}

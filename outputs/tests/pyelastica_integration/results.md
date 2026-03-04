@@ -1,10 +1,6 @@
 # Protein-to-Geometry Mapping Report
 
-**Date:** 2026-03-04 07:03:25
-**Date:** 2026-03-04 14:06:04
-**Date:** 2026-03-04 14:59:41
-**Date:** 2026-03-04 15:08:16
-**Date:** 2026-03-04 14:17:06
+**Date:** 2026-03-04 17:25:53
 **Source Data:** `results.csv`
 
 ## Experiment Summary
@@ -14,13 +10,8 @@ This experiment maps biological parameters to mechanical spine outcomes.
 
 ## Performance Metrics
 - **Total Simulations:** 2
-- **Average Runtime:** 0.7679 s
+- **Average Runtime:** 0.9726 s
 - **Peak Memory:** 15.48 MB
-- **Average Runtime:** 0.9002 s
-- **Average Runtime:** 1.0094 s
-- **Average Runtime:** 0.8402 s
-- **Average Runtime:** 0.7959 s
-- **Peak Memory:** 15.49 MB
 
 ## Results Table
 | Bio Label | Anisotropy | Active Curv | Cobb Angle (deg) | Max Curvature | Energy (J) | Status |

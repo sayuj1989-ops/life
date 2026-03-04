@@ -513,6 +513,33 @@ $$ \mathbf{J}_{met} = \mathbf{J}_0 - \mathbf{M}_{curve} \cdot \nabla \boldsymbol
 *   **Biological Mechanism**: On the concave side of a scoliotic curve, local tissue compression physically collapses paraspinal capillary beds, reducing local perfusion ($v_{flow}$) and generating a local hypoxic zone, which stabilizes HIF-1$\alpha$ and triggers remodeling.
 *   **Measurable Proxy**: The spatial gradient of capillary density (via CD31 immunofluorescence) or HIF-1$\alpha$ expression across the transverse section (convex vs. concave sides) of a vertebral body or intervertebral disc.
 
+### 2.33. The Neural Tethering Number ($\mathcal{T}_{neuro}$)
+
+We formalize the "Uncoupled Neuro-Osseous Growth" hypothesis, which posits that the spinal cord and the vertebral column grow at different rates and are mechanically coupled. We define $\mathcal{T}_{neuro}$ as the ratio of the effective mechanical tethering stiffness of the neural axis to the axial stiffness of the developing vertebral column.
+
+$$ \mathcal{T}_{neuro} = \frac{k_{cord}}{k_{spine}} = \frac{E_{cord} A_{cord} / L_{cord}}{E_{spine} A_{spine} / L_{spine}} $$
+
+*   **Symbols**:
+    *   $k_{cord}$: Effective axial stiffness of the spinal cord and meninges $[M T^{-2}]$.
+    *   $k_{spine}$: Effective axial stiffness of the vertebral column $[M T^{-2}]$.
+    *   $E_{cord}, E_{spine}$: Young's modulus of the spinal cord and spine $[M L^{-1} T^{-2}]$.
+    *   $A_{cord}, A_{spine}$: Cross-sectional areas $[L^2]$.
+    *   $L_{cord}, L_{spine}$: Resting lengths $[L]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{T}_{neuro} \ll 1$: **Compliant Cord**. The spinal cord easily stretches to accommodate vertebral growth. The spine grows straight without significant resistance.
+    *   $\mathcal{T}_{neuro} \ge 1$: **Stiff Tether**. The spinal cord resists elongation (e.g., due to asynchronous growth or a short tether). The vertebral column experiences an internal compressive/buckling load from the tight cord, precipitating an S-shaped deformity to reduce the linear path length.
+*   **Measurable Proxy**: The ratio of the tension in the filum terminale (measured via elastography or surgical tensiometer) to the axial compressive load required to buckle the isolated spinal column.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Cord Release Rescue**
+    *   **Data Needed**: Measurement of spinal curvature progression in an induced rapidly-growing animal model (e.g., pinealectomized chicken) where the spinal cord tethering is surgically released (e.g., via filum terminale sectioning) versus a sham operation.
+    *   **Refutation**: If releasing the neural tether does not prevent or significantly reduce the onset and progression of the scoliotic curve during the rapid growth phase, the hypothesis that a high $\mathcal{T}_{neuro}$ mechanically drives buckling is falsified. (Reference: Roth, 1968).
+*   **Test 2: The Differential Growth Threshold**
+    *   **Data Needed**: Longitudinal MRI data measuring the relative growth velocities of the spinal cord ($\dot{L}_{cord}$) and the vertebral column ($\dot{L}_{spine}$) during the adolescent growth spurt in a cohort, correlated with the onset of idiopathic scoliosis.
+    *   **Refutation**: If the onset of scoliotic curvature occurs without any measurable mismatch in neuro-osseous growth rates (i.e., $\dot{L}_{spine} / \dot{L}_{cord} \approx 1$), then mechanical tethering due to asynchronous growth cannot be the primary driver of the geometric instability. (Reference: Porter, 2001).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

@@ -1,6 +1,6 @@
 import numpy as np
 
-from spinalmodes.model.core import Params, State, uniform_grid, iec_kappa_target
+from spinalmodes.model.core import Params, State, iec_kappa_target, uniform_grid
 from spinalmodes.model.solvers.euler_bernoulli import integrate_shape_from_curvature
 
 

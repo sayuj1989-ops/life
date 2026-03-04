@@ -1,7 +1,8 @@
-import pandas as pd
-import numpy as np
-from scipy.cluster.vq import kmeans2, whiten
 import os
+
+import pandas as pd
+from scipy.cluster.vq import kmeans2, whiten
+
 
 def main():
     # Load data
@@ -9,7 +10,7 @@ def main():
     candidates_path = 'data/candidates_master.csv'
 
     if not os.path.exists(metrics_path) or not os.path.exists(candidates_path):
-        print(f"Error: Data files not found.")
+        print("Error: Data files not found.")
         return
 
     df_metrics = pd.read_csv(metrics_path)

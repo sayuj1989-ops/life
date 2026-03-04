@@ -13,23 +13,24 @@ It fulfills the requirement to:
 4. Verify PyElastica integration.
 """
 
+import csv
 import sys
-import os
 import time
 import tracemalloc
-import csv
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from pathlib import Path
+
+import numpy as np
+
+from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
 
 # To run this script, execute it as a module from the project root:
 # python -m src.spinalmodes.experiments.integrated_rod_experiment
-
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, PYELASTICA_AVAILABLE
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
 from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 if not PYELASTICA_AVAILABLE:

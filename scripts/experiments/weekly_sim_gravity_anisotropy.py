@@ -1,24 +1,24 @@
 import os
 import sys
-import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-    from spinalmodes.countercurvature.info_fields import InfoField1D
     from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+    from spinalmodes.countercurvature.info_fields import InfoField1D
+    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 except ImportError:
     # If not found, try adding the research src path explicitly
     sys.path.append(str(Path(__file__).parent.parent.parent / "research/alphafold_countercurvature/src"))
-    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-    from spinalmodes.countercurvature.info_fields import InfoField1D
     from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+    from spinalmodes.countercurvature.info_fields import InfoField1D
+    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 
 def run_experiment(
     gravity: float,

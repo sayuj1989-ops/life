@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-import sys
-import os
-import json
-import requests
-import numpy as np
-import pandas as pd
 import argparse
+import os
+import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, List, Optional
+
+import pandas as pd
+import requests
 
 # Add the source directory to sys.path to import metrics
 # Assuming script is run from repo root or scripts/ dir
@@ -127,22 +126,22 @@ def generate_summary(results_df: pd.DataFrame, failures: List[str], today_str: s
     top_aniso_val = top_aniso['anisotropy_index']
 
     summary_md = f"# AFCC Daily Refresh: {today_str}\n\n"
-    summary_md += f"## Run Summary\n"
+    summary_md += "## Run Summary\n"
     summary_md += f"- **Candidates Processed**: {len(results_df)}\n"
     summary_md += f"- **Top Candidate**: {top_aniso_gene} (Anisotropy: {top_aniso_val:.2f})\n"
 
     if failures:
             summary_md += f"- **Failures**: {len(failures)}\n"
 
-    summary_md += f"\n## Top 5 High-Anisotropy Structures\n"
-    summary_md += f"| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n"
-    summary_md += f"|------|------------|--------------|------------|\n"
+    summary_md += "\n## Top 5 High-Anisotropy Structures\n"
+    summary_md += "| Gene | Anisotropy | pLDDT (Mean) | Morphology |\n"
+    summary_md += "|------|------------|--------------|------------|\n"
 
     top5 = results_df.sort_values(by='anisotropy_index', ascending=False).head(5)
     for _, r in top5.iterrows():
         summary_md += f"| {r['gene_symbol']} | {r['anisotropy_index']:.2f} | {r['plddt_mean']:.1f} | {r['morphology']} |\n"
 
-    summary_md += f"\n## Key Observations\n"
+    summary_md += "\n## Key Observations\n"
     # Generate some insights
     fibrous_count = len(results_df[results_df['anisotropy_index'] > 4.0])
     low_conf_count = len(results_df[results_df['plddt_mean'] < 70])

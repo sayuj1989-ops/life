@@ -1,20 +1,21 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
-import time
-import tracemalloc
 import csv
-import sys
 import datetime
-from typing import List, Dict, Any
+import sys
+import tracemalloc
+from pathlib import Path
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment():
     print("Starting Growth Shape Sweep...")

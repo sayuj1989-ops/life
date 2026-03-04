@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-import sys
 import os
-import json
-import requests
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from Bio.PDB import PDBParser
-from typing import Dict, Any, List, Optional
+import sys
 from pathlib import Path
+from typing import Dict, Optional
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import requests
 
 # Add the source directory to sys.path to import metrics
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../research/alphafold_countercurvature/src')))

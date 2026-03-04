@@ -4,9 +4,9 @@ Fetch and Analyze Longevity Protein Structures (FOXO3, Klotho)
 """
 
 import sys
-import pandas as pd
 from pathlib import Path
-import os
+
+import pandas as pd
 
 # Add repo root to path to import bolt_focused_cycle
 repo_root = Path(__file__).resolve().parent.parent

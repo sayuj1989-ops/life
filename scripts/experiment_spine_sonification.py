@@ -10,16 +10,18 @@ sonification of the buckling instability.
 
 import os
 import sys
+from datetime import datetime
+
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io.wavfile as wav
-import matplotlib.pyplot as plt
-from datetime import datetime
 
 # Add src to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
-from spinalmodes.model.solvers.cosserat import simulate_cosserat, available
 from spinalmodes.countercurvature.api import CounterCurvatureParams, InfoField1D
+from spinalmodes.model.solvers.cosserat import available, simulate_cosserat
+
 
 def setup_simulation():
     """Sets up the parameters for the buckling simulation."""
@@ -229,8 +231,8 @@ def run_experiment():
         f.write("The generated audio begins as a harmonious chord (representing the straight, kyphotic spine) and ")
         f.write("transitions into a dissonant, complex soundscape as the lateral buckling instability (scoliosis) takes hold.\n\n")
         f.write("## Files\n")
-        f.write(f"- Audio: `spinal_buckling.wav`\n")
-        f.write(f"- Spectrogram: `spectrogram.png`\n")
+        f.write("- Audio: `spinal_buckling.wav`\n")
+        f.write("- Spectrogram: `spectrogram.png`\n")
     print(f"Saved report to {report_path}")
 
 if __name__ == "__main__":

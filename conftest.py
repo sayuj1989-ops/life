@@ -1,5 +1,4 @@
 import sys
-import pytest
 from pathlib import Path
 
 # Add repo root to sys.path

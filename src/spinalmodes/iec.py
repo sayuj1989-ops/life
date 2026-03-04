@@ -8,7 +8,7 @@ Implements three coupling mechanisms:
 """
 
 from dataclasses import dataclass
-from typing import Callable, Optional, Tuple
+from typing import Optional, Tuple
 
 import numpy as np
 from numpy.typing import NDArray
@@ -186,14 +186,14 @@ def compute_node_positions(
     # Handle empty arrays and validate inputs
     if len(s) == 0 or len(theta) == 0:
         return np.array([], dtype=np.float64)
-    
+
     if len(s) != len(theta):
         raise ValueError(f"Length mismatch: s has {len(s)} elements, theta has {len(theta)} elements")
-    
+
     # Need at least 3 points to detect local minima (point and two neighbors)
     if len(s) < 3:
         return np.array([], dtype=np.float64)
-    
+
     theta_centered = theta - np.mean(theta)
     theta_abs = np.abs(theta_centered)
 
@@ -201,11 +201,11 @@ def compute_node_positions(
     # A point is a local minimum if it's less than both neighbors
     is_local_min = np.zeros(len(theta_abs), dtype=bool)
     is_local_min[1:-1] = (theta_abs[1:-1] < theta_abs[:-2]) & (theta_abs[1:-1] < theta_abs[2:])
-    
+
     # Apply threshold: only keep minima below threshold * max
     threshold_value = threshold * np.max(theta_abs)
     below_threshold = theta_abs < threshold_value
-    
+
     # Combine conditions
     local_min_idx = np.where(is_local_min & below_threshold)[0]
 

@@ -1,8 +1,8 @@
 import numpy as np
 
-from spinalmodes.model.core import Params, State, uniform_grid, iec_kappa_target
+from spinalmodes.model.core import Params, State, iec_kappa_target, uniform_grid
 from spinalmodes.model.solvers.euler_bernoulli import integrate_shape_from_curvature
-from spinalmodes.utils.metrics import wavelength_via_fft, amplitude, phase_shift_via_xcorr
+from spinalmodes.utils.metrics import amplitude, phase_shift_via_xcorr, wavelength_via_fft
 
 
 def test_iec1_phase_shift_preserves_wavelength():

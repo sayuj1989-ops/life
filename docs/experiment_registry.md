@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-01
+**Last Updated:** 2026-03-04
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -26,6 +26,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **TOY_01_Thermostatic** | `scripts/experiments/toy_model_thermostatic.py` | **Toy Model A:** 1D Thermostatic Column. Validates "Metabolic Buckling" concept without rod mechanics. | `outputs/figures/toy_model_thermostatic.png` | ✅ **Active/Validated** | Simple demonstration of $L^5$ vs $L^2$ scaling mismatch. |
 | **TOY_02_Anisotropy** | `scripts/toy_model_anisotropy_link.py` | **Toy Model B:** Anisotropy-Stability Link. Validates $L_{crit} \propto A^{-0.5}$. | `outputs/figures/toy_model_anisotropy_bifurcation.png` | ✅ **Active/Validated** | Connects protein aspect ratio to spinal stability. |
+| **TOY_03_JSCreature** | `scripts/experiments/toy_model_js_creature.py` | **Toy Model C:** Secondary 2D minimal representation for biomechanics reviewers. | `outputs/js_creature_toy_model` | ✅ **Active** | Potential visual addition for robustness. |
 
 ## 3. Protein Structure Pipeline (AFCC)
 

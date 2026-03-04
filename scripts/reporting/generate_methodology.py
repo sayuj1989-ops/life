@@ -6,8 +6,9 @@ import asyncio
 import os
 from pathlib import Path
 
-from paperbanana import PaperBananaPipeline, GenerationInput, DiagramType
+from paperbanana import DiagramType, GenerationInput, PaperBananaPipeline
 from paperbanana.core.config import Settings
+
 
 async def main():
     # Load source context

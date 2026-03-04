@@ -3,20 +3,21 @@ Weekly Simulation: Torsion Drive Sweep
 Goal: Test for emergent S-shaped profiles under tilted gravity loading with fixed active growth (chi=10) and fixed intermediate anisotropy (R=2.0), while sweeping Torsional Coupling (chi_tau).
 """
 
-import os
-import sys
 import datetime
+import sys
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
-from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, SimulationResult
-from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from spinalmodes.countercurvature.info_fields import InfoField1D
+from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment(
     chi_tau: float,

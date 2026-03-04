@@ -1,20 +1,22 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
-import time
 import csv
-import sys
 import datetime
-from typing import List, Dict, Any
+import sys
+import time
+from pathlib import Path
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 from src.spinalmodes.utils.seeds import set_seed
+
 
 def run_experiment():
     print("Starting Torsion-Anisotropy Coupling Sweep...")
@@ -168,7 +170,7 @@ def run_experiment():
         f.write("# Torsion-Anisotropy Coupling Sweep Report\n\n")
         f.write(f"Date: {today_str}\n")
         f.write("## Hypothesis\n")
-        f.write("Increasing stiffness anisotropy (high lateral stiffness relative to sagittal) will suppress the lateral deviation (scoliosis) induced by torsional coupling ($\chi_\tau$), even when planar curvature drive ($\chi_\kappa$) is strong.\n\n")
+        f.write("Increasing stiffness anisotropy (high lateral stiffness relative to sagittal) will suppress the lateral deviation (scoliosis) induced by torsional coupling ($\\chi_\tau$), even when planar curvature drive ($\\chi_\\kappa$) is strong.\n\n")
 
         f.write("## Parameters\n")
         f.write(f"- **chi_kappa**: {fixed_chi_kappa}\n")
@@ -182,8 +184,8 @@ def run_experiment():
         r1_max_tau = [r for r in results_summary if r["anisotropy_ratio"] == 1.0 and r["chi_tau"] == 2.0][0]
         r10_max_tau = [r for r in results_summary if r["anisotropy_ratio"] == 10.0 and r["chi_tau"] == 2.0][0]
 
-        f.write(f"- At $\chi_\\tau = 2.0$, Isotropic (R=1) Lateral Dev: **{r1_max_tau['lateral_dev']:.4f} m**\n")
-        f.write(f"- At $\chi_\\tau = 2.0$, Anisotropic (R=10) Lateral Dev: **{r10_max_tau['lateral_dev']:.4f} m**\n")
+        f.write(f"- At $\\chi_\\tau = 2.0$, Isotropic (R=1) Lateral Dev: **{r1_max_tau['lateral_dev']:.4f} m**\n")
+        f.write(f"- At $\\chi_\\tau = 2.0$, Anisotropic (R=10) Lateral Dev: **{r10_max_tau['lateral_dev']:.4f} m**\n")
 
         reduction = (1 - r10_max_tau['lateral_dev'] / r1_max_tau['lateral_dev']) * 100
         f.write(f"- **Reduction in Scoliosis**: {reduction:.1f}%\n")

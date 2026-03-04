@@ -1,6 +1,7 @@
 import datetime
-import re
 import os
+import re
+
 
 def parse_roadmap(filepath):
     """

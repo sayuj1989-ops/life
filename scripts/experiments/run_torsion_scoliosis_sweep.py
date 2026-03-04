@@ -1,20 +1,22 @@
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
+import csv
+import datetime
+import sys
 import time
 import tracemalloc
-import csv
-import sys
-import datetime
-from typing import List, Dict, Any
+from pathlib import Path
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def run_experiment():
     print("Starting Torsion-Coupled Scoliosis Sweep...")
@@ -201,11 +203,11 @@ def run_experiment():
         f.write("# Torsion-Coupled Scoliosis Sweep Report\n\n")
         f.write("## Overview\n")
         f.write(f"Date: {today_str}\n")
-        f.write(f"Goal: Investigate if torsional coupling (chi_tau) transforms a planar S-curve (chi_kappa) into 3D scoliosis.\n\n")
+        f.write("Goal: Investigate if torsional coupling (chi_tau) transforms a planar S-curve (chi_kappa) into 3D scoliosis.\n\n")
         f.write("## Parameters\n")
         f.write(f"- **chi_kappa**: {fixed_chi_kappa} (Strong Planar Driver)\n")
         f.write(f"- **chi_E**: {fixed_chi_E}\n")
-        f.write(f"- **chi_tau**: Swept [0.0 - 2.0]\n")
+        f.write("- **chi_tau**: Swept [0.0 - 2.0]\n")
         f.write("- **Info Field**: Sinusoidal (S-shape)\n\n")
 
         f.write("## Results\n\n")

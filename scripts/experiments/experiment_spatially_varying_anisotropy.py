@@ -12,12 +12,11 @@ that stiffening the center of the scoliotic curve (apical region) can stabilize
 the spine more effectively than uniform stiffening.
 """
 
-import sys
-import os
-from pathlib import Path
-import time
-import numpy as np
 import csv
+import sys
+from pathlib import Path
+
+import numpy as np
 
 # Ensure src is in python path
 current_file = Path(__file__).resolve()
@@ -26,7 +25,10 @@ if str(src_path) not in sys.path:
     sys.path.append(str(src_path))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError as e:
     print(f"Error importing spinalmodes: {e}")
     sys.exit(1)

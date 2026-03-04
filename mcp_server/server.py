@@ -1,7 +1,7 @@
-from fastmcp import FastMCP
-import os
 import subprocess
 from pathlib import Path
+
+from fastmcp import FastMCP
 
 # Initialize FastMCP server
 mcp = FastMCP("Life Research Server")

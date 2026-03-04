@@ -1,6 +1,7 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure output directory exists
 os.makedirs('outputs/figures', exist_ok=True)

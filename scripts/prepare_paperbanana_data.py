@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+
 
 def downsample_data():
     input_path = "outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv"

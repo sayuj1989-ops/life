@@ -1,9 +1,9 @@
 import sys
-import os
 from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Ensure src is in path
 sys.path.append("src")
@@ -151,7 +151,7 @@ def run_experiment():
     mean_L = np.interp(mean_anisotropy, res_df['Anisotropy'], res_df['L_crit'])
     ax.plot(mean_anisotropy, mean_L, 'ko', label='Population Mean')
 
-    ax.set_xlabel('Structural Anisotropy ($\mathcal{A}$)')
+    ax.set_xlabel(r'Structural Anisotropy ($\mathcal{A}$)')
     ax.set_ylabel('Critical Spinal Length $L_{crit}$ (m)')
     ax.set_title('Therapeutic Rescue: Reducing Anisotropy Delays Buckling')
     ax.grid(True, alpha=0.3)

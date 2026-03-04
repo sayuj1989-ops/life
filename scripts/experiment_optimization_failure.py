@@ -39,7 +39,7 @@ from datetime import datetime
 
 __version__ = "1.0.1"
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import Dict, List
 
 import numpy as np
 

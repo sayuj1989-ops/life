@@ -1,9 +1,10 @@
 import sys
-import os
 from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+
 try:
     import seaborn as sns
 except ImportError:

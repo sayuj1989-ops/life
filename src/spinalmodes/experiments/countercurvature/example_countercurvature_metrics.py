@@ -7,20 +7,21 @@ Usage:
     python -m spinalmodes.experiments.countercurvature.example_countercurvature_metrics
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 from spinalmodes.countercurvature import (
-    InfoField1D,
     CounterCurvatureParams,
-    make_uniform_grid,
+    InfoField1D,
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
+    make_uniform_grid,
 )
 from spinalmodes.countercurvature.coupling import (
-    compute_rest_curvature,
     compute_effective_stiffness,
+    compute_rest_curvature,
 )
 from spinalmodes.iec import solve_beam_static
 

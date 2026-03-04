@@ -1,19 +1,21 @@
 
-import sys
-import os
 import csv
+import os
+import sys
 import time
 import tracemalloc
-import numpy as np
-import matplotlib.pyplot as plt
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in path
 sys.path.append(os.getcwd())
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
+from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def count_zero_crossings(arr):
     """Count sign changes in a 1D array."""
@@ -140,7 +142,7 @@ def run_sweep():
     fig, ax1 = plt.subplots(figsize=(10, 6))
 
     color = 'tab:red'
-    ax1.set_xlabel('Active Muscle Gain ($\chi_M$)')
+    ax1.set_xlabel(r'Active Muscle Gain ($\chi_M$)')
     ax1.set_ylabel('Tip Deflection Z (m)', color=color)
     ax1.plot(chi_vals, tips, 'o-', color=color)
     ax1.tick_params(axis='y', labelcolor=color)
@@ -160,7 +162,7 @@ def run_sweep():
     plt.figure(figsize=(12, 8))
     # Plot all lines
     for chi, cl in centerlines:
-        plt.plot(cl[0, :], cl[2, :], label=f"$\chi_M={chi:.1f}$")
+        plt.plot(cl[0, :], cl[2, :], label=rf"$\chi_M={chi:.1f}$")
 
     plt.xlabel("X (m)")
     plt.ylabel("Z (m)")
@@ -177,13 +179,13 @@ def run_sweep():
         f.write("# Simulation Report: Active Muscle Torque Sweep\n\n")
         f.write(f"**Date**: {date_str}\n\n")
         f.write("## Overview\n")
-        f.write("Investigated the emergence of S-shaped spinal profiles by sweeping the Active Muscle Torque gain ($\chi_M$) ")
+        f.write(r"Investigated the emergence of S-shaped spinal profiles by sweeping the Active Muscle Torque gain ($\chi_M$) ")
         f.write("under standard gravity loading. A horizontal rod (cantilever) was subjected to a sinusoidal information field ")
         f.write("driving distributed internal moments.\n\n")
 
         f.write("## Key Findings\n")
-        f.write("- **Gravity Dominance**: At low $\chi_M$, the rod exhibits a simple C-shape sag due to gravity.\n")
-        f.write("- **Emergence**: As $\chi_M$ increases, the internal active moments counteract gravity.\n")
+        f.write("- **Gravity Dominance**: At low $\\chi_M$, the rod exhibits a simple C-shape sag due to gravity.\n")
+        f.write("- **Emergence**: As $\\chi_M$ increases, the internal active moments counteract gravity.\n")
         f.write("- **S-Shape**: A distinct S-shape (multiple zero crossings in curvature) emerges at higher gains.\n\n")
 
         f.write("## Results Summary\n\n")
@@ -193,7 +195,7 @@ def run_sweep():
             f.write(f"| {r['chi_M']:.2f} | {r['tip_deflection_z']:.4f} | {r['zero_crossings']} |\n")
 
         f.write("\n\n## Next Steps\n")
-        f.write("- Investigate coupling with $\chi_E$ (stiffness anisotropy).\n")
+        f.write("- Investigate coupling with $\\chi_E$ (stiffness anisotropy).\n")
         f.write("- Test vertical initialization with buckling loads.\n")
 
     print(f"Report written to {report_path}")

@@ -1,11 +1,12 @@
-import unittest
-import numpy as np
 import tempfile
-import os
+import unittest
 import zipfile
 from pathlib import Path
 
+import numpy as np
+
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
+
 
 class TestParserOptimization(unittest.TestCase):
     def setUp(self):

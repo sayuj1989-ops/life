@@ -7,9 +7,9 @@ for the AlphaFold Counter-Curvature analysis pipeline.
 """
 
 import sys
-import pandas as pd
 from pathlib import Path
-import datetime
+
+import pandas as pd
 
 # Add repo root to path to import src if needed
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
@@ -75,7 +75,7 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     final_df.to_csv(OUTPUT_FILE, index=False)
 
-    print(f"✅ Input preparation complete.")
+    print("✅ Input preparation complete.")
     print(f"📄 Saved {len(final_df)} candidates to: {OUTPUT_FILE}")
     print("\nTop 5 Selected:")
     print(final_df[['gene_symbol', 'source', 'total_score']].head().to_string(index=False))

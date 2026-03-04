@@ -17,21 +17,24 @@ This experiment:
 4. Tracks runtime and memory to ensure performance.
 """
 
+import csv
 import sys
-import os
 import time
 import tracemalloc
-import csv
-import numpy as np
-from pathlib import Path
 from dataclasses import dataclass
-from typing import List, Dict
+from pathlib import Path
+from typing import List
+
+import numpy as np
+
+from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.info_fields import InfoField1D
 
 # Execute as module: python -m src.spinalmodes.experiments.bio_gravitational_experiment
-
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, PYELASTICA_AVAILABLE
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.pyelastica_bridge import (
+    PYELASTICA_AVAILABLE,
+    CounterCurvatureRodSystem,
+)
 from src.spinalmodes.countercurvature.scoliosis_metrics import compute_scoliosis_metrics
 
 if not PYELASTICA_AVAILABLE:
@@ -155,7 +158,7 @@ def run_bg_experiment():
     tracemalloc.stop()
 
     # 3. Output
-    print(f"\nExperiment Complete.")
+    print("\nExperiment Complete.")
     print(f"Peak Memory: {peak_mem / 1024 / 1024:.2f} MB")
 
     csv_path = output_dir / "bg_sweep_results.csv"

@@ -13,12 +13,15 @@ It serves as a minimal, standalone experiment that demonstrates:
 
 import csv
 import time
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 # Import the new high-level simulation function
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError:
     print("Error: spinalmodes package not found or installation issue.")
     exit(1)

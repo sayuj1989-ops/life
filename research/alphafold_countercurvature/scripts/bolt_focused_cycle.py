@@ -3,21 +3,22 @@
 Bolt-BioFold ⚡ - Focused Analysis Cycle
 """
 
-import sys
 import argparse
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
+import sys
 from datetime import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Setup path
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.afdb import AlphaFoldFetcher
-from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 
 # Constants
 DEFAULT_SEED_LIST = [
@@ -270,7 +271,7 @@ def run_focused_cycle(targets=None):
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
         f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
         f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write(f"**Code Version:** Bolt-BioFold v1.0\n\n")
+        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
 
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))

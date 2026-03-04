@@ -8,12 +8,12 @@ outputs using a vertical rod model.
 It is designed to be self-contained (handling paths) and robust.
 """
 
-import sys
-import os
-from pathlib import Path
-import csv
-import time
 import argparse
+import csv
+import sys
+import time
+from pathlib import Path
+
 # Removed tracemalloc from outer script as run_protein_simulation handles it internally
 
 # Ensure src is in python path
@@ -26,7 +26,10 @@ if str(src_path) not in sys.path:
     sys.path.append(str(src_path))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError as e:
     print(f"Error importing spinalmodes: {e}")
     sys.exit(1)

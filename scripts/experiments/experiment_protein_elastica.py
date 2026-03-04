@@ -22,7 +22,7 @@ import time
 import tracemalloc
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict
 
 import numpy as np
 
@@ -110,7 +110,7 @@ def run_protein_experiment(
         print("  pip install pyelastica")
         sys.exit(1)
 
-    print(f"Running Protein-Elastica Experiment mapping...")
+    print("Running Protein-Elastica Experiment mapping...")
     print(f"Scenarios: {scenarios}")
     print(f"Results will be saved to: {out_file}")
 

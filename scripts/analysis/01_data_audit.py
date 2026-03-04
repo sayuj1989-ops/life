@@ -1,7 +1,7 @@
 """Inventory current repository files into tables/data_catalog.csv."""
 
-from pathlib import Path
 import csv
+from pathlib import Path
 
 from spinalmodes.utils.provenance import write_provenance
 

@@ -1,10 +1,11 @@
 import csv
 import os
 import sys
-import matplotlib.pyplot as plt
-import numpy as np
 from datetime import date
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Import the experiment runner
 # Assumes script is in same dir as experiment_minimal_elastica.py
@@ -172,9 +173,9 @@ def write_report(out_dir, chi_kappas, cobbs, s_lats, max_curv, anisotropy):
     max_s_lat = np.max(s_lats)
 
     with open(report_path, 'w') as f:
-        f.write(f"# Simulation Report: Growth Instability Sweep\n\n")
+        f.write("# Simulation Report: Growth Instability Sweep\n\n")
         f.write(f"**Date**: {today}\n")
-        f.write(f"**Focus**: Emergence of S-shaped spinal profile under increasing growth drive.\n\n")
+        f.write("**Focus**: Emergence of S-shaped spinal profile under increasing growth drive.\n\n")
 
         f.write("## Hypothesis\n")
         f.write("Increasing growth drive (`chi_kappa`) will trigger a buckling instability, transitioning the spine "
@@ -182,9 +183,9 @@ def write_report(out_dir, chi_kappas, cobbs, s_lats, max_curv, anisotropy):
                 f"We test this at intermediate stiffness anisotropy (R={anisotropy}).\n\n")
 
         f.write("## Parameters\n")
-        f.write(f"- **Growth Drive (chi_kappa)**: 0.0 to 20.0 (Step 1.0)\n")
+        f.write("- **Growth Drive (chi_kappa)**: 0.0 to 20.0 (Step 1.0)\n")
         f.write(f"- **Stiffness Anisotropy**: {anisotropy}\n")
-        f.write(f"- **Lateral Drive**: info_amplitude=0.2 (Localized at center)\n\n")
+        f.write("- **Lateral Drive**: info_amplitude=0.2 (Localized at center)\n\n")
 
         f.write("## Key Findings\n")
         f.write(f"- **Critical Threshold**: Instability (Cobb > 10°) emerges at `chi_kappa` >= **{critical_threshold}**.\n")

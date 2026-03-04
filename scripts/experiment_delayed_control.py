@@ -1,6 +1,7 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure output directory exists
 OUTPUT_DIR = "outputs/control_theory"
@@ -154,7 +155,7 @@ def run_noise_experiment():
 
     for sigma in noise_levels:
         t, theta, _ = controller.run_simulation(L_stable, T_max=10.0, noise_sigma=sigma)
-        plt.plot(t, theta, label=f'Noise $\sigma$={sigma}')
+        plt.plot(t, theta, label=rf'Noise $\sigma$={sigma}')
 
     plt.title(f'Effect of Proprioceptive Noise (Protein Disorder) at L={L_stable}m')
     plt.xlabel('Time (s)')

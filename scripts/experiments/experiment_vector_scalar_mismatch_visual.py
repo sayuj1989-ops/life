@@ -1,16 +1,19 @@
 
-import sys
 import os
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import sys
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure src is in python path
 sys.path.append(str(Path(__file__).parent.parent.parent / "src"))
 
 try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, PYELASTICA_AVAILABLE
+    from spinalmodes.countercurvature.pyelastica_bridge import (
+        PYELASTICA_AVAILABLE,
+        run_protein_simulation,
+    )
 except ImportError:
     print("Error: Could not import pyelastica_bridge. Ensure src is in path.")
     sys.exit(1)
@@ -48,10 +51,10 @@ def run_visual_experiment():
     # Since run_protein_simulation hides the result object, I will reimplement the loop here
     # using the lower-level API to get the centerline.
 
-    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
     from spinalmodes.countercurvature.coupling import CounterCurvatureParams
     from spinalmodes.countercurvature.info_fields import InfoField1D
-    import elastica as ea
+    from spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
 
     def simulate_and_get_shape(aniso, active_k):
         n_elements = 50
@@ -101,7 +104,7 @@ def run_visual_experiment():
 
     # Plot Healthy
     ax1.plot(shape_healthy[:, 0], shape_healthy[:, 1], shape_healthy[:, 2], 'g-', linewidth=3, label='Spine')
-    ax1.set_title(f"Healthy: Matched (Aniso=1.0)\nStable Correction", fontsize=14)
+    ax1.set_title("Healthy: Matched (Aniso=1.0)\nStable Correction", fontsize=14)
     ax1.set_xlabel('Lateral (X)')
     ax1.set_ylabel('Sagittal (Y)')
     ax1.set_zlabel('Vertical (Z)')
@@ -113,7 +116,7 @@ def run_visual_experiment():
     # Plot Scoliotic
     ax2 = fig.add_subplot(122, projection='3d')
     ax2.plot(shape_scoliotic[:, 0], shape_scoliotic[:, 1], shape_scoliotic[:, 2], 'r-', linewidth=3, label='Spine')
-    ax2.set_title(f"Scoliosis: Mismatched (Aniso=5.0)\nRotational Instability", fontsize=14, color='red')
+    ax2.set_title("Scoliosis: Mismatched (Aniso=5.0)\nRotational Instability", fontsize=14, color='red')
     ax2.set_xlabel('Lateral (X)')
     ax2.set_ylabel('Sagittal (Y)')
     ax2.set_zlabel('Vertical (Z)')

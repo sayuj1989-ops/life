@@ -2,6 +2,7 @@
 Generate manuscript-ready data tables and verify claims vs actual AlphaFold data.
 """
 import json
+
 import numpy as np
 from scipy import stats
 
@@ -71,7 +72,7 @@ s_plddt = [v['mean_plddt'] for v in supply.values()]
 # Anisotropy
 t, p = stats.ttest_ind(d_anis, s_anis)
 u, u_p = stats.mannwhitneyu(d_anis, s_anis, alternative='greater')
-print(f"\nAnisotropy (Demand vs Supply):")
+print("\nAnisotropy (Demand vs Supply):")
 print(f"  Demand: {np.mean(d_anis):.2f} ± {np.std(d_anis):.2f} (n={len(d_anis)})")
 print(f"  Supply: {np.mean(s_anis):.2f} ± {np.std(s_anis):.2f} (n={len(s_anis)})")
 print(f"  Welch's t-test: t={t:.3f}, p={p:.4f}")
@@ -81,7 +82,7 @@ print(f"  Cohen's d: {(np.mean(d_anis) - np.mean(s_anis)) / np.sqrt((np.std(d_an
 # Disorder
 t, p = stats.ttest_ind(d_dis, s_dis)
 u, u_p = stats.mannwhitneyu(d_dis, s_dis, alternative='less')
-print(f"\nDisorder Fraction (Demand vs Supply):")
+print("\nDisorder Fraction (Demand vs Supply):")
 print(f"  Demand: {np.mean(d_dis)*100:.1f}% ± {np.std(d_dis)*100:.1f}%")
 print(f"  Supply: {np.mean(s_dis)*100:.1f}% ± {np.std(s_dis)*100:.1f}%")
 print(f"  Welch's t-test: t={t:.3f}, p={p:.4f}")
@@ -89,7 +90,7 @@ print(f"  Mann-Whitney U (Supply > Demand, one-sided): U={u:.0f}, p={u_p:.4f}")
 
 # pLDDT
 t, p = stats.ttest_ind(d_plddt, s_plddt)
-print(f"\nMean pLDDT (Demand vs Supply):")
+print("\nMean pLDDT (Demand vs Supply):")
 print(f"  Demand: {np.mean(d_plddt):.1f} ± {np.std(d_plddt):.1f}")
 print(f"  Supply: {np.mean(s_plddt):.1f} ± {np.std(s_plddt):.1f}")
 print(f"  Welch's t-test: t={t:.3f}, p={p:.4f}")
@@ -215,20 +216,20 @@ print(f"  Demand mean disorder:                  {demand_disorder:.1f}%")
 
 # Key finding: is the central thesis supported?
 print(f"\n{'='*80}")
-print(f"CENTRAL THESIS: Do demand proteins cost more than supply proteins?")
+print("CENTRAL THESIS: Do demand proteins cost more than supply proteins?")
 print(f"{'='*80}")
 print(f"  Demand mean anisotropy ({np.mean(d_anis):.2f}) > Supply ({supply_mean_anis:.2f}): {'YES ✓' if np.mean(d_anis) > supply_mean_anis else 'NO ✗'}")
 print(f"  Gap = {gap:.1f}% (manuscript claimed 34%)")
 print(f"  Statistical significance (Mann-Whitney): p = {stats.mannwhitneyu(d_anis, s_anis, alternative='greater')[1]:.4f}")
 if stats.mannwhitneyu(d_anis, s_anis, alternative='greater')[1] < 0.05:
-    print(f"  → SIGNIFICANT at p < 0.05 ✓")
+    print("  → SIGNIFICANT at p < 0.05 ✓")
 else:
-    print(f"  → NOT significant at p < 0.05 ✗")
+    print("  → NOT significant at p < 0.05 ✗")
 
-print(f"\n  Supply-Side Disorder Paradox:")
+print("\n  Supply-Side Disorder Paradox:")
 print(f"  Supply disorder ({supply_disorder:.1f}%) > Demand disorder ({demand_disorder:.1f}%): "
       f"{'YES ✓' if supply_disorder > demand_disorder else 'NO ✗'}")
-print(f"  → Supply proteins are cheaper but MORE fragile: CONFIRMED")
+print("  → Supply proteins are cheaper but MORE fragile: CONFIRMED")
 
 if __name__ == "__main__":
     pass

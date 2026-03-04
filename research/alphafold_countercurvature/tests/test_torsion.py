@@ -1,8 +1,9 @@
 import unittest
+
 import numpy as np
-from pathlib import Path
 
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
 
 class TestTorsionCorrectness(unittest.TestCase):
     def test_torsion_math(self):

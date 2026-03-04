@@ -21,10 +21,9 @@ import argparse
 import csv
 import os
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import Any, Dict, List
 
 import numpy as np
 
@@ -97,7 +96,7 @@ def run_experiment(
         print("Please install it using: pip install pyelastica")
         sys.exit(1)
 
-    print(f"Starting Protein Mapping Experiment...")
+    print("Starting Protein Mapping Experiment...")
     print(f"Output File: {out_file}")
     print(f"Scenarios: {len(anisotropies)} anisotropies x {len(active_curvatures)} active_curvatures")
     print(f"Parameters: N={n_elements}, T={duration}s, dt={dt}s, g={gravity}")

@@ -21,9 +21,9 @@ Date: 2026-02-07
 
 import csv
 import time
-from pathlib import Path
 from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
+from pathlib import Path
+from typing import Any, Dict, List
 
 import numpy as np
 
@@ -268,7 +268,7 @@ def generate_report(targets: List[ProteinTarget], metrics: Dict) -> str:
     lines.append("# Thermodynamic Cost of Countercurvature: Molecular Mapping via AlphaFold")
     lines.append("")
     lines.append(f"**Date:** {time.strftime('%Y-%m-%d')}")
-    lines.append(f"**Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)")
+    lines.append("**Source:** Pre-computed AFCC metrics (AlphaFold Countercurvature pipeline)")
     lines.append("**Framework:** Free energy dissipation functional (manuscript Eq. 7)")
     lines.append("")
     lines.append("```")
@@ -292,7 +292,7 @@ def generate_report(targets: List[ProteinTarget], metrics: Dict) -> str:
 
     for term_key, (term_name, term_desc) in terms.items():
         term_targets = [t for t in targets if t.term == term_key]
-        lines.append(f"---")
+        lines.append("---")
         lines.append(f"## {term_name}")
         lines.append("")
         lines.append(term_desc)

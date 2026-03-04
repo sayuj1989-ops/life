@@ -68,5 +68,5 @@ This document tracks the daily incremental refactor of the repository towards pu
     - [x] Move `create_abstract.js`, `create_cover_letter.js`, `create_nature_manuscript.js` to `scripts/manuscript/`.
 - [x] **Organize Prompts**:
     - [x] Move `AI_*.md` and `*_PROMPT.md` to `docs/prompts/` or `notes/prompts/`.
-- [ ] **Submission Checklist**:
-    - [ ] Consolidate `SUBMISSION_MASTER_CHECKLIST.md` and `SUBMISSION_PACKAGE_SUMMARY.txt` into the submission folder.
+- [x] **Submission Checklist**:
+    - [x] Consolidate `SUBMISSION_MASTER_CHECKLIST.md` and `SUBMISSION_PACKAGE_SUMMARY.txt` into the submission folder.

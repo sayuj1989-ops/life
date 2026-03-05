@@ -101,8 +101,8 @@ def generate_report(data):
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
@@ -157,6 +157,29 @@ def save_report(report):
 
     return filepath
 
+def update_roadmap_file(filepath, data, expected_date):
+    """
+    Updates the Progress Tracking section in the roadmap file.
+    """
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    active_phase = "None"
+    for phase, stats in data['phases'].items():
+        phase_percent = (stats['completed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        if phase_percent < 100 and active_phase == "None":
+            active_phase = phase
+            break
+
+    # Construct new Progress Tracking section
+    new_tracking = f"## Progress Tracking\n\n**Current Phase:** {active_phase}\n**Percent Complete:** {data['percent_complete']:.1f}%\n**Projected Completion:** {expected_date}\n**Status:** In Progress\n"
+
+    # Replace existing Progress Tracking section safely
+    content = re.sub(r'(## Progress Tracking\s*\n)(.*?)(?=\n##|\Z)', new_tracking, content, flags=re.DOTALL)
+
+    with open(filepath, 'w') as f:
+        f.write(content)
+
 if __name__ == "__main__":
     roadmap_path = "research/spine_submission/roadmap.md"
     data, error = parse_roadmap(roadmap_path)
@@ -168,4 +191,6 @@ if __name__ == "__main__":
         report = generate_report(data)
         print(report)
         saved_path = save_report(report)
+        update_roadmap_file(roadmap_path, data, calculate_projection(data))
         print(f"\nReport saved to: {saved_path}")
+        print(f"Updated roadmap file: {roadmap_path}")

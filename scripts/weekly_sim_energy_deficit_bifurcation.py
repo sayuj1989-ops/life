@@ -14,14 +14,14 @@ except ImportError:
 # Ensure src is in path to import spinalmodes
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from spinalmodes.iec import (
-    compute_amplitude,
-    solve_beam_static,
-)
 from spinalmodes.countercurvature.api import (
     InfoField1D,
     compute_countercurvature_metric,
-    geodesic_curvature_deviation
+    geodesic_curvature_deviation,
+)
+from spinalmodes.iec import (
+    compute_amplitude,
+    solve_beam_static,
 )
 
 # ---------------------------------------------------------

@@ -2,6 +2,8 @@ import csv
 import math
 import os
 
+import matplotlib.pyplot as plt
+
 
 def organism(x, y, t):
     k = 5 * math.cos(x / 14) * math.cos(y / 30)
@@ -23,13 +25,15 @@ def organism(x, y, t):
 
     return xCoord, yCoord
 
-def run_simulation(t_steps, output_file):
+def run_simulation(t_steps, output_file, output_dir):
     with open(output_file, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['t', 'i', 'x', 'y', 'xCoord', 'yCoord'])
 
         t = 0
         for step in range(t_steps):
+            x_coords = []
+            y_coords = []
             for i in range(10000):
                 x = i % 80
                 # In JS, integer division is often implicitly meant if we are indexing, but the original code:
@@ -39,6 +43,21 @@ def run_simulation(t_steps, output_file):
 
                 xCoord, yCoord = organism(x, y, t)
                 writer.writerow([t, i, x, y, xCoord, yCoord])
+                x_coords.append(xCoord)
+                y_coords.append(yCoord)
+
+            # Generate and save plot for each timestep
+            plt.figure(figsize=(6, 6))
+            plt.style.use('dark_background')
+            plt.scatter(x_coords, y_coords, s=0.5, c='white', alpha=0.6)
+            plt.xlim(0, 400)
+            plt.ylim(0, 400)
+            plt.gca().invert_yaxis()  # p5.js has y=0 at top
+            plt.axis('off')
+            plt.title(f"JS Creature - t={t:.2f}")
+            plot_filepath = os.path.join(output_dir, f"creature_t{step}.png")
+            plt.savefig(plot_filepath, dpi=150, bbox_inches='tight', facecolor='black')
+            plt.close()
 
             t += math.pi / 20
 
@@ -50,5 +69,5 @@ if __name__ == "__main__":
     print(f"Running toy model simulation, saving to {output_filepath}...")
 
     # Run for 2 timesteps to match a small snippet of time
-    run_simulation(2, output_filepath)
+    run_simulation(2, output_filepath, output_dir)
     print("Simulation complete.")

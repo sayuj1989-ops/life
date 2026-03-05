@@ -1,0 +1,13 @@
+TITLE: Mechanogenetic Demand-Supply Gap in Spinal Geometry
+STYLE: High-Impact Scientific Diagram (Nature/Science style), clean, minimalist, vector-like, isometric or flowchart.
+PALETTE: Teal (Supply), Crimson/Orange (Demand), Slate Gray (Structure).
+
+COMPONENTS:
+1. "The Demand Node" (Bottom Left): A schematic of a mechanical sensor complex (representing Fibrillin/PIEZO2) experiencing tensile stress. Label: "Mechanical Demand ($\mathcal{P}_{counter}$) - High Thermodynamic Cost".
+2. "The Supply Node" (Bottom Right): A schematic of intrinsically disordered metabolic regulators (FOXO3/AMPK) in a fragmented state. Label: "Metabolic Supply ($\mathcal{S}_{proprio}$) - Low Stability/Anisotropic".
+3. "The Gap" (Center Bottom): A jagged, lightning-like break or a large inequality symbol between Demand and Supply. Label: "The 72% Anisotropy Gap".
+4. "The Feedback Loop" (Top): An upward arrow leading from the Gap to a warped, twisting spinal column (representing Scoliosis). Label: "Control Failure $\rightarrow$ Torsional Instability".
+5. "The Ground State" (Top Left inset): A balanced scale showing a healthy, synchronized S-curve spine. Label: "Cooperative Regime ($R < 1$)".
+
+LAYOUT:
+A circular or figure-8 causal loop. The bottom half highlights the molecular/thermodynamic mismatch (Demand > Supply). This mismatch drives an arrow upward to the macroscopic consequence: the loss of the structural ground state, resulting in a scoliotic, torsioned spine. Use precise, thin connecting lines and bold typography for key variables like $R_{deficit} > 1$.

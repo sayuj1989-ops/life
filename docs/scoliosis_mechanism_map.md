@@ -1,79 +1,73 @@
 # From Molecules to Curvature: A Causal Map of Scoliosis
 
 ## Overview
-This document explains the **Scoliosis Mechanism Map**, connecting molecular actors to tissue-level mechanics through the **Biological Counter-Curvature** framework.
+The **Scoliosis Mechanism Map** connects molecular actors to tissue mechanics via **Biological Counter-Curvature**. The spine actively grows into an anticipatory S-shape to neutralize gravity. Scoliosis is a failure of this active control system.
 
-The spine actively grows into an anticipatory S-shaped "counter-curvature" to neutralize gravitational moments. Idiopathic scoliosis is not a random buckling event, but a failure of this active control system.
-
-The causal map is divided into:
-1. **Genetics**: The molecular sensors and effectors.
-2. **Processes**: Cellular remodeling activities.
-3. **Tissue Properties**: Physical variables (Stiffness $EI$, Gain $G_{mech}$, Rest Curvature $\kappa_0$).
-4. **Outcomes**: Macroscopic stability or failure.
+Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$), Outcomes.
 
 ---
 
-## Core Counter-Curvature Pathways
+## Core Pathways
 
-### 1. The Geometry Pathway (HOX)
+### 1. Geometry (HOX)
 * **Path**: `HOX` $\rightarrow$ `Region` $\rightarrow$ `Rest Curvature (\kappa_0)`
-* **Role**: HOX genes (e.g., HOXA10, HOXD11) encode regional identity, setting the target baseline geometry the spine attempts to achieve.
+* **Role**: Encodes regional identity and target baseline geometry.
 
-### 2. The Feedback Gain Pathway (Piezo)
+### 2. Feedback Gain (Piezo)
 * **Path**: `PIEZO1/2` $\rightarrow$ `Mechanotransduction` $\rightarrow$ `Gain (G_{mech})`
-* **Role**: Mechanical stretch is converted into adaptive growth (Heuter-Volkmann law). **Piezo1** provides scalar quality control (bone density), while **Piezo2** provides vector alignment (proprioception). Without high-fidelity feedback, the spine drifts.
+* **Role**: Mechanical stretch converts to adaptive growth. Piezo1 (scalar quality) and Piezo2 (vector alignment) provide vital feedback.
 
-### 3. The Chiral Initialization Pathway (Cilia)
+### 3. Chiral Initialization (Cilia)
 * **Path**: `CILIA` $\rightarrow$ `Symmetry Breaking` $\rightarrow$ `Torsion (\epsilon)`
-* **Role**: Ciliary nodal flow sets early left-right asymmetry. Loss of consistent chiral bias leads to randomized buckling directions.
+* **Role**: Ciliary nodal flow sets left-right asymmetry.
 
-### 4. The Material Stiffness Pathway (Collagen & Matrix)
+### 4. Material Stiffness (Collagen)
 * **Path**: `COL2A1` $\rightarrow$ `ECM Assembly` $\rightarrow$ `Stiffness (EI)`
-* **Role**: The passive material must be stiff enough to resist Euler buckling. Matrix degradation (via MMPs) or poor assembly leads to softening.
+* **Role**: Passive resistance to Euler buckling.
 
 ---
 
-## Modulators and Failure Modes
+## Failure Modes
 
-### 5. Osteocyte Dendrite Cost Mechanism
-* **Path**: `PIEZO1` $\rightarrow$ `YAP` $\rightarrow$ `CCN1/2` $\rightarrow$ `Osteocyte Dendrites` $\rightarrow$ `Gain (G_{mech})`
-* **Mechanism**: Mechanical loading (sensed via Piezo1) drives YAP nuclear translocation. YAP upregulates matrix proteins CCN1/2, promoting the dense elaboration of osteocyte dendrite networks.
-* **Role**: **Amplifying the Sensor Network**. An expanded dendritic network significantly amplifies mechanosensitivity (Feedback Gain).
-* **Implication**: Building this network is energetically costly. Rapid skeletal growth ($L^3$ scaling) may outpace the metabolic capacity ($L^2$ scaling) to maintain these dendrites.
-* **Evidence**: Hu et al. (2025) demonstrated that the YAP-CCN1/2 axis is required for loading-induced dendrite formation and bone adaptation.
-> **Hypothesis**: The "Energy Deficit" of the adolescent growth spurt starves the osteocyte network of the resources needed to build dendrites, leading to a sudden drop in mechanical Gain and subsequent scoliotic buckling.
+### 5. Osteocyte Dendrites
+* **Path**: `PIEZO1` $\rightarrow$ `CCN1/2` $\rightarrow$ `Dendrites` $\rightarrow$ `Gain`
+* **Role**: Amplifies mechanosensitivity. Rapid growth outpaces metabolic supply.
+> **Hypothesis**: Energy Deficit starves this network, dropping Gain and triggering buckling.
 
-### 6. The Spinal Jetlag Pathway
+### 6. Spinal Jetlag
 * **Path**: `BMAL1` $\rightarrow$ `Circadian Entrainment` $\rightarrow$ `Disc Maintenance`
-* **Mechanism**: Gravitational loading acts as a mechanical *zeitgeber*, entraining circadian clocks in disc cells.
-* **Role**: Synchronization of anabolic repair. Loss of loading (or circadian disruption) leads to "Spinal Jetlag," impairing matrix maintenance.
+* **Role**: Loading synchronizes anabolic repair.
 
-### 7. The CSF-Proprioception Relay
+### 7. CSF-Proprioception Relay
 * **Path**: `PKD2L1` $\rightarrow$ `CSF Sensing` $\rightarrow$ `URP` $\rightarrow$ `Muscle Tone`
-* **Role**: The Reissner Fiber acts as a tension-bearing plumb line. Urp1/2 peptides transmit this alignment signal to paraspinal muscles, ensuring symmetric active tone.
+* **Role**: Reissner Fiber acts as a tension plumb line for muscle symmetry.
 
-### 8. Glymphatic Stasis & Inflamed Torsion
-* **Path**: `VCL Stasis` $\rightarrow$ `Hydraulic Congestion` $\rightarrow$ `Immune Infilt.` $\rightarrow$ `MMP`
-* **Mechanism**: Lack of movement pump leads to fluid stagnation, triggering macrophage infiltration and MMP-mediated degradation of the annulus fibrosus, specifically compromising torsional stiffness.
+### 8. Glymphatic Stasis
+* **Path**: `VCL Stasis` $\rightarrow$ `Hydraulic Congestion` $\rightarrow$ `MMP`
+* **Role**: Fluid stagnation drives macrophage entry and annulus degradation.
 
 ### 9. Epigenetic Asymmetry
 * **Path**: `mtROS` $\rightarrow$ `METTL3` $\rightarrow$ `ESR1` $\rightarrow$ `Muscle Tone`
-* **Mechanism**: Oxidative stress from unloading downregulates m6A methylation by METTL3. This destabilizes ESR1 mRNA, driving asymmetric muscle atrophy.
+* **Role**: Unloading oxidative stress downregulates methylation, driving asymmetric atrophy.
 
-### 10. The Piezo-Cilia Stress Lock
+### 10. Piezo-Cilia Stress Lock
 * **Path**: `PIEZO1` $\rightarrow$ `Ciliary Tuning` $\rightarrow$ `Osteogenesis`
-* **Mechanism**: High asymmetric compression causes Piezo1-mediated calcium influx that destroys the primary cilium, permanently derepressing osteogenesis on the concave side and locking the curve.
+* **Role**: Asymmetric compression destroys cilia, derepressing osteogenesis.
 
-### 11. The PIEZO1-YAP Disc Degeneration Axis
+### 11. PIEZO1-YAP Degeneration Axis
 * **Path**: `PIEZO1` $\rightarrow$ `YAP` $\rightarrow$ `MMP`
-* **Mechanism**: Excessive mechanical load overactivates PIEZO1, triggering a Ca2+/F-actin signaling axis that promotes YAP nuclear translocation. This upregulates Matrix Metalloproteinases (MMPs), driving intervertebral disc (IVD) degradation (Peng et al., 2025).
-* **Role**: The intervertebral disc relies on finely-tuned stiffness to maintain the active "counter-curvature" of the spine. When overactive PIEZO1 signaling causes structural degradation, this critical mechanical stiffness drops, increasing vulnerability to scoliotic collapse.
+* **Role**: Mechanical overload triggers YAP/MMP axis, degrading IVD stiffness (Peng et al., 2025).
 
 ### 12. Metabolic Bottleneck
 * **Path**: `PPARGC1A` $\rightarrow$ `Mitochondrial Biogenesis` $\rightarrow$ `Energy Deficit`
-* **Mechanism**: The energetic demands of adolescent growth are massive. PPARGC1A (PGC-1$\alpha$) regulates mitochondrial biogenesis to meet this supply.
-* **Role**: Determines the metabolic ceiling. If rapid growth signals (via IGF1R/GHR) force tissue scaling that outpaces PPARGC1A-driven metabolic supply, an "Energy Deficit Window" emerges, severely compromising active postural control networks.
-* **Evidence**: This maps directly to the counter-curvature principle where energetic supply scales proportionally to $L^2$ and structural cost to $L^4$, leading to systemic exhaustion (Krishnan S et al., 2025).
+* **Role**: Energetic supply ($L^2$) fails to keep up with structural scaling ($L^4$), compromising active postural networks (Krishnan S et al., 2025).
+
+### 13. Osteoblast Mechanotransduction Defect
+* **Path**: `CILIA` $\rightarrow$ `Actin Dynamics` $\rightarrow$ `VEGF-A` $\rightarrow$ `Gain (G_{mech})`
+* **Mechanism**: Osteoblasts use primary cilia to sense fluid flow. Flow normally triggers actin rearrangement and VEGF-A/PGE2 secretion. In AIS, cilia dynamics and actin rearrangement are defective, and flow-induced VEGF-A is blunted.
+* **Role**: **Loss of Adaptive Gain**. Counter-curvature relies on tissue translating strain into adaptive growth. This impaired mechanotransduction pathway leaves skeletal tissue "deaf" to forces, dropping the active feedback gain ($G_{mech}$).
+* **Evidence**: Oliazadeh et al. (2022) found AIS osteoblasts fail to orient properly and lack flow-induced VEGF-A secretion.
+> **Hypothesis**: The defective actin-VEGF-A axis in AIS osteoblasts acts as a molecular bottleneck that suppresses global feedback gain, compromising counter-curvature during adolescent growth.
 
 ---
 *Generated by Systems Mapper based on the Biological Counter-Curvature framework.*

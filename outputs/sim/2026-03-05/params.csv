@@ -1,0 +1,10 @@
+parameter,value
+random_seed,42
+L,1.0
+n_elements,50
+duration,3.0
+anisotropy,1.5
+initial_lateral_defect,0.5
+natural_kyphosis,2.0
+torsion_drive,0.05
+scale_factor_kappa,5.0

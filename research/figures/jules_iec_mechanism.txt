@@ -1,0 +1,12 @@
+Title: Information-Elasticity Coupling (IEC) and Demand-Supply Gap Mechanism
+
+Description:
+A comprehensive multi-scale mechanism diagram explaining the onset of Adolescent Idiopathic Scoliosis.
+1. Top level: Developmental Genetic Information (HOX gene gradients) generates a target geometry.
+2. Middle level: This target geometry couples with gravitational loading via Cosserat rod mechanics, creating a mechanical stress profile along the spine.
+3. Bottom level: Mechanosensors (Demand) such as PIEZO2 sense this stress and require metabolic regulators (Supply) like FOXO3 to maintain tissue integrity.
+4. Vulnerability: During adolescent growth (spinal length L > 0.35m), a 72% demand-supply anisotropy gap emerges because mechanotransduction proteins are thermodynamically expensive but regulators are intrinsically disordered.
+5. Outcome: This energy deficit triggers a supercritical bifurcation, leading to scoliotic instability.
+
+Visual Style:
+High-tech, scientific aesthetic suitable for a Nature journal. Clear feedback loop structure. Use bioluminescent glowing pathways to represent information, and heavy solid vectors for gravity. Include a small inset showing the protein demand-supply mismatch.

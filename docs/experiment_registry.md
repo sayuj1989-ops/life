@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-04
+**Last Updated:** 2026-03-05
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -18,7 +18,9 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_05_Proteins** | `scripts/experiments/experiment_thermodynamic_cost_proteins.py` | Generate Table 2: Assigns metabolic cost terms to specific proteins (e.g., PPARGC1A). | `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv` | ✅ **Active** | Validated against manuscript Table 2. |
 | **EXP_06_CrossSpecies** | `scripts/experiment_cross_species_scaling.py` | Generate Figure 3: Validates cross-species scaling. Uses `data/species_parameters.csv` (`Mass_kg`, `Length_m`, `EI_Nm2`) to compute $B_g$ and cross-species scaling curves. | `outputs/thermodynamic_cost/cross_species_scaling.csv` | ✅ **Active** | Added. |
 | **EXP_07_MutationMap** | `scripts/experiment_optimization_failure.py` | Generate Figure 4 specific mutations: Maps `FBN1` etc. to simulation parameters. | Console/CSV output with `--run-mutations`. | ✅ **Active** | Integrated within Optimization Failure script. |
-| **EXP_08_SShapeEmergence** | `scripts/experiments/weekly_sim_s_shape_emergence.py` | Sweeps `chi_kappa` under growth + anisotropic stiffness. | `outputs/sim/2026-03-01/results.csv` | ✅ **Active** | Emergence of structural S-shape. |
+| **EXP_08_SShapeEmergence** | `scripts/sim_active_curvature_sweep.py` | Sweeps `chi_kappa` under growth + anisotropic stiffness. | `outputs/sim/2026-03-01/results.csv` | ✅ **Active** | Emergence of structural S-shape. |
+| **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
+| **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
 
 ## 2. Toy Models (Validation)
 

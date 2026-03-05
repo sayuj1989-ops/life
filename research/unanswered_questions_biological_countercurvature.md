@@ -105,13 +105,13 @@ During puberty, estrogen drives increased fat mass accumulation in females. This
 
 ## Section 4: Protein Data Analysis — Quantitative Evidence for Energy Deficit
 
-The 23-protein dataset provides rigorous quantitative evidence that the biological system managing counter-curvature is systematically biased toward high-cost demand and fragile supply.
+The 22-protein dataset from `thermodynamic_cost_proteins.csv` provides rigorous quantitative evidence that the biological system managing counter-curvature is systematically biased toward high-cost demand and fragile supply.
 
 ### Demand-Supply Anisotropy Gap
 
 Proteins categorized under "Demand" (sensors and active tension, $\eta_p$ and $\eta_a$) are significantly more extended and structurally complex than "Supply" proteins ($\Gamma_m$).
 *   Combined Demand Mean Anisotropy: **3.32**
-*   Combined Supply Mean Anisotropy: **2.48**
+*   Combined Supply Mean Anisotropy: **2.47**
 This represents a **34% structural cost premium** on the demand side just to maintain the required geometric configurations.
 
 ### Scaling Law Mismatch
@@ -123,26 +123,26 @@ During a standard adolescent growth phase (e.g., a 30% height increase from $L =
 
 ### VIM Vulnerability Index
 
-Vimentin (VIM) acts as the primary gravitational strain gauge. Its anisotropy is an extreme **7.47**. Compared to the mean supply anisotropy (2.48), VIM has a Vulnerability Index of **3.01x**. Its extreme extension makes it structurally "expensive," explaining why Vimentin collapse is often the "first domino" in the mechanosensory failure cascade.
+Vimentin (VIM) acts as the primary gravitational strain gauge. Its anisotropy is an extreme **7.47**. Compared to the mean supply anisotropy (2.47), VIM has a Vulnerability Index of **3.02x**. Its extreme extension makes it structurally "expensive," explaining why Vimentin collapse is often the "first domino" in the mechanosensory failure cascade.
 
 ### Per-Protein Energy Cost Proxy
 
 Approximating the relative energy cost of maintaining a protein's active conformation as (Anisotropy $\times$ Number of Residues) reveals the most expensive nodes in the network:
-1.  **PIEZO1:** 9,832 ($3.89 \times 2521$)
-2.  **FLNA:** 6,618 ($2.50 \times 2647$)
-3.  **COL1A1:** 4,099 ($2.79 \times 1464$)
-4.  **VIM:** 3,481 ($7.46 \times 466$)
-5.  **GHR:** 3,273 ($5.13 \times 638$)
+1.  **PIEZO1:** 9,822 ($3.90 \times 2521$)
+2.  **FLNA:** 6,622 ($2.50 \times 2647$)
+3.  **COL1A1:** 4,095 ($2.80 \times 1464$)
+4.  **VIM:** 3,480 ($7.47 \times 466$)
+5.  **GHR:** 3,275 ($5.13 \times 638$)
 
 ### PPARGC1A Fragility Score
 
-The primary supply bottleneck, PPARGC1A, has the lowest pLDDT (52.7) and the highest disorder fraction (62%). It is the most vulnerable point in the supply chain.
+The primary supply bottleneck, PPARGC1A, has the lowest pLDDT (52.7) and the highest disorder fraction (61.9%). It is the most vulnerable point in the supply chain.
 
 ### Disorder Analysis
 
 Paradoxically, the metabolic supply system is more disordered than the structural demand network:
-*   Supply system mean disorder: **42%**
-*   Demand system mean disorder: **35%**
+*   Supply system mean disorder: **38.0%**
+*   Demand system mean disorder: **25.7%**
 This indicates the supply system is inherently more susceptible to degradation under stress (e.g., ROS accumulation or mechanical vibration).
 
 ### The VIM Cascade

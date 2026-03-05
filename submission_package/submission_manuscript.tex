@@ -18,76 +18,98 @@ Correspondence: hellodr@drsayuj.info}
 \date{}
 
 \begin{document}
-
+\linenumbers
 \maketitle
 
-\begin{abstract}
-The physical cost of maintaining structural integrity against gravity during growth remains unquantified, leaving the etiology of Adolescent Idiopathic Scoliosis (AIS) a major medical mystery. We show that AIS is a predictable "metabolic buckling" event caused by a mismatch between mechanical demand and metabolic supply. Modeling the spine as a dissipative structure, we identify an energy deficit window at a critical length of 0.35 meters, where the strain energy cost of alignment ($L^3$) exceeds surface-limited metabolic capacity ($L^2$). We find that mechanosensors like Vimentin are thermodynamically expensive due to high structural anisotropy, creating an unaffordable tax during rapid growth. Simulations demonstrate that this deficit triggers a supercritical bifurcation into a helical deformity. Crucially, reducing sensor anisotropy delays buckling by 60 centimeters. These results redefine scoliosis as a physiological survival response to metabolic insolvency. We suggest that targeting cytoskeletal stiffness, rather than relying solely on mechanical bracing, offers a root-cause therapy.
-\end{abstract}
+\textbf{Living systems actively maintain structure against gravity, yet the physical cost remains unquantified. Here we show that Adolescent Idiopathic Scoliosis (AIS)—a deformity affecting 3\% of children—is a ``Metabolic Buckling'' event caused by scaling mismatches between mechanical demand and metabolic supply. We model the spine as a ``Thermodynamic Standing Wave,'' requiring continuous energy to maintain an S-shape against gravity. Using a Cosserat rod model coupled to a developmental information field, we identify a critical ``Energy Deficit Window'' at spinal lengths $L > 0.35$m where straightness cost ($L^4$) exceeds metabolic capacity ($L^2$). Structural analysis reveals that key mechanosensors (e.g., PIEZO2, anisotropy 4.44) are thermodynamically expensive. Our simulations demonstrate this high anisotropy accelerates instability, while reducing sensor anisotropy delays buckling. These results suggest scoliosis is a survival response to an unaffordable ``Anisotropy Tax,'' redefining deformity as a thermodynamic transition and identifying cytoskeletal stiffness as a target for metabolic intervention.}
 
-Life on Earth has evolved within the unyielding context of a constant gravitational field, which acts not merely as a mechanical load but as a ubiquitous morphogenetic cue\cite{thompson1917growth}. For sessile structures, gravity dictates a simple equilibrium: a beam clamped at one end will sag into a passive C-shape. In vertebrates, however, the spine maintains a complex, metastable S-shaped profile (lordosis and kyphosis) against gravity\cite{latimer2005upright}. We propose that this "Biological Countercurvature" is not a passive equilibrium but a \textbf{Dissipative Structure}---maintained by the continuous expenditure of metabolic energy against the gravitational field.
+\vspace{1em}
 
-The central conflict of vertebrate growth is the \textbf{Scaling Catch-22}. From a physics perspective, the spine acts as an Euler column where the critical buckling load scales as $1/L^2$. To prevent buckling, the flexural stiffness must increase dramatically. Our analysis shows that the metabolic power ($P_{counter}$) required to maintain alignment scales with the Elastic Strain Energy ($U_{strain} \sim EI \cdot \kappa^2 \cdot L$), which ultimately scales as $L^3$ under isometric growth conditions ($I \sim L^4, \kappa \sim L^{-1}$). Conversely, the biological machinery supplying this energy (mitochondrial surface area, vascular flux) is constrained by surface-to-volume ratios, scaling as $L^2$\cite{west1997general,rolfe1997cellular}. This divergence creates a critical \textbf{Energy Deficit Window} during the rapid adolescent growth spurt. We calculated the crossover point where metabolic demand exceeds supply and found it occurs at a spinal length $L_{crit} \approx 0.35$ m, coinciding precisely with the onset of adolescent scoliosis.
+Life on Earth has evolved within the unyielding context of a constant gravitational field, which acts not merely as a mechanical load but as a ubiquitous morphogenetic cue\cite{thompson1917growth, ingber2008tensegrity}. For sessile structures, gravity dictates a simple equilibrium: a beam clamped at one end will sag into a passive C-shape. In vertebrates, however, the spine maintains a complex, metastable S-shaped profile (lordosis and kyphosis) that defies this passive metric\cite{latimer2005upright}. Traditionally, this alignment has been viewed through a purely mechanical lens, stabilized by passive ligamentous tension and active muscular guying as described by the Panjabi stabilizing system\cite{panjabi1992stabilizing}. However, this mechanical stability comes at a profound thermodynamic cost. Unlike the stable equilibrium of a hanging chain, the upright spine is an inverted pendulum that requires continuous information processing and energy input to maintain its low-entropy configuration\cite{kuo2005optimal, schneider1994life}.
 
-Healthy morphogenesis requires the integration of directional "Vector" signals (gravity sensing via proprioception) with isotropic "Scalar" growth signals (IGF-1/GH). We term the failure of this integration \textbf{Vector-Scalar Mismatch}. We simulated this coupling using a 3D Cosserat rod model driven by an Information-Elasticity Coupling (IEC) field. In the "Cooperative Regime" ($\chi_\kappa \approx 0.05$), information and gravity balance to produce a stable S-curve. However, when metabolic supply fails ($P_{counter} > S_{supply}$), the expensive Vector system collapses while the Scalar growth drive persists. Our simulations show that this decoupling triggers a supercritical bifurcation: small asymmetries are amplified into macroscopic helical deformities, reproducing the 3D geometry of scoliosis.
+We propose that this ``Biological Countercurvature'' is not a static equilibrium but a \textbf{Thermodynamic Standing Wave}—a dissipative structure maintained by the continuous expenditure of metabolic energy against the gravitational field\cite{prigogine1977self}. This active maintenance requires the integration of two distinct information streams: a ``Genetic Prior'' (HOX-encoded target geometry) and a ``Gravitational Error'' (proprioceptive feedback). Recent work in active matter physics suggests that such systems are inherently unstable if the energy flux drops below a critical threshold\cite{marchetti2013hydrodynamics, du2023active}. In this context, spinal deformity represents a phase transition: a failure of the metabolic supply to meet the thermodynamic demand of geometric order.
 
-The molecular basis for this failure lies in the \textbf{Protein Cost Landscape}. We hypothesized that the "weak links" are the proteins responsible for sensing curvature. Using AlphaFold-derived metrics for 23 key proteins, we computed a "Thermodynamic Cost" (Anisotropy $\times$ Residues). The analysis reveals a stark \textbf{Demand-Supply Anisotropy Gap}. Demand-side mechanosensors are structurally highly anisotropic (mean 3.32) and expensive to maintain. \textbf{Vimentin}, the intermediate filament acting as a strain gauge\cite{wuest2025vim}, has an extreme anisotropy of 7.5, making it the most vulnerable to energy depletion.
+We model the human spine as a Cosserat rod, defined by a centerline curve $\mathbf{r}(s,t) \in \mathbb{R}^3$ parameterized by arc length $s \in [0, L]$. This dimensionality reduction from 3D elasticity to a 1D director theory is justified by the high aspect ratio of the vertebral column ($L/d \approx 13$). To each point $s$, we attach an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ describing the cross-sectional orientation~\cite{goriely2017mathematics, gazzola2018forward}. The director $\mathbf{d}_3(s,t)$ aligns with the tangent to the centerline in the absence of shear, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ define the principal axes of the vertebral cross-section. The kinematics are governed by the evolution equations:
 
-To test the therapeutic potential of modifying this cost, we performed a parameter sweep of sensor anisotropy in our Cosserat simulation. We found that the critical length $L_{crit}$ is highly sensitive to anisotropy. For Vimentin-like sensors ($A=7.5$), the spine becomes unstable at just $L=0.20$m. However, reducing the effective anisotropy to the isotropic limit ($A=1.0$) delays the onset of instability to $L=0.80$m---effectively granting the organism an additional \textbf{60 cm of stable growth}. This "Anisotropy Rescue" suggests that pharmacological or genetic interventions that reduce cytoskeletal stiffness or lower the expression of high-anisotropy sensors could prevent the onset of scoliosis during the critical growth window.
+\begin{align}
+    \mathbf{r}'(s) &= \mathbf{v}(s) = \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
+    \mathbf{d}_i'(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
+    \label{eq:cosserat_kinematics}
+\end{align}
 
-The "Vector-Scalar Mismatch" theory predicts that removing the vector load (gravity) while maintaining scalar metabolism should induce a similar remodeling response. Indeed, spaceflight data confirms this prediction. Transcriptomic analysis of murine tissues in microgravity (e.g., dataset DS-019) reveals a significant downregulation of \textbf{Vimentin} and \textbf{Piezo1}\cite{rashidi2025piezo}. In the absence of gravity, the "cost" of these sensors yields no benefit, and the organism actively sheds them to conserve energy. Scoliosis can thus be understood as a "terrestrial microgravity syndrome"---where the sensors are present but metabolically unfunded, leading to a functional loss of gravity sensation similar to actual spaceflight.
+where $\mathbf{v}(s)$ is the tangent vector, $\boldsymbol{\varepsilon}(s)$ represents shear and extension strains, and $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ is the Darboux vector encoding the flexural curvature components $\kappa_{1,2}$ and torsional twist $\tau$. Physically, we identify $s=0$ with the sacrum (clamped boundary condition: $\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) and $s=L$ with the cranium (free boundary condition), representing the aggregate mechanical axis of the vertebral column.
 
-\textbf{Metabolic Buckling} redefines AIS. It is not a random genetic error but a predictable system failure. The "deformity" is, in fact, a mechanism of thermodynamic survival: by buckling into a configuration that lowers the center of mass or reduces the active moment required to stay upright, the organism sheds the "Anisotropy Tax" it can no longer afford. While direct metabolic flux measurements in pediatric spines are invasive, the allometric scaling laws provide a robust theoretical bound on energy availability that aligns with the observed clinical window of deformity. This framework suggests that therapeutic interventions should shift from purely mechanical bracing to metabolic rescue---targeting mitochondrial biogenesis, circadian synchronization, and crucially, cytoskeletal anisotropy reduction to close the Energy Deficit Window.
+We define a scalar information field $I(s, t) \in [0, 1]$ representing the coarse-grained expression level of anterior-posterior patterning morphogens (e.g., HOX genes). This field serves as a coarse-grained representation of the complex gene regulatory networks governing axial patterning. Following the bimodal Gaussian parameterization (Methods Eq.~\ref{eq:info_field_spinal}), we model $I(s)$ with peaks at the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) enlargements, corresponding to regions of high vertebral identity specification. The spatial gradient $\nabla I$ acts as a ``curvature generator'' via the geometric coupling $\chi_\kappa$:
+\begin{equation}
+    \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
+    \label{eq:kappa_rest}
+\end{equation}
+We quantify the information content of this patterning field using the local Shannon entropy $\mathcal{H}[I]$, which bounds the precision of the target metric specification:
+\begin{equation}
+    \mathcal{H}[I] = -\int I(s) \log I(s) \, ds.
+    \label{eq:shannon_entropy}
+\end{equation}
+Simultaneously, the field exerts a stiffness via the morphomechanical coupling $\chi_M$, generating the active biological moment $\mathbf{M}_{bio}$ to oppose gravity:
+\begin{equation}
+    \mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
+    \label{eq:active_moment}
+\end{equation}
+Stability is quantified by the Bio-Gravitational Number $\mathcal{B}_g$:
+\begin{equation}
+    \mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
+    \label{eq:bg_number}
+\end{equation}
+When $\mathcal{B}_g > 1$, the organism dominates gravity. This framework is physically grounded in the structural specificity of HOX proteins. For example, AlphaFold analysis of HOXC8 (UniProt P31273) and HOXB13 (UniProt Q92826) demonstrates that these proteins possess rigid DNA-binding domains capable of enforcing the sharp identity boundaries necessary for this parameterization.
 
-\section*{Clinical Validation}
+The transition from a 1D patterning array to a 3D geometry requires coupling the genetic information to physical tissue mechanics. We define the Information--Cosserat Manifold via an effective metric tensor $g_{\mathrm{eff}}(s)$, where the rest curvature $\boldsymbol{\kappa}^0(s)$ of the Cosserat rod is no longer constant but a functional of $I(s)$.
+The physical stress $\boldsymbol{\sigma}(s)$ in the tissue must satisfy the morphoelastic compatibility equation:
+\begin{equation}
+    \nabla \times (\mathbf{C}^{-1} \boldsymbol{\sigma}) = \boldsymbol{\alpha}_{\mathrm{dislocation}}(I),
+\end{equation}
+where $\mathbf{C}$ is the stiffness tensor and $\boldsymbol{\alpha}_{\mathrm{dislocation}}$ represents the density of biological ``defects'' (e.g., asymmetric growth plates) induced by the gradient $\nabla I$. The interplay between this information-driven active stress and gravitational load is governed by the localized effective energy:
+\begin{equation}
+    E_{\mathrm{eff}}(I, \boldsymbol{\kappa}) = \frac{1}{2} \int_0^L \left[ EI(\boldsymbol{\kappa} - \chi_\kappa \nabla I)^2 - \rho A g y(\boldsymbol{\kappa}) \right] ds,
+\end{equation}
+where $EI$ is the flexural rigidity and $y(\boldsymbol{\kappa})$ is the vertical elevation. The ground state of the spine is the geometry that minimizes $E_{\mathrm{eff}}$. For strong coupling ($\chi_\kappa > \chi_c$), the S-curve geometry emerges spontaneously as a stable energy minimum, defying the passive C-shaped geodesic of gravity.
 
-To bridge our theoretical "Metabolic Buckling" framework with clinical reality, we validated the model against four distinct epidemiological and phenotypic hallmarks of Adolescent Idiopathic Scoliosis (AIS).
+We establish the thermodynamic foundation for the "Energy Deficit Window" hypothesis by quantifying the metabolic cost of maintaining mechanical homeostasis against gravitational loading.
+The total free energy dissipation functional $\mathcal{F}$ of the growing vertebral column is modeled as a competition between proprioceptive signal processing, active tissue maintenance, and diffusive metabolic supply:
+\begin{equation}
+    \mathcal{F} = \int \left( \eta_p (\nabla I)^2 + \eta_a ||\mathbf{M}_{active}||^2 - \Gamma_m S_{proprio} \right) dV dt
+    \label{eq:dissipation}
+\end{equation}
+where $\eta_p$ is the metabolic cost of maintaining the proprioceptive vector field (scaling with structural anisotropy), $\eta_a$ is the mechanical cost of active moment generation, and $\Gamma_m$ is the metabolic supply rate mapping to the scalar growth field (scaling with vascular diffusion area).
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../manuscript/figures/fig_phv_timing.png}
-    \caption{Peak Height Velocity (PHV) Timing vs. Metabolic Deficit Window.}
-    \label{fig:phv_timing}
-\end{figure}
+Our AlphaFold cross-reference protocol identified 16 key mechanosensory and morphogenetic proteins critical for regulating these parameters. We define the \textit{Anisotropy Penalty} $\alpha_{cost} = I_1 / I_3$ (where $I_{1,3}$ are the principal moments of inertia) as a proxy for the entropic cost of maintaining high-fidelity vector sensors. The resulting thermodynamic cost landscape maps the divergence between structurally expensive mechanosensors (e.g., PIEZO2, Vimentin) and low-cost globular effectors, establishing a quantitative basis for metabolic buckling when $P_{counter}$ (scaling as $L^4$) outpaces $S_{proprio}$ (scaling as $L^2$).
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../manuscript/figures/fig_sexual_dimorphism.png}
-    \caption{Metabolic Dimorphism explaining the 10:1 Female-to-Male prevalence ratio.}
-    \label{fig:sexual_dimorphism}
-\end{figure}
+During simulated adolescent growth, small information-field asymmetries are amplified into scoliotic deformities through a supercritical bifurcation at a critical length, explaining adolescent scoliosis onset.
+Under pure gravity ($\chi_\kappa = 0$), the spine sags into a C-shape with $\widehat{D}_{\mathrm{geo}} \approx 0.059$. As the IEC coupling strength $\chi_\kappa$ increases beyond a critical threshold ($\chi_\kappa > 0.02$), the system undergoes a geometric transition. The lowest eigenvalue of the stiffness matrix $\lambda_0$ crosses zero, destabilizing the C-shape and selecting the n=2 S-mode as the new ground state. The simulated geometry matches clinical sagittal profiles, recovering cervical lordosis ($s \approx 0.8L$), thoracic kyphosis ($s \approx 0.6L$), and lumbar lordosis ($s \approx 0.2L$). The maximum angular deviation in the sagittal plane is ${\sim}42^\circ$ for lordosis and ${\sim}35^\circ$ for kyphosis, consistent with normative pediatric ranges.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{../manuscript/figures/fig_lenke_classes.png}
-    \caption{Lenke Classifications as Coupled Cosserat Rod Eigenmodes.}
-    \label{fig:lenke_classes}
-\end{figure}
+We map the full parameter space $(\chi_\kappa, g)$ and find three distinct regimes emerge: gravity-dominated ($\widehat{D}_{\mathrm{geo}} \approx 0.059$; passive sag), cooperative ($\widehat{D}_{\mathrm{geo}} \approx 0.150$; stable S-curve), and information-dominated ($\widehat{D}_{\mathrm{geo}} > 0.3$; potential instability). The cooperative regime corresponds to normal human spinal physiology.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../manuscript/figures/fig_clinical_cohort_data.png}
-    \caption{Clinical Cohort Data: Age vs Cobb Angle.}
-    \label{fig:clinical_cohort_data}
-\end{figure}
+We simulate a ``pubertal growth spurt'' by increasing $L$ from 0.35 m to 0.45 m. Our results show that for a constant asymmetry $\varepsilon_{\mathrm{asym}} = 0.01$, the Cobb angle remains $< 5^\circ$ for $L < 0.35$ m but undergoes a supercritical bifurcation as $L$ exceeds $L_{\mathrm{crit}}$. Beyond this threshold, the system enters the information-dominated regime where metabolic demand ($L^4$) outpaces supply ($L^2$). At $L=0.45$ m, the demand exceeds supply significantly. This found mismatch is structurally grounded in the protein morphology space, where demand-side mechanosensors (highly anisotropic) are found to be energetically more expensive than supply-side enzymes. Furthermore, mapping this critical length $L_{\mathrm{crit}} \approx 0.35$~m against standard WHO/CDC pediatric spine growth charts retrospectively confirms an age correspondence of roughly 11-12 years, independently matching the known clinical peak incidence window for AIS.
 
-\textbf{1. Peak Height Velocity (PHV) Timing:} The clinical onset of AIS is tightly coupled to the pubertal growth spurt. By plotting the simulated metabolic deficit ratio ($R_{eff}$) against normative spinal growth velocity (dL/dt), we identified an "Instability Window" where $R_{eff} > R_{crit}$. This window perfectly aligns with the clinical PHV timing (typically ages 11-13 in females), explaining why buckling occurs precisely during maximum growth velocity when metabolic supply ($L^2$) is most severely outpaced by demand ($L^4$) (Extended Data Fig. \ref{fig:phv_timing}).
+During this adolescent energy deficit, the simulated growth-adaptation tracks vulnerability over the 5-20 year age window. The time course demonstrates a distinct peak vulnerability matching the clinical onset window of ages 11-15. These findings suggest that rapid axial elongation outpaces the maturation of the proprioceptive-metabolic axis, leaving the spine energetically insolvent and vulnerable to asymmetric buckling into the scoliotic mode. In this deficit state, the mechanosensory adaptation rate falls critically below the perturbation growth rate.
 
-\textbf{2. The 10:1 Female-to-Male Prevalence Ratio:} AIS exhibits a striking sexual dimorphism. We modeled this by incorporating established metabolic dimorphism parameters into our deficit calculation: females experience an earlier, deeper energy deficit window during peak height velocity ($R_{peak} = 2.7$ vs $2.4$ in males) due to lower baseline muscle mass and earlier growth onset. Our simulation demonstrates that females reliably cross the critical instability threshold ($R_{crit} = 2.5$) during their growth spurt, whereas males largely remain in the subcritical, stable regime (Extended Data Fig. \ref{fig:sexual_dimorphism}).
+The Vector Mismatch mechanism explains why buckling is specifically lateral: a lateral perturbation drives the alignment parameter $\alpha \to 0$, reducing effective stiffness by ${\sim}80\%$. In healthy spines, $\alpha \approx 0.95$ (information and stress vectors aligned); in scoliotic regions, $\alpha$ drops to ${\sim}0.3$, creating a localized ``soft spot'' that directs the instability into the coronal plane.
 
-\textbf{3. Lenke Curve Type Emergence:} Clinical AIS does not manifest as a single curve shape, but rather specific, repeating patterns categorized by the Lenke classification system. We demonstrate that these patterns are not arbitrary; they are the natural eigenmodes of the coupled Cosserat rod system. By introducing regional variations in bending stiffness ($B(s)$) and proprioceptive gain ($K(s)$)—proxying local metabolic deficits—the model naturally selects n=1 (Lenke Type 5, single C-curve), n=2 (Lenke Type 3, double major S-curve), or n=3 (Lenke Type 4, triple curve) as energy-minimizing buckling states (Extended Data Fig. \ref{fig:lenke_classes}).
+The "Vector-Scalar Mismatch" theory predicts that removing the vector load (gravity) while maintaining scalar metabolism should induce a similar remodeling response. Indeed, spaceflight data confirms this prediction. Transcriptomic analysis of murine tissues in microgravity reveals a significant downregulation of Vimentin and Piezo1. In the absence of gravity, the "cost" of these sensors yields no benefit, and the organism actively sheds them to conserve energy. Scoliosis can thus be understood as a "terrestrial microgravity syndrome"---where the sensors are present but metabolically unfunded, leading to a functional loss of gravity sensation similar to actual spaceflight.
 
-\textbf{4. Cohort Validation:} We extracted historical curve progression data from foundational AIS cohorts (Weinstein 1983, Lonstein 1984). The trajectory of the predicted Cobb angle divergence in our Information-Elasticity Coupling model maps closely onto the age-vs-progression curves observed in these classical clinical datasets, confirming that the mathematical bifurcation point matches the true age of clinical detection (Extended Data Fig. \ref{fig:clinical_cohort_data}).
+Metabolic Buckling redefines AIS. It is not a random genetic error but a predictable system failure. The ``deformity'' is, in fact, a mechanism of thermodynamic survival: by buckling into a configuration that lowers the center of mass or reduces the active moment required to stay upright, the organism sheds the ``Anisotropy Tax'' it can no longer afford. While direct metabolic flux measurements in the growing human spine are currently invasive, the allometric scaling laws ($L^4$ vs $L^2$) provide a robust theoretical bound on energy availability that aligns with the observed clinical window of deformity. The specific molecular candidates identified (e.g., Vimentin, PIEZO2) are functional nodes in the control loop, and their failure modes match the predicted instability. This framework suggests that therapeutic interventions should shift from purely mechanical bracing to metabolic rescue---targeting mitochondrial biogenesis, circadian synchronization, and crucially, cytoskeletal anisotropy reduction to close the Energy Deficit Window.
 
 \section*{Methods}
 
-\textbf{Cosserat Rod Simulation.} We utilized \texttt{PyElastica}\cite{pyelastica_zenodo}, an open-source Python implementation of Cosserat rod theory, to model the spine as a continuous elastic rod. The rod was discretized into $N=50-100$ elements. The "Biological Countercurvature" was implemented via an Information-Elasticity Coupling (IEC) term.
+\textbf{Cosserat Rod Simulation.} We utilized \texttt{PyElastica}\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory, to model the spine as a continuous elastic rod. The rod was discretized into $n=50-100$ elements. The ``Biological Countercurvature'' was implemented via an Information-Elasticity Coupling (IEC) term that modifies the local rest curvature $\bm{\kappa}^0(s)$ based on a scalar information field $I(s)$ representing HOX patterning. The field was modeled as a bimodal Gaussian distribution corresponding to cervical and lumbar lordosis.
 
-\textbf{Energy Deficit Calculation.} The metabolic cost of countercurvature ($P_{counter}$) was defined as proportional to the Elastic Strain Energy rate: $P \propto U_{strain} \propto L^3$. Supply capacity ($S_{proprio}$) was modeled scaling as Surface Area ($L^2$). The deficit ratio $R = P_{counter} / S_{proprio}$ was computed across spinal lengths $L \in [0.2, 0.6]$ m.
+\textbf{Energy Deficit Calculation.} The metabolic cost of countercurvature ($P_{counter}$) was defined as proportional to $L^4$ (active moment scaling). Supply capacity ($S_{proprio}$) was modeled scaling as $L^2$ (surface-limited). The deficit ratio $R = P_{counter} / S_{proprio}$ was computed across spinal lengths $L \in [0.2, 0.6]$ m. Root-finding algorithms determined the critical length $L_{crit}$ where Supply = Demand.
 
-\textbf{AlphaFold Structural Analysis.} We retrieved predicted structures for 23 proteins from the AlphaFold Protein Structure Database\cite{jumper2021alphafold}. Structural anisotropy was calculated via the Gyration Tensor of the atomic coordinates.
+\textbf{AlphaFold Structural Analysis.} We retrieved predicted structures for 16 key proteins from the AlphaFold Protein Structure Database\cite{jumper2021alphafold}. Structural anisotropy was calculated via the Gyration Tensor of the atomic coordinates. The ``Thermodynamic Cost'' was defined as Anisotropy $\times$ Number of Residues. We specifically analyzed PIEZO2, PIEZO1, and COL1A1 to determine their mechanical cost.
+
+\textbf{Circadian and Torsional Modeling.} We simulated the temporal competition between protein classes tracking the energy pool $E(t)$ available for maintenance. For circadian disruption ("Spinal Jetlag"), the mechanosensory array fidelity $F(t)$ was evaluated under phase-shifted updates to the biological clock.
+
+\textbf{Numerical convergence and validation.} The \texttt{PyElastica} implementation was verified by reproducing standard buckling benchmarks, with error metrics $||\mathbf{r}_{num} - \mathbf{r}_{ana}||/L < 10^{-4}$.
 
 \bibliography{references}
-\bibliographystyle{naturemag}
+\bibliographystyle{unsrt}
 
 \end{document}

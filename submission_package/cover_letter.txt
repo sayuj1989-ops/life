@@ -6,22 +6,26 @@ Dear Dr. Skipper,
 
 We are pleased to submit our manuscript, "Metabolic buckling of the growing spine," for consideration as an Article in Nature.
 
-Living systems must actively maintain structural integrity against gravity, yet the physical cost of this victory remains unquantified. We present a first-principles derivation showing that the human spine is a "Thermodynamic Standing Wave"—a dissipative structure that inevitably buckles when metabolic supply fails to scale with the $L^4$ demand of straightening.
+Living systems must actively maintain structural integrity against gravity, yet the physical cost of this victory remains unquantified. We present a first-principles derivation showing that the human spine is a "Thermodynamic Standing Wave"—a dissipative structure that inevitably buckles when metabolic supply fails to scale with the L^4 demand of straightening against a gravitational field.
 
-Adolescent Idiopathic Scoliosis (AIS) affects 3% of the global population and remains a "medical mystery" despite decades of genomic research. We demonstrate that AIS is not a random bone disease, but a predictable "metabolic buckling" event. Using a novel Information-Cosserat framework, we identify a critical "Energy Deficit Window" ($L > 0.35$m) where the thermodynamic cost of high-fidelity mechanosensing outstrips metabolic capacity.
+Adolescent Idiopathic Scoliosis (AIS) affects 3% of the global population and remains a "medical mystery" despite decades of genomic research. We demonstrate that AIS is not a random bone disease, but a predictable "metabolic buckling" event. Using a novel Information-Cosserat framework, we identify a critical "Energy Deficit Window" (L > 0.35m) where the thermodynamic cost of high-fidelity mechanosensing outstrips metabolic capacity.
 
-Our structural analysis reveals a fatal flaw in vertebrate design: the very proteins required to sense gravity (e.g., Vimentin) are the most thermodynamically expensive to maintain. We show that "Vector-Scalar Mismatch"—the decoupling of expensive stiffness sensing from cheap volumetric growth—explains the specific vulnerability of the adolescent growth spurt.
+Our structural analysis reveals a fatal flaw in vertebrate design: the very proteins required to sense gravity (e.g., Vimentin, PIEZO2) are the most thermodynamically expensive to maintain. We show that "Vector-Scalar Mismatch"—the decoupling of expensive stiffness sensing from cheap volumetric growth—explains the specific vulnerability of the adolescent growth spurt.
 
-This work bridges theoretical physics, structural biology, and clinical medicine. It is not a specialist orthopedic study; it reveals a fundamental scaling law of vertebrate morphogenesis that redefines deformity as a strategy for thermodynamic survival.
+This work bridges theoretical physics, structural biology, and clinical medicine. It is not a specialist orthopedic study; rather, it reveals a fundamental scaling law of vertebrate morphogenesis that redefines physical deformity as a strategy for thermodynamic survival.
 
-We suggest the following reviewers:
-1. Prof. Alain Goriely (Oxford) - Biological Physics
-2. Prof. Donald Ingber (Wyss Institute) - Mechanobiology
-3. Dr. Lawrence Lenke (Columbia) - Spinal Surgery
+We suggest the following interdisciplinary reviewers:
+1. Prof. Alain Goriely (University of Oxford) - Mathematical Modeling of Morphogenesis and Elasticity
+2. Prof. Donald Ingber (Wyss Institute, Harvard) - Mechanobiology and Tensegrity in Living Systems
+3. Dr. Lawrence Lenke (Columbia University) - Biomechanics of Spinal Deformity
 
 The authors declare no competing interests.
 
+Thank you for your time and consideration.
+
 Sincerely,
 
-Dr. Sayuj Krishnan S
-Yashoda Hospitals, Hyderabad
+Sayuj Krishnan S., MBBS, DNB
+Consultant Neurosurgeon and Spine Surgeon
+Yashoda Hospitals, Malakpet, Hyderabad, India
+hellodr@drsayuj.info

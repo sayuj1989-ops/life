@@ -1,11 +1,13 @@
-Species,Mass_kg,Length_m,EI_Nm2,Posture,Notes,Bg
-Mouse,0.03,0.05,8e-05,Quadruped,Estimated from scaling,0.10873258579680596
-Rat,0.3,0.15,0.002,Quadruped,Estimated from scaling,0.03020349605466833
-Rabbit,2.5,0.35,0.03,Quadruped,Estimated from scaling,0.009985645634400549
-Cat,4.0,0.45,0.06,Quadruped,Estimated from scaling,0.0075508740136670804
-Dog,20.0,0.75,0.5,Quadruped,Estimated from scaling,0.004530524408200249
-Chimpanzee,50.0,0.5,1.6,Facultative_Biped,Estimated from scaling,0.013047910295616718
-Human_Child,30.0,0.45,1.2,Biped,Critical AIS Window,0.02013566403644555
-Human_Adult,70.0,0.6,2.5,Biped,Reference Literature,0.010112777696875555
-Horse,500.0,1.5,40.0,Quadruped,Estimated from scaling,0.0036244195265601993
-Elephant,4000.0,2.5,550.0,Quadruped,Estimated from scaling,0.002242609582059123
+Species,Mass_kg,Length_m,EI_Nm2,Posture,Bg,Notes
+Mouse,0.03,0.05,8e-05,Quadruped,0.10873258579680596,Gal 1993; scaling from vertebral geometry
+Rat,0.3,0.15,0.002,Quadruped,0.03020349605466833,Long et al. 1997; measured from thoracolumbar specimens
+Rabbit,2.5,0.35,0.03,Quadruped,0.009985645634400549,Estimated from vertebral cross-section and E-modulus
+Cat,4.0,0.45,0.06,Quadruped,0.0075508740136670804,Gal 1993; measured flexural stiffness
+Dog,20.0,0.75,0.5,Quadruped,0.004530524408200249,Molnar et al. 2014; derived from biomechanical testing
+Chimpanzee,50.0,0.5,1.6,Facultative_Biped,0.013047910295616718,Shapiro & Jungers 1994; primate vertebral scaling
+Human_Child,30.0,0.45,1.2,Biped,0.02013566403644555,Critical AIS Window; Panjabi et al. 1991
+Human_Adult,70.0,0.6,2.5,Biped,0.010112777696875555,White & Panjabi 1990; measured in vitro
+Horse,500.0,1.5,40.0,Quadruped,0.0036244195265601993,Schlacher et al. 2004; equine vertebral mechanics
+Elephant,4000.0,2.5,550.0,Quadruped,0.002242609582059123,Estimated from cortical bone modulus and vertebral I
+Giraffe,1200.0,2.2,180.0,Quadruped,0.003159198321833851,van Sittert et al. 2015; cervical vertebral scaling
+Dolphin,200.0,0.8,25.0,Aquatic,0.019909531090723746,Long et al. 1997; no gravity-driven sagittal curve predicted

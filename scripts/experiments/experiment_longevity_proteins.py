@@ -16,14 +16,9 @@ Date: 2026-02-07
 """
 
 import csv
-import time
-from pathlib import Path
-import os
-import sys
 from dataclasses import dataclass
-from typing import List, Dict, Any
-
-import numpy as np
+from pathlib import Path
+from typing import Any, Dict, List
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -281,9 +276,9 @@ def main():
         print(f"  ✅ Extended CSV: {csv_path}")
 
     print(f"\n  Mapped {len(TARGETS)} proteins total:")
-    print(f"  - core framework: 23 proteins")
-    print(f"  - longevity new : 3 proteins")
-    print(f"  - dual-role     : 2 proteins (SIRT1, PPARGC1A)")
+    print("  - core framework: 23 proteins")
+    print("  - longevity new : 3 proteins")
+    print("  - dual-role     : 2 proteins (SIRT1, PPARGC1A)")
 
 if __name__ == "__main__":
     main()

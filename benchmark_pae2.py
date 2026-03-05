@@ -1,5 +1,7 @@
-import numpy as np
 import time
+
+import numpy as np
+
 
 def current_reduce(pae_hc, indices, valid_lengths):
     row_sums = np.add.reduceat(pae_hc, indices, axis=0)

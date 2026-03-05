@@ -1,6 +1,9 @@
-import numpy as np
 import time
+
+import numpy as np
+
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+
 
 def benchmark():
     N = 3000

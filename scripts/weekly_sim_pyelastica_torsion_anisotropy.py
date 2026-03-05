@@ -1,12 +1,13 @@
-import sys
 import os
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
+import sys
 import time
 import tracemalloc
 from datetime import datetime
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
@@ -40,7 +41,7 @@ def run_sweep():
     out_dir = Path(f"outputs/sim/{date_str}_torsion_anisotropy_sweep")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Starting Torsion & Anisotropy Sweep...")
+    print("Starting Torsion & Anisotropy Sweep...")
     print(f"Active Curvature: {active_curvature}, Defect: {initial_lateral_defect}")
 
     tracemalloc.start()

@@ -332,10 +332,11 @@ class MetricsAnalyzer:
         if len(plddt_scores) > 0:
             mean_plddt = np.mean(plddt_scores)
             median_plddt = np.median(plddt_scores)
-            fraction_high = np.sum(plddt_scores >= 90) / len(plddt_scores)
-            fraction_ok = np.sum((plddt_scores >= 70) & (plddt_scores < 90)) / len(plddt_scores)
-            fraction_low_conf = np.sum(plddt_scores < 70) / len(plddt_scores)
-            disorder_fraction = np.sum(plddt_scores < 50) / len(plddt_scores)
+            # ⚡ Bolt Optimization: count_nonzero is faster than sum for booleans
+            fraction_high = np.count_nonzero(plddt_scores >= 90) / len(plddt_scores)
+            fraction_ok = np.count_nonzero((plddt_scores >= 70) & (plddt_scores < 90)) / len(plddt_scores)
+            fraction_low_conf = np.count_nonzero(plddt_scores < 70) / len(plddt_scores)
+            disorder_fraction = np.count_nonzero(plddt_scores < 50) / len(plddt_scores)
         else:
             mean_plddt = 0
             median_plddt = 0

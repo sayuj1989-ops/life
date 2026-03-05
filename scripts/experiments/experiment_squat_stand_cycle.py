@@ -19,9 +19,6 @@ Author: Dr. Sayuj Krishnan S
 """
 
 import csv
-import time
-import argparse
-from pathlib import Path
 import os
 import sys
 
@@ -31,17 +28,12 @@ import numpy as np
 # Ensure src is in path
 sys.path.append(os.getcwd())
 
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy.integrate
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+
 
 def define_squat_stand_trajectory(T_cycle, n_steps, L):
     """

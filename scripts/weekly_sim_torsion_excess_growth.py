@@ -1,19 +1,18 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
+import csv
+import random
+import sys
 import time
 import tracemalloc
-import csv
-import sys
-import random
-from typing import List, Dict, Any
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Ensure project root is in path
 sys.path.append(".")
 
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem, run_protein_simulation
-from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
+from src.spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation
+
 
 def run_experiment():
     print("Starting Torsion with Excess Growth Experiment...")

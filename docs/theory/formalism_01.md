@@ -540,6 +540,31 @@ $$ \mathcal{T}_{neuro} = \frac{k_{cord}}{k_{spine}} = \frac{E_{cord} A_{cord} / 
     *   **Data Needed**: Longitudinal MRI data measuring the relative growth velocities of the spinal cord ($\dot{L}_{cord}$) and the vertebral column ($\dot{L}_{spine}$) during the adolescent growth spurt in a cohort, correlated with the onset of idiopathic scoliosis.
     *   **Refutation**: If the onset of scoliotic curvature occurs without any measurable mismatch in neuro-osseous growth rates (i.e., $\dot{L}_{spine} / \dot{L}_{cord} \approx 1$), then mechanical tethering due to asynchronous growth cannot be the primary driver of the geometric instability. (Reference: Porter, 2001).
 
+### 2.34. The Sensor-Anisotropy Energy Number ($\mathcal{A}_{cost}$)
+
+We define a dimensionless coupling constant relating the metabolic maintenance cost of structural anisotropy in mechanosensitive proteins to the available local metabolic supply. Highly anisotropic sensors (e.g., Vimentin, Piezo2) require continuous energy expenditure to resist thermal and enzymatic degradation and maintain their extended conformation.
+
+$$ \mathcal{A}_{cost} = \frac{A_{sensor} \cdot E_{maint}}{E_{supply}} $$
+
+*   **Symbols**:
+    *   $A_{sensor}$: Mean aspect ratio (anisotropy) of the primary mechanosensor population $[1]$ (Dimensionless).
+    *   $E_{maint}$: Basal metabolic energy rate required to maintain one unit of anisotropy $[ML^2T^{-3}]$ (Watts).
+    *   $E_{supply}$: Total local metabolic energy supply rate to the paraspinal tissue compartment $[ML^2T^{-3}]$ (Watts).
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{A}_{cost} \ll 1$: The metabolic supply is sufficient to maintain the anisotropic sensors, ensuring proper vector-strain sensing and spinal stability.
+    *   $\mathcal{A}_{cost} > 1$: The cost of maintaining high-anisotropy sensors exceeds supply. The system undergoes "Metabolic Buckling," where cells shed expensive, extended sensors to conserve energy, losing directional sensitivity and precipitating scoliotic curvature.
+*   **Measurable Proxy**: The ratio of the in vitro ATP consumption rate per cell of paraspinal myoblasts to the mean aspect ratio of their primary structural mechanosensors (e.g., measured via structured illumination microscopy) under peak adolescent growth conditions.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Isotropic Substitution Rescue**
+    *   **Data Needed**: Measurement of Cobb angle progression during the rapid growth phase in a scoliotic animal model (e.g., bipedal mouse) where a highly anisotropic mechanosensor (e.g., endogenous Vimentin) is replaced via CRISPR with a functionally similar but significantly lower-anisotropy variant (e.g., a truncated rod domain).
+    *   **Refutation**: If the lower-anisotropy variant fails to rescue the scoliotic phenotype, or worsens it by failing to provide necessary directional sensitivity despite lowering the metabolic demand, the hypothesis that the energetic cost of anisotropy is the limiting factor during growth is falsified. (Reference: Alberts et al., 2002).
+*   **Test 2: The ATP-Depletion Induced Buckling**
+    *   **Data Needed**: Quantitative measurement of sensor alignment and spinal curvature (or equivalent geometric stability metric) in a 3D spinal organoid or explant subjected to graded, chronic ATP depletion (e.g., using sub-lethal oligomycin doses) without altering external mechanical load.
+    *   **Refutation**: If sensor anisotropy is maintained and geometric buckling does not occur despite significant ATP depletion, the assumption that highly anisotropic sensors are selectively shed under metabolic stress is falsified. (Reference: Vining \& Mooney, 2017).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

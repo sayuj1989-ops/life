@@ -48,30 +48,33 @@
 | **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
 | **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
 | **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
+| **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_torsional_buckling.py`) |
+| **Toy E** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_delayed_control.py`) |
+| **Toy F** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_holographic_lattice.py`) |
 
 ---
 
 ## Part 2: Proposed Validation Experiments (Future)
 
-To further de-risk the theory and provide robust validation, the following toy models and real experiments are proposed:
+To further de-risk the theory and provide robust validation, the following real experiments are proposed:
 
-### Proposed Additional Toy Models
+### Additional Toy Models (Completed)
 
-1.  **Torsional Buckling Model:**
+1.  **Torsional Buckling Model:** ✅ **Implemented** (`scripts/experiments/toy_model_torsional_buckling.py`)
     *   **Objective:** Demonstrate that information-coupled systems resist torsional loads better than passive Euler columns.
     *   **Method:** 1D Cosserat rod with an active twisting moment counteracting applied torque.
     *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.
     *   **Expected Outcome:** Active model maintains stability up to $2\times$ the passive $T_{crit}$.
     *   **Stop Condition:** Analytical solution matches numerical simulation within 5% error.
 
-2.  **Information-Coupled Thermostatic Column:**
+2.  **Information-Coupled Thermostatic Column:** ✅ **Implemented** (`scripts/experiments/toy_model_delayed_control.py`)
     *   **Objective:** Extend Toy Model A to include a delayed feedback loop mimicking biological sensor lag.
     *   **Method:** 1D column with a PID controller regulating stiffness based on strain, with a defined time delay $\tau$.
     *   **Success Metric:** Identification of a critical delay $\tau_{crit}$ that induces oscillatory instability (hunting).
     *   **Expected Outcome:** System becomes unstable when $\tau$ exceeds the mechanical relaxation time.
     *   **Stop Condition:** Phase diagram maps stable vs. unstable regions across $(\tau, L)$ parameter space.
 
-3.  **Holographic Instability Lattice:**
+3.  **Holographic Instability Lattice:** ✅ **Implemented** (`scripts/experiments/toy_model_holographic_lattice.py`)
     *   **Objective:** Verify the "Exploding Gradient" region using a minimal 2D lattice.
     *   **Method:** 2D spring-mass lattice where resting lengths update based on local stress gradients.
     *   **Success Metric:** Emergence of macroscopic curvature from isotropic initial conditions under high information-coupling ($\chi_\kappa$).

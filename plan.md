@@ -1,23 +1,25 @@
-1. **Incorporate comprehensive statistical results into the manuscript (`manuscript/sections/results.tex` or `manuscript/sections/tables.tex`):**
-   - Add the statistical findings identified in the Independent Data Analysis Report:
-     - Cross-Species Allometric Scaling ($Bg$ vs body mass): $R^2 = 0.744, p = 1.31 \times 10^{-3}$, scaling exponent $-0.282 \pm 0.072$.
-     - Anisotropy Rescue Effect: $R^2 = 0.775, p < 10^{-17}$.
-     - Energy Deficit Window: correlation of spine length with Cobb angle $r = 0.983, p = 2.74 \times 10^{-22}$.
-     - Circadian Disruption: 2.52-fold increase in Cobb angle, $p = 2.59 \times 10^{-4}$.
-     - Vector Mismatch Localization: peak stiffness mismatch at $0.596$.
+1. **Update Title and Abstract**:
+   - Modify the title in `manuscript/main.tex` to remove the word "Spacetime" (e.g., "Biological Counter-Curvature: An Information–Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis").
+   - Condense `manuscript/sections/abstract.tex` to be under 150 words while retaining the core message, per Nature guidelines.
 
-2. **Add Sensitivity Analysis acknowledging low-confidence proteins:**
-   - In the protein analysis section (likely `manuscript/sections/results.tex` and/or `discussion.tex`), explicitly acknowledge that 7/27 proteins have low AlphaFold confidence ($pLDDT < 70$), specifically mentioning key narrative proteins like POC5, GHR, and MESP2.
-   - Mention intrinsically disordered regions (IDRs) limitation and that the Gamma_m proteins' higher disorder fraction fits their role as signaling hubs.
+2. **Refine Content**:
+   - Verify that there are no remaining mentions of 'consciousness' in the manuscript text (`manuscript/sections/discussion.tex`, etc.) as verified via `grep`.
+   - Remove the heavy General Relativity analogy from `manuscript/sections/theory.tex` to make it more accessible for biomechanics journals.
 
-3. **Incorporate a formal Statistical Summary Table into `manuscript/sections/tables.tex`**
-   - Create a table presenting the 4 core statistical claims from the peer review report.
+3. **Fix Citations and References**:
+   - Identify undefined citations in the LaTeX build log (e.g., those warned about during `pdflatex` compilation).
+   - Fetch real, missing citations dynamically via Crossref/NCBI API and append them to `manuscript/references.bib` to resolve LaTeX warnings.
+   - Remove or replace unpublished, future-dated references (e.g., 2026 dates, "in preparation", self-citations).
 
-4. **Address L_crit clinical mapping:**
-   - In `manuscript/sections/results.tex`, state that the predicted $L_{crit} \approx 0.35$ m corresponds to age 11-12 years in standard CDC/WHO growth charts, providing retrospective clinical validation.
+4. **Generate Missing Figures**:
+   - Run the confirmed script `scripts/generate_nature_figures.sh` to generate the required Nature figures and ensure they exist.
+   - Ensure the figure references in the manuscript are correctly linked and compile successfully.
 
-5. **Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.**
-   - Run `pre_commit_instructions` tool and execute the checks.
+5. **Test and Verify**:
+   - Run the project's test suite (e.g., `pytest` and `ruff check .`) to ensure the changes are correct and have not introduced regressions.
 
-6. **Submit changes:**
-   - Commit and submit.
+6. **Complete pre-commit steps**:
+   - Complete pre commit steps to make sure proper testing, verifications, reviews and reflections are done.
+
+7. **Submit**:
+   - Commit the changes to a new branch and submit the manuscript package.

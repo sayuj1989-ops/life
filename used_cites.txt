@@ -1,0 +1,62 @@
+ bastien2013unifying
+ chen2017mechanotransduction
+ clement2025adaptation
+ fletcher2010cell
+ gazzola2018forward
+ goriely2017mathematics
+ govey2013gravity
+ handschin2024paraspinal
+ hoffman2011cell
+ kang2025tension
+ kechagia2019integrins
+ lewis2003segmentation
+ mammoto2013mechanobiology
+ niklas1994plant
+ panciera2017mechanobiology
+ proximo2012proprioception
+ rolfe1997cellular
+ roughley2004biology
+ sato2025convective
+ saunders1948proximodistal
+ vining2017mechanotransduction
+ weinstein2008adolescent
+cheng2015ais
+chesler2016piezo2
+coen2004war
+coste2010piezo
+cover2006elements
+domenech2016melatonin
+dudek2017clock
+friston2013life
+frost1987mechanostat
+gazzola2018forward
+goriely2017mathematics
+green2018spinal
+handschin2024paraspinal
+ingber2006cellular
+kier1985hydrostatic
+kouwenhoven2006organ
+latimer2005upright
+lovejoy2005hominid
+lynch2015bioenergetic
+moulton2013morphoelastic
+newton2005differential
+niklas1994plant
+oconnell2007scaling
+pourquie2011vertebrate
+prigogine1977self
+pyelastica_zenodo
+rodriguez1994stress
+sato2025convective
+setton2004ivd
+thompson1917growth
+todorov2002optimal
+ugur2024hypoxia
+urban2004nutrition
+villemure2009growth
+wei2015sirt1
+wellik2007hox
+west1997general
+white_panjabi_spine
+wolpert1969positional
+wuest2025vim

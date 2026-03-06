@@ -135,6 +135,44 @@ def generate_report(data):
 
     return report
 
+def update_roadmap(filepath, data, expected_date):
+    """
+    Updates the ## Progress Tracking section in the roadmap file.
+    """
+    if not os.path.exists(filepath):
+        return
+
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    active_phase = "None"
+    for phase, stats in data['phases'].items():
+        phase_percent = (stats['completed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        if phase_percent < 100 and active_phase == "None":
+            active_phase = phase
+    if active_phase == "None":
+        active_phase = list(data['phases'].keys())[-1] if data['phases'] else "None"
+
+    status = "In Progress"
+    if data['percent_complete'] == 100:
+        status = "Completed"
+    elif data['percent_complete'] == 0:
+        status = "Not Started"
+
+    progress_text = f"""## Progress Tracking
+
+**Current Phase:** {active_phase}
+**Percent Complete:** {data['percent_complete']:.1f}% (Calculated by script)
+**Projected Completion:** {expected_date}
+**Status:** {status}
+"""
+
+    new_content = re.sub(r'## Progress Tracking\s*.*', progress_text, content, flags=re.DOTALL)
+
+    with open(filepath, 'w') as f:
+        f.write(new_content)
+
+
 def save_report(report):
     """
     Saves the report to a file with the current date.
@@ -165,7 +203,10 @@ if __name__ == "__main__":
         print(error)
         sys.exit(1)
     else:
+        expected_date = calculate_projection(data)
         report = generate_report(data)
         print(report)
         saved_path = save_report(report)
+        update_roadmap(roadmap_path, data, expected_date)
         print(f"\nReport saved to: {saved_path}")
+        print(f"Roadmap updated: {roadmap_path}")

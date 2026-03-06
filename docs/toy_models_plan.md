@@ -2,7 +2,7 @@
 
 **Purpose:** To de-risk the complex Cosserat simulation and provide intuitive validation for "Metabolic Buckling" and "Active Countercurvature".
 
-**Status:** ✅ Completed (2026-05-25)
+**Status:** ✅ Completed (2026-03-06)
 
 ## Toy Model A: 1D Thermostatic Column (Thermodynamic)
 

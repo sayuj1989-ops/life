@@ -1,0 +1,20 @@
+This diagram illustrates the Information-Elasticity Coupling (IEC) framework and the supercritical bifurcation leading to adolescent idiopathic scoliosis (AIS).
+
+The visual should be split into two main panels: a circular feedback loop and a bifurcation diagram.
+
+Panel 1: The Mechanogenetic Feedback Loop
+- At the top, show a "HOX Gene Patterning" block, radiating a glowing "Information Field" (target curvature).
+- An arrow flows down to "Spinal Geometry", represented by a healthy, glowing S-shaped spine (lordosis and kyphosis).
+- From the spine, arrows point outwards labeled "Mechanical Stress", interacting with "Gravity" (downward arrows).
+- The Mechanical Stress feeds into a "Mechanotransduction" block (representing sensory proteins like PIEZO2).
+- An arrow labeled "Metabolic Supply" flows back to the top, closing the loop.
+- Highlight a critical "Demand-Supply Gap" as a red fractured link between Mechanotransduction and Metabolic Supply, indicating where the loop breaks down during rapid growth.
+
+Panel 2: Supercritical Bifurcation
+- A graph showing Spinal Length (L) on the x-axis and Structural Deformity (Scoliosis Angle) on the y-axis.
+- The curve remains flat (zero deformity) until a "Critical Length" (L_c) is reached.
+- At L_c, the line splits dramatically upwards and downwards in a pitchfork shape, colored in an alarm-red gradient.
+- Label this branching point "Adolescent Growth Spurt (Bifurcation Point)".
+- Connect the broken red link from Panel 1 with a dashed line to this bifurcation point in Panel 2.
+
+Style: High-impact scientific illustration suitable for Nature or Science. Use dark backgrounds with glowing neon elements (electric blue for healthy information, amber for mechanical stress, and crimson red for the defect/bifurcation). Crisp, modern vector-style aesthetics with clear, legible annotations.

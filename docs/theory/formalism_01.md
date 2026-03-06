@@ -565,6 +565,31 @@ $$ \mathcal{A}_{cost} = \frac{A_{sensor} \cdot E_{maint}}{E_{supply}} $$
     *   **Data Needed**: Quantitative measurement of sensor alignment and spinal curvature (or equivalent geometric stability metric) in a 3D spinal organoid or explant subjected to graded, chronic ATP depletion (e.g., using sub-lethal oligomycin doses) without altering external mechanical load.
     *   **Refutation**: If sensor anisotropy is maintained and geometric buckling does not occur despite significant ATP depletion, the assumption that highly anisotropic sensors are selectively shed under metabolic stress is falsified. (Reference: Vining \& Mooney, 2017).
 
+### 2.35. The Durotactic Growth Coupling Constant ($\Gamma_{duro}$)
+
+We posit that cells bias their growth and ECM deposition along gradients of mechanical stiffness (durotaxis). $\Gamma_{duro}$ defines the coupling strength between the spatial gradient of ECM stiffness ($\nabla E_{ECM}$) and the resulting anisotropic growth strain rate ($\Delta \dot{\varepsilon}_{aniso}$).
+
+$$ \Delta \dot{\varepsilon}_{aniso} = \Gamma_{duro} \cdot \nabla E_{ECM} $$
+
+*   **Symbols**:
+    *   $\Delta \dot{\varepsilon}_{aniso}$: The anisotropic component of the growth strain rate tensor $[T^{-1}]$.
+    *   $E_{ECM}$: Local Young's modulus of the extracellular matrix $[M L^{-1} T^{-2}]$.
+    *   $\nabla E_{ECM}$: Spatial gradient of the ECM stiffness $[M L^{-2} T^{-2}]$.
+    *   $\Gamma_{duro}$: Durotactic Growth Coupling Constant $[M^{-1} L^2 T]$.
+*   **Dimensions**:
+    *   $[\Gamma_{duro}] = [\Delta \dot{\varepsilon}_{aniso}] / [\nabla E_{ECM}] = [T^{-1}] / [M L^{-2} T^{-2}] = [M^{-1} L^2 T]$.
+*   **Physical Interpretation**: A higher $\Gamma_{duro}$ indicates a stronger tendency of the tissue to polarize its growth towards stiffer regions, effectively acting as an error-correcting mechanism when counter-curvature creates asymmetric stress/stiffness distributions.
+*   **Measurable Proxy**: The spatial gradient of ECM stiffness ($\nabla E_{ECM}$) across the vertebral body or growth plate, measured via Atomic Force Microscopy (AFM).
+
+#### Falsifiable Tests
+
+*   **Test 1: The Durotactic Decoupling**
+    *   **Data Needed**: Measurement of anisotropic growth vectors (e.g., via fluorescent fiducial markers) in paraspinal explants cultured on substrates with engineered stiffness gradients, with and without pharmacological inhibition of stiffness sensing (e.g., focal adhesion kinase (FAK) inhibitors).
+    *   **Refutation**: If polarized growth ($\Delta \dot{\varepsilon}_{aniso}$) remains unaffected despite the complete decoupling of cellular stiffness sensing, the assumption that stiffness gradients actively direct growth is falsified. (Reference: Lo et al., 2000).
+*   **Test 2: The Homogenized Stiffness Rescue**
+    *   **Data Needed**: Curvature progression in animal models of induced scoliotic buckling treated with agents that uniformly crosslink the ECM (e.g., systemic genipin or advanced glycation end-products), thereby artificially erasing local stiffness gradients ($\nabla E_{ECM} \to 0$) without softening the tissue.
+    *   **Refutation**: If the loss of the stiffness gradient does not accelerate or worsen the buckling instability (i.e., if uniform stiffness alone is sufficient for stable straight growth), the specific requirement for a durotactic gradient feedback loop is falsified. (Reference: Iskratsch et al., 2014).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -989,3 +1014,5 @@ The theory makes specific predictions about the relationship between genetic ani
 67. **Hu, X., et al. (2025).** "PIEZO1 triggers osteocyte dendrite formation through YAP-CCN1/2 signaling." *eLife*. (Establishes the Piezo1-YAP-CCN1/2 axis for osteocyte dendrite formation under mechanical stress).
 68. **Schipani, E., et al. (2001).** "Hypoxia in cartilage: HIF-1alpha is essential for chondrocyte growth arrest and survival." *Genes & Development*, 15(21). (Foundational work on hypoxia in avascular skeletal tissues).
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
+70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
+71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).

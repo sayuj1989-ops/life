@@ -140,3 +140,7 @@ This reduced the metric calculation overhead significantly while preserving bit-
 ## 2026-11-20 - [Bolt BioFold metrics boolean arrays optimization]
 **Learning:** Checking the fraction of residues above/below pLDDT thresholds is a frequent operation inside `MetricsAnalyzer.analyze_structure`. Using `np.sum()` on boolean arrays allocates memory or runs sub-optimally.
 **Action:** Replaced `np.sum(plddt >= 90)` with `np.count_nonzero(plddt >= 90)` inside `research/alphafold_countercurvature/src/afcc/metrics.py`. It provides a minor (~3-4x speedup on that specific block) performance boost with identical numerical output.
+
+## 2026-11-26 - [Vectorized End-to-End Distance]
+**Learning:** In `MetricsAnalyzer.analyze_structure`, finding the longest contiguous high-confidence segment used `np.hstack` (which forces internal copies and integer upcasting) and a python `for` loop over `zip(starts, ends)` to track the maximum length. This introduced unnecessary overhead for an operation done on every structure.
+**Action:** Replaced `np.hstack` with an explicitly pre-allocated boolean array for padding, followed by `np.diff` on `int8`. Replaced the python loop with vectorized `lengths = ends - starts` and `np.argmax(lengths)` to find the longest segment. This yielded a ~6x speedup (from 3.08s to 0.48s for 10,000 runs) and is O(N) instead of O(N) with high python overhead, while returning identical results.

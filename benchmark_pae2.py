@@ -1,37 +1,59 @@
-import time
-
 import numpy as np
+import timeit
 
+def orig(coords, plddt_scores):
+    mask_hc = plddt_scores >= 70
+    is_hc = mask_hc.astype(int)
+    bounded = np.hstack(([0], is_hc, [0]))
+    d = np.diff(bounded)
+    starts = np.where(d == 1)[0]
+    ends = np.where(d == -1)[0]
 
-def current_reduce(pae_hc, indices, valid_lengths):
-    row_sums = np.add.reduceat(pae_hc, indices, axis=0)
-    block_sums = np.add.reduceat(row_sums, indices, axis=1)
-    return block_sums
+    max_len = 0
+    best_segment = None
 
-def new_reduce(pae_hc, indices, valid_lengths):
-    # reduceat along axis 1 (cols) first because array is C-contiguous (default)
-    # This improves memory access patterns
-    col_sums = np.add.reduceat(pae_hc, indices, axis=1)
-    block_sums = np.add.reduceat(col_sums, indices, axis=0)
-    return block_sums
+    for s, e in zip(starts, ends):
+        length = e - s
+        if length > max_len:
+            max_len = length
+            best_segment = (s, e)
 
-N = 2500
-pae_hc = np.random.randint(0, 32, size=(N, N), dtype=np.uint8)
-valid_lengths = np.random.randint(10, 50, size=50)
-indices = np.cumsum([0] + list(valid_lengths))[:-1]
+    if best_segment:
+        s, e = best_segment
+        seg_coords = coords[s:e]
+        if len(seg_coords) > 1:
+            end_to_end = np.linalg.norm(seg_coords[-1] - seg_coords[0])
+        else:
+            end_to_end = 0.0
+    else:
+        end_to_end = 0.0
+    return float(end_to_end)
 
-pae_hc = np.ascontiguousarray(pae_hc)
+def opt(coords, plddt_scores):
+    mask_hc = plddt_scores >= 70
+    bounded = np.empty(len(mask_hc) + 2, dtype=bool)
+    bounded[0] = False
+    bounded[-1] = False
+    bounded[1:-1] = mask_hc
 
-t0 = time.time()
-for _ in range(5000):
-    res1 = current_reduce(pae_hc, indices, valid_lengths)
-t1 = time.time()
-print(f"Current method (axis 0 then 1): {t1 - t0:.4f} seconds")
+    d = np.diff(bounded.astype(np.int8))
+    starts = np.where(d == 1)[0]
+    ends = np.where(d == -1)[0]
 
-t0 = time.time()
-for _ in range(5000):
-    res2 = new_reduce(pae_hc, indices, valid_lengths)
-t1 = time.time()
-print(f"New method (axis 1 then 0): {t1 - t0:.4f} seconds")
+    lengths = ends - starts
+    if len(lengths) == 0:
+        return 0.0
 
-print(f"Equal? {np.array_equal(res1, res2)}")
+    best_idx = np.argmax(lengths)
+    s = starts[best_idx]
+    e = ends[best_idx]
+
+    if e - s > 1:
+        return float(np.linalg.norm(coords[e-1] - coords[s]))
+    return 0.0
+
+coords = np.random.rand(5000, 3)
+plddt_scores = np.random.rand(5000) * 100
+
+print(orig(coords, plddt_scores))
+print(opt(coords, plddt_scores))

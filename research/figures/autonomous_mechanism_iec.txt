@@ -1,0 +1,8 @@
+A high-impact scientific diagram illustrating the Mechanogenetic Feedback Loop in the human spine.
+
+The flow begins with 'Genetic Information' (HOX patterning), which targets a specific spinal geometry. This 'Target Geometry' produces significant 'Mechanical Stress' on the developing structure.
+This Mechanical Stress is sensed by robust structural mechanosensors (Demand) like PIEZO2, which in turn require vast metabolic resources to function.
+These resources must be supplied by metabolic regulators (Supply) like SIRT1 and FOXO3.
+A central bottleneck or critical junction exists where Demand and Supply intersect. When structural Demand greatly outpaces metabolic Supply (the 72% Anisotropy Gap), a severe 'Thermodynamic Vulnerability' occurs.
+This vulnerability culminates in the breakdown of the feedback loop, leading to the rapid progression of Adolescent Idiopathic Scoliosis.
+The visual should use a clean, modern style suitable for Nature or Science, utilizing distinct color coding for Information (gold/yellow), Stress (red), and Supply (blue).

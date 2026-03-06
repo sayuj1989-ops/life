@@ -1,5 +1,7 @@
-* Scoliosis is a "Metabolic Buckling" event due to an L^4 vs L^2 scaling mismatch.
-* Spinal "Counter-Curvature" is a thermodynamic standing wave, not a static equilibrium.
-* We identify a critical Energy Deficit Window at length L > 0.35m driving instability.
-* High-anisotropy mechanosensors (PIEZO2) impose an unaffordable "Anisotropy Tax".
-* Reducing sensor anisotropy rescues spinal stability in Cosserat rod simulations.
+Highlights:
+
+* The human spine operates in an "Allometric Trap" requiring active metabolic upkeep.
+* Spine growth creates an $L^4$ vs $L^2$ scaling divergence driving an energy deficit.
+* Mechanosensors like PIEZO2 carry a massive thermodynamic anisotropy tax.
+* Adolescent Idiopathic Scoliosis is reclassified as metabolic buckling, not just mechanical.
+* Reducing cytoskeletal anisotropy may offer a root-cause metabolic therapy.

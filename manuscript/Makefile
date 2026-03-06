@@ -6,11 +6,11 @@ Date: February 21, 2026
 To the Editor-in-Chief,
 *Biomechanics and Modeling in Mechanobiology*
 
-**Subject: Submission of original research article "Biological Countercurvature of Spacetime: An Information-Cosserat Framework for Vertebral Geometry"**
+**Subject: Submission of original research article "Biological Counter-Curvature: An Information–Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis"**
 
 Dear Editor,
 
-I am pleased to submit our original research manuscript entitled "Biological Countercurvature of Spacetime: An Information-Cosserat Framework for Vertebral Geometry"  for consideration for publication in *Biomechanics and Modeling in Mechanobiology*.
+I am pleased to submit our original research manuscript entitled "Biological Counter-Curvature: An Information–Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis"  for consideration for publication in *Biomechanics and Modeling in Mechanobiology*.
 
 This work addresses a foundational challenge in orthopedic biomechanics and morphogenesis: how living systems, specifically the human spine, actively maintain complex, load-bearing geometries (like the robust S-shaped profile) against the constant morphogenetic cue of gravity. While classical mechanics predicts that a flexible column will passively sag under its own weight , we introduce a quantitative framework that treats the spine's healthy S-curve as an actively maintained "countercurvature".
 

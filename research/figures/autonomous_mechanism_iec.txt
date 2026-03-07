@@ -1,0 +1,15 @@
+Title: Mechanogenetic Demand-Supply Gap Mechanism Diagram
+
+Concept: A highly visual, detailed flowchart or causal loop diagram explaining the core Information-Elasticity Coupling (IEC) framework and the Mechanogenetic Demand-Supply Gap. This mechanism shows how thermodynamic scaling leads to adolescent spinal vulnerability.
+
+Components:
+1. Origin Node (Top): "Genetic Information (HOX Patterning)" - Represented by a glowing DNA helix or genetic sequence.
+2. Target Node (Right): "Target Geometry (The S-Curve)" - A glowing, ideal human spinal profile (lordosis and kyphosis).
+3. Stress Node (Bottom Right): "Mechanical Stress (Gravity)" - Downward vectors emphasizing the load of gravity against the structure.
+4. Demand Node (Bottom Left): "Mechanosensors (Demand)" - Proteins like Fibrillin and PIEZO2 that sense structural mechanical stress. Shown in high-energy, warm colors (red/orange) to signify metabolic cost.
+5. Supply Node (Left): "Metabolic Regulators (Supply)" - The metabolic network attempting to supply energy to maintain geometry. Shown in cool colors (blue/green).
+
+Crucial Interaction: An interconnected loop runs from Genetic Information -> Target Geometry -> Mechanical Stress -> Mechanosensors -> Metabolic Regulators -> back to Target Geometry.
+However, there is a visible, dramatic "Fracture" or "Chasm" between the Mechanosensors (Demand) and Metabolic Regulators (Supply). This fracture is labeled "Thermodynamic Vulnerability: 72% Demand-Supply Anisotropy Gap".
+
+Style: Professional, high-impact scientific mechanism flowchart suitable for Nature or Science. Dark or clean background with glowing, contrasting nodes and clearly labeled directional arrows. The Demand-Supply Gap should be the visual focal point, demonstrating a critical failure in the biological feedback loop.

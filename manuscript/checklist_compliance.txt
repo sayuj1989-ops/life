@@ -1,0 +1,9 @@
+Compliance Checklist for Spine (Format C):
+- [x] Journal Selected: Spine (Phila Pa 1976)
+- [x] Structure: IMRAD (Introduction, Methods, Results, Discussion)
+- [x] Word Count: ~3000-4000 words.
+- [x] Focus: Added "Patient Zero" and specific Cobb angle biomechanical discussions.
+- [x] Bibliography: AMA style via \bibliographystyle{vancouver} applied.
+- [x] Cover Letter: Addressed Grand Challenge & Breakthrough, proposed 3 interdisciplinary reviewers, included COI.
+- [x] Highlights: Generated with 5 bullets, strictly max 85 chars per bullet.
+- [x] Rebuttal: Pre-emptive Reviewer #3 rebuttal included in Discussion section.

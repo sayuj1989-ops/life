@@ -1,0 +1,27 @@
+[Date]
+
+Chief Editor
+Spine
+
+Dear Chief Editor,
+
+The Grand Challenge in orthopedic biomechanics is explaining how the growing human spine maintains its geometry against gravity, and why this process catastrophically fails in adolescent idiopathic scoliosis (AIS). We present a breakthrough: "Metabolic buckling", an Information-Elasticity Coupling (IEC) framework demonstrating that AIS is not merely a localized structural failure, but a predictable thermodynamic transition.
+
+This work identifies the critical "Energy Deficit Window" during the adolescent growth spurt, providing the first quantitative explanation for why scoliosis onset peaks at a specific length scale (L > 0.35m). Our paper translates abstract physics directly into actionable surgical insights, identifying "Patient Zero" and the precise metabolic thresholds preceding severe Cobb angle progression. We explicitly model the PIEZO1-GPX4 Ferroptosis Axis, bridging molecular sensory failure to macroscopic scoliotic deformity.
+
+This is not a specialist paper confined to isolated theoretical biomechanics; it uncovers a general biological principle of active anti-gravitational form maintenance with immediate clinical implications for early bracing, curve prediction, and metabolic therapies.
+
+Selected Journal: Spine. Rationale: The work provides surgical relevance, identifies "Patient Zero", focuses on Cobb angle biomechanics, and aligns with the provided Format C constraints.
+
+Suggested interdisciplinary reviewers:
+1. Physicist: L. Mahadevan (Harvard University)
+2. Biologist: Olivier Pourquié (Harvard Medical School)
+3. Spine Surgeon: Peter O. Newton (Rady Children's Hospital)
+
+The authors declare no competing interests and no external funding. This manuscript has not been published elsewhere.
+
+Sincerely,
+Dr. Sayuj Krishnan S
+Consultant Neurosurgeon and Spine Surgeon
+Yashoda Hospitals
+hellodr@drsayuj.info

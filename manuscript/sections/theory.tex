@@ -30,43 +30,28 @@ This unifying hypothesis generates three testable predictions that distinguish i
 
 \subsection{Rod Geometry and Kinematic Parameterization}
 
-The human vertebral column is structurally modeled as an active, continuous Cosserat rod embedded in $\mathbb{R}^3$, an idealization rigorously justified by its high aspect ratio ($L/d \approx 13$) and the dense, segmented distribution of intervertebral joints which act as quasi-continuous elastic hinges~\cite{goriely2017mathematics, gazzola2018forward}. Let the centerline curve be denoted by $\mathbf{r}(s,t) \in \mathbb{R}^3$, where $s \in [0, L]$ is the reference arc length from the sacral base ($s=0$) to the cranium ($s=L$). To fully capture the macroscopic 3D kinematics, including flexural bending, shear, and torsional deformations, an orthonormal material frame $\{\mathbf{d}_1(s,t), \mathbf{d}_2(s,t), \mathbf{d}_3(s,t)\}$ is attached to each cross-section.
+The human vertebral column is structurally modeled as an active, continuous Cosserat rod embedded in $\mathbb{R}^3$, an idealization rigorously justified by its high aspect ratio ($L/d \approx 13$) and the dense, segmented distribution of intervertebral joints which act as quasi-continuous elastic hinges~\cite{goriely2017mathematics, gazzola2018forward}. Let the centerline curve be denoted by $\mathbf{r}(s) \in \mathbb{R}^3$, parameterized by arc length $s \in [0, L]$. To fully capture the macroscopic 3D kinematics, including flexural bending, shear, and torsional deformations, an orthonormal material frame $\{\mathbf{d}_1(s), \mathbf{d}_2(s), \mathbf{d}_3(s)\}$ is attached to each cross-section.
 
-By convention, $\mathbf{d}_3(s,t)$ defines the local tangent vector in the absence of shear strains, while $\mathbf{d}_1(s,t)$ and $\mathbf{d}_2(s,t)$ align with the principal anatomic axes of the vertebral body (e.g., the anteroposterior and mediolateral axes). The spatial evolution of the rod's configuration is thus strictly governed by the kinematic equations:
+The spatial evolution of the rod's configuration is thus strictly governed by the kinematic equations:
 \begin{align}
-\partial_s \mathbf{r}(s, t) &= \mathbf{v}(s, t) = \mathbf{d}_3(s, t) + \boldsymbol{\varepsilon}(s, t), \\
-\partial_s \mathbf{d}_i(s, t) &= \mathbf{u}(s, t) \times \mathbf{d}_i(s, t),
+\partial_s \mathbf{r}(s) &= \mathbf{d}_3(s) + \boldsymbol{\varepsilon}(s), \\
+\partial_s \mathbf{d}_i(s) &= \mathbf{u}(s) \times \mathbf{d}_i(s),
 \label{eq:cosserat_kinematics}
 \end{align}
-where $\boldsymbol{\varepsilon}(s,t)$ captures the shear and axial extension strains. The Darboux vector $\mathbf{u}(s,t) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ encodes the bending curvatures $\kappa_1, \kappa_2$ and the torsional twist $\tau$. We explicitly impose a clamped boundary condition at the sacrum ($\mathbf{r}(0)=\mathbf{0}, \mathbf{d}_i(0)=\mathbf{e}_i$) reflecting pelvic anchoring, and a free-end condition at the cranium, subject solely to the localized mass of the skull.
+where $\boldsymbol{\varepsilon}(s)$ captures the shear and axial extension strains for extensibility. The Darboux vector $\mathbf{u}(s) = \kappa_1 \mathbf{d}_1 + \kappa_2 \mathbf{d}_2 + \tau \mathbf{d}_3$ encodes the bending curvature vector $\boldsymbol{\kappa}(s)$ and the torsional twist $\tau(s)$. Physically, we impose a clamped boundary condition at the sacrum ($s=0$), reflecting pelvic anchoring, and a free-end condition at the cranium ($s=L$).
 
 \subsection{Developmental Information Fields from Morphogenetic Patterning}
 
-Rather than treating the spine as a passive beam reacting to gravitational loading, our framework strictly formalizes developmental inputs as a time-dependent, macroscopic scalar information field $I(s, t) \in [0, 1]$. This field acts as a coarse-grained, physical representation of anterior-posterior patterning morphogens (such as the highly conserved HOX gene clusters) and segmentation clock outputs that prescribe regional identity.
+Rather than treating the spine as a passive beam reacting to gravitational loading, our framework strictly formalizes developmental inputs as a macroscopic scalar information field $I(s)$. This field acts as a coarse-grained representation of the anterior-posterior HOX gene expression pattern along the spine.
 
-Empirically, we map $I(s)$ via a bimodal Gaussian parameterization (Eq.~\ref{eq:info_field_spinal}) exhibiting distinct maxima at the cervical ($A_c=0.5, s_c=0.80$) and lumbar ($A_l=0.7, s_l=0.25$) enlargements. These peaks physically correspond to zones of heightened morphogenetic specification required for lordotic posture. The gradient of this morphogenetic field, $\nabla I$, acts as an active ``curvature generator.'' It induces a non-zero rest curvature through a direct geometric coupling parameter $\chi_\kappa$:
+Empirically, we parameterize $I(s)$ via a bimodal Gaussian distribution, with distinct maxima corresponding to regions of high vertebral identity specification: a cervical peak ($A_c=0.5, s_c=0.80$) and a lumbar peak ($A_l=0.7, s_l=0.25$).
+
+The gradient of this morphogenetic field, $\partial I / \partial s$, acts as an active ``curvature generator.'' It induces a non-zero rest curvature that drives the target intrinsic geometry:
 \begin{equation}
-\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
+\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \frac{\partial I(s)}{\partial s}.
 \label{eq:kappa_rest}
 \end{equation}
-
-Furthermore, to quantify the patterning precision, we evaluate the local Shannon entropy $\ShannonH[I]$:
-\begin{equation}
-\ShannonH[I] = -\int I(s) \log I(s) \, ds.
-\label{eq:shannon_entropy}
-\end{equation}
-This bounds the fidelity of the target metric specification. Simultaneously, the information field stiffens the local tissue via a morphomechanical coupling $\chi_M$, which orchestrates an active biological moment $\mathbf{M}_{bio}$ to counter gravitational collapse:
-\begin{equation}
-\mathbf{M}_{bio} = \chi_M (\mathbf{\Lambda} \cdot \nabla I).
-\label{eq:active_moment}
-\end{equation}
-
-The stability of this active structure is governed by the dimensionless Bio-Gravitational Number $\mathcal{B}_g$:
-\begin{equation}
-\mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
-\label{eq:bg_number}
-\end{equation}
-Crucially, when $\mathcal{B}_g > 1$, the biological system effectively dominates gravitational mechanics. At the molecular level, this coupling relies on the structural rigidity of patterning transcription factors; AlphaFold structural analysis of critical HOX proteins (e.g., HOXC8, UniProt P31273; HOXB13, UniProt Q92826) reveals conserved, high-confidence DNA-binding domains capable of enforcing the sharp spatial identity boundaries required by our field parameterization.
+At the molecular level, this structural specificity is confirmed by AlphaFold analysis of critical HOX proteins (e.g., HOXC8, HOXB13).
 
 \subsection{The Information--Cosserat Manifold Framework}
 The Human spine is modeled as a one-dimensional Cosserat rod embedded in three-dimensional Euclidean space. In the IEC framework, we treat the rod's reference configuration not as a flat segment, but as a manifold whose intrinsic geometry is warped by a developmental information field $I(s)$. We draw a formal analogy to General Relativity (GR), where the geometry of space is determined by the mass-energy distribution. For interested readers, the full mathematical details of this analogy, including the mapping of GR variables to IEC morphoelastic variables and the derivation of the effective biological metric using the Fisher Information metric $\FisherInfo(s)$, are provided in the Supplementary Material.
@@ -142,7 +127,7 @@ where $E_{\parallel} \gg E_{\perp}$ (typically 5:1 anisotropy ratio). In a healt
 
 The macroscopic parameters $\eta_a$ (active maintenance cost) and $\Gamma_m$ (basal supply) map to two functionally distinct protein classes:
 \begin{itemize}
-    \item \textbf{Demand-side mechanosensory proteins} (e.g., Vimentin, Lamin~A/C, PIEZO2): Characterized by high structural anisotropy (mean $3.08 \pm 1.44$ from AlphaFold v6 analysis), extended conformations, and high metabolic maintenance costs due to continuous conformational cycling.
+    \item \textbf{Demand-side mechanosensory proteins} (e.g., Vimentin, Lamin~A/C, PIEZO2): Characterized by high structural anisotropy (mean $3.08 \pm 1.44$ from AlphaFold v6 analysis, Table~\ref{tab:thermodynamic_cost_proteins_dissipation}), extended conformations, and high metabolic maintenance costs due to continuous conformational cycling.
     \item \textbf{Supply-side metabolic regulators} (e.g., SIRT1, SOX9, PPARGC1A): Generally more compact (mean anisotropy $1.79 \pm 0.56$) but critically, PPARGC1A --- the master regulator of mitochondrial biogenesis --- is 62\% disordered and prone to degradation under metabolic stress.
 \end{itemize}
 The 72\% anisotropy gap between these classes ($p = 0.011$, Mann--Whitney U; Cohen's $d = 1.19$) provides molecular-level evidence for the thermodynamic vulnerability: the very proteins required to \emph{sense} geometry are the most expensive to maintain, while the proteins required to \emph{power} that sensing are the most fragile.

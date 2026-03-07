@@ -1016,3 +1016,31 @@ The theory makes specific predictions about the relationship between genetic ani
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
 70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
 71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).
+
+### 2.36. The Epiphyseal Tension-Growth Coupling ($\Gamma_{epi}$)
+
+We formalize the Hueter-Volkmann principle at the level of the epiphyseal growth plate, specifically focusing on the enhancement of chondrocyte proliferation and hypertrophy under mechanical tension. We define $\Gamma_{epi}$ as the sensitivity of the axial growth strain rate ($\dot{\varepsilon}_{axial}$) to the local time-averaged tensile stress ($\langle \sigma_{tensile} \rangle$).
+
+$$ \dot{\varepsilon}_{axial} = \dot{\varepsilon}_{basal} + \Gamma_{epi} \langle \sigma_{tensile} \rangle $$
+
+*   **Symbols**:
+    *   $\dot{\varepsilon}_{axial}$: Axial growth strain rate of the growth plate $[T^{-1}]$.
+    *   $\dot{\varepsilon}_{basal}$: Basal growth rate driven purely by morphogenetic/hormonal signals (e.g., GH, IGF-1) without mechanical load $[T^{-1}]$.
+    *   $\langle \sigma_{tensile} \rangle$: Time-averaged local tensile stress $[ML^{-1}T^{-2}]$. Compressive stress is treated as negative, which reduces growth below basal levels.
+    *   $\Gamma_{epi}$: Epiphyseal Tension-Growth Coupling constant $[M^{-1}LT]$.
+*   **Dimensions**:
+    *   $[\Gamma_{epi}] = [\dot{\varepsilon}_{axial}] / [\sigma_{tensile}] = [T^{-1}] / [ML^{-1}T^{-2}] = [M^{-1}LT]$.
+*   **Physical Interpretation**: $\Gamma_{epi}$ quantifies the "mechanostat gain" of the vertebral growth plate. A high $\Gamma_{epi}$ means that asymmetric loading (e.g., tension on the convex side, compression on the concave side of a curve) will strongly drive asymmetric growth, resulting in rapid wedging of the vertebra and exacerbating the scoliotic deformity.
+*   **Measurable Proxy**: The ratio of the proliferation zone thickness ($L_{prolif}$) to the local mechanical stress in vertebral growth plates extracted from a mechanically loaded animal model.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Isotropic Proliferation Check**
+    *   **Data Needed**: Measurement of bromodeoxyuridine (BrdU) incorporation rates (a proxy for $\dot{\varepsilon}_{axial}$) in isolated, intact epiphyseal growth plate explants cultured in vitro under controlled uniaxial tension versus static control.
+    *   **Refutation**: If applying uniaxial tension does not significantly increase the rate of chondrocyte proliferation (BrdU positive cells) and hypertrophy along the axis of tension relative to unstressed controls, the core tenet that tension drives growth ($\Gamma_{epi} > 0$) is falsified. (Reference: Villemure & Stokes, 2009).
+*   **Test 2: The Mechanically Locked Mutant**
+    *   **Data Needed**: Longitudinal tracking of vertebral body wedging angles (via serial micro-CT) during growth in an induced scoliosis model (e.g., tail tethering) using wild-type mice versus a transgenic strain with knocked-out chondrocyte mechanosensors (e.g., Col2a1-Cre;Piezo1-fl/fl).
+    *   **Refutation**: If the mechanosensor knockout strain develops identical asymmetric vertebral wedging in response to the asymmetric mechanical load compared to wild-type controls, then the localized mechanotransduction cascade is not the primary driver of Hueter-Volkmann remodeling, meaning $\Gamma_{epi}$ is independent of known mechanosensors. (Reference: Stokes, 1993).
+
+72. **Villemure, I., & Stokes, I. A. (2009).** "Growth plate mechanics and mechanobiology. A survey of present understanding." *Journal of Biomechanics*, 42(12). (Provides the foundation for how mechanical forces alter endochondral ossification).
+73. **Stokes, I. A. (1993).** "Model of mechanical control of growth in progression of idiopathic scoliosis." *Journal of Biomechanics*, 26(3). (Early mathematical model of the Hueter-Volkmann law in scoliosis progression).

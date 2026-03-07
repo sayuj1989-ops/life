@@ -48,6 +48,28 @@
 | **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
 | **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
 | **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
+| **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_lenke_classes.py`) |
+
+---
+
+## Toy Model D: Lenke Classifications (Spatial Deficit)
+
+**Goal:** Demonstrate how the spatial distribution of the Energy Deficit dictates the resulting scoliotic curve shape, predicting specific Lenke classifications (types 1-6).
+
+**Setup:**
+- 1D differential equation solver simulating a simplified coupled Cosserat rod under axial load (gravity).
+- **Deficit Localization:** Prescribe localized "Energy Deficit" profiles ($D(s)$) based on developmental biology (e.g., lower spine deficit vs. double thoracic deficit).
+- **Buckling Modes:** Solve for the resulting spatial eigenmodes ($n=1, n=2, n=3$).
+
+**Analysis:**
+- Demonstrate that a lumbar-localized deficit triggers a single C-curve (Lenke Type 5).
+- Demonstrate that a multi-region deficit (e.g., thoracic + lumbar) triggers a double S-curve (Lenke Type 3).
+- Demonstrate that a complex tri-region deficit triggers a triple curve (Lenke Type 4).
+
+**Implementation:**
+- Script: `scripts/experiments/toy_model_lenke_classes.py`
+- **Output:** [`outputs/figures/toy_model_lenke_classes.png`](../outputs/figures/toy_model_lenke_classes.png)
+- **Status:** ✅ **Implemented**
 
 ---
 

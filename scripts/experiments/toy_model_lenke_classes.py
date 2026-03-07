@@ -1,7 +1,9 @@
 import os
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.integrate import solve_bvp
+
 
 def simulate_lenke_toy_model():
     """

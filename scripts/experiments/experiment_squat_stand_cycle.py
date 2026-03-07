@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 Longevity Study Through Squat-to-Stand Thermodynamic Cycling
 
 This experiment models the squat-to-stand motion as a dynamic thermodynamic cycle
@@ -9,11 +9,8 @@ per cycle and models the phenomenological decay of coupling strength ($\chi$)
 when cycling is neglected.
 """
 
-import csv
 import logging
-import math
 import sys
-import time
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -27,7 +24,6 @@ from scripts.experiments.experiment_utils import StandardExperimentParser, setup
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
-
 
 # --- Constants ---
 L = 1.0  # Spine length (m)
@@ -96,7 +92,7 @@ def define_squat_stand_trajectory(t_eval: np.ndarray, is_chair: bool = False):
 
 
 def compute_cycle_dissipation(thetas: np.ndarray, info_fields: list, dt_step: float, out_dir: Path, chi_current: float = CHI_0):
-    """
+    r"""
     Performs quasi-static stepping through the trajectory using PyElastica.
     Computes \eta_p, \eta_a, \Gamma_m per step.
     """
@@ -202,7 +198,7 @@ def compute_cycle_dissipation(thetas: np.ndarray, info_fields: list, dt_step: fl
 
 
 def coupling_decay_model(n_cycles_per_day: int, t_hours: np.ndarray):
-    """
+    r"""
     Models the phenomenological decay of coupling strength (\chi) without cycling.
     Each cycle resets \chi to CHI_0.
     """
@@ -248,7 +244,7 @@ def run_cycle_frequency_sweep(out_dir: Path):
             plt.plot(t_hours, chi_t / CHI_0, label=f"N={n} ({pct_preserved:.1f}%)")
 
     plt.xlabel("Time (hours)")
-    plt.ylabel("Coupling Strength $\chi(t) / \chi_0$")
+    plt.ylabel(r"Coupling Strength $\chi(t) / \chi_0$")
     plt.title("Coupling Decay vs Daily Squat-to-Stand Cycles")
     plt.legend()
     plt.grid(True, alpha=0.3)

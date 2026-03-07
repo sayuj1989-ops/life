@@ -1,5 +1,7 @@
-import numpy as np
 import timeit
+
+import numpy as np
+
 
 def calc_rg_orig(coords):
     center_of_mass = np.mean(coords, axis=0)

@@ -14,7 +14,7 @@ def test_energy_deficit_output():
     and that the data follows the qualitative trends required by the hypothesis.
     """
     # Run the experiment script
-    exit_code = os.system("python scripts/experiment_energy_deficit_window.py")
+    exit_code = os.system("PYTHONPATH=$(pwd) python scripts/experiment_energy_deficit_window.py")
     assert exit_code == 0, "Experiment script failed to run."
 
     # Check for output files

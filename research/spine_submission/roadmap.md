@@ -1,6 +1,8 @@
 # Spine Submission Roadmap
 
 **Target:** *Spine* (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
 **Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 **Start Date:** 2026-02-23
 **Target Submission Date:** 2026-04-06 (6 Weeks)
@@ -30,6 +32,7 @@
 
 ## Progress Tracking
 
-**Current Phase:** Phase 1
-**Percent Complete:** 0% (Calculated by script)
+**Current Phase:** Phase 2: Clinical Validation (Weeks 3-4)
+**Percent Complete:** 42.9%
+**Expected Completion:** 2026-03-23
 **Status:** In Progress

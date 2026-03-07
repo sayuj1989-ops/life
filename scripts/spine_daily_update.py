@@ -135,6 +135,58 @@ def generate_report(data):
 
     return report
 
+def update_roadmaps(data, expected_date):
+    """
+    Updates the progress tracking section in the roadmap markdown files.
+    """
+    files_to_update = [
+        "research/spine_submission/roadmap.md",
+        "docs/spine_submission_roadmap.md"
+    ]
+
+    active_phase = "None"
+    for phase, stats in data['phases'].items():
+        phase_percent = (stats['completed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        if phase_percent < 100 and active_phase == "None":
+            active_phase = phase
+
+    for filepath in files_to_update:
+        if not os.path.exists(filepath):
+            continue
+
+        with open(filepath, 'r') as f:
+            content = f.read()
+
+        # Regular expressions to find and replace the progress tracking values
+        content = re.sub(
+            r'\*\*Current Phase:\*\* .*',
+            f'**Current Phase:** {active_phase}',
+            content
+        )
+        content = re.sub(
+            r'\*\*Percent Complete:\*\* .*',
+            f'**Percent Complete:** {data["percent_complete"]:.1f}%',
+            content
+        )
+
+        # Add expected completion if it doesn't exist, or update if it does
+        if '**Expected Completion:**' in content:
+            content = re.sub(
+                r'\*\*Expected Completion:\*\* .*',
+                f'**Expected Completion:** {expected_date}',
+                content
+            )
+        else:
+            # Insert expected completion before status
+            content = re.sub(
+                r'(\*\*Status:\*\* .*)',
+                f'**Expected Completion:** {expected_date}\n\\1',
+                content
+            )
+
+        with open(filepath, 'w') as f:
+            f.write(content)
+
 def save_report(report):
     """
     Saves the report to a file with the current date.
@@ -166,6 +218,9 @@ if __name__ == "__main__":
         sys.exit(1)
     else:
         report = generate_report(data)
+        expected_date = calculate_projection(data)
         print(report)
         saved_path = save_report(report)
+        update_roadmaps(data, expected_date)
         print(f"\nReport saved to: {saved_path}")
+        print("Updated inline roadmap files.")

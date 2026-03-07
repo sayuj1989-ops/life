@@ -37,6 +37,7 @@ graph TD
         CCN[CCN1/2<br/>Matrix Protein]
         PPARGC1A[PPARGC1A<br/>Mitochondrial Biogenesis]
         KCNQ[KCNQ<br/>Potassium Channel]
+        GPX4[GPX4<br/>Antioxidant Defense]
     end
 
     subgraph Processes [Cellular & Developmental Processes]
@@ -77,6 +78,7 @@ graph TD
         Osteocyte_Dendrite[Osteocyte Dendrites<br/>Network Formation]
         Actin_Dynamics[Actin Cytoskeleton<br/>Strain Rearrangement]
         VEGF_A[VEGF-A/PGE2<br/>Secretory Response]
+        Ferroptosis[Ferroptosis<br/>Iron Overload]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -89,6 +91,7 @@ graph TD
         Anisotropy[Tissue Anisotropy<br/>Directional Order]
         TMD[Tissue Mineral Density<br/>Bone Quality]
         Reissner_Fiber[Reissner Fiber<br/>Tension Reference]
+        Growth_Plate_Dysplasia[Growth Plate Dysplasia<br/>Asymmetric Ossification]
     end
 
     subgraph Outcome [Macroscopic Outcome]
@@ -303,7 +306,13 @@ graph TD
     %% NEW ARC: Voltage Gain (Sánchez-Carranza et al., 2024)
     KCNQ -- "Hyperpolarization" --> Mech_Trans
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A,KCNQ gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite,Actin_Dynamics,VEGF_A process;
-    class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber tissue;
+    %% NEW ARC: PIEZO1-GPX4 Ferroptosis Axis (Chen et al., 2025)
+    PIEZO1 -- "Inhibition" --> GPX4
+    GPX4 -- "Loss of Defense" --> Ferroptosis
+    Ferroptosis --> Growth_Plate_Dysplasia
+    Growth_Plate_Dysplasia --> Stability
+
+    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A,KCNQ,GPX4 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite,Actin_Dynamics,VEGF_A,Ferroptosis process;
+    class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber,Growth_Plate_Dysplasia tissue;
     class S_Curve,Stability,Scoliosis outcome;

@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """Generate publication figures for the Derivative Gain Trap manuscript."""
 
-import numpy as np
 import json
+
 import matplotlib
+import numpy as np
+
 matplotlib.use('Agg')
+import os
+
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
-import os
 
 plt.rcParams.update({
     'font.family': 'sans-serif', 'font.size': 10,

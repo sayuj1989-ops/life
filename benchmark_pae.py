@@ -1,5 +1,7 @@
-import numpy as np
 import timeit
+
+import numpy as np
+
 
 def orig(pae_matrix):
     pae_mean = np.sum(pae_matrix, dtype=np.uint64) / pae_matrix.size

@@ -8,14 +8,10 @@ FOXO3, SIRT1, Klotho, YAP1, PGC-1alpha.
 """
 
 import csv
-import logging
 import sys
-import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List
-
-import numpy as np
 
 # Add the src dir to path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))

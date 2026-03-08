@@ -1,5 +1,6 @@
-import numpy as np
 import timeit
+
+import numpy as np
 
 plddt = np.random.rand(5000) * 100
 mask_hc = plddt >= 70

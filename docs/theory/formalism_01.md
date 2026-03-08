@@ -943,6 +943,31 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Measurement of Cobb angle progression and vertebral wedging in a mechanically loaded mouse model treated with a VEGFR inhibitor (e.g., SU5416) versus vehicle control.
 *   **Refutation**: If the progression of the curve is identical or slower with VEGFR inhibition, the adaptive vascular response is not a critical buffering mechanism against mechanically-induced hypoxia. (Reference: Grosso et al., 2017).
 
+### 2.36. The Epiphyseal Tension-Growth Coupling ($\Gamma_{epi}$)
+
+We formalize the "Epiphyseal Tension-Growth Coupling" hypothesis, which posits that the axial growth strain rate ($\dot{\varepsilon}_{axial}$) of the vertebral body is sensitive to the local time-averaged tensile stress ($\langle \sigma_{tensile} \rangle$) acting on the epiphyseal growth plate, overriding basal growth rates.
+
+$$ \dot{\varepsilon}_{axial} = \dot{\varepsilon}_{basal} + \Gamma_{epi} \langle \sigma_{tensile} \rangle $$
+
+*   **Symbols**:
+    *   $\dot{\varepsilon}_{axial}$: Axial growth strain rate $[T^{-1}]$.
+    *   $\dot{\varepsilon}_{basal}$: Basal growth strain rate in the absence of mechanical load $[T^{-1}]$.
+    *   $\langle \sigma_{tensile} \rangle$: Time-averaged tensile stress at the epiphyseal growth plate $[ML^{-1}T^{-2}]$.
+    *   $\Gamma_{epi}$: Epiphyseal Tension-Growth Coupling Constant $[M^{-1}LT]$.
+*   **Dimensions**:
+    *   $[\Gamma_{epi}] = [T^{-1}] / [ML^{-1}T^{-2}] = [M^{-1}LT]$.
+*   **Physical Interpretation**: $\Gamma_{epi}$ defines the gain of the mechanotransductive feedback loop that accelerates localized growth under tension. A high value implies that sustained mechanical tension robustly drives compensatory tissue elongation (e.g., in a tethered or curve-compensating geometry).
+*   **Measurable Proxy**: The slope of the regression line between the vertebral wedging rate (measured via longitudinal radiography) and the computationally estimated asymmetric tensile stress across the epiphyseal growth plate during the rapid growth phase.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Epiphyseal Unloading Suppression**
+    *   **Data Needed**: Measurement of axial growth velocities in a large animal model (e.g., porcine) under continuous, controlled mechanical unloading (e.g., tail suspension or simulated microgravity) compared to loaded controls.
+    *   **Refutation**: If the axial growth strain rate ($\dot{\varepsilon}_{axial}$) remains unchanged despite the complete removal of time-averaged tensile stress, the hypothesis that mechanical tension is required to drive growth beyond the basal rate is falsified.
+*   **Test 2: The Tensile Rescue**
+    *   **Data Needed**: Measurement of Cobb angle progression and vertebral geometry in a mechanically induced scoliotic animal model where an external tensioning device applies asymmetric targeted tensile stress to the concave (compressed) side of the curve.
+    *   **Refutation**: If applied targeted tension fails to increase the local growth rate on the concave side (failing to correct the wedging), the mechanism of tension-stimulated growth coupling is incorrect or insufficient to overcome the defect.
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -1016,3 +1041,6 @@ The theory makes specific predictions about the relationship between genetic ani
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
 70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
 71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).
+
+72. **Stokes, I. A. F., et al. (1996).** "Mechanical Modulation of Vertebral Body Growth: Implications for Scoliosis Progression." *Spine*, 21(10). (Biomechanical foundations of vertebral growth modulation).
+73. **Stokes, I. A., et al. (2002).** "ENLARGEMENT OF GROWTH PLATE CHONDROCYTES MODULATED BY SUSTAINED MECHANICAL LOADING." *The Journal of Bone and Joint Surgery-American Volume*, 84(10). (Mechanisms of tension-growth coupling at the chondrocyte level).

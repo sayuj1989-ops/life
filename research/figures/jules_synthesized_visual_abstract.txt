@@ -1,0 +1,11 @@
+The Biological Countercurvature of Spacetime is a visual abstract for a theoretical biology paper on spinal morphology. It visually synthesizes the interplay of physical gravity, developmental genetics, and thermodynamics during the human lifespan.
+
+Central Element: A highly detailed, luminous, and slightly translucent model of a healthy human spine exhibiting a perfect physiological S-curve (lordosis and kyphosis). The spine floats in the center of the image.
+
+Background Grid: Behind the spine is a 3D wireframe mesh representing the "Rindler-Cosserat" spacetime grid. Near the bottom, where gravitational pull is strongest, the grid lines are distorted, sagging downward heavily. However, radiating outward from the glowing spinal cord itself is a counter-force—represented as golden, energetic shockwaves—that bends the spacetime grid *upward*, opposing the gravitational sag. This is the "Biological Countercurvature", where developmental information ($\chi_\kappa$) acts effectively as anti-gravity.
+
+Left Side (The Input): Floating alongside the upper spine is a stylized genetic double helix, radiating a blue pulse. A glowing mathematical equation, representing Information-Elasticity Coupling, emerges from the DNA: "S_total = S_gravity + S_elastic + S_info". An arrow points from this equation toward the spine, symbolizing the flow of HOX developmental patterning that encodes the target S-shape.
+
+Right Side (The Constraint): Flanking the lower spine, a heavy, semi-transparent block or anvil with a deep red downward arrow represents "Gravity (M_g L^2)". Beneath it, a secondary, smaller visual shows the "Energy Deficit Window" during adolescent growth, depicted as a critical threshold marked with a biohazard or warning sign where spinal length ($L > 0.35$m) causes the energetic cost to exceed supply, triggering instability and buckling into scoliosis.
+
+Overall Aesthetic: A stark, dramatic, cosmic biology style akin to a top-tier Science or Nature cover. The color palette contrasts deep void-like blacks and blues (representing gravity and spacetime) with vibrant, searing gold and white (representing genetic information and biological structure). The visual should look authoritative, mathematically rigorous, yet beautifully organic.

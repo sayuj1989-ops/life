@@ -1,0 +1,14 @@
+The "Mechanogenetic Demand-Supply Gap" is a critical causal feedback loop describing how developmental information shapes spinal geometry and why it fails.
+
+At the top, a glowing double-helix represents "Genetic Information (HOX)", emitting signal waves downwards. This establishes the "Target Geometry", drawn as an idealized ghostly S-shaped spine outline.
+
+Below this, the target geometry directly causes "Mechanical Stress" on biological tissues, visualized as glowing red tension lines along the curves of the spine.
+
+This stress acts upon two distinct molecular groups. On the left, a robust, highly structured protein domain represents "Mechanosensors (Demand)"—these are the rigid, energy-expensive sensors like Fibrillin and PIEZO2 that detect the mechanical stress.
+On the right, contrasting sharply, is a hazy, disordered protein cloud representing "Metabolic Regulators (Supply)"—intrinsically disordered, fragile longevity proteins like SIRT1 and FOXO3 that are responsible for providing the metabolic energy needed to maintain the structure.
+
+Between these two protein groups, a stark, jagged red lightning bolt splits the space, labeled "72% Thermodynamic Vulnerability Gap (p=0.011)". This illustrates the critical asymmetry: the structured demand far exceeds the fragile, disordered supply.
+
+At the very bottom, this supply failure leads to two divergent outcomes: a healthy S-curve (labeled "Balanced: Normal Physiology") when energy is sufficient, and a drastically warped, twisting spine collapsing under a heavy downward arrow representing "Gravity" (labeled "Deficit: Scoliosis/Buckling") when supply fails during adolescent growth spurts.
+
+The overall style should be high-tech, medical-scientific, and dramatic, utilizing a dark background with deep blues, stark crimson reds for stress, and luminous gold for genetic information. The style should resemble a high-impact Nature or Science journal conceptual diagram.

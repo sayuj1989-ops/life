@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-06
+**Last Updated:** 2026-03-08
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.

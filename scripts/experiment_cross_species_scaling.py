@@ -33,6 +33,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
+# Add the scripts directory to the Python path to import plot_style
+sys.path.append(str(Path(__file__).parent))
+from plot_style import apply_nature_style
+
 # Constants
 G_EARTH = 9.81  # m/s^2
 
@@ -89,6 +93,7 @@ def run_experiment():
     print(f"Saved calculated metrics to {output_csv}")
 
     # --- Visualization ---
+    apply_nature_style()
     plt.figure(figsize=(10, 8))
 
     # Log-Log Plot: Bg vs Mass
@@ -108,9 +113,9 @@ def run_experiment():
     plt.xscale('log')
     plt.yscale('log')
 
-    plt.xlabel('Body Mass M (kg)', fontsize=14)
-    plt.ylabel('Bio-Gravitational Number Bg (Dimensionless)', fontsize=14)
-    plt.title('The Allometric Trap: Passive Stiffness vs. Mass', fontsize=16)
+    plt.xlabel('Body Mass M (kg)')
+    plt.ylabel('Bio-Gravitational Number Bg (Dimensionless)')
+    plt.title('The Allometric Trap: Passive Stiffness vs. Mass')
 
     # Add Threshold Zones
     # Bg = 0.1 Threshold
@@ -123,7 +128,7 @@ def run_experiment():
 
     # Annotate Points
     for i, txt in enumerate(labels):
-        plt.annotate(txt, (x.iloc[i], y.iloc[i]), xytext=(5, 5), textcoords='offset points', fontsize=9)
+        plt.annotate(txt, (x.iloc[i], y.iloc[i]), xytext=(5, 5), textcoords='offset points')
 
     plt.grid(True, which="both", ls="-", alpha=0.2)
     plt.legend(loc='upper right')

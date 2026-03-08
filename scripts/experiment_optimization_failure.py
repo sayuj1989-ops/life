@@ -41,10 +41,15 @@ __version__ = "1.0.1"
 from pathlib import Path
 from typing import Dict, List
 
+import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parent))
 
+import matplotlib.patheffects as pe
+
+from plot_style import apply_nature_style
 from spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from spinalmodes.countercurvature.info_fields import InfoField1D
 from spinalmodes.countercurvature.pyelastica_bridge import (
@@ -386,6 +391,68 @@ def generate_report(csv_file: str):
                 f.write(f"| {ck:.2f} | {sn:.3f} | {mean_c:.2f} | {std_c:.2f} | {n_scol}/{len(cobbs)} |\n")
 
     print(f"Report generated: {md_file}")
+
+    # Generate Phase Diagram
+    generate_phase_diagram(csv_file)
+
+
+def generate_phase_diagram(csv_file: str):
+    """Generate a Phase Diagram (Heatmap/Scatter) of Cobb Angle."""
+    import pandas as pd
+
+    df = pd.read_csv(csv_file)
+    if df.empty:
+        return
+
+    out_dir = Path(csv_file).parent
+    out_dir.mkdir(parents=True, exist_ok=True)
+    fig_path = out_dir / "optimization_failure_phase_diagram.png"
+
+    apply_nature_style()
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Plot Sweep data as heatmap/scatter
+    df_sweep = df[df["mutation"] == "Sweep"].copy()
+    if not df_sweep.empty:
+        # Aggregate by mean
+        df_agg = df_sweep.groupby(['chi_kappa', 'sigma_noise'])['cobb_angle'].mean().reset_index()
+
+        # Pivot for heatmap
+        pivot_table = df_agg.pivot(index='sigma_noise', columns='chi_kappa', values='cobb_angle')
+
+        X, Y = np.meshgrid(pivot_table.columns, pivot_table.index)
+        c = ax.pcolormesh(X, Y, pivot_table.values, shading='auto', cmap='viridis', vmin=0, vmax=100)
+        cbar = fig.colorbar(c, ax=ax)
+        cbar.set_label("Cobb Angle (degrees)")
+
+    # Overlay Mutations
+    df_mut = df[df["mutation"] != "Sweep"].copy()
+    if not df_mut.empty:
+        # Aggregate mutations to get mean positions
+        df_mut_agg = df_mut.groupby('mutation').agg({
+            'chi_kappa': 'first',
+            'sigma_noise': 'first',
+            'cobb_angle': 'mean'
+        }).reset_index()
+
+        ax.scatter(df_mut_agg['chi_kappa'], df_mut_agg['sigma_noise'],
+                   color='red', edgecolors='white', s=80, marker='*', zorder=10)
+
+        for _, row in df_mut_agg.iterrows():
+            ax.annotate(f" {row['mutation']}",
+                        (row['chi_kappa'], row['sigma_noise']),
+                        color='white', weight='bold', fontsize=8, zorder=11,
+                        textcoords="offset points", xytext=(5,0), ha='left', va='center',
+                        path_effects=[pe.withStroke(linewidth=2, foreground='black')])
+
+    ax.set_xlabel(r"Information-Curvature Coupling ($\chi_\kappa$)")
+    ax.set_ylabel(r"Sensory Noise ($\sigma_{noise}$)")
+    ax.set_title("Optimization Failure: Phase Diagram of Scoliosis")
+
+    plt.tight_layout()
+    plt.savefig(fig_path)
+    plt.close(fig)
+    print(f"Phase Diagram generated: {fig_path}")
 
 
 def parse_args():

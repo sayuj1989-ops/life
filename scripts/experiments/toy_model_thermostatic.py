@@ -1,7 +1,12 @@
 import os
+import sys
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+
+sys.path.append(str(Path(__file__).parent.parent))
+from plot_style import apply_nature_style
 
 # Ensure output directory exists
 os.makedirs('outputs/figures', exist_ok=True)
@@ -58,6 +63,7 @@ def main():
     margin = B_total - demand
 
     # Plotting
+    apply_nature_style()
     fig, ax = plt.subplots(figsize=(10, 6))
 
     ax.plot(L, demand, 'k--', linewidth=2, label='Mechanical Demand ($L^5$)')

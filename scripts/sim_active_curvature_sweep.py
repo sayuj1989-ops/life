@@ -17,6 +17,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 # Import run_protein_simulation
 try:
     from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation
+    from plot_style import apply_nature_style
 except ImportError as e:
     print(f"Error importing simulation module: {e}")
     sys.exit(1)
@@ -111,6 +112,7 @@ def run_sweep():
     generate_plots(df, out_dir)
 
 def generate_plots(df, out_dir):
+    apply_nature_style()
     # Plot 1: Active Curvature vs Cobb Angle
     plt.figure(figsize=(10, 6))
     plt.plot(df['active_curvature'], df['cobb_angle'], 'o-', linewidth=2, color='blue')

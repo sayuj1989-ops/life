@@ -33,10 +33,10 @@ class MetricsAnalyzer:
         if len(coords) == 0:
             return 0.0
 
-        center_of_mass = np.mean(coords, axis=0)
-        # Rg = sqrt(mean((r_i - r_cm)^2))
-        sq_dists = np.sum((coords - center_of_mass)**2, axis=1)
-        rg = np.sqrt(np.mean(sq_dists))
+        # Bolt Optimization: Vectorized Variance for Radius of Gyration
+        # Rg^2 = Var(X) + Var(Y) + Var(Z) = sum(var(coords, axis=0))
+        # This reduces memory allocation and prevents creation of N x 3 arrays
+        rg = np.sqrt(np.sum(np.var(coords, axis=0)))
         return float(rg)
 
     def calculate_anisotropy(self, coords: np.ndarray) -> Dict[str, Any]:

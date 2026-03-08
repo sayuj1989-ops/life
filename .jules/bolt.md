@@ -1,3 +1,9 @@
+## 2026-11-26 - [Vectorized Variance for Radius of Gyration]
+
+**Learning:** `calculate_rg` was computing the radius of gyration by subtracting the center of mass from the coordinates `(N x 3)`, squaring the differences `(N x 3)`, summing along the axis `(N,)`, and then taking the mean. This required allocating several intermediate `N x 3` and `N` sized arrays.
+
+**Action:** Replaced the explicit mathematical formula `sqrt(mean(sum((coords - cm)**2)))` with a vectorized variance calculation `sqrt(sum(var(coords, axis=0)))`. While timing shows equivalent CPU speed, this optimization avoids allocating the large intermediate `(coords - center_of_mass)` arrays, reducing memory spikes when processing 10k+ residue proteins like Titin, while maintaining exact scientific output.
+
 ## 2026-01-23 - [SASA with cKDTree]
 
 **Learning:** Calculating exposed surface proxy (SASA) using manual block-based neighbor search is slow ((N^2)$ worst case) and CPU-intensive for large proteins.

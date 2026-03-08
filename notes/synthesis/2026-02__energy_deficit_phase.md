@@ -1,14 +1,13 @@
-# Weekly Synthesis: Energy Deficit Phase Diagram (2026-02)
+# Weekly Synthesis: Energy Deficit Phase Diagram
 
-## Key Findings
+## 2D Phase Diagram Result
+The weekly simulation performed a 2D parameter sweep of the Energy Deficit Window across the information-elasticity coupling strength ($\chi_\kappa$) and spinal length ($L$) space. This allows us to map the metabolic power required for countercurvature ($P_{counter}$) to maintain the target curvature over varied conditions of spinal development.
 
-1. **2D Phase Diagram Result**
-   A 2D parameter sweep across IEC coupling strength ($\chi_\kappa$) and spinal length ($L$) reveals the precise boundaries where metabolic demand ($P_{counter}$) exceeds proprioceptive supply ($S_{proprio}$).
+## Wedge-Shaped Instability Region
+By analyzing the ratio of the thermodynamic cost to the proprioceptive supply ($R_{deficit} = P_{counter} / S_{proprio}$), we identified a wedge-shaped region of instability in the $(\chi_\kappa, L)$ plane. This region represents the exact bounds where the thermodynamic cost of maintaining spinal stability strictly exceeds the physiological baseline supply, driving nonlinear buckling logic into emergent lateral deformations (Cobb angle).
 
-2. **Wedge-Shaped Instability Region**
-   The Energy Deficit Window forms a distinct "wedge" shape in the $(\chi_\kappa, L)$ space. The onset of instability corresponds to the condition $R_{deficit} = P_{counter} / S_{proprio} > 1$. The boundary marks the transition to an energetically deficient state where structural integrity is compromised.
-
-3. **Clinical Risk Stratification**
-   This theoretical result has direct implications for clinical risk modeling in adolescent idiopathic scoliosis (AIS):
-   - **High $\chi_\kappa$ Patients:** Will cross the $R_{deficit} = 1$ boundary at a *shorter* spinal length ($L$), meaning an earlier onset of vulnerability during adolescence. They also exhibit a wider Energy Deficit Window, leading to prolonged risk.
-   - **Low $\chi_\kappa$ Patients:** Experience lower overall metabolic demand for countercurvature, potentially never crossing the deficit boundary, avoiding AIS onset entirely.
+## Clinical Risk Stratification
+These results offer direct insights for clinical risk stratification in Adolescent Idiopathic Scoliosis (AIS):
+- High $\chi_\kappa$ patients enter the Energy Deficit Window at a shorter spinal length $L$ (earlier onset in adolescence) and exit later, facing a significantly wider window of vulnerability.
+- Low $\chi_\kappa$ patients may never breach the $R_{deficit} > 1$ threshold, completely bypassing the vulnerability window.
+- Thus, estimating the pre-treatment information-coupling strength parameter ($\chi_\kappa$) from baseline parameters or early radiographs could robustly correlate with and predict the patient-specific age-at-onset.

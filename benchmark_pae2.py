@@ -1,5 +1,6 @@
+
 import numpy as np
-import timeit
+
 
 def orig(coords, plddt_scores):
     mask_hc = plddt_scores >= 70

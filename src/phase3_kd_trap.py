@@ -14,9 +14,10 @@ New sweeps:
   E) Stochastic K_d sensitivity (noise near boundary)
 """
 
-import numpy as np
 import json
 import os
+
+import numpy as np
 
 # ============================================================
 # Physical parameters (same as original)

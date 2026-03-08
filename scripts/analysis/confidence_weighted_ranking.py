@@ -1,15 +1,37 @@
 from pathlib import Path
-
 import pandas as pd
 
-
-def create_confidence_weighted_ranking():
+def patch_confidence():
     snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')
-    if not snapshot_path.exists():
-        print(f"Error: Could not find {snapshot_path}")
-        return
-
     df = pd.read_csv(snapshot_path)
+
+    # find latest snapshot for LMNA and RUNX3
+    afcc_dir = Path('outputs/afcc')
+    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')], reverse=True)
+
+    missing_genes = ['LMNA', 'RUNX3']
+    missing_data = []
+
+    for gene in missing_genes:
+        for d in date_dirs:
+            metrics_file = d / 'metrics.csv'
+            if metrics_file.exists():
+                try:
+                    df_old = pd.read_csv(metrics_file)
+                    if 'gene_symbol' in df_old.columns:
+                        gene_df = df_old[df_old['gene_symbol'] == gene]
+                        if not gene_df.empty:
+                            print(f"Found {gene} in {d.name}")
+                            missing_data.append(gene_df.iloc[0].to_dict())
+                            break
+                except Exception as e:
+                    print(e)
+                    pass
+
+    if missing_data:
+        df_missing = pd.DataFrame(missing_data)
+        df = pd.concat([df, df_missing], ignore_index=True)
+        # Note: we are not writing back to 2026-02-16 metrics.csv, just for the purpose of ranking script!
 
     # Define thresholds
     plddt_threshold = 70.0
@@ -20,21 +42,18 @@ def create_confidence_weighted_ranking():
     df['anisotropy_class'] = df['anisotropy_index'].apply(lambda x: 'High' if x >= anisotropy_threshold else 'Intermediate/Low')
 
     # Sort for ranking
-    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False]) # 'Adequate' comes before 'Low'
+    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False])
 
-    # Save CSV
     out_csv = Path('outputs/afcc/confidence_weighted_ranking.csv')
-    out_csv.parent.mkdir(parents=True, exist_ok=True)
     df_sorted.to_csv(out_csv, index=False)
 
-    # Generate Report
     high_ani_adequate = df[(df['confidence_class'] == 'Adequate') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
     high_ani_low = df[(df['confidence_class'] == 'Low') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
 
     report_content = [
         "# Confidence-Weighted Structural Evidence Report\n",
         "## Overview\n",
-        "- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
+        "- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv` (supplemented with most recent available data for missing comparator genes)\n",
         "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
         "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
         "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",
@@ -63,7 +82,7 @@ def create_confidence_weighted_ranking():
 
     report_content.extend([
         "\n## 3. LBX1 Comparator Panel Analysis\n",
-        "Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.\n",
+        "Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are supplemented from their most recent historical snapshot if missing from 2026-02-16.\n",
         "| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |\n",
         "|------|------------|--------------|----------------|------------|------------------|"
     ])
@@ -87,7 +106,6 @@ def create_confidence_weighted_ranking():
     with open(report_path, 'w') as f:
         f.write("\n".join(report_content))
 
-    print(f"Ranking complete. Outputs written to {out_csv} and {report_path}")
+    print(f"Ranking complete.")
 
-if __name__ == "__main__":
-    create_confidence_weighted_ranking()
+patch_confidence()

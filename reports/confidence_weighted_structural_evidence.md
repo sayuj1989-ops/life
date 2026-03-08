@@ -2,7 +2,7 @@
 
 ## Overview
 
-- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
+- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv` (supplemented with most recent available data for missing comparator genes)
 
 - **Adequate Confidence Threshold**: `pLDDT >= 70.0`
 
@@ -22,9 +22,10 @@ These proteins exhibit extended, load-bearing morphologies and their structural 
 | 2 | FBLN5 | 7.05 | 83.3 | 3.55 |
 | 3 | STOML3 | 5.56 | 84.3 | 0.00 |
 | 4 | PANX3 | 5.08 | 81.7 | 2.77 |
-| 5 | PIEZO2 | 4.44 | 79.4 | 2.80 |
-| 6 | ROCK1 | 3.29 | 76.1 | 4.95 |
-| 7 | ADGRG6 | 3.06 | 73.7 | 6.78 |
+| 5 | LMNA | 4.75 | 76.4 | 2.56 |
+| 6 | PIEZO2 | 4.44 | 79.4 | 2.80 |
+| 7 | ROCK1 | 3.29 | 76.1 | 4.95 |
+| 8 | ADGRG6 | 3.06 | 73.7 | 6.78 |
 
 ## 2. High-Anisotropy + Low-Confidence (Exploratory Only)
 
@@ -41,16 +42,16 @@ These proteins exhibit extended morphologies but their structural predictions ar
 
 ## 3. LBX1 Comparator Panel Analysis
 
-Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.
+Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are supplemented from their most recent historical snapshot if missing from 2026-02-16.
 
 | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |
 
 |------|------------|--------------|----------------|------------|------------------|
 | LBX1 | 2.27 | 66.9 | 7.35 | Low | Intermediate/Low |
 | PIEZO2 | 4.44 | 79.4 | 2.80 | Adequate | High |
-| LMNA | N/A | N/A | N/A | N/A | N/A |
+| LMNA | 4.75 | 76.4 | 2.56 | Adequate | High |
 | ADGRG6 | 3.06 | 73.7 | 6.78 | Adequate | High |
-| RUNX3 | N/A | N/A | N/A | N/A | N/A |
+| RUNX3 | 2.06 | 60.6 | 0.00 | Low | Intermediate/Low |
 | POC5 | 24.69 | 64.0 | 3.51 | Low | High |
 | GHR | 5.13 | 58.7 | 5.31 | Low | High |
 

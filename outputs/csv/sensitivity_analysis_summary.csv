@@ -1,0 +1,5 @@
+Analysis,Group,N,Mean_Anisotropy
+Full Dataset,Demand,12,3.3205686314232445
+Full Dataset,Supply,10,2.474880345863008
+High Confidence Only,Demand,8,3.786640104761292
+High Confidence Only,Supply,3,1.7544631742920889

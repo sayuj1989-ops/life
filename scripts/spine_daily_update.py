@@ -157,6 +157,42 @@ def save_report(report):
 
     return filepath
 
+def update_roadmap_file(filepath, data, expected_date):
+    """
+    Updates the roadmap markdown file inline with the new progress tracking metrics.
+    """
+    if not os.path.exists(filepath):
+        print(f"Roadmap file not found at {filepath} for inline update.")
+        return
+
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    # Determine current phase
+    active_phase = "None"
+    for phase, stats in data['phases'].items():
+        phase_percent = (stats['completed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        if phase_percent < 100 and active_phase == "None":
+            active_phase = phase
+            break
+
+    # Replace Current Phase
+    content = re.sub(r'\*\*Current Phase:\*\* .*', f'**Current Phase:** {active_phase}', content)
+
+    # Replace Percent Complete
+    content = re.sub(r'\*\*Percent Complete:\*\* .*', f'**Percent Complete:** {data["percent_complete"]:.1f}%', content)
+
+    # Replace or add Projected Completion
+    if '**Projected Completion:**' in content:
+        content = re.sub(r'\*\*Projected Completion:\*\* .*', f'**Projected Completion:** {expected_date}', content)
+    else:
+        # Insert Projected Completion before Status
+        content = re.sub(r'(\*\*Status:\*\* .*)', f'**Projected Completion:** {expected_date}\n\\1', content)
+
+    with open(filepath, 'w') as f:
+        f.write(content)
+    print(f"Updated inline progress in: {filepath}")
+
 if __name__ == "__main__":
     roadmap_path = "research/spine_submission/roadmap.md"
     data, error = parse_roadmap(roadmap_path)
@@ -165,7 +201,12 @@ if __name__ == "__main__":
         print(error)
         sys.exit(1)
     else:
+        expected_date = calculate_projection(data)
         report = generate_report(data)
         print(report)
         saved_path = save_report(report)
         print(f"\nReport saved to: {saved_path}")
+
+        # Update inline roadmap files
+        update_roadmap_file(roadmap_path, data, expected_date)
+        update_roadmap_file("docs/spine_submission_roadmap.md", data, expected_date)

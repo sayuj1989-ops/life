@@ -93,7 +93,7 @@ def main():
         if subset.empty:
             continue
 
-        time = subset['t_hours'].values
+        time = subset['t_hours'].values + np.random.normal(0, 1e-10, len(subset))
         cobb = subset['cobb_angle'].values
         torsion = subset['max_torsion'].values
 

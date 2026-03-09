@@ -1016,3 +1016,8 @@ The theory makes specific predictions about the relationship between genetic ani
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
 70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
 71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).
+
+### 2.6 Acoustic Biomarkers and the "Scoliosis Scream"
+Adolescent Idiopathic Scoliosis is classically defined by static geometry (Cobb angle). However, the energetic struggle to minimize $U_{CC}$ against gravity is a dynamic, oscillatory process. As the spine approaches the instability threshold ($\eta > \eta_{crit}$ or "Spinal Jetlag"), the phase coherence between proprioceptive sampling and physical loading breaks down.
+
+This pre-buckling phase manifests as acoustic dissonance—a high-frequency spectral bifurcation we term the "Scoliosis Scream." By mapping the time-series geometric data (curvature, torsion) to auditory frequencies, this framework proposes that scoliotic collapse can be predicted *before* it becomes visible on a radiograph, translating the morphogenetic delay-differential equations into an intuitive resonant diagnostic.

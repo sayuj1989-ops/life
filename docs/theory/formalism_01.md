@@ -590,6 +590,33 @@ $$ \Delta \dot{\varepsilon}_{aniso} = \Gamma_{duro} \cdot \nabla E_{ECM} $$
     *   **Data Needed**: Curvature progression in animal models of induced scoliotic buckling treated with agents that uniformly crosslink the ECM (e.g., systemic genipin or advanced glycation end-products), thereby artificially erasing local stiffness gradients ($\nabla E_{ECM} \to 0$) without softening the tissue.
     *   **Refutation**: If the loss of the stiffness gradient does not accelerate or worsen the buckling instability (i.e., if uniform stiffness alone is sufficient for stable straight growth), the specific requirement for a durotactic gradient feedback loop is falsified. (Reference: Iskratsch et al., 2014).
 
+
+### 2.36. The Epiphyseal Tension-Growth Coupling ($\Gamma_{epi}$)
+
+$\Gamma_{epi}$ formalizes the sensitivity of the axial growth strain rate ($\dot{\varepsilon}_{axial}$) to local time-averaged tensile stress ($\langle \sigma_{tensile} \rangle$) at the epiphyseal growth plate, adapting the Hueter-Volkmann law for active morphogenetic fields.
+
+$$ \dot{\varepsilon}_{axial} = \dot{\varepsilon}_{basal} + \Gamma_{epi} \langle \sigma_{tensile} \rangle $$
+
+*   **Symbols and Units**:
+    *   $\dot{\varepsilon}_{axial}$: Axial growth strain rate ($s^{-1}$)
+    *   $\dot{\varepsilon}_{basal}$: Basal (unloaded) growth strain rate ($s^{-1}$)
+    *   $\langle \sigma_{tensile} \rangle$: Time-averaged local tensile stress ($Pa$ or $N \cdot m^{-2}$)
+    *   $\Gamma_{epi}$: Epiphyseal Tension-Growth Coupling Constant
+*   **Dimensions**:
+    *   Since strain rate is $[T^{-1}]$ and stress is $[ML^{-1}T^{-2}]$, $\Gamma_{epi}$ must have dimensions:
+        $$ [\Gamma_{epi}] = [M^{-1} L T] $$
+    *   Units: $Pa^{-1} \cdot s^{-1}$
+*   **Measurable Proxy**: Asymmetric vertebral wedging angle or differential growth plate thickness (e.g., concave vs. convex side of a scoliotic curve).
+
+#### Falsifiable Tests
+
+*   **Test 1: The Tension Overload Reversal**
+    *   **Data Needed**: Apply asymmetric, precisely controlled tensile loads to a growing *in vivo* model (e.g., rat tail or bovine tail disc model) and measure resultant differential growth rates at the epiphyseal plates.
+    *   **Refutation**: If the growth rate does not scale linearly (within physiological bounds) with applied tension, or if continuous compression stimulates faster growth than tension, the coupling relationship is falsified (Stokes, 2002).
+*   **Test 2: The Mechanotransducer Knockout**
+    *   **Data Needed**: Inhibit a known mechanosensitive channel at the growth plate (e.g., PIEZO1 via conditional knockout in chondrocytes) during cyclic loading, and measure vertebral growth anisotropy.
+    *   **Refutation**: If the correlation between applied asymmetric stress and differential wedging growth remains unchanged despite the loss of the sensor, the *active biological nature* of $\Gamma_{epi}$ is falsified, suggesting purely passive mechanical yielding (Chen et al., 2025).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

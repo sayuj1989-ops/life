@@ -1,47 +1,27 @@
 # LBX1 Falsifiability Plan
 
-This document outlines three concrete, quantitative experiments designed to explicitly falsify the hypothesis that LBX1 acts as a mechanosensor or structural tension rod in the context of biological countercurvature.
+## Context
+The Biological Counter-Curvature hypothesis currently posits LBX1 as a structural candidate involved in mechanosensing or force transmission due to its high PAE blockiness and potential interactions. However, current AFCC metrics (`outputs/afcc/2026-02-16/metrics.csv`) demonstrate that LBX1 has low confidence (pLDDT ~66.9) and intermediate anisotropy (~2.27), weakening the purely geometric inference of its load-bearing role. To enforce rigorous scientific standards, we outline three concrete experiments designed to falsify the hypothesis that LBX1 mechanics drive scoliotic curve progression.
 
-## Core Hypothesis
-LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that allows it to transduce mechanical tension into biochemical signals, distinct from classical extended tension rods like PIEZO2 or LMNA.
+## Falsification Experiments
 
-*If this hypothesis is false, LBX1 will not exhibit tension-dependent localization, conformational changes under physiological stress, or structural integrity under mechanical load.*
+### Experiment 1: Nuclear Localization Under Applied Tension
+- **Hypothesis**: If LBX1 acts as a mechanosensor or structural transducer within the LINC-complex pathway, its nuclear localization or chromatin binding affinity will change in response to applied cyclical mechanical tension.
+- **Assay Design**: Subject primary human osteoblasts (wild-type vs. LBX1-knockdown) to cyclical mechanical strain (e.g., via a Flexcell system at 10% strain, 1Hz for 24 hours). Measure LBX1 nuclear/cytoplasmic ratio using immunofluorescence and subcellular fractionation.
+- **Quantitative Readout**: Ratio of nuclear-to-cytoplasmic LBX1 fluorescence intensity, and Western blot quantification of LBX1 in chromatin-bound versus soluble nuclear fractions.
+- **Expected Direction**: Tension increases nuclear localization or chromatin binding affinity of LBX1 compared to static controls.
+- **Falsification Threshold**: If the nuclear/cytoplasmic ratio or chromatin-bound fraction of LBX1 does not change significantly (p > 0.05) under mechanical loading compared to static controls, the hypothesis that LBX1 is a dynamic mechanosensor is falsified.
 
-**Source Data / Rationale**: Based on `outputs/afcc/2026-02-16/metrics.csv`, LBX1 has an `anisotropy_index` of 2.27, a `plddt_mean` of 66.9 (Low confidence), and a high `PAE_domain_blockiness_score` of 7.35.
+### Experiment 2: Biophysical Stiffness and Disorder-to-Order Transition
+- **Hypothesis**: The high PAE blockiness and low pLDDT of LBX1 in AlphaFold predictions indicate an intrinsically disordered region (IDR) that undergoes a functionally relevant disorder-to-order transition upon binding a structural partner or under tension.
+- **Assay Design**: Perform single-molecule Force Spectroscopy (e.g., Optical Tweezers or AFM) on purified recombinant LBX1. Measure the force-extension curve. Repeat in the presence of candidate binding partners (e.g., Lamin A/C fragments or putative DNA consensus sequences).
+- **Quantitative Readout**: Persistence length ($L_p$) and unfolding force peaks (pN) extracted from the force-extension curves.
+- **Expected Direction**: LBX1 exhibits a low persistence length in isolation but a significantly higher $L_p$ and distinct unfolding peaks when bound to a physiological partner or subjected to force, indicating an induced structural state.
+- **Falsification Threshold**: If LBX1 behaves purely as a random coil with no discrete unfolding events or significant change in persistence length ($L_p$ increase < 10%) even in the presence of presumed interactors, the hypothesis that its IDR serves a specific, tension-bearing structural role is falsified.
 
----
-
-## Experiment 1: Nuclear Tension-Dependent Localization
-**Hypothesis**: If LBX1 responds to mechanical cues, modulating nuclear tension via LMNA/LINC complex disruption will alter LBX1 nuclear localization or chromatin binding affinity.
-**Assay Design**:
-- Cell line expressing tagged LBX1.
-- Perturb nuclear tension using LINC complex dominant-negative constructs (e.g., KASH domain overexpression) or direct LMNA knockdown.
-- Measure LBX1 nuclear/cytoplasmic ratio and chromatin-bound fraction via quantitative immunofluorescence and cellular fractionation.
-**Quantitative Readout**: Ratio of nuclear to cytoplasmic LBX1 intensity; percentage of chromatin-bound LBX1 relative to total protein.
-**Expected Direction (if true)**: Decreased nuclear tension reduces LBX1 chromatin binding or nuclear retention.
-**Falsification Threshold**: If the change in LBX1 nuclear/chromatin localization between wild-type and tension-depleted cells is $< 10\%$ (p $> 0.05$), the hypothesis that LBX1 localization is tension-dependent is falsified.
-
----
-
-## Experiment 2: Single-Molecule Force Spectroscopy (smFS)
-**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
-**Assay Design**:
-- Purify recombinant LBX1 protein.
-- Perform Atomic Force Microscopy (AFM) based single-molecule force spectroscopy.
-- Pull the protein from N- to C-terminus.
-**Quantitative Readout**: Unfolding force peaks (pN) and contour length increments ($\Delta L_c$ in nm) during mechanical unfolding.
-**Expected Direction (if true)**: Step-wise unfolding corresponding to the predicted modular blocks, with initial unfolding events occurring at forces comparable to known mechanosensors (e.g., 5-20 pN).
-**Falsification Threshold**: If LBX1 unfolds in a single, catastrophic event at high forces ($> 50$ pN) typical of stable globular proteins, or shows no structured resistance (pure disorder), the hypothesis that it acts as a modular mechanical spring is falsified.
-
----
-
-## Experiment 3: In Vivo Mechanotransduction via Orthogonal Reporter
-**Hypothesis**: If LBX1 is a critical upstream mechanotransducer in spinal tissue, its targeted degradation will abolish tension-induced downstream transcriptional responses (e.g., YAP/TAZ target gene expression) under cyclical mechanical loading.
-**Assay Design**:
-- Engineered 3D somite/myotome tissue culture.
-- Inducible degron (AID) tagged LBX1.
-- Subject tissue to cyclical mechanical stretch (10% strain, 1 Hz).
-- Measure downstream mechanosensitive gene expression (e.g., *CTGF*, *CYR61*) via RT-qPCR.
-**Quantitative Readout**: Fold-change in downstream target mRNA expression in stretched vs. static conditions, comparing LBX1-intact vs. LBX1-degraded tissues.
-**Expected Direction (if true)**: LBX1 degradation significantly dampens or abolishes the stretch-induced upregulation of mechanosensitive targets.
-**Falsification Threshold**: If the stretch-induced fold-change of target genes in LBX1-degraded tissues is $\geq 90\%$ of the response in LBX1-intact tissues, the hypothesis that LBX1 is a required primary mechanotransducer in this pathway is falsified.
+### Experiment 3: Rescue of IEC Failure via Orthogonal Mechanosensors
+- **Hypothesis**: LBX1 is necessary for Information-Elasticity Coupling (IEC). If LBX1 function is lost, the resulting proprioceptive deficit leading to scoliotic curvature cannot be rescued by simply upregulating alternative mechanosensors like PIEZO2.
+- **Assay Design**: Utilize a validated zebrafish or mouse model of scoliosis driven by LBX1 mutation (e.g., Lbx1 knockout). Perform transgenic overexpression of an established, high-confidence mechanosensor (e.g., Piezo2) specifically in the relevant lineage (e.g., somitic mesoderm or proprioceptive neurons).
+- **Quantitative Readout**: Cobb angle severity and incidence of spinal curvature at equivalent developmental stages (e.g., adolescent growth spurt equivalent).
+- **Expected Direction**: Piezo2 overexpression fails to rescue the scoliotic phenotype because LBX1 provides a unique, non-redundant mechanical integration function.
+- **Falsification Threshold**: If Piezo2 overexpression significantly reduces the incidence or severity of curvature in the LBX1-mutant background (e.g., >50% reduction in mean Cobb angle, p < 0.01), it falsifies the hypothesis that LBX1 has a unique, irreplaceable structural role in the core IEC mechanism, suggesting it acts upstream or parallel to generic mechanotransduction pathways.

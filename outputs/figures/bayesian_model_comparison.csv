@@ -1,0 +1,3 @@
+Model,BIC,Delta_BIC,Bayes_Factor
+Allometric (Bg ~ M^slope),-22.130484374832562,0.0,1.0
+Constant (Bg ~ const),-10.792053400663846,11.338430974168716,0.0034505712322336055

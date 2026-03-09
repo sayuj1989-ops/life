@@ -2,7 +2,7 @@
 
 **Target:** *Nature* Submission
 **Timeline:** 4 Weeks (March 01 - March 29, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-06.md](progress_update_2026-03-06.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-09.md](progress_update_2026-03-09.md)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -16,7 +16,7 @@
 ## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
 
 - [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
-- [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
+- [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
 - [ ] **References:** Complete Bibliography (80-100 refs).
 
 ## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
@@ -30,7 +30,7 @@
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
 | **Week 1 (Mar 01)** | Code & Sweep Validation | Team | ✅ **Completed** |
-| **Week 2 (Mar 08)** | Manuscript Final Text & Refs | PI | 🟡 **In Progress** |
+| **Week 2 (Mar 08)** | Manuscript Final Text & Refs | PI | 🟡 **In Progress** (Text Completed) |
 | **Week 3 (Mar 15)** | Figure Assembly (1-7) & Polish | Design/Team | 🚨 **Starting** |
 | **Week 4 (Mar 22)** | Internal Review & **SUBMISSION** | PI | ⚪ Planned |
 

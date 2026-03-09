@@ -1,0 +1,23 @@
+Dr. Magdalena Skipper
+Editor-in-Chief, Nature
+
+Dear Dr. Skipper,
+
+We are submitting our manuscript, "Metabolic buckling of the growing spine", for consideration as an Article in Nature. The Grand Challenge in biomechanics has long been understanding how living organisms actively maintain complex, metastable shapes against the continuous pull of gravity, and why this maintenance fails during rapid growth. Here, we present a breakthrough: we demonstrate that the adolescent spine undergoes a predictable "Metabolic buckling" event. By modeling the spine as a dissipative structure, we identify a critical length (0.35 meters) where the mechanical strain energy cost of alignment ($L^3$) outpaces surface-limited metabolic supply ($L^2$).
+
+This is not a specialist paper describing an orthopedic deformity. Rather, it reveals a fundamental biological scaling law and presents the concept of "Vector-Scalar Mismatch"—where the structural anisotropy of mechanosensors creates an unaffordable metabolic tax during isometric growth. Adolescent Idiopathic Scoliosis is reclassified here not as a random genetic error, but as a universal physiological survival response to thermodynamic insolvency. By demonstrating that reducing cytoskeletal anisotropy can delay this buckling, we provide a broad physical framework linking developmental patterning, mechanotransduction, and whole-organism scaling.
+
+We believe this interdisciplinary approach, bridging physics and biology, will be of high interest to Nature's broad readership.
+
+Reviewer Suggestions:
+1. A Theoretical Physicist (Expertise: Active matter, dissipative structures, Cosserat mechanics)
+2. A Mechanobiologist (Expertise: Cytoskeletal anisotropy, mechanotransduction, AlphaFold structural analysis)
+3. A Spine Surgeon / Clinical Researcher (Expertise: Adolescent Idiopathic Scoliosis, growth allometry)
+
+Thank you for your consideration.
+
+Sincerely,
+
+Sayuj Krishnan S., MBBS, DNB (Neurosurgery)
+Yashoda Hospitals, Hyderabad, India
+hellodr@drsayuj.info

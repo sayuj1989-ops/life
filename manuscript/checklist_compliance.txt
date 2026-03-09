@@ -1,0 +1,19 @@
+Phase 1: Strategic Triage & Journal Selection
+Selected Journal: Nature
+Rationale: The work reveals a fundamental biological scaling law explaining why humans suffer from scoliosis during rapid growth, representing a cross-disciplinary breakthrough suitable for a broad scientific audience rather than a specialized clinical journal.
+
+Phase 2: Format Adaptation ("The Inverted Pyramid")
+- Title: "Metabolic buckling of the growing spine" (< 90 characters, active verb)
+- Abstract: Exactly 150 words, structured as Knowledge Gap -> Solution -> Broad Implication.
+- Main Text Structure: Removed introduction/results subheadings for a continuous flow, typical of Nature articles.
+- Tone: Declarative, mechanism-first approach ("We show that...").
+- Methods section successfully moved to the end of the manuscript as "Supplementary Information/Methods".
+
+Phase 3: Corollary Documents
+- Cover Letter: Addressed to Dr. Magdalena Skipper. Includes the "Hook" (Grand Challenge vs Breakthrough), the "Exclusion" (clarifying it is a fundamental biology paper), and three interdisciplinary Reviewer Suggestions.
+- Highlights / Conflict of Interest: Addressed within the standard Nature formatting constraints.
+- Running Title: < 50 characters, implied in formatting.
+
+Phase 4: Review Simulation (Red Teaming)
+- Identified Weakness: The link between protein measurements and growth velocity is correlative.
+- Pre-emptive Rebuttal Incorporated: "While direct metabolic flux measurements in pediatric spines are invasive, the allometric scaling laws provide a robust theoretical bound on energy availability that aligns with the observed clinical window of deformity." This directly addresses potential reviewer concerns in the main text discussion.

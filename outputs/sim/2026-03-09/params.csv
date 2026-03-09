@@ -1,0 +1,5 @@
+parameter,value
+anisotropy,2.0
+torsion_drive,0.5
+duration,2.0
+n_elements,50.0

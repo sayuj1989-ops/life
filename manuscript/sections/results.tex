@@ -81,3 +81,27 @@ Specifically, we quantified the thermodynamic cost of countercurvature $P_{\math
 
 \subsection{Circadian Disruption Amplifies Mechanical Vulnerability}
 Finally, we incorporated circadian variations via the "Spinal Jetlag" model, evaluating how disruption in the timing of molecular clock updates affects mechanical stability under load. Our results demonstrate that introducing circadian disruption under a high information-coupling condition significantly destabilizes spinal geometry. Specifically, the high-$\chi_\kappa$ jetlag simulation yielded a dramatic 2.52-fold increase in mean Cobb angle compared to the entrained baseline condition ($24.18^\circ$ vs. $9.61^\circ$; Mann-Whitney U test, $p = 2.59\times 10^{-4}$). Under extreme combined stress, peak curves reached a severe $44.8^\circ$, firmly crossing clinical surgical thresholds. These findings confirm a quantitative link between circadian chronodisruption and the localized progression of spinal curvature.
+
+\subsection{Comprehensive Statistical Summary}
+
+This section summarizes the independent re-analysis of the model's predictive power. The following tests validate the Information-Elasticity Coupling framework:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
+Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
+Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
+Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
+Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
+Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
+\end{tabular}
+\caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
+\label{tab:comprehensive_stats}
+\end{table}
+
+\subsection{Bayesian Model Comparison and Sensitivity Analysis}
+Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290.
+
+Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models (pLDDT < 70) reduced the original mean anisotropy of 2.74 to 2.62. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence IDR coordinates.

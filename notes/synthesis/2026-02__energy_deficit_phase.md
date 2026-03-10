@@ -1,14 +1,13 @@
-# Weekly Synthesis: Energy Deficit Phase Diagram (2026-02)
+# Weekly Synthesis: Energy Deficit Phase Diagram
 
-## Key Findings
+**Date:** 2026-02-08
 
-1. **2D Phase Diagram Result**
-   A 2D parameter sweep across IEC coupling strength ($\chi_\kappa$) and spinal length ($L$) reveals the precise boundaries where metabolic demand ($P_{counter}$) exceeds proprioceptive supply ($S_{proprio}$).
+## Summary of Findings
 
-2. **Wedge-Shaped Instability Region**
-   The Energy Deficit Window forms a distinct "wedge" shape in the $(\chi_\kappa, L)$ space. The onset of instability corresponds to the condition $R_{deficit} = P_{counter} / S_{proprio} > 1$. The boundary marks the transition to an energetically deficient state where structural integrity is compromised.
+1. **2D Phase Diagram Result**: We performed a 2D parameter sweep of the Energy Deficit Window across $(\chi_\kappa, L)$ space. The results show a distinct instability region mapped by the ratio $R_{deficit} = P_{counter} / S_{proprio}$, which controls the vulnerability to scoliotic deviations.
+2. **Wedge-shaped Instability Region**: The $R_{deficit} > 1$ boundary forms a wedge-shaped instability region in the phase diagram. This shape dictates the width of the vulnerability window during adolescent growth.
+3. **Clinical Risk Stratification**: Patients with a higher Information-Elasticity Coupling (IEC) strength $\chi_\kappa$ experience an earlier onset of the energy deficit (at shorter spinal lengths $L$) and a delayed exit. Consequently, they face a significantly wider vulnerability window during their growth spurt. Conversely, low $\chi_\kappa$ individuals may bypass the instability region entirely, suggesting a stratified risk mechanism for AIS onset.
 
-3. **Clinical Risk Stratification**
-   This theoretical result has direct implications for clinical risk modeling in adolescent idiopathic scoliosis (AIS):
-   - **High $\chi_\kappa$ Patients:** Will cross the $R_{deficit} = 1$ boundary at a *shorter* spinal length ($L$), meaning an earlier onset of vulnerability during adolescence. They also exhibit a wider Energy Deficit Window, leading to prolonged risk.
-   - **Low $\chi_\kappa$ Patients:** Experience lower overall metabolic demand for countercurvature, potentially never crossing the deficit boundary, avoiding AIS onset entirely.
+## Connection to Hypothesis Register
+
+This supports hypothesis **H_2026_02_08_EnergyPhase**: The Energy Deficit Window in $(\chi_\kappa, L)$ parameter space forms a wedge-shaped instability region. High $\chi_\kappa$ patients enter the window at shorter $L$ (earlier in adolescence) and exit later, experiencing a wider vulnerability window. Low $\chi_\kappa$ patients may never enter the window.

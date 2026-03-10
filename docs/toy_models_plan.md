@@ -49,6 +49,7 @@
 | **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
 | **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
 | **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_lenke_classes.py`) |
+| **Toy E** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_torsional_buckling.py`) |
 
 ---
 
@@ -85,6 +86,9 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.
     *   **Expected Outcome:** Active model maintains stability up to $2\times$ the passive $T_{crit}$.
     *   **Stop Condition:** Analytical solution matches numerical simulation within 5% error.
+    *   **Implementation:** Script: `scripts/experiments/toy_model_torsional_buckling.py`
+    *   **Output:** [`outputs/figures/toy_model_torsional_buckling.png`](../outputs/figures/toy_model_torsional_buckling.png)
+    *   **Status:** ✅ **Implemented**
 
 2.  **Information-Coupled Thermostatic Column:**
     *   **Objective:** Extend Toy Model A to include a delayed feedback loop mimicking biological sensor lag.

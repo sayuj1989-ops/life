@@ -617,6 +617,28 @@ $$ \dot{\varepsilon}_{axial} = \dot{\varepsilon}_{basal} + \Gamma_{epi} \langle 
     *   **Data Needed**: Inhibit a known mechanosensitive channel at the growth plate (e.g., PIEZO1 via conditional knockout in chondrocytes) during cyclic loading, and measure vertebral growth anisotropy.
     *   **Refutation**: If the correlation between applied asymmetric stress and differential wedging growth remains unchanged despite the loss of the sensor, the *active biological nature* of $\Gamma_{epi}$ is falsified, suggesting purely passive mechanical yielding (Chen et al., 2025).
 
+### 2.37. The Ciliary Flow-Asymmetry Coupling ($\Gamma_{cilia\_flow}$)
+
+We formalize the connection between ependymal ciliary fluid flow and macroscopic spinal geometry. We define $\Gamma_{cilia\_flow}$ as the coupling constant that maps the transverse gradient of cerebrospinal fluid (CSF) flow velocity ($I_{flow}$) to the intrinsic mechanical rest curvature ($\boldsymbol{\kappa}_{rest}$) of the vertebral column.
+
+$$ \Delta \boldsymbol{\kappa}_{rest} = \Gamma_{cilia\_flow} \cdot \nabla_{transverse} I_{flow} $$
+
+*   **Symbols**:
+    *   $\Delta \boldsymbol{\kappa}_{rest}$: The transverse deviation in the intrinsic rest curvature of the spine $[L^{-1}]$.
+    *   $\nabla_{transverse} I_{flow}$: The spatial gradient of the normalized CSF flow velocity in the transverse plane $[L^{-1}]$.
+    *   $\Gamma_{cilia\_flow}$: Ciliary Flow-Asymmetry Coupling Factor $[1]$ (Dimensionless).
+*   **Physical Interpretation**: A non-zero $\Gamma_{cilia\_flow}$ implies that left-right asymmetric ciliary beating and the resulting fluid shear forces directly pattern the mechanical target shape of the spine. If flow becomes dysregulated or loses its directional consistency (e.g., in ciliopathies), this coupling can drive aberrant symmetry-breaking (scoliotic buckling).
+*   **Measurable Proxy**: The left-right asymmetry in local CSF flow velocity (measured via in vivo particle tracking or high-resolution MRI) normalized by the mean ciliary beating frequency.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Flow Reversal Rescue**
+    *   **Data Needed**: Measurement of spinal curvature directionality in a rapidly growing animal model where the intrinsic polarity of ciliary beating is genetically or chemically reversed (reversing $\nabla_{transverse} I_{flow}$).
+    *   **Refutation**: If reversing the transverse gradient of CSF flow does not invert the predominant laterality of scoliotic curves, the hypothesis that fluid flow direction dictates the initial mechanical buckling bias is falsified. (Reference: Grimes et al., 2016).
+*   **Test 2: The Symmetric Flow Defect**
+    *   **Data Needed**: Measurement of scoliotic curve incidence and morphology in genetic ciliopathy models (e.g., *ptk7* or *kif6* mutants) where ciliary beating is present but entirely symmetric, abolishing the transverse flow gradient.
+    *   **Refutation**: If spines lacking the asymmetric flow gradient still buckle with a strong, consistent directional bias rather than a randomized (50/50) or stochastic distribution, then $\Gamma_{cilia\_flow}$ cannot be the primary deterministic seed for geometric asymmetry. (Reference: Iskratsch et al., 2014).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1043,3 +1065,4 @@ The theory makes specific predictions about the relationship between genetic ani
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
 70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
 71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).
+72. **Grimes, D. T., et al. (2016).** "Zebrafish models of idiopathic scoliosis link cerebrospinal fluid flow defects to spine curvature." *Science*, 352(6291). (Links cilia, CSF flow, and spinal curvature).

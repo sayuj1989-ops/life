@@ -164,7 +164,7 @@ Simulation code (PyElastica), AlphaFold analysis scripts, and protein COI datase
 
 *The following is a formal analogy, not a literal application of general relativity, included to establish precise physical correspondence.*
 
-In general relativity, a test mass in free fall follows a spacetime geodesic. A standing organism deviates from this geodesic with proper acceleration $a^\mu$ proportional to the metabolic power expended by muscle contraction. The biological stress-energy tensor may be written:
+In general relativity, a test mass in free fall follows a space geodesic. A standing organism deviates from this geodesic with proper acceleration $a^\mu$ proportional to the metabolic power expended by muscle contraction. The biological stress-energy tensor may be written:
 
 $$T^{bio}_{\mu\nu} = \rho_{ATP} \, u_\mu u_\nu + p_{mito} \, h_{\mu\nu}$$
 

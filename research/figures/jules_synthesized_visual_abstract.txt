@@ -1,16 +1,9 @@
-A breathtaking, conceptual "Visual Abstract" for the "Biological Countercurvature of Spacetime" theory, focusing on the Allometric Trap ($\mathcal{B}_g \approx 0.01$).
+A high-impact, abstract visual representation of the "Biological Countercurvature of Spacetime" theory for Adolescent Idiopathic Scoliosis (AIS).
 
-Central Concept:
-- A glowing, majestic S-shaped human spine (lordosis and kyphosis perfectly balanced) stands in the center. The spine represents an active, energy-consuming structural standing wave, glowing in an intense, pulsating golden energy.
+At the center is a glowing, human spine maintaining an intricate S-curve geometry. The background features a deeply warped, grid-like fabric of spacetime, illustrating gravitational forces pulling downward.
 
-Spacetime and Gravity:
-- The spine is set within a dynamic, warped 3D cosmic or spacetime mesh grid. Heavy, imposing dark arrows representing the "Gravity Vector ($g$)" press down upon the structure from above, attempting to warp the grid downwards (gravitational collapse).
+To counteract gravity, vibrant golden threads labeled "Developmental Information ($\mathcal{I}$)" or "Information-Elasticity Coupling" weave upward and through the spine, visibly generating an upward "Countercurvature". This represents the biological energy expenditure opposing gravitational deformation.
 
-Biological Countercurvature:
-- The spine radiates powerful, ascending beams of golden light—the "Information Field" or "Developmental Patterning". These beams perfectly counteract the dark gravity vectors, pushing back against the spacetime mesh and maintaining the complex geometric equilibrium.
+On one side, a small inset graph shows the relationship between "Spinal Length ($L$)" and "Coupling Strength ($\chi_\kappa$)", with an arrow indicating the adolescent transition into an "Allometric Trap" or "Metabolic Buckling" zone.
 
-The Allometric Trap:
-- A dial, gauge, or dimensionless number readout floating near the center reads: "Bio-Gravitational Number ($\mathcal{B}_g$) $\approx 0.01$".
-- The overall scene conveys an intense energetic cost—a metabolic fire burning to maintain shape against an overwhelming physical force.
-
-Style: High-impact, photorealistic rendering suitable for a cover image. High contrast between the dark void of gravity/spacetime and the intense golden radiance of biological information and metabolic supply. Clean, elegant, scientific typography.
+The color palette is dramatic, featuring deep indigo/black for spacetime, glowing white/cyan for the spine structure, and vivid gold/orange for the informational counter-forces. The overall composition should be sleek, symmetrical where possible, and highly conceptual, suitable for a Nature or Science journal cover.

@@ -1,9 +1,15 @@
-This diagram illustrates the "Mechanogenetic Demand-Supply Gap" at the molecular and structural levels.
+The diagram illustrates the core feedback loop of the "Mechanogenetic Demand-Supply Gap" during the adolescent growth spurt.
 
-Key Elements:
-1.  **Demand Side (Gravity Sensors)**: Left side shows large, complex, thermodynamically expensive protein structures (like PIEZO2 or Fibrillin) acting as "Structural Mechanosensors". They are robust, highly ordered, and deeply embedded in a cellular membrane or matrix. These represent the high "Demand" of sensing mechanical stress against gravity.
-2.  **Supply Side (Metabolic Regulators)**: Right side shows intrinsically disordered, flexible, "fragile" protein strings (representing metabolic regulators). These represent the limited "Supply" of metabolic energy control.
-3.  **The Gap**: A clear visual chasm or "Gap" exists between the robust sensors and the disordered regulators. A red lightning bolt or fracture line highlights this "72% Anisotropy Gap".
-4.  **Energy Deficit Window**: Below the molecular gap, show a timeline or growth curve labeled "Adolescent Growth Spurt ($L > 0.35$ m)". At this critical length, the Gap widens significantly, entering a red "Energy Deficit Window" causing structural instability (depicted as a wavering or buckling spine).
+The primary feature is a graph showing two crossing curves:
+1. An exponentially rising red curve representing "Geometric Scaling Costs" ($L^4$), labeled as "Demand".
+2. A slower, parabolic green curve representing "Metabolic Supply" ($L^2$), labeled as "Supply".
 
-Style: High-impact scientific illustration suitable for Nature or Science. Use stark contrasts—robust, structured metallic elements for Demand vs. chaotic, ethereal strands for Supply. Crisp annotations and modern vector-style aesthetics.
+Where the red curve surpasses the green curve, there is a shaded region highlighted as the "Energy Deficit Window". In this region, a callout box emphasizes "Localized NAD+ Insufficiency".
+
+Arrows show a cyclical feedback loop stemming from this deficit:
+- "Energy Deficit" leads to "Reduced Coupling Strength ($\chi_\kappa$)".
+- "Reduced Coupling Strength" leads to "Spinal Geometry Deformation".
+- "Spinal Geometry Deformation" leads to "Increased Mechanical Strain".
+- "Increased Mechanical Strain" loops back to increase "Geometric Scaling Costs".
+
+The overall aesthetic should be scientific and suitable for a high-impact journal, using clean lines, clear typography, and a cohesive color palette.

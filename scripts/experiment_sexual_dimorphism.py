@@ -89,7 +89,7 @@ def simulate_sexual_dimorphism():
     plt.grid(True, alpha=0.3)
     plt.legend(loc='upper right')
 
-    output_dir = "manuscript/figures"
+    output_dir = "figures/main"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "fig_sexual_dimorphism.png")
 

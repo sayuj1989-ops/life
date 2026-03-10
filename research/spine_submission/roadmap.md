@@ -16,9 +16,9 @@
 
 - [x] **Cohort Data Extraction:** Extract Weinstein 1983 / Lonstein 1984 curve progression data to `data/clinical_cohort_targets.csv`.
 - [x] **Clinical Script:** Implement `scripts/validate_clinical_data.py` to automate these comparisons.
-- [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
-- [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
-- [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
+- [x] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
+- [x] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
+- [x] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
 
 ## Phase 3: Manuscript Preparation (Weeks 5-6)
 
@@ -30,6 +30,6 @@
 
 ## Progress Tracking
 
-**Current Phase:** Phase 1
-**Percent Complete:** 0% (Calculated by script)
+**Current Phase:** Phase 3
+**Percent Complete:** 60% (Calculated by script)
 **Status:** In Progress

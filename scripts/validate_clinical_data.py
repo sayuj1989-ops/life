@@ -9,7 +9,7 @@ from scipy import stats
 def main():
     print("Running Clinical Validation against published cohorts...")
     data_path = "data/clinical_cohort_targets.csv"
-    output_dir = "manuscript/figures"
+    output_dir = "figures/main"
     output_path = os.path.join(output_dir, "fig_clinical_cohort_data.png")
 
     if not os.path.exists(data_path):

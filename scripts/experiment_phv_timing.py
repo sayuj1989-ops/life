@@ -75,7 +75,7 @@ def simulate_phv_timing():
 
     plt.grid(True, alpha=0.3)
 
-    output_dir = "manuscript/figures"
+    output_dir = "figures/main"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "fig_phv_timing.png")
 

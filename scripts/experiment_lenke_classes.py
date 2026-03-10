@@ -57,7 +57,7 @@ def simulate_lenke_classes():
 
     plt.suptitle("Lenke Classifications as Coupled Cosserat Rod Eigenmodes", fontsize=16)
 
-    output_dir = "manuscript/figures"
+    output_dir = "figures/main"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "fig_lenke_classes.png")
 

@@ -7,7 +7,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 
 *If this hypothesis is false, LBX1 will not exhibit tension-dependent localization, conformational changes under physiological stress, or structural integrity under mechanical load.*
 
-**Source Data / Rationale**: Based on `outputs/afcc/2026-02-16/metrics.csv`, LBX1 has an `anisotropy_index` of 2.27, a `plddt_mean` of 66.9 (Low confidence), and a high `PAE_domain_blockiness_score` of 7.35.
+**Source Data / Rationale**: Based on `outputs/afcc/2026-02-16/metrics.csv` (Date: 2026-02-16), LBX1 has an `anisotropy_index` of 2.27, a `plddt_mean` of 66.9 (Low confidence), and a high `PAE_domain_blockiness_score` of 7.35.
 
 ---
 
@@ -20,11 +20,12 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 **Quantitative Readout**: Ratio of nuclear to cytoplasmic LBX1 intensity; percentage of chromatin-bound LBX1 relative to total protein.
 **Expected Direction (if true)**: Decreased nuclear tension reduces LBX1 chromatin binding or nuclear retention.
 **Falsification Threshold**: If the change in LBX1 nuclear/chromatin localization between wild-type and tension-depleted cells is $< 10\%$ (p $> 0.05$), the hypothesis that LBX1 localization is tension-dependent is falsified.
+**Source Data Link**: Hypothesis relies on intermediate anisotropy values derived from `outputs/afcc/2026-02-16/metrics.csv`.
 
 ---
 
 ## Experiment 2: Single-Molecule Force Spectroscopy (smFS)
-**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
+**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`, Date: 2026-02-16) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
 **Assay Design**:
 - Purify recombinant LBX1 protein.
 - Perform Atomic Force Microscopy (AFM) based single-molecule force spectroscopy.
@@ -32,6 +33,7 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 **Quantitative Readout**: Unfolding force peaks (pN) and contour length increments ($\Delta L_c$ in nm) during mechanical unfolding.
 **Expected Direction (if true)**: Step-wise unfolding corresponding to the predicted modular blocks, with initial unfolding events occurring at forces comparable to known mechanosensors (e.g., 5-20 pN).
 **Falsification Threshold**: If LBX1 unfolds in a single, catastrophic event at high forces ($> 50$ pN) typical of stable globular proteins, or shows no structured resistance (pure disorder), the hypothesis that it acts as a modular mechanical spring is falsified.
+**Source Data Link**: Direct test of AlphaFold PAE predictions in `outputs/afcc/2026-02-16/metrics.csv`.
 
 ---
 
@@ -45,3 +47,4 @@ LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that al
 **Quantitative Readout**: Fold-change in downstream target mRNA expression in stretched vs. static conditions, comparing LBX1-intact vs. LBX1-degraded tissues.
 **Expected Direction (if true)**: LBX1 degradation significantly dampens or abolishes the stretch-induced upregulation of mechanosensitive targets.
 **Falsification Threshold**: If the stretch-induced fold-change of target genes in LBX1-degraded tissues is $\geq 90\%$ of the response in LBX1-intact tissues, the hypothesis that LBX1 is a required primary mechanotransducer in this pathway is falsified.
+**Source Data Link**: Motivated by the static nature of LBX1 across runs (identified in `reports/evidence_freshness_audit.md`), validating whether its static AlphaFold representation aligns with dynamic in-vivo function.

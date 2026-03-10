@@ -1,7 +1,5 @@
 from pathlib import Path
-
 import pandas as pd
-
 
 def create_confidence_weighted_ranking():
     snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')

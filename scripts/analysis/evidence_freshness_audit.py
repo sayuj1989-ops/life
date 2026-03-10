@@ -1,13 +1,17 @@
 from pathlib import Path
-
 import pandas as pd
-
+import re
 
 def audit_afcc_freshness():
     afcc_dir = Path('outputs/afcc')
 
-    # Get all dated subdirectories in outputs/afcc
+    # Trend window limits
+    start_date = '2026-01-09'
+    end_date = '2026-02-16'
+
+    # Get all dated subdirectories in outputs/afcc within the trend window
     date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')])
+    date_dirs = [d for d in date_dirs if start_date <= d.name <= end_date]
 
     metrics_history = {}
     missing_metrics = []
@@ -74,12 +78,32 @@ def audit_afcc_freshness():
                 for date, vector in history[1:]:
                     reused_reports.append({'date': date, 'gene': gene})
 
+    # Scan for missing links in narrative reports
+    missing_links = set()
+
+    def scan_report_for_missing_links(report_path):
+        if not report_path.exists():
+            return
+
+        content = report_path.read_text()
+        # Look for dates in outputs/afcc/YYYY-MM-DD
+        found_dates = re.findall(r'outputs/afcc/(2026-\d{2}-\d{2})', content)
+        for d in found_dates:
+            if start_date <= d <= end_date:
+                metrics_path = Path(f'outputs/afcc/{d}/metrics.csv')
+                if not metrics_path.exists():
+                    missing_links.add(d)
+
+    scan_report_for_missing_links(Path('reports/afcc_latest.md'))
+    for cluster_note in Path('reports/structure_clusters').glob('*.md'):
+        scan_report_for_missing_links(cluster_note)
+
     # Generate Report
     report_content = [
         "# Evidence Freshness Audit Report\n",
         "## Data Integrity and Freshness\n",
-        f"- **Runs Audited**: {len(date_dirs)}\n",
-        f"- **Missing Linked Outputs**: {len(missing_metrics)} ({', '.join(missing_metrics) if missing_metrics else 'None'})\n",
+        f"- **Runs Audited**: {len(date_dirs)} (Trend Window: {start_date} to {end_date})\n",
+        f"- **Missing Linked Outputs (Narrative References)**: {len(missing_links)} ({', '.join(sorted(list(missing_links))) if missing_links else 'None'})\n",
         "- **Schema Drifts**: None detected in scoped files with `gene_symbol`.\n\n",
         "## Identical Per-Gene Vectors Across Runs (Static Metrics)\n",
         "The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) across multiple runs, indicating reused static inputs rather than fresh measurements:\n",

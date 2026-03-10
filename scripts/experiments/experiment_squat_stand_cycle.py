@@ -3,9 +3,9 @@
 Longevity Study Through Squat-to-Stand Thermodynamic Cycling
 
 This experiment models the squat-to-stand motion as a dynamic thermodynamic cycle
-that exercises the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$) of the
+that exercises the three dissipation terms ($\\eta_p, \\eta_a, \\Gamma_m$) of the
 spinal standing wave functional. It explicitly calculates the energy budget
-per cycle and models the phenomenological decay of coupling strength ($\chi$)
+per cycle and models the phenomenological decay of coupling strength ($\\chi$)
 when cycling is neglected.
 """
 
@@ -98,7 +98,7 @@ def define_squat_stand_trajectory(t_eval: np.ndarray, is_chair: bool = False):
 def compute_cycle_dissipation(thetas: np.ndarray, info_fields: list, dt_step: float, out_dir: Path, chi_current: float = CHI_0):
     """
     Performs quasi-static stepping through the trajectory using PyElastica.
-    Computes \eta_p, \eta_a, \Gamma_m per step.
+    Computes \\eta_p, \\eta_a, \\Gamma_m per step.
     """
     logging.info(f"Computing thermodynamic cycle over {len(thetas)} steps with chi={chi_current:.2f}...")
 
@@ -203,8 +203,8 @@ def compute_cycle_dissipation(thetas: np.ndarray, info_fields: list, dt_step: fl
 
 def coupling_decay_model(n_cycles_per_day: int, t_hours: np.ndarray):
     """
-    Models the phenomenological decay of coupling strength (\chi) without cycling.
-    Each cycle resets \chi to CHI_0.
+    Models the phenomenological decay of coupling strength (\\chi) without cycling.
+    Each cycle resets \\chi to CHI_0.
     """
     chi_t = np.zeros_like(t_hours)
 
@@ -248,7 +248,7 @@ def run_cycle_frequency_sweep(out_dir: Path):
             plt.plot(t_hours, chi_t / CHI_0, label=f"N={n} ({pct_preserved:.1f}%)")
 
     plt.xlabel("Time (hours)")
-    plt.ylabel("Coupling Strength $\chi(t) / \chi_0$")
+    plt.ylabel(r"Coupling Strength $\chi(t) / \chi_0$")
     plt.title("Coupling Decay vs Daily Squat-to-Stand Cycles")
     plt.legend()
     plt.grid(True, alpha=0.3)

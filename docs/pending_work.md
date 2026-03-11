@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-09
+**Last Updated:** 2026-03-11
 **Status:** In Progress
 **Priority Level:** High (Final Push to Submission: References and Figures)
 
@@ -8,32 +8,33 @@
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data (Mass_kg, Length_m, EI_Nm2) for 10 species (e.g., Mouse, Rat, Rabbit, Cat, Dog, Human, Chimp, Cow, Elephant) as in `data/species_parameters.csv`. Required for Figure 3. | 2 days | Literature search | ✅ **Completed** (Estimated from scaling) |
-| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for "5 matrix protein variants" mentioned in Figure 4 (e.g., FBN1 $\to$ EI *= 0.7; COL1A1 $\to$ EI *= 0.5). | 1 day | Literature search | ✅ **Completed** (Implemented in `experiment_optimization_failure.py`) |
+| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data (Mass_kg, Length_m, EI_Nm2) for 10 species. Required for Figure 3. | 2 days | Literature search | ✅ **Completed** |
+| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for "5 matrix protein variants" mentioned in Figure 4. | 1 day | Literature search | ✅ **Completed** |
 
 ## 2. Code Implementation (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data (DATA-01) and plot $Bg$ number vs Mass/Length. Validate "Passive Stability" vs "Active Need". | 1 day | DATA-01 | ✅ **Completed** |
-| **CODE-02** | **Update `experiment_optimization_failure.py`** | Add a `mutation_map` dictionary to map gene names to simulation parameters ($\chi_\kappa, \sigma, EI$). Generate Figure 4 with specific labels. | 0.5 day | DATA-02 | ✅ **Completed** |
-| **CODE-04** | **Create `experiment_anisotropy_rescue.py`** | Validate vector constraints via anisotropy sweeps against critical buckling threshold. | 0.5 day | None | ✅ **Completed** |
+| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data and plot $B_g$ number vs Mass/Length. | 1 day | DATA-01 | ✅ **Completed** |
+| **CODE-02** | **Update `experiment_optimization_failure.py`** | Generate Figure 4 with specific mutation labels. | 0.5 day | DATA-02 | ✅ **Completed** |
+| **CODE-04** | **Create `experiment_anisotropy_rescue.py`** | Validate vector constraints via anisotropy sweeps against critical buckling. | 0.5 day | None | ✅ **Completed** |
 
 ## 3. Manuscript Tasks (High Priority)
 
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | 🔴 **Critical Block** |
-| **MS-02** | **Figure Finalization (CODE-03)** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Run of generation scripts | 🟡 **In Progress** |
-| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | ✅ **Completed** |
-| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | ⚪ **Planned** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
+| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
+| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
+| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
 
 ## 4. Theory & Validation (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **THEORY-01** | **Reviewer #3 Defense** | Finalize "Anisotropy Gap" argument. Ensure `manuscript/reviewer_response_strategy.txt` covers potential critiques of thermodynamic scaling. | 0.5 day | None | ✅ **Drafted** |
-| **THEORY-02** | **Toy Models** | Create simple 1D models (Toy Model A/B) to de-risk the complex Cosserat simulation for reviewers. | 1 day | None | ✅ **Completed** (See `docs/toy_models_plan.md`) |
+| **THEORY-01** | **Reviewer #3 Defense** | Finalize "Anisotropy Gap" argument for thermodynamics. | 0.5 day | None | ✅ **Drafted** |
+| **THEORY-02** | **Toy Models** | Create simple 1D models (Toy A-E) to de-risk Cosserat simulation for reviewers. | 1-4 days | None | ✅ **Completed** |
+| **THEORY-03** | **Real Experiments List** | Propose 2-5 real physical/in vivo validations (clinostat, circadian jetlag, KO mice). | 0.5 day | None | ✅ **Drafted** |
 
 ## Summary of Risks
 

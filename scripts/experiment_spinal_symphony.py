@@ -103,8 +103,10 @@ def main():
         # Interpolate to 1000 points for HFD calculation
         if len(cobb) > 10:
             from scipy.interpolate import interp1d
-            f = interp1d(time, cobb, kind='cubic')
-            t_new = np.linspace(min(time), max(time), 1000)
+            # Add minimal noise to avoid duplicate x values
+            time_noise = time + np.random.normal(0, 1e-10, size=len(time))
+            f = interp1d(time_noise, cobb, kind='cubic', fill_value="extrapolate")
+            t_new = np.linspace(min(time_noise), max(time_noise), 1000)
             cobb_interp = f(t_new)
             hfd = higuchi_fd(cobb_interp, kmax=10)
         else:

@@ -1,0 +1,2 @@
+t_min,t_max,steps,anisotropy,active_curvature,initial_lateral_defect,duration,n_elements,dt
+0.0,2.0,21,3.0,12.0,0.05,2.0,50,0.0001

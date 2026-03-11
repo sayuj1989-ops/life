@@ -3,7 +3,7 @@
 ## Overview
 The **Scoliosis Mechanism Map** connects molecular actors to tissue mechanics via **Biological Counter-Curvature**. The spine actively grows into an anticipatory S-shape to neutralize gravity. Scoliosis is a failure of this active control system.
 
-The organizing principle of **Biological Counter-Curvature** unifies these diverse molecular pathways, framing them all as components of a single active control system working to offset gravitational loading. Instead of viewing scoliosis as a collection of isolated defects (e.g., a "bone problem", a "muscle problem", or a "neural problem"), Counter-Curvature reveals how genetic variation, mechanical forces, and tissue metabolism feed into a unified mechanosensory loop. This continuous feedback loop dynamically adjusts structural stiffness ($EI$) and biological target curvature ($\kappa_0$) via mechanotransductive gain ($G_{mech}$) to maintain spinal stability against gravity. When pathways like PIEZO1 signaling or cellular metabolism fail, the active control loop collapses, leading to Euler buckling and the emergent 3D deformity of scoliosis.
+**Biological Counter-Curvature** unifies these pathways as components of an active control system offsetting gravity. This continuous feedback loop adjusts structural stiffness ($EI$) and biological target curvature ($\kappa_0$) via mechanotransductive gain ($G_{mech}$). When it fails (e.g., via PIEZO1 or metabolic deficits), the active control loop collapses, leading to Euler buckling and emergent 3D deformity.
 
 Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$), Outcomes.
 
@@ -65,27 +65,27 @@ Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$
 * **Role**: Energetic supply ($L^2$) fails to keep up with structural scaling ($L^4$), compromising active postural networks (Krishnan S et al., 2025).
 
 ### 13. Osteoblast Mechanotransduction Defect
-* **Path**: `CILIA` $\rightarrow$ `Actin Dynamics` $\rightarrow$ `VEGF-A` $\rightarrow$ `Gain (G_{mech})`
-* **Mechanism**: Osteoblasts use primary cilia to sense fluid flow. Flow normally triggers actin rearrangement and VEGF-A/PGE2 secretion. In AIS, cilia dynamics and actin rearrangement are defective, and flow-induced VEGF-A is blunted.
-* **Role**: **Loss of Adaptive Gain**. Counter-curvature relies on tissue translating strain into adaptive growth. This impaired mechanotransduction pathway leaves skeletal tissue "deaf" to forces, dropping the active feedback gain ($G_{mech}$).
-* **Evidence**: Oliazadeh et al. (2022) found AIS osteoblasts fail to orient properly and lack flow-induced VEGF-A secretion.
-> **Hypothesis**: The defective actin-VEGF-A axis in AIS osteoblasts acts as a molecular bottleneck that suppresses global feedback gain, compromising counter-curvature during adolescent growth.
+* **Path**: `CILIA` $\rightarrow$ `Actin` $\rightarrow$ `VEGF-A` $\rightarrow$ `Gain`
+* **Role**: Flow-induced VEGF-A secretion is blunted in AIS, dropping active feedback gain ($G_{mech}$).
+* **Evidence**: Oliazadeh et al. (2022) found AIS osteoblasts fail to orient and lack VEGF-A response.
 
 ### 14. Voltage Gain
 * **Path**: `KCNQ` $\rightarrow$ `Mechanotransduction` $\rightarrow$ `Gain (G_{mech})`
-* **Role**: Resting membrane potential regulates Piezo2 sensitivity. Hyperpolarization (e.g., via KCNQ channels) dampens the proprioceptive error-correction loop, reducing the feedback gain and leading to Bastien instability (Sánchez-Carranza et al., 2024).
+* **Role**: KCNQ hyperpolarization dampens Piezo2, reducing gain (Sánchez-Carranza, 2024).
 
 ### 15. PIEZO1-GPX4 Ferroptosis Axis
-* **Path**: `PIEZO1` $\rightarrow$ `GPX4` $\rightarrow$ `Ferroptosis` $\rightarrow$ `Growth Plate Dysplasia`
-* **Mechanism**: Mechanical stress upregulates the mechanosensitive ion channel PIEZO1 in vertebral growth plate chondrocytes. This overactivation inhibits GPX4 signaling, breaking down the cell's antioxidant defense.
-* **Role**: **Asymmetric Ossification**. Without GPX4, iron overload and lipid peroxidation trigger ferroptosis, driving growth plate degeneration and asymmetric ossification that compromises mechanical stability.
-* **Evidence**: Chen et al. (2025) demonstrated that the PIEZO1-GPX4 axis mediates mechanical stress-induced vertebral growth plate dysplasia via ferroptosis activation.
+* **Path**: `PIEZO1` $\rightarrow$ `GPX4` $\rightarrow$ `Ferroptosis` $\rightarrow$ `Dysplasia`
+* **Role**: PIEZO1 overactivation inhibits GPX4, causing ferroptosis and asymmetric ossification (Chen, 2025).
 
 ### 16. Stochastic Resonance Mechanosensing (Dither Failure)
-* **Path**: `Muscle Tone / Fluid Flow` $\rightarrow$ `Micro-Tremor (Dither)` $\rightarrow$ `PIEZO1/2` $\rightarrow$ `Gain (G_{mech})`
-* **Mechanism**: High-threshold mechanosensors (like PIEZO channels) require high-frequency physiological "noise" (e.g., muscle micro-tremors, vascular pulsation, Reissner fiber oscillation) to act as a "dither" signal. This noise keeps the sensors in their linear, high-sensitivity detection range, allowing them to sense slow, sub-threshold postural drifts (gravity).
-* **Role**: **Sensory Lock-up**. During rapid adolescent growth, muscle mass and vascular development often lag behind bone elongation. This reduces the baseline physiological "noise floor". Without this stochastic resonance dither, mechanosensors lock up and fail to detect the initial slow geometric drift, dropping the feedback gain ($G_{mech}$) to zero and precipitating buckling.
-> **Hypothesis**: Targeted acoustic or vibration therapy acting as an artificial dither during the Energy Deficit Window can artificially boost mechanosensor sensitivity, preventing the initial scoliotic bifurcation.
+* **Path**: `Micro-Tremor` $\rightarrow$ `PIEZO1/2` $\rightarrow$ `Gain`
+* **Role**: High-threshold sensors require high-frequency physiological "noise" (dither) to sense slow gravity drift. Muscle mass lag during growth reduces this noise, locking up sensors.
+> **Hypothesis**: Acoustic dither during Energy Deficit Window boosts sensitivity, preventing buckling.
+
+### 17. Ciliary Hunting Hypothesis
+* **Path**: `Mechanotransduction Failure` $\rightarrow$ `Ciliary Elongation` $\rightarrow$ `Gain`
+* **Role**: With defective mechanotransduction (disrupted IEC), osteoblasts compensate by elongating primary cilia to "hunt" for lost input.
+* **Evidence**: Elongated cilia link to defective mechanotransduction in AIS osteoblasts (Oliazadeh, 2017).
 
 ---
 *Generated by Systems Mapper based on the Biological Counter-Curvature framework.*

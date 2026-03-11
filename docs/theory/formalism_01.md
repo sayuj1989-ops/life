@@ -617,6 +617,30 @@ $$ \dot{\varepsilon}_{axial} = \dot{\varepsilon}_{basal} + \Gamma_{epi} \langle 
     *   **Data Needed**: Inhibit a known mechanosensitive channel at the growth plate (e.g., PIEZO1 via conditional knockout in chondrocytes) during cyclic loading, and measure vertebral growth anisotropy.
     *   **Refutation**: If the correlation between applied asymmetric stress and differential wedging growth remains unchanged despite the loss of the sensor, the *active biological nature* of $\Gamma_{epi}$ is falsified, suggesting purely passive mechanical yielding (Chen et al., 2025).
 
+### 2.37. The Ciliary Flow-Asymmetry Coupling ($\Gamma_{cilia\_flow}$)
+
+We formalize the "Ciliary Flow-Asymmetry Coupling" hypothesis, linking ependymal ciliary fluid flow gradients to macroscopic spinal rest curvature. We define $\Gamma_{cilia\_flow}$ as the coupling constant mapping the measurable left-right asymmetry in cerebrospinal fluid (CSF) flow velocity to the spatial gradient of the rest curvature vector.
+
+$$ \nabla \boldsymbol{\kappa}_{rest} = \Gamma_{cilia\_flow} \cdot \left( \frac{\mathbf{v}_{L} - \mathbf{v}_{R}}{\langle |\mathbf{v}| \rangle} \right) $$
+
+*   **Symbols**:
+    *   $\nabla \boldsymbol{\kappa}_{rest}$: Spatial gradient of the intrinsic (rest) curvature vector $[L^{-2}]$.
+    *   $\mathbf{v}_{L}, \mathbf{v}_{R}$: Time-averaged local CSF flow velocities on the left and right sides of the central canal $[L T^{-1}]$.
+    *   $\langle |\mathbf{v}| \rangle$: Mean absolute CSF flow velocity $[L T^{-1}]$.
+    *   $\Gamma_{cilia\_flow}$: Ciliary Flow-Asymmetry Coupling Constant $[L^{-2}]$.
+*   **Dimensions**: The velocity asymmetry term is dimensionless ($[1]$). Therefore, $\Gamma_{cilia\_flow}$ has dimensions of $[L^{-2}]$, matching the curvature gradient.
+*   **Physical Interpretation**: $\Gamma_{cilia\_flow}$ quantifies how strongly an imbalance in ciliary-driven fluid flow translates into an asymmetric morphogenetic field (via downstream morphogen transport, such as Urp1/2), dictating a scoliotic intrinsic target shape.
+*   **Measurable Proxy**: The ratio of left-to-right CSF flow velocity (measured via high-resolution phase-contrast MRI or particle tracking velocimetry) correlated with the rate of Cobb angle progression.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Symmetric Flow Rescue**
+    *   **Data Needed**: Spinal curvature progression in a scoliotic animal model (e.g., *ptk7* mutant zebrafish) where uniform, symmetric external fluid flow is artificially induced in the central canal (e.g., via targeted micro-pumping) to override the defective ciliary beating.
+    *   **Refutation**: If imposing a symmetric flow field fails to rescue the straight spinal phenotype, the hypothesis that flow asymmetry is the primary driver of curvature is falsified. (Reference: Grimes et al., 2016).
+*   **Test 2: The Flow-Independent Morphogenesis**
+    *   **Data Needed**: High-resolution 3D kinematic mapping of CSF flow in wild-type vs. ciliary-paralyzed mutants (e.g., *cfap298* mutants) treated with downstream morphogens (e.g., exogenous Urp1) applied symmetrically.
+    *   **Refutation**: If applying the downstream chemical signal symmetrically fails to restore straight growth in the absence of flow, the physical fluid force (shear stress on cilia) itself is required, refuting a purely transport-based coupling mechanism. (Reference: Cantaut-Belarif et al., 2018).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1043,3 +1067,4 @@ The theory makes specific predictions about the relationship between genetic ani
 69. **Grosso, A., et al. (2017).** "It takes two to tango: coupling of angiogenesis and osteogenesis during bone formation." *Frontiers in Physiology*, 8. (Review of the required coupling between vascular supply and bone remodeling).
 70. **Lo, C. M., et al. (2000).** "Cell movement is guided by the rigidity of the substrate." *Biophysical Journal*, 79(1). (Foundational evidence for durotaxis).
 71. **Iskratsch, T., et al. (2014).** "Appreciating force and shape—the rise of mechanotransduction in cell biology." *Nature Reviews Molecular Cell Biology*, 15(12). (Review connecting substrate stiffness, mechanotransduction, and cell polarization).
+72. **Grimes, D. T., et al. (2016).** "Zebrafish models of idiopathic scoliosis link cerebrospinal fluid flow defects to spine curvature." *Science*, 352(6291). (Links ciliary flow to spinal alignment).

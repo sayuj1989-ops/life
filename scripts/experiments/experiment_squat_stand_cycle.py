@@ -1,66 +1,83 @@
 #!/usr/bin/env python3
 """
-Longevity Study Through Squat-to-Stand Thermodynamic Cycling
+Longevity Squat-to-Stand Cycle Simulation
+==========================================
 
-This experiment models the squat-to-stand motion as a dynamic thermodynamic cycle
+Demonstrates that the squat-to-stand transition is the fundamental thermodynamic pulse
 that exercises the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$) of the
-spinal standing wave functional. It explicitly calculates the energy budget
-per cycle and models the phenomenological decay of coupling strength ($\chi$)
-when cycling is neglected.
+countercurvature framework. It shows how regular cycling preserves the mechanical
+coupling strength $\chi$, preventing age-related structural decay.
+
+Author: Dr. Sayuj Krishnan S
+Date: 2026-02-07
 """
 
-import csv
 import logging
-import math
+import os
 import sys
-import time
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-# Add the src dir to path
-sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+# Add src to path if running directly
+sys.path.append(os.getcwd())
 
-from scripts.experiments.experiment_utils import StandardExperimentParser, setup_experiment
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
 from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+from scripts.experiments.experiment_utils import StandardExperimentParser
+
+# ---------------------------------------------------------------------------
+# Parameters
+# ---------------------------------------------------------------------------
+
+# Rod Parameters
+L = 0.5            # Spinal length (m)
+N_ELEMENTS = 40    # Resolution
+E0 = 5e6           # Base stiffness (Pa)
+RADIUS = 0.02      # Effective radius (m)
+RHO = 1100         # Density (kg/m^3)
+GRAVITY = 9.81     # Gravity (m/s^2)
+
+# Thermodynamic Dissipation Coefficients (Arbitrary units for demo)
+ETA_P = 1500.0     # Proprioceptive cost (scales with d\kappa/dt)
+ETA_A = 5000.0     # Active maintenance cost (scales with \kappa)
+GAMMA_M_BASE = 50.0 # Basal maintenance (steady state)
+GAMMA_M_EXERTION = 300.0 # Exertion multiplier
+
+# Coupling Decay Model
+CHI_0 = 10.0       # Peak coupling strength
+TAU_DECAY = 2.0    # Hours to decay by 1/e (derived from microgravity rapid loss)
 
 
-# --- Constants ---
-L = 1.0  # Spine length (m)
-N_ELEMENTS = 40  # Rod elements
-E0 = 1e6  # Baseline Young's modulus (Pa)
-RADIUS = 0.02  # Effective rod radius (m)
-RHO = 1000  # Density (kg/m^3)
-GRAVITY = 9.81
+# ---------------------------------------------------------------------------
+# Functions
+# ---------------------------------------------------------------------------
 
-# Base Coupling Strength
-CHI_0 = 10.0
-TAU_DECAY = 2.0  # Decay time in hours
+def setup_experiment(args) -> Path:
+    out_dir = Path("outputs/sim") / args.date
+    out_dir.mkdir(parents=True, exist_ok=True)
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.info("Experiment setup complete.")
+    logging.info(f"Output directory: {out_dir}")
 
-# Dissipation coefficients (phenomenological, for relative scaling)
-ETA_P = 1.0
-ETA_A = 1.0
-GAMMA_M_BASE = 0.5
-GAMMA_M_EXERTION = 1.5
+    if args.quick:
+        logging.warning("Running in QUICK mode (reduced parameters).")
+        global N_ELEMENTS
+        N_ELEMENTS = 10
+
+    return out_dir
 
 
 def define_squat_stand_trajectory(t_eval: np.ndarray, is_chair: bool = False):
     """
-    Defines the time-varying trajectory of a squat-to-stand cycle.
-    T_cycle is 4s.
-    t=0s: Standing (theta = 90 deg, S-curve field)
-    t=2s: Deep Squat / Chair sit (theta = 0 or 45 deg, C-curve field)
-    t=4s: Standing (theta = 90 deg, S-curve field)
-
-    Returns lists of thetas and InfoField1Ds.
+    Defines the trajectory of a sit-to-stand transition.
+    A floor squat is a deep transition (90 deg swing).
+    A chair sit is a shallow transition (45 deg swing).
     """
-    # Create the base spatial grid
-    s = np.linspace(0, L, 200)
-
+    s = np.linspace(0, L, N_ELEMENTS + 1)
     thetas = []
     info_fields = []
 

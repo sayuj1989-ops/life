@@ -634,3 +634,4 @@ can be tested with existing datasets."
 **VERSION HISTORY:**
 - v1.0: Initial AI_FINALIZATION_PROMPT.md (blank template)
 - v2.0: 2026-02-18 — Post-rejection deep analysis, full specific revision instructions
+- Make use of "Dream to Control: Learning Behaviors by Latent Imagination" by Hafner et al. (2019) to improve our framework's Active Inference model.

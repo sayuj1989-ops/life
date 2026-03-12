@@ -77,3 +77,15 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Root-Level Python Script Cleanup (High Priority)
+
+- [x] **Consolidate Benchmark Scripts**: Move `benchmark_*.py` files from the root to `scripts/benchmarks/`.
+- [ ] **Move AlphaFold Pipeline Scripts**: Move `alphafold_pipeline_v2.py` and `gen_alphafold_figs.py` to `scripts/alphafold/`.
+- [ ] **Organize Miscellaneous Scripts**: Move `check_elastica.py`, `run_cluster.py`, `test_genai.py`, `main.py` and `generate_submission.py` to appropriate directories (e.g., `scripts/utils/` or `archive/`).
+
+## Phase 10: Root-Level Data and Docs Cleanup (Medium Priority)
+
+- [ ] **Clean Up Root Markdown/Text files**: Move `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, `README_SUBMISSION_PACKAGE.md`, `research_schedule_gravity_optimization.md`, `plan.md`, `00_START_HERE.txt` to appropriate subdirectories like `docs/` or `manuscript/`.
+- [ ] **Move Root Outputs/Figures**: Move `js_creature_t0.png`, `js_creature_tPI.png`, `test_output_2.txt`, `Supplementary_Statistics_Table.csv` to `outputs/` or `figures/`.
+- [ ] **Move JS Scripts**: Move `create_alphafold_section.js` to `scripts/manuscript/`.

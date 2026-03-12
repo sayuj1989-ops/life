@@ -25,3 +25,26 @@ Compare osteocyte dendrite density (confocal/phalloidin) and serum CCN1 levels i
 2.  Caloric restriction (Energy Deficit).
 3.  Rapid catch-up growth (AIS model).
 Prediction: Dendrite retraction precedes overt bone loss or curvature.
+
+---
+
+# Evidence Note: ADGRG6/GPR126 Mechanotransduction in Spine Alignment
+**Date:** 2026-03-12
+**Topic:** Gravity, Spine, Counter-Curvature
+
+## Claim
+The Adhesion G protein-coupled receptor G6 (ADGRG6/GPR126) functions as a critical mechanosensor in cartilaginous and dense connective tissues, translating mechanical forces (such as gravity) into biochemical signals necessary for maintaining spinal alignment.
+
+## Mechanism
+ADGRG6 is enriched in the intervertebral discs (IVDs) and surrounding dense connective tissues. It responds to mechanical strain by activating intracellular cAMP signaling pathways, which in turn regulate the extracellular matrix (ECM) composition. Loss or mutation of ADGRG6 leads to a failure in mechanotransduction, resulting in structurally deficient connective tissues that cannot properly resist mechanical loads, ultimately leading to scoliosis (Liu et al., 2021).
+
+## Relevance to S-shaped Spinal Growth and Scoliosis
+The spine must constantly adapt to the compressive and torsional forces of gravity during growth. ADGRG6 acts as a local sensor in the IVD and ligaments that detects these forces and modulates tissue stiffness and ECM integrity in response. In adolescent idiopathic scoliosis (AIS), defects in this mechanotransduction pathway mean the structural elements of the spine fail to remodel appropriately under the asymmetrical loads of the growing S-curve, leading to progressive buckling.
+
+## Support for the Counter-Curvature Hypothesis
+This finding directly supports the "biological counter-curvature" hypothesis, which posits that the spine maintains its geometry against gravity via an active, information-driven mechanosensory feedback loop. ADGRG6 serves as a molecular "strain antenna" (similar to high-anisotropy sensors like PIEZO2 or POC5) that provides the necessary proprioceptive/mechanical supply ($S_{proprio}$) to match the metabolic demand of maintaining the counter-curvature. Its failure during rapid growth creates the "Energy Deficit Window" where passive gravitational geodesics overcome active biological control.
+
+## Open Question & Proposed Test
+**Open Question:** Does the efficacy of ADGRG6 mechanotransduction depend on its structural anisotropy, and does unloading (microgravity) cause its mislocalization or functional decoupling from the ECM?
+
+**Proposed Test:** Cultivate ADGRG6-expressing spinal fibroblasts or IVD cells in a simulated microgravity bioreactor (unloading) versus cyclic compression (loading). Measure ADGRG6 membrane localization, downstream cAMP levels, and the structural anisotropy of the surrounding collagen matrix to determine if the sensor's function degrades without a persistent gravitational vector.

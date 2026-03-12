@@ -101,8 +101,10 @@ def generate_report(data):
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
+**Strategy:** Reframe as "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
@@ -158,7 +160,7 @@ def save_report(report):
     return filepath
 
 if __name__ == "__main__":
-    roadmap_path = "research/spine_submission/roadmap.md"
+    roadmap_path = "docs/spine_submission_roadmap.md"
     data, error = parse_roadmap(roadmap_path)
 
     if error:

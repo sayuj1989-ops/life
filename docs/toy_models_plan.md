@@ -53,6 +53,65 @@
 
 ---
 
+## Part 2: Proposed Validation Experiments (Future)
+
+To further de-risk the theory and provide robust validation, the following toy models and real experiments are proposed:
+
+### Proposed Additional Toy Models
+
+1.  **Torsional Buckling Model:**
+    *   **Objective:** Demonstrate that information-coupled systems resist torsional loads better than passive Euler columns.
+    *   **Method:** 1D Cosserat rod with an active twisting moment counteracting applied torque.
+    *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.
+    *   **Expected Outcome:** Active model maintains stability up to $2\times$ the passive $T_{crit}$.
+    *   **Stop Condition:** Analytical solution matches numerical simulation within 5% error.
+
+2.  **Information-Coupled Thermostatic Column:**
+    *   **Objective:** Extend Toy Model A to include a delayed feedback loop mimicking biological sensor lag.
+    *   **Method:** 1D column with a PID controller regulating stiffness based on strain, with a defined time delay $\tau$.
+    *   **Success Metric:** Identification of a critical delay $\tau_{crit}$ that induces oscillatory instability (hunting).
+    *   **Expected Outcome:** System becomes unstable when $\tau$ exceeds the mechanical relaxation time.
+    *   **Stop Condition:** Phase diagram maps stable vs. unstable regions across $(\tau, L)$ parameter space.
+
+3.  **Holographic Instability Lattice:**
+    *   **Objective:** Verify the "Exploding Gradient" region using a minimal 2D lattice.
+    *   **Method:** 2D spring-mass lattice where resting lengths update based on local stress gradients.
+    *   **Success Metric:** Emergence of macroscopic curvature from isotropic initial conditions under high information-coupling ($\chi_\kappa$).
+    *   **Expected Outcome:** Lattice reliably buckles into a defined curve when $\chi_\kappa > \chi_{crit}$.
+    *   **Stop Condition:** Consistent buckling mode observed across 100 random noise seeds.
+
+### Proposed Real Validation Experiments
+
+1.  **PIEZO2 Conditional Knockout (Mouse Model):**
+    *   **Objective:** Validate the role of proprioception in maintaining the straight spine against gravity.
+    *   **Method:** Conditional knockout of PIEZO2 in spinal proprioceptors at P0. Assess spinal curvature at P30.
+    *   **Success Metric:** Significant increase in Cobb angle ($>10^\circ$) compared to wild-type controls.
+    *   **Expected Outcome:** Knockout mice develop progressive, gravity-dependent scoliosis.
+    *   **Stop Condition:** Statistically significant difference ($p < 0.05$) observed in cohort of $N=10$ per group.
+
+2.  **Microgravity Clinostat Assay (In Vitro):**
+    *   **Objective:** Test the "Spinal Jetlag" hypothesis regarding vector-scalar mismatch.
+    *   **Method:** Culture osteoblasts under cyclic compressive loading while rotating in a 3D clinostat (simulated microgravity).
+    *   **Success Metric:** Quantification of extracellular matrix (ECM) alignment and osteogenic marker expression.
+    *   **Expected Outcome:** Cells show normal proliferation (scalar pressure) but disorganized ECM alignment (missing gravity vector).
+    *   **Stop Condition:** Assays completed for 3 distinct biological replicates with clear imaging data.
+
+3.  **Circadian Desynchronization (In Vivo):**
+    *   **Objective:** Directly test the impact of circadian rhythm disruption on spinal geometry.
+    *   **Method:** Subject wild-type mice to chronic jetlag (12h phase shift every 3 days) from P10 to P40.
+    *   **Success Metric:** Measurement of spinal curvature and vertebral wedging via micro-CT.
+    *   **Expected Outcome:** Disrupted mice show increased variance in spinal alignment and minor wedging compared to controls.
+    *   **Stop Condition:** Micro-CT analysis completed and data blinded for analysis.
+
+4.  **HOX Gradient Manipulation (Zebrafish):**
+    *   **Objective:** Confirm that the HOX positional code acts as the "target geometry" for the IEC.
+    *   **Method:** Misexpress anterior HOX genes in the posterior somites using a heat-shock inducible promoter.
+    *   **Success Metric:** Observation of ectopic structural curves or altered vertebral morphology.
+    *   **Expected Outcome:** Altered HOX expression induces predictable changes in the resting curvature of the spine.
+    *   **Stop Condition:** Consistent phenotype observed in $>50\%$ of treated embryos ($N=50$).
+
+---
+
 ## Toy Model D: Lenke Classifications (Spatial Deficit)
 
 **Goal:** Demonstrate how the spatial distribution of the Energy Deficit dictates the resulting scoliotic curve shape, predicting specific Lenke classifications (types 1-6).

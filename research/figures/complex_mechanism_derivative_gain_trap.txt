@@ -1,19 +1,5 @@
-Create a highly detailed, scientific mechanism diagram explaining the "Derivative Gain Trap" leading to "Metabolic Buckling" in Adolescent Idiopathic Scoliosis (AIS).
-
-The diagram should be divided into two main panels:
-
-Panel A (Childhood - Stable State):
-- Show a Delay Differential Equation (DDE) feedback loop.
-- Key parameters: Short neural delay (τ_short), low spinal length (L_child).
-- Illustrate stable derivative gain acting as effective damping.
-- Visual metaphor: A balanced scale between Geometric Cost (L^4) and Metabolic Supply (L^2), showing sufficient NAD+ supply.
-- The spine is maintained in a healthy S-curve.
-
-Panel B (Adolescent Growth Spurt - Instability):
-- Show the same DDE feedback loop but stressed.
-- Key parameters: Increased absolute neural delay (τ_long) due to rapid nerve elongation, high spinal length (L_teen).
-- The increased delay shifts the derivative gain's phase, turning damping into destabilizing positive feedback (Supercritical Hopf Bifurcation).
-- Visual metaphor: The scale tips drastically. Geometric Cost (L^4) vastly outweighs Metabolic Supply (L^2), creating an "Energy Deficit Window" (NAD+ insufficiency).
-- The spine undergoes "Metabolic Buckling," twisting into a 3D scoliotic deformity.
-
-Style: Professional, high-impact journal style (e.g., Nature Medicine). Clean lines, clear typography, distinct color coding for stable (blue/green) vs unstable (red/orange) states. Use scientific notation and mathematical symbols where appropriate.
+A highly detailed scientific diagram illustrating the "Derivative Gain Trap" during the adolescent growth spurt, leading to Adolescent Idiopathic Scoliosis (AIS).
+The diagram is split into two panels: "Childhood (Stable)" and "Adolescent Growth Spurt (Unstable)".
+In the "Childhood" panel (left), a straight, healthy spine is shown. A feedback control loop connects the spine to the brain, with a short neural delay ($\tau$). A damping mechanism (derivative gain) successfully stabilizes the spine against perturbations.
+In the "Adolescent Growth Spurt" panel (right), a rapidly growing spine is shown. The neural delay ($\tau$) has increased significantly due to the increased length. The same damping mechanism (derivative gain) now overcompensates due to the delay, creating a destabilizing resonant feedback loop. This causes the spine to buckle into an S-shaped scoliotic curve.
+The overall style should be clean, professional, and suitable for a high-impact journal like Nature or Science. Use contrasting colors (e.g., blue for stable, red/orange for unstable) to highlight the transition.

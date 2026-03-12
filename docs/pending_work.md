@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-03-12
 **Status:** In Progress
 **Priority Level:** High (Final Push to Submission: References and Figures)
 
@@ -19,14 +19,14 @@
 | **CODE-02** | **Update `experiment_optimization_failure.py`** | Generate Figure 4 with specific mutation labels. | 0.5 day | DATA-02 | ✅ **Completed** |
 | **CODE-04** | **Create `experiment_anisotropy_rescue.py`** | Validate vector constraints via anisotropy sweeps against critical buckling. | 0.5 day | None | ✅ **Completed** |
 
-## 3. Manuscript Tasks (High Priority)
+## 3. Manuscript & Validation Tasks (High Priority)
 
-| ID | Task | Description | Effort | Dependencies | Risk Level | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
-| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
-| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
-| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Acceptance Criteria | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format) directly into `references.bib` covering biomechanics and mechanotransduction. | 2 days | None | High | >80 citations cleanly compiling without LaTeX warnings. | 🔴 **Critical Block** |
+| **MS-02** | **Figure Finalization** | Assemble output plots into standardized 300dpi final multi-panel figures (Figure 1-7), applying visual unification scripts. | 3 days | Output scripts | Medium | All 7 panels present in `figures/main/` with exact Nature style. | 🟡 **In Progress** |
+| **VAL-01** | **Validate Specialized Experiments** | Verify outputs for `experiment_piezo_cilia_lock.py`, `experiment_squat_stand_cycle.py`, etc., exist and match manuscript text. | 1 day | Python execution | Medium | Exact output file paths tracked in `experiment_registry.md`. | ⚪ **Planned** |
+| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | Single unified PDF exists and is circulated to PI. | ⚪ **Planned** |
 
 ## 4. Theory & Validation (Completed)
 
@@ -38,9 +38,11 @@
 
 ## Summary of Risks
 
-1.  **Figure Styling:** Script outputs might lack uniform stylistic alignment. **Mitigation:** Unify plotting configuration across existing scripts immediately via centralized generation functions.
-2.  **Missing References:** The Nature manuscript requires a comprehensive reference list, which currently has gaps. **Mitigation:** Execute an intense literature extraction phase over the next 24-48 hours.
+1.  **Figure Styling:** Script outputs currently lack uniform stylistic alignment. **Mitigation:** Run or construct small visual unification wrappers to enforce fonts/styles before final panel assembly.
+2.  **Missing References:** The Nature manuscript requires a comprehensive reference list, which remains bare. **Mitigation:** Execute intense literature extraction over the next 48-72 hours directly into `references.bib`.
+3.  **Missing Special Artifacts:** Some physiological experiment scripts run successfully but do not explicitly emit verified plots. **Mitigation:** Run them individually (`VAL-01`) and catalog outputs directly in `experiment_registry.md`.
 
 **Next Actions:**
 1.  Target **MS-01**: Massive expansion of the `.bib` file.
-2.  Target **MS-02**: Verify and format all plot artifacts for Figure 1-7 assembly.
+2.  Target **VAL-01**: Validate explicit visual outputs of Piezo Lock, Squat-Stand, Hydraulic experiments.
+3.  Target **MS-02**: Verify and format all plot artifacts for Figure 1-7 assembly into `figures/main/`.

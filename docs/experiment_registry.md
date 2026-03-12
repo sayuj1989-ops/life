@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-03-12
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -22,6 +22,10 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
 | **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
 | **EXP_11_LocomotorResonance**| `scripts/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_12_PiezoCiliaLock** | `scripts/experiments/experiment_piezo_cilia_lock.py` | Validates mechanotransduction bounds in PIEZO2/Primary Cilia. | `outputs/figures/piezo_cilia_lock.png` (TBD) | 🟡 **Needs Run/Validation** | Tests core molecular sensor mechanism. |
+| **EXP_13_SquatStandCycle** | `scripts/experiments/experiment_squat_stand_cycle.py` | Models diurnal / dynamic postural loading cycles over time. | `outputs/figures/squat_stand_cycle.png` (TBD) | 🟡 **Needs Run/Validation** | Expands on physiological loading variance. |
+| **EXP_14_StochasticResonance** | `scripts/experiments/experiment_stochastic_resonance.py` | Models interplay of sensory noise and active control stability. | `outputs/figures/stochastic_resonance.png` (TBD) | 🟡 **Needs Run/Validation** | Connects proprioceptive noise to robustness. |
+| **EXP_15_HydraulicBuckling** | `scripts/experiments/experiment_hydraulic_buckling.py` | Models nucleus pulposus pressure and internal buckling factors. | `outputs/figures/hydraulic_buckling.png` (TBD) | 🟡 **Needs Run/Validation** | Non-axial structural factors context. |
 
 ## 2. Toy Models (Validation)
 

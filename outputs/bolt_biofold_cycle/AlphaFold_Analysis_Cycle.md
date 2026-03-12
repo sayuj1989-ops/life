@@ -12,6 +12,9 @@ No specific protein list was provided. Proceeding with explicit defaults:
 
 | protein_id      | species      |   length |   pLDDT_mean |   pLDDT_median |   pLDDT_fraction_high |   pLDDT_fraction_ok |   pLDDT_fraction_low |   PAE_mean |   PAE_domain_blockiness_score |   predicted_domain_segments |   disorder_fraction_proxy |   hinge_candidates | backbone_principal_axis   |   radius_of_gyration |   end_to_end_distance |   curvature_summary |   torsion_summary |   anisotropy_index | bending_hotspots                |   exposed_surface_proxy |   charged_patch_score | low_confidence_warning   | multi_domain_uncertain   | likely_IDR_heavy   |
 |:----------------|:-------------|---------:|-------------:|---------------:|----------------------:|--------------------:|---------------------:|-----------:|------------------------------:|----------------------------:|--------------------------:|-------------------:|:--------------------------|---------------------:|----------------------:|--------------------:|------------------:|-------------------:|:--------------------------------|------------------------:|----------------------:|:-------------------------|:-------------------------|:-------------------|
+| PIEZO2 (Q9H5I5) | Homo sapiens |      709 |        79.44 |          88.38 |                  0.42 |                0.37 |                 0.21 |      16.99 |                          2.8  |                           7 |                      0.14 |                  0 | [-0.687, -0.068, 0.724]   |                43.41 |                 28.41 |              0.3293 |            1.4285 |               4.44 | 460:0.38; 239:0.38; 138:0.38    |                    0.56 |                  0.25 | False                    | True                     | False              |
+| LMNA (P02545)   | Homo sapiens |      664 |        76.37 |          93.12 |                  0.58 |                0.11 |                 0.31 |      24.87 |                          2.56 |                           3 |                      0.26 |                  0 | [-0.668, -0.244, 0.703]   |                71.25 |                278.06 |              0.3436 |            1.1944 |               4.75 | 508:0.40; 519:0.39; 30:0.38     |                    0.87 |                  0.4  | False                    | True                     | False              |
+| PLOD1 (Q02809)  | Homo sapiens |      727 |        92.73 |          96.12 |                  0.88 |                0.08 |                 0.05 |       7.74 |                          2.31 |                           3 |                      0.03 |                  1 | [-0.617, -0.153, 0.772]   |                34.74 |                 81    |              0.3092 |            1.6834 |               3.4  | 685:0.39; 660:0.39; 458:0.38    |                    0.3  |                  0.43 | False                    | False                    | False              |
 | COL2A1 (P02458) | Homo sapiens |     1487 |        52.12 |          44.12 |                  0.13 |                0.06 |                 0.81 |      27.44 |                          5.9  |                           3 |                      0.69 |                 16 | [-0.434, -0.065, 0.899]   |                24.97 |                 45.38 |              0.2938 |            1.8702 |               2.65 | 1327:0.42; 1454:0.39; 1282:0.38 |                    0.87 |                  0.28 | True                     | True                     | True               |
 | FN1 (P02751)    | Homo sapiens |     2477 |        69.65 |          75.38 |                  0.05 |                0.56 |                 0.39 |      27.08 |                          7.04 |                          49 |                      0.16 |                216 | [-0.808, 0.027, 0.589]    |                55.09 |                 66.77 |              0.2582 |            2.2568 |               2.44 | 1768:0.41; 2039:0.38; 959:0.38  |                    0.36 |                  0.32 | True                     | True                     | False              |
 | ACTB (P60709)   | Homo sapiens |      375 |        95.2  |          97.44 |                  0.93 |                0.05 |                 0.03 |       5.03 |                          1.26 |                           2 |                      0.01 |                  1 | [0.835, 0.517, -0.187]    |                21.09 |                 42.74 |              0.3178 |            1.5512 |               2.19 | 335:0.39; 265:0.39; 258:0.38    |                    0.3  |                  0.34 | False                    | False                    | False              |
@@ -26,6 +29,9 @@ No specific protein list was provided. Proceeding with explicit defaults:
 
 ```csv
 protein_id,species,length,pLDDT_mean,pLDDT_median,pLDDT_fraction_high,pLDDT_fraction_ok,pLDDT_fraction_low,PAE_mean,PAE_domain_blockiness_score,predicted_domain_segments,disorder_fraction_proxy,hinge_candidates,backbone_principal_axis,radius_of_gyration,end_to_end_distance,curvature_summary,torsion_summary,anisotropy_index,bending_hotspots,exposed_surface_proxy,charged_patch_score,low_confidence_warning,multi_domain_uncertain,likely_IDR_heavy
+PIEZO2 (Q9H5I5),Homo sapiens,709,79.44,88.38,0.42,0.37,0.21,16.99,2.80,7,0.14,0,"[-0.687, -0.068, 0.724]",43.41,28.41,0.3293,1.4285,4.44,460:0.38; 239:0.38; 138:0.38,0.56,0.25,False,True,False
+LMNA (P02545),Homo sapiens,664,76.37,93.12,0.58,0.11,0.31,24.87,2.56,3,0.26,0,"[-0.668, -0.244, 0.703]",71.25,278.06,0.3436,1.1944,4.75,508:0.40; 519:0.39; 30:0.38,0.87,0.40,False,True,False
+PLOD1 (Q02809),Homo sapiens,727,92.73,96.12,0.88,0.08,0.05,7.74,2.31,3,0.03,1,"[-0.617, -0.153, 0.772]",34.74,81.00,0.3092,1.6834,3.40,685:0.39; 660:0.39; 458:0.38,0.30,0.43,False,False,False
 COL2A1 (P02458),Homo sapiens,1487,52.12,44.12,0.13,0.06,0.81,27.44,5.90,3,0.69,16,"[-0.434, -0.065, 0.899]",24.97,45.38,0.2938,1.8702,2.65,1327:0.42; 1454:0.39; 1282:0.38,0.87,0.28,True,True,True
 FN1 (P02751),Homo sapiens,2477,69.65,75.38,0.05,0.56,0.39,27.08,7.04,49,0.16,216,"[-0.808, 0.027, 0.589]",55.09,66.77,0.2582,2.2568,2.44,1768:0.41; 2039:0.38; 959:0.38,0.36,0.32,True,True,False
 ACTB (P60709),Homo sapiens,375,95.20,97.44,0.93,0.05,0.03,5.03,1.26,2,0.01,1,"[0.835, 0.517, -0.187]",21.09,42.74,0.3178,1.5512,2.19,335:0.39; 265:0.39; 258:0.38,0.30,0.34,False,False,False
@@ -46,6 +52,21 @@ Generated output files under `outputs/bolt_biofold_cycle/figures/`:
 * Generated `*_curvature.png` for proteins showing backbone curvature for high-confidence regions.
 
 ## C) Interpretation
+
+* **PIEZO2 (Q9H5I5)**
+  * **What we see:** Highly elongated (Confidence: Medium)
+  * **Why it matters:** Morphogen/Growth factor; signaling spatial orientation during cartilage formation.
+  * **Next test:** Compare PIEZO2 geometry with orthologs to confirm evolutionary conservation of its structural mechanics.
+
+* **LMNA (P02545)**
+  * **What we see:** Highly elongated (Confidence: Medium)
+  * **Why it matters:** Morphogen/Growth factor; signaling spatial orientation during cartilage formation.
+  * **Next test:** Compare LMNA geometry with orthologs to confirm evolutionary conservation of its structural mechanics.
+
+* **PLOD1 (Q02809)**
+  * **What we see:** Highly elongated, 1 hinge candidate(s) (Confidence: High)
+  * **Why it matters:** Morphogen/Growth factor; signaling spatial orientation during cartilage formation.
+  * **Next test:** Check if PLOD1 hinges overlap with known clinically significant missense mutations in scoliosis patients.
 
 * **COL2A1 (P02458)**
   * **What we see:** Intermediate geometry, 16 hinge candidate(s) (Confidence: Low)
@@ -96,7 +117,7 @@ Generated output files under `outputs/bolt_biofold_cycle/figures/`:
 ## Quality & Reproducibility Checklist
 
 * **Data source:** AlphaFold DB (fetched dynamically)
-* **Date/time of run:** 2026-03-11 19:39:48
+* **Date/time of run:** 2026-03-12 19:31:10
 * **Code version:** scripts/run_bolt_analysis_cycle.py
 * **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.
 * **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.

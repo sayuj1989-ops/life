@@ -21,6 +21,9 @@ except ImportError:
 
 # Default Seed List (ECM, cytoskeleton, adhesion, cilia, growth plate/cartilage, morphogens)
 DEFAULT_SEED_LIST = [
+    {"symbol": "PIEZO2", "uniprot": "Q9H5I5", "species": "Homo sapiens", "category": "Mechanosensor"},
+    {"symbol": "LMNA", "uniprot": "P02545", "species": "Homo sapiens", "category": "Nuclear Envelope"},
+    {"symbol": "PLOD1", "uniprot": "Q02809", "species": "Homo sapiens", "category": "ECM crosslinking"},
     {"symbol": "COL2A1", "uniprot": "P02458", "species": "Homo sapiens", "category": "ECM/Cartilage"},
     {"symbol": "FN1", "uniprot": "P02751", "species": "Homo sapiens", "category": "ECM"},
     {"symbol": "ACTB", "uniprot": "P60709", "species": "Homo sapiens", "category": "Cytoskeleton"},

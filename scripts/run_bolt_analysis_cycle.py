@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Optional
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import requests
 
@@ -153,7 +154,12 @@ def main():
             "likely_IDR_heavy": metrics['likely_IDR_heavy']
         }
         results.append(entry)
-        plot_data[symbol] = plddt
+
+        # Calculate curvature for plotting (use pLDDT mask for high-confidence)
+        kappa = np.full(len(coords), np.nan)
+        if len(coords) >= 3:
+            kappa = analyzer.calculate_curvature(coords)
+        plot_data[symbol] = {'plddt': plddt, 'curvature': kappa}
 
     df = pd.DataFrame(results)
     md_report.append(df.to_markdown(index=False) + "\n")
@@ -168,7 +174,11 @@ def main():
     md_report.append("## B) Key Plots Summary\n")
     md_report.append("Generated output files under `outputs/bolt_biofold_cycle/figures/`:\n")
 
-    for symbol, plddt in plot_data.items():
+    for symbol, data_dict in plot_data.items():
+        plddt = data_dict['plddt']
+        curvature = data_dict['curvature']
+
+        # 1. pLDDT Plot
         plt.figure(figsize=(8, 3))
         plt.plot(plddt, color='blue', alpha=0.7)
         plt.title(f"{symbol} - Per-Residue Confidence (pLDDT)")
@@ -179,6 +189,23 @@ def main():
         plt.tight_layout()
         plt.savefig(os.path.join(FIG_DIR, f"{symbol}_plddt.png"))
         plt.close()
+
+        # 2. Curvature Plot (Only for high-confidence regions pLDDT >= 70)
+        hc_mask = plddt >= 70
+
+        if np.any(hc_mask) and np.any(~np.isnan(curvature[hc_mask])):
+            plt.figure(figsize=(8, 3))
+
+            # Create a masked array to avoid plotting lines across low-confidence gaps
+            kappa_plot = np.where(hc_mask, curvature, np.nan)
+
+            plt.plot(kappa_plot, color='purple', alpha=0.8)
+            plt.title(f"{symbol} - Curvature Along Backbone (High Confidence Only)")
+            plt.xlabel("Residue Index")
+            plt.ylabel("Curvature (κ)")
+            plt.tight_layout()
+            plt.savefig(os.path.join(FIG_DIR, f"{symbol}_curvature.png"))
+            plt.close()
 
     # Only plot PAE for top 3 interesting ones to keep minimal plots
     interesting_symbols = ["FN1", "ITGB1", "SHH"]
@@ -193,7 +220,8 @@ def main():
             plt.close()
 
     md_report.append("* Generated `*_plddt.png` for all proteins showing confidence vs threshold (70).")
-    md_report.append("* Generated `*_pae.png` for key proteins (e.g. FN1, ITGB1) mapping domain interactions.\n")
+    md_report.append("* Generated `*_pae.png` for key proteins (e.g. FN1, ITGB1) mapping domain interactions.")
+    md_report.append("* Generated `*_curvature.png` for proteins showing backbone curvature for high-confidence regions.\n")
 
     md_report.append("## C) Interpretation\n")
     for row in results:

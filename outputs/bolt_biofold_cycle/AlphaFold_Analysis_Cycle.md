@@ -43,6 +43,7 @@ Generated output files under `outputs/bolt_biofold_cycle/figures/`:
 
 * Generated `*_plddt.png` for all proteins showing confidence vs threshold (70).
 * Generated `*_pae.png` for key proteins (e.g. FN1, ITGB1) mapping domain interactions.
+* Generated `*_curvature.png` for proteins showing backbone curvature for high-confidence regions.
 
 ## C) Interpretation
 
@@ -95,7 +96,7 @@ Generated output files under `outputs/bolt_biofold_cycle/figures/`:
 ## Quality & Reproducibility Checklist
 
 * **Data source:** AlphaFold DB (fetched dynamically)
-* **Date/time of run:** 2026-03-01 19:52:34
+* **Date/time of run:** 2026-03-11 19:39:48
 * **Code version:** scripts/run_bolt_analysis_cycle.py
 * **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.
 * **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.

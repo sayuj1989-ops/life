@@ -1,20 +1,26 @@
-# Next Step Evidence Summary
+# Next Step Evidence Summary: Biological Counter-Curvature
 
-## 1. What is stronger now than baseline
-* **Clear separation of Confidence vs. Shape**: We have explicitly separated candidates with high anisotropy into those with adequate confidence (`pLDDT >= 70`) versus those with low confidence. For instance, `PIEZO2` (anisotropy 4.44, pLDDT 79.4, per `outputs/afcc/2026-02-16/metrics.csv`), `CNNM2`, `FBLN5`, and `STOML3` are now confirmed as robust tension-rod models, whereas `POC5` and `GHR` are downgraded to speculative due to low pLDDT.
-* **Refined understanding of LBX1**: LBX1's profile is now rigorously defined as an intermediate-anisotropy (2.27), highly blocky (PAE blockiness 7.35) structure with low confidence (pLDDT 66.9) per `outputs/afcc/2026-02-16/metrics.csv`. This falsifies simplistic "LBX1 is a rigid tension rod" narratives and properly bounds its hypothesized function to a modular or spring-like role.
-* **Data Freshness and Narrative Discipline**: The audit (`reports/evidence_freshness_audit.md`) revealed that multiple daily and cluster reports had generated "new" narratives from completely static structural metrics (e.g., PIEZO2, LMNA, LBX1 metric vectors were unchanged over the trend window from `outputs/afcc/2026-01-09` to `outputs/afcc/2026-02-16`). We now have a clear claims matrix (`reports/countercurvature_claims_matrix.md`) that separates direct measurements from narrative inference.
+*Date: 2026-02-19*
+*Context: Consolidation of AlphaFold structural evidence and metric freshness.*
 
-## 2. What remains weak
-* **Biological Validation of "Blocky" IDRs**: For candidates like LBX1, we rely heavily on AlphaFold's PAE blockiness to infer modular function. However, the low overall pLDDT means these hinges might simply be unstructured IDRs without any spring-like mechanical properties.
-* **Causal Link Between Shape and Function**: High anisotropy, even with high confidence (like `FBLN5` or `PIEZO2`), is currently just a geometric property. We lack direct experimental evidence showing these specific structural features actively transduce tension in the spinal somite context.
-* **Low-Confidence Outliers**: Extreme anisotropy candidates (like `POC5` at 24.69, per `outputs/afcc/2026-02-16/metrics.csv`) remain entirely speculative. Their high anisotropy might simply be an AlphaFold artifact for long, natively unstructured sequences.
+## What is Stronger Now Than Baseline
+1. **Structural Anchors Clarified**: The distinction between true "Tension Rods" (high anisotropy + high confidence, e.g., PIEZO2, FBLN5, CNNM2) and exploratory candidates (high anisotropy + low confidence, e.g., POC5, GHR) is now quantitatively established via confidence-weighting (`outputs/afcc/confidence_weighted_ranking.csv`).
+2. **Claim Discipline Enforced**: The creation of the `reports/countercurvature_claims_matrix.md` rigorously separates measured structural data from speculative narrative, providing a clean foundation for manuscript drafting.
+3. **Data Provenance Secured**: The `reports/evidence_freshness_audit.md` explicitly flags static metric reuse, preventing the inflation of hypotheses based on redundant data processing.
 
-## 3. Evidence AGAINST or weakening the current hypothesis
-* **LBX1 is not a strong structural anchor**: The data directly contradicts the hypothesis that LBX1 is a purely structural, fibrous tension rod. Its intermediate anisotropy (2.27) and low pLDDT (66.9) (per `outputs/afcc/2026-02-16/metrics.csv`) position it closer to a standard globular or modular protein, significantly weakening claims of its direct load-bearing capacity.
-* **Static "Evolution" of Structural Narratives**: The freshness audit (`reports/evidence_freshness_audit.md`) demonstrates that previously hypothesized "emerging structural classes" or "evolution" of candidate geometries over Jan-Feb 2026 were based on static, unchanged AlphaFold inputs. The narrative outpaced the measured evidence, meaning any temporal or causal inferences drawn during that period are unsupported by the underlying data.
+## What Remains Weak (Evidence AGAINST current hypothesis)
+1. **LBX1's Structural Role**: The data strongly weakens the hypothesis that LBX1 is a primary, load-bearing mechanosensor or "Tension Rod". Its low anisotropy (2.27) and low confidence (pLDDT 66.9) categorize it as an intermediate, potentially disordered or context-dependent protein. Narratives assigning it a rigid structural role are unsupported by current AlphaFold data.
+2. **Over-Interpretation of Static Data**: The freshness audit revealed that "emerging" structural narratives for core genes (LBX1, PIEZO2, LMNA) were sometimes generated despite their underlying structural metrics remaining completely static across multiple runs (Jan 09 - Feb 16).
 
-## 4. Top 3 highest-leverage next experiments
-1. **smFS of LBX1 and Modular Candidates**: Perform single-molecule force spectroscopy on recombinant LBX1 to test if its "blocky" domains exhibit discrete, force-dependent unfolding steps characteristic of a mechanical spring, thereby validating the PAE-based hypothesis.
-2. **Nuclear Tension Perturbation (LINC complex)**: Modulate nuclear tension via LMNA knockdown or LINC complex disruption and measure the nuclear/chromatin localization of intermediate candidates like LBX1. This directly tests the core mechanotransduction hypothesis independent of AlphaFold predictions.
-3. **Ensemble Modeling / MD of IDRs**: For low-confidence, high-anisotropy outliers (POC5, GHR), use ensemble modeling tools (e.g., AlphaFold-Multimer, Rosetta, or molecular dynamics relaxation) to determine if their extended structures represent stable physiological states or transient/artifactual conformations.
+## Top 3 Highest-Leverage Next Experiments
+To move the Biological Counter-Curvature framework from computational inference to empirical validation, we must execute the following:
+
+1. **Orthogonal Validation of Low-Confidence Outliers (POC5, GHR)**:
+   * **Why**: High anisotropy + low pLDDT suggests these might be intrinsically disordered regions that only adopt extended conformations upon binding.
+   * **Action**: Perform in-cell crosslinking mass spectrometry (XL-MS) or use structural biology techniques (Cryo-EM/NMR on specific domains) to verify their in vivo extended state.
+2. **Functional Falsification of LBX1 Mechanotransduction**:
+   * **Why**: To definitively resolve whether LBX1 has a mechanical role despite its unconvincing monomeric structure.
+   * **Action**: Execute Experiment 1 from `reports/lbx1_falsifiability_plan.md`: perturb nuclear tension (LINC disruption/substrate stiffness) and quantify changes in LBX1 chromatin association.
+3. **Multimeric Context Modeling**:
+   * **Why**: The current AlphaFold metrics are derived from monomeric predictions. Mechanosensors and structural scaffolds function as complexes.
+   * **Action**: Run AlphaFold-Multimer on key complexes (e.g., LBX1 with known binding partners, PIEZO2 homomeric complexes) to see if multimerization rescues pLDDT and alters the predicted anisotropy/blockiness.

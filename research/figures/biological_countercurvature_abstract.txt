@@ -1,18 +1,1 @@
-Title: Visual Abstract: Metabolic Buckling in Adolescent Idiopathic Scoliosis
-
-Concept: The adolescent human spine as an active control system that fails under thermodynamic scaling laws, leading to "Metabolic Buckling."
-
-Central Element: A growing human spine, transitioning from a healthy, stabilized S-curve to a buckled, scoliotic S-curve.
-
-Key Action:
-- The healthy spine is supported by strong, synchronized energetic/metabolic "struts" (representing sufficient Energy Supply, $S_{proprio}$).
-- The scoliotic spine shows these struts breaking down or becoming insufficient as the spine elongates (representing the Energy Deficit Window, where $P_{counter} > S_{proprio}$).
-- A prominent "Delay" metric ($\tau$) is shown increasing alongside the growth spurt, represented by asynchronous or out-of-phase signaling waves around the buckling section.
-
-Background:
-- A fading gradient from a stable, low-energy state (blue/cool colors) to a high-stress, deficit state (red/hot colors).
-- Faint mathematical equations in the background: $\mathcal{B}_g \approx 0.01$ and $R_{deficit} > 1$.
-
-Annotation: "Scoliosis: A Predictable Thermodynamic Scaling Failure"
-
-Style: High-impact, Nature/Science cover style. Emphasizes the transition from stability to instability driven by metabolic and temporal constraints.
+A high-impact Visual Abstract depicting the core concept of "Biological Countercurvature of Spacetime". The image centers on a glowing, S-shaped human spine maintaining its form against downward gravitational vectors within a warped spacetime grid. Golden threads representing "Developmental Information" actively counteract the gravitational pull, illustrating the Information-Elasticity Coupling (IEC) framework. The aesthetic should be striking, blending differential geometry with biological structure, suitable for a keynote presentation or a Nature/Science cover.

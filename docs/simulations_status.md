@@ -51,3 +51,4 @@
 | 2026-03-09 | weekly-sim-active-curvature-sweep | active_curvature | Critical transition to 3D scoliosis (Cobb >78 deg) around active_curvature=10.7 with torsion, followed by a narrow resonant rescue window. | [Report](../outputs/sim/2026-03-09/report.md) |
 | 2026-03-11 | weekly-sim-torsion-sweep | torsion_drive | Torsional coupling transforms S-curve into complex 3D scoliosis peaking at 101 deg Cobb | [Report](../outputs/sim/2026-03-11/report.md) |
 | 2026-03-12 | weekly-sim-active-curvature-sweep | active_curvature | Sweep 0.0-15.0 at Anisotropy=3.0; No lateral buckling (Cobb=0) emerged without symmetry breaking. | [Report](../outputs/sim/2026-03-12/report.md) |
+| 2026-03-13 | weekly-sim-load-vector-tilt | tilt_deg | Off-axis gravitational load vector tilt breaks symmetry, causing massive 3D buckling (Cobb > 64 deg at 22 deg tilt) compared to stable 0-tilt alignment. | [Report](../outputs/sim/2026-03-13_tilt_sweep/report.md) |

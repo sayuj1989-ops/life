@@ -1,0 +1,2 @@
+tilt_min,tilt_max,steps,anisotropy,active_curvature,natural_kyphosis,duration,dt,n_elements,seed
+0.0,30.0,20,3.0,10.0,2.0,2.0,0.0001,50,42

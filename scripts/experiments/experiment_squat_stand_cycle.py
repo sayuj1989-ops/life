@@ -1,368 +1,344 @@
 #!/usr/bin/env python3
 """
-Longevity Squat-to-Stand Cycle Simulation
-==========================================
+Dynamic Squat-to-Stand Cycle Simulation
+=======================================
 
-Demonstrates that the squat-to-stand transition is the fundamental thermodynamic pulse
-that exercises the three dissipation terms ($\eta_p, \eta_a, \Gamma_m$) of the
-countercurvature framework. It shows how regular cycling preserves the mechanical
-coupling strength $\chi$, preventing age-related structural decay.
+Models the dynamic transition with time-varying gravity orientation AND time-varying
+information field to explicitly calculate energy dissipation terms per cycle.
 
 Author: Dr. Sayuj Krishnan S
-Date: 2026-02-07
 """
 
-import logging
+import argparse
+import csv
 import os
 import sys
+import time
 from pathlib import Path
+from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
-# Add src to path if running directly
+# Ensure src is in path
 sys.path.append(os.getcwd())
 
 from src.spinalmodes.countercurvature.coupling import CounterCurvatureParams
 from src.spinalmodes.countercurvature.info_fields import InfoField1D
-from src.spinalmodes.countercurvature.pyelastica_bridge import CounterCurvatureRodSystem
+from src.spinalmodes.countercurvature.pyelastica_bridge import (
+    CounterCurvatureRodSystem,
+    compute_U_CC,
+)
 from scripts.experiments.experiment_utils import StandardExperimentParser
 
-# ---------------------------------------------------------------------------
-# Parameters
-# ---------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Configuration
+# -----------------------------------------------------------------------------
+# Reusing standard rod parameters
+L = 1.0
+E0 = 1e6
+radius = 0.02
+rho = 1000.0
+gravity_magnitude = 9.81
 
-# Rod Parameters
-L = 0.5            # Spinal length (m)
-N_ELEMENTS = 40    # Resolution
-E0 = 5e6           # Base stiffness (Pa)
-RADIUS = 0.02      # Effective radius (m)
-RHO = 1100         # Density (kg/m^3)
-GRAVITY = 9.81     # Gravity (m/s^2)
+# Base biology parameters representing optimal, healthy youth
+BASE_PARAMS = CounterCurvatureParams(
+    chi_E=0.0,
+    chi_kappa=4.0,  # Intrinsic curvature gain
+    chi_M=15.0,     # Strong active muscle correction
+    chi_tau=0.0,
+    scale_length=L
+)
 
-# Thermodynamic Dissipation Coefficients (Arbitrary units for demo)
-ETA_P = 1500.0     # Proprioceptive cost (scales with d\kappa/dt)
-ETA_A = 5000.0     # Active maintenance cost (scales with \kappa)
-GAMMA_M_BASE = 50.0 # Basal maintenance (steady state)
-GAMMA_M_EXERTION = 300.0 # Exertion multiplier
-
-# Coupling Decay Model
-CHI_0 = 10.0       # Peak coupling strength
-TAU_DECAY = 2.0    # Hours to decay by 1/e (derived from microgravity rapid loss)
-
-
-# ---------------------------------------------------------------------------
-# Functions
-# ---------------------------------------------------------------------------
-
-def setup_experiment(args) -> Path:
-    out_dir = Path("outputs/sim") / args.date
-    out_dir.mkdir(parents=True, exist_ok=True)
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    logging.info("Experiment setup complete.")
-    logging.info(f"Output directory: {out_dir}")
-
-    if args.quick:
-        logging.warning("Running in QUICK mode (reduced parameters).")
-        global N_ELEMENTS
-        N_ELEMENTS = 10
-
-    return out_dir
-
-
-def define_squat_stand_trajectory(t_eval: np.ndarray, is_chair: bool = False):
+def define_squat_stand_trajectory(T_cycle: float = 4.0, dt: float = 0.1, n_elements: int = 50) -> List[Dict]:
     """
-    Defines the trajectory of a sit-to-stand transition.
-    A floor squat is a deep transition (90 deg swing).
-    A chair sit is a shallow transition (45 deg swing).
+    Defines the quasi-static steps for a single squat-to-stand cycle.
+
+    T_cycle=4s.
+    theta(t) transitions from 90° (standing, gravity parallel) to 0° (deep squat, gravity perpendicular)
+    and back to 90°.
+    I(s,t) morphs from S-curve (standing) to C-curve (squat) field.
+
+    Returns a list of dicts containing parameters for each time step.
     """
-    s = np.linspace(0, L, N_ELEMENTS + 1)
-    thetas = []
-    info_fields = []
+    n_steps = int(T_cycle / dt)
+    times = np.linspace(0, T_cycle, n_steps)
 
-    for t in t_eval:
-        # Phase from 0 to 1 over the 4s cycle
-        phase = t / 4.0
+    trajectory = []
 
-        # Cosine interpolation between Standing (phase=0,1) and Squat (phase=0.5)
-        # alpha goes from 1.0 (Stand) to 0.0 (Squat) to 1.0 (Stand)
-        alpha = 0.5 * (1.0 + np.cos(2 * np.pi * phase))
+    # Grid for information field
+    s = np.linspace(0, L, n_elements + 1)
 
-        # 1. Orientation Theta
-        # Standing = 90 deg (gravity parallel to spine)
-        # Deep Squat = 0 deg (gravity perp to spine)
-        # Chair Sit = 45 deg
-        min_theta = 45.0 if is_chair else 0.0
-        theta_deg = min_theta + (90.0 - min_theta) * alpha
-        thetas.append(theta_deg)
+    # Base fields
+    # S-curve: standing (sin^2)
+    I_standing = np.sin(2 * np.pi * s / L)**2
+    # C-curve: squatting (sin)
+    I_squatting = np.sin(np.pi * s / L)
 
-        # 2. Information Field Morphing
-        # Standing (alpha=1): S-curve -> sine wave squared
-        I_stand = np.sin(2 * np.pi * s / L)**2
-        # Squatting (alpha=0): C-curve -> simple parabolic or constant
-        I_squat = 4 * (s/L) * (1 - (s/L))
+    for t in times:
+        # Phase goes 0 -> 1 -> 0 over the cycle
+        # Standing (t=0, t=T) -> Phase = 0
+        # Deep Squat (t=T/2) -> Phase = 1
+        phase = 0.5 * (1 - np.cos(2 * np.pi * t / T_cycle))
 
-        # Morph I
-        I_t = alpha * I_stand + (1 - alpha) * I_squat
-        dIds_t = np.gradient(I_t, s)
+        # Theta: 90 (standing) -> 0 (squat)
+        theta_deg = 90.0 * (1.0 - phase)
 
-        info_fields.append(InfoField1D(s=s, I=I_t, dIds=dIds_t))
+        # Morph info field
+        I_current = (1 - phase) * I_standing + phase * I_squatting
+        dIds = np.gradient(I_current, s)
+        info = InfoField1D(s=s, I=I_current, dIds=dIds)
 
-    return np.array(thetas), info_fields
+        trajectory.append({
+            "time": t,
+            "phase": phase,
+            "theta_deg": theta_deg,
+            "info": info
+        })
+
+    return trajectory
 
 
-def compute_cycle_dissipation(thetas: np.ndarray, info_fields: list, dt_step: float, out_dir: Path, chi_current: float = CHI_0):
+def compute_cycle_dissipation(trajectory: List[Dict], n_elements: int = 50) -> Dict[str, float]:
     """
-    Performs quasi-static stepping through the trajectory using PyElastica.
-    Computes \eta_p, \eta_a, \Gamma_m per step.
+    Computes thermodynamic dissipation terms per cycle using quasi-static stepping.
+
+    η_p: scales with |∂κ/∂t|² during transition
+    η_a: scales with (κ - κ_passive)²
+    Γ_m: basal cost + activation
     """
-    logging.info(f"Computing thermodynamic cycle over {len(thetas)} steps with chi={chi_current:.2f}...")
+    print(f"    Running quasi-static cycle simulation ({len(trajectory)} steps)...")
 
-    results = []
-    centerlines = []
-    kappas = []
+    total_eta_p_cost = 0.0
+    total_eta_a_cost = 0.0
+    total_gamma_m_cost = 0.0
 
-    # Store previous curvature for d\kappa/dt
+    # We will accumulate the integral over time (dt is implicit or handled as diffs)
+    dt = trajectory[1]["time"] - trajectory[0]["time"]
+
     prev_kappa = None
 
-    for i, (theta_deg, info) in enumerate(zip(thetas, info_fields)):
-        t_current = i * dt_step
+    # Empirical coefficients for dissipation terms
+    eta_p_coeff = 1.0e-2
+    eta_a_coeff = 1.0e-3
+    gamma_m_base = 5.0
 
-        theta_rad = np.radians(theta_deg)
+    for step in trajectory:
+        theta_rad = np.radians(step["theta_deg"])
         base_dir = np.array([np.cos(theta_rad), 0.0, np.sin(theta_rad)])
         normal_dir = np.array([0.0, 1.0, 0.0])
 
-        params = CounterCurvatureParams(
-            chi_E=0.0,
-            chi_kappa=chi_current,
-            chi_M=chi_current, # Active muscle moment tracking coupling
-            chi_tau=0.0,
-            scale_length=L
-        )
-
+        # Instantiate system (quasi-static approximation: run a short simulation to equilibrium)
         system = CounterCurvatureRodSystem.from_iec(
-            info=info,
-            params=params,
+            info=step["info"],
+            params=BASE_PARAMS,
             length=L,
-            n_elements=N_ELEMENTS,
+            n_elements=n_elements,
             E0=E0,
-            radius=RADIUS,
-            rho=RHO,
-            gravity=GRAVITY,
+            radius=radius,
+            rho=rho,
+            gravity=gravity_magnitude,
             base_direction=tuple(base_dir),
             normal=tuple(normal_dir)
         )
 
-        # Quasi-static relaxation (1.0s is usually enough for the rod to settle)
-        sim_res = system.run_simulation(final_time=1.0, dt=1e-4, save_every=1000, progress_bar=False)
+        # Quick relaxation to equilibrium
+        sim_res = system.run_simulation(final_time=0.1, dt=1e-4, save_every=100)
 
-        # Extract final shape
-        cl = sim_res.centerline[-1]
-        kappa = sim_res.kappa[-1]  # (n_nodes, 3)
-        bending_k = kappa[:, 1]  # Sagittal bending
+        # Get local curvature
+        kappa = sim_res.kappa[-1] # (n_nodes, 3)
+        bending_k = kappa[:, 1] # Sagittal
 
-        # Calculate Rate of Change (d\kappa/dt)
+        # 1. Active Maintenance (η_a)
+        # (kappa - kappa_passive)^2. Assume kappa_passive ~ 0 for simplicity here.
+        eta_a_term = np.sum(bending_k**2) * eta_a_coeff * dt
+        total_eta_a_cost += eta_a_term
+
+        # 2. Basal Maintenance (Γ_m)
+        # SIRT1/PGC-1a upregulated by phase transition and load
+        gamma_m_term = (gamma_m_base + 10.0 * np.mean(np.abs(bending_k))) * dt
+        total_gamma_m_cost += gamma_m_term
+
+        # 3. Proprioceptive Rate (η_p)
         if prev_kappa is not None:
-            dk_dt = (bending_k - prev_kappa) / dt_step
-        else:
-            dk_dt = np.zeros_like(bending_k)
+            dk_dt = (bending_k - prev_kappa) / dt
+            eta_p_term = np.sum(dk_dt**2) * eta_p_coeff * dt
+            total_eta_p_cost += eta_p_term
+
         prev_kappa = bending_k
 
-        # Calculate Dissipation Terms
-        # 1. Proprioceptive (eta_p |dk/dt|^2) -> integrates over length
-        term_p = ETA_P * np.trapz(dk_dt**2, dx=L/N_ELEMENTS)
-
-        # 2. Active Maintenance (eta_a |k - k_pass|^2)
-        # For simplicity, assume passive geodesic is straight (k_pass = 0)
-        # under zero active moments. The cost is maintaining the actual curvature.
-        term_a = ETA_A * np.trapz(bending_k**2, dx=L/N_ELEMENTS)
-
-        # 3. Basal Maintenance (\Gamma_m)
-        # Higher during the transition (muscular exertion)
-        # We model exertion by checking the magnitude of dk/dt
-        exertion_factor = np.mean(np.abs(dk_dt))
-        # Add baseline + exertion spike
-        term_g = (GAMMA_M_BASE + GAMMA_M_EXERTION * exertion_factor) * L
-
-        total_dissipation = term_p + term_a + term_g
-
-        results.append({
-            "time": t_current,
-            "theta": theta_deg,
-            "eta_p": term_p,
-            "eta_a": term_a,
-            "gamma_m": term_g,
-            "total_dissipation": total_dissipation
-        })
-        centerlines.append(cl)
-        kappas.append(bending_k)
-
-    df_res = pd.DataFrame(results)
-    df_res.to_csv(out_dir / "cycle_dissipation.csv", index=False)
-
-    # Plot Dissipation Breakdown
-    plt.figure(figsize=(10, 6))
-    plt.plot(df_res["time"], df_res["eta_p"], label="$\\eta_p$ (Proprioceptive/Sensing)", color='red')
-    plt.plot(df_res["time"], df_res["eta_a"], label="$\\eta_a$ (Active Maintenance)", color='blue')
-    plt.plot(df_res["time"], df_res["gamma_m"], label="$\\Gamma_m$ (Basal Maintenance)", color='green')
-    plt.xlabel("Cycle Time (s)")
-    plt.ylabel("Dissipation Rate (Energy/Time)")
-    plt.title("Thermodynamic Cost of Squat-to-Stand Transition")
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(out_dir / "dissipation_breakdown.png", dpi=300)
-    plt.close()
-
-    return df_res, centerlines, kappas
+    return {
+        "eta_p_cost": total_eta_p_cost,
+        "eta_a_cost": total_eta_a_cost,
+        "gamma_m_cost": total_gamma_m_cost,
+        "total_cost": total_eta_p_cost + total_eta_a_cost + total_gamma_m_cost
+    }
 
 
-def coupling_decay_model(n_cycles_per_day: int, t_hours: np.ndarray):
+def coupling_decay_model(cycles_per_day: int, chi_0: float = 1.0) -> float:
     """
-    Models the phenomenological decay of coupling strength (\chi) without cycling.
-    Each cycle resets \chi to CHI_0.
+    Phenomenological exponential decay of coupling strength, reset periodically.
+    χ(t) = χ₀·exp(−Δt/τ_decay)
+
+    Averages over a 24-hour period based on N cycles.
     """
-    chi_t = np.zeros_like(t_hours)
+    if cycles_per_day <= 0:
+        return 0.0
 
-    if n_cycles_per_day == 0:
-        return CHI_0 * np.exp(-t_hours / TAU_DECAY)
+    tau_decay = 2.0 # hours
+    T_day = 24.0 # hours
 
-    cycle_interval = 24.0 / n_cycles_per_day
+    interval = T_day / cycles_per_day
 
-    for i, t in enumerate(t_hours):
-        time_since_last_cycle = t % cycle_interval
-        chi_t[i] = CHI_0 * np.exp(-time_since_last_cycle / TAU_DECAY)
+    # Average coupling over the interval
+    # chi_avg = (1 / T_int) * int_0^T_int chi_0 * exp(-t/tau) dt
+    chi_avg = (chi_0 * tau_decay / interval) * (1.0 - np.exp(-interval / tau_decay))
 
-    return chi_t
+    return chi_avg
 
 
-def run_cycle_frequency_sweep(out_dir: Path):
+def run_cycle_frequency_sweep(output_dir: Path, n_elements: int = 50, quick: bool = False):
     """
-    Runs a sweep over different cycle frequencies to demonstrate the coupling preservation.
+    Sweeps N=[1,2,5,10,20,50,100] cycles/day and computes time-averaged coupling.
     """
-    logging.info("Running cycle frequency sweep...")
+    print(f"Running Frequency Sweep (Quick mode: {quick})")
 
-    frequencies = [0, 1, 3, 5, 10, 20, 50, 80, 100]
-    t_hours = np.linspace(0, 24, 1000)
+    if quick:
+        freqs = [1, 10, 50]
+    else:
+        freqs = [1, 2, 5, 10, 20, 50, 100]
 
+    chi_0 = BASE_PARAMS.chi_M
     results = []
 
-    plt.figure(figsize=(12, 8))
-
-    for n in frequencies:
-        chi_t = coupling_decay_model(n, t_hours)
-        avg_chi = np.mean(chi_t)
-        pct_preserved = (avg_chi / CHI_0) * 100
-
+    for n in freqs:
+        chi_avg = coupling_decay_model(n, chi_0=chi_0)
+        retention = chi_avg / chi_0
         results.append({
             "cycles_per_day": n,
-            "avg_chi": avg_chi,
-            "pct_preserved": pct_preserved
+            "chi_avg": chi_avg,
+            "retention_frac": retention
         })
 
-        if n in [0, 3, 20, 50, 80]:
-            plt.plot(t_hours, chi_t / CHI_0, label=f"N={n} ({pct_preserved:.1f}%)")
+    # Plot
+    plt.figure(figsize=(8, 5))
+    ns = [r["cycles_per_day"] for r in results]
+    ret = [r["retention_frac"] * 100 for r in results]
 
-    plt.xlabel("Time (hours)")
-    plt.ylabel("Coupling Strength $\chi(t) / \chi_0$")
-    plt.title("Coupling Decay vs Daily Squat-to-Stand Cycles")
+    plt.plot(ns, ret, 'bo-', linewidth=2)
+    plt.axhline(90, color='r', linestyle='--', label='90% Optimal')
+    plt.axvline(3, color='k', linestyle=':', label='Chair sitter (~3/day)')
+    plt.axvline(50, color='g', linestyle=':', label='Floor sitter (~50/day)')
+
+    plt.xlabel('Squat-Stand Cycles per Day')
+    plt.ylabel('Time-Averaged Coupling Retention (%)')
+    plt.title('Coupling Strength vs Cycling Frequency')
     plt.legend()
     plt.grid(True, alpha=0.3)
+
     plt.tight_layout()
-    plt.savefig(out_dir / "coupling_decay.png", dpi=300)
+    plt.savefig(output_dir / "coupling_preservation_curve.png", dpi=300)
     plt.close()
 
-    df_res = pd.DataFrame(results)
-    df_res.to_csv(out_dir / "cycle_frequency_preservation.csv", index=False)
-
-    # Plot preservation curve
-    plt.figure(figsize=(10, 6))
-    plt.plot(df_res["cycles_per_day"], df_res["pct_preserved"], 'o-', color='blue')
-    plt.xlabel("Cycles per Day")
-    plt.ylabel("Time-Averaged Coupling Preserved (%)")
-    plt.title("Longevity Effect of Squat-to-Stand Cycling")
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(out_dir / "preservation_curve.png", dpi=300)
-    plt.close()
+    # Save CSV
+    keys = results[0].keys()
+    with open(output_dir / "frequency_sweep.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        writer.writeheader()
+        writer.writerows(results)
 
 
-def compare_chair_vs_floor(out_dir: Path, quick: bool = False):
+def compare_chair_vs_floor(output_dir: Path, n_elements: int = 50, quick: bool = False):
     """
-    Compares chair-sitting (shallow transition) vs floor-sitting (deep transition).
+    Compares chair sitting (shallow squat, N=3) vs floor sitting (deep squat, N=50).
     """
-    logging.info("Comparing Chair vs Floor sitting transitions...")
+    print("Running Chair vs Floor Comparison")
 
-    # Compute decayed coupling parameters
-    t_eval_decay = np.linspace(0, 24, 100)
-    chi_floor_arr = coupling_decay_model(50, t_eval_decay)  # Floor: 50 cycles/day
-    chi_chair_arr = coupling_decay_model(3, t_eval_decay)   # Chair: 3 cycles/day
+    # In quick mode, we reduce temporal resolution
+    dt = 1.0 if quick else 0.2
 
-    chi_floor = np.mean(chi_floor_arr)
-    chi_chair = np.mean(chi_chair_arr)
+    # 1. Floor sitting (Deep Squat)
+    # T=4s, full 90 -> 0 transition
+    trajectory_floor = define_squat_stand_trajectory(T_cycle=4.0, dt=dt, n_elements=n_elements)
+    cost_floor = compute_cycle_dissipation(trajectory_floor, n_elements=n_elements)
 
-    # Floor: Deep squat (0 deg), Chair: Shallow (45 deg)
-    dt_step = 1.0 if quick else 0.2
-    t_eval = np.arange(0, 4.0 + dt_step, dt_step)
+    # Multiply by daily frequency (N=50)
+    total_cost_floor = {k: v * 50 for k, v in cost_floor.items() if k != "total_cost"}
+    total_cost_floor["total_cost"] = sum(total_cost_floor.values())
 
-    thetas_floor, info_floor = define_squat_stand_trajectory(t_eval, is_chair=False)
-    df_floor, cl_floor, _ = compute_cycle_dissipation(thetas_floor, info_floor, dt_step, out_dir / "floor", chi_current=chi_floor)
+    # 2. Chair sitting (Shallow Squat)
+    # T=2s, 90 -> 45 transition only
+    trajectory_chair_raw = define_squat_stand_trajectory(T_cycle=2.0, dt=dt, n_elements=n_elements)
+    # Modify theta to only go to 45 deg (shallow)
+    for step in trajectory_chair_raw:
+        if step["theta_deg"] < 45.0:
+            step["theta_deg"] = 45.0 + (45.0 - step["theta_deg"]) # Bounce back roughly
 
-    thetas_chair, info_chair = define_squat_stand_trajectory(t_eval, is_chair=True)
-    df_chair, cl_chair, _ = compute_cycle_dissipation(thetas_chair, info_chair, dt_step, out_dir / "chair", chi_current=chi_chair)
+    cost_chair = compute_cycle_dissipation(trajectory_chair_raw, n_elements=n_elements)
 
-    # Total Dissipation Comparison
-    floor_diss = df_floor["total_dissipation"].sum() * dt_step
-    chair_diss = df_chair["total_dissipation"].sum() * dt_step
+    # Multiply by daily frequency (N=3)
+    total_cost_chair = {k: v * 3 for k, v in cost_chair.items() if k != "total_cost"}
+    total_cost_chair["total_cost"] = sum(total_cost_chair.values())
 
-    logging.info(f"Total Thermodynamic Dose - Floor: {floor_diss:.2f}, Chair: {chair_diss:.2f}")
+    # Save results
+    results = [
+        {"lifestyle": "Chair Sitter", "cycles": 3, "type": "Shallow", **total_cost_chair},
+        {"lifestyle": "Floor Sitter", "cycles": 50, "type": "Deep", **total_cost_floor}
+    ]
 
-    # Visual comparison of trajectories
-    plt.figure(figsize=(12, 6))
+    with open(output_dir / "chair_vs_floor_dissipation.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=results[0].keys())
+        writer.writeheader()
+        writer.writerows(results)
 
-    plt.subplot(1, 2, 1)
-    for i, cl in enumerate(cl_floor):
-        alpha = 0.3 + 0.7 * (i / len(cl_floor))
-        plt.plot(cl[0, :], cl[2, :], 'b-', alpha=alpha)
-    plt.title("Floor Squat-to-Stand (Deep)")
-    plt.xlabel("X (m)")
-    plt.ylabel("Z (m)")
-    plt.axis('equal')
-    plt.grid(True, alpha=0.3)
+    # Plot breakdown
+    labels = ['Proprioceptive ($\eta_p$)', 'Active Maint. ($\eta_a$)', 'Basal/Metabolic ($\Gamma_m$)']
+    chair_vals = [total_cost_chair["eta_p_cost"], total_cost_chair["eta_a_cost"], total_cost_chair["gamma_m_cost"]]
+    floor_vals = [total_cost_floor["eta_p_cost"], total_cost_floor["eta_a_cost"], total_cost_floor["gamma_m_cost"]]
 
-    plt.subplot(1, 2, 2)
-    for i, cl in enumerate(cl_chair):
-        alpha = 0.3 + 0.7 * (i / len(cl_chair))
-        plt.plot(cl[0, :], cl[2, :], 'r-', alpha=alpha)
-    plt.title("Chair Sit-to-Stand (Shallow)")
-    plt.xlabel("X (m)")
-    plt.ylabel("Z (m)")
-    plt.axis('equal')
-    plt.grid(True, alpha=0.3)
+    x = np.arange(len(labels))
+    width = 0.35
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.bar(x - width/2, chair_vals, width, label='Chair (N=3/day)')
+    ax.bar(x + width/2, floor_vals, width, label='Floor (N=50/day)')
+
+    ax.set_ylabel('Total Daily Dissipation (arb. units)')
+    ax.set_title('Thermodynamic Cost Comparison: Chair vs Floor Sitting')
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
 
     plt.tight_layout()
-    plt.savefig(out_dir / "trajectory_comparison.png", dpi=300)
+    plt.savefig(output_dir / "dissipation_breakdown.png", dpi=300)
     plt.close()
 
 
 def main():
-    parser = StandardExperimentParser(description="Longevity Squat-to-Stand Cycle Simulation")
+    parser = argparse.ArgumentParser(description="Longevity Squat-Stand Cycle Simulation")
+    parser.add_argument("--quick", action="store_true", help="Run a quick smoke test")
     args = parser.parse_args()
-    out_dir = setup_experiment(args)
 
-    # Create subdirs for comparisons
-    (out_dir / "floor").mkdir(parents=True, exist_ok=True)
-    (out_dir / "chair").mkdir(parents=True, exist_ok=True)
+    print("=" * 70)
+    print("  SQUAT-TO-STAND THERMODYNAMIC CYCLE SIMULATION")
+    print("=" * 70)
 
-    # 1. Run frequency sweep
-    run_cycle_frequency_sweep(out_dir)
+    output_dir = Path("outputs/thermodynamic_cost/squat_stand_cycle")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    # 2. Compare Chair vs Floor (Thermodynamic Cost)
-    compare_chair_vs_floor(out_dir, quick=args.quick)
+    n_elements = 20 if args.quick else 50
 
-    logging.info(f"Experiment completed. Results saved to {out_dir}")
+    start_time = time.time()
 
+    # 1. Frequency Sweep (Coupling Decay)
+    run_cycle_frequency_sweep(output_dir, n_elements=n_elements, quick=args.quick)
+
+    # 2. Chair vs Floor Comparison (Dissipation breakdown)
+    compare_chair_vs_floor(output_dir, n_elements=n_elements, quick=args.quick)
+
+    elapsed = time.time() - start_time
+    print(f"\n✅ Simulation complete in {elapsed:.2f}s.")
+    print(f"Results saved to {output_dir}")
 
 if __name__ == "__main__":
     main()

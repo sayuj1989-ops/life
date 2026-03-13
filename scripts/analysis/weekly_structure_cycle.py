@@ -97,6 +97,7 @@ def main():
 
     # Find Target Cluster: High Anisotropy
     # Sort by Anisotropy descending
+    cluster_stats = [c for c in cluster_stats if c['mean_plddt'] >= 70]
     cluster_stats.sort(key=lambda x: x['mean_aniso'], reverse=True)
     target_cluster = cluster_stats[0]
 

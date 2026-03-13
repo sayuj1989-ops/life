@@ -1,0 +1,20 @@
+Dear Dr. Magdalena Skipper,
+
+Please find enclosed our manuscript, "Metabolic buckling of the growing spine", for consideration as a Research Article in Nature.
+
+The "Grand Challenge" we address is a fundamental mystery in biology: how growing organisms maintain complex, non-equilibrium shapes against the relentless pull of gravity. The "Breakthrough" presented here is the discovery of "Metabolic Buckling"—a physical principle explaining that Adolescent Idiopathic Scoliosis is not a random genetic error or a purely mechanical bone disease, but a predictable thermodynamic scaling failure caused by a critical mismatch between the $L^4$ geometric cost of straightness and the $L^2$ metabolic supply during the adolescent growth spurt.
+
+This work represents a general biological principle regarding how morphology is constrained by thermodynamics. It is NOT a specialist clinical or orthopedic paper, but rather bridges developmental genetics, theoretical physics (Cosserat rod theory), and protein structural biology (via AlphaFold). As such, it demands the broad, cross-disciplinary readership unique to Nature.
+
+For an equitable evaluation of this highly interdisciplinary work, we suggest the following reviewer profiles:
+1. A Theoretical Physicist with expertise in soft matter or active matter physics (e.g., L. Mahadevan).
+2. A Developmental Biologist specializing in mechanotransduction or morphogenesis.
+3. A Spine Surgeon or Clinical Researcher with a background in biomechanics.
+
+We declare no competing interests. Thank you for your consideration.
+
+Sincerely,
+
+Sayuj Krishnan S
+Yashoda Hospitals, Hyderabad, India
+hellodr@drsayuj.info

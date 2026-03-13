@@ -1,0 +1,17 @@
+### Highlights
+- Adolescent spine straightness is an active, expensive standing wave.
+- Geometric cost scales as L^4, while metabolic supply scales as L^2.
+- A critical 45% Energy Deficit Window triggers buckling at L > 0.35m.
+- Vimentin and high-anisotropy sensors collapse under energy deficit.
+
+### Conflict of Interest and Funding Statement
+The author(s) declare no competing interests. No specific funding was received for this work.
+
+### Running Title
+Metabolic Buckling in Scoliosis
+
+### Compliance Check
+- **Word Limits:** Abstract is ~150 words (unstructured). Main text is within 2500 words.
+- **Figures / Display Items:** Limited to standard limits for Nature format (None generated inline, but referenced appropriately).
+- **Structure:** Merged Introduction/Results as required by Nature guidelines. Methods moved to the end.
+- **Tone:** Declarative ("We show that..."). Includes preemptive rebuttal regarding the correlative links in protein properties.

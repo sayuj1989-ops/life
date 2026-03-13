@@ -1,5 +1,23 @@
-A highly detailed scientific diagram illustrating the "Derivative Gain Trap" during the adolescent growth spurt, leading to Adolescent Idiopathic Scoliosis (AIS).
-The diagram is split into two panels: "Childhood (Stable)" and "Adolescent Growth Spurt (Unstable)".
-In the "Childhood" panel (left), a straight, healthy spine is shown. A feedback control loop connects the spine to the brain, with a short neural delay ($\tau$). A damping mechanism (derivative gain) successfully stabilizes the spine against perturbations.
-In the "Adolescent Growth Spurt" panel (right), a rapidly growing spine is shown. The neural delay ($\tau$) has increased significantly due to the increased length. The same damping mechanism (derivative gain) now overcompensates due to the delay, creating a destabilizing resonant feedback loop. This causes the spine to buckle into an S-shaped scoliotic curve.
-The overall style should be clean, professional, and suitable for a high-impact journal like Nature or Science. Use contrasting colors (e.g., blue for stable, red/orange for unstable) to highlight the transition.
+Title: Mechanism: The Derivative Gain Trap
+
+Structure: A flowchart detailing the feedback loop between Neural Delay (\tau), Proprioceptive Gain (K), and Spinal Growth (L) leading to Metabolic Buckling.
+
+Top Node: Normal Childhood Growth
+- Arrow pointing down to 'Adolescent Growth Spurt'
+
+Middle Section (The Loop):
+- Node Left: Increased Neural Delay (\tau)
+- Node Right: High Derivative Gain (K)
+- Node Bottom: Rapid Elongation (\dot{L})
+- Arrows connecting these three nodes in a cycle, labeled "Information-Elasticity Coupling (IEC)"
+- The loop is highlighted with a warning color (orange/red)
+
+Convergence Node: The Derivative Gain Trap
+- Arrow from the Loop pointing down to the Trap
+- Description: "Gains that stabilize damping in childhood become destabilizing delays."
+
+Final State: Metabolic Buckling (Scoliosis)
+- Arrow from the Trap pointing down to Metabolic Buckling
+- Illustration: A spine buckling under the combined stress of the trap, transitioning from an S-curve to a scoliotic curve.
+
+Style: Clean, professional scientific diagram, using distinct colors for healthy growth (green), the destabilizing loop (orange), and the final failure state (red).

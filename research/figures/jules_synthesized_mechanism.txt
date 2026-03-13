@@ -1,9 +1,15 @@
-This diagram illustrates the "Mechanogenetic Demand-Supply Gap" at the molecular and structural levels.
+Title: Mechanism: The Information-Elasticity Coupling (IEC) and Derivative Gain Trap
 
-Key Elements:
-1.  **Demand Side (Gravity Sensors)**: Left side shows large, complex, thermodynamically expensive protein structures (like PIEZO2 or Fibrillin) acting as "Structural Mechanosensors". They are robust, highly ordered, and deeply embedded in a cellular membrane or matrix. These represent the high "Demand" of sensing mechanical stress against gravity.
-2.  **Supply Side (Metabolic Regulators)**: Right side shows intrinsically disordered, flexible, "fragile" protein strings (representing metabolic regulators). These represent the limited "Supply" of metabolic energy control.
-3.  **The Gap**: A clear visual chasm or "Gap" exists between the robust sensors and the disordered regulators. A red lightning bolt or fracture line highlights this "72% Anisotropy Gap".
-4.  **Energy Deficit Window**: Below the molecular gap, show a timeline or growth curve labeled "Adolescent Growth Spurt ($L > 0.35$ m)". At this critical length, the Gap widens significantly, entering a red "Energy Deficit Window" causing structural instability (depicted as a wavering or buckling spine).
+Concept: A detailed flow diagram demonstrating how the adolescent growth spurt creates a vulnerable state leading to metabolic buckling in the human spine.
 
-Style: High-impact scientific illustration suitable for Nature or Science. Use stark contrasts—robust, structured metallic elements for Demand vs. chaotic, ethereal strands for Supply. Crisp annotations and modern vector-style aesthetics.
+Structure: A multi-scale causal flowchart mapping variables from molecular components to macroscopic clinical outcomes.
+
+Nodes and Flow:
+1. "Adolescent Growth Spurt" (Top, initiating event).
+2. "Rapid Spine Elongation (L)" and "Nerve Conduction Lag" (branches off the growth spurt).
+3. "Increased Neural Delay (\tau)" (results from nerve lag).
+4. "The Derivative Gain Trap" (Central convergence node): Shows a non-monotonic curve where previously stable derivative gains (K_d) become destabilizing past a critical delay threshold (\tau*).
+5. "Energy Deficit Window" (Side node interacting with the trap): Scaling cost L^4 exceeds supply L^2, depleting NAD+ and weakening the active muscular response.
+6. "Metabolic Buckling (AIS Onset)" (Final outcome): Shows a micro-mechanical collapse of the active S-curve into a lateral C-curve due to the combined delay instability and energy deficit.
+
+Visual Style: Nature/Science multi-panel style. Use clean vectors, standardized color-coding (e.g., blue for stable/healthy states, red for deficit/instability, orange for the transition). Incorporate small illustrative icons for spine elongation and the non-monotonic stability curve.

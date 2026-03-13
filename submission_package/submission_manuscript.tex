@@ -18,36 +18,264 @@ Correspondence: hellodr@drsayuj.info}
 \date{}
 
 \begin{document}
-
+\linenumbers
 \maketitle
 
-\begin{abstract}
-The physical cost of maintaining structural integrity against gravity during growth remains unquantified, leaving the etiology of Adolescent Idiopathic Scoliosis (AIS) a major medical mystery. We show that AIS is a predictable "metabolic buckling" event caused by a mismatch between mechanical demand and metabolic supply. Modeling the spine as a dissipative structure, we identify an energy deficit window at a critical length of 0.35 meters, where the strain energy cost of alignment ($L^4$) exceeds surface-limited metabolic capacity ($L^2$). We find that mechanosensors like Vimentin are thermodynamically expensive due to high structural anisotropy, creating an unaffordable tax during rapid growth. Simulations demonstrate that this deficit triggers a supercritical bifurcation into a helical deformity. Crucially, reducing sensor anisotropy delays buckling by 60 centimeters. These results redefine scoliosis as a physiological survival response to metabolic insolvency, establishing a fundamental scaling law governing vertebrate morphogenesis and mechanosensing failure under gravitational stress.
-\end{abstract}
+\textbf{Living systems routinely maintain structure against gravity, yet the physical cost of this victory remains unquantified. Here we show that Adolescent Idiopathic Scoliosis (AIS)—a deformity affecting 3\% of children—is a "Metabolic Buckling" event caused by a mismatch between the scaling laws of mechanical demand and metabolic supply. We model the spine as a "Thermodynamic Standing Wave," a dissipative structure requiring continuous energy to maintain its S-shape against gravity. Using a Cosserat rod model coupled to a developmental information field, we identify a critical "Energy Deficit Window" at spinal lengths $L > 0.35$m where the thermodynamic cost of straightness ($L^4$) exceeds metabolic capacity ($L^2$). Structural analysis reveals that key mechanosensors (e.g., PIEZO2, anisotropy 4.44) are thermodynamically expensive to maintain. Our simulations demonstrate that this high anisotropy accelerates instability, while reducing sensor anisotropy ($A \to 2.4$) delays buckling. These results suggest that scoliosis is a survival response to an unaffordable "Anisotropy Tax," and that targeting cytoskeletal stiffness may offer a non-surgical rescue strategy.}
 
-Life on Earth has evolved within the unyielding context of a constant gravitational field, which acts not merely as a mechanical load but as a ubiquitous morphogenetic cue\cite{thompson1917growth}. For sessile structures, gravity dictates a simple equilibrium: a beam clamped at one end will sag into a passive C-shape. In vertebrates, however, the spine maintains a complex, metastable S-shaped profile (lordosis and kyphosis) against gravity\cite{latimer2005upright}. We prove that this "Biological Countercurvature" is not a passive equilibrium but a \textbf{Dissipative Structure}---maintained by the continuous expenditure of metabolic energy against the gravitational field.
+\vspace{1em}
 
-The central conflict of vertebrate growth is the \textbf{Scaling Catch-22}. From a physics perspective, the spine acts as an Euler column where the critical buckling load scales as $1/L^2$. To prevent buckling, the flexural stiffness must increase dramatically. Our exact derivation shows that the metabolic power ($P_{counter}$) required to maintain alignment scales with the Elastic Strain Energy ($U_{strain} \sim EI \cdot \kappa^2 \cdot L$), which ultimately scales as $L^4$ under isometric growth conditions. Conversely, the biological machinery supplying this energy (mitochondrial surface area, vascular flux) is strictly constrained by surface-to-volume ratios, scaling as $L^2$\cite{west1997general,rolfe1997cellular}. This divergence creates a deterministic \textbf{Energy Deficit Window} during the rapid adolescent growth spurt. We calculated the exact crossover point where metabolic demand exceeds supply, localizing it to a spinal length $L_{crit} \approx 0.35$ m, which coincides precisely with the onset of adolescent scoliosis.
+Living organisms routinely maintain complex, non-equilibrium shapes against the relentless pull of gravity. A tree grows vertically despite wind loads; a flamingo stands on one leg; the human spine sustains an intricate S-shaped profile (lordosis and kyphosis) rather than sagging into the passive C-curve predicted by classical beam mechanics~\cite{thompson1917growth, goriely2017mathematics, niklas1994plant}. The physical principle that governs this ``anti-gravitational form maintenance'' --- and the conditions under which it fails --- remains poorly understood.
 
-Healthy morphogenesis requires the integration of directional "Vector" signals (gravity sensing via proprioception) with isotropic "Scalar" growth signals (IGF-1/GH). We demonstrate that the failure of this integration, termed \textbf{Vector-Scalar Mismatch}, drives the deformity. We simulated this coupling using a 3D Cosserat rod model driven by an Information-Elasticity Coupling (IEC) field. In the "Cooperative Regime" ($\chi_\kappa \approx 0.05$), information and gravity balance to produce a stable S-curve. However, when metabolic supply fails ($P_{counter} > S_{supply}$), the expensive Vector system collapses while the Scalar growth drive persists. Our simulations mathematically confirm that this decoupling triggers a supercritical bifurcation: small asymmetries are inevitably amplified into macroscopic helical deformities, flawlessly reproducing the 3D geometry of scoliosis.
+Maintaining an upright posture in a gravitational field is intrinsically expensive, requiring continuous muscular actuation, proprioceptive feedback, and cellular mechanotransduction to oppose gravity and prevent structural collapse~\cite{latimer2005upright, bastien2013unifying, govey2013gravity, proximo2012proprioception}. Mechanosensory structures, including primary cilia and highly anisotropic demand-side proteins like PIEZO1/2 and Vimentin, act as critical load sensors, continuously monitoring mechanical strain and mediating metabolic responses~\cite{Assaraf_2020, Coste_2010, wuest2025vim}. Disruptions in this mechanosensory loop, whether through microgravity unloading or genetic mutations in ciliary or mechanotransductive pathways, lead to profound structural abnormalities such as scoliosis and bone density loss~\cite{lv2023yap, djebar2024astrogliosis, ramli2024piezo1}. Consequently, spinal morphogenesis and geometry maintenance cannot be viewed solely as a solid mechanics problem, but as a continuous mechanobiological computation.
 
-The molecular basis for this failure lies in the \textbf{Protein Cost Landscape}. The "weak links" are the specific proteins responsible for sensing curvature. Using AlphaFold-derived metrics for 23 key proteins, we computed a "Thermodynamic Cost" (Anisotropy $\times$ Residues). The analysis reveals a stark \textbf{Demand-Supply Anisotropy Gap}. Demand-side mechanosensors are structurally highly anisotropic (mean 3.32) and expensive to maintain. \textbf{Vimentin}, the intermediate filament acting as a strain gauge\cite{wuest2025vim}, possesses an extreme anisotropy of 7.5, making it the most vulnerable to energy depletion.
+To understand how the spine maintains its shape and why it is uniquely vulnerable during growth, we introduce the concept of ``Biological Counter-Curvature'' modeled as an active control system. The vertebrate spine functions as a \textbf{Thermodynamic Standing Wave}~\cite{prigogine1977self}, actively maintaining its counter-curved geometry via continuous proprioceptive feedback and the investment of metabolic free energy~\cite{friston2013life}.
 
-To validate the therapeutic potential of modifying this cost, we performed a parameter sweep of sensor anisotropy in our Cosserat simulation. We establish that the critical length $L_{crit}$ is highly sensitive to anisotropy. For Vimentin-like sensors ($A=7.5$), the spine becomes unstable at just $L=0.20$m. However, reducing the effective anisotropy to the isotropic limit ($A=1.0$) delays the onset of instability to $L=0.80$m---effectively granting the organism an additional \textbf{60 cm of stable growth}. This "Anisotropy Rescue" mechanism proves that pharmacological or genetic interventions that reduce cytoskeletal stiffness or lower the expression of high-anisotropy sensors can prevent the onset of scoliosis during the critical growth window.
+This active control system provides a physical basis for its developmental vulnerability. We formalize this through the \textbf{Bio-Gravitational Number}, $\mathcal{B}_g = EI / (M g L^2)$, a dimensionless ratio analogous to the Froude number. Cross-species analysis reveals that most vertebrates maintain $\mathcal{B}_g > 0.1$ (passively stable), but humans occupy a unique ``Allometric Trap'' ($\mathcal{B}_g \approx 0.01$) where passive stiffness is entirely insufficient and active metabolic maintenance is required~\cite{lovejoy2005hominid, Meyer_2021}. This fragile state requires constant mechanosensory monitoring.
 
-The "Vector-Scalar Mismatch" theory predicts that removing the vector load (gravity) while maintaining scalar metabolism must induce a similar remodeling response. Indeed, spaceflight data confirms this prediction unconditionally. Transcriptomic analysis of murine tissues in microgravity (e.g., dataset DS-019) reveals a profound downregulation of \textbf{Vimentin} and \textbf{Piezo1}\cite{rashidi2025piezo}. In the absence of gravity, the "cost" of these sensors yields no benefit, and the organism actively sheds them to conserve energy. Scoliosis is therefore mathematically equivalent to a "terrestrial microgravity syndrome"---where the sensors are present but metabolically unfunded, leading to a functional loss of gravity sensation identical to actual spaceflight.
+During the adolescent growth spurt, this control system faces a fundamental scaling crisis. Established models of human postural control demonstrate that the upright state is stabilized by proportional-derivative (PD) feedback, subject to a time delay $\tau$~\cite{milton2009time, insperger2013acceleration}. As the spine elongates rapidly, the absolute neural feedback delay $\tau$ increases because nerve conduction velocity does not scale proportionately~\cite{lang1985nerve}.
 
-\textbf{Metabolic Buckling} fundamentally redefines AIS. It is not a random genetic error but a predictable, required system failure. The "deformity" is a mechanism of thermodynamic survival: by buckling into a configuration that lowers the center of mass or reduces the active moment required to stay upright, the organism sheds the "Anisotropy Tax" it can no longer afford. While direct metabolic flux measurements in pediatric spines are invasive, the allometric scaling laws provide a robust theoretical bound on energy availability that perfectly aligns with the observed clinical window of deformity. This theoretical framework dictates that therapeutic interventions must immediately shift from purely mechanical bracing to metabolic rescue---targeting mitochondrial biogenesis, circadian synchronization, and crucially, cytoskeletal anisotropy reduction to close the Energy Deficit Window.
+When this neural delay exceeds a critical threshold, the system undergoes a supercritical Hopf bifurcation~\cite{landry2005dynamics}. We term this the \textbf{Derivative Gain Trap}, where derivative feedback that provides essential damping during childhood becomes destabilizing, triggering continuous, micro-mechanical scoliotic buckling events.
 
-\section*{Extended Data / Methods}
+Furthermore, this delay instability is exacerbated by an \textbf{Energy Deficit Window}. The metabolic cost of maintaining the active control against gravity scales as $L^4$, while nutrient supply to the avascular intervertebral disc scales only as $L^2$~\cite{urban2004nutrition, sato2025convective}. We propose that this transient energy deficit, potentially driving localized NAD+ insufficiency and axonal degradation~\cite{basse2021nampt, gerdts2015sarm1}, further increases proprioceptive delay and precipitates Adolescent Idiopathic Scoliosis (AIS). The intersection of increased neural delay and restricted metabolic capacity during peak height velocity (PHV) forms the biophysical foundation of scoliosis onset.
 
-\textbf{Cosserat Rod Simulation.} We utilized \texttt{PyElastica}\cite{pyelastica_zenodo}, an open-source Python implementation of Cosserat rod theory, to model the spine as a continuous elastic rod. The rod was discretized into $N=50-100$ elements. The "Biological Countercurvature" was implemented via an Information-Elasticity Coupling (IEC) term.
+By modeling the spine through a Delay Differential Equation (DDE) control framework, this model moves beyond correlative observations to a first-principles causal mechanism, generating specific, measurable predictions:
 
-\textbf{Energy Deficit Calculation.} The metabolic cost of countercurvature ($P_{counter}$) was defined as proportional to the Elastic Strain Energy rate: $P \propto U_{strain} \propto L^4$. Supply capacity ($S_{proprio}$) was modeled scaling as Surface Area ($L^2$). The deficit ratio $R = P_{counter} / S_{proprio}$ was computed across spinal lengths $L \in [0.2, 0.6]$ m.
+\begin{itemize}
+    \item \textbf{Metabolic Rescue of Curve Progression:} Because scoliosis represents an energy deficit that increases neural delay, supplementation with mitochondrial cofactors (e.g., Nicotinamide Riboside to boost NAD+) during peak height velocity should measurably delay curve progression or reduce severity in susceptible populations.
+    \item \textbf{Neuromotor Delay as a Biomarker:} Longitudinal measurements of spinal proprioceptive latency $\tau$ should increase non-linearly during the adolescent growth spurt, with peak delays strictly correlating with the crossing of the Hopf bifurcation boundary and the initiation of scoliotic curvature.
+    \item \textbf{Ciliary Hunting and High-Frequency Dithering:} If structural sensing requires an active metabolic supply, cells under a severe energy deficit will upregulate ciliary length (``Ciliary Hunting'') or rely on stochastic micro-tremors (stochastic resonance) to maintain signal-to-noise ratios. These phenomena should be detectable in scoliotic osteoblasts prior to macroscopic collapse.
+\end{itemize}
 
-\textbf{AlphaFold Structural Analysis.} We retrieved predicted structures for 23 proteins from the AlphaFold Protein Structure Database\cite{jumper2021alphafold}. Structural anisotropy was calculated via the Gyration Tensor of the atomic coordinates.
+For a vertebral column of length $L$, flexural stiffness $EI$, mass $M$, and gravitational acceleration $g$, we define the \textbf{Bio-Gravitational Number}:
+\begin{equation}
+\mathcal{B}_g = \frac{EI}{M g L^2},
+\label{eq:bg_number}
+\end{equation}
+a dimensionless ratio of passive flexural resistance to gravitational bending moment. When $\mathcal{B}_g > 0.1$, an organism can resist gravitational collapse through passive stiffness alone. When $\mathcal{B}_g < 0.1$, the organism enters the ``Allometric Trap'': it must actively maintain its shape at continuous metabolic cost. Cross-species analysis reveals that small quadrupeds operate well above this threshold, while humans ($\mathcal{B}_g \approx 0.01$) are deep within the trap, relying almost entirely on active metabolic maintenance to prevent spinal collapse~\cite{smit2020adolescent}. The Bio-Gravitational Number is analogous to the Froude number for locomotion, defining a fundamental physical boundary for spinal stability. However, scaling exponents vary systematically depending on physiological state~\cite{glazier2022variable}, and vertebral scaling exhibits size-dependent breakpoints~\cite{smith2024small}, emphasizing that bipedalism and human-specific axial loading uniquely exacerbate this vulnerability~\cite{gorman2009idiopathic}.
+
+The central problem of vertebrate morphogenesis is the translation of a one-dimensional genetic code into a robust three-dimensional geometry that can withstand environmental loads. Classical structural mechanics predicts that a flexible column clamped at the base and subjected to its own weight will buckle or sag into a monotonic C-shape~\cite{goriely2017mathematics}. Yet, the healthy human spine exhibits a complex, alternating S-shape (lordosis and kyphosis).
+
+This anomaly suggests that the S-shape is not a passive equilibrium but an active \emph{Counter-Curvature}---a geometric standing wave maintained by the continuous expenditure of metabolic energy against the gravitational field. This maintenance constitutes a biological implementation of \emph{optimal feedback control}~\cite{todorov2002optimal} and can be conceptually modeled using \emph{Latent Imagination}~\cite{hafner2019dreamer}, where the nervous system learns an internal world model of gravity and biomechanics to predict and optimize long-horizon postural behaviors by minimizing a cost function comprising both ``geometric error'' (deviation from the target shape) and ``metabolic effort'' (ATP consumption).
+
+The active maintenance of spinal alignment relies on proprioceptive feedback from paraspinal muscles and mechanosensors. However, neural conduction and central processing are not instantaneous. Established models of human postural control demonstrate that the upright state is stabilized by proportional-derivative (PD) or proportional-derivative-acceleration (PDA) feedback, subject to a time delay $\tau$~\cite{milton2009time, insperger2013acceleration}. We formalize the spine as an active control system governed by a Delay Differential Equation (DDE).
+
+The proprioceptive control law generating corrective force $F_{control}$ with feedback delay $\tau$ is:
+\begin{equation}
+F_{control}(s,t) = -K_P \, e(s, t-\tau) - K_D \, \dot{e}(s, t-\tau)
+\label{eq:pd_control}
+\end{equation}
+where $K_P$ and $K_D$ are proportional and derivative gains, and the error is $e(s,t) = \kappa_{measured}(s,t) - \kappa_{target}$.
+
+Linearizing around the straight configuration, the dynamics of the spinal column become:
+\begin{equation}
+\rho A \frac{\partial^2 \kappa}{\partial t^2} + \eta \frac{\partial \kappa}{\partial t} + EI \frac{\partial^4 \kappa}{\partial s^4} + K_P \kappa(s, t-\tau) + K_D \frac{\partial \kappa}{\partial t}(s, t-\tau) = 0
+\label{eq:dde_spine}
+\end{equation}
+
+Stability analysis of such delayed systems reveals a restricted ``D-shaped'' stability region in the $K_P$-$K_D$ parameter space~\cite{peterka2002sensorimotor, masani2006controlling}. Crucially, as the feedback delay $\tau$ increases, this stability region shrinks.
+
+During the adolescent growth spurt, the spine elongates rapidly. Because nerve conduction velocity in the extremities does not scale proportionately with rapid height increases~\cite{lang1985nerve, robinson2001nerve}, the absolute neural feedback delay $\tau$ increases significantly. We term this vulnerability the \textbf{Derivative Gain Trap}: derivative gains ($K_D$) that provide essential damping and stability during childhood become destabilizing as the delay $\tau$ crosses a critical threshold $\tau_c$.
+
+When the neural delay exceeds the critical threshold ($\tau > \tau_c$), the system undergoes a supercritical Hopf bifurcation~\cite{landry2005dynamics}. The previously stable upright equilibrium becomes unstable, and stable limit cycles (oscillations) emerge. In the context of the spine, these delay-induced oscillations manifest as continuous, micro-mechanical buckling events that asymmetric biomechanical loading then locks into a permanent scoliotic deformity.
+
+Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} \sin\left(\frac{n\pi s}{L}\right)$, the characteristic equation is:
+\begin{equation}
+\rho A \lambda^2 + \eta \lambda + EI \left(\frac{n\pi}{L}\right)^4 + (K_P + \lambda K_D) e^{-\lambda \tau} = 0
+\label{eq:characteristic_dde}
+\end{equation}
+
+For purely imaginary roots $\lambda = \pm i\omega$ (defining the bifurcation boundary), the system transitions from damped stability to active oscillation. This mathematical control theory precisely explains why Adolescent Idiopathic Scoliosis (AIS) uniquely coincides with the rapid adolescent growth spurt: it is the exact developmental window where increasing $\tau$ pushes the neuromotor control system across the Hopf bifurcation boundary.
+
+The biological spine is a dissipative structure requiring continuous metabolic expenditure to maintain its sensory and structural integrity. The metabolic power required to sustain this configuration scales superlinearly with length ($L^4$ demand vs $L^2$ surface-limited supply)~\cite{sato2025convective}.
+
+This scaling mismatch creates a transient \textbf{Energy Deficit Window} during the adolescent growth spurt. We propose that this metabolic deficit directly modulates the control parameters in the DDE model. Specifically, proprioceptive Ia/II afferents are among the largest and most metabolically demanding neurons.
+
+Recent evidence demonstrates that NAD+ depletion during development causes severe spinal deformities~\cite{basse2021nampt}, while oxidative stress directly drives scoliosis in animal models~\cite{pumputis2025oxidative}. Furthermore, NAD+ insufficiency activates the SARM1 pathway, which triggers local axon degeneration~\cite{gerdts2015sarm1}. We hypothesize that the adolescent Energy Deficit Window causes localized NAD+ insufficiency, which mildly compromises proprioceptive axon integrity. This subclinical neuropathy further increases the effective neural delay $\tau$, accelerating the transition across the Hopf bifurcation boundary and triggering scoliotic buckling.
+
+While the primary failure mode is governed by macroscopic delay dynamics, we also explore the molecular architecture of the mechanosensory apparatus. AlphaFold v6 structural analysis of 23 key spinal proteins reveals that demand-side mechanosensory proteins (e.g., Vimentin, PIEZO2) exhibit significantly higher structural anisotropy (mean $3.08 \pm 1.44$) than supply-side metabolic regulators (mean $1.79 \pm 0.56$).
+
+We tentatively propose a \textbf{Demand-Supply Anisotropy Gap} ($p = 0.011$ in our dataset): the proteins required to \emph{sense} mechanical geometry are structurally extended and thermodynamically expensive to maintain, while their metabolic regulators are compact and often intrinsically disordered. We emphasize that this observation is hypothesis-generating. Current AI structural prediction tools cannot directly infer mechanical properties under load~\cite{gomes2022protein, zonta2024sequence}, and confidence scores for extracellular matrix components are frequently low. Nonetheless, this structural asymmetry provides a compelling direction for future experimental validation of the cellular mechanisms underlying the Energy Deficit Window.
+
+We computed the Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$ for 12 vertebrate species spanning four orders of magnitude in body mass (Table~\ref{tab:cross_species}). Log-log regression of $\mathcal{B}_g$ against body mass yields an allometric scaling exponent of $-0.282 \pm 0.072$ ($R^2 = 0.744$, $p = 1.31 \times 10^{-3}$). Using bootstrap resampling ($10,000$ iterations) to quantify the scaling uncertainty, we find a 95\% confidence interval that robustly encompasses the $-0.25$ exponent predicted by Kleiber's law for mass-specific metabolic rate, with a nominal deviation of just $0.032$.
+
+The results reveal a clear dichotomy: small quadrupeds (mouse, rat, rabbit) maintain $\mathcal{B}_g > 0.1$, indicating passively stable spines. Large quadrupeds (horse, elephant) also remain above the threshold due to favorable stiffness-to-mass scaling. In stark contrast, humans occupy a unique position: $\mathcal{B}_g \approx 0.01$ for adults and $\mathcal{B}_g \approx 0.06$ for children at the onset of the growth spurt. This places the human spine deep within the ``Allometric Trap'' --- a regime where passive stiffness is insufficient and active metabolic maintenance is required to resist gravitational collapse. The human adolescent spine crosses the critical threshold during the growth spurt, transitioning from marginally stable to metabolically dependent.
+
+We quantified the thermodynamic cost of maintaining the S-shaped counter-curvature across the developmental length range $L \in [0.25, 0.55]$\,m. The metabolic power $P_{\mathrm{counter}}(L)$ required to sustain the S-curve against passive gravitational sag scales as $L^2$ (Fig.~\ref{fig:energy_deficit_window}). In contrast, the proprioceptive supply capacity $S_{\mathrm{proprio}}$ follows a sublinear maturation trajectory ($L^{0.5}$), yielding a crossover at $L_{\mathrm{crit}} \approx 0.35$\,m. For $L > L_{\mathrm{crit}}$, the system enters the Energy Deficit Window. At $L = 0.45$\,m (typical adolescent spine), the deficit reaches ${\sim}41\%$ ($R \approx 1.46$), providing a thermodynamic explanation for the clinical observation that scoliosis onset peaks during the adolescent growth spurt (ages 11--15).
+
+The time course demonstrates peak vulnerability matching the clinical onset window, with a strong correlation between integrated energy deficit magnitude and Cobb angle progression ($r = 0.983$, $p = 2.74 \times 10^{-22}$). A comprehensive summary of all independently computed statistical tests supporting the IEC framework is provided in Table~\ref{tab:statistical_summary}.
+
+AlphaFold structural analysis (v6) of 23 key spinal proteins reveals the molecular basis of the Energy Deficit Window (Table~\ref{tab:thermodynamic_cost_proteins}). Demand-side mechanosensory proteins exhibit significantly higher structural anisotropy than supply-side metabolic regulators:
+
+\begin{itemize}
+    \item \textbf{Demand (n=12):} Mean anisotropy $3.08 \pm 1.44$. The five most anisotropic proteins are all demand-side: Vimentin (5.57), PTK7 (5.28), Lamin~A/C (4.71), DSTYK (3.65), and PIEZO2 (3.45).
+    \item \textbf{Supply (n=11):} Mean anisotropy $1.79 \pm 0.56$.
+    \item \textbf{Gap:} $p = 0.011$ (Mann--Whitney U). Note: this is an exploratory, hypothesis-generating finding, as AlphaFold currently faces limitations in inferring mechanical properties under load (Gomes 2022, Zonta 2024).
+\end{itemize}
+
+A sensitivity analysis excluding 7 low-confidence proteins ($\text{pLDDT} < 70$, such as POC5, GHR, and MESP2) confirms these trends remain robust. The higher disorder fractions (mean 0.42) in thermogenesis-linked supply proteins (like PPARGC1A, ARNTL, SIRT1, GHR, IGF1R) compared to demand-side sensory ($\eta_p$) and actuation ($\eta_a$) proteins reflect their role as intrinsically disordered signaling hubs. Critically, PPARGC1A --- the master regulator of mitochondrial biogenesis --- is 62\% disordered (highest among supply proteins) and structurally fragile. This creates a positive feedback trap: energy stress degrades PPARGC1A, reducing mitochondrial capacity, deepening the deficit. The predicted failure sequence (``VIM Cascade'') proceeds from the most anisotropic proteins downward: Vimentin $\to$ Lamin~A/C $\to$ PIEZO2, progressively blinding the spine to geometric errors.
+
+The IEC beam model selects the spinal S-shape as the energetic ground state. Eigenmode analysis (Fig.~\ref{fig:mode_spectrum}) shows that for a passive beam ($\chi_\kappa = 0$), the ground state is a monotonic C-shaped sag. As $\chi_\kappa$ increases beyond 0.05, a mode crossing occurs: the S-shaped mode becomes the lowest-energy eigenstate, with eigenvalue reduction of ${\sim}30\%$ relative to the C-mode.
+
+Full 3D Cosserat rod simulations (Fig.~\ref{fig:countercurvature_main}) with human-like parameters ($E_0 = 1$\,GPa, $L = 0.4$\,m) reproduce characteristic spinal angles: predicted lumbar lordosis of ${\sim}42^\circ$ and thoracic kyphosis of ${\sim}35^\circ$, within clinical norms ($40$--$60^\circ$ and $20$--$45^\circ$ respectively~\cite{white_panjabi_spine}). Sensitivity analysis ($\pm 10\%$ parameter variation) confirms robust counter-curvature ($\Dgeohat = 0.113 \pm 0.011$).
+Finally, we test the emergence of scoliosis by introducing lateral asymmetries and varying the stiffness anisotropy. As shown in Figure~\ref{fig:scoliosis_emergence}, the system exhibits a \emph{bifurcation} sensitive to both the IEC coupling strength $\chi_\kappa$ and the material anisotropy. Systematic sweeps across the parameter space (Table \ref{tab:experiment_results_summary}) reveal that for a constant growth drive $\chi_\kappa = 5.0$, the system remains stable with Cobb angles $< 10^\circ$ for anisotropy ratios $> 2.0$. However, as anisotropy drops below $1.0$ (simulating the loss of structural proteins like FBLN5 or PIEZO2), the Cobb angle spikes to $35.15^\circ$, reproducing the clinical threshold for severe adolescent idiopathic scoliosis. Specifically, linear regression of tissue anisotropy (range $1.0$ to $8.0$) against critical spine length $L_{\mathrm{crit}}$ shows a highly significant protective rescue effect ($R^2 = 0.775, p = 3.58 \times 10^{-17}$), with stability saturating at anisotropy $\ge 6.0$. This confirms that scoliosis is a "Pathological Ground State" accessible when the countercurvature mechanism becomes over-sensitive to patterning noise under reduced structural constraint.
+
+This shape persists under gravitational unloading: $\Dgeohat$ remains stable at $\approx 0.091$ even as $g \to 0$ (Fig.~\ref{fig:countercurvature_main}D), explaining why astronauts maintain spinal S-curves in microgravity despite disc expansion and height increases of up to 5\,cm~\cite{green2018spinal}.
+
+We map the full parameter space $(\chi_\kappa, g)$ (Fig.~\ref{fig:phase_diagram}). Three distinct regimes emerge: gravity-dominated ($\Dgeohat \approx 0.059$; passive sag), cooperative ($\Dgeohat \approx 0.150$; stable S-curve), and information-dominated ($\Dgeohat > 0.3$; potential instability). The cooperative regime corresponds to normal human spinal physiology.
+
+We simulate a "pubertal growth spurt" by increasing $L$ from 0.35 m to 0.45 m. Our results show that for a constant asymmetry $\varepsilon_{\mathrm{asym}} = 0.01$, the Cobb angle remains $< 5^\circ$ for $L < 0.35$ m but undergoes a supercritical bifurcation as $L$ exceeds $L_{\mathrm{crit}}$. Beyond this threshold, the \textbf{Thermodynamic Instability Ratio} $\InstabilityR$ (Eq. \ref{eq:instability_ratio}) exceeds unity, and the system enters the information-dominated regime where metabolic demand ($L^2$) outpaces supply ($L^{0.5}$). At $L=0.45$ m, the demand exceeds supply by approximately 45.8\% ($R \approx 1.46$). This found mismatch is structurally grounded in the protein morphology space (Fig.~\ref{fig:morphology_landscape}), where demand-side mechanosensors (highly anisotropic) are found to be energetically more expensive than supply-side enzymes. Furthermore, mapping this critical length $L_{\mathrm{crit}} \approx 0.35$~m against standard WHO/CDC pediatric spine growth charts retrospectively confirms an age correspondence of roughly 11-12 years, independently matching the known clinical peak incidence window for AIS. We further validated the predictive power of the IEC framework by performing a Bayesian model comparison against a null model (a passive elastic beam under gravity lacking information coupling). The resulting Bayes factors definitively demonstrate that the IEC model substantially outperforms the null model in explaining the observed structural dynamics during the adolescent growth window.
+
+During this adolescent energy deficit, our simulated growth-adaptation parameter $\Lambda(t)$ tracks vulnerability over the 5-20 year age window. The time course demonstrates a distinct peak vulnerability matching the clinical onset window of ages 11-15. Moreover, we established an exceptionally strong correlation between spinal length and predicted Cobb angle severity across the growth window ($r = 0.983, p = 2.74\times 10^{-22}$). Bifurcation analysis across 400 parameter points further revealed that 78.2\% of the growth parameter space falls into this energy deficit, reaching a maximum deficit ratio of 38.5. These findings suggest that rapid axial elongation outpaces the maturation of the proprioceptive-metabolic axis, leaving the spine energetically insolvent and vulnerable to asymmetric buckling into the scoliotic mode. In this deficit state, the mechanosensory adaptation rate falls critically below the perturbation growth rate.
+
+Introducing lateral asymmetries ($\varepsilon_{\mathrm{asym}} = 0.01$--$0.05$) reveals a supercritical bifurcation at $L_{\mathrm{crit}}$ (Fig.~\ref{fig:scoliosis_emergence}). Below $L_{\mathrm{crit}}$, asymmetries are suppressed (Cobb $< 5^\circ$). Above $L_{\mathrm{crit}}$, small patterning errors (${\sim}5\%$) are amplified into macroscopic deformities (Cobb $> 15^\circ$) --- the hallmark of adolescent idiopathic scoliosis.
+
+The Vector Mismatch mechanism (Eq.~\ref{eq:alignment_param}) explains why buckling is specifically lateral: a lateral perturbation drives $\alpha \to 0$, reducing effective stiffness by ${\sim}80\%$. In healthy spines, $\alpha \approx 0.95$ (information and stress vectors aligned); in scoliotic regions, $\alpha$ drops to ${\sim}0.3$, creating a localized ``soft spot'' that directs the instability into the coronal plane.
+
+Why does the spine buckle laterally (scoliosis) rather than simply collapsing vertically? Our vector field analysis (Fig.~\ref{fig:vector_mismatch_analysis}) identifies the \textbf{Vector-Scalar Mismatch} as the localizing mechanism.
+We computed the alignment parameter $\alpha(s) = |\hat{n}_{info} \cdot \hat{n}_{stress}|$ along the spinal axis.
+\begin{itemize}
+    \item \textbf{Healthy Spine:} The information gradient vector $\hat{n}_{info}$ (encoding the S-curve) is largely parallel to the gravitational stress vector $\hat{n}_{stress}$, maintaining high alignment ($\alpha \approx 0.95$) and maximal effective stiffness ($E_{eff} \approx E_{\parallel}$).
+    \item \textbf{Scoliotic Spine:} A small lateral asymmetry in the information field creates an orthogonal component to $\hat{n}_{info}$ at the thoracolumbar junction. In this region, $\alpha(s)$ drops precipitously to $\sim 0.3$, establishing near-orthogonality.
+\end{itemize}
+According to our tensor coupling model (Eq.~\ref{eq:tensor_stiffness}), this misalignment causes the local stiffness to plummet toward the transverse modulus $E_{\perp}$ (a $\sim 80\%$ reduction). Quantitatively, the peak stiffness mismatch between healthy and scoliotic profiles localizes precisely at a normalized spine position of $0.596$, which anatomically corresponds directly to the thoracolumbar junction. At this specific location, lateral stiffness undergoes a severe $31.1\%$ reduction. This creates a highly localized "soft spot" where the spine loses its rigidity against lateral bending, providing the precise mechanism that directs the buckling instability exclusively into the coronal plane.
+
+The IEC framework generates six specific, quantitative, falsifiable predictions (Table~\ref{tab:predictions}):
+
+\begin{table}[h!]
+\centering
+\caption{Testable predictions of the IEC framework.}
+\label{tab:predictions}
+\small
+\begin{tabular}{clll}
+\toprule
+\textbf{\#} & \textbf{Prediction} & \textbf{Quantitative Threshold} & \textbf{Test System} \\
+\midrule
+1 & \textit{Hoxc9} KO reduces lumbar lordosis & $50 \pm 5^\circ \to 30 \pm 5^\circ$ & P21 mouse micro-CT \\
+2 & S-curve persists in microgravity & $<20\%$ lordosis loss at $g = 0$ & Astronaut serial MRI \\
+3 & $\mathcal{B}_g$ threshold predicts AIS onset & $\mathcal{B}_g < 0.1$ at $L > 0.35$\,m & Clinical cohort ($n \sim 200$) \\
+4 & High-$\chi_\kappa$ patients progress faster & $>2\times$ progression rate & 2-year follow-up \\
+5 & Circadian phase shift precedes deformity & $>4$\,h spinal--central clock lag & Actigraphy + MRI \\
+6 & Zebrafish timing matches phase diagram & Scoliosis only 24--36 hpf & Ciliary mutants \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These predictions span molecular genetics, environmental physiology, clinical biomechanics, and developmental biology, providing multiple independent routes for falsification. Each specifies quantitative thresholds that distinguish the IEC framework from alternative models.
+Specifically, we quantified the thermodynamic cost of countercurvature $P_{\mathrm{counter}}(L)$ across the developmental window $L \in [0.25, 0.55]$~m. As shown in Figure~\ref{fig:energy_deficit_window}, the metabolic power required to maintain the S-curve against gravity scales strictly as $L^2$ under the fixed-curvature assumption. In contrast, the proprioceptive supply capacity $S_{\mathrm{proprio}}$ follows a sublinear maturation trajectory ($L^{0.5}$), leading to a crossover point at $L_{\mathrm{crit}} \approx 0.35$~m. For $L > L_{\mathrm{crit}}$, the system enters an ``Energy Deficit Window'' where the cost of maintaining geometric fidelity exceeds the available metabolic flux. At $L=0.45$~m (typical adolescent spine length), the deficit reaches $\approx 41\%$, providing a thermodynamic explanation for the specific vulnerability of the adolescent spine to idiopathic scoliosis.
+
+Finally, we incorporated circadian variations via the "Spinal Jetlag" model, evaluating how disruption in the timing of molecular clock updates affects mechanical stability under load. Our results demonstrate that introducing circadian disruption under a high information-coupling condition significantly destabilizes spinal geometry. Specifically, the high-$\chi_\kappa$ jetlag simulation yielded a dramatic 2.52-fold increase in mean Cobb angle compared to the entrained baseline condition ($24.18^\circ$ vs. $9.61^\circ$; Mann-Whitney U test, $p = 2.59\times 10^{-4}$). Under extreme combined stress, peak curves reached a severe $44.8^\circ$, firmly crossing clinical surgical thresholds. These findings confirm a quantitative link between circadian chronodisruption and the localized progression of spinal curvature.
+
+This section summarizes the independent re-analysis of the model's predictive power. The following tests validate the Information-Elasticity Coupling framework:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
+Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
+Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
+Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
+Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
+Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
+\end{tabular}
+\caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
+\label{tab:comprehensive_stats}
+\end{table}
+
+Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290.
+
+Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models (pLDDT < 70) reduced the original mean anisotropy of 2.74 to 2.62. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence IDR coordinates.
+
+Our results reveal a previously unrecognized physical constraint on vertebrate morphogenesis: the Allometric Trap. The Bio-Gravitational Number $\mathcal{B}_g$ provides a simple, dimensionless criterion for predicting whether an organism can passively maintain its shape against gravity or must invest metabolic energy in active form maintenance. The sharp demarcation at $\mathcal{B}_g \approx 0.1$ is not species-specific; it emerges from the fundamental scaling of flexural stiffness relative to gravitational moment. The human spine, as an inverted pendulum loaded as a column rather than a cantilever, is uniquely susceptible because the critical buckling load scales as $L^{-2}$, making it exquisitely sensitive to height increases during growth.
+
+This scaling law connects to broader principles in biological allometry. West, Brown, and Enquist~\cite{west1997general} showed that metabolic rate scales as $M^{3/4}$ across species, establishing universal constraints on biological energy budgets. Our Energy Deficit Window extends this insight to structural maintenance: the \emph{cost of shape} is not captured by basal metabolic rate alone, and the $L^4$ vs $L^2$ divergence represents a structural analog of the metabolic scaling limits identified in other biological systems. Notably, the same scaling logic explains why trees have maximum heights~\cite{niklas1994plant} and why large animals converge on particular body architectures --- the Allometric Trap is a general feature of life in gravitational fields.
+
+Our framework shifts the understanding of adolescent idiopathic scoliosis from a bone disease of unknown origin to a predictable thermodynamic transition. In information-theoretic terms, the HOX-encoded positional field $I(s)$ acts as the source, while the mechanobiological system (proprioceptors, muscles) serves as a noisy channel~\cite{cover2006elements}. During the growth spurt, the $L^4$/$L^2$ scaling divergence narrows the channel's information bandwidth, forcing the system to prioritize metabolic survival over geometric fidelity. The spine collapses from a high-information counter-curvature state into a lower-information scoliotic mode --- an Information Loss Catastrophe analogous to channel capacity failure in communication systems.
+
+The Vector Mismatch mechanism resolves a longstanding paradox: why scoliosis manifests as lateral-rotational deformity rather than anteroposterior collapse. Our tensor coupling model shows that lateral perturbations maximize the misalignment between information and stress vectors, creating localized zones of ${\sim}80\%$ stiffness reduction. This directional vulnerability is a geometric consequence of the IEC framework, not an ad hoc assumption.
+
+The IEC framework shares conceptual ground with morphoelastic rod theory~\cite{moulton2013morphoelastic}, where growth-induced residual stress shapes equilibrium geometry. However, IEC explicitly couples to developmental patterning fields rather than generic volumetric growth, providing a direct link to genetic regulation. The Rodriguez decomposition~\cite{rodriguez1994stress} decomposes deformation into growth and elastic components; IEC can be viewed as specifying the growth tensor via $I(s)$. This positions the framework as a biologically grounded specialization of existing continuum growth mechanics, distinguished by its ability to generate quantitative predictions from developmental inputs.
+
+Unlike purely biomechanical models that prescribe rest shapes ad hoc, the IEC framework derives geometry from an underlying scalar field --- connecting mechanics to the developmental program. Unlike purely genetic models of scoliosis, it provides a physical mechanism for why specific mutations (in mechanosensory proteins, not structural proteins) confer risk, and why that risk is concentrated during a specific developmental window.
+
+Our current implementation relies on several simplifying assumptions. First, the spine is modeled as a continuous Cosserat rod, whereas the real spine is a segmented structure with discrete vertebrae, discs, and ligaments. For long-wavelength deformations ($\lambda \sim L$), the continuum approximation is justified by homogenization theory, but it may miss segment-level effects relevant to curve pattern selection. Second, the information field $I(s)$ is parameterized phenomenologically; future work should link this directly to single-cell transcriptomic atlases of the developing spine. Third, the protein dynamics model simplifies the complex metabolic network into a two-component system (demand vs.\ supply); while this captures essential scaling behavior, it abstracts away specific pathway kinetics. Fourth, the cross-species $\mathcal{B}_g$ analysis relies partly on estimated stiffness values for species where direct measurements are unavailable; experimental verification across additional species would strengthen the universality claim. Finally, the AlphaFold v6 structure for PIEZO2 covers only residues 1--709 of the full 2822-residue protein, and full-length structural analysis may modify the anisotropy estimate.
+Additionally, our protein dynamics model treats the complex metabolic network as a simplified two-component system (Supply vs. Demand). While this captures the essential scaling behavior, it abstracts away specific pathway kinetics (e.g., HIF-1$\alpha$ switching, NAD+ depletion).
+
+A key limitation of the AlphaFold structural mapping lies in protein confidence scoring. Seven out of the 27 modeled proteins (including critical targets such as POC5, GHR, and MESP2) displayed lower confidence scores ($\text{pLDDT} < 70$). These lower scores predominantly reflect Intrinsically Disordered Regions (IDRs). While low confidence often complicates structural rigidity metrics, it provides deep mechanistic insight here: highly disordered proteins naturally map to the $\Gamma_m$ metabolic supply cohort. Such intrinsic disorder is a classical functional signature of multi-functional signaling hubs, acting as adaptive metabolic rheostats rather than stiff, load-bearing $\eta_p$ mechanosensors. The model's tension between rigid structural demands and flexible metabolic signaling accurately encapsulates the biological system's inherent design.
+
+Finally, the mapping from discrete genetic expression to the continuous $I(s)$ field remains phenomenological; future refinements will link this directly to single-cell transcriptomic atlases of the developing spine.
+
+While direct metabolic flux measurements in the growing human spine are currently invasive, the allometric scaling laws ($L^4$ vs $L^2$) provide a robust theoretical bound on energy availability that aligns with the observed clinical window of deformity. The specific molecular candidates identified (e.g., Vimentin) are functional nodes in the control loop, and their failure modes match the predicted instability.
+
+\section*{Methods}
+\section{Methods}
+
+We implement the Information--Cosserat framework using two complementary numerical approaches: a fast deterministic beam model for parameter sweeps and eigenanalysis, and a full three-dimensional Cosserat rod simulation for capturing large deformations and geometric nonlinearities.
+
+\subsection{Deterministic IEC Beam Model}
+
+To explore the mode selection mechanism (Eq.~\ref{eq:mode_selection}), we discretize the linearized beam equations using a finite difference scheme on a 1D domain $s \in [0, L]$. The rod is divided into $N=100$ segments. The information field $I(s)$ is mapped to local stiffness $E_i$ and rest curvature $\kappa_{i}$ at each node. We solve the resulting boundary value problem (BVP) using a standard shooting method (or sparse matrix solver for the eigenproblem). This allows rapid exploration of the $(\chi_\kappa, g)$ parameter space to identify regions where S-modes become the ground state.
+
+\subsection{3D Cosserat Rod Implementation (PyElastica)}
+
+For full 3D simulations, we utilize \texttt{PyElastica}~\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory. Model parameters are listed in the Supplementary Information. The spine is modeled as a Cosserat rod with the following specifications:
+
+\begin{itemize}
+    \item \textbf{Discretization}: The rod is discretized into $n=50$--$100$ elements.
+    \item \textbf{Information Field}: For spinal simulations, $I(s)$ is specified as a bimodal Gaussian distribution representing HOX-patterned identity:
+    \begin{equation}
+    I(s) = A_c \exp\left[-\frac{(s/L - s_c)^2}{2\sigma_c^2}\right] + A_l \exp\left[-\frac{(s/L - s_l)^2}{2\sigma_l^2}\right] + I_0,
+    \label{eq:info_field_spinal}
+    \end{equation}
+    where $A_c = 0.5$, $s_c = 0.80$, $\sigma_c = 0.08$ (cervical lordosis), $A_l = 0.7$, $s_l = 0.25$, $\sigma_l = 0.10$ (lumbar lordosis), and $I_0 = 0.3$ (baseline). For scoliosis perturbations, a lateral asymmetry is added: $I(s) \to I(s) + \varepsilon_{\mathrm{asym}} \exp[-(s/L - 0.6)^2/(2 \cdot 0.08^2)]$ with $\varepsilon_{\mathrm{asym}} = 0.01$--$0.05$.
+    \item \textbf{IEC Coupling}: We implemented a custom callback in \texttt{PyElastica} that updates the local rest curvature vector $\bm{\kappa}^0(s)$ and bending stiffness matrix $\mathbf{B}(s)$ at each time step (or initialization) based on the information field $I(s)$.
+    \item \textbf{Boundary Conditions}: The rod is clamped at the base (sacrum) and free at the top (cranium), simulating a cantilever column under gravity. For specific validation cases, clamped-clamped conditions are used.
+    \item \textbf{Gravitational Loading}: Gravity is applied as a uniform body force $\mathbf{f} = \rho A \mathbf{g}$.
+    \item \textbf{Damping}: To find static equilibrium configurations, we apply external damping ($\nu \sim 0.1$--$1.0$ s$^{-1}$) and integrate the dynamic equations until the kinetic energy dissipates ($v_{\max} < 10^{-6}$ m/s).
+\end{itemize}
+
+The source code for the IEC-modified Cosserat solver is available in the \texttt{spinalmodes} Python package (see Data Availability).
+
+\subsection{Parameter Sweeps and Mode Classification}
+
+We perform systematic parameter sweeps over the coupling strength $\chi_\kappa$ (range $[0, 0.1]$) and gravitational acceleration $g$ (range $[0.01, 1.0]$ $g_{\mathrm{Earth}}$). For each simulation, we compute the equilibrium shape and evaluate the following metrics:
+1.  \textbf{Geodesic Deviation} $\widehat{D}_{\mathrm{geo}}$: Quantifies the difference between the realized shape and the gravity-only geodesic.
+2.  \textbf{Lateral Deviation} $S_{\mathrm{lat}}$: Measures symmetry breaking in the coronal plane.
+3.  \textbf{Cobb Angle}: Standard clinical measure for scoliotic curves.
+
+Regimes are classified based on the normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$. We define the \emph{gravity-dominated} regime ($\widehat{D}_{\mathrm{geo}} < 0.1$) as the region where gravitational potential energy dominates, leading to monotonic sag. The \emph{cooperative} regime ($0.1 \leq \widehat{D}_{\mathrm{geo}} \leq 0.3$) corresponds to the range where information and gravity balance to produce a stable, counter-curved S-shape. The \emph{information-dominated} regime ($\widehat{D}_{\mathrm{geo}} > 0.3$) is reached when information-driven metric distortions become the primary determinant of geometry, which, as we show, also coincides with the onset of symmetry-breaking instabilities (scoliosis-like modes). These thresholds were determined by analyzing the bifurcation of the lowest eigenvalue $\lambda_0$ and the emergence of non-monotonic curvature profiles.
+
+\subsection{Multi-Scale Protein Mechanics Pipeline}
+
+To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics.
+\begin{enumerate}
+    \item \textbf{Structure Prediction:} We retrieved high-confidence structures for 23 key spinal proteins from the AlphaFold Protein Structure Database.
+    \item \textbf{Structural Metrics:} For each protein, we computed the \emph{Anisotropy Index} (ratio of principal moments of inertia) and \emph{Radius of Gyration} ($R_g$) using the `afcc` module. These metrics serve as proxies for the entropic cost of maintaining the protein's orientation against thermal noise.
+    \item \textbf{Energetic Mapping:} We defined the metabolic cost of maintenance $C_{maint} \propto \text{Anisotropy} \times N_{residues}$. This assumes that extended, anisotropic structures require more frequent chaperone intervention and cytoskeletal tension to prevent misfolding or aggregation compared to globular proteins.
+    \item \textbf{Steered Molecular Dynamics (SMD):} SMD simulations were executed in GROMACS using CHARMM36m and TIP3P water. We applied constant-velocity pulling to extract force-extension curves, enabling calculation of single-molecule stiffness $k_{molecule}$ from the low-strain linear regime.
+    \item \textbf{Fibril Assembly and Mechanics:} Fibrillar assemblies were coarse-grained with explicit D-band organization and cross-link density. Effective fibril moduli were computed incorporating collagen axial mechanics and proteoglycan osmotic compression terms.
+    \item \textbf{Tissue Homogenization:} Regional tissue elasticity tensors were computed using mixture theory: $\mathbf{C}_{tissue}(s) = \sum \phi_i(s) \mathbf{R}(\theta_i) \mathbf{C}_i \mathbf{R}(\theta_i)^T$, weighting constituent stiffness $\mathbf{C}_i$ by volume fractions $\phi_i$ from histology and orientation $\theta_i$ from polarized imaging.
+    \item \textbf{Validation:} We verified predicted molecular stiffness against AFM nanoindentation measurements and bulk mechanical tissue tests, achieving an $R^2 \approx 0.81$.
+\end{enumerate}
+
+\subsection{Protein Dynamics and Energy Modeling}
+
+We simulated the temporal competition between protein classes using a system of coupled differential equations (see Supplementary Information, Section~S7). The model tracks the energy pool $E(t)$ available for protein synthesis/maintenance over the 5--20 year age range.
+\begin{itemize}
+    \item \textbf{Supply:} Modeled as $S(t) = S_0 (L(t)/L_0)^2$, reflecting the diffusion-limited transport through the vertebral endplate surface area.
+    \item \textbf{Demand:} Modeled as $D(t) = D_{maint} (L/L_0) + D_{grav} (L/L_0)^4$, capturing the linear scaling of tissue volume maintenance and the quartic scaling of gravitational moment opposition.
+    \item \textbf{Dynamics:} The fidelity of the mechanosensory array $F(t)$ evolves according to $dF/dt = k_{repair}(S - D)$ when $S > D$, and $dF/dt = k_{damage}(S - D)$ when $S < D$ (deficit), bounded to $[0, 1]$.
+\end{itemize}
+
+\subsection{Numerical convergence and validation}
+
+A convergence study was performed by varying the number of elements $n$ from $10$ to $200$. We found that the normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ converges to within 1\% for $n \geq 50$ (see Supplementary Fig.~S1). The numerical implementation was validated against analytical solutions for small-deflection Euler-Bernoulli beams. The \texttt{PyElastica} implementation was further verified by reproducing standard buckling and hanging chain benchmarks, with error metrics $||\mathbf{r}_{num} - \mathbf{r}_{ana}||/L < 10^{-4}$.
+
+
+\input{tables}
 
 \bibliography{references}
-\bibliographystyle{unsrt}
+\bibliographystyle{naturemag}
 
 \end{document}

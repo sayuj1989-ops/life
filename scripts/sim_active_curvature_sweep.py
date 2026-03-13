@@ -1,154 +1,139 @@
 import os
 import sys
-
-import matplotlib
-import numpy as np
 import pandas as pd
-
-matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
 from datetime import datetime
 from pathlib import Path
 
-import matplotlib.pyplot as plt
+# Use Agg backend for matplotlib
+plt.switch_backend('Agg')
 
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-# Import run_protein_simulation
-try:
-    from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation
-except ImportError as e:
-    print(f"Error importing simulation module: {e}")
-    sys.exit(1)
+from spinalmodes.countercurvature.pyelastica_bridge import run_protein_simulation, verify_pyelastica_installation
 
 def run_sweep():
-    # Reproducibility
-    seed = 42
-    np.random.seed(seed)
+    # Verify PyElastica is installed
+    verify_pyelastica_installation(exit_on_fail=True)
 
-    # Setup parameters
-    active_curvature_values = np.linspace(0.0, 20.0, 21)
-    anisotropy = 5.0
-    initial_lateral_defect = 0.05
-    natural_kyphosis = 2.0
-    duration = 2.0
-    n_elements = 50
-    dt = 1e-4
-
-    results = []
-
+    # Output directory
     date_str = datetime.now().strftime("%Y-%m-%d")
     out_dir = Path(f"outputs/sim/{date_str}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"Starting Active Curvature Sweep (N={len(active_curvature_values)})...")
-    print(f"Anisotropy: {anisotropy}, Defect: {initial_lateral_defect}, Kyphosis: {natural_kyphosis}")
+    # Parameters
+    seed = 42
+    np.random.seed(seed)
 
-    for i, active_curv in enumerate(active_curvature_values):
-        print(f"[{i+1}/{len(active_curvature_values)}] Simulating Active Curvature = {active_curv:.2f}...")
+    active_curvatures = np.linspace(0.0, 15.0, 16)
+    anisotropy_val = 3.0
 
-        sim_result = run_protein_simulation(
-            anisotropy=float(anisotropy),
-            active_curvature=float(active_curv),
-            initial_lateral_defect=initial_lateral_defect,
-            natural_kyphosis=natural_kyphosis,
-            duration=duration,
-            dt=dt,
-            n_elements=n_elements,
+    results = []
+
+    # Run the sweep
+    for ac in active_curvatures:
+        print(f"Running simulation with active_curvature = {ac:.2f}...")
+
+        # Save exact config used for reproducibility
+        config = {
+            "seed": seed,
+            "anisotropy": anisotropy_val,
+            "active_curvature": ac,
+            "torsion_drive": 0.0,
+            "stiffness_modulation": 0.0,
+            "initial_lateral_defect": 0.0,
+            "natural_kyphosis": 2.0,
+            "length": 0.4,
+            "n_elements": 50,
+            "duration": 2.0,
+        }
+
+        # Call the simulation engine
+        res = run_protein_simulation(
+            anisotropy=config["anisotropy"],
+            active_curvature=config["active_curvature"],
+            torsion_drive=config["torsion_drive"],
+            stiffness_modulation=config["stiffness_modulation"],
+            initial_lateral_defect=config["initial_lateral_defect"],
+            natural_kyphosis=config["natural_kyphosis"],
+            length=config["length"],
+            n_elements=config["n_elements"],
+            duration=config["duration"],
             show_progress=False
         )
 
-        if not sim_result.get("success", False):
-            print(f"  FAILED: {sim_result.get('error', 'Unknown Error')}")
-            continue
+        if res.get("success"):
+            # Include input parameters alongside results for clarity
+            row = config.copy()
+            row.update({
+                "max_curvature": res.get("max_curvature"),
+                "max_torsion": res.get("max_torsion"),
+                "end_to_end_distance": res.get("end_to_end_distance"),
+                "S_lat": res.get("S_lat"),
+                "cobb_angle": res.get("cobb_angle"),
+                "z_tip": res.get("z_tip"),
+                "x_tip": res.get("x_tip"),
+                "y_tip": res.get("y_tip"),
+                "U_CC": res.get("U_CC"),
+                "info_gain_ratio": res.get("info_gain_ratio")
+            })
+            results.append(row)
+        else:
+            print(f"  Simulation failed: {res.get('error')}")
+            # Append empty/NaN data
+            row = config.copy()
+            row.update({k: np.nan for k in ["max_curvature", "max_torsion", "end_to_end_distance", "S_lat", "cobb_angle", "z_tip", "x_tip", "y_tip", "U_CC", "info_gain_ratio"]})
+            results.append(row)
 
-        # Extract metrics
-        cobb_angle = sim_result.get("cobb_angle", 0.0)
-        max_curvature = sim_result.get("max_curvature", 0.0)
-        s_lat = sim_result.get("S_lat", 0.0)
-        u_cc = sim_result.get("U_CC", 0.0)
-        max_torsion = sim_result.get("max_torsion", 0.0)
+    # Save params.csv (what was swept)
+    params_df = pd.DataFrame({"active_curvature": active_curvatures, "anisotropy": [anisotropy_val]*len(active_curvatures), "seed": [seed]*len(active_curvatures)})
+    params_df.to_csv(out_dir / "params.csv", index=False)
 
-        print(f"  -> Cobb: {cobb_angle:.2f} deg, MaxCurv: {max_curvature:.2f}, S_lat: {s_lat:.4f}")
+    # Save results.csv
+    results_df = pd.DataFrame(results)
+    results_df.to_csv(out_dir / "results.csv", index=False)
 
-        results.append({
-            "active_curvature": active_curv,
-            "anisotropy": anisotropy,
-            "initial_lateral_defect": initial_lateral_defect,
-            "natural_kyphosis": natural_kyphosis,
-            "cobb_angle": cobb_angle,
-            "max_curvature": max_curvature,
-            "s_lat": s_lat,
-            "max_torsion": max_torsion,
-            "u_cc": u_cc,
-            "runtime_sec": sim_result.get("runtime_sec", 0.0)
-        })
+    # Generate and save plot
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-    # Save Results
-    df = pd.DataFrame(results)
-    csv_path = out_dir / "results.csv"
-    df.to_csv(csv_path, index=False)
-    print(f"Saved results to {csv_path}")
+    # Plot 1: S_lat and Cobb Angle vs active_curvature
+    ax1 = axes[0]
+    ax1.plot(results_df["active_curvature"], results_df["S_lat"], 'bo-', label="S_lat (Lateral Deviation)")
+    ax1.set_xlabel("Active Curvature (Growth)")
+    ax1.set_ylabel("Lateral Scoliosis Index (S_lat)", color='b')
+    ax1.tick_params(axis='y', labelcolor='b')
 
-    # Save Params (for reproducibility)
-    params_path = out_dir / "params.csv"
-    params_df = pd.DataFrame([{
-        "active_curvature_min": active_curvature_values[0],
-        "active_curvature_max": active_curvature_values[-1],
-        "steps": len(active_curvature_values),
-        "anisotropy": anisotropy,
-        "initial_lateral_defect": initial_lateral_defect,
-        "natural_kyphosis": natural_kyphosis,
-        "duration": duration,
-        "dt": dt,
-        "n_elements": n_elements,
-        "seed": seed
-    }])
-    params_df.to_csv(params_path, index=False)
-    print(f"Saved params to {params_path}")
+    ax2 = ax1.twinx()
+    ax2.plot(results_df["active_curvature"], results_df["cobb_angle"], 'ro--', label="Cobb Angle")
+    ax2.set_ylabel("Cobb Angle (degrees)", color='r')
+    ax2.tick_params(axis='y', labelcolor='r')
 
-    # Generate Plots
-    generate_plots(df, out_dir)
+    ax1.set_title("Emergent S-Shape Geometry vs Growth")
+    ax1.grid(True, alpha=0.3)
 
-def generate_plots(df, out_dir):
-    # Plot 1: Active Curvature vs Cobb Angle
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['active_curvature'], df['cobb_angle'], 'o-', linewidth=2, color='blue')
-    plt.xlabel('Active Curvature (Growth Drive)')
-    plt.ylabel('Cobb Angle (degrees)')
-    plt.title('Effect of Active Curvature on Cobb Angle\n(Anisotropy = 5.0)')
-    plt.grid(True, alpha=0.3)
+    # Plot 2: Max Curvature and Tip Z Deflection
+    ax3 = axes[1]
+    ax3.plot(results_df["active_curvature"], results_df["max_curvature"], 'go-', label="Max Curvature (1/m)")
+    ax3.set_xlabel("Active Curvature (Growth)")
+    ax3.set_ylabel("Max Curvature (1/m)", color='g')
+    ax3.tick_params(axis='y', labelcolor='g')
 
-    plot_path = out_dir / "plot_curvature_cobb.png"
-    plt.savefig(plot_path, dpi=300)
+    ax4 = ax3.twinx()
+    # Normalize z_tip roughly
+    ax4.plot(results_df["active_curvature"], results_df["z_tip"], 'mo--', label="Z Tip Position (m)")
+    ax4.set_ylabel("Z Tip Position (m)", color='m')
+    ax4.tick_params(axis='y', labelcolor='m')
+
+    ax3.set_title("Sagittal and Longitudinal Metrics")
+    ax3.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(out_dir / "plot_metrics.png", dpi=300)
     plt.close()
-    print(f"Saved plot to {plot_path}")
 
-    # Plot 2: Active Curvature vs Lateral Deviation (S_lat)
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['active_curvature'], df['s_lat'], 's--', linewidth=2, color='red')
-    plt.xlabel('Active Curvature (Growth Drive)')
-    plt.ylabel('Lateral Deviation S_lat (m)')
-    plt.title('Effect of Active Curvature on Lateral Deviation\n(Anisotropy = 5.0)')
-    plt.grid(True, alpha=0.3)
-
-    plot_path2 = out_dir / "plot_curvature_slat.png"
-    plt.savefig(plot_path2, dpi=300)
-    plt.close()
-    print(f"Saved plot to {plot_path2}")
-
-    # Plot 3: Active Curvature vs Max Curvature
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['active_curvature'], df['max_curvature'], '^-', linewidth=2, color='green')
-    plt.xlabel('Active Curvature (Growth Drive)')
-    plt.ylabel('Max Curvature (1/m)')
-    plt.title('Effect of Active Curvature on Max Curvature\n(Anisotropy = 5.0)')
-    plt.grid(True, alpha=0.3)
-
-    plot_path3 = out_dir / "plot_curvature_maxcurv.png"
-    plt.savefig(plot_path3, dpi=300)
-    plt.close()
-    print(f"Saved plot to {plot_path3}")
+    print(f"Sweep complete! Results saved to {out_dir}")
 
 if __name__ == "__main__":
     run_sweep()

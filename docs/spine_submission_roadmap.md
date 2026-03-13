@@ -9,7 +9,7 @@
 
 - [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
 - [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (Simulated in `outputs/sim/2026-02-22/`).
-- [ ] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
+- [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
 - [ ] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
 
 ## Phase 2: Clinical Validation (Weeks 3-4)

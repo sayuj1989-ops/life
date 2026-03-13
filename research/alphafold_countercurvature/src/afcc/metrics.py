@@ -36,7 +36,8 @@ class MetricsAnalyzer:
         # Bolt Optimization: Vectorized Variance for Radius of Gyration
         # Calculates sum of variances along axes instead of manual center-of-mass squared diffs
         # Speedup: ~35% faster, reduces memory allocation (30MB -> 23MB for 1M points)
-        rg = np.sqrt(np.sum(np.var(coords, axis=0)))
+        c = coords - np.mean(coords, axis=0)
+        rg = np.sqrt(np.sum(c**2) / len(coords))
         return float(rg)
 
     def calculate_anisotropy(self, coords: np.ndarray) -> Dict[str, Any]:
@@ -132,7 +133,7 @@ class MetricsAnalyzer:
         # Bolt Optimization 2026-11-20: Avoid allocating temporary array (N,3) for vec_ac
         # Instead, use the identity: |u+v|^2 = |u|^2 + |v|^2 + 2(u.v)
         # Speedup: ~2x faster b_len calculation (13ms vs 29ms for 10k residues)
-        dot = np.einsum('ij,ij->i', bv1, bv2)
+        dot = bv1[:, 0]*bv2[:, 0] + bv1[:, 1]*bv2[:, 1] + bv1[:, 2]*bv2[:, 2]
         b_sq = c_len**2 + a_len**2 + 2 * dot
         b_len = np.sqrt(np.maximum(b_sq, 0))
 
@@ -203,12 +204,12 @@ class MetricsAnalyzer:
         n2_norm = normals_norm[1:]
 
         with np.errstate(divide='ignore', invalid='ignore'):
-            cos_phi = np.einsum('ij,ij->i', n1, n2) / (n1_norm * n2_norm)
+            cos_phi = (n1[:, 0]*n2[:, 0] + n1[:, 1]*n2[:, 1] + n1[:, 2]*n2[:, 2]) / (n1_norm * n2_norm)
             cos_phi = np.clip(cos_phi, -1.0, 1.0)
             phi = np.arccos(cos_phi)
 
             # Sign check
-            sign_check = np.einsum('ij,ij->i', b1, n2)
+            sign_check = b1[:, 0]*n2[:, 0] + b1[:, 1]*n2[:, 1] + b1[:, 2]*n2[:, 2]
             sign = np.sign(sign_check)
 
         torsion = phi * sign # in radians

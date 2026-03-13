@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Ensure output directory exists
-OUTPUT_DIR = "/Users/mac/LIFE/life/manuscript/figures/bcc_theory"
+OUTPUT_DIR = "manuscript/figures/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def generate_informational_manifold_figure():

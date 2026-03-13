@@ -1,116 +1,136 @@
-# Evidence Freshness Audit Report
+# Evidence Freshness Audit
 
-## Data Integrity and Freshness
+## Overview
+Analyzed 31 runs from 2026-01-06 to 2026-03-05.
 
-- **Runs Audited**: 29
+## Schema Drifts
+The following runs exhibited schema deviations from the canonical (first observed) structure:
+- **2026-01-09**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-14**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-16**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-18**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-20**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-21**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-27**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-01-31**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-05**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-06**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-07**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-08**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-09**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-10**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-11**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-12**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-13**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-16**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-17**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-18**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-20**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-02-21**: Missing ['lambda_max', 'n_residues', 'anisotropy_ratio', 'pae_mean', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'length', 'PAE_mean', 'disorder_fraction_proxy', 'predicted_domain_segments', 'PAE_domain_blockiness_score', 'species', 'exposed_surface_proxy', 'uniprot_id', 'pLDDT_fraction_low', 'backbone_principal_axis', 'pLDDT_mean', 'anisotropy_index', 'pLDDT_fraction_high']
+- **2026-02-22**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
+- **2026-02-23**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
+- **2026-02-26**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
+- **2026-02-28**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'mean_plddt', 'disorder_fraction', 'anisotropy', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'plddt_fraction_low', 'plddt_median', 'plddt_fraction_high', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'exposed_surface_proxy', 'backbone_principal_axis', 'anisotropy_index']
+- **2026-03-02**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
+- **2026-03-04**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
+- **2026-03-05**: Missing ['lambda_max', 'pae_mean', 'anisotropy_ratio', 'source_category', 'uniprot', 'dise_score', 'mean_plddt', 'anisotropy', 'disorder_fraction', 'lambda_mid', 'fraction_low_plddt', 'likely_idr_heavy', 'pae_blockiness', 'lambda_min', 'exposed_fraction'], Extra ['likely_IDR_heavy', 'PAE_mean', 'plddt_mean', 'disorder_fraction_proxy', 'priority_score', 'plddt_median', 'plddt_fraction_low', 'predicted_domain_segments', 'plddt_fraction_ok', 'PAE_domain_blockiness_score', 'plddt_fraction_high', 'exposed_surface_proxy', 'uniprot_id', 'backbone_principal_axis', 'organism', 'anisotropy_index']
 
-- **Missing Linked Outputs**: 0 (None)
+## Missing Linked Outputs
+The following runs have missing linked outputs (e.g., PDB files not matching metrics count):
+- **2026-01-06**: No 'pdb' directory found, but metrics exist.
+- **2026-01-07**: No 'pdb' directory found, but metrics exist.
+- **2026-01-09**: No 'pdb' directory found, but metrics exist.
+- **2026-01-14**: No 'pdb' directory found, but metrics exist.
+- **2026-01-16**: No 'pdb' directory found, but metrics exist.
+- **2026-01-18**: No 'pdb' directory found, but metrics exist.
+- **2026-01-20**: No 'pdb' directory found, but metrics exist.
+- **2026-01-21**: No 'pdb' directory found, but metrics exist.
+- **2026-01-27**: No 'pdb' directory found, but metrics exist.
+- **2026-01-31**: No 'pdb' directory found, but metrics exist.
+- **2026-02-05**: No 'pdb' directory found, but metrics exist.
+- **2026-02-06**: No 'pdb' directory found, but metrics exist.
+- **2026-02-07**: No 'pdb' directory found, but metrics exist.
+- **2026-02-08**: No 'pdb' directory found, but metrics exist.
+- **2026-02-09**: No 'pdb' directory found, but metrics exist.
+- **2026-02-10**: No 'pdb' directory found, but metrics exist.
+- **2026-02-11**: No 'pdb' directory found, but metrics exist.
+- **2026-02-12**: No 'pdb' directory found, but metrics exist.
+- **2026-02-13**: No 'pdb' directory found, but metrics exist.
+- **2026-02-16**: No 'pdb' directory found, but metrics exist.
+- **2026-02-17**: No 'pdb' directory found, but metrics exist.
+- **2026-02-18**: No 'pdb' directory found, but metrics exist.
+- **2026-02-20**: No 'pdb' directory found, but metrics exist.
+- **2026-02-21**: No 'pdb' directory found, but metrics exist.
+- **2026-02-22**: No 'pdb' directory found, but metrics exist.
+- **2026-02-23**: No 'pdb' directory found, but metrics exist.
+- **2026-02-26**: No 'pdb' directory found, but metrics exist.
+- **2026-02-28**: No 'pdb' directory found, but metrics exist.
+- **2026-03-02**: No 'pdb' directory found, but metrics exist.
+- **2026-03-04**: No 'pdb' directory found, but metrics exist.
+- **2026-03-05**: No 'pdb' directory found, but metrics exist.
 
-- **Schema Drifts**: None detected in scoped files with `gene_symbol`.
+## Static Metrics Warning
+The following proteins show identical structural metrics across multiple historical runs, indicating the underlying AFDB structures have not been updated or are being reused from cache:
 
-
-## Identical Per-Gene Vectors Across Runs (Static Metrics)
-
-The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) across multiple runs, indicating reused static inputs rather than fresh measurements:
-
-| Gene | Runs Present | First Date | Last Date | Anisotropy | pLDDT |
-
-|------|--------------|------------|-----------|------------|-------|
-| NTRK3 | 17 | 2026-01-27 | 2026-02-28 | 1.936111715585754 | 76.81557806912993 |
-| LMNA | 13 | 2026-01-14 | 2026-02-26 | 4.751667397697646 | 76.37072289156627 |
-| RUNX3 | 13 | 2026-01-27 | 2026-02-18 | 2.0611670656856456 | 60.564096385542165 |
-| NF1 | 12 | 2026-01-18 | 2026-02-26 | 1.9279279346731688 | 87.17264755480608 |
-| OTOP1 | 10 | 2026-01-27 | 2026-02-26 | 1.7507094616744632 | 75.68916666666668 |
-| EGR3 | 10 | 2026-01-27 | 2026-02-26 | 3.762072398804325 | 49.96868217054263 |
-| IFT88 | 8 | 2026-01-14 | 2026-02-18 | 2.8032400603850034 | 76.34603155339805 |
-| PLOD1 | 7 | 2026-02-05 | 2026-02-26 | 3.3950779336885484 | 92.72865199449797 |
-| COL1A1 | 5 | 2026-01-18 | 2026-02-18 | 2.797030038697096 | 52.72999316939891 |
-| HIF1A | 5 | 2026-02-11 | 2026-02-23 | 3.417045794347625 | 60.75170702179177 |
-| METTL3 | 4 | 2026-01-14 | 2026-02-18 | 1.6486356541690288 | 75.379 |
-| FLNA | 4 | 2026-01-20 | 2026-02-18 | 2.501695116785587 | 76.54624858330186 |
-| CEP290 | 4 | 2026-01-20 | 2026-02-18 | 2.286118643841953 | 60.54478418717224 |
-| EMD | 4 | 2026-02-10 | 2026-02-18 | 4.288514695460691 | 60.25062992125985 |
-| TGFBR2 | 3 | 2026-02-10 | 2026-02-18 | 2.481876912319578 | 80.98139329805996 |
-| MYO7A | 3 | 2026-02-10 | 2026-02-18 | 2.3398248764346605 | 77.27780586907448 |
-| CDH23 | 3 | 2026-02-10 | 2026-02-18 | 11.927795782477896 | 76.72945319740501 |
-| FBN2 | 3 | 2026-02-10 | 2026-02-18 | 1.4943730069906092 | 68.39040733197557 |
-| SERPINH1 | 3 | 2026-02-10 | 2026-02-18 | 1.9746660315008595 | 91.13595693779904 |
-| ETV1 | 3 | 2026-02-10 | 2026-02-18 | 5.323069489820232 | 67.89180064308681 |
-| ROR2 | 3 | 2026-02-10 | 2026-02-18 | 2.5114623831285026 | 68.28682926829269 |
-| FERMT2 | 3 | 2026-02-10 | 2026-02-18 | 2.502653150494108 | 79.86822058823529 |
-| TGFBR1 | 3 | 2026-02-10 | 2026-02-18 | 3.6543426000781953 | 84.19429423459245 |
-| BNC2 | 3 | 2026-02-10 | 2026-02-18 | 1.9551006086909324 | 53.49764331210191 |
-| SMAD3 | 2 | 2026-02-10 | 2026-02-13 | 2.405930835652692 | 83.6136705882353 |
-| ACAN | 2 | 2026-02-10 | 2026-02-13 | 2.663035881007823 | 51.890964426877474 |
-| CCDC40 | 2 | 2026-02-10 | 2026-02-13 | 5.699494256013449 | 70.7318213660245 |
-| KIF7 | 2 | 2026-02-10 | 2026-02-13 | 2.10884896707772 | 67.16040953090096 |
-| KIF3A | 2 | 2026-02-10 | 2026-02-13 | 2.9036334743310475 | 75.44905579399142 |
-| SYNE2 | 2 | 2026-02-10 | 2026-02-18 | 2.123597597329561 | 83.327265917603 |
-| DZIP1 | 2 | 2026-02-10 | 2026-02-16 | 2.5436815102910297 | 64.35407151095733 |
-| RPL38 | 2 | 2026-02-10 | 2026-02-18 | 1.5151481532400566 | 95.34757142857144 |
-| SUN1 | 2 | 2026-02-10 | 2026-02-18 | 2.337845450113884 | 60.360891719745226 |
-| TLN1 | 2 | 2026-02-10 | 2026-02-13 | 2.043820318201773 | 75.88697756788666 |
-| FBLN5 | 2 | 2026-02-10 | 2026-02-16 | 7.054480619949517 | 83.33808035714287 |
-| COL11A2 | 2 | 2026-02-10 | 2026-02-16 | 2.4606769611384083 | 49.26498847926268 |
-| SSPOP | 2 | 2026-02-10 | 2026-02-16 | 1.9153536859133964 | 60.13063022019741 |
-| STOML3 | 2 | 2026-02-10 | 2026-02-16 | 5.559834719858973 | 84.32628865979382 |
-| PANX3 | 2 | 2026-02-10 | 2026-02-16 | 5.075360561640713 | 81.7247193877551 |
-| GDF5 | 2 | 2026-02-10 | 2026-02-16 | 2.969673405734348 | 69.98487025948103 |
-| ROCK1 | 2 | 2026-02-10 | 2026-02-16 | 3.2921885930351955 | 76.13419497784342 |
-| AQP4 | 2 | 2026-02-10 | 2026-02-16 | 1.969106742320216 | 81.03699690402476 |
-| CNNM2 | 2 | 2026-02-10 | 2026-02-16 | 8.540535839977684 | 70.37298285714286 |
-| NR1D1 | 2 | 2026-02-13 | 2026-02-18 | 1.796872009762566 | 62.885390879478834 |
-| TEAD1 | 2 | 2026-02-13 | 2026-02-18 | 1.9067232446511149 | 76.47657276995305 |
-| CLOCK | 2 | 2026-02-13 | 2026-02-18 | 1.8268099455225064 | 60.60554373522458 |
-| COL1A2 | 2 | 2026-02-13 | 2026-02-18 | 2.876180753979266 | 53.64081991215226 |
-
-## When 'New' Reports Reuse Unchanged Values
-
-- **2026-01-18**: Reused static metrics for 2 genes (e.g., IFT88, LMNA...)
-
-- **2026-01-20**: Reused static metrics for 4 genes (e.g., IFT88, LMNA, NF1, COL1A1...)
-
-- **2026-01-21**: Reused static metrics for 3 genes (e.g., IFT88, LMNA, NF1...)
-
-- **2026-01-27**: Reused static metrics for 2 genes (e.g., LMNA, NF1...)
-
-- **2026-01-31**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-05**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-06**: Reused static metrics for 7 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-07**: Reused static metrics for 7 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-08**: Reused static metrics for 6 genes (e.g., IFT88, LMNA, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-09**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-10**: Reused static metrics for 11 genes (e.g., IFT88, METTL3, NF1, COL1A1, FLNA...)
-
-- **2026-02-11**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-12**: Reused static metrics for 3 genes (e.g., NTRK3, RUNX3, HIF1A...)
-
-- **2026-02-13**: Reused static metrics for 29 genes (e.g., IFT88, LMNA, METTL3, NF1, COL1A1...)
-
-- **2026-02-16**: Reused static metrics for 12 genes (e.g., EMD, DZIP1, BNC2, FBLN5, COL11A2...)
-
-- **2026-02-17**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-18**: Reused static metrics for 31 genes (e.g., IFT88, LMNA, METTL3, NF1, COL1A1...)
-
-- **2026-02-20**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-- **2026-02-22**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-- **2026-02-23**: Reused static metrics for 1 genes (e.g., HIF1A...)
-
-- **2026-02-26**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, OTOP1, EGR3...)
-
-- **2026-02-28**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-
-## Conclusion
-
-- **Actionable Insight**: Many core candidates (e.g., LBX1, PIEZO2, LMNA) show static values across the trend window. This confirms the caveat that high-anisotropy narratves may over-interpret static inputs.
+| gene_symbol   |   appearances | first_seen   | last_seen   |   anisotropy |    plddt |
+|:--------------|--------------:|:-------------|:------------|-------------:|---------:|
+| PIEZO2        |            23 | 2026-01-06   | 2026-02-28  |    nan       | nan      |
+| LBX1          |            22 | 2026-01-06   | 2026-02-28  |    nan       | nan      |
+| NTRK3         |            18 | 2026-01-27   | 2026-03-05  |      1.93611 |  76.8156 |
+| RUNX3         |            14 | 2026-01-27   | 2026-03-05  |      2.06117 |  60.5641 |
+| LMNA          |            13 | 2026-01-14   | 2026-02-26  |      4.75167 |  76.3707 |
+| NF1           |            12 | 2026-01-18   | 2026-02-26  |      1.92793 |  87.1726 |
+| PIEZO1        |            11 | 2026-01-14   | 2026-02-18  |      3.89626 |  72.0459 |
+| EGR3          |            10 | 2026-01-27   | 2026-02-26  |      3.76207 |  49.9687 |
+| OTOP1         |            10 | 2026-01-27   | 2026-02-26  |      1.75071 |  75.6892 |
+| POC5          |            10 | 2026-01-06   | 2026-02-18  |    nan       | nan      |
+| YAP1          |             9 | 2026-01-06   | 2026-02-18  |    nan       | nan      |
+| ITGB1         |             8 | 2026-01-07   | 2026-02-18  |    nan       | nan      |
+| IFT88         |             8 | 2026-01-14   | 2026-02-18  |      2.80324 |  76.346  |
+| PLOD1         |             7 | 2026-02-05   | 2026-02-26  |      3.39508 |  92.7287 |
+| COL1A1        |             5 | 2026-01-18   | 2026-02-18  |      2.79703 |  52.73   |
+| WWTR1         |             5 | 2026-01-06   | 2026-02-13  |    nan       | nan      |
+| HIF1A         |             5 | 2026-02-11   | 2026-02-23  |      3.41705 |  60.7517 |
+| FLNA          |             4 | 2026-01-20   | 2026-02-18  |      2.5017  |  76.5462 |
+| CEP290        |             4 | 2026-01-20   | 2026-02-18  |      2.28612 |  60.5448 |
+| METTL3        |             4 | 2026-01-14   | 2026-02-18  |      1.64864 |  75.379  |
+| MESP2         |             4 | 2026-01-07   | 2026-02-16  |    nan       | nan      |
+| EMD           |             4 | 2026-02-10   | 2026-02-18  |      4.28851 |  60.2506 |
+| BNC2          |             3 | 2026-02-10   | 2026-02-18  |      1.9551  |  53.4976 |
+| FBN2          |             3 | 2026-02-10   | 2026-02-18  |      1.49437 |  68.3904 |
+| ROR2          |             3 | 2026-02-10   | 2026-02-18  |      2.51146 |  68.2868 |
+| FERMT2        |             3 | 2026-02-10   | 2026-02-18  |      2.50265 |  79.8682 |
+| TGFBR1        |             3 | 2026-02-10   | 2026-02-18  |      3.65434 |  84.1943 |
+| SERPINH1      |             3 | 2026-02-10   | 2026-02-18  |      1.97467 |  91.136  |
+| ETV1          |             3 | 2026-02-10   | 2026-02-18  |      5.32307 |  67.8918 |
+| CDH23         |             3 | 2026-02-10   | 2026-02-18  |     11.9278  |  76.7295 |
+| TGFBR2        |             3 | 2026-02-10   | 2026-02-18  |      2.48188 |  80.9814 |
+| FLNB          |             3 | 2026-01-07   | 2026-02-10  |    nan       | nan      |
+| MYO7A         |             3 | 2026-02-10   | 2026-02-18  |      2.33982 |  77.2778 |
+| ROCK1         |             2 | 2026-02-10   | 2026-02-16  |      3.29219 |  76.1342 |
+| SSPOP         |             2 | 2026-02-10   | 2026-02-16  |      1.91535 |  60.1306 |
+| STOML3        |             2 | 2026-02-10   | 2026-02-16  |      5.55983 |  84.3263 |
+| PANX3         |             2 | 2026-02-10   | 2026-02-16  |      5.07536 |  81.7247 |
+| GDF5          |             2 | 2026-02-10   | 2026-02-16  |      2.96967 |  69.9849 |
+| CNNM2         |             2 | 2026-02-10   | 2026-02-16  |      8.54054 |  70.373  |
+| AQP4          |             2 | 2026-02-10   | 2026-02-16  |      1.96911 |  81.037  |
+| FBLN5         |             2 | 2026-02-10   | 2026-02-16  |      7.05448 |  83.3381 |
+| TBX6          |             2 | 2026-01-06   | 2026-02-10  |    nan       | nan      |
+| NR1D1         |             2 | 2026-02-13   | 2026-02-18  |      1.79687 |  62.8854 |
+| TEAD1         |             2 | 2026-02-13   | 2026-02-18  |      1.90672 |  76.4766 |
+| CLOCK         |             2 | 2026-02-13   | 2026-02-18  |      1.82681 |  60.6055 |
+| COL11A2       |             2 | 2026-02-10   | 2026-02-16  |      2.46068 |  49.265  |
+| VANGL1        |             2 | 2026-01-06   | 2026-02-10  |    nan       | nan      |
+| TLN1          |             2 | 2026-02-10   | 2026-02-13  |      2.04382 |  75.887  |
+| SUN1          |             2 | 2026-02-10   | 2026-02-18  |      2.33785 |  60.3609 |
+| RPL38         |             2 | 2026-02-10   | 2026-02-18  |      1.51515 |  95.3476 |
+| DZIP1         |             2 | 2026-02-10   | 2026-02-16  |      2.54368 |  64.3541 |
+| SYNE2         |             2 | 2026-02-10   | 2026-02-18  |      2.1236  |  83.3273 |
+| KIF3A         |             2 | 2026-02-10   | 2026-02-13  |      2.90363 |  75.4491 |
+| KIF7          |             2 | 2026-02-10   | 2026-02-13  |      2.10885 |  67.1604 |
+| CCDC40        |             2 | 2026-02-10   | 2026-02-13  |      5.69949 |  70.7318 |
+| ACAN          |             2 | 2026-02-10   | 2026-02-13  |      2.66304 |  51.891  |
+| SMAD3         |             2 | 2026-02-10   | 2026-02-13  |      2.40593 |  83.6137 |
+| PTK7          |             2 | 2026-01-06   | 2026-02-10  |    nan       | nan      |
+| COL2A1        |             2 | 2026-01-06   | 2026-02-10  |    nan       | nan      |
+| COL1A2        |             2 | 2026-02-13   | 2026-02-18  |      2.87618 |  53.6408 |

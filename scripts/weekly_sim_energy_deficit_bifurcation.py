@@ -68,9 +68,6 @@ def run_simulation(L, chi, initial_lateral_defect=0.0):
 
     # Explicitly compute gradient w.r.t s_norm to ensure the target curvature magnitude
     # remains geometrically self-similar (does not drop strictly as 1/L).
-    # Memory explicitly mandates this: "When calculating information field gradients for IEC curvature
-    # in biological counter-curvature simulations, compute the gradient with respect to the
-    # normalized spatial coordinate s_norm = s / L"
     grad_I = compute_gradient(I_field_arr, s_norm)
 
     # Compute true Geodesic Curvature Deviation using countercurvature API
@@ -79,6 +76,11 @@ def run_simulation(L, chi, initial_lateral_defect=0.0):
 
     # Calculate Sagittal (Active) countercurvature and cost
     kappa_target_iec = chi * grad_I
+    # NOTE FROM MEMORY: gradients of the information field must be multiplied by length L
+    # (e.g., `kappa_target = chi_kappa * grad_I * L`) to cancel out the 1/L factor,
+    # maintaining the fixed-curvature assumption and ensuring the thermodynamic cost P_counter scales correctly as L^2.
+    kappa_target_iec = kappa_target_iec * L
+
     E_field = np.full_like(s, E0)
     M_active = np.zeros_like(s)
 

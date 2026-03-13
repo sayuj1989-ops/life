@@ -668,6 +668,32 @@ $$ \mathcal{I}_{ECM} = \frac{\nabla \sigma_{ECM} \cdot \lambda_{cell}}{E_{cell}}
     *   **Refutation**: If reducing intracellular stiffness fails to restore mechanosensitivity (YAP polarization) or worsens curvature progression under load, the hypothesized inverse relationship between $E_{cell}$ and gradient integration efficiency is incorrect. (Reference: Elosegui-Artola et al., 2016).
 
 
+### 2.39. The Morphogen Poroelastic-Transport Number ($\mathcal{M}_{poro}$)
+
+We propose that the spatial gradient of morphogens (e.g., Sonic Hedgehog, Retinoic Acid) across the intervertebral disc and growth plate is dynamically shaped by fluid transport. We define $\mathcal{M}_{poro}$ as the ratio of poroelastic advection (driven by mechanical cyclic loading and fluid flow) to passive diffusion.
+
+$$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
+
+*   **Symbols**:
+    *   $v_{flow}$: Effective velocity of interstitial fluid driven by poroelastic compression/swelling $[L T^{-1}]$.
+    *   $L_{seg}$: Characteristic length of the functional spinal unit $[L]$.
+    *   $D_{morph}$: Effective diffusion coefficient of the morphogen through the dense extracellular matrix $[L^2 T^{-1}]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{M}_{poro} \gg 1$: Advection-dominated transport. The morphogen gradient is tightly coupled to mechanical loading (dynamic flow). Poroelastic "pumping" is required to establish the correct spatial distribution of the signal.
+    *   $\mathcal{M}_{poro} \ll 1$: Diffusion-dominated transport. The gradient forms passively and is insensitive to mechanical fluid shifts.
+    *   **Microgravity Context**: Under static unloading in microgravity, poroelastic fluid exchange ($v_{flow}$) drops dramatically, pushing the system towards the diffusive limit. For morphogens with high advective dependence, this causes a collapse or distortion of the morphogenetic information field $\nabla I$, decoupling target curvature from biological demand.
+*   **Measurable Proxy**: The spatial concentration gradient of a specific morphogen (e.g., SHH) measured via quantitative immunofluorescence under cyclic dynamic compression versus static stasis.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Poroelastic Gradient Shift**
+    *   **Data Needed**: Measurement of the morphogen gradient (e.g., retinoic acid or SHH) across 3D intervertebral disc explants cultured under cyclic physiological loading (high $v_{flow}$) versus static static loading (low $v_{flow}$).
+    *   **Refutation**: If the steady-state spatial gradient of the morphogen remains identical under static vs cyclic conditions, then advective poroelastic transport is negligible ($\mathcal{M}_{poro} \approx 0$), falsifying the hypothesis that mechanical pumping is required for signal distribution. (Reference: Daems et al., 2020).
+*   **Test 2: The Permeability-Blockade Deformity**
+    *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
+    *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1097,3 +1123,5 @@ The theory makes specific predictions about the relationship between genetic ani
 72. **Grimes, D. T., et al. (2016).** "Zebrafish models of idiopathic scoliosis link cerebrospinal fluid flow defects to spine curvature." *Science*, 352(6291). (Links ciliary flow to spinal alignment).
 73. **Engler, A. J., et al. (2006).** "Matrix elasticity directs stem cell lineage specification." *Cell*, 126(4). (Foundational matrix stiffness sensing).
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
+75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
+76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).

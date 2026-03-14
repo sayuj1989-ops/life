@@ -86,19 +86,12 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.
     *   **Expected Outcome:** Active model maintains stability up to $2\times$ the passive $T_{crit}$.
     *   **Stop Condition:** Analytical solution matches numerical simulation within 5% error.
-    *   **Implementation:** Script: `scripts/experiments/toy_model_torsional_buckling.py`
-    *   **Output:** [`figures/main/toy_model_torsional_buckling.png`](../figures/main/toy_model_torsional_buckling.png)
-    *   **Status:** ✅ **Implemented**
-
 2.  **Information-Coupled Thermostatic Column:**
     *   **Objective:** Extend Toy Model A to include a delayed feedback loop mimicking biological sensor lag.
     *   **Method:** 1D column with a PID controller regulating stiffness based on strain, with a defined time delay $\tau$.
     *   **Success Metric:** Identification of a critical delay $\tau_{crit}$ that induces oscillatory instability (hunting).
     *   **Expected Outcome:** System becomes unstable when $\tau$ exceeds the mechanical relaxation time.
     *   **Stop Condition:** Phase diagram maps stable vs. unstable regions across $(\tau, L)$ parameter space.
-    *   **Implementation:** Script: `scripts/experiments/toy_model_thermostatic_delay.py`
-    *   **Output:** [`figures/main/toy_model_thermostatic_delay.png`](../figures/main/toy_model_thermostatic_delay.png)
-    *   **Status:** ✅ **Implemented**
 
 3.  **Holographic Instability Lattice:**
     *   **Objective:** Verify the "Exploding Gradient" region using a minimal 2D lattice.
@@ -106,9 +99,6 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Emergence of macroscopic curvature from isotropic initial conditions under high information-coupling ($\chi_\kappa$).
     *   **Expected Outcome:** Lattice reliably buckles into a defined curve when $\chi_\kappa > \chi_{crit}$.
     *   **Stop Condition:** Consistent buckling mode observed across 100 random noise seeds.
-    *   **Implementation:** Script: `scripts/experiments/toy_model_holographic_lattice.py`
-    *   **Output:** [`figures/main/toy_model_holographic_lattice.png`](../figures/main/toy_model_holographic_lattice.png)
-    *   **Status:** ✅ **Implemented**
 
 ### Proposed Real Validation Experiments
 

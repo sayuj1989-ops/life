@@ -22,7 +22,7 @@ from research.alphafold_countercurvature.src.afcc.structure import StructurePars
 
 # Constants
 DEFAULT_SEED_LIST = [
-    ("Q92508", "PIEZO2"),
+    ("Q92508", "PIEZO1"), # Note Q92508 is PIEZO1, PIEZO2 is Q9H5I5
     ("P02545", "LMNA"),
     ("P02452", "COL1A1"),
     ("Q96DT5", "DNAH11"),
@@ -273,6 +273,13 @@ def run_focused_cycle(targets=None):
         f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
         f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
 
+        f.write("## Quality & Reproducibility Checklist\n")
+        f.write("* **Data source:** AlphaFold DB (fetched dynamically via API)\n")
+        f.write(f"* **Date/time of run:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write("* **Code version:** scripts/bolt_focused_cycle.py\n")
+        f.write("* **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.\n")
+        f.write("* **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.\n\n")
+
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))
 
@@ -284,7 +291,20 @@ def run_focused_cycle(targets=None):
         for _, row in df.iterrows():
             f.write(f"\n### {row['protein_id']} ({row['uniprot']})\n")
             f.write(f"*   **What we see:** pLDDT {row['pLDDT_mean']:.1f}, Anisotropy {row['anisotropy_index']:.2f}. {row['interpretation']}\n")
-            f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
+
+            # Specific interpretations based on protein
+            if row['protein_id'] == 'PIEZO1':
+                matter = "Key mechanosensitive ion channel, translates tissue load to signaling."
+            elif row['protein_id'] == 'LMNA':
+                matter = "Nuclear lamina component, scales with tissue stiffness, essential for translating force to the nucleus."
+            elif row['protein_id'] == 'COL1A1':
+                matter = "Major structural collagen, resisting compressive loads."
+            elif row['protein_id'] == 'RUNX3':
+                matter = "Transcription factor for proprioceptive neurons, regulating gravity-sensing neural circuits."
+            else:
+                matter = 'High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.'
+
+            f.write(f"*   **Why it matters:** {matter}\n")
             f.write(f"*   **Confidence:** {row['confidence_level']}\n")
             f.write(f"*   **Next Test:** {'Compare curvature under stress in simulation.' if row['hinge_candidates'] > 0 else 'Check expression gradients in spine.'}\n")
 

@@ -1125,3 +1125,29 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+
+### 2.8. The Proprioceptive Delay Factor ($\tau_P$)
+
+$\tau_P$ represents the neural transmission latency required for the proprioceptive feedback loop to stabilize the spine. As the biological axis grows, this delay increases, potentially pushing the system into a delayed-control instability (Hopf bifurcation).
+
+$$ \tau_P(L) = \frac{2L}{v_{nerve}} + \tau_{synaptic} $$
+
+*   **Symbols and Units**:
+    *   $\tau_P$: Total proprioceptive delay. Dimensions: $[T]$. Units: $s$.
+    *   $L$: Characteristic length of the sensory axis (spinal column). Dimensions: $[L]$. Units: $m$.
+    *   $v_{nerve}$: Axonal conduction velocity of proprioceptive fibers. Dimensions: $[LT^{-1}]$. Units: $m/s$.
+    *   $\tau_{synaptic}$: Fixed synaptic processing delay. Dimensions: $[T]$. Units: $s$.
+*   **Dimensions of $\tau_P$**: To satisfy the equation $[T] = [L] / [LT^{-1}] + [T]$, the dimensions match $[T]$.
+*   **Measurable Proxy**: The **Somatosensory Evoked Potential (SSEP) Latency** ($\tau_{SSEP}$), measured non-invasively by stimulating the posterior tibial nerve and recording the cortical response, which scales directly with spinal length.
+
+## 3. Falsifiable Tests
+
+### 3.1. Test 1: The SSEP Latency Threshold
+*   **Data Needed**: Longitudinal SSEP latency ($\tau_{SSEP}$) measurements in a cohort of peripubertal children, tracking growth velocity ($dL/dt$), seated postural sway frequency ($\omega$), and Cobb angle onset over 24 months.
+*   **Refutation Condition**: If the emergence of macroscopic spinal curvature (Cobb angle > 10°) occurs in subjects whose measured $\tau_{SSEP}$ remains below the theoretical critical delay $\tau_{crit}$ (calculated via the subject's baseline trunk stiffness $K_p$ and mass $m$), the hypothesis that delayed control primarily drives the structural instability is refuted.
+
+### 3.2. Test 2: Conduction Velocity Modulation
+*   **Data Needed**: An experimental animal model (e.g., bipedal mice) where proprioceptive conduction velocity $v_{nerve}$ is specifically lowered (e.g., via targeted hypomyelination in Ia afferents), paired with longitudinal micro-CT to quantify spontaneous spinal deviation under gravity.
+*   **Refutation Condition**: If the genetically or pharmacologically delayed cohort (increased $\tau_P$) does not exhibit a significantly higher incidence or severity of scoliotic curves compared to wild-type controls under identical gravitational loads, the causal link between neural latency and counter-curvature failure is falsified.
+
+**(References: Proske, U., & Gandevia, S. C. (2012), Physiological Reviews; Adams, R. A., et al. (2013), Brain Structure and Function)**

@@ -1,0 +1,2 @@
+gravity_min,gravity_max,steps,anisotropy,active_curvature,chi_kappa,initial_lateral_defect,natural_kyphosis,duration,dt,n_elements,seed
+0.0,20.0,21,2.0,10.0,50.0,0.05,2.0,2.0,0.0001,50,42

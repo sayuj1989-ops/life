@@ -246,6 +246,12 @@ $$
 
 When $\Delta \phi \approx \pi$, the corrective muscle forces are applied **out of phase**, amplifying rather than damping perturbations.
 
+### 3.5 Latent Imagination and World Models
+
+To overcome this inherent delay $\tau$, we propose the nervous system utilizes a predictive **World Model**, analogous to the reinforcement learning agent "Dreamer" (Hafner et al., 2019). The brain does not simply react to delayed proprioception; it learns a compact latent representation of the spinal dynamics and optimizes postural muscle tone by "imagining" future trajectories in this latent space.
+
+Scoliosis represents an **optimization failure** of this latent imagination process. During rapid adolescent growth ($\dot{L}_{bulk}$ is large), the physical "environment" (the spine) changes faster than the neural World Model can update. The postural "Action Model" then optimizes Bellman consistency for a flawed, outdated latent representation, continuously applying corrective forces to a "phantom" configuration, thereby driving the physical spine into a buckling instability.
+
 ---
 
 ## 4. Symmetry Breaking: The Twist-Bend Coupling Operator

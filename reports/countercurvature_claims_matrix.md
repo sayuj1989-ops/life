@@ -1,55 +1,29 @@
-# Biological Countercurvature Claims Matrix
+# Countercurvature Claims Matrix
 
-This document explicitly categorizes claims regarding the Biological Countercurvature hypothesis, distinguishing direct quantitative measurements from derived support and speculative narrative.
+This matrix categorizes claims related to the Biological Countercurvature hypothesis, LBX1, and mechanosensor architectures, strictly mapped to project metrics and separating verified data from narrative hypothesis.
 
-## Claim Discipline Tiers
+## 1. Confirmed by Metrics
+*These claims are directly supported by quantitative outputs and cross-run audits.*
 
-| Claim Tier | Definition |
-| :--- | :--- |
-| **Confirmed by metrics** | Claims directly measured and replicated across reliable quantitative outputs (e.g., AFCC metrics CSVs with `pLDDT >= 70`). |
-| **Supported but uncertain** | Claims grounded in data but relying on low-confidence proxies or requiring orthogonal validation (e.g., high-anisotropy predictions with `pLDDT < 70`). |
-| **Speculative narrative** | Interpretations, causal inferences, or "emerging trend" narratives that are not strictly supported by the underlying static metrics, often found in cluster notes. |
+| Claim | Quantitative Support / Source | Date / File |
+| :--- | :--- | :--- |
+| **LBX1 structure is intermediate and low-confidence.** | LBX1 anisotropy ~2.27, pLDDT ~66.9, PAE_blockiness ~7.35. | `outputs/afcc/2026-02-16/metrics.csv` |
+| **LBX1 metrics are static across recent analyses.** | Variance for LBX1 anisotropy and pLDDT is 0.0 across 17 runs. | `reports/evidence_freshness_audit.md` |
+| **PIEZO2 and LMNA are strong "Tension Rod" candidates.** | PIEZO2 (Aniso: 4.44, pLDDT: 79.4), LMNA (Aniso: 4.75, pLDDT: 76.4) show highly extended shapes with adequate confidence. | `outputs/afcc/2026-02-16/metrics.csv`, `scripts/analysis/confidence_weighted_structural_evidence.py` |
+| **POC5 and GHR show high anisotropy but lack structural confidence.** | POC5 (Aniso: 24.69, pLDDT: 64.0), GHR (Aniso: 5.13, pLDDT: 58.7) are low confidence and may reflect intrinsic disorder rather than stable extended structures. | `outputs/afcc/2026-02-16/metrics.csv` |
 
----
+## 2. Supported but Uncertain
+*These claims are plausible based on current data but require orthogonal experimental validation or better models.*
 
-## 1. Confirmed by metrics
-These claims are robustly supported by the latest authoritative snapshot (`outputs/afcc/2026-02-16/metrics.csv`) and historical data.
+| Claim | Source / Context | Falsifiability / Caveat |
+| :--- | :--- | :--- |
+| **POC5 acts as a highly extended fibrous mechanosensor.** | High anisotropy (24.69) suggests a highly extended structure. | Low pLDDT (64.0) means the structure could simply be disordered rather than a functional "tension rod." Requires biophysical stiffness assay. |
+| **ADGRG6 operates as a functional mechanosensor.** | Intermediate/High anisotropy (3.06) with adequate confidence (pLDDT 73.7). | Needs experimental verification of force-dependent activation. |
 
-*   **Claim 1.1**: **PIEZO2 is a high-confidence, high-anisotropy structural anchor.**
-    *   **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
-    *   **Evidence**: PIEZO2 consistently shows high anisotropy (4.44) and adequate confidence (pLDDT = 79.4, `PAE_blockiness` = 2.80).
-*   **Claim 1.2**: **LBX1 is a low-confidence, intermediate-anisotropy candidate with high blockiness.**
-    *   **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
-    *   **Evidence**: LBX1 metrics (anisotropy = 2.27, pLDDT = 66.9, `PAE_blockiness` = 7.35) define it as an intermediate, modular structure rather than a pure tension rod.
-*   **Claim 1.3**: **Core candidates' structural metrics (e.g., LBX1, PIEZO2, LMNA) are static across recent AFCC runs.**
-    *   **Source Data**: `reports/evidence_freshness_audit.md` (derived from `outputs/afcc/2026-01-09` to `outputs/afcc/2026-02-26`)
-    *   **Evidence**: The per-gene vectors for these candidates remain mathematically identical across runs, indicating static inputs rather than evolving structural estimates.
-*   **Claim 1.4**: **CNNM2, FBLN5, STOML3, and PANX3 possess robust extended morphologies.**
-    *   **Source Data**: `outputs/afcc/confidence_weighted_ranking.csv` (derived from 02-16 snapshot)
-    *   **Evidence**: These proteins meet the criteria for both high anisotropy ($\geq 3.0$) and adequate confidence ($\geq 70.0$ pLDDT).
+## 3. Speculative Narrative
+*These claims have appeared in reports or cluster notes but are NOT supported by the structural metrics, or they over-interpret static data.*
 
----
-
-## 2. Supported but uncertain
-These claims have a basis in data but suffer from methodological caveats, primarily low structural confidence (high predicted disorder).
-
-*   **Claim 2.1**: **POC5 and GHR may represent extreme tension-rod architectures.**
-    *   **Source Data**: `outputs/afcc/2026-02-16/metrics.csv` and daily refresh reports (`reports/afcc_latest.md`).
-    *   **Evidence**: POC5 exhibits extreme anisotropy (24.69) and GHR shows high anisotropy (5.13).
-    *   **Caveat**: Both suffer from low confidence (pLDDT = 64.0 and 58.7, respectively). The high anisotropy might be an artifact of long, unstructured IDRs in the AlphaFold model rather than a true rigid rod.
-*   **Claim 2.2**: **LBX1's "blocky" PAE matrix suggests a modular spring-like function.**
-    *   **Source Data**: `outputs/afcc/2026-02-16/metrics.csv` (`PAE_domain_blockiness_score` = 7.35).
-    *   **Evidence**: The high blockiness score implies distinct structural domains separated by flexible hinges.
-    *   **Caveat**: The overall low pLDDT (66.9) means the relative orientation of these blocks is highly uncertain, requiring smFS or other validation.
-
----
-
-## 3. Speculative narrative
-These claims represent hypothesis inflation where static data was over-interpreted as causal or temporal trends in previous narrative reports.
-
-*   **Claim 3.1**: **LBX1 or PIEZO2 structural geometry "evolved" or "emerged" over the Jan-Feb 2026 observation window.**
-    *   **Source Data**: E.g., `2026-01-20__cluster_note.md`, `reports/alphafold_data_assessment_2026-02-16.md` (Potential hypothesis inflation flags).
-    *   **Evidence AGAINST**: The metrics for LBX1 and PIEZO2 were completely static across this window (`reports/evidence_freshness_audit.md`). Narrative updates implying dynamic changes were inferring motion from repeated identical snapshots.
-*   **Claim 3.2**: **High-anisotropy/low-confidence proteins (like POC5) are definitively novel mechanosensors driving scoliotic progression.**
-    *   **Source Data**: Various daily refresh summaries highlighting POC5 as "Top Mover" (`reports/afcc_latest.md`).
-    *   **Evidence AGAINST**: As established in Tier 2, low pLDDT prevents definitive mechanistic assignment without orthogonal biological assays. The label "Top Mover" only reflects extreme metric values, not structural reliability.
+| Claim | Source / Context | Why it is Speculative / Evidence Against |
+| :--- | :--- | :--- |
+| **LBX1's structural geometry is evolving to suggest a new structural class.** | Mentioned in `reports/structure_clusters/*.md` (e.g., 2026-01-20). | LBX1 structural metrics have been perfectly static across the entire trend window (`reports/evidence_freshness_audit.md`). Any "evolution" is purely narrative inflation. |
+| **LBX1 directly bears mechanical load as a structural scaffold.** | Hypothesis derived from "Blocky Scaffolds" cluster narrative. | LBX1's low confidence and intermediate anisotropy do not support load-bearing capacity comparable to PIEZO2 or LMNA. Needs direct testing (`reports/lbx1_falsifiability_plan.md`). |

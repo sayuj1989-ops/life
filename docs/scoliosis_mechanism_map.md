@@ -87,6 +87,13 @@ Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$
 * **Role**: **Sensory Lock-up**. During rapid adolescent growth, muscle mass and vascular development often lag behind bone elongation. This reduces the baseline physiological "noise floor". Without this stochastic resonance dither, mechanosensors lock up and fail to detect the initial slow geometric drift, dropping the feedback gain ($G_{mech}$) to zero and precipitating buckling.
 > **Hypothesis**: Targeted acoustic or vibration therapy acting as an artificial dither during the Energy Deficit Window can artificially boost mechanosensor sensitivity, preventing the initial scoliotic bifurcation.
 
+### 18. BMSC Cilia Defect
+* **Path**: `CILIA` $\rightarrow$ `Osteogenic Signaling` $\rightarrow$ `Osteogenesis`
+* **Mechanism**: Bone marrow stem cells (BMSCs) use primary cilia as mechanosensors to mediate intracellular signaling pathways. Defects in cilia genes impair ciliogenesis, disrupt osteogenic signaling pathways, and diminish mechanical sensing.
+* **Role**: **Loss of Structural Stiffness**. Compromised osteogenesis in BMSCs reduces the capacity for bone formation, lowering tissue mineral density and directly reducing passive structural stiffness ($EI$) required for the counter-curvature active control system.
+* **Evidence**: Zhang et al. (2025) demonstrated that primary cilia gene defects in BMSCs disrupt osteogenic signaling and promote idiopathic scoliosis progression in vivo.
+> **Hypothesis**: The failure of BMSCs to properly sense gravitational load through primary cilia creates an initial, localized structural weakness (low $EI$) that the active counter-curvature system attempts, but ultimately fails, to stabilize.
+
 ### 17. Caveolin Gain Control
 * **Path**: `CAV1` $\rightarrow$ `Membrane Tension` $\rightarrow$ `YAP`
 * **Mechanism**: Caveolin-1 (CAV1) functions as a mechanical "Gain Control" element by forming invaginated caveolae that flatten under tension, buffering the cell membrane against transient mechanical noise and sequestering YAP in the cytoplasm.

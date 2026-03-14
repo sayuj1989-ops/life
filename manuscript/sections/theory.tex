@@ -34,9 +34,22 @@ Stability analysis of such delayed systems reveals a restricted ``D-shaped'' sta
 
 During the adolescent growth spurt, the spine elongates rapidly. Because nerve conduction velocity in the extremities does not scale proportionately with rapid height increases~\cite{lang1985nerve, robinson2001nerve}, the absolute neural feedback delay $\tau$ increases significantly. We term this vulnerability the \textbf{Derivative Gain Trap}: derivative gains ($K_D$) that provide essential damping and stability during childhood become destabilizing as the delay $\tau$ crosses a critical threshold $\tau_c$.
 
+\subsection{The Polygenic Threshold: Why 2--4\% Prevalence?}
+
+The Allometric Trap establishes a universal vulnerability window: every human adolescent passes through the energy deficit during the growth spurt. However, traversing this danger zone is a necessary but not sufficient condition for clinical deformity. Baseline physiological models exhibit a positive stability margin (e.g., $+5.3$\,ms) remaining just above the Hopf bifurcation threshold. What pushes an individual across this boundary is the individual-specific stacking of molecular parameters.
+
+This framework natively supports a polygenic threshold model. Consistent with the dozens of identified small-effect AIS risk loci (e.g., \textit{LBX1}, \textit{PAX1}, \textit{GPR126}), instability triggers only when enough parameters co-occur unfavorably:
+\begin{itemize}
+    \item \textbf{Reduced damping $b$}: Collagen flexibility variants (e.g., COL1A1/COL2A1) lower the dissipation of mechanical noise.
+    \item \textbf{Increased proprioceptive delay $\tau$}: Variants in mechanosensors (e.g., PIEZO2, MTNR1B) or processing speed increase the effective $\tau$.
+    \item \textbf{Shifted derivative gain $K_d$}: Neuromotor variants (e.g., LBX1) shift the system toward the unstable peak of the Derivative Gain Trap.
+    \item \textbf{Increased gravitational load}: Variants affecting vertebral morphology (e.g., PAX1) increase the effective $mgL$ parameter.
+\end{itemize}
+While most individuals maintain a sufficient baseline margin to escape the trap, the 2--4\% clinical prevalence reflects the statistical tail of the population whose specific genetic combination simultaneously breaches the threshold. The 8:1 female predominance follows from estrogen's dual role in lowering damping via collagen cross-linking and steepening the growth trajectory, systematically shifting a larger fraction of females into the unstable zone.
+
 \subsection{Hopf Bifurcation and the Onset of Scoliosis}
 
-When the neural delay exceeds the critical threshold ($\tau > \tau_c$), the system undergoes a supercritical Hopf bifurcation~\cite{landry2005dynamics}. The previously stable upright equilibrium becomes unstable, and stable limit cycles (oscillations) emerge. In the context of the spine, these delay-induced oscillations manifest as continuous, micro-mechanical buckling events that asymmetric biomechanical loading then locks into a permanent scoliotic deformity.
+When the neural delay exceeds the critical threshold ($\tau > \tau_c$), the single-link inverted pendulum system undergoes a supercritical Hopf bifurcation~\cite{landry2005dynamics}. The previously stable upright equilibrium becomes unstable, and stable limit cycles (oscillations) emerge. In the context of the spine, these delay-induced oscillations manifest as continuous, micro-mechanical buckling events that asymmetric biomechanical loading then locks into a permanent scoliotic deformity. While this single-link model captures the \emph{onset} of global instability, determining the specific spatial location and morphological pattern of the curve requires extending the model to a multi-segment Cosserat rod with regional parameter variations (stiffness, delay, damping, and asymmetric loading).
 
 Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} \sin\left(\frac{n\pi s}{L}\right)$, the characteristic equation is:
 \begin{equation}

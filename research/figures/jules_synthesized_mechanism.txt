@@ -1,9 +1,22 @@
-This diagram illustrates the "Mechanogenetic Demand-Supply Gap" at the molecular and structural levels.
+Title: Mechanism: The Derivative Gain Trap and Metabolic Buckling
 
-Key Elements:
-1.  **Demand Side (Gravity Sensors)**: Left side shows large, complex, thermodynamically expensive protein structures (like PIEZO2 or Fibrillin) acting as "Structural Mechanosensors". They are robust, highly ordered, and deeply embedded in a cellular membrane or matrix. These represent the high "Demand" of sensing mechanical stress against gravity.
-2.  **Supply Side (Metabolic Regulators)**: Right side shows intrinsically disordered, flexible, "fragile" protein strings (representing metabolic regulators). These represent the limited "Supply" of metabolic energy control.
-3.  **The Gap**: A clear visual chasm or "Gap" exists between the robust sensors and the disordered regulators. A red lightning bolt or fracture line highlights this "72% Anisotropy Gap".
-4.  **Energy Deficit Window**: Below the molecular gap, show a timeline or growth curve labeled "Adolescent Growth Spurt ($L > 0.35$ m)". At this critical length, the Gap widens significantly, entering a red "Energy Deficit Window" causing structural instability (depicted as a wavering or buckling spine).
+Structure: A process flow diagram depicting the transition from stable childhood growth to adolescent scoliotic buckling, driven by delayed neural feedback.
 
-Style: High-impact scientific illustration suitable for Nature or Science. Use stark contrasts—robust, structured metallic elements for Demand vs. chaotic, ethereal strands for Supply. Crisp annotations and modern vector-style aesthetics.
+Phase 1: Stable Equilibrium (Childhood)
+- A straight, normal spine.
+- Information Elasticity Coupling (IEC) is perfectly balanced.
+- Small perturbations are corrected rapidly via high Proprioceptive Gain ($K$) with low Neural Delay ($\tau$).
+
+Phase 2: The Onset of the "Derivative Gain Trap" (Adolescent Growth Spurt)
+- Spine elongation ($\dot{L}$) accelerates rapidly.
+- Neural Conduction Delay ($\tau$) increases due to the physical distance of nerve pathways lengthening.
+- The high derivative gain ($K$), previously stabilizing, now acts on outdated positional information.
+- A feedback loop visualizes the mismatch: "Gain ($K$) x Delay ($\tau$) > Critical Damping Threshold".
+
+Phase 3: Energy Deficit & Metabolic Buckling
+- The geometric cost of maintaining the spine scales as $L^4$, while metabolic supply (NAD+, ATP) scales only as $L^2$.
+- This creates an "Energy Deficit Window" ($R_{deficit} > 1$).
+- The spine, unable to maintain active damping against the derivative gain trap and lacking metabolic resources, undergoes a Hopf bifurcation.
+- Visual: The straight spine buckles into a complex 3D S-curve (scoliosis), transitioning from a dynamic instability to a structurally locked-in deformity.
+
+Style: Clean, professional scientific diagram suitable for Nature/Science. Use blue/green for the stable state, yellow/orange for the transition phase highlighting delay/mismatch, and deep red for the buckling phase and energy deficit.

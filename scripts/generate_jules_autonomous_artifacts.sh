@@ -9,12 +9,12 @@ mkdir -p research/figures/
 echo "=== High-Impact Visualization Pipeline ==="
 
 # 1. Complex Mechanism
-paperbanana generate --input research/figures/complex_mechanism_derivative_gain_trap.txt --output research/figures/autonomous_mechanism_derivative_gain_trap.png
+paperbanana generate --input research/figures/jules_synthesized_mechanism.txt --output research/figures/jules_synthesized_mechanism.png
 
 # 2. Key Result
-paperbanana plot --data outputs/thermodynamic_cost/phase_diagram_energy_deficit_for_plot.csv --x L --y chi_kappa --color R_deficit --output research/figures/autonomous_thermodynamic_phase_diagram.png
+paperbanana plot --data outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv --x L --y chi_kappa --color R_deficit --output research/figures/jules_synthesized_phase_diagram.png
 
 # 3. Visual Abstract
-paperbanana generate --input research/figures/biological_countercurvature_abstract.txt --output research/figures/autonomous_visual_abstract_metabolic_buckling.png
+paperbanana generate --input research/figures/jules_synthesized_visual_abstract.txt --output research/figures/jules_synthesized_visual_abstract.png
 
 echo "Pipeline complete."

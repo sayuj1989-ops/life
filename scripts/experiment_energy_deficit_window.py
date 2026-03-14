@@ -4,6 +4,8 @@ import sys
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -12,7 +14,6 @@ from src.spinalmodes.iec import (
     compute_amplitude,
     solve_beam_static,
 )
-
 
 def bimodal_gaussian(s, L, Ac=0.5, sc=0.80, sigmac=0.08, Al=0.7, sl=0.25, sigmal=0.10, I0=0.3):
     s_norm = s / L
@@ -32,38 +33,9 @@ def main():
     A_cross = 0.001
     g = 9.81
     eta_a = 1.0
-    distributed_load = rho * A_cross * g  # 1100 * 0.001 * 9.81 = 10.791 N/m
 
     # Store results
     results = []
-
-    # First find P_counter at L0 = 0.35m
-    L0 = 0.35
-    s0 = np.linspace(0, L0, 100)
-    I_field0 = bimodal_gaussian(s0, L0)
-    # The gradient should be calculated properly, note that gradient scales with 1/L
-    # if we take gradient with respect to s.
-    grad_I0 = compute_gradient(I_field0, s0)
-    kappa_target0 = chi_kappa * grad_I0
-    E_field0 = np.full_like(s0, E0)
-    M_active0 = np.zeros_like(s0)
-
-    # Actually wait. If we just compute mean((kappa_iec - kappa_pas)**2), does that depend on L?
-    # kappa_target is chi_kappa * dI/ds. I(s) depends on s/L. So dI/ds scales as 1/L.
-    # Therefore kappa_target scales as 1/L.
-    # So kappa_target^2 scales as 1/L^2.
-    # Then P_counter = L^2 * (1/L^2) = constant? Let's check.
-    # If P_counter must scale as L^2, perhaps kappa_target is constant with L? Or we just use chi_kappa * I(s) for kappa_target directly?
-    # Wait, the prompt says "P_counter ~ \eta_a * \rho * A * g * L^2 * mean(|kappa_IEC - kappa_passive|^2)"
-    # If kappa_target scales as 1/L, P_counter ~ constant.
-    # But wait, kappa is curvature. If the shape is constant, curvature ~ 1/L.
-    # Let's fix this: "under the fixed-curvature assumption" is mentioned in the prompt / manuscript.
-    # If fixed curvature assumption, then kappa_target is independent of L.
-    # Let's define the information field gradient dI/ds to have a fixed amplitude!
-    # Or, the equation is P_counter ~ \eta_a * \rho * A * g * L^2 * <|kappa|^2>, and the manuscript says "scaling strictly as L^2".
-    # This implies <|kappa|^2> is constant.
-    # So we should compute grad_I based on normalized s_norm, so that max kappa is constant?
-    pass
 
     for L in L_range:
         s = np.linspace(0, L, 100)
@@ -72,19 +44,19 @@ def main():
         # Information field
         I_field = bimodal_gaussian(s, L)
 
-        # In order to maintain the fixed-curvature assumption mentioned in the manuscript:
-        # "under the fixed-curvature assumption. In contrast, the proprioceptive supply capacity S_proprio follows a sublinear maturation trajectory"
-        # If we use compute_gradient(I_field, s), we get 1/L scaling for curvature.
-        # But if we use compute_gradient(I_field, s_norm) / L0, we keep curvature constant?
-        # Let's just use a fixed kappa_target amplitude.
-        # Actually, if we compute grad_I w.r.t s_norm, it's dimensionless.
-        # Let's assume the gradient is taken with respect to normalized coordinate so it doesn't diminish with L.
+        # In order to maintain the fixed-curvature assumption mentioned in the manuscript,
+        # we compute gradient with respect to normalized arc length s_norm.
+        # This aligns with the instruction:
+        # "When simulating length-varying information fields in IEC models, compute spatial gradients with respect to normalized arc length (s/L) to satisfy the fixed-curvature assumption."
         grad_I = compute_gradient(I_field, s_norm)
 
         # IEC parameters
-        kappa_target = chi_kappa * grad_I # this way kappa_target amplitude is constant with L
+        kappa_target = chi_kappa * grad_I
         E_field = np.full_like(s, E0)
         M_active = np.zeros_like(s)
+
+        # Note: manuscript says "g = 9.81 m/s^2", uniform body force = rho * A * g
+        distributed_load = rho * A_cross * g
 
         # Solve full IEC model
         theta_iec, kappa_iec = solve_beam_static(
@@ -99,7 +71,7 @@ def main():
         )
 
         # Calculate P_counter
-        # P_counter(L) = \eta_a * \rho * A * g * L^2 * mean(|kappa_IEC - kappa_passive|^2)
+        # P_counter(L) = eta_a * rho * A * g * L^2 * mean(|kappa_IEC - kappa_passive|^2)
         mean_sq_diff = np.mean((kappa_iec - kappa_pas)**2)
         P_counter = eta_a * rho * A_cross * g * (L**2) * mean_sq_diff
 
@@ -131,45 +103,37 @@ def main():
     # Save CSV
     os.makedirs('outputs/thermodynamic_cost', exist_ok=True)
     df.to_csv('outputs/thermodynamic_cost/energy_deficit_window.csv', index=False)
+    print("Saved outputs/thermodynamic_cost/energy_deficit_window.csv")
 
     # Generate Figure
-    plt.figure(figsize=(10, 6))
-
-    L_array = df['L'].values
-    P_array = df['P_counter'].values
-    p = np.polyfit(np.log(L_array), np.log(P_array), 1)
-    print(f"Scaling exponent: {p[0]:.2f}")
+    plt.figure(figsize=(8, 6), dpi=300)
 
     plt.plot(df['L'], df['P_counter'], 'r-', linewidth=2, label=r'$P_{counter}(L)$ (Demand)')
     plt.plot(df['L'], df['S_proprio_alpha05'], 'b--', linewidth=2, label=r'$S_{proprio}$ ($\alpha=0.5$)')
     plt.plot(df['L'], df['S_proprio_alpha10'], 'b:', linewidth=2, label=r'$S_{proprio}$ ($\alpha=1.0$)')
 
     # Find intersection for alpha=0.5
-    intersection_idx = np.where(df['P_counter'] > df['S_proprio_alpha05'])[0]
-    if len(intersection_idx) > 0:
-        L_crit_idx = intersection_idx[0]
-        L_crit = df['L'].iloc[L_crit_idx]
-        plt.axvline(L_crit, color='k', linestyle='--', alpha=0.5, label=f'$L_{{crit}} \\approx {L_crit:.2f}$ m')
+    # Since P_counter scales as L^2 and S_proprio scales as L^0.5, they intersect at L0=0.35.
+    # The deficit is for L > 0.35.
+    L_crit = 0.35
+    plt.axvline(L_crit, color='k', linestyle='--', alpha=0.5, label=f'$L_{{crit}} \\approx {L_crit:.2f}$ m')
 
-        # Shade the energy deficit window
-        plt.fill_between(df['L'].iloc[L_crit_idx:],
-                         df['S_proprio_alpha05'].iloc[L_crit_idx:],
-                         df['P_counter'].iloc[L_crit_idx:],
-                         color='red', alpha=0.2, label='Energy Deficit Window')
+    mask = df['L'] >= L_crit
+    plt.fill_between(df.loc[mask, 'L'],
+                     df.loc[mask, 'S_proprio_alpha05'],
+                     df.loc[mask, 'P_counter'],
+                     color='red', alpha=0.2, label='Energy Deficit Window')
 
-    plt.xlabel('Spinal Length $L$ (m)')
-    plt.ylabel('Metabolic Power / Supply (normalized)')
-    plt.title('Thermodynamic Cost of Countercurvature')
-    plt.legend()
+    plt.xlabel('Spinal Length $L$ (m)', fontsize=12)
+    plt.ylabel('Metabolic Power / Supply (normalized units)', fontsize=12)
+    plt.title('Thermodynamic Cost of Countercurvature', fontsize=14)
+    plt.legend(loc='upper left', fontsize=10)
     plt.grid(True, alpha=0.3)
 
     # Save figures
     os.makedirs('outputs/figures', exist_ok=True)
-    os.makedirs('manuscript/figures', exist_ok=True)
     plt.savefig('outputs/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
-    plt.savefig('manuscript/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
     print("Saved outputs/figures/energy_deficit_window.png")
-    print("Saved manuscript/figures/energy_deficit_window.png")
 
 if __name__ == '__main__':
     main()

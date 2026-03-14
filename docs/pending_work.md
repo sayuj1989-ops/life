@@ -1,46 +1,45 @@
 # Pending Work
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-14
 **Status:** In Progress
-**Priority Level:** High (Final Push to Submission: References and Figures)
+**Priority Level:** High (Final Push to Submission: Clinical Validation and Manuscript Prep)
+**Target:** *Spine* Submission
 
-## 1. Data Gaps (Completed)
+## 1. Clinical Validation (High Priority)
 
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data (Mass_kg, Length_m, EI_Nm2) for 10 species. Required for Figure 3. | 2 days | Literature search | ✅ **Completed** |
-| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for "5 matrix protein variants" mentioned in Figure 4. | 1 day | Literature search | ✅ **Completed** |
-
-## 2. Code Implementation (Completed)
-
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Create `experiment_cross_species_scaling.py`** | Script to load species data and plot $B_g$ number vs Mass/Length. | 1 day | DATA-01 | ✅ **Completed** |
-| **CODE-02** | **Update `experiment_optimization_failure.py`** | Generate Figure 4 with specific mutation labels. | 0.5 day | DATA-02 | ✅ **Completed** |
-| **CODE-04** | **Create `experiment_anisotropy_rescue.py`** | Validate vector constraints via anisotropy sweeps against critical buckling. | 0.5 day | None | ✅ **Completed** |
-
-## 3. Manuscript Tasks (High Priority)
-
-| ID | Task | Description | Effort | Dependencies | Risk Level | Status |
+| ID | Task | Description | Effort | Dependencies | Status | Risk Level |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
-| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
-| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
-| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
+| **CLIN-01** | **Extract Cohort Data** | Extract clinical cohort data (Cobb angle distributions, progression rates) from published literature. | 3 days | Literature search | 🔴 **Pending** | High |
+| **CLIN-02** | **Validate PHV Timing** | Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data. | 2 days | CLIN-01 | 🔴 **Pending** | Medium |
+| **CLIN-03** | **Sexual Dimorphism** | Validate model predictions for female vs. male prevalence against epidemiological data. | 1 day | CLIN-01 | 🔴 **Pending** | Medium |
+| **CLIN-04** | **Curve Types** | Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions. | 2 days | Model parameters | 🔴 **Pending** | Medium |
+
+## 2. Manuscript Preparation (Medium Priority)
+
+| ID | Task | Description | Effort | Dependencies | Status | Risk Level |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **MS-01** | **Reformat Manuscript** | Adapt `nature_manuscript.tex` to *Spine* format (IMRaD structure). | 2 days | None | 🔴 **Pending** | Low |
+| **MS-02** | **Draft Abstract** | Draft Structured Abstract (Study Design, Objective, Summary of Background Data, Methods, Results, Conclusions). | 0.5 day | None | 🔴 **Pending** | Low |
+| **MS-03** | **Clinical Relevance** | Write "Clinical Relevance" section highlighting the predictive value for early intervention. | 1 day | None | 🔴 **Pending** | Medium |
+| **MS-04** | **Clinical Figures** | Generate "Clinical Translation" figures (Model vs. Patient Data overlays). | 3 days | CLIN-01 | 🔴 **Pending** | Medium |
+| **MS-05** | **Update References** | Update bibliography to include relevant *Spine* and *Eur Spine J* citations. | 2 days | Literature search | 🔴 **Pending** | Low |
+
+## 3. Data & Code Implementation (Completed)
+
+| ID | Task | Description | Effort | Dependencies | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data for 10 species. | 2 days | Literature search | ✅ **Completed** |
+| **CODE-01** | **Cross-Species Scaling** | Script to load species data and plot $B_g$ number vs Mass/Length. | 1 day | DATA-01 | ✅ **Completed** |
+| **CODE-02** | **Optimization Failure** | Generate Figure 4 with specific mutation labels. | 0.5 day | None | ✅ **Completed** |
+| **CODE-04** | **Anisotropy Rescue** | Validate vector constraints via anisotropy sweeps. | 0.5 day | None | ✅ **Completed** |
 
 ## 4. Theory & Validation (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **THEORY-01** | **Reviewer #3 Defense** | Finalize "Anisotropy Gap" argument for thermodynamics. | 0.5 day | None | ✅ **Drafted** |
 | **THEORY-02** | **Toy Models** | Create simple 1D models (Toy A-E) to de-risk Cosserat simulation for reviewers. | 1-4 days | None | ✅ **Completed** |
-| **THEORY-03** | **Real Experiments List** | Propose 2-5 real physical/in vivo validations (clinostat, circadian jetlag, KO mice). | 0.5 day | None | ✅ **Drafted** |
 
 ## Summary of Risks
 
-1.  **Figure Styling:** Script outputs might lack uniform stylistic alignment. **Mitigation:** Unify plotting configuration across existing scripts immediately via centralized generation functions.
-2.  **Missing References:** The Nature manuscript requires a comprehensive reference list, which currently has gaps. **Mitigation:** Execute an intense literature extraction phase over the next 24-48 hours.
-
-**Next Actions:**
-1.  Target **MS-01**: Massive expansion of the `.bib` file.
-2.  Target **MS-02**: Verify and format all plot artifacts for Figure 1-7 assembly.
+1.  **Clinical Data Fit:** Model predictions might not perfectly align with messy clinical cohort data. **Mitigation:** Focus on qualitative trends rather than perfect quantitative fits.
+2.  **Manuscript Tone:** *Spine* requires a highly clinical focus, which our current theoretical draft lacks. **Mitigation:** Dedicate the "Clinical Relevance" section to explicitly defining how this framework aids early prediction and intervention.

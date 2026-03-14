@@ -139,3 +139,9 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Observation of ectopic structural curves or altered vertebral morphology.
     *   **Expected Outcome:** Altered HOX expression induces predictable changes in the resting curvature of the spine.
     *   **Stop Condition:** Consistent phenotype observed in $>50\%$ of treated embryos ($N=50$).
+
+### Clinical Validation Update (Spine Submission)
+
+While Toy Models A-E successfully de-risk the theoretical and mechanical components of the IEC model for a general science audience (e.g., *Nature*), the pivot to the *Spine* journal requires these models to be contextualized within clinical presentations.
+
+**Action Item:** Ensure the narrative for Toy Model D (Lenke Classifications) and Toy Model E (Torsional Buckling) explicitly bridges to clinical observations (e.g., specific scoliotic curve types and progression rates).

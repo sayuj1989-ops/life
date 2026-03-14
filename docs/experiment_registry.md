@@ -43,3 +43,10 @@ This registry tracks all computational experiments supporting the "Biological Co
 ## 4. Missing / Pending Experiments
 
 *All previously missing critical scripts and mapping procedures (Cross-Species Validation, Mutation Mapping) have now been successfully integrated into the active model logic.*
+
+## 5. Clinical Validation Experiments (Pending)
+
+| Experiment ID | Script Path | Purpose | Key Outputs | Status | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **EXP_CLIN_01** | `scripts/validation/validate_clinical_data.py` | Validate PHV Timing and Sexual Dimorphism against published cohort data. | `outputs/figures/clinical_validation_overlay.png` | 🔴 **Missing** | Blocked by CLIN-01 data extraction. Needs new script mapping model to cohort data. |
+| **EXP_CLIN_02** | `scripts/experiment_lenke_classes.py` | Verify model reproduction of Lenke classification patterns (curve types). | `outputs/figures/lenke_class_patterns.png` | 🔴 **Missing** | Awaits mapping to Lenke criteria. Toy Model D explores this in 1D, but 3D Elastica mapping is pending. |

@@ -13,7 +13,6 @@ from src.spinalmodes.iec import (
     solve_beam_static,
 )
 
-
 def bimodal_gaussian(s, L, Ac=0.5, sc=0.80, sigmac=0.08, Al=0.7, sl=0.25, sigmal=0.10, I0=0.3):
     s_norm = s / L
     bump_c = Ac * np.exp(-((s_norm - sc)**2) / (2 * sigmac**2))
@@ -32,57 +31,26 @@ def main():
     A_cross = 0.001
     g = 9.81
     eta_a = 1.0
-    distributed_load = rho * A_cross * g  # 1100 * 0.001 * 9.81 = 10.791 N/m
+
+    # We want a constant kappa_target shape across all lengths to test fixed-curvature assumption
+    # Create normalized gradient shape
+    s_norm_ref = np.linspace(0, 1, 100)
+    I_ref = bimodal_gaussian(s_norm_ref * 1.0, 1.0)
+    grad_I_ref = compute_gradient(I_ref, s_norm_ref)
 
     # Store results
     results = []
 
-    # First find P_counter at L0 = 0.35m
-    L0 = 0.35
-    s0 = np.linspace(0, L0, 100)
-    I_field0 = bimodal_gaussian(s0, L0)
-    # The gradient should be calculated properly, note that gradient scales with 1/L
-    # if we take gradient with respect to s.
-    grad_I0 = compute_gradient(I_field0, s0)
-    kappa_target0 = chi_kappa * grad_I0
-    E_field0 = np.full_like(s0, E0)
-    M_active0 = np.zeros_like(s0)
-
-    # Actually wait. If we just compute mean((kappa_iec - kappa_pas)**2), does that depend on L?
-    # kappa_target is chi_kappa * dI/ds. I(s) depends on s/L. So dI/ds scales as 1/L.
-    # Therefore kappa_target scales as 1/L.
-    # So kappa_target^2 scales as 1/L^2.
-    # Then P_counter = L^2 * (1/L^2) = constant? Let's check.
-    # If P_counter must scale as L^2, perhaps kappa_target is constant with L? Or we just use chi_kappa * I(s) for kappa_target directly?
-    # Wait, the prompt says "P_counter ~ \eta_a * \rho * A * g * L^2 * mean(|kappa_IEC - kappa_passive|^2)"
-    # If kappa_target scales as 1/L, P_counter ~ constant.
-    # But wait, kappa is curvature. If the shape is constant, curvature ~ 1/L.
-    # Let's fix this: "under the fixed-curvature assumption" is mentioned in the prompt / manuscript.
-    # If fixed curvature assumption, then kappa_target is independent of L.
-    # Let's define the information field gradient dI/ds to have a fixed amplitude!
-    # Or, the equation is P_counter ~ \eta_a * \rho * A * g * L^2 * <|kappa|^2>, and the manuscript says "scaling strictly as L^2".
-    # This implies <|kappa|^2> is constant.
-    # So we should compute grad_I based on normalized s_norm, so that max kappa is constant?
-    pass
-
     for L in L_range:
         s = np.linspace(0, L, 100)
-        s_norm = s / L
 
-        # Information field
-        I_field = bimodal_gaussian(s, L)
-
-        # In order to maintain the fixed-curvature assumption mentioned in the manuscript:
-        # "under the fixed-curvature assumption. In contrast, the proprioceptive supply capacity S_proprio follows a sublinear maturation trajectory"
-        # If we use compute_gradient(I_field, s), we get 1/L scaling for curvature.
-        # But if we use compute_gradient(I_field, s_norm) / L0, we keep curvature constant?
-        # Let's just use a fixed kappa_target amplitude.
-        # Actually, if we compute grad_I w.r.t s_norm, it's dimensionless.
-        # Let's assume the gradient is taken with respect to normalized coordinate so it doesn't diminish with L.
-        grad_I = compute_gradient(I_field, s_norm)
+        # In a cantilever model, load increases from tip downwards, but here it's uniform
+        distributed_load = rho * A_cross * g  # 1100 * 0.001 * 9.81 = 10.791 N/m
 
         # IEC parameters
-        kappa_target = chi_kappa * grad_I # this way kappa_target amplitude is constant with L
+        # Under fixed curvature assumption, target curvature should remain constant
+        kappa_target = chi_kappa * grad_I_ref
+
         E_field = np.full_like(s, E0)
         M_active = np.zeros_like(s)
 
@@ -165,11 +133,13 @@ def main():
 
     # Save figures
     os.makedirs('outputs/figures', exist_ok=True)
-    os.makedirs('manuscript/figures', exist_ok=True)
     plt.savefig('outputs/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
+    os.makedirs('manuscript/figures', exist_ok=True)
     plt.savefig('manuscript/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
-    print("Saved outputs/figures/energy_deficit_window.png")
     print("Saved manuscript/figures/energy_deficit_window.png")
+    print("Saved outputs/figures/energy_deficit_window.png")
+
+    plt.close()
 
 if __name__ == '__main__':
     main()

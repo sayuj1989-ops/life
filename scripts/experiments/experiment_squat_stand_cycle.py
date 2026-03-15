@@ -292,7 +292,7 @@ def compare_chair_vs_floor(output_dir: Path, n_elements: int = 50, quick: bool =
         writer.writerows(results)
 
     # Plot breakdown
-    labels = ['Proprioceptive ($\eta_p$)', 'Active Maint. ($\eta_a$)', 'Basal/Metabolic ($\Gamma_m$)']
+    labels = [r'Proprioceptive ($\eta_p$)', r'Active Maint. ($\eta_a$)', r'Basal/Metabolic ($\Gamma_m$)']
     chair_vals = [total_cost_chair["eta_p_cost"], total_cost_chair["eta_a_cost"], total_cost_chair["gamma_m_cost"]]
     floor_vals = [total_cost_floor["eta_p_cost"], total_cost_floor["eta_a_cost"], total_cost_floor["gamma_m_cost"]]
 

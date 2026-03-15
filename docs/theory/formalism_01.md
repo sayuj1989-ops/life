@@ -694,6 +694,35 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Viscoelastic Morphogenesis Number ($\mathcal{V}_{morph}$)
+
+We propose that the conversion of an active biological moment ($\mathbf{M}_{bio}$) into permanent structural curvature (growth) is governed by the time-dependent viscoelastic relaxation of the tissue matrix. The Viscoelastic Morphogenesis Number ($\mathcal{V}_{morph}$) compares the timescale of biological force generation to the viscoelastic relaxation time of the extracellular matrix (ECM).
+
+$$ \mathcal{V}_{morph} = \frac{\tau_{relax}}{\tau_{growth}} = \frac{\eta_{ECM} / E_{ECM}}{L_{seg} / v_{growth}} $$
+
+*   **Symbols**:
+    *   $\tau_{relax}$: The viscoelastic relaxation time of the ECM $[T]$.
+    *   $\eta_{ECM}$: Dynamic viscosity of the ECM (dashpot component) $[M L^{-1} T^{-1}]$.
+    *   $E_{ECM}$: Elastic modulus of the ECM (spring component) $[M L^{-1} T^{-2}]$.
+    *   $\tau_{growth}$: The characteristic timescale of biological growth or force application $[T]$.
+    *   $L_{seg}$: Characteristic length scale of the growing segment $[L]$.
+    *   $v_{growth}$: Velocity of longitudinal bone/cartilage growth $[L T^{-1}]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{V}_{morph} \gg 1$: The tissue behaves primarily elastically over the growth timescale. Biological forces lead to reversible elastic deformation rather than permanent plastic remodeling.
+    *   $\mathcal{V}_{morph} \ll 1$: The tissue behaves viscously. The ECM relaxes rapidly compared to the rate of growth, allowing active moments to effectively permanently set a new resting curvature ($\boldsymbol{\kappa}_{rest}$).
+    *   **Scoliosis Context**: During the adolescent growth spurt, $v_{growth}$ increases sharply, decreasing $\tau_{growth}$ and thus increasing $\mathcal{V}_{morph}$. If the ECM does not proportionally decrease its relaxation time ($\tau_{relax}$) via remodeling (e.g., MMP activity), the tissue becomes overly elastic and resists the active corrective moments ($\mathbf{M}_{bio}$), leading to a failure to maintain a straight spine under gravity.
+*   **Measurable Proxy**: The ratio of the stress relaxation half-life of spinal ligaments/discs (measured via *ex vivo* mechanical testing) to the peak adolescent height velocity (measured anthropometrically).
+
+#### Falsifiable Tests
+
+*   **Test 1: The Adolescent Relaxation Lag**
+    *   **Data Needed**: Longitudinal measurements of ECM stress relaxation times ($\tau_{relax}$) in spinal tissues (e.g., via shear wave elastography or biopsy) alongside height velocity curves ($v_{growth}$) in a cohort of adolescents with and without progressive idiopathic scoliosis.
+    *   **Refutation**: If the Viscoelastic Morphogenesis Number ($\mathcal{V}_{morph}$) remains constant or decreases during the peak growth spurt in scoliotic patients, or if there is no significant difference in $\mathcal{V}_{morph}$ between progressive and stable cases, the hypothesis that a viscoelastic lag drives deformity is falsified. (Reference: Stokes, 2002).
+*   **Test 2: Pharmacological Matrix Softening Rescue**
+    *   **Data Needed**: Application of a safe, localized agent that transiently decreases ECM viscosity ($\eta_{ECM}$) or increases turnover (e.g., localized collagenase or relaxin) to the concave side of the curve in an animal model of scoliosis during the rapid growth phase.
+    *   **Refutation**: If decreasing the tissue relaxation time ($\tau_{relax}$) to artificially lower $\mathcal{V}_{morph}$ fails to improve or accelerates the rate of spontaneous curve correction by active biological moments, the hypothesis that viscoelastic resistance is the primary limiting factor for shape maintenance is falsified. (Reference: Bastien et al., 2013).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

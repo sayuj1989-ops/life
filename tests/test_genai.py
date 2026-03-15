@@ -7,7 +7,9 @@ from google import genai
 
 load_dotenv()
 
-async def test_genai():
+import pytest
+
+def test_genai():
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         print("Error: GOOGLE_API_KEY not found.")
@@ -15,7 +17,7 @@ async def test_genai():
 
     try:
         client = genai.Client(api_key=api_key)
-        response = await client.aio.models.generate_content(
+        response = client.models.generate_content(
             model='gemini-2.0-flash',
             contents='Hello, world!'
         )

@@ -1125,3 +1125,32 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+
+### 2.40. The Predictive Latent-State Number ($\mathcal{P}_{latent}$)
+
+We formalize the central nervous system's role in spinal alignment as a predictive "world model," directly analogous to the Dreamer reinforcement learning agent (Hafner et al., 2019). Because proprioceptive feedback is delayed by neural transmission latency ($\tau_{delay}$), a purely reactive controller would become unstable (Hopf bifurcation) during rapid adolescent growth as the mechanical buckling time ($\tau_{mech}$) decreases. To overcome this, the organism optimizes a compact latent state representation to predict the necessary corrective active moment $\mathbf{M}_{bio}(t)$ in advance.
+
+$$ \mathcal{P}_{latent} = \frac{\tau_{predict}}{\tau_{delay}} = \frac{\Gamma_{dream} \cdot \pi_{latent}}{\tau_{delay}} $$
+
+*   **Symbols**:
+    *   $\tau_{predict}$: The effective forward-prediction horizon of the neural world model $[T]$.
+    *   $\tau_{delay}$: The round-trip neural transmission latency (axonal conduction + synaptic) $[T]$.
+    *   $\pi_{latent}$: Precision (inverse variance) of the latent state estimation $[1]$.
+    *   $\Gamma_{dream}$: The Latent-Coupling Constant, mapping estimation precision to prediction time $[T]$.
+*   **Dimensions**: $[\mathcal{P}_{latent}] = \frac{[T]}{[T]} = [1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{P}_{latent} > 1$: The predictive horizon exceeds the sensory delay. The "Dreamer" model successfully anticipates gravity and maintains a straight, stable counter-curvature ($\boldsymbol{\kappa} \approx 0$).
+    *   $\mathcal{P}_{latent} < 1$: The prediction horizon falls short. The system is forced to rely on delayed, noisy proprioception, leading to a "Prediction Error" that manifests as geometric instability (scoliosis).
+    *   **Adolescent Growth Spurt**: Rapid increases in spinal length $L$ cause $\tau_{delay}$ to spike (since $\tau_{delay} \propto L$). If the neural latent model does not update its internal dynamics fast enough to increase $\Gamma_{dream}$, $\mathcal{P}_{latent}$ drops below 1, precipitating the deformity.
+*   **Measurable Proxy**: The ratio of the organism's corrective reaction time ($\Delta t_{react}$) in response to a visually *cued* (predictable) mechanical perturbation versus an *uncued* (unpredictable) mechanical perturbation.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Sensory Prediction Error**
+    *   **Data Needed**: Measurement of Cobb angle progression in rapidly growing animal models subjected to randomized, unpredictable external mechanical loading (which constantly invalidates the latent world model) versus predictable, cyclic loading of identical magnitude.
+    *   **Refutation**: If curvature progression is identical regardless of the predictability of the load, the hypothesis that spinal alignment relies on an active, forward-predictive "world model" to maintain stability is falsified. (Reference: Hafner et al., 2019).
+*   **Test 2: The Latent State Decoupling**
+    *   **Data Needed**: Neuromuscular tracking (EMG of paraspinal muscles) during targeted perturbation in models where descending (predictive) cortical pathways are reversibly inhibited while ascending proprioceptive pathways remain intact.
+    *   **Refutation**: If the delayed, purely reactive proprioceptive loop is sufficient to maintain spinal linearity under load without descending predictive correction, the necessity of the "Dreamer" latent optimization process is falsified. (Reference: Adams et al., 2013).
+
+77. **Hafner, D., et al. (2019).** "Dream to Control: Learning Behaviors by Latent Imagination." *arXiv preprint arXiv:1912.01603*. (Theoretical basis for the predictive world model resolving delayed control).

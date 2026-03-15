@@ -4,6 +4,7 @@ Bolt-BioFold ⚡ - Focused Analysis Cycle
 """
 
 import argparse
+import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -121,7 +122,7 @@ def plot_pae(pae_matrix, gene, output_path):
     plt.savefig(output_path)
     plt.close()
 
-def run_focused_cycle(targets=None):
+def run_focused_cycle(targets=None, species="human", data_source="AlphaFold DB", use_pae=True):
     print("⚡ Bolt-BioFold: Starting Focused Analysis Cycle")
 
     if not targets:
@@ -175,9 +176,9 @@ def run_focused_cycle(targets=None):
             continue
 
         pae_matrix = None
-        if pae_path and pae_path.exists():
+        if use_pae and pae_path and pae_path.exists():
             pae_matrix = parser.parse_pae(pae_path)
-        elif pae_path:
+        elif use_pae and pae_path:
              print(f"      ⚠️ PAE path set but file missing: {pae_path}")
 
         metrics = analyzer.analyze_structure(
@@ -204,7 +205,7 @@ def run_focused_cycle(targets=None):
             # Identity
             'protein_id': gene,
             'uniprot': uniprot,
-            'species': 'human', # Default per prompt
+            'species': species,
             'length': metrics['n_residues'],
 
             # Confidence
@@ -247,7 +248,13 @@ def run_focused_cycle(targets=None):
 
     # Output Generation
     if not analyzed_data:
-        print("❌ No data analyzed.")
+        print("❌ No data analyzed. Blocked.")
+        md_path = OUTPUT_DIR / "bolt_biofold_results.md"
+        with open(md_path, 'w') as f:
+            f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
+            f.write("## ⚠️ BLOCKED\n\n")
+            f.write("No protein IDs were found/accessible, or files were corrupted.\n")
+            f.write("Please check the input targets and AlphaFold DB connectivity.\n")
         return
 
     df = pd.DataFrame(analyzed_data)
@@ -267,18 +274,37 @@ def run_focused_cycle(targets=None):
     else:
         best_move = "Expand candidate list to include more cytoskeletal cross-linkers."
 
+    commit_hash = "unknown"
+    try:
+        commit_hash = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
+    except Exception:
+        pass
+
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
-        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
-        f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
+        f.write("## Quality & Reproducibility Checklist\n")
+        f.write(f"- **Data Source:** {data_source}\n")
+        f.write(f"- **Date/Time:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        f.write(f"- **Code Version:** Bolt-BioFold v1.0 (Commit: {commit_hash})\n")
+        f.write(f"- **Parameters:** pLDDT thresholds=(70, 90), Use PAE={use_pae}, Species={species}\n")
+        if not use_pae:
+            f.write("- **Notes:** PAE matrices not used as per configuration.\n")
+        f.write("\n")
+
+        f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n\n")
 
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))
+        f.write("\n\n")
 
-        f.write("\n\n## Key Plots Summary\n")
+        f.write("```csv\n")
+        f.write(df.to_csv(index=False))
+        f.write("```\n")
+
+        f.write("\n## Key Plots Summary\n")
         f.write("*   Generated pLDDT profiles for all proteins.\n")
-        f.write("*   Generated PAE heatmaps for proteins with available PAE data.\n")
+        if use_pae:
+            f.write("*   Generated PAE heatmaps for proteins with available PAE data.\n")
 
         f.write("\n## Interpretations\n")
         for _, row in df.iterrows():
@@ -296,6 +322,25 @@ def run_focused_cycle(targets=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--targets", type=str, help="Comma-separated list of gene symbols or UniProt IDs")
+    parser.add_argument("--species", type=str, default="human", help="Species (default: human)")
+    parser.add_argument("--data_source", type=str, default="AlphaFold DB", help="AlphaFold source")
+    parser.add_argument("--use_pae", action=argparse.BooleanOptionalAction, default=True, help="Use PAE matrices if available")
+    parser.add_argument("--batch_size", type=int, default=20, help="Batch size limit")
     args = parser.parse_args()
 
-    run_focused_cycle()
+    targets_list = None
+    if args.targets:
+        targets_list = []
+        raw_targets = [t.strip() for t in args.targets.split(",")]
+        for t in raw_targets[:args.batch_size]:
+            if ":" in t:
+                uniprot, gene = t.split(":", 1)
+                targets_list.append((uniprot, gene))
+            else:
+                if len(t) == 6 and t.isupper():
+                     targets_list.append((t, t))
+                else:
+                     targets_list.append((t, t))
+
+    run_focused_cycle(targets=targets_list, species=args.species, data_source=args.data_source, use_pae=args.use_pae)

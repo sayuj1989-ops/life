@@ -1,14 +1,29 @@
 # Bolt-BioFold ⚡ Analysis Report
 
-**Date:** 2026-03-13 07:05
-**Source:** User Input
-**Code Version:** Bolt-BioFold v1.0
+## Quality & Reproducibility Checklist
+- **Data Source:** AlphaFold DB
+- **Date/Time:** 2026-03-15 19:50
+- **Code Version:** Bolt-BioFold v1.0 (Commit: dd563ef8)
+- **Parameters:** pLDDT thresholds=(70, 90), Use PAE=True, Species=human
+
+**Source:** Default Seed List
 
 ## Results Table
 
 | protein_id | uniprot | species | length | pLDDT_mean | pLDDT_median | pLDDT_fraction_high | pLDDT_fraction_ok | pLDDT_fraction_low | PAE_mean | PAE_domain_blockiness_score | predicted_domain_segments | disorder_fraction_proxy | hinge_candidates | backbone_principal_axis | radius_of_gyration | end_to_end_distance | curvature_summary | torsion_summary | anisotropy_index | bending_hotspots | exposed_surface_proxy | charged_patch_score | low_confidence_warning | multi_domain_uncertain | likely_IDR_heavy | confidence_level | interpretation |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| YAP1 | P46937 | human | 504 | 57.40 | 51.56 | 0.02 | 0.25 | 0.74 | 27.50 | 9.26 | 5 | 0.45 | 2 | [-0.676, 0.732, 0.082] | 23.55 | 11.43 | 0.32 | 1.63 | 1.99 | 182:0.38; 241:0.38; 257:0.38 | 0.93 | 0.30 | True | True | True | Low | ⚠️ Low confidence (pLDDT mean 57.4). Structure may be unreliable. Detected 2 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (9.26) suggests distinct dynamic domains. |
+| PIEZO2 | Q92508 | human | 2521 | 72.05 | 79.19 | 0.12 | 0.55 | 0.33 | 22.74 | 5.74 | 35 | 0.17 | 3 | [-0.270, -0.320, 0.908] | 58.85 | 29.95 | 0.34 | 1.18 | 3.90 | 458:0.44; 625:0.42; 513:0.41 | 0.46 | 0.27 | False | True | False | Medium | High anisotropy (3.90) indicates fibrous/extended morphology. Potential tension element or structural scaffold. Detected 3 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (5.74) suggests distinct dynamic domains. |
+| LMNA | P02545 | human | 664 | 76.37 | 93.12 | 0.58 | 0.11 | 0.31 | 24.87 | 2.56 | 3 | 0.26 | 0 | [-0.668, -0.244, 0.703] | 71.25 | 278.06 | 0.34 | 1.19 | 4.75 | 508:0.40; 519:0.39; 30:0.38 | 0.87 | 0.40 | False | True | False | Medium | High anisotropy (4.75) indicates fibrous/extended morphology. Potential tension element or structural scaffold. High PAE blockiness (2.56) suggests distinct dynamic domains. |
+| COL1A1 | P02452 | human | 1464 | 52.73 | 44.22 | 0.15 | 0.05 | 0.80 | 27.40 | 6.55 | 3 | 0.67 | 16 | [-0.475, 0.297, 0.828] | 23.46 | 48.98 | 0.30 | 1.86 | 2.80 | 1315:0.39; 1258:0.38; 1431:0.38 | 0.87 | 0.30 | True | True | True | Low | ⚠️ Low confidence (pLDDT mean 52.7). Structure may be unreliable. Detected 16 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (6.55) suggests distinct dynamic domains. |
+| RUNX3 | Q13761 | human | 415 | 60.56 | 46.34 | 0.28 | 0.04 | 0.68 | 25.59 | 0.00 | 1 | 0.56 | 12 | [-0.510, 0.008, 0.860] | 15.81 | 52.97 | 0.28 | 1.96 | 2.06 | 159:0.39; 69:0.38; 54:0.38 | 0.78 | 0.37 | True | False | True | Low | ⚠️ Low confidence (pLDDT mean 60.6). Structure may be unreliable. Detected 12 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. |
+
+```csv
+protein_id,uniprot,species,length,pLDDT_mean,pLDDT_median,pLDDT_fraction_high,pLDDT_fraction_ok,pLDDT_fraction_low,PAE_mean,PAE_domain_blockiness_score,predicted_domain_segments,disorder_fraction_proxy,hinge_candidates,backbone_principal_axis,radius_of_gyration,end_to_end_distance,curvature_summary,torsion_summary,anisotropy_index,bending_hotspots,exposed_surface_proxy,charged_patch_score,low_confidence_warning,multi_domain_uncertain,likely_IDR_heavy,confidence_level,interpretation
+PIEZO2,Q92508,human,2521,72.0459182863943,79.19,0.11939706465688218,0.5537485124950416,0.32685442284807614,22.743295862553047,5.738877788747343,35,0.1701705672352241,3,"[-0.270, -0.320, 0.908]",58.854216254576635,29.952230718262037,0.3413845615077925,1.181661841789843,3.896259474160542,458:0.44; 625:0.42; 513:0.41,0.45735819119397064,0.26963906581740976,False,True,False,Medium,High anisotropy (3.90) indicates fibrous/extended morphology. Potential tension element or structural scaffold. Detected 3 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (5.74) suggests distinct dynamic domains.
+LMNA,P02545,human,664,76.37072289156627,93.12,0.5813253012048193,0.11295180722891567,0.3057228915662651,24.874845768616634,2.562202816305735,3,0.2575301204819277,0,"[-0.668, -0.244, 0.703]",71.24585834790787,278.06200657227515,0.34356676954830484,1.1944328264571509,4.751667397697646,508:0.40; 519:0.39; 30:0.38,0.8704819277108434,0.3973333333333333,False,True,False,Medium,High anisotropy (4.75) indicates fibrous/extended morphology. Potential tension element or structural scaffold. High PAE blockiness (2.56) suggests distinct dynamic domains.
+COL1A1,P02452,human,1464,52.72999316939891,44.22,0.15027322404371585,0.045081967213114756,0.8046448087431693,27.395150273224044,6.553859379269947,3,0.6734972677595629,16,"[-0.475, 0.297, 0.828]",23.45619636653999,48.975483305425385,0.29542692309174906,1.8591542262564775,2.7970300386970957,1315:0.39; 1258:0.38; 1431:0.38,0.8722677595628415,0.3,True,True,True,Low,⚠️ Low confidence (pLDDT mean 52.7). Structure may be unreliable. Detected 16 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (6.55) suggests distinct dynamic domains.
+RUNX3,Q13761,human,415,60.564096385542165,46.34,0.2819277108433735,0.03855421686746988,0.6795180722891566,25.59002467702134,0.0,1,0.5614457831325301,12,"[-0.510, 0.008, 0.860]",15.814810367547928,52.973654367053065,0.2843747847575885,1.964747553996119,2.0611670656856456,159:0.39; 69:0.38; 54:0.38,0.7831325301204819,0.37209302325581395,True,False,True,Low,⚠️ Low confidence (pLDDT mean 60.6). Structure may be unreliable. Detected 12 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load.
+```
 
 ## Key Plots Summary
 *   Generated pLDDT profiles for all proteins.
@@ -16,11 +31,29 @@
 
 ## Interpretations
 
-### YAP1 (P46937)
-*   **What we see:** pLDDT 57.4, Anisotropy 1.99. ⚠️ Low confidence (pLDDT mean 57.4). Structure may be unreliable. Detected 2 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (9.26) suggests distinct dynamic domains.
-*   **Why it matters:** Globular domain likely involved in signaling or binding.
+### PIEZO2 (Q92508)
+*   **What we see:** pLDDT 72.0, Anisotropy 3.90. High anisotropy (3.90) indicates fibrous/extended morphology. Potential tension element or structural scaffold. Detected 3 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (5.74) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Medium
+*   **Next Test:** Compare curvature under stress in simulation.
+
+### LMNA (P02545)
+*   **What we see:** pLDDT 76.4, Anisotropy 4.75. High anisotropy (4.75) indicates fibrous/extended morphology. Potential tension element or structural scaffold. High PAE blockiness (2.56) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Medium
+*   **Next Test:** Check expression gradients in spine.
+
+### COL1A1 (P02452)
+*   **What we see:** pLDDT 52.7, Anisotropy 2.80. ⚠️ Low confidence (pLDDT mean 52.7). Structure may be unreliable. Detected 16 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load. High PAE blockiness (6.55) suggests distinct dynamic domains.
+*   **Why it matters:** High aspect ratio supports tension transmission.
+*   **Confidence:** Low
+*   **Next Test:** Compare curvature under stress in simulation.
+
+### RUNX3 (Q13761)
+*   **What we see:** pLDDT 60.6, Anisotropy 2.06. ⚠️ Low confidence (pLDDT mean 60.6). Structure may be unreliable. Detected 12 potential hinge(s) (flexible regions in stiff segments). Candidate for curvature regulation under load.
+*   **Why it matters:** High aspect ratio supports tension transmission.
 *   **Confidence:** Low
 *   **Next Test:** Compare curvature under stress in simulation.
 
 ## Best Next Move
-🚀 **Expand candidate list to include more cytoskeletal cross-linkers.**
+🚀 **Simulate mechanical load on high-anisotropy candidates: PIEZO2, LMNA**

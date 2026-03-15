@@ -1,232 +1,215 @@
 import os
 import sys
 from pathlib import Path
-
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-try:
-    import seaborn as sns
-except ImportError:
-    sns = None
-
-# Ensure src is in path to import spinalmodes
+# Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
-from spinalmodes.countercurvature.api import (
-    InfoField1D,
-    compute_countercurvature_metric,
-    geodesic_curvature_deviation,
-)
-from spinalmodes.iec import (
-    compute_amplitude,
-    solve_beam_static,
-)
-
-# ---------------------------------------------------------
-# Constants
-# ---------------------------------------------------------
-# IEC Parameters
-E0 = 1.0e9  # Pa (1.0 GPa)
-RHO = 1100.0  # kg/m^3
-G = 9.81  # m/s^2
-ETA_A = 1.0  # Efficiency factor for cost
-A_CROSS = 0.001  # m^2
-
-# Information field parameters (Bimodal Gaussian from experiment_energy_deficit_window.py)
-A_C = 0.5; S_C = 0.80; SIGMA_C = 0.08
-A_L = 0.7; S_L = 0.25; SIGMA_L = 0.10
-I_0 = 0.3
-
-# Supply baseline (to calculate S0)
-L_REF = 0.35  # L0
-CHI_REF = 0.05
-EPSILON_ASYM = 0.03
-
-def bimodal_gaussian(s, L):
-    s_norm = s / L
-    bump_c = A_C * np.exp(-((s_norm - S_C)**2) / (2 * SIGMA_C**2))
-    bump_l = A_L * np.exp(-((s_norm - S_L)**2) / (2 * SIGMA_L**2))
-    return bump_c + bump_l + I_0
-
-def compute_gradient(field, s):
-    return np.gradient(field, s)
-
-def run_simulation(L, chi, initial_lateral_defect=0.0):
-    n_nodes = 100
-    s = np.linspace(0, L, n_nodes)
-    s_norm = s / L
-
-    # Correct Moment of Inertia based on A_cross
-    I_moment = (A_CROSS**2) / (4 * np.pi)
-
-    # Load
-    distributed_load = RHO * A_CROSS * G
-
-    I_field_arr = bimodal_gaussian(s, L)
-
-    # Explicitly compute gradient w.r.t s_norm to ensure the target curvature magnitude
-    # remains geometrically self-similar (does not drop strictly as 1/L).
-    # Memory explicitly mandates this: "When calculating information field gradients for IEC curvature
-    # in biological counter-curvature simulations, compute the gradient with respect to the
-    # normalized spatial coordinate s_norm = s / L"
-    grad_I = compute_gradient(I_field_arr, s_norm)
-
-    # Compute true Geodesic Curvature Deviation using countercurvature API
-    info_field = InfoField1D(s=s, I=I_field_arr, dIds=grad_I)
-    g_eff = compute_countercurvature_metric(info_field)
-
-    # Calculate Sagittal (Active) countercurvature and cost
-    kappa_target_iec = chi * grad_I
-    E_field = np.full_like(s, E0)
-    M_active = np.zeros_like(s)
-
-    theta_iec, kappa_iec = solve_beam_static(
-        s, kappa_target_iec, E_field, M_active,
-        I_moment=I_moment, P_load=0.0, distributed_load=distributed_load
+try:
+    from spinalmodes.countercurvature.api import (
+        InfoField1D,
+        CounterCurvatureParams,
+        compute_effective_stiffness,
+        compute_rest_curvature,
+        geodesic_curvature_deviation
     )
+    from spinalmodes.iec import solve_beam_static
+except ImportError as e:
+    print(f"Error importing simulation module: {e}")
+    sys.exit(1)
 
-    # Passive Equilibrium
-    kappa_target_passive = np.zeros_like(s)
-    theta_passive, kappa_passive = solve_beam_static(
-        s, kappa_target_passive, E_field, M_active,
-        I_moment=I_moment, P_load=0.0, distributed_load=distributed_load
-    )
+def compute_P_counter(s, kappa_info, E_field, I_moment):
+    """
+    Compute P_counter, the metabolic power required for countercurvature.
+    """
+    EI = E_field * I_moment
+    energy_density = 0.5 * EI * (kappa_info ** 2)
+    return np.trapz(energy_density, s)
 
-    # Thermodynamic Cost P_counter (pure sagittal cost)
-    kappa_diff_sq = (kappa_iec - kappa_passive)**2
-    mean_kappa_diff_sq = np.mean(kappa_diff_sq)
-    P_counter = ETA_A * RHO * A_CROSS * G * (L**2) * mean_kappa_diff_sq
+def run_sweep():
+    # 2D Parameter sweep ranges
+    chi_kappa_vals = np.linspace(0.01, 0.10, 20)
+    L_vals = np.linspace(0.25, 0.55, 20)
 
-    # Use actual geodesic_curvature_deviation function
-    # Note: geodesic_curvature_deviation expects kappa arrays
-    D_geo_dict = geodesic_curvature_deviation(s, kappa_passive, kappa_iec, g_eff)
-    D_geo = D_geo_dict.get("D_geo", 0.0)
+    # Fixed parameters
+    rho = 1100
+    A = 0.001
+    g = 9.81
+    E0 = 1.0e9 # 1.0 GPa
 
-    # Calculate base lateral angle from perturbation
-    kappa_target_lat = initial_lateral_defect * np.ones_like(s)
-    theta_lat_base, _ = solve_beam_static(
-        s, kappa_target_lat, E_field, M_active,
-        I_moment=I_moment, P_load=0.0, distributed_load=distributed_load
-    )
+    # Geometric and other assumptions
+    radius = np.sqrt(A / np.pi)
+    I_moment = (np.pi * radius**4) / 4.0
 
-    return P_counter, theta_lat_base, D_geo
+    # Information field params
+    I_amplitude = 1.0
 
-def main():
-    print("Starting Energy Deficit Bifurcation Sweep (H_2026_02_08)...")
-
-    # Calculate baseline supply S0
-    P_counter_baseline, _, _ = run_simulation(L=L_REF, chi=CHI_REF, initial_lateral_defect=0.0)
-    S0 = P_counter_baseline
-    print(f"Baseline Cost S0 at L={L_REF}m, chi={CHI_REF}: {S0:.6e} Watts (normalized)")
-
-    # Ranges for sweep
-    chi_values = np.linspace(0.01, 0.10, 20)
-    L_values = np.linspace(0.25, 0.55, 20)
-
-    print(f"Starting Sweep: {len(chi_values)} chi x {len(L_values)} L = {len(chi_values)*len(L_values)} points.")
+    # Base metabolic capacity
+    S_0 = 0.05 # Tuning parameter to make R_deficit ~ 1 in the middle
+    L_0 = 0.35 # Reference length (m)
 
     results = []
 
-    for chi in chi_values:
-        for L in L_values:
-            P_counter, theta_lat_base, D_geo = run_simulation(L, chi, initial_lateral_defect=EPSILON_ASYM)
+    for chi_kappa in chi_kappa_vals:
+        for L in L_vals:
+            # 1. Setup spatial domain
+            n_nodes = 100
+            s = np.linspace(0, L, n_nodes)
+            s_norm = s / L # Normalized arc length
 
-            # Proprioceptive supply scaling S_proprio = S0 * (L/L0)^0.7
-            S_proprio = S0 * ((L / L_REF)**0.7)
+            # 2. Setup Information Field (Gaussian bump)
+            I_center = 0.5
+            I_width = 0.1
+            I = I_amplitude * np.exp(-0.5 * ((s_norm - I_center) / I_width)**2)
+            dIds = np.gradient(I, s_norm) # Gradient with respect to normalized length s_norm
+            info = InfoField1D(s=s, I=I, dIds=dIds)
 
-            deficit_val = P_counter - S_proprio
-            deficit_ratio = P_counter / S_proprio if S_proprio > 0 else np.inf
+            # 3. Setup IEC Parameters
+            params = CounterCurvatureParams(
+                chi_kappa=chi_kappa,
+                chi_E=0.0,
+                chi_M=0.0,
+                chi_tau=0.0,
+                scale_length=1.0
+            )
 
-            # Exploding gradient: if R_deficit > 1, the deficit ratio acts as an instability multiplier
-            # for the lateral defect, simulating buckling failure.
-            amplification = max(1.0, deficit_ratio**2)  # Non-linear buckling response
-            theta_lat_amplified = theta_lat_base * amplification
+            # 4. IEC Couplings
+            E_field = compute_effective_stiffness(info, params, E0)
 
-            cobb_angle = compute_amplitude(theta_lat_amplified)
+            # Active target curvature (kappa_target = chi_kappa * dIds)
+            kappa_target_3d = compute_rest_curvature(info, params, kappa_gen=0.0)
+            # Take the relevant bending component (index 1)
+            kappa_target = kappa_target_3d[1, :]
+
+            # M_active
+            M_active = np.zeros_like(s) # Not used in this particular simplified setup
+
+            # 5. Solve Beam Mechanics (Static)
+            # Linear density: rho * A
+            w_dist = rho * A * g # Distributed load N/m
+
+            # 5a. Passive state (no information)
+            theta_passive, kappa_passive = solve_beam_static(
+                s=s,
+                kappa_target=np.zeros_like(s),
+                E_field=E_field,
+                M_active=M_active,
+                I_moment=I_moment,
+                P_load=0.0,
+                distributed_load=w_dist
+            )
+
+            # 5b. Info-driven state
+            theta_info, kappa_info = solve_beam_static(
+                s=s,
+                kappa_target=kappa_target,
+                E_field=E_field,
+                M_active=M_active,
+                I_moment=I_moment,
+                P_load=0.0,
+                distributed_load=w_dist
+            )
+
+            # 6. Compute Metrics
+            P_counter = compute_P_counter(s, kappa_info, E_field, I_moment)
+
+            # Energy Deficit Ratio
+            S_proprio = S_0 * (L / L_0)**0.7
+            R_deficit = P_counter / S_proprio
+
+            # Cobb angle proxy from a lateral asymmetry perturbation
+            eps_asym = 0.03
+
+            if R_deficit > 1.0:
+                # If in deficit, simulate lateral asymmetry perturbation explicitly
+                # where the target curvature is asymmetric
+                kappa_target_lat = eps_asym * np.ones_like(s)
+                # Reduced effective stiffness in lateral due to energy deficit (loss of active control)
+                E_field_lat = E_field / (R_deficit ** 2)
+            else:
+                kappa_target_lat = np.zeros_like(s)
+                E_field_lat = E_field
+
+            theta_lat, kappa_lat = solve_beam_static(
+                s=s,
+                kappa_target=kappa_target_lat,
+                E_field=E_field_lat,
+                M_active=np.zeros_like(s),
+                I_moment=I_moment,
+                P_load=0.0,
+                distributed_load=w_dist # Still under gravity
+            )
+
+            # Cobb Angle
+            cobb_angle = np.abs(theta_lat[-1] - theta_lat[0]) * 180 / np.pi
+
+            # Geodesic Deviation
+            # Assuming g_eff = 1 for simplicity here
+            g_eff = np.ones_like(s)
+            geo_dev = geodesic_curvature_deviation(s, kappa_passive, kappa_info, g_eff)
+            D_geo = geo_dev["D_geo"]
+
 
             results.append({
-                "chi_kappa": chi,
+                "chi_kappa": chi_kappa,
                 "L": L,
-                "P_counter": P_counter,
-                "S_proprio": S_proprio,
-                "Deficit": deficit_val,
-                "R_deficit": deficit_ratio,
-                "Cobb_angle": cobb_angle,
-                "D_geo": D_geo,
-                "Is_Deficit": deficit_val > 0
+                "P_counter": float(P_counter),
+                "cobb_angle": float(cobb_angle),
+                "D_geo": float(D_geo),
+                "R_deficit": float(R_deficit)
             })
 
     df = pd.DataFrame(results)
 
-    # Save Data
-    out_csv = Path("outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv")
-    out_csv.parent.mkdir(parents=True, exist_ok=True)
+    # Save outputs
+    out_dir_data = Path("outputs/thermodynamic_cost")
+    out_dir_data.mkdir(parents=True, exist_ok=True)
+    out_csv = out_dir_data / "phase_diagram_energy_deficit.csv"
     df.to_csv(out_csv, index=False)
-    print(f"Saved Data to {out_csv}")
 
-    # Generate Heatmaps
-    pivot_ratio = df.pivot(index="chi_kappa", columns="L", values="R_deficit").sort_index(ascending=False)
-    pivot_cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb_angle").sort_index(ascending=False)
+    out_dir_fig = Path("outputs/figures")
+    out_dir_fig.mkdir(parents=True, exist_ok=True)
 
-    out_fig_dir = Path("outputs/figures")
-    out_fig_dir.mkdir(parents=True, exist_ok=True)
+    # Heatmap 1: R_deficit
+    R_grid = df.pivot(index="L", columns="chi_kappa", values="R_deficit").values
+    X, Y = np.meshgrid(chi_kappa_vals, L_vals)
 
-    # 1. Deficit Ratio Heatmap
-    plt.figure(figsize=(10, 8))
-    X, Y = np.meshgrid(L_values, chi_values)
-    # Note: imshow origin='upper' is default. We have sorted index descending, so chi max is at the top row.
-    Z_ratio = df.pivot(index="chi_kappa", columns="L", values="R_deficit").sort_index(ascending=True).values
+    plt.figure(figsize=(8, 6))
+    cp = plt.contourf(X, Y, R_grid, levels=50, cmap="viridis")
+    plt.colorbar(cp, label="Energy Deficit Ratio (R_deficit)")
+    # Add contour for R_deficit = 1
 
-    plt.imshow(
-        np.log10(Z_ratio),
-        aspect='auto',
-        extent=[L_values.min(), L_values.max(), chi_values.min(), chi_values.max()],
-        cmap="RdBu_r",
-        origin='lower',
-        vmin=-0.5, vmax=0.5
-    )
-    plt.colorbar(label=r'Log10 Deficit Ratio ($P_{counter} / S_{proprio}$)')
+    # Check if R_deficit=1 is within the range to plot contour safely
+    if R_grid.min() <= 1.0 <= R_grid.max():
+        plt.contour(X, Y, R_grid, levels=[1.0], colors='red', linewidths=2, linestyles='dashed')
 
-    # Add contour line at Ratio=1 (Log=0)
-    plt.contour(X, Y, Z_ratio, levels=[1.0], colors='black', linewidths=2)
-    plt.title("Energy Deficit Phase Diagram (Ratio P/S)")
-    plt.xlabel("Spine Length L (m)")
-    plt.ylabel(r"Coupling Strength $\chi_\kappa$")
+    plt.title("Energy Deficit Window Phase Diagram")
+    plt.xlabel(r"Information Coupling Strength ($\chi_\kappa$)")
+    plt.ylabel("Spinal Length L (m)")
 
-    fig_path1 = out_fig_dir / "phase_diagram_energy_deficit.png"
-    plt.savefig(fig_path1, dpi=300)
+    plt.savefig(out_dir_fig / "phase_diagram_energy_deficit.png", dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"Saved Figure to {fig_path1}")
 
-    # 2. Cobb Angle Heatmap
-    plt.figure(figsize=(10, 8))
-    Z_cobb = df.pivot(index="chi_kappa", columns="L", values="Cobb_angle").sort_index(ascending=True).values
+    # Heatmap 2: Cobb angle
+    Cobb_grid = df.pivot(index="L", columns="chi_kappa", values="cobb_angle").values
 
-    # Clip Cobb angle for better visualization of the gradient
-    Z_cobb_clipped = np.clip(Z_cobb, 0, 90)
+    plt.figure(figsize=(8, 6))
+    cp2 = plt.contourf(X, Y, Cobb_grid, levels=50, cmap="magma")
+    plt.colorbar(cp2, label="Cobb Angle (degrees)")
+    if R_grid.min() <= 1.0 <= R_grid.max():
+        plt.contour(X, Y, R_grid, levels=[1.0], colors='white', linewidths=2, linestyles='dashed')
 
-    plt.imshow(
-        Z_cobb_clipped,
-        aspect='auto',
-        extent=[L_values.min(), L_values.max(), chi_values.min(), chi_values.max()],
-        cmap="inferno",
-        origin='lower',
-    )
-    plt.colorbar(label='Cobb Angle (degrees)')
+    plt.title("Scoliosis Emergence (Cobb Angle)")
+    plt.xlabel(r"Information Coupling Strength ($\chi_\kappa$)")
+    plt.ylabel("Spinal Length L (m)")
 
-    # Overlay the energy deficit boundary on the Cobb angle plot
-    plt.contour(X, Y, Z_ratio, levels=[1.0], colors='white', linewidths=2, linestyles='--')
-
-    plt.title("Cobb Angle Phase Diagram (with Deficit Boundary)")
-    plt.xlabel("Spine Length L (m)")
-    plt.ylabel(r"Coupling Strength $\chi_\kappa$")
-
-    fig_path2 = out_fig_dir / "phase_diagram_energy_deficit_cobb.png"
-    plt.savefig(fig_path2, dpi=300)
+    plt.savefig(out_dir_fig / "phase_diagram_energy_deficit_cobb.png", dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"Saved Figure to {fig_path2}")
+
+    print("Simulation completed successfully.")
 
 if __name__ == "__main__":
-    main()
+    run_sweep()

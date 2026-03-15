@@ -1,19 +1,25 @@
 Nature Submission Checklist Compliance:
 
+Running Title: Metabolic buckling of the growing spine
+
 Highlights:
-- Framework introduces Adolescent Idiopathic Scoliosis (AIS) as a "Metabolic Buckling" event due to scaling mismatch ($L^4$ demand vs. $L^2$ supply).
-- Quantitative validation: Allometric scaling of gravitational buckling perfectly mirrors metabolic scaling laws (-0.282 vs. -0.25, R²=0.744, p=0.001).
-- Clinical translation: "Energy Deficit Window" predicts precise clinical age of onset and tissue anisotropy ($R^2=0.775$, $p<10^{-17}$) serves as a tunable rescue mechanism.
-- Circadian disruption (jetlag) quantified as a profound 2.52-fold amplifier of deformity.
+- AIS is a "Metabolic Buckling" event from L^4 vs L^2 scaling mismatch.
+- Energy Deficit Window predicts clinical onset and anisotropy rescue.
+- Delayed mechanosensory feedback (Spinal Jetlag) triggers symmetry breaking.
 
 Compliance items met:
 [X] Abstract is single-paragraph, unstructured, and under 150 words.
 [X] Title is under 90 characters ("Metabolic buckling of the growing spine").
 [X] Introduction and Results are merged with no subheadings.
 [X] Declarative tone is maintained throughout.
-[X] Methods section is moved to the end of the manuscript.
-[X] Pre-emptive rebuttal to metabolic measurement limitations is included in the Discussion (to preemptively address Reviewer #3).
-[X] `cover_letter.txt` is addressed to Dr. Magdalena Skipper.
-[X] Cover letter states the "Grand Challenge" and "Break Breakthrough" in the first paragraph.
-[X] `submission_manuscript.pdf` contains the correctly formatted submission.
-[X] `checklist_compliance.txt` includes all required highlights and checklist items.
+[X] Methods section is moved to Supplementary Information.
+[X] Pre-emptive rebuttal to metabolic measurement limitations is included in the Discussion.
+[X] cover_letter.txt is addressed to Dr. Magdalena Skipper.
+[X] Cover letter states the "Grand Challenge" and "Breakthrough" in the first paragraph.
+[X] Cover letter explains exclusion as a specialist paper.
+[X] Cover letter suggests 3 interdisciplinary reviewers (Physicist, Biologist, Surgeon).
+[X] submission_manuscript.pdf contains the correctly formatted submission.
+[X] checklist_compliance.txt includes all required highlights and checklist items.
+
+Conflict of Interest / Funding Statement:
+The authors declare no competing interests. This research received no external funding.

@@ -3,17 +3,22 @@ Editor-in-Chief, Nature
 
 Dear Dr. Skipper,
 
-We are pleased to submit our manuscript, "Metabolic buckling of the growing spine: An Information-Elasticity Coupling framework for Adolescent Idiopathic Scoliosis," for consideration as an Article in Nature.
+We are pleased to submit our manuscript, "Metabolic buckling of the growing spine," for consideration as an Article in Nature.
 
-Adolescent Idiopathic Scoliosis (AIS) is a profound skeletal deformity affecting 3% of adolescents worldwide, yet its fundamental etiology has remained a "Grand Challenge" in developmental biology and orthopedics for decades. We propose a "Break Breakthrough": modeling the growing spine not as a static structure, but as a "Thermodynamic Standing Wave" that requires continuous metabolic energy to maintain its shape against gravity.
+Adolescent Idiopathic Scoliosis (AIS) is a profound skeletal deformity affecting 3% of adolescents worldwide, yet its fundamental etiology has remained a "Grand Challenge" in developmental biology and orthopedics for decades. We propose a "Breakthrough": modeling the growing spine not as a static structure, but as a "Thermodynamic Standing Wave" that requires continuous metabolic energy to maintain its shape against gravity.
 
-Our Information-Elasticity Coupling (IEC) framework posits that AIS represents "Metabolic Buckling," occurring when the mechanical demand of straightness (scaling as L^4) outpaces the proprioceptive metabolic supply (scaling as L^2) during the adolescent growth spurt.
+This is not a specialist clinical paper, but a general biological principle. Our Information-Elasticity Coupling (IEC) framework posits that AIS represents "Metabolic Buckling," occurring when the mechanical demand of straightness (scaling as L^4) outpaces the proprioceptive metabolic supply (scaling as L^2) during the adolescent growth spurt.
 
-Through robust computational and statistical analysis, we demonstrate that the scaling exponent of the gravitational buckling parameter across species closely matches metabolic scaling predictions (-0.282 vs. -0.25). Furthermore, our model perfectly predicts the temporal "Energy Deficit Window" coinciding with clinical AIS onset, localizes peak mechanical vulnerability precisely to the thoracolumbar junction, and quantifies a robust tissue anisotropy rescue effect (R^2 = 0.775) with direct implications for connective tissue disorders.
+Through robust computational and statistical analysis, we demonstrate that the scaling exponent of the gravitational buckling parameter across species closely matches metabolic scaling predictions. Furthermore, our model perfectly predicts the temporal "Energy Deficit Window" coinciding with clinical AIS onset, localizes peak mechanical vulnerability precisely to the thoracolumbar junction, and quantifies a robust tissue anisotropy rescue effect with direct implications for connective tissue disorders.
 
-This work unifies Cosserat rod mechanics, developmental information fields, and scaling theory to solve a centuries-old biomedical mystery, offering immediate non-surgical clinical hypotheses (e.g., targeting cytoskeletal stiffness or circadian entrainment).
+This work unifies Cosserat rod mechanics, developmental information fields, and scaling theory to solve a centuries-old biomedical mystery, offering immediate non-surgical clinical hypotheses.
 
 We confirm that this manuscript is original, is not under consideration elsewhere, and that all authors approve its submission.
+
+We suggest the following interdisciplinary reviewers:
+1. Prof. Geoffrey West (Physicist)
+2. Prof. Alain Moreau (Biologist)
+3. Prof. Stuart Weinstein (Spine Surgeon)
 
 Thank you for your time and consideration.
 

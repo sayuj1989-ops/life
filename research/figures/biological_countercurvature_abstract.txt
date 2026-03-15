@@ -1,18 +1,1 @@
-Title: Visual Abstract: Metabolic Buckling in Adolescent Idiopathic Scoliosis
-
-Concept: The adolescent human spine as an active control system that fails under thermodynamic scaling laws, leading to "Metabolic Buckling."
-
-Central Element: A growing human spine, transitioning from a healthy, stabilized S-curve to a buckled, scoliotic S-curve.
-
-Key Action:
-- The healthy spine is supported by strong, synchronized energetic/metabolic "struts" (representing sufficient Energy Supply, $S_{proprio}$).
-- The scoliotic spine shows these struts breaking down or becoming insufficient as the spine elongates (representing the Energy Deficit Window, where $P_{counter} > S_{proprio}$).
-- A prominent "Delay" metric ($\tau$) is shown increasing alongside the growth spurt, represented by asynchronous or out-of-phase signaling waves around the buckling section.
-
-Background:
-- A fading gradient from a stable, low-energy state (blue/cool colors) to a high-stress, deficit state (red/hot colors).
-- Faint mathematical equations in the background: $\mathcal{B}_g \approx 0.01$ and $R_{deficit} > 1$.
-
-Annotation: "Scoliosis: A Predictable Thermodynamic Scaling Failure"
-
-Style: High-impact, Nature/Science cover style. Emphasizes the transition from stability to instability driven by metabolic and temporal constraints.
+A visually stunning visual abstract for the "Biological Countercurvature of Spacetime" theory of spinal geometry. The central image is a glowing, translucent human spine shown as an S-shaped standing wave of biological energy and information. It is set against a 3D grid representing spacetime, which is visibly warped. Heavy, dark blue downward arrows symbolize the force of Gravity. Golden, ascending threads and vectors, emerging from DNA/HOX gene patterns at the base, represent "Information" acting as a countercurvature force that opposes gravitational collapse. The overall aesthetic should be professional scientific illustration, high contrast, evoking a profound biophysical insight, suitable for the cover or a keynote slide of a top-tier journal like Nature or Science.

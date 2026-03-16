@@ -136,6 +136,9 @@ def run_focused_cycle(targets=None):
 
     analyzed_data = []
 
+    data_sources_used = set()
+    missing_artifacts = []
+
     parser = StructureParser()
     analyzer = MetricsAnalyzer()
 
@@ -146,6 +149,11 @@ def run_focused_cycle(targets=None):
         if res['status'] not in ['downloaded', 'cached']:
             print(f"   ❌ Failed to fetch {gene}. Skipping.")
             continue
+
+        if res['status'] == 'downloaded':
+            data_sources_used.add("AlphaFold DB (Downloaded)")
+        elif res['status'] == 'cached':
+            data_sources_used.add("Local Files (Cached)")
 
         # Handle API inconsistency (cached returns full dict, downloaded returns status only)
         if 'pdb_path' in res:
@@ -179,6 +187,9 @@ def run_focused_cycle(targets=None):
             pae_matrix = parser.parse_pae(pae_path)
         elif pae_path:
              print(f"      ⚠️ PAE path set but file missing: {pae_path}")
+             missing_artifacts.append(f"{gene}: PAE missing")
+        else:
+             missing_artifacts.append(f"{gene}: PAE missing")
 
         metrics = analyzer.analyze_structure(
             plddt_scores=plddt,
@@ -248,6 +259,13 @@ def run_focused_cycle(targets=None):
     # Output Generation
     if not analyzed_data:
         print("❌ No data analyzed.")
+        md_path = OUTPUT_DIR / "bolt_biofold_results.md"
+        with open(md_path, 'w') as f:
+            f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
+            f.write("## BLOCKED\n\n")
+            f.write("No valid data processed. Files may be corrupted or missing required fields.\n")
+            f.write("Smallest fix: Verify input IDs or check network connection to AlphaFold DB.\n")
+        print(f"   📄 BLOCKED report saved to {md_path}")
         return
 
     df = pd.DataFrame(analyzed_data)
@@ -269,12 +287,28 @@ def run_focused_cycle(targets=None):
 
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
-        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
-        f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
+
+        f.write("## Reproducibility Checklist\n")
+        f.write(f"- **Input List:** {'Default Seed List' if is_default else 'User Input'}\n")
+
+        sources_str = ", ".join(data_sources_used) if data_sources_used else "Unknown"
+        f.write(f"- **Data Source:** {sources_str}\n")
+
+        f.write(f"- **Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        f.write("- **Commit:** Bolt-BioFold v1.0\n")
+        f.write("- **Params:** pLDDT threshold=70, smoothing window=N/A, segmentation rules=pLDDT >= 70 & PAE blocks\n")
+
+        if missing_artifacts:
+            f.write(f"- **Notes on missing artifacts:** {', '.join(missing_artifacts)}\n\n")
+        else:
+            f.write("- **Notes on missing artifacts:** None\n\n")
 
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))
+
+        f.write("\n\n### CSV-Ready Block\n\n```csv\n")
+        f.write(df.to_csv(index=False))
+        f.write("```\n")
 
         f.write("\n\n## Key Plots Summary\n")
         f.write("*   Generated pLDDT profiles for all proteins.\n")

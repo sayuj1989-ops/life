@@ -1,12 +1,8 @@
 from pathlib import Path
-
 import pandas as pd
-
 
 def audit_afcc_freshness():
     afcc_dir = Path('outputs/afcc')
-
-    # Get all dated subdirectories in outputs/afcc
     date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')])
 
     metrics_history = {}
@@ -28,13 +24,10 @@ def audit_afcc_freshness():
 
             for _, row in df.iterrows():
                 gene = row['gene_symbol']
-                # Store the full vector, extracting key metrics to check for identity
-                # Here we use anisotropy, pLDDT, PAE_domain_blockiness_score if available
                 metrics_vector = {
                     'anisotropy': row.get('anisotropy_index', None),
                     'plddt': row.get('plddt_mean', None),
                     'pae_blockiness': row.get('PAE_domain_blockiness_score', None),
-                    'file': str(metrics_file)
                 }
 
                 if gene not in metrics_history:
@@ -44,7 +37,6 @@ def audit_afcc_freshness():
         except Exception as e:
             print(f"Error reading {metrics_file}: {e}")
 
-    # Analyze for static metrics
     static_genes = []
     reused_reports = []
 
@@ -53,7 +45,6 @@ def audit_afcc_freshness():
             first_vector = history[0][1]
             is_static = True
             for date, vector in history[1:]:
-                # compare keys: anisotropy, plddt, pae_blockiness
                 for key in ['anisotropy', 'plddt', 'pae_blockiness']:
                     if vector[key] != first_vector[key]:
                         is_static = False
@@ -70,11 +61,9 @@ def audit_afcc_freshness():
                     'anisotropy': first_vector['anisotropy'],
                     'plddt': first_vector['plddt']
                 })
-                # Add to reused reports if it's static across runs
                 for date, vector in history[1:]:
                     reused_reports.append({'date': date, 'gene': gene})
 
-    # Generate Report
     report_content = [
         "# Evidence Freshness Audit Report\n",
         "## Data Integrity and Freshness\n",
@@ -92,7 +81,6 @@ def audit_afcc_freshness():
 
     report_content.append("\n## When 'New' Reports Reuse Unchanged Values\n")
 
-    # Group reused reports by date
     reused_by_date = {}
     for item in reused_reports:
         d = item['date']
@@ -107,11 +95,9 @@ def audit_afcc_freshness():
     report_content.append("\n## Conclusion\n")
     report_content.append("- **Actionable Insight**: Many core candidates (e.g., LBX1, PIEZO2, LMNA) show static values across the trend window. This confirms the caveat that high-anisotropy narratves may over-interpret static inputs.")
 
-    # Write report
     report_path = Path('reports/evidence_freshness_audit.md')
     with open(report_path, 'w') as f:
         f.write("\n".join(report_content))
-
     print(f"Audit complete. Report written to {report_path}")
 
 if __name__ == "__main__":

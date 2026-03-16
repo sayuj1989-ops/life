@@ -1,7 +1,5 @@
 from pathlib import Path
-
 import pandas as pd
-
 
 def create_confidence_weighted_ranking():
     snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')
@@ -10,24 +8,18 @@ def create_confidence_weighted_ranking():
         return
 
     df = pd.read_csv(snapshot_path)
-
-    # Define thresholds
     plddt_threshold = 70.0
     anisotropy_threshold = 3.0
 
-    # Classification
     df['confidence_class'] = df['plddt_mean'].apply(lambda x: 'Adequate' if x >= plddt_threshold else 'Low')
     df['anisotropy_class'] = df['anisotropy_index'].apply(lambda x: 'High' if x >= anisotropy_threshold else 'Intermediate/Low')
 
-    # Sort for ranking
-    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False]) # 'Adequate' comes before 'Low'
+    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False])
 
-    # Save CSV
     out_csv = Path('outputs/afcc/confidence_weighted_ranking.csv')
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     df_sorted.to_csv(out_csv, index=False)
 
-    # Generate Report
     high_ani_adequate = df[(df['confidence_class'] == 'Adequate') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
     high_ani_low = df[(df['confidence_class'] == 'Low') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
 
@@ -38,7 +30,6 @@ def create_confidence_weighted_ranking():
         "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
         "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
         "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",
-
         "## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)\n",
         "These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.\n",
         "| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |\n",
@@ -58,7 +49,6 @@ def create_confidence_weighted_ranking():
     for idx, row in enumerate(high_ani_low.itertuples(), 1):
         report_content.append(f"| {idx} | {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} |")
 
-    # LBX1 Comparator Analysis
     comparator_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
 
     report_content.extend([
@@ -86,7 +76,6 @@ def create_confidence_weighted_ranking():
     report_path = Path('reports/confidence_weighted_structural_evidence.md')
     with open(report_path, 'w') as f:
         f.write("\n".join(report_content))
-
     print(f"Ranking complete. Outputs written to {out_csv} and {report_path}")
 
 if __name__ == "__main__":

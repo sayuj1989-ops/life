@@ -1,0 +1,7 @@
+parameter,value
+length,0.4
+n_nodes,100
+chi_kappa,15.0
+chi_E,2.0
+epsilon_asym,0.05
+gravity_load,50.0

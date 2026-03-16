@@ -95,9 +95,9 @@ def run_simulation(L, chi, initial_lateral_defect=0.0):
     )
 
     # Thermodynamic Cost P_counter (pure sagittal cost)
-    kappa_diff_sq = (kappa_iec - kappa_passive)**2
-    mean_kappa_diff_sq = np.mean(kappa_diff_sq)
-    P_counter = ETA_A * RHO * A_CROSS * G * (L**2) * mean_kappa_diff_sq
+    # Computed physically as the integral of 0.5 * EI * kappa_info^2 over the spinal length.
+    EI = E0 * I_moment
+    P_counter = np.trapz(0.5 * EI * (kappa_target_iec**2), s)
 
     # Use actual geodesic_curvature_deviation function
     # Note: geodesic_curvature_deviation expects kappa arrays

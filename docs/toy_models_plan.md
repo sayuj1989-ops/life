@@ -50,6 +50,7 @@
 | **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
 | **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_lenke_classes.py`) |
 | **Toy E** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_torsional_buckling.py`) |
+| **Toy F** | Comp Bio | 1 day | ✅ **Completed** (`experiment_squat_stand_cycle.py`) |
 
 ---
 

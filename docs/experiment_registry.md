@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-16
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -22,6 +22,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
 | **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
 | **EXP_11_LocomotorResonance**| `scripts/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_12_SquatStand** | `scripts/experiments/experiment_squat_stand_cycle.py` | Simulates longevity thermodynamics of deep squatting vs chair sitting. | `outputs/thermodynamic_cost/squat_stand_cycle/chair_vs_floor_dissipation.csv` | ✅ **Active** | Expands longevity implications. |
 
 ## 2. Toy Models (Validation)
 

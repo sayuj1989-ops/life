@@ -95,10 +95,14 @@ def main():
             'tags': tags_list
         })
 
-    # Find Target Cluster: High Anisotropy
+    # Find Target Cluster: High Anisotropy and pLDDT >= 70
+    valid_clusters = [c for c in cluster_stats if c['mean_plddt'] >= 70]
+    if not valid_clusters:
+        valid_clusters = cluster_stats # fallback if none found
+
     # Sort by Anisotropy descending
-    cluster_stats.sort(key=lambda x: x['mean_aniso'], reverse=True)
-    target_cluster = cluster_stats[0]
+    valid_clusters.sort(key=lambda x: x['mean_aniso'], reverse=True)
+    target_cluster = valid_clusters[0]
 
     members = target_cluster['members']
     print(f"\nTarget Cluster (Highest Anisotropy): {members}")

@@ -694,6 +694,33 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Durotactic Curvature Number ($\mathcal{D}_{c}$)
+
+We propose that the macroscopic rest curvature ($\boldsymbol{\kappa}_{rest}$) of the developing spine is explicitly coupled to the microscopic stiffness gradients of the surrounding extracellular matrix (ECM). We define $\mathcal{D}_{c}$ as the ratio of curvature induced by the ECM stiffness gradient to the genetically prescribed baseline curvature.
+
+$$ \mathcal{D}_{c} = \frac{\chi_{ECM} \|\nabla E_{ECM}\|}{\|\boldsymbol{\kappa}_{gen}\|} $$
+
+*   **Symbols**:
+    *   $\nabla E_{ECM}$: The spatial gradient of the ECM Young's Modulus $[M L^{-2} T^{-2}]$ (e.g., Pa/m).
+    *   $\boldsymbol{\kappa}_{gen}$: The genetically hard-coded baseline curvature vector $[L^{-1}]$.
+    *   $\chi_{ECM}$: The Durotactic Coupling Constant $[M^{-1} L T^2]$.
+*   **Dimensions**:
+    *   $[\mathcal{D}_{c}] = \frac{[M^{-1} L T^2] \cdot [M L^{-2} T^{-2}]}{[L^{-1}]} = [1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{D}_{c} \gg 1$: The morphogenetic shape is dominated by environmental mechanical cues (durotaxis-driven remodeling). The organism actively steers its growth to align with or oppose regional stiffness gradients in the ECM.
+    *   $\mathcal{D}_{c} \ll 1$: The shape is entirely genetically deterministic, ignoring the local mechanical environment.
+    *   **Biological Basis**: Cells preferentially migrate and exert higher traction forces towards stiffer substrates (durotaxis). In the spine, an asymmetric ECM stiffness gradient (e.g., stiffer concave side) biases cellular traction and matrix deposition, creating a macroscopic bending moment.
+*   **Measurable Proxy**: The ratio of the ECM stiffness gradient magnitude (measured via in vivo Atomic Force Microscopy (AFM) or Magnetic Resonance Elastography (MRE) across the intervertebral disc and adjacent paraspinal tissues) to the regional Cobb angle rate of change.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Matrix Homogenization Nullification**
+    *   **Data Needed**: Measurement of spinal curvature development in a growing animal model where the paraspinal ECM is uniformly crosslinked (e.g., via systemic sub-lethal riboflavin/UVA or generalized lysyl oxidase up-regulation) to eliminate the spatial stiffness gradient ($\nabla E_{ECM} \to 0$), while preserving absolute mean stiffness.
+    *   **Refutation**: If counter-curvature robustly develops with identical magnitude despite the complete absence of a spatial stiffness gradient, the hypothesis that durotactic cues ($\chi_{ECM}$) drive macroscopic shape is falsified. (Reference: Lo et al., 2000).
+*   **Test 2: The Ectopic Gradient Induction**
+    *   **Data Needed**: Implantation of a bio-inert, non-contractile hydrogel possessing an engineered stiffness gradient adjacent to a straight, developing spine segment. Measurement of the induced target curvature ($\boldsymbol{\kappa}_{rest}$) relative to the artificial gradient vector.
+    *   **Refutation**: If the spinal segment fails to deviate and remodel its curvature proportionally toward the stiffer region of the engineered gradient, it falsifies the existence of a nonzero coupling constant $\chi_{ECM}$ linking local matrix durotaxis to macroscopic spinal alignment. (Reference: Iskratsch et al., 2014).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

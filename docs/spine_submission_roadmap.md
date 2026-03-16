@@ -11,6 +11,7 @@
 - [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (Simulated in `outputs/sim/2026-02-22/`).
 - [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
 - [ ] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
+- [x] **Metabolic Pacing:** Implemented circadian optimization of metabolic supply to mitigate energy deficit.
 
 ## Phase 2: Clinical Validation (Weeks 3-4)
 

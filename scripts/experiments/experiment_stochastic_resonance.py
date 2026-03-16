@@ -108,7 +108,7 @@ def main():
     # Mark clinical threshold
     ax.axhline(10, color='r', linestyle=':', alpha=0.5)
     ax.axhline(-10, color='r', linestyle=':', alpha=0.5)
-    ax.text(1, 11, 'Clinical Scoliosis Threshold ($10^\circ$)', color='r')
+    ax.text(1, 11, 'Clinical Scoliosis Threshold ($10^\\circ$)', color='r')
 
     ax.legend()
     ax.grid(True, alpha=0.3)

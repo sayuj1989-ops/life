@@ -1,0 +1,3 @@
+This diagram illustrates the Information-Elasticity Coupling (IEC) feedback loop in the spine. Developmental information acts as "countercurvature" against gravitational loading.
+The key insight is the "Derivative Gain Trap" during adolescent growth. Increased neural delay (\tau) during the growth spurt turns essential damping gains into destabilizing scoliotic buckling ("Metabolic Buckling").
+The mechanism is exacerbated by an Energy Deficit Window driven by $L^4$ geometric scaling costs vs $L^2$ metabolic supply.

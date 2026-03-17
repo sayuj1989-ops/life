@@ -276,7 +276,12 @@ def run_focused_cycle(targets=None):
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))
 
-        f.write("\n\n## Key Plots Summary\n")
+        f.write("\n\n### CSV-ready block\n")
+        f.write("```csv\n")
+        f.write(df.to_csv(index=False))
+        f.write("```\n")
+
+        f.write("\n## Key Plots Summary\n")
         f.write("*   Generated pLDDT profiles for all proteins.\n")
         f.write("*   Generated PAE heatmaps for proteins with available PAE data.\n")
 
@@ -287,6 +292,22 @@ def run_focused_cycle(targets=None):
             f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
             f.write(f"*   **Confidence:** {row['confidence_level']}\n")
             f.write(f"*   **Next Test:** {'Compare curvature under stress in simulation.' if row['hinge_candidates'] > 0 else 'Check expression gradients in spine.'}\n")
+
+        f.write("\n## Quality & Reproducibility Checklist\n")
+        f.write(f"*   **Data source:** {'AlphaFold DB' if is_default else 'User Input'}\n")
+        f.write(f"*   **Date/time of run:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        try:
+            import subprocess
+            commit_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('utf-8').strip()
+        except Exception:
+            commit_hash = 'Unknown'
+        f.write(f"*   **Code version / commit hash:** Bolt-BioFold v1.0 / {commit_hash}\n")
+        f.write(f"*   **Parameters:** pLDDT >= 70 for geometry, segmentation refined by PAE\n")
+        missing_pae = df[df['PAE_mean'] == 0.0]['protein_id'].tolist()
+        if missing_pae:
+            f.write(f"*   **Notes:** PAE not available for: {', '.join(missing_pae)}\n")
+        else:
+            f.write(f"*   **Notes:** All artifacts retrieved successfully.\n")
 
         f.write("\n## Best Next Move\n")
         f.write(f"🚀 **{best_move}**\n")

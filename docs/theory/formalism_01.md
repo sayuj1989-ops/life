@@ -694,6 +694,30 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Growth Plate Shear-Growth Coupling ($\Gamma_{shear}$)
+
+We formalize the influence of transverse shear stress on the vertebral growth plate's proliferation rate, extending the Hueter-Volkmann law to rotational dynamics. We define $\Gamma_{shear}$ as the specific sensitivity of the torsional growth strain rate ($\dot{\varepsilon}_{rot}$) to the time-averaged transverse shear stress ($\langle \tau_{transverse} \rangle$) at the epiphyseal plate.
+
+$$ \dot{\varepsilon}_{rot} = \Gamma_{shear} \langle \tau_{transverse} \rangle $$
+
+*   **Symbols**:
+    *   $\dot{\varepsilon}_{rot}$: Rate of rotational (torsional) growth strain $[T^{-1}]$.
+    *   $\langle \tau_{transverse} \rangle$: Time-averaged transverse shear stress at the growth plate $[ML^{-1}T^{-2}]$.
+    *   $\Gamma_{shear}$: Shear-growth coupling constant $[M^{-1}LT]$.
+*   **Dimensions**:
+    *   $[T^{-1}] / [ML^{-1}T^{-2}] = [M^{-1}LT]$.
+*   **Physical Interpretation**: $\Gamma_{shear}$ quantifies the efficiency by which unbalanced transverse shear stress is converted into irreversible rotational growth (torsional deformity). A high value indicates that the growth plate is highly susceptible to skewing under torsion, driving the characteristic 3D spiral pattern of scoliosis.
+*   **Measurable Proxy**: The degree of vertebral axial rotation (e.g., Nash-Moe scale or computational CT measurement) relative to the measured local lateral Cobb angle progression rate.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Shear-Nullification Growth Test**
+    *   **Data Needed**: Measurement of vertebral rotation in an actively growing *in vivo* scoliotic model where lateral bending is permitted but transverse shear stress is completely neutralized (e.g., via a specialized 1-DOF constrained orthosis or surgical pin constraint).
+    *   **Refutation**: If significant vertebral axial rotation (torsional deformity) still develops despite the complete mechanical elimination of transverse shear forces, then shear stress is not the requisite driver for rotational growth. (Reference: Stokes et al., 2007).
+*   **Test 2: The Isotropic Chondrocyte Rescue**
+    *   **Data Needed**: 3D spatial mapping of chondrocyte column orientation in the growth plates of scoliotic vs. non-scoliotic spines under applied torsional load.
+    *   **Refutation**: If chondrocyte columns remain perfectly parallel to the longitudinal axis (isotropic transverse growth) despite applied shear stress, and do not skew to accommodate torsion, the physical mechanism of shear-induced rotational growth is falsified. (Reference: Aronsson et al., 2010).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1125,3 +1149,5 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+77. **Stokes, I. A., et al. (2007).** "Biomechanical modeling of spinal growth and the progression of scoliosis." *Journal of Biomechanics*, 40(6). (Formalizes the impact of asymmetric forces on spinal growth plate dynamics).
+78. **Aronsson, D. D., et al. (2010).** "Mechanisms of spinal growth and scoliotic deformity." *Orthopedic Clinics of North America*, 41(3). (Highlights the 3D rotational aspect of scoliotic growth).

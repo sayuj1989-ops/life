@@ -1,0 +1,10 @@
+Adolescent Idiopathic Scoliosis (AIS) is proposed to be a predictable consequence of a "Derivative Gain Trap" during the adolescent growth spurt.
+During childhood, derivative gains (proprioceptive feedback via tau) provide essential damping against external perturbations.
+However, during the adolescent growth spurt, the absolute neural feedback delay (tau) increases sharply as the spine elongates.
+This elongation shifts the system across a critical stability margin. The once-stabilizing derivative gains become destabilizing, resulting in a supercritical Hopf bifurcation (Metabolic Buckling).
+A causal loop diagram illustrating this mechanism:
+1. Adolescent Growth Spurt increases Spinal Length L.
+2. Increased L leads to increased Proprioceptive Delay tau.
+3. As tau exceeds a critical threshold, Derivative Damping flips from Negative (Stabilizing) to Positive (Destabilizing).
+4. This results in the "Derivative Gain Trap".
+5. The instability initiates scoliotic curve progression, which in turn causes further mechanical asymmetry, creating a vicious cycle of structural failure.

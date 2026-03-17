@@ -1,0 +1,9 @@
+The Biological Countercurvature of Spacetime is a novel Information-Cosserat Framework for spinal geometry.
+It proposes that developmental information (e.g., HOX patterning) acts as biological "countercurvature", essentially modifying the effective metric of spacetime experienced by living structures.
+This allows the human spine to maintain its characteristic S-shaped sagittal profile against the relentless force of Earth's gravity.
+The framework identifies an "Allometric Trap" (Bg ~ 0.01) unique to humans, making upright posture metabolically dependent.
+Scoliosis is reframed not as a mechanical failure, but as "Metabolic Buckling"—a thermodynamic scaling failure where the energy deficit ($L^4$ scaling cost vs $L^2$ metabolic supply) and delay-induced instability trigger geometric collapse.
+A central illustration mapping this theory:
+1. Left side: The developmental genome projecting "Information-Elasticity Coupling" (IEC) fields.
+2. Center: The multi-segment Cosserat rod of the human spine balancing information fields against gravitational geodesics.
+3. Right side: The parameter space showing regimes of gravity-dominated shape, cooperative normal physiology, and information-dominated distortion (e.g., in microgravity or pathology).

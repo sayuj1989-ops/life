@@ -2,23 +2,48 @@
 
 ## Data Integrity and Freshness
 
-- **Runs Audited**: 29
-
-- **Missing Linked Outputs**: 0 (None)
-
-- **Schema Drifts**: None detected in scoped files with `gene_symbol`.
-
+- **Runs Audited**: 31
+- **Missing Linked Outputs**: 0
+- **Schema Drifts**: 29
+  - Date 2026-01-09 has different columns.
+  - Date 2026-01-14 has different columns.
+  - Date 2026-01-16 has different columns.
+  - Date 2026-01-18 has different columns.
+  - Date 2026-01-20 has different columns.
+  - Date 2026-01-21 has different columns.
+  - Date 2026-01-27 has different columns.
+  - Date 2026-01-31 has different columns.
+  - Date 2026-02-05 has different columns.
+  - Date 2026-02-06 has different columns.
+  - Date 2026-02-07 has different columns.
+  - Date 2026-02-08 has different columns.
+  - Date 2026-02-09 has different columns.
+  - Date 2026-02-10 has different columns.
+  - Date 2026-02-11 has different columns.
+  - Date 2026-02-12 has different columns.
+  - Date 2026-02-13 has different columns.
+  - Date 2026-02-16 has different columns.
+  - Date 2026-02-17 has different columns.
+  - Date 2026-02-18 has different columns.
+  - Date 2026-02-20 has different columns.
+  - Date 2026-02-21 has different columns.
+  - Date 2026-02-22 has different columns.
+  - Date 2026-02-23 has different columns.
+  - Date 2026-02-26 has different columns.
+  - Date 2026-02-28 has different columns.
+  - Date 2026-03-02 has different columns.
+  - Date 2026-03-04 has different columns.
+  - Date 2026-03-05 has different columns.
 
 ## Identical Per-Gene Vectors Across Runs (Static Metrics)
 
 The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) across multiple runs, indicating reused static inputs rather than fresh measurements:
 
 | Gene | Runs Present | First Date | Last Date | Anisotropy | pLDDT |
-
 |------|--------------|------------|-----------|------------|-------|
-| NTRK3 | 17 | 2026-01-27 | 2026-02-28 | 1.936111715585754 | 76.81557806912993 |
+| NTRK3 | 18 | 2026-01-27 | 2026-03-05 | 1.936111715585754 | 76.81557806912993 |
+| RUNX3 | 14 | 2026-01-27 | 2026-03-05 | 2.0611670656856456 | 60.564096385542165 |
 | LMNA | 13 | 2026-01-14 | 2026-02-26 | 4.751667397697646 | 76.37072289156627 |
-| RUNX3 | 13 | 2026-01-27 | 2026-02-18 | 2.0611670656856456 | 60.564096385542165 |
 | NF1 | 12 | 2026-01-18 | 2026-02-26 | 1.9279279346731688 | 87.17264755480608 |
 | OTOP1 | 10 | 2026-01-27 | 2026-02-26 | 1.7507094616744632 | 75.68916666666668 |
 | EGR3 | 10 | 2026-01-27 | 2026-02-26 | 3.762072398804325 | 49.96868217054263 |
@@ -64,53 +89,32 @@ The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) a
 | CLOCK | 2 | 2026-02-13 | 2026-02-18 | 1.8268099455225064 | 60.60554373522458 |
 | COL1A2 | 2 | 2026-02-13 | 2026-02-18 | 2.876180753979266 | 53.64081991215226 |
 
-## When 'New' Reports Reuse Unchanged Values
+## Reused Reports (Unchanged per-gene values)
 
-- **2026-01-18**: Reused static metrics for 2 genes (e.g., IFT88, LMNA...)
-
-- **2026-01-20**: Reused static metrics for 4 genes (e.g., IFT88, LMNA, NF1, COL1A1...)
-
-- **2026-01-21**: Reused static metrics for 3 genes (e.g., IFT88, LMNA, NF1...)
-
-- **2026-01-27**: Reused static metrics for 2 genes (e.g., LMNA, NF1...)
-
-- **2026-01-31**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-05**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-06**: Reused static metrics for 7 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-07**: Reused static metrics for 7 genes (e.g., LMNA, NF1, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-08**: Reused static metrics for 6 genes (e.g., IFT88, LMNA, NTRK3, RUNX3, OTOP1...)
-
-- **2026-02-09**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-10**: Reused static metrics for 11 genes (e.g., IFT88, METTL3, NF1, COL1A1, FLNA...)
-
-- **2026-02-11**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-12**: Reused static metrics for 3 genes (e.g., NTRK3, RUNX3, HIF1A...)
-
-- **2026-02-13**: Reused static metrics for 29 genes (e.g., IFT88, LMNA, METTL3, NF1, COL1A1...)
-
-- **2026-02-16**: Reused static metrics for 12 genes (e.g., EMD, DZIP1, BNC2, FBLN5, COL11A2...)
-
-- **2026-02-17**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
-
-- **2026-02-18**: Reused static metrics for 31 genes (e.g., IFT88, LMNA, METTL3, NF1, COL1A1...)
-
-- **2026-02-20**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-- **2026-02-22**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-- **2026-02-23**: Reused static metrics for 1 genes (e.g., HIF1A...)
-
-- **2026-02-26**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, OTOP1, EGR3...)
-
-- **2026-02-28**: Reused static metrics for 1 genes (e.g., NTRK3...)
-
-
-## Conclusion
-
-- **Actionable Insight**: Many core candidates (e.g., LBX1, PIEZO2, LMNA) show static values across the trend window. This confirms the caveat that high-anisotropy narratves may over-interpret static inputs.
+- **2026-01-07**: Reused identical vectors for 6 genes (e.g., PIEZO2, LBX1, YAP1...)
+- **2026-01-14**: Reused identical vectors for 5 genes (e.g., PIEZO2, LBX1, YAP1...)
+- **2026-01-20**: Reused identical vectors for 7 genes (e.g., PIEZO2, LBX1, IFT88...)
+- **2026-01-21**: Reused identical vectors for 8 genes (e.g., PIEZO2, LBX1, POC5...)
+- **2026-01-27**: Reused identical vectors for 5 genes (e.g., PIEZO2, LBX1, PIEZO1...)
+- **2026-01-31**: Reused identical vectors for 9 genes (e.g., PIEZO2, LBX1, PIEZO1...)
+- **2026-02-05**: Reused identical vectors for 8 genes (e.g., PIEZO2, LBX1, LMNA...)
+- **2026-02-06**: Reused identical vectors for 9 genes (e.g., PIEZO2, LBX1, LMNA...)
+- **2026-02-07**: Reused identical vectors for 9 genes (e.g., PIEZO2, LBX1, LMNA...)
+- **2026-02-08**: Reused identical vectors for 9 genes (e.g., PIEZO2, LBX1, IFT88...)
+- **2026-02-09**: Reused identical vectors for 4 genes (e.g., PIEZO2, LBX1, NTRK3...)
+- **2026-02-10**: Reused identical vectors for 26 genes (e.g., PIEZO2, LBX1, YAP1...)
+- **2026-02-13**: Reused identical vectors for 43 genes (e.g., PIEZO2, LBX1, YAP1...)
+- **2026-02-16**: Reused identical vectors for 22 genes (e.g., PIEZO2, LBX1, POC5...)
+- **2026-02-18**: Reused identical vectors for 46 genes (e.g., PIEZO2, LBX1, YAP1...)
+- **2026-02-20**: Reused identical vectors for 10 genes (e.g., PIEZO2, NTRK3, ARNTL...)
+- **2026-02-22**: Reused identical vectors for 3 genes (e.g., PIEZO2, LBX1, NTRK3)
+- **2026-02-26**: Reused identical vectors for 10 genes (e.g., PIEZO2, LMNA, NF1...)
+- **2026-02-28**: Reused identical vectors for 10 genes (e.g., PIEZO2, LBX1, NTRK3...)
+- **2026-01-18**: Reused identical vectors for 5 genes (e.g., LBX1, POC5, ITGB1...)
+- **2026-02-11**: Reused identical vectors for 9 genes (e.g., LBX1, NTRK3, RUNX3...)
+- **2026-02-12**: Reused identical vectors for 10 genes (e.g., LBX1, NTRK3, RUNX3...)
+- **2026-02-17**: Reused identical vectors for 8 genes (e.g., NTRK3, RUNX3, ARNTL...)
+- **2026-03-05**: Reused identical vectors for 9 genes (e.g., NTRK3, RUNX3, ARNTL...)
+- **2026-02-23**: Reused identical vectors for 8 genes (e.g., ARNTL, DMD, GHR...)
+- **2026-03-02**: Reused identical vectors for 6 genes (e.g., ARNTL, DMD, GHR...)
+- **2026-03-04**: Reused identical vectors for 6 genes (e.g., ARNTL, DMD, GHR...)

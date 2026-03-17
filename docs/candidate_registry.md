@@ -227,169 +227,170 @@ This registry tracks high-priority gene and protein candidates identified as rel
 | 213 | **COL10A1** | 85 | **ECM**: Specific marker of the load-bearing growth plate zone. | Specific to hypertrophic chondrocytes in the load-bearing zone of the growth plate. |
 | 214 | **COL2A1** | 85 | **ECM**: Primary gravity-resisting molecule in the spine. | Major structural component resisting compressive gravity loads in spine. |
 | 215 | **COL5A1** | 85 | **ECM**: Structural determinant of tissue stiffness. | Regulates collagen fibril diameter and tissue tensile strength. |
-| 216 | **COL6A1** | 85 | **ECM**: Key for muscle-matrix mechanical coupling. | Interface between muscle and ECM; critical for force transmission. |
-| 217 | **COL9A1** | 85 | **ECM**: Structural component of the intervertebral disc and cartilage. | FACIT collagen stabilizing cartilage fibrils against compressive load. |
-| 218 | **COL9A2** | 85 | **ECM**: Structural integrity of cartilage matrix. | FACIT collagen bridging fibrils; provides shear resistance to cartilage under load. |
-| 219 | **COL9A3** | 85 | **ECM**: FACIT collagen essential for cartilage mechanical integrity. | Collagen IX; FACIT collagen bridging fibrils and providing shear resistance. |
-| 220 | **CREB3L1** | 85 | **Bone**: ER stress sensor critical for bone matrix quality. | OASIS; ER stress transducer upregulated during osteoblast differentiation and matrix secretion. |
-| 221 | **CRTAP** | 85 | **ECM**: Component of the collagen modification complex essential for stiffness. | Part of the collagen prolyl 3-hydroxylation complex; essential for bone matrix quality. |
-| 222 | **CSPP1** | 85 | **Cilia**: Centrosomal protein linked to Joubert. | Centrosome and spindle pole associated; essential for primary cilia formation. |
-| 223 | **CTNNB1** | 85 | **Adhesion**: Key Wnt effector and mechanotransducer. | Mechanosensitive at adherens junctions; nuclear translocation modulated by strain. |
-| 224 | **DAAM1** | 85 | **PCP**: Core PCP effector. | Formin that nucleates actin polymerization downstream of Wnt/PCP; essential for cell polarity and shape against stress. |
-| 225 | **DCHS1** | 85 | **PCP**: Partner of FAT4 linked to Van Maldergem. | Atypical cadherin (partner of FAT4) regulating tissue polarity and shape. |
-| 226 | **DLL3** | 85 | **Segmentation**: Notch ligand essential for somite boundaries. | Notch signaling component for segmentation. |
-| 227 | **DNAAF1** | 85 | **Cilia**: Dynein assembly factor linked to ciliary motility and laterality. | Dynein assembly factor; essential for motile cilia function (flow sensing). |
-| 228 | **DSE** | 85 | **ECM**: Dermatan sulfate epimerase; essential for collagen fibril organization. | Dermatan sulfate epimerase; essential for collagen fibril organization and tissue integrity. |
-| 229 | **DVL1** | 85 | **PCP**: PCP mediator linked to segmentation defects. | Mediator of Wnt/PCP signaling; establishes tissue polarity against stress. |
-| 230 | **DVL2** | 85 | **PCP**: PCP effector essential for vertebral segmentation. | Dishevelled-2; essential for PCP signaling aligning tissues against stress. |
-| 231 | **DYNC2LI1** | 85 | **Cilia**: Dynein-2 light intermediate chain. | Dynein component for retrograde transport (flow sensing). |
-| 232 | **EVC** | 85 | **Cilia**: Ciliary basal body protein regulating Hedgehog signaling. | Localizes to base of cilia; regulates Hedgehog signaling. |
-| 233 | **EVC2** | 85 | **Cilia**: Partner of EVC in ciliary signaling. | Forms complex with EVC at cilia base. |
-| 234 | **FAT1** | 85 | **PCP**: Key PCP/Adhesion molecule for tissue integrity. | Atypical cadherin; coordinates actin dynamics and tissue polarity against mechanical stress. |
-| 235 | **FAT4** | 85 | **PCP**: Hippo pathway member linked to syndromic scoliosis. | Atypical cadherin in Hippo pathway; regulates tissue polarity and growth under stress. |
-| 236 | **FBLN4** | 85 | **ECM**: Critical for elastic fiber integrity in the spine. | Essential for elastic fiber assembly; provides recoil against gravity loading. |
-| 237 | **FBLN5** | 85 | **ECM**: Essential for elastic recoil properties of ECM. | Essential for elastic fiber assembly; provides tissue recoil against gravity. |
-| 238 | **FGFR1** | 85 | **Signaling**: Key growth factor receptor linked to congenital spinal defects. | Regulates osteogenesis and limb development under load. |
-| 239 | **FHL1** | 85 | **Mechanotransduction**: Muscle mechanosensor linked to spinal rigidity. | LIM domains act as mechanosensors; mutations cause Reducing Body Myopathy. |
-| 240 | **FHL2** | 85 | **Mechanotransduction**: Mechanosensitive LIM protein shuttling between cytoskeleton and nucleus. | Localizes to focal adhesions and Z-discs; translocates to nucleus upon mechanical stress. |
-| 241 | **FUZ** | 85 | **PCP**: Essential PCP effector for ciliogenesis. | Controls apical actin enrichment and cilia formation; required for directional fluid flow sensing. |
-| 242 | **FZD7** | 85 | **PCP**: Primary receptor for Wnt11 in the PCP pathway. | Receptor for Wnt11 in the Planar Cell Polarity (PCP) pathway, transmitting mechanical cues to align tissues. |
-| 243 | **GAS8** | 85 | **Cilia**: Ciliary motility protein linked to axis straightening. | Microtubule-binding protein in axoneme; required for ciliary motility. |
-| 244 | **GDF6** | 85 | **Development**: Direct cause of vertebral fusion defects. | BMP family member regulating vertebral segmentation and fusion. |
-| 245 | **GJA1** | 85 | **Mechanotransduction**: Essential for osteocyte mechanotransduction network. | Hemichannels open in response to mechanical stress; essential for osteocyte network. (Jamsheer et al., 2010) |
-| 246 | **GNPTAB** | 85 | **Trafficking**: Trafficking defect affecting ECM quality. | Targets lysosomal enzymes; deficiency leads to ECM accumulation and stiffness defects. |
-| 247 | **GORAB** | 85 | **Golgi**: Golgi protein essential for Hedgehog signaling and skeletal development. | Golgi protein essential for Hedgehog signaling and skeletal development; cilia are gravity sensors. |
-| 248 | **HAS2** | 85 | **ECM**: Crucial for IVD mechanics (swelling pressure) and linked to AIS via epigenetics. | Synthesizes hyaluronan, essential for osmotic swelling pressure and tissue hydration against compression. |
-| 249 | **HES1** | 85 | **Segmentation**: Core component of the segmentation clock oscillator. | Hairy and enhancer of split 1; cyclic expression (clock) essential for segmentation timing. |
-| 250 | **HES7** | 85 | **Segmentation**: Proven segmentation defect link to spinal malformation. | Establishes structural units (somites) resisting gravity. |
-| 251 | **IFT122** | 85 | **Cilia**: IFT complex component essential for ciliary maintenance. | Component of IFT complex A; essential for retrograde ciliary transport. |
-| 252 | **IFT140** | 85 | **Cilia**: Ciliopathy link to skeletal dysplasia. | Essential for retrograde ciliary transport (IFT-A) and flow sensing. |
-| 253 | **IFT172** | 85 | **Cilia**: IFT complex component essential for skeletal ciliogenesis. | Intraflagellar Transport 172; regulates ciliary signaling (Hedgehog). |
-| 254 | **IFT52** | 85 | **Cilia**: Core IFT-B complex member. | Component of IFT-B complex; essential for anterograde ciliary transport and ciliogenesis. |
-| 255 | **IGF1** | 85 | **Signaling**: Growth factor connecting systemic loading to spine progression. | Systemic growth factor sensitive to loading status; decreases in spaceflight. |
-| 256 | **ILK** | 85 | **Adhesion**: Central hub for integrin-mediated force transduction. | Links integrins to actin cytoskeleton; central hub for force transduction. |
-| 257 | **INPPL1** | 85 | **Signaling**: Skeletal dysplasia link via focal adhesion signaling. | SHIP2; regulates PI3K signaling and focal adhesion dynamics; negative regulator of insulin signaling. |
-| 258 | **INTU** | 85 | **PCP**: Strong PCP/Cilia link to segmentation. | Regulates ciliogenesis and actin assembly; essential for sensing fluid flow. |
-| 259 | **ITGA11** | 85 | **Mechanotransduction**: Key stiffness sensor for mesenchymal stem cells. | Integrin alpha-11; major collagen receptor on MSCs sensing tissue stiffness. |
-| 260 | **ITGA5** | 85 | **Mechanotransduction**: Required for fibronectin matrix assembly and somite integrity. | Integrin alpha-5; fibronectin receptor sensing matrix assembly under tension. |
-| 261 | **ITGB3** | 85 | **Mechanotransduction**: Key osteocyte mechanosensor. | Forms avb3 integrin (mechanosensor); essential for osteocyte response to fluid flow/load. |
-| 262 | **KBTBD13** | 85 | **Muscle**: Muscle-specific ubiquitin ligase adaptor linked to myopathy. | Kelch repeat protein regulating muscle structure and ubiquitin-mediated degradation. |
-| 263 | **KIF22** | 85 | **Cytoskeleton**: Cytoskeletal motor protein with direct link to vertebral fusion. | Kinesin-like protein regulating microtubule dynamics and potentially mechanosensing. |
-| 264 | **KIF24** | 85 | **Cilia**: Ciliary remodeling protein linked to AIS via GWAS. | Kinesin-13 family member that depolymerizes centriolar microtubules; regulates ciliogenesis. |
-| 265 | **KIF3B** | 85 | **Cilia**: Kinesin-2 motor subunit. | Heterotrimeric kinesin-2 subunit; essential for ciliary transport (flow sensing). |
-| 266 | **KLHL41** | 85 | **Muscle**: Stabilizer of Nebulin. | Regulates stability of Nebulin; essential for sarcomere integrity. |
-| 267 | **LATS1** | 85 | **Mechanotransduction**: Core kinase of the Hippo mechanotransduction pathway. | LATS1 kinase; phosphorylates YAP/TAZ in response to low stiffness/unloading. |
-| 268 | **LATS2** | 85 | **Mechanotransduction**: Core kinase of the Hippo mechanotransduction pathway. | LATS2 kinase; partner of LATS1 in YAP/TAZ regulation under mechanical stress. |
-| 269 | **LMOD1** | 85 | **Muscle**: Actin nucleator determining cellular contractile tone. | Leiomodin-1; actin nucleator regulating thin filament length in smooth and non-muscle cells. |
-| 270 | **LMOD3** | 85 | **Muscle**: Critical for sarcomere assembly and maintenance. | Leiomodin-3; essential for thin filament nucleation and length regulation in sarcomeres. |
-| 271 | **LMX1B** | 85 | **Development**: Dorso-ventral patterning and collagen regulation. | Specifies dorsal identity and regulates collagen expression. |
-| 272 | **LOX** | 85 | **ECM**: Critical enzyme for establishing tissue stiffness against gravity. | Crosslinks collagen/elastin; activity is modulated by mechanical load. |
-| 273 | **LOXL3** | 85 | **ECM**: Enzyme determining the stiffness of the spinal column. | Oxidizes lysines in collagen/elastin; essential for tissue tensile strength against gravity. |
-| 274 | **LRP5** | 85 | **Signaling**: Key regulator of bone mechanoadaptation. | Wnt co-receptor regulating bone mass in response to load. |
-| 275 | **LTBP3** | 85 | **ECM**: Regulator of TGF-beta signaling critical for spinal ossification. | Regulates TGF-beta bioavailability in bone and ECM. |
-| 276 | **LTBP4** | 85 | **ECM**: Mechanosensitive TGF-beta anchor linked to AIS. | Binds TGF-beta to ECM, releasing it upon mechanical strain. |
-| 277 | **MAGEL2** | 85 | **Muscle**: Syndromic link to muscle hypotonia and spine. | Regulates muscle mass and bone density; loss mimics 'failure to thrive' (unloading). |
-| 278 | **MATN3** | 85 | **ECM**: Structural component of cartilage matrix linked to dysplasia. | Matrilin-3; filamentous matrix protein essential for cartilage stiffness. |
-| 279 | **MBTPS2** | 85 | **ER**: UPR/ER stress mechanosensing link. | Regulates UPR and response to ER stress (mechanical stress); cleaves OASIS (CREB3L1). |
-| 280 | **MEIS1** | 85 | **Transcription_Factor**: Developmental regulator of paraxial mesoderm linked to AIS. | Homeobox transcription factor; regulates paraxial mesoderm patterning and myogenesis. |
-| 281 | **MEOX2** | 85 | **Segmentation**: Essential for vertebral formation. | Partner of MEOX1; essential for sclerotome development and vertebral formation. |
-| 282 | **MKS1** | 85 | **Cilia**: Ciliopathy gene essential for ciliary integrity. | Meckel Syndrome Type 1; essential for ciliary transition zone and signaling. |
-| 283 | **MKX** | 85 | **Tendon**: Mechanosensitive regulator of tendon stiffness. | Transcription factor regulating tendon differentiation; expression is mechanically regulated. |
-| 284 | **MMP13** | 85 | **ECM**: Major mechanosensitive collagenase. | Collagenase-3; upregulated by mechanical loading in cartilage and bone. |
-| 285 | **MMP2** | 85 | **ECM**: Mechanosensitive MMP modifying connective tissue stiffness. | Gelatinase A; degrades collagen IV/elastin; mechanically responsive in connective tissues. |
-| 286 | **MSGN1** | 85 | **Segmentation**: Master regulator of paraxial mesoderm essential for somites. | Master regulator of paraxial mesoderm differentiation (somites). |
-| 287 | **MSTN** | 85 | **Muscle**: Strong muscle link; potential therapeutic target for unloading. | Inhibition leads to muscle growth; key target for preventing atrophy in microgravity. (Smith et al., 2020) |
-| 288 | **MYBPC1** | 85 | **Muscle**: Direct regulator of muscle tone and posture. | Regulates actomyosin crossbridges and muscle tone; essential for postural maintenance. |
-| 289 | **MYF5** | 85 | **Muscle**: Defines the paraspinal muscle lineage essential for spinal support. | Myogenic regulatory factor defining the epaxial (back) muscle lineage. |
-| 290 | **MYH1** | 85 | **Muscle**: Determines contractility in fast-twitch muscle fibers. | Myosin heavy chain 1 (Type IIX); fast-twitch glycolytic muscle fiber component. |
-| 291 | **MYH7** | 85 | **Muscle**: Primary motor protein for slow-twitch postural muscles; direct scoliosis link. | Slow myosin heavy chain; essential for maintaining postural tone against gravity. |
-| 292 | **MYH8** | 85 | **Muscle**: Neonatal/masticatory myosin; mutations cause trismus-pseudocamptodactyly syndrome. | Neonatal/masticatory myosin; mutations cause contractures limiting movement against gravity. |
-| 293 | **MYO15A** | 85 | **Gravity_Sensing**: Motor protein building the cellular gravity sensors. | Unconventional myosin required for the elongation and maintenance of stereocilia in vestibular gravity sensors. |
-| 294 | **MYO6** | 85 | **Gravity_Sensing**: Critical motor protein for the vestibular gravity sensor. | Motor protein essential for maintaining the structure of hair cell stereocilia, which sense gravity and motion. |
-| 295 | **MYOD1** | 85 | **Muscle**: Foundational transcription factor for posture-supporting paraspinal muscles. | Master regulator of myogenesis; essential for developing the paraspinal muscles that support posture against gravity. |
-| 296 | **MYOG** | 85 | **Muscle**: Key driver of terminal muscle differentiation and functional tone. | Myogenin, critical for terminal differentiation of muscle fibers; target of polyadenylation (e.g., TENT5A) in paraspinal muscle. |
-| 297 | **NF2** | 85 | **Signaling**: Mechanosensor linking cell junctions to Hippo signaling. | Merlin; links actin cytoskeleton to membrane proteins and acts as an upstream activator of the Hippo pathway (sensing contact/tension). |
-| 298 | **NFE2L2** | 85 | **Signaling**: Critical defender against microgravity-induced oxidative damage in paraspinal muscles. | Master regulator of antioxidant response; activated by unloading-induced oxidative stress (ROS). |
-| 299 | **NKX3-2** | 85 | **Growth_Plate**: Regulates cartilage growth under load. | Inhibits chondrocyte maturation; modulates stress response in cartilage. |
-| 300 | **NOG** | 85 | **Signaling**: Regulator of vertebral segmentation and fusion. | Antagonizes BMP to fine-tune bone formation under load. |
-| 301 | **NOTCH1** | 85 | **Segmentation**: Critical for vertebral segmentation timing. | Regulates somitogenesis timing; establishes axial pattern. |
-| 302 | **NOTCH2** | 85 | **Segmentation**: Linked to vertebral segmentation and bone mass. | Notch signaling is sensitive to fluid shear stress. |
-| 303 | **NPHP4** | 85 | **Cilia**: Ciliopathy gene linking transition zone defects to skeletal form. | Nephrocystin; regulates ciliary transition zone and signaling. |
-| 304 | **NPR3** | 85 | **Growth_Plate**: Regulator of bone growth rate and skeletal proportions. | Clearance receptor for natriuretic peptides; regulates bone growth under load. |
-| 305 | **OBSCN** | 85 | **Muscle**: Giant structural signaling protein in muscle. | Giant sarcomeric protein linking myofibrils to sarcoplasmic reticulum. |
-| 306 | **P3H1** | 85 | **ECM**: Essential enzyme for collagen mechanical quality. | Modifies collagen (prolyl 3-hydroxylation) to ensure proper folding and stability under mechanical stress. |
-| 307 | **PAX3** | 85 | **Development**: Regulator of paraspinal and limb muscle progenitors. | Key regulator of dermomyotome and migratory muscle precursors. |
-| 308 | **PAX9** | 85 | **Development**: Essential for vertebral body formation. | Essential for sclerotome differentiation (vertebral body formation). |
-| 309 | **PHEX** | 85 | **Bone**: Regulator of bone mineralization and mechanical stiffness. | Phosphate regulating endopeptidase; regulates bone stiffness via mineralization. |
-| 310 | **PIK3CA** | 85 | **Signaling**: Nuclear mechanics and mechanotransduction failure. | Constitutive activation reduces nuclear elasticity and impairs mechanotransduction. |
-| 311 | **PITX2** | 85 | **Transcription_Factor**: L-R asymmetry effector in muscle. | Downstream of Nodal; specifies left-sided identity in organs and muscle. |
-| 312 | **PKD2** | 85 | **Cilia**: Ciliary mechanosensor linked to asymmetry. | Mechanosensitive ion channel in cilia (flow/bending). |
-| 313 | **PKD2L1** | 85 | **Cilia**: Partner of PKD1L1 in ciliary mechanosensing, directly linked to spine straightness. | Forms mechanosensitive complex with PKD1L1 in primary cilia, sensing fluid flow and acting as a gravity/posture proxy. |
-| 314 | **PLOD2** | 85 | **ECM**: Enzyme defining collagen mechanical properties. | Crosslinks collagen telopeptides, critical for bone stiffness and load resistance. |
-| 315 | **POC1B** | 85 | **Cilia**: Structural component of cilia essential for function. | Essential for basal body and ciliary integrity. |
-| 316 | **PPARG** | 85 | **Metabolism**: Regulates the muscle-to-fat switch observed in unloading and scoliosis. | Drives marrow adipogenesis at expense of osteogenesis in microgravity (Pandit et al., 2025). |
-| 317 | **PPIB** | 85 | **ECM**: Collagen chaperone critical for matrix integrity. | Cyclophilin B; collagen chaperone ensuring proper folding for load resistance. |
-| 318 | **PRDM5** | 85 | **Transcription_Factor**: Regulates corneal and skeletal ECM genes; mutations cause severe kyphoscoliosis. | Regulates corneal and skeletal ECM genes (COL11A1, COL4A1); essential for tissue stiffness. |
-| 319 | **PTK2** | 85 | **Mechanotransduction**: Key signal transducer for gravity sensing. | Central mediator of integrin mechanotransduction and gravity response. |
-| 320 | **PTK2B** | 85 | **Mechanotransduction**: Key mechanosensor balancing bone resorption against formation. | Pyk2, focal adhesion kinase paralog; acts as a mechanosensor in osteoclasts and regulates bone resorption under load. |
-| 321 | **PTK7** | 85 | **PCP**: Core PCP component linked to spinal curvature. | Regulates convergent extension movements, resisting gravity-induced spreading. |
-| 322 | **PTPN11** | 85 | **Signaling**: Mechanotransduction core + syndromic link. | SHP2 is essential for integrin signaling and mechanotransduction downstream of focal adhesions. |
-| 323 | **PYCR1** | 85 | **Metabolism**: Key enzyme for proline synthesis, the primary amino acid of collagen. | Key enzyme for proline synthesis, the primary amino acid of collagen (stiffness). |
-| 324 | **RAC1** | 85 | **Cytoskeleton**: Osteoblast mechanotransduction. | Small GTPase essential for osteoblast mechanotransduction and cytoskeletal organization. |
-| 325 | **RHOA** | 85 | **Cytoskeleton**: Master regulator of cytoskeletal tension. | Regulates stress fibers and actomyosin contractility, the primary cellular response to gravity. |
-| 326 | **RIPPLY2** | 85 | **Segmentation**: Essential for vertebral segmentation pattern. | Regulates timing of somitogenesis (segmentation clock). |
-| 327 | **ROBO3** | 85 | **Axon_Guidance**: Direct link between neural circuit formation (proprioception) and spinal curvature. | Essential for hindbrain axon crossing in somatosensory/proprioceptive pathways. |
-| 328 | **RSPO2** | 85 | **Signaling**: Strong Wnt potentiator linked to severe skeletal defects. | Potentiates Wnt signaling; essential for limb and skeletal development. |
-| 329 | **SEC23A** | 85 | **Transport**: Strong syndromic link + collagen transport. | COPII coat protein essential for ER-to-Golgi transport of procollagen (stiffness). |
-| 330 | **SEC24D** | 85 | **Transport**: Essential for collagen secretion and bone matrix integrity. | Essential for COPII-mediated export of procollagen from ER, determining matrix quality. |
-| 331 | **SH3PXD2B** | 85 | **ECM**: Podosome adaptor protein linked to skeletal dysplasia. | Tks5; required for podosome formation and ECM degradation (mechanosensing). |
-| 332 | **SKI** | 85 | **Signaling**: Negative regulator of the mechanosensitive TGF-beta pathway. | Repressor of TGF-beta signaling; pathway is mechanically activated by ECM strain. |
-| 333 | **SLC35D1** | 85 | **Transport**: Transporter essential for GAG synthesis. | Transports UDP-GlcA/GalNAc for chondroitin sulfate synthesis (cartilage stiffness). |
-| 334 | **SLC39A13** | 85 | **Ion_Transport**: Zinc transporter required for lysyl hydroxylase function and collagen crosslinking stiffness. | Zinc transporter required for lysyl hydroxylase function (PLOD1/3) and collagen crosslinking stiffness. |
-| 335 | **SLC39A14** | 85 | **Ion_Transport**: Transporter providing co-factors for integrin-mediated gravity sensing. | Transports Manganese (Mn2+), required for integrin activation and mechanotransduction. |
-| 336 | **SMAD2** | 85 | **Signaling**: Downstream effector of the mechanosensitive TGF-beta pathway. | Effector of TGF-beta signaling; pathway is mechanically activated. |
-| 337 | **SMAD4** | 85 | **Signaling**: TGF-beta pathway component linked to syndromic spine defects. | Co-SMAD for TGF-beta/BMP, pathways regulated by mechanical strain. |
-| 338 | **SMAD5** | 85 | **Signaling**: Transducer of BMP signaling in the load-bearing spine. | BMP pathway effector; mechanically activated in osteoblasts and chondrocytes under compressive load. |
-| 339 | **SOX5** | 85 | **Transcription_Factor**: Master chondrogenic factor defining notochord sheath. | Essential for chondrogenesis (Sox trio); regulates notochord sheath formation (hydrostatic skeleton). |
-| 340 | **SOX6** | 85 | **Transcription_Factor**: Master chondrogenic factor defining growth plate mechanics. | Partners with Sox5/Sox9; essential for growth plate proliferation and notochord sheath. |
-| 341 | **SOX9** | 85 | **Growth_Plate**: Master regulator of gravity-resisting tissue. | Regulates chondrogenesis under load; maintains IVD integrity against gravity. |
-| 342 | **SRC** | 85 | **Signaling**: Key transducer at focal adhesions. | Proto-oncogene tyrosine-protein kinase; key transducer at focal adhesions. |
-| 343 | **STK3** | 85 | **Signaling**: Upstream kinase regulating the YAP/TAZ mechanosensor. | MST2 kinase in the Hippo pathway; negatively regulates YAP/TAZ in response to mechanical unloading/low stiffness. |
-| 344 | **STK4** | 85 | **Signaling**: Upstream kinase regulating the YAP/TAZ mechanosensor. | MST1 kinase; functions redundantly with STK3 to inhibit YAP/TAZ when mechanical tension is low. |
-| 345 | **SUN2** | 85 | **Mechanotransduction**: Partner of SUN1 in nuclear mechanotransduction. | Redundant role with SUN1 in LINC complex; essential for nuclear mechanics. |
-| 346 | **SUV39H1** | 85 | **Epigenetics**: Writer of the heterochromatin 'stiffness code' protecting the genome. | Major H3K9me3 methyltransferase; activity is required to maintain nuclear stiffness against gravity. |
-| 347 | **SYNE3** | 85 | **Mechanotransduction**: LINC complex component linking to intermediate filaments. | Nesprin-3; component of the LINC complex linking the nucleus to intermediate filaments (e.g., desmin). |
-| 348 | **SYNM** | 85 | **Muscle**: Structural linker at the costamere interface. | Intermediate filament protein linking desmin to costameres (force transmission). |
-| 349 | **TBX15** | 85 | **Development**: Defining gene for Cousin syndrome vertebral defects. | Regulates skeletal development; patterning of the dorso-ventral axis. |
-| 350 | **TBX18** | 85 | **Segmentation**: Regulator of anterior somite polarity and vertebral shape. | T-box factor regulating anterior somite identity and sclerotome differentiation. |
-| 351 | **TBX6** | 85 | **Segmentation**: Fundamental to vertebral segmentation symmetry. | Regulates somite segmentation clock; timing errors lead to hemivertebrae. |
-| 352 | **TCTN1** | 85 | **Cilia**: Ciliary transition zone protein linked to scoliosis. | Transition zone protein complex; essential for flow sensing. |
-| 353 | **TCTN3** | 85 | **Cilia**: Ciliary transition zone protein linked to severe skeletal dysplasia. | Tectonic family member; regulates ciliary membrane composition. |
-| 354 | **TMEM43** | 85 | **Nucleus**: Nuclear envelope protein linked to mechanotransduction failure. | Interacts with Emerin/Lamin; essential for nuclear envelope stability under stress. |
-| 355 | **TMEM67** | 85 | **Cilia**: Ciliopathy gene linking PCP defects to spinal alignment. | Meckelin; required for ciliary transition zone and Wnt/PCP signaling (flow sensing). |
-| 356 | **TNMD** | 85 | **Tendon**: Key marker for mature, stiff tendons resisting gravity. | Regulator of tenocyte proliferation and collagen fibril maturation under load. |
-| 357 | **TNNT1** | 85 | **Muscle**: Essential for function of slow-twitch postural muscles. | Troponin T1 (slow skeletal); regulates muscle contraction in postural (slow-twitch) muscles. |
-| 358 | **TNNT3** | 85 | **Muscle**: Fast skeletal muscle troponin; mutations cause distal arthrogryposis and contractures. | Fast skeletal muscle troponin; regulates muscle contraction tone against gravity. |
-| 359 | **TNS1** | 85 | **Mechanotransduction**: Core linker between integrin adhesion and actin mechanics. | Tensin-1; links integrins to actin cytoskeleton; localizes to focal adhesions to transmit force. |
-| 360 | **TNXB** | 85 | **ECM**: Essential for ECM elastic properties. | Tenascin-X determines tissue elasticity and stability against gravity. |
-| 361 | **TOR1A** | 85 | **Nucleus**: Nuclear envelope protein linking muscle tone (dystonia) to spinal curvature. | Interacts with LINC complex (Sun1/2, Lamin); essential for nuclear-cytoskeletal coupling. |
-| 362 | **TPM2** | 85 | **Muscle**: Regulatory contractile protein linked to congenital contractures. | Stabilizes actin filaments and regulates muscle contraction. |
-| 363 | **TPM3** | 85 | **Muscle**: Regulator of muscle contraction and fiber type identity. | Tropomyosin 3; regulates actin-myosin interaction and muscle contraction tone. |
-| 364 | **TRPM7** | 85 | **Ion_Channel**: Dual-function chanzyme critical for skeletal mechanosensing. | Chanzyme (Channel+Kinase); sensing fluid flow and membrane tension. |
-| 365 | **TTC21B** | 85 | **Cilia**: Ciliopathy skeletal link. | IFT139; retrograde ciliary transport essential for flow sensing (gravity proxy). |
-| 366 | **TWIST1** | 85 | **Development**: Developmental regulator linked to syndromic spinal defects. | Regulates EMT and osteoblast differentiation under mechanical constraints. |
-| 367 | **USP9X** | 85 | **Signaling**: Syndromic link via TGF-beta regulation. | Regulates TGF-beta and BMP signaling; skeletal defects in X-linked syndrome. |
-| 368 | **VANGL1** | 85 | **PCP**: PCP pathway is fundamental to body axis linearity. | Planar Cell Polarity (PCP) aligns cells against tissue stress lines (gravity). |
-| 369 | **VANGL2** | 85 | **PCP**: PCP disruption directly links to vertebral defects. | Core PCP component aligning tissues against stress lines. |
-| 370 | **WDPCP** | 85 | **Cilia**: PCP effector in the cilium. | Regulates ciliogenesis and PCP; essential for sensing flow and tissue polarity. |
-| 371 | **WDR19** | 85 | **Cilia**: Ciliopathy skeletal link. | IFT144; essential for retrograde ciliary transport and signaling. |
-| 372 | **WHRN** | 85 | **Gravity_Sensing**: Required for the structural integrity of the gravity sensing apparatus. | Whirlin; essential for actin polymerization and stereocilia elongation in gravity-sensing hair cells. |
-| 373 | **WNT11** | 85 | **PCP**: Key ligand for PCP signaling and axis elongation. | Non-canonical Wnt ligand driving PCP and convergent extension. |
-| 374 | **WNT16** | 85 | **Signaling**: Key regulator of cortical bone geometry under load. | Mechanosensitive Wnt ligand regulating cortical bone thickness. |
-| 375 | **WNT3** | 85 | **Signaling**: Wnt ligand essential for axis and limb formation. | Wnt ligand regulating neural tube formation and somatogenesis under mechanical constraints. |
-| 376 | **WNT5B** | 85 | **PCP**: Regulates oriented cell division in the growth plate. | Wnt ligand regulating chondrocyte stacking (PCP) in the growth plate. |
-| 377 | **XYLT1** | 85 | **ECM**: Essential for proteoglycan synthesis and cartilage stiffness. | Initiates GAG synthesis on proteoglycans (shock absorbers). |
-| 378 | **XYLT2** | 85 | **ECM**: Essential for proteoglycan synthesis. | Initiates GAG synthesis on proteoglycans (shock absorbers); essential for spinal load bearing. |
+| 216 | **COL5A2** | 85 | **ECM**: Structural determinant of tissue stiffness and joint stability. | Regulates collagen fibril diameter and tissue tensile strength against gravity. |
+| 217 | **COL6A1** | 85 | **ECM**: Key for muscle-matrix mechanical coupling. | Interface between muscle and ECM; critical for force transmission. |
+| 218 | **COL9A1** | 85 | **ECM**: Structural component of the intervertebral disc and cartilage. | FACIT collagen stabilizing cartilage fibrils against compressive load. |
+| 219 | **COL9A2** | 85 | **ECM**: Structural integrity of cartilage matrix. | FACIT collagen bridging fibrils; provides shear resistance to cartilage under load. |
+| 220 | **COL9A3** | 85 | **ECM**: FACIT collagen essential for cartilage mechanical integrity. | Collagen IX; FACIT collagen bridging fibrils and providing shear resistance. |
+| 221 | **CREB3L1** | 85 | **Bone**: ER stress sensor critical for bone matrix quality. | OASIS; ER stress transducer upregulated during osteoblast differentiation and matrix secretion. |
+| 222 | **CRTAP** | 85 | **ECM**: Component of the collagen modification complex essential for stiffness. | Part of the collagen prolyl 3-hydroxylation complex; essential for bone matrix quality. |
+| 223 | **CSPP1** | 85 | **Cilia**: Centrosomal protein linked to Joubert. | Centrosome and spindle pole associated; essential for primary cilia formation. |
+| 224 | **CTNNB1** | 85 | **Adhesion**: Key Wnt effector and mechanotransducer. | Mechanosensitive at adherens junctions; nuclear translocation modulated by strain. |
+| 225 | **DAAM1** | 85 | **PCP**: Core PCP effector. | Formin that nucleates actin polymerization downstream of Wnt/PCP; essential for cell polarity and shape against stress. |
+| 226 | **DCHS1** | 85 | **PCP**: Partner of FAT4 linked to Van Maldergem. | Atypical cadherin (partner of FAT4) regulating tissue polarity and shape. |
+| 227 | **DLL3** | 85 | **Segmentation**: Notch ligand essential for somite boundaries. | Notch signaling component for segmentation. |
+| 228 | **DNAAF1** | 85 | **Cilia**: Dynein assembly factor linked to ciliary motility and laterality. | Dynein assembly factor; essential for motile cilia function (flow sensing). |
+| 229 | **DSE** | 85 | **ECM**: Dermatan sulfate epimerase; essential for collagen fibril organization. | Dermatan sulfate epimerase; essential for collagen fibril organization and tissue integrity. |
+| 230 | **DVL1** | 85 | **PCP**: PCP mediator linked to segmentation defects. | Mediator of Wnt/PCP signaling; establishes tissue polarity against stress. |
+| 231 | **DVL2** | 85 | **PCP**: PCP effector essential for vertebral segmentation. | Dishevelled-2; essential for PCP signaling aligning tissues against stress. |
+| 232 | **DYNC2LI1** | 85 | **Cilia**: Dynein-2 light intermediate chain. | Dynein component for retrograde transport (flow sensing). |
+| 233 | **EVC** | 85 | **Cilia**: Ciliary basal body protein regulating Hedgehog signaling. | Localizes to base of cilia; regulates Hedgehog signaling. |
+| 234 | **EVC2** | 85 | **Cilia**: Partner of EVC in ciliary signaling. | Forms complex with EVC at cilia base. |
+| 235 | **FAT1** | 85 | **PCP**: Key PCP/Adhesion molecule for tissue integrity. | Atypical cadherin; coordinates actin dynamics and tissue polarity against mechanical stress. |
+| 236 | **FAT4** | 85 | **PCP**: Hippo pathway member linked to syndromic scoliosis. | Atypical cadherin in Hippo pathway; regulates tissue polarity and growth under stress. |
+| 237 | **FBLN4** | 85 | **ECM**: Critical for elastic fiber integrity in the spine. | Essential for elastic fiber assembly; provides recoil against gravity loading. |
+| 238 | **FBLN5** | 85 | **ECM**: Essential for elastic recoil properties of ECM. | Essential for elastic fiber assembly; provides tissue recoil against gravity. |
+| 239 | **FGFR1** | 85 | **Signaling**: Key growth factor receptor linked to congenital spinal defects. | Regulates osteogenesis and limb development under load. |
+| 240 | **FHL1** | 85 | **Mechanotransduction**: Muscle mechanosensor linked to spinal rigidity. | LIM domains act as mechanosensors; mutations cause Reducing Body Myopathy. |
+| 241 | **FHL2** | 85 | **Mechanotransduction**: Mechanosensitive LIM protein shuttling between cytoskeleton and nucleus. | Localizes to focal adhesions and Z-discs; translocates to nucleus upon mechanical stress. |
+| 242 | **FUZ** | 85 | **PCP**: Essential PCP effector for ciliogenesis. | Controls apical actin enrichment and cilia formation; required for directional fluid flow sensing. |
+| 243 | **FZD7** | 85 | **PCP**: Primary receptor for Wnt11 in the PCP pathway. | Receptor for Wnt11 in the Planar Cell Polarity (PCP) pathway, transmitting mechanical cues to align tissues. |
+| 244 | **GAS8** | 85 | **Cilia**: Ciliary motility protein linked to axis straightening. | Microtubule-binding protein in axoneme; required for ciliary motility. |
+| 245 | **GDF6** | 85 | **Development**: Direct cause of vertebral fusion defects. | BMP family member regulating vertebral segmentation and fusion. |
+| 246 | **GJA1** | 85 | **Mechanotransduction**: Essential for osteocyte mechanotransduction network. | Hemichannels open in response to mechanical stress; essential for osteocyte network. (Jamsheer et al., 2010) |
+| 247 | **GNPTAB** | 85 | **Trafficking**: Trafficking defect affecting ECM quality. | Targets lysosomal enzymes; deficiency leads to ECM accumulation and stiffness defects. |
+| 248 | **GORAB** | 85 | **Golgi**: Golgi protein essential for Hedgehog signaling and skeletal development. | Golgi protein essential for Hedgehog signaling and skeletal development; cilia are gravity sensors. |
+| 249 | **HAS2** | 85 | **ECM**: Crucial for IVD mechanics (swelling pressure) and linked to AIS via epigenetics. | Synthesizes hyaluronan, essential for osmotic swelling pressure and tissue hydration against compression. |
+| 250 | **HES1** | 85 | **Segmentation**: Core component of the segmentation clock oscillator. | Hairy and enhancer of split 1; cyclic expression (clock) essential for segmentation timing. |
+| 251 | **HES7** | 85 | **Segmentation**: Proven segmentation defect link to spinal malformation. | Establishes structural units (somites) resisting gravity. |
+| 252 | **IFT122** | 85 | **Cilia**: IFT complex component essential for ciliary maintenance. | Component of IFT complex A; essential for retrograde ciliary transport. |
+| 253 | **IFT140** | 85 | **Cilia**: Ciliopathy link to skeletal dysplasia. | Essential for retrograde ciliary transport (IFT-A) and flow sensing. |
+| 254 | **IFT172** | 85 | **Cilia**: IFT complex component essential for skeletal ciliogenesis. | Intraflagellar Transport 172; regulates ciliary signaling (Hedgehog). |
+| 255 | **IFT52** | 85 | **Cilia**: Core IFT-B complex member. | Component of IFT-B complex; essential for anterograde ciliary transport and ciliogenesis. |
+| 256 | **IGF1** | 85 | **Signaling**: Growth factor connecting systemic loading to spine progression. | Systemic growth factor sensitive to loading status; decreases in spaceflight. |
+| 257 | **ILK** | 85 | **Adhesion**: Central hub for integrin-mediated force transduction. | Links integrins to actin cytoskeleton; central hub for force transduction. |
+| 258 | **INPPL1** | 85 | **Signaling**: Skeletal dysplasia link via focal adhesion signaling. | SHIP2; regulates PI3K signaling and focal adhesion dynamics; negative regulator of insulin signaling. |
+| 259 | **INTU** | 85 | **PCP**: Strong PCP/Cilia link to segmentation. | Regulates ciliogenesis and actin assembly; essential for sensing fluid flow. |
+| 260 | **ITGA11** | 85 | **Mechanotransduction**: Key stiffness sensor for mesenchymal stem cells. | Integrin alpha-11; major collagen receptor on MSCs sensing tissue stiffness. |
+| 261 | **ITGA5** | 85 | **Mechanotransduction**: Required for fibronectin matrix assembly and somite integrity. | Integrin alpha-5; fibronectin receptor sensing matrix assembly under tension. |
+| 262 | **ITGB3** | 85 | **Mechanotransduction**: Key osteocyte mechanosensor. | Forms avb3 integrin (mechanosensor); essential for osteocyte response to fluid flow/load. |
+| 263 | **KBTBD13** | 85 | **Muscle**: Muscle-specific ubiquitin ligase adaptor linked to myopathy. | Kelch repeat protein regulating muscle structure and ubiquitin-mediated degradation. |
+| 264 | **KIF22** | 85 | **Cytoskeleton**: Cytoskeletal motor protein with direct link to vertebral fusion. | Kinesin-like protein regulating microtubule dynamics and potentially mechanosensing. |
+| 265 | **KIF24** | 85 | **Cilia**: Ciliary remodeling protein linked to AIS via GWAS. | Kinesin-13 family member that depolymerizes centriolar microtubules; regulates ciliogenesis. |
+| 266 | **KIF3B** | 85 | **Cilia**: Kinesin-2 motor subunit. | Heterotrimeric kinesin-2 subunit; essential for ciliary transport (flow sensing). |
+| 267 | **KLHL41** | 85 | **Muscle**: Stabilizer of Nebulin. | Regulates stability of Nebulin; essential for sarcomere integrity. |
+| 268 | **LATS1** | 85 | **Mechanotransduction**: Core kinase of the Hippo mechanotransduction pathway. | LATS1 kinase; phosphorylates YAP/TAZ in response to low stiffness/unloading. |
+| 269 | **LATS2** | 85 | **Mechanotransduction**: Core kinase of the Hippo mechanotransduction pathway. | LATS2 kinase; partner of LATS1 in YAP/TAZ regulation under mechanical stress. |
+| 270 | **LMOD1** | 85 | **Muscle**: Actin nucleator determining cellular contractile tone. | Leiomodin-1; actin nucleator regulating thin filament length in smooth and non-muscle cells. |
+| 271 | **LMOD3** | 85 | **Muscle**: Critical for sarcomere assembly and maintenance. | Leiomodin-3; essential for thin filament nucleation and length regulation in sarcomeres. |
+| 272 | **LMX1B** | 85 | **Development**: Dorso-ventral patterning and collagen regulation. | Specifies dorsal identity and regulates collagen expression. |
+| 273 | **LOX** | 85 | **ECM**: Critical enzyme for establishing tissue stiffness against gravity. | Crosslinks collagen/elastin; activity is modulated by mechanical load. |
+| 274 | **LOXL3** | 85 | **ECM**: Enzyme determining the stiffness of the spinal column. | Oxidizes lysines in collagen/elastin; essential for tissue tensile strength against gravity. |
+| 275 | **LRP5** | 85 | **Signaling**: Key regulator of bone mechanoadaptation. | Wnt co-receptor regulating bone mass in response to load. |
+| 276 | **LTBP3** | 85 | **ECM**: Regulator of TGF-beta signaling critical for spinal ossification. | Regulates TGF-beta bioavailability in bone and ECM. |
+| 277 | **LTBP4** | 85 | **ECM**: Mechanosensitive TGF-beta anchor linked to AIS. | Binds TGF-beta to ECM, releasing it upon mechanical strain. |
+| 278 | **MAGEL2** | 85 | **Muscle**: Syndromic link to muscle hypotonia and spine. | Regulates muscle mass and bone density; loss mimics 'failure to thrive' (unloading). |
+| 279 | **MATN3** | 85 | **ECM**: Structural component of cartilage matrix linked to dysplasia. | Matrilin-3; filamentous matrix protein essential for cartilage stiffness. |
+| 280 | **MBTPS2** | 85 | **ER**: UPR/ER stress mechanosensing link. | Regulates UPR and response to ER stress (mechanical stress); cleaves OASIS (CREB3L1). |
+| 281 | **MEIS1** | 85 | **Transcription_Factor**: Developmental regulator of paraxial mesoderm linked to AIS. | Homeobox transcription factor; regulates paraxial mesoderm patterning and myogenesis. |
+| 282 | **MEOX2** | 85 | **Segmentation**: Essential for vertebral formation. | Partner of MEOX1; essential for sclerotome development and vertebral formation. |
+| 283 | **MKS1** | 85 | **Cilia**: Ciliopathy gene essential for ciliary integrity. | Meckel Syndrome Type 1; essential for ciliary transition zone and signaling. |
+| 284 | **MKX** | 85 | **Tendon**: Mechanosensitive regulator of tendon stiffness. | Transcription factor regulating tendon differentiation; expression is mechanically regulated. |
+| 285 | **MMP13** | 85 | **ECM**: Major mechanosensitive collagenase. | Collagenase-3; upregulated by mechanical loading in cartilage and bone. |
+| 286 | **MMP2** | 85 | **ECM**: Mechanosensitive MMP modifying connective tissue stiffness. | Gelatinase A; degrades collagen IV/elastin; mechanically responsive in connective tissues. |
+| 287 | **MSGN1** | 85 | **Segmentation**: Master regulator of paraxial mesoderm essential for somites. | Master regulator of paraxial mesoderm differentiation (somites). |
+| 288 | **MSTN** | 85 | **Muscle**: Strong muscle link; potential therapeutic target for unloading. | Inhibition leads to muscle growth; key target for preventing atrophy in microgravity. (Smith et al., 2020) |
+| 289 | **MYBPC1** | 85 | **Muscle**: Direct regulator of muscle tone and posture. | Regulates actomyosin crossbridges and muscle tone; essential for postural maintenance. |
+| 290 | **MYF5** | 85 | **Muscle**: Defines the paraspinal muscle lineage essential for spinal support. | Myogenic regulatory factor defining the epaxial (back) muscle lineage. |
+| 291 | **MYH1** | 85 | **Muscle**: Determines contractility in fast-twitch muscle fibers. | Myosin heavy chain 1 (Type IIX); fast-twitch glycolytic muscle fiber component. |
+| 292 | **MYH7** | 85 | **Muscle**: Primary motor protein for slow-twitch postural muscles; direct scoliosis link. | Slow myosin heavy chain; essential for maintaining postural tone against gravity. |
+| 293 | **MYH8** | 85 | **Muscle**: Neonatal/masticatory myosin; mutations cause trismus-pseudocamptodactyly syndrome. | Neonatal/masticatory myosin; mutations cause contractures limiting movement against gravity. |
+| 294 | **MYO15A** | 85 | **Gravity_Sensing**: Motor protein building the cellular gravity sensors. | Unconventional myosin required for the elongation and maintenance of stereocilia in vestibular gravity sensors. |
+| 295 | **MYO6** | 85 | **Gravity_Sensing**: Critical motor protein for the vestibular gravity sensor. | Motor protein essential for maintaining the structure of hair cell stereocilia, which sense gravity and motion. |
+| 296 | **MYOD1** | 85 | **Muscle**: Foundational transcription factor for posture-supporting paraspinal muscles. | Master regulator of myogenesis; essential for developing the paraspinal muscles that support posture against gravity. |
+| 297 | **MYOG** | 85 | **Muscle**: Key driver of terminal muscle differentiation and functional tone. | Myogenin, critical for terminal differentiation of muscle fibers; target of polyadenylation (e.g., TENT5A) in paraspinal muscle. |
+| 298 | **NF2** | 85 | **Signaling**: Mechanosensor linking cell junctions to Hippo signaling. | Merlin; links actin cytoskeleton to membrane proteins and acts as an upstream activator of the Hippo pathway (sensing contact/tension). |
+| 299 | **NFE2L2** | 85 | **Signaling**: Critical defender against microgravity-induced oxidative damage in paraspinal muscles. | Master regulator of antioxidant response; activated by unloading-induced oxidative stress (ROS). |
+| 300 | **NKX3-2** | 85 | **Growth_Plate**: Regulates cartilage growth under load. | Inhibits chondrocyte maturation; modulates stress response in cartilage. |
+| 301 | **NOG** | 85 | **Signaling**: Regulator of vertebral segmentation and fusion. | Antagonizes BMP to fine-tune bone formation under load. |
+| 302 | **NOTCH1** | 85 | **Segmentation**: Critical for vertebral segmentation timing. | Regulates somitogenesis timing; establishes axial pattern. |
+| 303 | **NOTCH2** | 85 | **Segmentation**: Linked to vertebral segmentation and bone mass. | Notch signaling is sensitive to fluid shear stress. |
+| 304 | **NPHP4** | 85 | **Cilia**: Ciliopathy gene linking transition zone defects to skeletal form. | Nephrocystin; regulates ciliary transition zone and signaling. |
+| 305 | **NPR3** | 85 | **Growth_Plate**: Regulator of bone growth rate and skeletal proportions. | Clearance receptor for natriuretic peptides; regulates bone growth under load. |
+| 306 | **OBSCN** | 85 | **Muscle**: Giant structural signaling protein in muscle. | Giant sarcomeric protein linking myofibrils to sarcoplasmic reticulum. |
+| 307 | **P3H1** | 85 | **ECM**: Essential enzyme for collagen mechanical quality. | Modifies collagen (prolyl 3-hydroxylation) to ensure proper folding and stability under mechanical stress. |
+| 308 | **PAX3** | 85 | **Development**: Regulator of paraspinal and limb muscle progenitors. | Key regulator of dermomyotome and migratory muscle precursors. |
+| 309 | **PAX9** | 85 | **Development**: Essential for vertebral body formation. | Essential for sclerotome differentiation (vertebral body formation). |
+| 310 | **PHEX** | 85 | **Bone**: Regulator of bone mineralization and mechanical stiffness. | Phosphate regulating endopeptidase; regulates bone stiffness via mineralization. |
+| 311 | **PIK3CA** | 85 | **Signaling**: Nuclear mechanics and mechanotransduction failure. | Constitutive activation reduces nuclear elasticity and impairs mechanotransduction. |
+| 312 | **PITX2** | 85 | **Transcription_Factor**: L-R asymmetry effector in muscle. | Downstream of Nodal; specifies left-sided identity in organs and muscle. |
+| 313 | **PKD2** | 85 | **Cilia**: Ciliary mechanosensor linked to asymmetry. | Mechanosensitive ion channel in cilia (flow/bending). |
+| 314 | **PKD2L1** | 85 | **Cilia**: Partner of PKD1L1 in ciliary mechanosensing, directly linked to spine straightness. | Forms mechanosensitive complex with PKD1L1 in primary cilia, sensing fluid flow and acting as a gravity/posture proxy. |
+| 315 | **PLOD2** | 85 | **ECM**: Enzyme defining collagen mechanical properties. | Crosslinks collagen telopeptides, critical for bone stiffness and load resistance. |
+| 316 | **POC1B** | 85 | **Cilia**: Structural component of cilia essential for function. | Essential for basal body and ciliary integrity. |
+| 317 | **PPARG** | 85 | **Metabolism**: Regulates the muscle-to-fat switch observed in unloading and scoliosis. | Drives marrow adipogenesis at expense of osteogenesis in microgravity (Pandit et al., 2025). |
+| 318 | **PPIB** | 85 | **ECM**: Collagen chaperone critical for matrix integrity. | Cyclophilin B; collagen chaperone ensuring proper folding for load resistance. |
+| 319 | **PRDM5** | 85 | **Transcription_Factor**: Regulates corneal and skeletal ECM genes; mutations cause severe kyphoscoliosis. | Regulates corneal and skeletal ECM genes (COL11A1, COL4A1); essential for tissue stiffness. |
+| 320 | **PTK2** | 85 | **Mechanotransduction**: Key signal transducer for gravity sensing. | Central mediator of integrin mechanotransduction and gravity response. |
+| 321 | **PTK2B** | 85 | **Mechanotransduction**: Key mechanosensor balancing bone resorption against formation. | Pyk2, focal adhesion kinase paralog; acts as a mechanosensor in osteoclasts and regulates bone resorption under load. |
+| 322 | **PTK7** | 85 | **PCP**: Core PCP component linked to spinal curvature. | Regulates convergent extension movements, resisting gravity-induced spreading. |
+| 323 | **PTPN11** | 85 | **Signaling**: Mechanotransduction core + syndromic link. | SHP2 is essential for integrin signaling and mechanotransduction downstream of focal adhesions. |
+| 324 | **PYCR1** | 85 | **Metabolism**: Key enzyme for proline synthesis, the primary amino acid of collagen. | Key enzyme for proline synthesis, the primary amino acid of collagen (stiffness). |
+| 325 | **RAC1** | 85 | **Cytoskeleton**: Osteoblast mechanotransduction. | Small GTPase essential for osteoblast mechanotransduction and cytoskeletal organization. |
+| 326 | **RHOA** | 85 | **Cytoskeleton**: Master regulator of cytoskeletal tension. | Regulates stress fibers and actomyosin contractility, the primary cellular response to gravity. |
+| 327 | **RIPPLY2** | 85 | **Segmentation**: Essential for vertebral segmentation pattern. | Regulates timing of somitogenesis (segmentation clock). |
+| 328 | **ROBO3** | 85 | **Axon_Guidance**: Direct link between neural circuit formation (proprioception) and spinal curvature. | Essential for hindbrain axon crossing in somatosensory/proprioceptive pathways. |
+| 329 | **RSPO2** | 85 | **Signaling**: Strong Wnt potentiator linked to severe skeletal defects. | Potentiates Wnt signaling; essential for limb and skeletal development. |
+| 330 | **SEC23A** | 85 | **Transport**: Strong syndromic link + collagen transport. | COPII coat protein essential for ER-to-Golgi transport of procollagen (stiffness). |
+| 331 | **SEC24D** | 85 | **Transport**: Essential for collagen secretion and bone matrix integrity. | Essential for COPII-mediated export of procollagen from ER, determining matrix quality. |
+| 332 | **SH3PXD2B** | 85 | **ECM**: Podosome adaptor protein linked to skeletal dysplasia. | Tks5; required for podosome formation and ECM degradation (mechanosensing). |
+| 333 | **SKI** | 85 | **Signaling**: Negative regulator of the mechanosensitive TGF-beta pathway. | Repressor of TGF-beta signaling; pathway is mechanically activated by ECM strain. |
+| 334 | **SLC35D1** | 85 | **Transport**: Transporter essential for GAG synthesis. | Transports UDP-GlcA/GalNAc for chondroitin sulfate synthesis (cartilage stiffness). |
+| 335 | **SLC39A13** | 85 | **Ion_Transport**: Zinc transporter required for lysyl hydroxylase function and collagen crosslinking stiffness. | Zinc transporter required for lysyl hydroxylase function (PLOD1/3) and collagen crosslinking stiffness. |
+| 336 | **SLC39A14** | 85 | **Ion_Transport**: Transporter providing co-factors for integrin-mediated gravity sensing. | Transports Manganese (Mn2+), required for integrin activation and mechanotransduction. |
+| 337 | **SMAD2** | 85 | **Signaling**: Downstream effector of the mechanosensitive TGF-beta pathway. | Effector of TGF-beta signaling; pathway is mechanically activated. |
+| 338 | **SMAD4** | 85 | **Signaling**: TGF-beta pathway component linked to syndromic spine defects. | Co-SMAD for TGF-beta/BMP, pathways regulated by mechanical strain. |
+| 339 | **SMAD5** | 85 | **Signaling**: Transducer of BMP signaling in the load-bearing spine. | BMP pathway effector; mechanically activated in osteoblasts and chondrocytes under compressive load. |
+| 340 | **SOX5** | 85 | **Transcription_Factor**: Master chondrogenic factor defining notochord sheath. | Essential for chondrogenesis (Sox trio); regulates notochord sheath formation (hydrostatic skeleton). |
+| 341 | **SOX6** | 85 | **Transcription_Factor**: Master chondrogenic factor defining growth plate mechanics. | Partners with Sox5/Sox9; essential for growth plate proliferation and notochord sheath. |
+| 342 | **SOX9** | 85 | **Growth_Plate**: Master regulator of gravity-resisting tissue. | Regulates chondrogenesis under load; maintains IVD integrity against gravity. |
+| 343 | **SRC** | 85 | **Signaling**: Key transducer at focal adhesions. | Proto-oncogene tyrosine-protein kinase; key transducer at focal adhesions. |
+| 344 | **STK3** | 85 | **Signaling**: Upstream kinase regulating the YAP/TAZ mechanosensor. | MST2 kinase in the Hippo pathway; negatively regulates YAP/TAZ in response to mechanical unloading/low stiffness. |
+| 345 | **STK4** | 85 | **Signaling**: Upstream kinase regulating the YAP/TAZ mechanosensor. | MST1 kinase; functions redundantly with STK3 to inhibit YAP/TAZ when mechanical tension is low. |
+| 346 | **SUN2** | 85 | **Mechanotransduction**: Partner of SUN1 in nuclear mechanotransduction. | Redundant role with SUN1 in LINC complex; essential for nuclear mechanics. |
+| 347 | **SUV39H1** | 85 | **Epigenetics**: Writer of the heterochromatin 'stiffness code' protecting the genome. | Major H3K9me3 methyltransferase; activity is required to maintain nuclear stiffness against gravity. |
+| 348 | **SYNE3** | 85 | **Mechanotransduction**: LINC complex component linking to intermediate filaments. | Nesprin-3; component of the LINC complex linking the nucleus to intermediate filaments (e.g., desmin). |
+| 349 | **SYNM** | 85 | **Muscle**: Structural linker at the costamere interface. | Intermediate filament protein linking desmin to costameres (force transmission). |
+| 350 | **TBX15** | 85 | **Development**: Defining gene for Cousin syndrome vertebral defects. | Regulates skeletal development; patterning of the dorso-ventral axis. |
+| 351 | **TBX18** | 85 | **Segmentation**: Regulator of anterior somite polarity and vertebral shape. | T-box factor regulating anterior somite identity and sclerotome differentiation. |
+| 352 | **TBX6** | 85 | **Segmentation**: Fundamental to vertebral segmentation symmetry. | Regulates somite segmentation clock; timing errors lead to hemivertebrae. |
+| 353 | **TCTN1** | 85 | **Cilia**: Ciliary transition zone protein linked to scoliosis. | Transition zone protein complex; essential for flow sensing. |
+| 354 | **TCTN3** | 85 | **Cilia**: Ciliary transition zone protein linked to severe skeletal dysplasia. | Tectonic family member; regulates ciliary membrane composition. |
+| 355 | **TMEM43** | 85 | **Nucleus**: Nuclear envelope protein linked to mechanotransduction failure. | Interacts with Emerin/Lamin; essential for nuclear envelope stability under stress. |
+| 356 | **TMEM67** | 85 | **Cilia**: Ciliopathy gene linking PCP defects to spinal alignment. | Meckelin; required for ciliary transition zone and Wnt/PCP signaling (flow sensing). |
+| 357 | **TNMD** | 85 | **Tendon**: Key marker for mature, stiff tendons resisting gravity. | Regulator of tenocyte proliferation and collagen fibril maturation under load. |
+| 358 | **TNNT1** | 85 | **Muscle**: Essential for function of slow-twitch postural muscles. | Troponin T1 (slow skeletal); regulates muscle contraction in postural (slow-twitch) muscles. |
+| 359 | **TNNT3** | 85 | **Muscle**: Fast skeletal muscle troponin; mutations cause distal arthrogryposis and contractures. | Fast skeletal muscle troponin; regulates muscle contraction tone against gravity. |
+| 360 | **TNS1** | 85 | **Mechanotransduction**: Core linker between integrin adhesion and actin mechanics. | Tensin-1; links integrins to actin cytoskeleton; localizes to focal adhesions to transmit force. |
+| 361 | **TNXB** | 85 | **ECM**: Essential for ECM elastic properties. | Tenascin-X determines tissue elasticity and stability against gravity. |
+| 362 | **TOR1A** | 85 | **Nucleus**: Nuclear envelope protein linking muscle tone (dystonia) to spinal curvature. | Interacts with LINC complex (Sun1/2, Lamin); essential for nuclear-cytoskeletal coupling. |
+| 363 | **TPM2** | 85 | **Muscle**: Regulatory contractile protein linked to congenital contractures. | Stabilizes actin filaments and regulates muscle contraction. |
+| 364 | **TPM3** | 85 | **Muscle**: Regulator of muscle contraction and fiber type identity. | Tropomyosin 3; regulates actin-myosin interaction and muscle contraction tone. |
+| 365 | **TRPM7** | 85 | **Ion_Channel**: Dual-function chanzyme critical for skeletal mechanosensing. | Chanzyme (Channel+Kinase); sensing fluid flow and membrane tension. |
+| 366 | **TTC21B** | 85 | **Cilia**: Ciliopathy skeletal link. | IFT139; retrograde ciliary transport essential for flow sensing (gravity proxy). |
+| 367 | **TWIST1** | 85 | **Development**: Developmental regulator linked to syndromic spinal defects. | Regulates EMT and osteoblast differentiation under mechanical constraints. |
+| 368 | **USP9X** | 85 | **Signaling**: Syndromic link via TGF-beta regulation. | Regulates TGF-beta and BMP signaling; skeletal defects in X-linked syndrome. |
+| 369 | **VANGL1** | 85 | **PCP**: PCP pathway is fundamental to body axis linearity. | Planar Cell Polarity (PCP) aligns cells against tissue stress lines (gravity). |
+| 370 | **VANGL2** | 85 | **PCP**: PCP disruption directly links to vertebral defects. | Core PCP component aligning tissues against stress lines. |
+| 371 | **WDPCP** | 85 | **Cilia**: PCP effector in the cilium. | Regulates ciliogenesis and PCP; essential for sensing flow and tissue polarity. |
+| 372 | **WDR19** | 85 | **Cilia**: Ciliopathy skeletal link. | IFT144; essential for retrograde ciliary transport and signaling. |
+| 373 | **WHRN** | 85 | **Gravity_Sensing**: Required for the structural integrity of the gravity sensing apparatus. | Whirlin; essential for actin polymerization and stereocilia elongation in gravity-sensing hair cells. |
+| 374 | **WNT11** | 85 | **PCP**: Key ligand for PCP signaling and axis elongation. | Non-canonical Wnt ligand driving PCP and convergent extension. |
+| 375 | **WNT16** | 85 | **Signaling**: Key regulator of cortical bone geometry under load. | Mechanosensitive Wnt ligand regulating cortical bone thickness. |
+| 376 | **WNT3** | 85 | **Signaling**: Wnt ligand essential for axis and limb formation. | Wnt ligand regulating neural tube formation and somatogenesis under mechanical constraints. |
+| 377 | **WNT5B** | 85 | **PCP**: Regulates oriented cell division in the growth plate. | Wnt ligand regulating chondrocyte stacking (PCP) in the growth plate. |
+| 378 | **XYLT1** | 85 | **ECM**: Essential for proteoglycan synthesis and cartilage stiffness. | Initiates GAG synthesis on proteoglycans (shock absorbers). |
+| 379 | **XYLT2** | 85 | **ECM**: Essential for proteoglycan synthesis. | Initiates GAG synthesis on proteoglycans (shock absorbers); essential for spinal load bearing. |
 
 ## Selection Methodology
 

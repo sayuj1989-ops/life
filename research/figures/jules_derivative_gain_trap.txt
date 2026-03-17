@@ -1,0 +1,12 @@
+Visual Diagram: The Derivative Gain Trap in Adolescent Idiopathic Scoliosis (AIS).
+
+Context: Based on mathematical control theory and Delay Differential Equations (DDE).
+Components:
+1. A feedback loop representing postural control.
+2. A sensor (proprioception) connected to a central controller (neural processing), and an actuator (muscle).
+3. The signal path includes a "Delay (tau)" node.
+4. The actuator path has two components: "Proportional Gain (Stiffness)" and "Derivative Gain (Damping)".
+5. A dynamic representation of the adolescent growth spurt: As the length (L) of the spine grows rapidly, the neural delay (tau) increases.
+6. The critical mechanism: While Derivative Gain normally provides stability (damping), when the Delay (tau) exceeds a critical threshold, the Derivative Gain suddenly flips to become destabilizing, initiating scoliotic buckling ("Metabolic Buckling").
+7. Show this flip visually: a blue (stable) arrow for Derivative Gain turning into a red (unstable/destabilizing) arrow as it crosses a threshold labeled "Critical Delay (tau_crit)".
+Style: Professional scientific diagram, suitable for a high-impact journal like Nature or Science. Clear, distinct nodes and directed arrows.

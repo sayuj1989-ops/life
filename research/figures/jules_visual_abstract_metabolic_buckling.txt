@@ -1,0 +1,10 @@
+Visual Abstract: The Biological Countercurvature of Spacetime and Adolescent Idiopathic Scoliosis (AIS).
+
+Context: High-level overview of a novel theoretical framework.
+Components:
+1. Upper Left: The evolutionary context. A cross-species scaling plot showing humans uniquely stuck in an "Allometric Trap" (Bio-Gravitational Number Bg ~ 0.01) requiring constant metabolic energy to maintain upright posture against gravity.
+2. Upper Right: The biophysical principle. An Information-Cosserat framework where developmental genetic information (HOX patterning, Information-Elasticity Coupling) acts as a local "countercurvature" to gravity's geodesic.
+3. Lower Left: The trigger mechanism. Adolescent growth spurt (L^4 geometric scaling cost vs L^2 metabolic supply) creating an "Energy Deficit Window" with localized NAD+ insufficiency.
+4. Lower Right: The consequence. The increase in neural delay (tau) pushing the active spinal control system past a supercritical Hopf bifurcation (Delay-Induced Instability), turning the essential damping (Derivative Gain) into a destabilizing force, resulting in the scoliotic S-curve (Metabolic Buckling).
+5. Arrows linking these four quadrants in a clockwise or causal flow.
+Style: Visually striking visual abstract suitable for Nature. Clean, high-contrast, modern scientific aesthetic.

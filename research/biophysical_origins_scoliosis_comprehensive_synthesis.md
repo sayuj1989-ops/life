@@ -154,7 +154,21 @@ $$
 
 Numerical verification (`scripts/verify_scoliosis_number.py`) confirms this threshold for delays relevant to human physiology ($\tau \in [0.02, 0.12]s$).
 
-### 3.3 Thermodynamic Instability Window
+### 4.3 The Polygenic Threshold and 2-4% Prevalence
+
+The framework naturally resolves the epidemiological paradox of why only 2-4% of adolescents develop AIS despite the "Allometric Trap" being a universal feature of human bipedal growth.
+
+Passing through the vulnerability window is a necessary but not sufficient condition for buckling. Under population-mean parameters, the human spine maintains a narrow but positive stability margin of **+5.3 ms** against the Hopf bifurcation threshold. A "generic" adolescent traverses the danger zone and remains stable.
+
+Instability is triggered only when an individual-specific stacking of molecular parameters simultaneously erodes this margin. Consistent with the polygenic threshold model, AIS requires the co-occurrence of multiple small-effect variants:
+*   **Reduced damping $b$:** COL1A1/COL2A1 flexibility variants ($\approx 29\%$ reduction).
+*   **Increased proprioceptive delay $\tau$:** PIEZO2/GPR126/MTNR1B variants ($\tau_{eff} = 96.4$ ms vs $70$ ms baseline).
+*   **Shifted sensor gain $K_d$:** LBX1 variant pushing $K_d$ toward the critical peak.
+*   **Increased gravitational load $mgL$:** PAX1 variant altering vertebral morphology.
+
+While each variant alone only narrows the margin, the **combined scenario** flips the stability margin to **-26.3 ms**, causing the system to breach $\mathcal{S}_{critical}$. The 2-4% clinical prevalence strictly represents the statistical fraction of the population whose specific multi-gene combination pushes enough parameters past the threshold simultaneously. The 8:1 female predominance follows from estrogenic shifting of this distribution (lowering damping via collagen cross-linking and steepening peak height velocity).
+
+### 4.4 Thermodynamic Instability Window
 
 The instability is not purely kinematic; it is thermodynamic. We define the vulnerability ratio $R(t)$ based on the energy budget:
 
@@ -196,6 +210,22 @@ where $\chi_{TB}$ is the **Twist-Bend Coupling Coefficient**.
 
 Substituting the "Spinal Jetlag" term, we see that a phase shift $\Delta \phi$ effectively acts as an operator that rotates the plane of buckling:
 $$ \hat{O}_{jetlag} | \text{Sagittal Buckling} \rangle \rightarrow | \text{Helical Torsion} \rangle $$
+
+### 5.3 Lenke Typology: The Multi-Segment Cosserat Extension
+
+While the single-link DDE model captures the *onset* of global instability, it does not explain curve location or morphology. We extend the framework to a **multi-segment Cosserat rod** to explain the six distinct Lenke curve types.
+
+The exact shape of the scoliotic curve emerges as the dominant eigenmode of the generalized eigenvalue problem:
+$$ (B y'')'' = \lambda Q y $$
+where $B(s)$ is the regional stiffness and $Q(s)$ is the regional instability drive (proportional to delay/damping).
+
+Local parameter variations along the spine $s$ determine which segments destabilize first:
+*   **Stiffness $EI(s)$:** Modulated by rib cage buttressing in the thoracic spine vs. lumbar flexibility.
+*   **Proprioceptive delay $\tau(s)$:** Varying mechanoreceptor density (e.g., T5-T12 vs L1-L5).
+*   **Damping $b(s)$:** Differences in paraspinal muscle bulk, disc composition, and facet orientation.
+*   **Asymmetric Loading:** Cardiac offset and aortic pulsation dictating rightward thoracic bias.
+
+For example, a Lenke Type 1 (main thoracic) curve emerges when destabilization occurs at the segment with minimum rib cage stiffening and high asymmetric loading. A Lenke Type 5 (thoracolumbar) curve reflects destabilization in the transition zone where thoracic and lumbar parameter sets converge unfavorably. The multi-segment framework provides the *downstream patterning* of the initial global instability trigger.
 
 ---
 

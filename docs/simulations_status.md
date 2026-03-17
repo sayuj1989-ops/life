@@ -51,3 +51,4 @@
 | 2026-03-09 | weekly-sim-active-curvature-sweep | active_curvature | Critical transition to 3D scoliosis (Cobb >78 deg) around active_curvature=10.7 with torsion, followed by a narrow resonant rescue window. | [Report](../outputs/sim/2026-03-09/report.md) |
 | 2026-03-11 | weekly-sim-torsion-sweep | torsion_drive | Torsional coupling transforms S-curve into complex 3D scoliosis peaking at 101 deg Cobb | [Report](../outputs/sim/2026-03-11/report.md) |
 | 2026-03-12 | weekly-sim-active-curvature-sweep | active_curvature | Sweep 0.0-15.0 at Anisotropy=3.0; No lateral buckling (Cobb=0) emerged without symmetry breaking. | [Report](../outputs/sim/2026-03-12/report.md) |
+| 2026-03-17 | weekly-sim-stiffness-anisotropy | stiffness_anisotropy | Swept anisotropy 1.0 to 10.0; analyzed impact on Cobb under fixed growth and torsion | [Report](../outputs/sim/2026-03-17/report.md) |

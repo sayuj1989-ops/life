@@ -1,8 +1,8 @@
 # Research Roadmap: Biological Countercurvature
 
 **Target:** *Nature* Submission
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-13.md](progress_update_2026-03-13.md)
+**Timeline:** 4 Weeks (March 17 - April 14, 2026)
+**Latest Progress Update:** [docs/progress_update_2026-03-17.md](progress_update_2026-03-17.md)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -10,16 +10,16 @@
 - [x] **Code:** Create `experiment_cross_species_scaling.py` and reproduce Figure 3.
 - [x] **Code:** Implement Specific Mutation Mapping in `experiment_optimization_failure.py`.
 - [x] **Validation:** Run all scripts and ensure clean outputs (CSV/PNG). (Core & Toy Models Done)
-- [x] **Toy Models:** Develop Toy Models A & B for Reviewer Defense. (Done)
-- [x] **Simulation Sweeps:** Completed advanced PyElastica sweeps (Taper, Kyphosis, Torsion).
+- [x] **Toy Models:** Develop Toy Models A, B, C, D, & E for Reviewer Defense.
+- [x] **Simulation Sweeps:** Completed advanced PyElastica sweeps (Taper, Kyphosis, Torsion, Stiffness).
 
-## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
+## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 17 - March 31)
 
 - [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
 - [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
 - [ ] **References:** Complete Bibliography (80-100 refs).
 
-## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
+## Phase 3: Review & Submission (Weeks 3-4: March 31 - April 14)
 
 - [ ] **Internal Review:** PI Review of full package (Manuscript + Supp Info).
 - [ ] **Pre-Submission:** Run `SUBMISSION_MASTER_CHECKLIST.md`.
@@ -29,16 +29,16 @@
 
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
-| **Week 1 (Mar 01)** | Code & Sweep Validation | Team | ✅ **Completed** |
-| **Week 2 (Mar 08)** | Manuscript Final Text & Refs | PI | 🟡 **In Progress** (Text Completed) |
-| **Week 3 (Mar 15)** | Figure Assembly (1-7) & Polish | Design/Team | 🚨 **Starting** |
-| **Week 4 (Mar 22)** | Internal Review & **SUBMISSION** | PI | ⚪ Planned |
+| **Week 1 (Mar 17)** | Manuscript Final Text & Refs | PI | 🟡 **In Progress** |
+| **Week 2 (Mar 24)** | Figure Assembly (1-7) & Polish | Design/Team | 🚨 **Starting** |
+| **Week 3 (Mar 31)** | Internal Review & Revision | PI | ⚪ Planned |
+| **Week 4 (Apr 07)** | Submission Checklist & **SUBMIT** | PI | ⚪ Planned |
 
 ## Timeline Estimate
 
-- **Best Case:** 2 Weeks. Assuming figure assembly goes smoothly and internal review clears quickly.
-- **Expected:** 3 Weeks. Allowing some buffer for editing the manuscript sections and verifying specific Nature formatting requirements.
-- **Worst Case:** 5 Weeks. If figure redesign is requested during internal review or if more parameter sweeps are deemed necessary.
+- **Best Case:** 2 Weeks (Mar 31). Assuming figure assembly goes smoothly and internal review clears quickly.
+- **Expected:** 3 Weeks (Apr 07). Allowing some buffer for editing the manuscript sections and verifying specific Nature formatting requirements.
+- **Worst Case:** 5 Weeks (Apr 21). If figure redesign is requested during internal review or if more parameter sweeps are deemed necessary.
 
 ## Risks & Mitigations
 

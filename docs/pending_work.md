@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-17
 **Status:** In Progress
 **Priority Level:** High (Final Push to Submission: References and Figures)
 
@@ -33,8 +33,8 @@
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **THEORY-01** | **Reviewer #3 Defense** | Finalize "Anisotropy Gap" argument for thermodynamics. | 0.5 day | None | ✅ **Drafted** |
-| **THEORY-02** | **Toy Models** | Create simple 1D models (Toy A-E) to de-risk Cosserat simulation for reviewers. | 1-4 days | None | ✅ **Completed** |
-| **THEORY-03** | **Real Experiments List** | Propose 2-5 real physical/in vivo validations (clinostat, circadian jetlag, KO mice). | 0.5 day | None | ✅ **Drafted** |
+| **THEORY-02** | **Toy Models** | Create simple models (Toy A-E) to de-risk Cosserat simulation for reviewers. | 1-4 days | None | ✅ **Completed** |
+| **THEORY-03** | **Real Experiments List** | Propose real physical/in vivo validations (clinostat, circadian jetlag, KO mice). | 0.5 day | None | ✅ **Drafted** |
 
 ## Summary of Risks
 

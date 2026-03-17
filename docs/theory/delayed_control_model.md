@@ -52,3 +52,30 @@ If the delay $\tau$ exceeds a critical threshold $\tau_{crit}$ (which depends on
 ## Biological Relevance
 *   **Adolescent Growth:** As $L$ increases, $\tau$ increases. If the brain does not adapt $K_p/K_d$ or if the stability margin is thin, growth pushes the system across the bifurcation point.
 *   **Protein Disorder:** We hypothesize that "disordered proteins" (e.g., PIEZO2) introduce **multiplicative noise** to the gain $K_p$ or **additive noise** $\xi(t)$, effectively reducing the stability margin.
+
+## The Predictive World Model (Dreamer Analogy)
+
+To overcome the destabilizing effects of proprioceptive feedback delays ($\tau$), the central nervous system does not rely purely on reactive feedback. Instead, it utilizes a predictive "world model" to anticipate future states and compute control actions via latent imagination, analogous to the *Dreamer* reinforcement learning agent (Hafner et al., 2019). Scoliosis represents an optimization failure where rapid adolescent growth alters plant dynamics (length $L$, inertia $I$) faster than the updating of this latent neural representation.
+
+### Formal Element: Predictive Latent-State Number ($\mathcal{P}_{latent}$)
+
+We formalize this capacity using the Predictive Latent-State Number, a dimensionless coupling constant that quantifies the controller's ability to "look ahead" relative to its sensory lag.
+
+*   **Symbols and Units:**
+    *   $T_{predict}$: The temporal horizon of the neural predictive model (units: $s$)
+    *   $\tau$: The aggregate neural transmission and processing delay (units: $s$)
+*   **Definition:** $\mathcal{P}_{latent} = \frac{T_{predict}}{\tau}$
+*   **Dimensional Analysis:** $[T] / [T] = 1$ (Dimensionless)
+*   **Measurable Proxy:** The latency of Anticipatory Postural Adjustments (APA) relative to a known mechanical perturbation, measured via electromyography (EMG) of paraspinal muscles.
+
+When $\mathcal{P}_{latent} > 1$, the predictive horizon exceeds the delay, allowing stable control. During adolescent growth spurts, if $\tau$ increases (due to increasing $L$) without a compensatory increase in $T_{predict}$, $\mathcal{P}_{latent}$ drops, pushing the system toward the Hopf bifurcation.
+
+### Falsifiable Tests
+
+*   **Hypothesis:** Adolescents with Idiopathic Scoliosis (AIS) exhibit a reduced $\mathcal{P}_{latent}$ compared to age-matched controls, specifically due to an inability to scale $T_{predict}$ during rapid growth.
+*   **Data Needed:** Kinematic and EMG data from sudden-release or platform-translation postural perturbation tests in pre-pubertal, early-pubertal, and post-pubertal cohorts (both AIS and healthy).
+*   **Refutation Conditions:** The hypothesis is refuted if (1) paraspinal APA timings ($T_{predict}$ proxy) scale linearly with height ($L$) in the AIS cohort matching the healthy cohort, or (2) experimental calculation of $\mathcal{P}_{latent}$ shows no significant difference between stable spines and progressive scoliotic curves.
+
+## References
+
+1. Hafner, D., Lillicrap, T., Ba, J., & Norouzi, M. (2019). Dream to Control: Learning Behaviors by Latent Imagination. *arXiv preprint arXiv:1912.01603*.

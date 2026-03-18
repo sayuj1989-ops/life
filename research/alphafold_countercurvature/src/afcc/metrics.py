@@ -303,13 +303,15 @@ class MetricsAnalyzer:
 
         means = block_sums / sizes
 
-        # Extract intra (diagonal) and inter (off-diagonal)
-        intra_scores = np.diag(means)
-        mask_inter = ~np.eye(means.shape[0], dtype=bool)
-        inter_scores = means[mask_inter]
+        # Bolt Optimization: Vectorized Block Calculation optimized
+        # Replaced np.diag and ~np.eye with trace and sum avoiding allocations
+        n = means.shape[0]
+        total_sum = means.sum()
+        intra_sum = np.trace(means)
 
-        mean_intra = np.mean(intra_scores) if intra_scores.size > 0 else 1.0
-        mean_inter = np.mean(inter_scores) if inter_scores.size > 0 else 1.0
+        n_inter = n * n - n
+        mean_inter = (total_sum - intra_sum) / n_inter if n_inter > 0 else 1.0
+        mean_intra = intra_sum / n if n > 0 else 1.0
 
         if mean_intra < 1e-3: mean_intra = 1e-3
 

@@ -694,6 +694,32 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Growth Plate Shear-Growth Coupling ($\Gamma_{shear}$)
+
+We define $\Gamma_{shear}$ to formalize the sensitivity of the torsional growth strain rate ($\dot{\gamma}_{growth}$) to time-averaged transverse shear stress ($\langle \tau_{transverse} \rangle$) at the epiphyseal plate. This extends the classical Hueter-Volkmann law (which focuses on axial compression and tension) to rotational dynamics, providing a mechanistic link between asymmetric loading and the axial rotation characteristic of progressive scoliosis.
+
+$$ \dot{\gamma}_{growth} = \Gamma_{shear} \cdot \langle \tau_{transverse} \rangle $$
+
+*   **Symbols**:
+    *   $\dot{\gamma}_{growth}$: Torsional growth strain rate (angular deformation per unit time) $[T^{-1}]$.
+    *   $\langle \tau_{transverse} \rangle$: Time-averaged local transverse shear stress at the epiphyseal growth plate $[M L^{-1} T^{-2}]$.
+    *   $\Gamma_{shear}$: Shear-Growth Coupling Constant $[M^{-1} L T]$.
+*   **Dimensions**:
+    *   $[\Gamma_{shear}] = \frac{[\dot{\gamma}_{growth}]}{[\langle \tau_{transverse} \rangle]} = \frac{[T^{-1}]}{[M L^{-1} T^{-2}]} = [M^{-1} L T]$.
+*   **Physical Interpretation**:
+    *   A high $\Gamma_{shear}$ indicates that the growth plate is highly susceptible to rotational remodeling under shear loads. Even small asymmetric transverse forces (e.g., from neuromuscular imbalance or altered gait) will rapidly induce a permanent twist in the vertebral body as it grows.
+    *   This provides the rotational component required for the full 3D deformity in Adolescent Idiopathic Scoliosis (AIS).
+*   **Measurable Proxy**: The rate of vertebral axial rotation (degrees/year) measured via sequential 3D reconstructions (e.g., EOS imaging) normalized by the estimated transverse shear stress derived from patient-specific biomechanical modeling.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Pure Shear Verification**
+    *   **Data Needed**: Measurement of torsional growth (vertebral twist) in a growing animal model (e.g., rat tail or bovine disc model) subjected to isolated, controlled transverse shear forces via a custom loading apparatus, without applying axial compression or tension gradients.
+    *   **Refutation**: If applying a pure transverse shear stress fails to induce a directional torsional growth strain (i.e., the vertebrae do not twist, meaning $\Gamma_{shear} \approx 0$), the hypothesis that the Hueter-Volkmann law extends independently to rotational dynamics is falsified. (Reference: Stokes, 2002).
+*   **Test 2: The Decoupled Twist**
+    *   **Data Needed**: Longitudinal 3D imaging data (Cobb angle and vertebral rotation angle) in AIS patients treated with a bracing strategy that selectively neutralizes transverse shear (e.g., derotation bands) while still allowing axial compression gradients.
+    *   **Refutation**: If the progression of vertebral axial rotation continues at the same rate despite the complete neutralization of transverse shear stress, the coupling parameter $\Gamma_{shear}$ is not the primary driver of the rotational deformity (implying twist is instead an unavoidable kinematic consequence of bending). (Reference: Villemure & Stokes, 2009).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1125,3 +1151,4 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+77. **Villemure, I., & Stokes, I. A. (2009).** "Growth plate mechanics and mechanobiology. A survey of present understanding." *Journal of Biomechanics*, 42(12). (Provides context on mechanical modulation of bone growth extending Hueter-Volkmann law).

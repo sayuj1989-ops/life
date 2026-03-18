@@ -77,3 +77,10 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Publication Quality Refinement (High Priority)
+
+- [ ] **Standardize Metric Reporting**: Ensure all analysis scripts output metrics in a consistent tabular format (e.g., CSV) and save them to a designated `outputs/metrics/` directory.
+- [ ] **Archive Legacy Outputs**: Scan the `outputs/` and `results/` directories and move any obsolete or non-reproducible experiment data to `archive/outputs/`.
+- [ ] **Pin Dependencies**: Audit `requirements.txt` and `pyproject.toml` to ensure all critical scientific libraries (numpy, scipy, matplotlib) have exact version pins to guarantee long-term reproducibility.
+- [ ] **Final Docstring Pass**: Review all active modules in `src/spinalmodes/` to ensure comprehensive PEP 257 compliant docstrings, specifically focusing on mathematical units and dimensions.

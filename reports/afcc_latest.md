@@ -512,3 +512,26 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rod Persistence**: GHR remains the top anisotropic candidate (5.13, pLDDT: 58.7), supporting its role as a potential structural and growth signal integration point.
 - **Extracellular Link**: JAG1 (Anisotropy: 2.76, pLDDT: 73.1) and DAG1 (Anisotropy: 2.39, pLDDT: 68.2) both display intermediate structures, highlighting their role in signaling and structural connections respectively.
 - **Circadian-Mechanic Coupling**: ARNTL (Anisotropy: 3.32, pLDDT: 65.5) continues to show extended characteristics, suggesting its circadian regulatory function may couple with mechanically sensitive structures.
+
+# AFCC Daily Refresh: 2026-03-18
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| HIF1A | 3.42 | 60.8 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| LBX1 | 2.27 | 66.9 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 8 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+- **Hypoxia Response Link**: HIF1A shows extended fibrous architecture (Anisotropy 3.42), which may help integrate oxygen sensing with mechanical stress signals during spinal loading.
+- **Skeletal Muscle Mechanics**: DAG1 displays an intermediate morphology (Anisotropy 2.39) indicative of its role as an anchor linking the extracellular matrix to the cytoskeleton.
+- **Genetic Risk Factor**: LBX1 (Anisotropy 2.27), a top AIS GWAS hit, exhibits intermediate structural properties that may interface with proprioceptive sensory pathways.

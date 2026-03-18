@@ -1,0 +1,4 @@
+A highly detailed scientific illustration describing the "Derivative Gain Trap" in Adolescent Idiopathic Scoliosis (AIS).
+The image should show a causal feedback loop or block diagram mapping out mathematical control theory applied to spinal geometry.
+Include elements representing the adolescent growth spurt, increasing neural delay (\tau), and the transition from stable damping to a destabilizing supercritical Hopf bifurcation ("Metabolic Buckling").
+Visual style should be professional, clean, suitable for a high-impact journal like Nature or Science. Incorporate abstract representations of a spine transitioning from a stable S-curve to a buckling scoliotic shape.

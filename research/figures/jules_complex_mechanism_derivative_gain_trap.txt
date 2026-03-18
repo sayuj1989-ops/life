@@ -1,0 +1,9 @@
+The Mechanogenetic Demand-Supply Gap: A schematic flow diagram mapping the "Derivative Gain Trap" during the adolescent growth spurt.
+
+Visually, show two opposing forces:
+1. "Structural Demand" representing the $L^4$ scaling cost of maintaining spinal curvature against gravity as the spine rapidly lengthens. Show this as an expanding geometric structure (like a growing Euler column or spring).
+2. "Metabolic Supply" representing the $L^2$ scaling of ATP/NAD+ production capacity from the vascular boundary. Show this as a constrained resource pool or metabolic network.
+
+Connect them via an "Information-Elasticity Coupling (IEC)" control loop. Central to the loop is the "Derivative Gain" component, acting as a sensor (e.g., muscle spindles/Piezo2).
+Show a bifurcation point labeled "Metabolic Buckling" where the delay ($\tau$) in the sensory feedback loop, exacerbated by the localized NAD+ energy deficit, turns the stabilizing damping into destabilizing oscillations, initiating scoliotic curvature.
+Use clean, scientific aesthetics, avoiding overly cartoonish elements. Colors should be muted and professional (blues, grays, with a red highlight for the instability point).

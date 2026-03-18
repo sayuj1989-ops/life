@@ -1,0 +1,10 @@
+Visual Abstract for "Biological Countercurvature of Spacetime": An integrative scientific illustration synthesizing Rindler-Cosserat mechanics with human spinal development.
+
+The abstract should be divided into three linked panels:
+Panel 1: "The Gravitational Paradox". Show a human figure standing upright, with a background grid representing a curved spacetime metric (AdS/Rindler geometry). Arrows should indicate the continuous metabolic energy expenditure required to maintain this non-geodesic, upright posture against the constant 1g acceleration.
+
+Panel 2: "Holographic Morphogenesis". Show a 2D boundary layer (epithelium) projecting a 3D bulk structure (the growing spine). Highlight the "Bulk Reconstruction Error" that occurs when the rapid 3D growth outpaces the 2D information propagation, leading to a loss of structural fidelity.
+
+Panel 3: "Symmetry Breaking via Spinal Jetlag". Show a 3D Cosserat rod model of a spine undergoing helical buckling. Highlight the left and right growth plates with misaligned circadian clock phases ($\phi_L \neq \phi_R$), generating a torsional pre-stress. This should visually demonstrate how a simple planar instability is converted into a complex 3D scoliotic deformity.
+
+The overall style should be appropriate for a Nature or Science journal cover or visual abstract: highly technical, elegant, using a sophisticated color palette (e.g., deep space blue, biological teal, and energetic orange/red for instabilities).

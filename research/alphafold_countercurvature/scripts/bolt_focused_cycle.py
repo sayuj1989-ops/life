@@ -22,7 +22,7 @@ from research.alphafold_countercurvature.src.afcc.structure import StructurePars
 
 # Constants
 DEFAULT_SEED_LIST = [
-    ("Q92508", "PIEZO2"),
+    ("Q92508", "PIEZO1"), # Note Q92508 is PIEZO1, PIEZO2 is Q9H2D1
     ("P02545", "LMNA"),
     ("P02452", "COL1A1"),
     ("Q96DT5", "DNAH11"),
@@ -271,9 +271,13 @@ def run_focused_cycle(targets=None):
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
         f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
         f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
+        f.write("**Code Version:** Bolt-BioFold v1.0\n")
+        f.write("**Parameters:** pLDDT > 70 for geometry, PCA for principal axis, domain blockiness from PAE contrast.\n\n")
 
         f.write("## Results Table\n\n")
+        f.write("```csv\n")
+        f.write(df.to_csv(index=False))
+        f.write("```\n\n")
         f.write(df_to_markdown(df))
 
         f.write("\n\n## Key Plots Summary\n")
@@ -284,7 +288,12 @@ def run_focused_cycle(targets=None):
         for _, row in df.iterrows():
             f.write(f"\n### {row['protein_id']} ({row['uniprot']})\n")
             f.write(f"*   **What we see:** pLDDT {row['pLDDT_mean']:.1f}, Anisotropy {row['anisotropy_index']:.2f}. {row['interpretation']}\n")
-            f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
+            if "RUNX3" in row['protein_id']:
+                f.write(f"*   **Why it matters:** Transcription factor. Binding specificity may depend on domain flexibility under tension.\n")
+            elif "DNAH11" in row['protein_id']:
+                f.write(f"*   **Why it matters:** Motor protein crucial for ciliary motility. Bending hotspots might correlate with motor domains.\n")
+            else:
+                f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission and aligns with mechanosensing.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
             f.write(f"*   **Confidence:** {row['confidence_level']}\n")
             f.write(f"*   **Next Test:** {'Compare curvature under stress in simulation.' if row['hinge_candidates'] > 0 else 'Check expression gradients in spine.'}\n")
 

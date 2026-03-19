@@ -34,3 +34,9 @@ Based on the "Trap" dynamics found in the repo's `create_manuscript_v2.js`, add 
 3.  **Discussion:** Add a subsection titled "The Therapeutic Paradox" explaining why the non-monotonic nature of the trap means bracing works by constraining the system, rather than just increasing gain, and why over-aggressive therapy might fail.
 
 By making these changes, the manuscript will perfectly align with the rigorous, non-linear dynamics already validated by the `pytest` suite and simulations in the repository.
+
+## 3. Strategic Decision for Submission
+*Update:* While the initial review suggested completely renaming the paper from "Gap" to "Trap", we have strategically decided against this for the *Spine Deformity* submission.
+*   **Audience:** The target audience (SRS orthopaedic surgeons) is highly receptive to the "Gap" concept (a transient loss of function due to growth velocity), which perfectly maps to clinical intuition. The "Trap" introduces dynamical complexity that may distract clinical reviewers.
+*   **Parameters:** The repo's extended simulations for the "Trap" use different foundational parameters than the Peterka 2002 constants used in the primary "Gap" model.
+*   **Resolution:** We are keeping the paper focused on the "Derivative Gain Gap" as the primary causal mechanism. To leverage the repository's advanced findings without derailing the main thesis, we have added a dedicated sub-section in the Discussion (`4.6 The Therapeutic Paradox: The Derivative Gain Trap`). This plants the flag for the non-monotonic behavior and its clinical implications (why aggressive over-correction might worsen progression), preserving the novel finding for future advanced study while keeping the clinical message clean.

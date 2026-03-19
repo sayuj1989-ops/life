@@ -11,7 +11,9 @@ Author: Jules (AI)
 """
 
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import numpy as np
+import tensorflow as tf
 import matplotlib.pyplot as plt
 
 def simulate_day_phase(Kp, Kd, tau, L, m, duration=12.0, dt=0.01):
@@ -81,24 +83,100 @@ def simulate_day_phase(Kp, Kd, tau, L, m, duration=12.0, dt=0.01):
 
     return accumulated_error, max_theta
 
-def run_latent_imagination_night(current_Kd, error_signal, metabolic_supply, learning_rate=0.05):
+def _latent_imagination_trajectory(Kp, Kd_var, tau, L, m, duration=10.0, dt=0.01):
+    """
+    Differentiable simulation of spinal dynamics using tf.TensorArray to accumulate gradients
+    through time. Represents the internal world model used during Latent Imagination.
+    """
+    steps = tf.cast(duration / dt, tf.int32)
+    tau_steps = tf.maximum(1, tf.cast(tau / dt, tf.int32))
+
+    theta_ta = tf.TensorArray(tf.float32, size=steps, clear_after_read=False)
+    omega_ta = tf.TensorArray(tf.float32, size=steps, clear_after_read=False)
+
+    def init_cond(i, t_ta, o_ta):
+        t_ta = t_ta.write(i, 0.05)
+        o_ta = o_ta.write(i, 0.0)
+        return i + 1, t_ta, o_ta
+
+    _, theta_ta, omega_ta = tf.while_loop(
+        lambda i, t, o: i < tau_steps,
+        init_cond,
+        [0, theta_ta, omega_ta]
+    )
+
+    g = tf.constant(9.81, dtype=tf.float32)
+    I = (1.0/3.0) * m * (L**2)
+    EI_passive = 0.05 * (L**4)
+
+    def body(i, t_ta, o_ta, error):
+        curr_theta = t_ta.read(i-1)
+        curr_omega = o_ta.read(i-1)
+
+        del_theta = t_ta.read(i - tau_steps)
+        del_omega = o_ta.read(i - tau_steps)
+
+        M_grav = m * g * (L/2.0) * tf.sin(curr_theta)
+        M_pass = -EI_passive * curr_theta
+        M_act = -(Kp * del_theta + Kd_var * del_omega)
+
+        alpha = (M_grav + M_pass + M_act) / I
+
+        next_omega = curr_omega + alpha * dt
+        next_omega *= 0.95
+
+        next_theta = curr_theta + next_omega * dt
+
+        next_theta_clipped = tf.clip_by_value(next_theta, -1.5, 1.5)
+        next_omega_clipped = tf.clip_by_value(next_omega, -10.0, 10.0)
+
+        t_ta = t_ta.write(i, next_theta_clipped)
+        o_ta = o_ta.write(i, next_omega_clipped)
+
+        step_error = (next_theta_clipped**2) * dt
+        # penalty if we pass buckling threshold
+        penalty = tf.where(tf.abs(next_theta_clipped) > 1.0, 10.0 * dt, 0.0)
+
+        return i + 1, t_ta, o_ta, error + step_error + penalty
+
+    _, final_theta_ta, final_omega_ta, total_error = tf.while_loop(
+        lambda i, t, o, e: i < steps,
+        body,
+        [tau_steps, theta_ta, omega_ta, tf.constant(0.0, dtype=tf.float32)]
+    )
+
+    return total_error
+
+def run_latent_imagination_night(Kd_var, Kp, tau, L, m, day_error, metabolic_supply, optimizer, sim_fn):
     """
     Simulates night-time recumbency where the spinal circuitry replays errors to optimize Kd.
     """
     # If metabolic supply is low (sleep deprivation or pacing mismatch),
     # the learning rate is scaled down proportionally.
-    effective_lr = learning_rate * metabolic_supply
+    base_lr = 0.5
+    effective_lr = base_lr * metabolic_supply
+    optimizer.learning_rate.assign(effective_lr)
 
-    # Gradient descent step: we assume the system knows the gradient direction locally,
-    # or performs random search. For the toy model, we guide it towards the optimal Kd (~15).
-    optimal_Kd = 15.0
-    gradient = (current_Kd - optimal_Kd) * error_signal
+    # It takes multiple "imagination" steps in the night to learn
+    for _ in range(5):
+        with tf.GradientTape() as tape:
+            imagined_error = sim_fn(
+                tf.constant(Kp, dtype=tf.float32),
+                Kd_var,
+                tf.constant(tau, dtype=tf.float32),
+                tf.constant(L, dtype=tf.float32),
+                tf.constant(m, dtype=tf.float32)
+            )
 
-    # Update rule (Biological Gradient Descent)
-    new_Kd = current_Kd - effective_lr * gradient
+        grad = tape.gradient(imagined_error, Kd_var)
 
-    # Bound the gain physically
-    new_Kd = max(0.0, min(new_Kd, 40.0))
+        if grad is not None:
+            grad = tf.clip_by_value(grad, -10.0, 10.0)
+            optimizer.apply_gradients([(grad, Kd_var)])
+
+    # Apply bounds physically
+    new_Kd = max(0.0, min(Kd_var.numpy(), 40.0))
+    Kd_var.assign(new_Kd)
     return new_Kd
 
 def simulate_condition(condition_name, days, sleep_quality_array, metabolic_pacing_array, L_growth_rate=0.01):
@@ -113,7 +191,9 @@ def simulate_condition(condition_name, days, sleep_quality_array, metabolic_paci
     # Initial Gains
     # Kp must be strong enough to counteract gravity at initial L
     # Kd starts suboptimal
-    Kd = 5.0
+    Kd_var = tf.Variable(5.0, dtype=tf.float32)
+    sim_fn = tf.function(_latent_imagination_trajectory)
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.5)
 
     history_theta = []
     history_Kd = []
@@ -127,15 +207,15 @@ def simulate_condition(condition_name, days, sleep_quality_array, metabolic_paci
         Kp = 1.2 * m * 9.81 * (L/2)
 
         # 1. Day Phase (Loading)
-        day_error, max_th = simulate_day_phase(Kp, Kd, tau, L, m)
+        day_error, max_th = simulate_day_phase(Kp, Kd_var.numpy(), tau, L, m)
         history_theta.append(np.rad2deg(max_th))
-        history_Kd.append(Kd)
+        history_Kd.append(Kd_var.numpy())
 
         # 2. Night Phase (Unloading & Optimization)
         # Metabolic capacity available for latent imagination
         metabolic_capacity = sleep_quality_array[day] * metabolic_pacing_array[day]
 
-        Kd = run_latent_imagination_night(Kd, day_error, metabolic_capacity)
+        run_latent_imagination_night(Kd_var, Kp, tau, L, m, day_error, metabolic_capacity, optimizer, sim_fn)
 
     return history_theta, history_Kd
 
@@ -154,12 +234,15 @@ def main():
     sleep_desync = np.random.uniform(0.1, 0.5, days) # Chronically poor sleep architecture
     metabolic_desync = np.ones(days)
 
+    tf.keras.backend.clear_session()
     print("Simulating Healthy Condition...")
     th_H, kd_H = simulate_condition("Healthy", days, sleep_healthy, metabolic_healthy)
 
+    tf.keras.backend.clear_session()
     print("Simulating Metabolic Deficit...")
     th_M, kd_M = simulate_condition("Metabolic Deficit", days, sleep_deficit, metabolic_deficit)
 
+    tf.keras.backend.clear_session()
     print("Simulating Circadian Desynchronization...")
     th_C, kd_C = simulate_condition("Circadian Desync", days, sleep_desync, metabolic_desync)
 

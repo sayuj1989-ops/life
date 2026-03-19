@@ -1,0 +1,7 @@
+A high-impact visual abstract for the theory of "Biological Countercurvature of Spacetime".
+The visual should center on the human spine, highlighting the transition from normal healthy S-curvature to the scoliotic curve (AIS).
+Key elements to include:
+1. "The Allometric Trap": Humans uniquely sit at a critical Bio-Gravitational Number ($\mathcal{B}_g \approx 0.01$), making shape maintenance dependent on high metabolic energy.
+2. "Metabolic Buckling": Show how rapid adolescent growth increases geometric cost ($L^4$) outstripping metabolic supply ($L^2$), creating an "Energy Deficit Window".
+3. "Derivative Gain Trap": Illustrate how increased neural delay during growth turns stabilizing damping into a scoliotic spiral.
+Use a modern, sophisticated aesthetic with a dark background and bioluminescent highlights to indicate energy and information flow.

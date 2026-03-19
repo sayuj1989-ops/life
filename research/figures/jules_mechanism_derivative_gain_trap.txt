@@ -1,0 +1,6 @@
+A conceptual diagram illustrating the "Derivative Gain Trap" during the adolescent growth spurt.
+The diagram should show a feedback loop where "Neural Delay (\tau)" increases due to rapid spinal growth.
+This increased delay turns "Essential Damping" (which normally stabilizes the spine) into a "Destabilizing Force".
+The result is "Metabolic Buckling" or "Adolescent Idiopathic Scoliosis (AIS)".
+Use arrows to show the flow: Rapid Growth -> Increased Neural Delay -> Damping becomes Destabilizing -> Metabolic Buckling.
+The style should be a clean, scientific flowchart suitable for a high-impact journal like Nature or Science.

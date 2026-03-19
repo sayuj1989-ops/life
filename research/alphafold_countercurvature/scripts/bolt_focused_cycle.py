@@ -7,10 +7,18 @@ import argparse
 import sys
 from datetime import datetime
 from pathlib import Path
+import subprocess
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
+def get_git_commit_hash():
+    """Dynamically fetch the git commit hash."""
+    try:
+        return subprocess.check_output(['git', 'rev-parse', 'HEAD'], stderr=subprocess.DEVNULL).decode('ascii').strip()
+    except Exception:
+        return "Unknown"
 
 # Setup path
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
@@ -267,16 +275,24 @@ def run_focused_cycle(targets=None):
     else:
         best_move = "Expand candidate list to include more cytoskeletal cross-linkers."
 
+    commit_hash = get_git_commit_hash()
+
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
-        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
-        f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
+        f.write("## Reproducibility Checklist\n")
+        f.write(f"*   **Source:** {'Default Seed List' if is_default else 'User Input'}\n")
+        f.write(f"*   **Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        f.write(f"*   **Commit:** {commit_hash}\n")
+        f.write("*   **Params:** pLDDT>=70 for geometry, strict segmentation, custom fast cross-products\n\n")
 
         f.write("## Results Table\n\n")
         f.write(df_to_markdown(df))
 
-        f.write("\n\n## Key Plots Summary\n")
+        f.write("\n\n## CSV Data\n\n```csv\n")
+        f.write(df.to_csv(index=False))
+        f.write("```\n")
+
+        f.write("\n## Key Plots Summary\n")
         f.write("*   Generated pLDDT profiles for all proteins.\n")
         f.write("*   Generated PAE heatmaps for proteins with available PAE data.\n")
 
@@ -284,9 +300,24 @@ def run_focused_cycle(targets=None):
         for _, row in df.iterrows():
             f.write(f"\n### {row['protein_id']} ({row['uniprot']})\n")
             f.write(f"*   **What we see:** pLDDT {row['pLDDT_mean']:.1f}, Anisotropy {row['anisotropy_index']:.2f}. {row['interpretation']}\n")
-            f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
+
+            why = "Globular domain likely involved in standard interactions or binding without specific tension-bearing roles."
+            if row['anisotropy_index'] > 3.0:
+                why = f"High aspect ratio ({row['anisotropy_index']:.2f}) supports role as a robust tension-transmitting element critical for counter-curvature mechanics in spine morphogenesis."
+            elif row['anisotropy_index'] > 2.0:
+                why = f"Moderate aspect ratio ({row['anisotropy_index']:.2f}) suggests a possible intermediate structural role in the ECM or cytoskeleton during axial elongation."
+            if row['hinge_candidates'] > 0:
+                why += f" Presence of {row['hinge_candidates']} potential hinge regions may allow nonlinear responses to mechanical load (e.g., buckling)."
+
+            next_test = "Analyze temporal expression gradients in developing somites."
+            if row['hinge_candidates'] > 0 and row['anisotropy_index'] > 3.0:
+                next_test = "Simulate load to identify critical buckling thresholds for these hinges, predicting macroscopic scoliotic deformations."
+            elif row['anisotropy_index'] > 3.0:
+                next_test = "In vitro stretching assay to confirm force-transmitting capacity along the principal axis."
+
+            f.write(f"*   **Why it matters:** {why}\n")
             f.write(f"*   **Confidence:** {row['confidence_level']}\n")
-            f.write(f"*   **Next Test:** {'Compare curvature under stress in simulation.' if row['hinge_candidates'] > 0 else 'Check expression gradients in spine.'}\n")
+            f.write(f"*   **Next Test:** {next_test}\n")
 
         f.write("\n## Best Next Move\n")
         f.write(f"🚀 **{best_move}**\n")

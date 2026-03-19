@@ -10,7 +10,7 @@ The results reveal a clear dichotomy: small quadrupeds (mouse, rat, rabbit) main
 
 We quantified the thermodynamic cost of maintaining the S-shaped counter-curvature across the developmental length range $L \in [0.25, 0.55]$\,m. The metabolic power $P_{\mathrm{counter}}(L)$ required to sustain the S-curve against passive gravitational sag scales as $L^2$ (Fig.~\ref{fig:energy_deficit_window}). In contrast, the proprioceptive supply capacity $S_{\mathrm{proprio}}$ follows a sublinear maturation trajectory ($L^{0.5}$), yielding a crossover at $L_{\mathrm{crit}} \approx 0.35$\,m. For $L > L_{\mathrm{crit}}$, the system enters the Energy Deficit Window. At $L = 0.45$\,m (typical adolescent spine), the deficit reaches ${\sim}41\%$ ($R \approx 1.46$), providing a thermodynamic explanation for the clinical observation that scoliosis onset peaks during the adolescent growth spurt (ages 11--15).
 
-The time course demonstrates peak vulnerability matching the clinical onset window, with a strong correlation between integrated energy deficit magnitude and Cobb angle progression ($r = 0.983$, $p = 2.74 \times 10^{-22}$). A comprehensive summary of all independently computed statistical tests supporting the IEC framework is provided in Table~\ref{tab:statistical_summary}.
+The time course demonstrates peak vulnerability matching the clinical onset window, with a strong correlation between integrated energy deficit magnitude and Cobb angle progression ($r = 0.983$, $p = 2.74 \times 10^{-22}$). A comprehensive summary of all independently computed statistical tests supporting the IEC framework is provided in Table~\ref{tab:comprehensive_stats}.
 
 \subsection{The Protein Cost Landscape}
 
@@ -86,22 +86,9 @@ Finally, we incorporated circadian variations via the "Spinal Jetlag" model, eva
 
 This section summarizes the independent re-analysis of the model's predictive power. The following tests validate the Information-Elasticity Coupling framework:
 
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-\textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
-Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
-Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
-Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
-Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
-Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
-\end{tabular}
-\caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
-\label{tab:comprehensive_stats}
-\end{table}
+Table~\ref{tab:comprehensive_stats} provides a detailed overview of these findings.
 
 \subsection{Bayesian Model Comparison and Sensitivity Analysis}
 Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290.
 
-Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models (pLDDT < 70) reduced the original mean anisotropy of 2.74 to 2.62. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence IDR coordinates.
+Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models ($\text{pLDDT} < 70$, specifically including POC5, GHR, and MESP2) reduced the original mean anisotropy of 2.74 to 2.62. These low scores predominantly reflect Intrinsically Disordered Regions (IDRs) common in metabolic supply signaling hubs. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence structural coordinates.

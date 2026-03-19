@@ -135,25 +135,18 @@ IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & $L$ \\
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{table}[h!]
+\begin{table}[h]
 \centering
-\caption{Comprehensive Statistical Summary of the Information-Elasticity Coupling (IEC) Framework. All statistical tests were independently computed using \textit{scipy.stats} to validate core computational claims.}
-\label{tab:statistical_summary}
-\scriptsize
-\begin{tabular}{p{3.5cm}p{3cm}p{4cm}p{3.5cm}}
-\toprule
-\textbf{Mechanism / Hypothesis} & \textbf{Metric Evaluated} & \textbf{Statistical Result} & \textbf{Significance Level} \\
-\midrule
-\multicolumn{4}{l}{\textit{Cross-Species Scaling \& The Allometric Trap}} \\
-Allometric Scaling & $Bg$ vs. Body Mass & Exponent = $-0.282 \pm 0.072$ \newline $R^2 = 0.744$ \newline Deviation from $-0.25$: $0.032$ & $p = 1.31 \times 10^{-3}$ \newline (Strong) \\
-\midrule
-\multicolumn{4}{l}{\textit{Energy Deficit Window \& Scoliosis Onset}} \\
-Critical Transition ($L_{crit}$) & Spine Length vs. Cobb Angle & $r = 0.983$ \newline Deficit Ratio Max = $38.5$ & $p = 2.74 \times 10^{-22}$ \newline (Strong) \\
-Anisotropy Rescue Effect & $L_{crit}$ vs. Anisotropy & $R^2 = 0.775$ \newline Saturation at $\ge 6.0$ & $p = 3.58 \times 10^{-17}$ \newline (Strong) \\
-\midrule
-\multicolumn{4}{l}{\textit{Mechanical Instability \& Vector Mismatch}} \\
-Vector Misalignment & Peak Stiffness Mismatch & Position = $0.596$ (Normalized) \newline Reduction = $31.1\%$ & Matching Thoracolumbar Apex (Verified) \\
-Circadian Disruption (Jetlag) & Cobb Angle (Jetlag vs. Baseline) & $2.52$-fold increase \newline (Mean $24.18^\circ$ vs. $9.61^\circ$) & $p = 2.59 \times 10^{-4}$ \newline (Moderate) \\
-\bottomrule
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
+Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
+Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
+Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
+Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
+Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
+Vector Mismatch & Pos = 0.596, 31.1\% loss & Spatial Analysis & N/A & Thoracolumbar Apex \\ \hline
 \end{tabular}
+\caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
+\label{tab:comprehensive_stats}
 \end{table}

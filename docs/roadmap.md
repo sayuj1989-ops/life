@@ -2,7 +2,7 @@
 
 **Target:** *Nature* Submission
 **Timeline:** 4 Weeks (March 01 - March 29, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-13.md](progress_update_2026-03-13.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-19.md](progress_update_2026-03-19.md)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -18,6 +18,7 @@
 - [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
 - [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
 - [ ] **References:** Complete Bibliography (80-100 refs).
+- [ ] **Supplementary Materials:** Extended data figures and methods formatting.
 
 ## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
 
@@ -36,9 +37,18 @@
 
 ## Timeline Estimate
 
-- **Best Case:** 2 Weeks. Assuming figure assembly goes smoothly and internal review clears quickly.
-- **Expected:** 3 Weeks. Allowing some buffer for editing the manuscript sections and verifying specific Nature formatting requirements.
-- **Worst Case:** 5 Weeks. If figure redesign is requested during internal review or if more parameter sweeps are deemed necessary.
+**Assumptions:** Assuming 20-30 hours of focused effort remaining, no major simulation reruns required, compute access remains available, and internal review clears smoothly.
+
+- **Best Case (2 Weeks):** Bibliography expanded within 48h, figure unification scripts run perfectly without manual tweaking, and internal review requests minor adjustments.
+- **Expected (3 Weeks):** Allows a realistic buffer for manual figure adjustments, verifying specific *Nature* formatting nuances, and addressing PI internal review feedback.
+- **Worst Case (5 Weeks):** If the internal review demands additional specific simulation sweeps, significant rewriting of the mathematical bridging sections, or delays in data rendering compute limits.
+
+**Critical Path Tasks:**
+1. `manuscript/references.bib` Expansion (MS-01)
+2. Figure Finalization (Panels 1-7) (MS-02)
+3. Extended Data Assembly (SUPP-01)
+4. Internal PI Review (MS-04)
+5. Submission Checklist & Submission
 
 ## Risks & Mitigations
 

@@ -1,10 +1,19 @@
 # Pending Work
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-19
 **Status:** In Progress
 **Priority Level:** High (Final Push to Submission: References and Figures)
 
-## 1. Data Gaps (Completed)
+## 1. Pending Work List
+
+| Theme | ID | Task | Description | Effort | Dependencies | Risk Level | Acceptance Criteria |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Manuscript** | **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | `.bib` contains 80-100 valid, Nature-formatted citations supporting claims. |
+| **Figures** | **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | Final 300dpi Panels 1-7 assembled, uniform styling applied, captions finalized. |
+| **Review** | **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | Full package (PDF + Supplement) ready for pre-submission checks. |
+| **Supplementary** | **SUPP-01** | **Extended Data** | Extended data tables/figures and methods text assembled for submission package. | 1 day | MS-02 | Low | Extended data ready for Nature guidelines. |
+
+## 2. Completed Items Archive
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -19,16 +28,7 @@
 | **CODE-02** | **Update `experiment_optimization_failure.py`** | Generate Figure 4 with specific mutation labels. | 0.5 day | DATA-02 | ✅ **Completed** |
 | **CODE-04** | **Create `experiment_anisotropy_rescue.py`** | Validate vector constraints via anisotropy sweeps against critical buckling. | 0.5 day | None | ✅ **Completed** |
 
-## 3. Manuscript Tasks (High Priority)
-
-| ID | Task | Description | Effort | Dependencies | Risk Level | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
-| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
-| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
-| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
-
-## 4. Theory & Validation (Completed)
+## 3. Theory & Validation (Completed)
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |

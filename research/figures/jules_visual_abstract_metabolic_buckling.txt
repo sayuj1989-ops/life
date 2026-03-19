@@ -1,0 +1,8 @@
+A comprehensive Visual Abstract for the "Biological Countercurvature of Spacetime" theory, focusing on the concept of "Metabolic Buckling" in Adolescent Idiopathic Scoliosis (AIS).
+The abstract should visually bridge biomechanics, mathematical control theory, and clinical onset.
+Central image: The human spine maintaining a complex S-shaped sagittal profile against gravity.
+Key components:
+1. The Bio-Gravitational Number (Bg = EI/(MgL^2) ~ 0.01), placing humans in an "Allometric Trap" entirely dependent on metabolic energy for shape maintenance.
+2. The Energy Deficit Window: A graph showing $L^4$ geometric scaling costs vs $L^2$ metabolic supply during rapid adolescent growth, leading to a deficit.
+3. The Derivative Gain Trap: A control theory block diagram showing how increased neural delay (\tau) during growth turns stabilizing damping into destabilizing scoliotic buckling.
+The overall design should be professional, suitable for a high-impact journal like Nature or Science, and clearly convey the transition from normal physiology to pathological buckling driven by thermodynamic scaling failure.

@@ -1,0 +1,8 @@
+The "Derivative Gain Trap" during the adolescent growth spurt.
+A complex causal feedback loop diagram illustrating the Biological Countercurvature theory of Adolescent Idiopathic Scoliosis (AIS).
+The spine is an active control system governed by a Delay Differential Equation (DDE).
+During childhood, derivative gains (proprioceptive feedback) provide essential damping.
+During the adolescent growth spurt, neural delay (\tau) increases due to rapid spinal lengthening.
+This increased delay turns previously stabilizing damping gains into destabilizing forces, causing a supercritical Hopf bifurcation.
+The result is "Metabolic Buckling," initiating scoliotic curvature.
+Visual elements should include a feedback loop, representations of delay (\tau) and growth, and a transition from stable damping to unstable buckling.

@@ -77,3 +77,9 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Root Cleanup Part 2 (Medium Priority)
+- [x] **Clean Root Scripts**: Move root python scripts (`alphafold_pipeline_v2.py`, `benchmark_*.py`, `check_elastica.py`, `gen_alphafold_figs.py`, `generate_submission.py`, `main.py`, `run_cluster.py`, `test_genai.py`) to appropriate directories (e.g. `scripts/` or `tests/`).
+- [ ] **Clean Root Markdown/Text**: Move root text files (`00_START_HERE.txt`, `AlphaFold_Analysis_Summary.md`, `README_SUBMISSION_PACKAGE.md`, `Supplementary_Methods_Statistics.md`, `Supplementary_Statistics_Table.csv`, `plan.md`, `research_schedule_gravity_optimization.md`) to `docs/`, `data/`, or `notes/`.
+- [ ] **Clean Root Media**: Move root images (`js_creature_t0.png`, `js_creature_tPI.png`) to `figures/`.
+- [ ] **Clean Root Miscellany**: Move root text artifacts (`commit_message.txt`, `test_output_2.txt`, `run.sh`) to `archive/` or delete if unnecessary.

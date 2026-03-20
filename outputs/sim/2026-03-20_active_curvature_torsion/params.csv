@@ -1,0 +1,2 @@
+active_curvature_min,active_curvature_max,steps,anisotropy,torsion_drive,natural_kyphosis,duration,dt,n_elements,seed
+0.0,15.0,16,3.0,0.5,2.0,2.0,0.0001,50,42

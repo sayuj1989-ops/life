@@ -563,7 +563,7 @@ class MetricsAnalyzer:
                 # Subtract 1 to exclude self
                 cn -= 1
 
-            n_exposed = np.sum(cn < 15)
+            n_exposed = np.count_nonzero(cn < 15)
             exposed_fraction = n_exposed / n
         else:
             exposed_fraction = 0.0
@@ -578,9 +578,9 @@ class MetricsAnalyzer:
                  mask_hc = (plddt_scores[:min_len] >= 70)
                  mask_exposed = (cn[:min_len] < 15)
                  mask_target = mask_hc & mask_exposed
-                 exposed_hc_count = np.sum(mask_target)
+                 exposed_hc_count = np.count_nonzero(mask_target)
                  if exposed_hc_count > 0:
-                     charged_count = np.sum(is_charged[:min_len] & mask_target)
+                     charged_count = np.count_nonzero(is_charged[:min_len] & mask_target)
                      charged_patch_score = float(charged_count / exposed_hc_count)
         elif structure:
             charged_count = 0
@@ -618,7 +618,7 @@ class MetricsAnalyzer:
                  k_vals = kappa[1:-1]
                  m_vals = mask_hinge[1:-1]
                  hinges = (k_vals > thresh) & m_vals & (~np.isnan(k_vals))
-                 hinge_candidates = np.sum(hinges)
+                 hinge_candidates = np.count_nonzero(hinges)
 
         # Flags
         low_confidence_warning = (mean_plddt < 70) or (fraction_low_conf > 0.5)

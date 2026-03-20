@@ -156,3 +156,9 @@ This reduced the metric calculation overhead significantly while preserving bit-
 **Action:** Replaced `np.diff(bounded.astype(np.int8))` with fast boolean diff logic in `research/alphafold_countercurvature/src/afcc/metrics.py` (specifically in PAE segment finding and end-to-end distance calculations).
 
 ## 2026-11-20 - [Bolt Optimization: pLDDT boolean mask reuse]   **Learning:** pLDDT fractions calculation repeatedly creates internal boolean masks across array boundaries. This was a pipeline-specific bottleneck pattern resulting in duplicated boolean traversal and slow performance. **Action:** Refactored `analyze_structure` in `metrics.py` to reuse logical boolean masks (`mask_low = plddt_scores < 70` and `mask_high >= 90`) and logical subsetting (`plddt_scores[mask_low] < 50`) to avoid compound logical ops (`&`) and duplicate mask allocations. Improved block speed from ~0.25s to ~0.02s per 10k items.
+
+## 2026-03-20 - [Boolean sum optimization with count_nonzero]
+
+**Learning:** `np.sum()` on boolean arrays is a bottleneck in iterative geometry processing blocks because it allocates internal integers before summing. NumPy's `np.count_nonzero()` acts directly on boolean arrays at the C level, yielding ~2.5-3x faster evaluation.
+
+**Action:** Replaced `np.sum(bool_array)` with `np.count_nonzero(bool_array)` in 4 locations across `research/alphafold_countercurvature/src/afcc/metrics.py` (specifically exposed surface count, target mask counts, and hinge candidates). This improves the overall throughput of these calculations without changing outputs.

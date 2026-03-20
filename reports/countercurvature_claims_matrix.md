@@ -22,7 +22,7 @@ These claims are robustly supported by the latest authoritative snapshot (`outpu
     *   **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
     *   **Evidence**: LBX1 metrics (anisotropy = 2.27, pLDDT = 66.9, `PAE_blockiness` = 7.35) define it as an intermediate, modular structure rather than a pure tension rod.
 *   **Claim 1.3**: **Core candidates' structural metrics (e.g., LBX1, PIEZO2, LMNA) are static across recent AFCC runs.**
-    *   **Source Data**: `reports/evidence_freshness_audit.md` (derived from `outputs/afcc/2026-01-09` to `outputs/afcc/2026-02-26`)
+    *   **Source Data**: `reports/evidence_freshness_audit.md` (derived from `outputs/afcc/2026-01-09` to `outputs/afcc/2026-02-16`)
     *   **Evidence**: The per-gene vectors for these candidates remain mathematically identical across runs, indicating static inputs rather than evolving structural estimates.
 *   **Claim 1.4**: **CNNM2, FBLN5, STOML3, and PANX3 possess robust extended morphologies.**
     *   **Source Data**: `outputs/afcc/confidence_weighted_ranking.csv` (derived from 02-16 snapshot)

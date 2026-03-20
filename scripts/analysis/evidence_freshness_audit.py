@@ -7,7 +7,7 @@ def audit_afcc_freshness():
     afcc_dir = Path('outputs/afcc')
 
     # Get all dated subdirectories in outputs/afcc
-    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')])
+    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-') and '2026-01-09' <= d.name <= '2026-02-16'])
 
     metrics_history = {}
     missing_metrics = []

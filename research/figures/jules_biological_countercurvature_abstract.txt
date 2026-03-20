@@ -1,0 +1,6 @@
+A high-impact visual abstract summarizing the 'Biological Countercurvature' theory of Adolescent Idiopathic Scoliosis (AIS).
+The graphic is divided into three interconnected theoretical pillars:
+1. 'The Allometric Trap': An evolutionary scale showing human bipedalism operating at a critically low Bio-Gravitational Number (B_g ~ 0.01), uniquely requiring active metabolic shape maintenance against gravity.
+2. 'The Energy Deficit Window': A scaling diagram contrasting the L^4 metabolic cost of geometric maintenance against the L^2 available metabolic supply during the adolescent growth spurt, leading to localized NAD+ depletion.
+3. 'The Derivative Gain Trap': A control-theory block diagram showing how increased neural delay (\tau) from rapid growth turns stable derivative damping into destabilizing oscillations, triggering a supercritical Hopf bifurcation (Metabolic Buckling).
+The central image should be a human spine transitioning from a stable S-curve (blue) to a deformed scoliotic 3D curve (red/orange) as it passes through the critical bifurcation threshold. Use a professional scientific style suitable for Nature or Science.

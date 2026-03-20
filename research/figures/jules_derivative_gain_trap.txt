@@ -1,0 +1,7 @@
+A conceptual flowchart explaining the 'Derivative Gain Trap' mechanism in Adolescent Idiopathic Scoliosis.
+1. Start with the 'Adolescent Growth Spurt' causing an increase in spinal length (L) and a corresponding increase in neural transmission delay (\tau).
+2. Show a feedback loop labeled 'Mechanogenetic Control System'.
+3. Indicate that in childhood (short \tau), derivative gains provide 'Essential Damping' (stable, straight spine).
+4. Show a transition point where increased \tau shifts the system.
+5. In adolescence (long \tau), derivative gains flip to become destabilizing ('Metabolic Buckling'), leading to scoliotic curvature.
+6. Use a color palette of deep blue (stable) shifting to red/orange (unstable buckling).

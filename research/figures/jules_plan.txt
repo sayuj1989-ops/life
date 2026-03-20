@@ -1,0 +1,23 @@
+1. "Derivative Gain Trap" Mechanism:
+During the adolescent growth spurt, the neural delay ($\tau$) increases. Derivative gains, which normally provide essential damping for stability, become destabilizing. This causes a delay-induced instability where the spine buckles ("Metabolic Buckling"). Visually, this is a feedback loop where increased L leads to increased $\tau$, shifting the system from stable damping to unstable oscillation.
+
+2. "Energy Deficit Window" Mechanism:
+The metabolic cost of shape maintenance scales as $L^4$, but the available energy supply scales only as $L^2$. This creates a transient energy deficit during the adolescent growth spurt, leading to localized NAD+ insufficiency and compromising the mechanogenetic control system, pushing the spine into a scoliotic state.
+
+3. "Allometric Trap" / "Bio-Gravitational Number" Context:
+The human spine operates at a Bio-Gravitational Number ($\mathcal{B}_g \approx 0.01$), making it uniquely dependent on active metabolic control for shape maintenance compared to other species.
+
+Visual 1: Conceptual Diagram (Mechanism)
+Let's generate a flowchart/causal diagram for the "Derivative Gain Trap" feedback loop.
+Input text: `research/figures/jules_derivative_gain_trap.txt`
+Output image: `research/figures/jules_derivative_gain_trap_mechanism.png`
+
+Visual 2: Statistical Plot (Phase Diagram)
+Data: `outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv`
+Plot: Heatmap of Deficit Ratio (`R_deficit`) vs Length (`L`) and Coupling (`chi_kappa`).
+Output image: `research/figures/jules_energy_deficit_heatmap.png`
+
+Visual 3: Conceptual Diagram (Visual Abstract)
+Let's generate a Visual Abstract summarizing the Biological Countercurvature theory, linking the Allometric Trap, Derivative Gain Trap, and Energy Deficit Window.
+Input text: `research/figures/jules_biological_countercurvature_abstract.txt`
+Output image: `research/figures/jules_biological_countercurvature_visual_abstract.png`

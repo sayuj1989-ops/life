@@ -22,11 +22,11 @@ from research.alphafold_countercurvature.src.afcc.structure import StructurePars
 
 # Constants
 DEFAULT_SEED_LIST = [
-    ("Q92508", "PIEZO2"),
-    ("P02545", "LMNA"),
+    ("Q9H5I5", "PIEZO2"),
     ("P02452", "COL1A1"),
-    ("Q96DT5", "DNAH11"),
-    ("Q13761", "RUNX3")
+    ("P18206", "VCL"),
+    ("Q13418", "ILK"),
+    ("P21810", "BGN")
 ]
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -55,46 +55,48 @@ def df_to_markdown(df):
 
 def get_interpretation(metrics, gene):
     """Generates a tight interpretation based on metrics."""
-    interp = []
-
     # Confidence
     if metrics['low_confidence_warning']:
         confidence = "Low"
-        interp.append(f"⚠️ Low confidence (pLDDT mean {metrics['plddt_mean']:.1f}). Structure may be unreliable.")
+        what = f"pLDDT mean {metrics['plddt_mean']:.1f} indicates mostly low-confidence regions."
     elif metrics['plddt_mean'] > 85:
         confidence = "High"
+        what = f"High pLDDT mean ({metrics['plddt_mean']:.1f}) suggests well-structured regions."
     else:
         confidence = "Medium"
+        what = f"Moderate pLDDT mean ({metrics['plddt_mean']:.1f})."
 
     # Morphology
     aniso = metrics['anisotropy_index']
     if not np.isnan(aniso):
+        what += f" Anisotropy index is {aniso:.2f}."
         if aniso > 3.0:
-            interp.append(f"High anisotropy ({aniso:.2f}) indicates fibrous/extended morphology.")
-            interp.append("Potential tension element or structural scaffold.")
-        elif aniso < 1.5:
-            interp.append("Globular morphology.")
+            why = "High aspect ratio supports tension transmission or structural scaffolding."
+        elif aniso > 2.0:
+            why = "Moderate anisotropy suggests a structural element."
+        else:
+            why = "Globular domain likely involved in signaling or binding."
+    else:
+        why = "No high-confidence structured domains detected."
 
     # Mechanics
     curv = metrics['curvature_summary']
     if curv > 0.5:
-        interp.append(f"High mean curvature ({curv:.2f}).")
+        what += f" High mean curvature ({curv:.2f})."
 
     hinges = metrics['hinge_candidates']
     if hinges > 0:
-        interp.append(f"Detected {hinges} potential hinge(s) (flexible regions in stiff segments).")
-        interp.append("Candidate for curvature regulation under load.")
+        what += f" Detected {hinges} potential hinge(s)."
+        next_test = "Compare curvature under stress in simulation."
+    else:
+        next_test = "Check expression gradients in developing spine."
 
-    # Blockiness
-    blockiness = metrics['PAE_domain_blockiness_score']
-    if blockiness > 1.5:
-        interp.append(f"High PAE blockiness ({blockiness:.2f}) suggests distinct dynamic domains.")
-
-    summary = " ".join(interp)
-    if not summary:
-        summary = "Standard globular protein with no extreme geometric features."
-
-    return summary, confidence
+    return {
+        'what': what,
+        'why': why,
+        'confidence': confidence,
+        'next_test': next_test
+    }
 
 def plot_plddt(plddt_scores, gene, output_path):
     plt.figure(figsize=(8, 4))
@@ -187,8 +189,11 @@ def run_focused_cycle(targets=None):
             pae_matrix=pae_matrix
         )
 
+        # Add flags for missing artifacts
+        metrics['missing_pae'] = pae_matrix is None
+
         # 3. Interpret
-        interpretation, confidence = get_interpretation(metrics, gene)
+        interpretation = get_interpretation(metrics, gene)
 
         # 4. Plots
         plot_plddt_path = OUTPUT_DIR / f"plot_{gene}_plddt.png"
@@ -238,10 +243,13 @@ def run_focused_cycle(targets=None):
             'low_confidence_warning': metrics['low_confidence_warning'],
             'multi_domain_uncertain': metrics['multi_domain_uncertain'],
             'likely_IDR_heavy': metrics['likely_IDR_heavy'],
+            'missing_pae': metrics['missing_pae'],
 
             # Interpretation
-            'confidence_level': confidence,
-            'interpretation': interpretation
+            'confidence_level': interpretation['confidence'],
+            'what': interpretation['what'],
+            'why': interpretation['why'],
+            'next_test': interpretation['next_test']
         }
         analyzed_data.append(row)
 
@@ -269,12 +277,36 @@ def run_focused_cycle(targets=None):
 
     with open(md_path, 'w') as f:
         f.write("# Bolt-BioFold ⚡ Analysis Report\n\n")
-        f.write(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
-        f.write(f"**Source:** {'Default Seed List' if is_default else 'User Input'}\n")
-        f.write("**Code Version:** Bolt-BioFold v1.0\n\n")
+
+        f.write("## Reproducibility Checklist\n")
+        f.write(f"- **Source:** {'Default Seed List (AlphaFold DB)' if is_default else 'User Input (AlphaFold DB)'}\n")
+        f.write(f"- **Date:** {datetime.now().strftime('%Y-%m-%d %H:%M')}\n")
+        f.write("- **Commit:** (Not checked dynamically in this script)\n")
+        f.write("- **Params:** pLDDT threshold=70, smoothing_window=N/A, Segmentation rule=Consistent high pLDDT + PAE blockiness\n")
+
+        missing_pae_genes = df[df['missing_pae']]['protein_id'].tolist()
+        if missing_pae_genes:
+             f.write(f"- **Notes:** PAE JSON missing for: {', '.join(missing_pae_genes)}\n\n")
+        else:
+             f.write("- **Notes:** All requested artifacts successfully loaded.\n\n")
+
+        # Stop condition: If geometry is meaningless due to low confidence
+        if df['pLDDT_mean'].mean() < 55.0 and len(df) <= 2:
+            f.write("## BLOCKED REPORT\n")
+            f.write("Analysis blocked. Results are dominated by low-confidence regions such that geometry is meaningless.\n")
+            f.write("Please run on different targets or orthologs with higher confidence structures.\n")
+            return
 
         f.write("## Results Table\n\n")
-        f.write(df_to_markdown(df))
+
+        # Drop internal flag before markdown/csv
+        df_out = df.drop(columns=['missing_pae'])
+        f.write(df_to_markdown(df_out))
+
+        f.write("\n\n### CSV-Ready Block\n")
+        f.write("```csv\n")
+        f.write(df_out.to_csv(index=False))
+        f.write("```\n")
 
         f.write("\n\n## Key Plots Summary\n")
         f.write("*   Generated pLDDT profiles for all proteins.\n")
@@ -283,10 +315,10 @@ def run_focused_cycle(targets=None):
         f.write("\n## Interpretations\n")
         for _, row in df.iterrows():
             f.write(f"\n### {row['protein_id']} ({row['uniprot']})\n")
-            f.write(f"*   **What we see:** pLDDT {row['pLDDT_mean']:.1f}, Anisotropy {row['anisotropy_index']:.2f}. {row['interpretation']}\n")
-            f.write(f"*   **Why it matters:** {('High aspect ratio supports tension transmission.' if row['anisotropy_index'] > 2.0 else 'Globular domain likely involved in signaling or binding.')}\n")
-            f.write(f"*   **Confidence:** {row['confidence_level']}\n")
-            f.write(f"*   **Next Test:** {'Compare curvature under stress in simulation.' if row['hinge_candidates'] > 0 else 'Check expression gradients in spine.'}\n")
+            f.write(f"- **What we see:** {row['what']}\n")
+            f.write(f"- **Why it matters:** {row['why']}\n")
+            f.write(f"- **Confidence level:** {row['confidence_level']}\n")
+            f.write(f"- **Next test:** {row['next_test']}\n")
 
         f.write("\n## Best Next Move\n")
         f.write(f"🚀 **{best_move}**\n")

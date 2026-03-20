@@ -77,3 +77,11 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Root Directory Final Polish & Script Cleanup (High Priority)
+
+- [x] **Archive Benchmark Scripts**: Move all temporary `benchmark_*.py` scripts from the root directory to `archive/benchmarks/`.
+- [ ] **Clean Up Root Image Files**: Move `js_creature_*.png` files from the root to `archive/images/`.
+- [ ] **Organize Remaining Root Scripts**: Move root scripts (`alphafold_pipeline_v2.py`, `check_elastica.py`, `gen_alphafold_figs.py`, `generate_submission.py`, `main.py`, `run_cluster.py`, `test_genai.py`, `create_alphafold_section.js`) to `scripts/` or `archive/`.
+- [ ] **Clean Up Root Markdown/CSV Files**: Move `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, `Supplementary_Statistics_Table.csv`, `00_START_HERE.txt`, `test_output_2.txt`, `commit_message.txt`, `plan.md` to appropriate folders or `archive/`.
+- [ ] **Re-execute Submission Artifacts Consolidation**: Ensure `submission_manuscript.pdf`, `cover_letter.txt`, and `checklist_compliance.txt` are moved to `submission_package/` as they are still present in the root.

@@ -1,0 +1,5 @@
+Biological Countercurvature conceptualizes Adolescent Idiopathic Scoliosis (AIS) not as a biomechanical failure, but as a Metabolic Buckling phenomenon. This abstract illustrates three interconnected pillars:
+1. The Allometric Trap: The human spine uniquely occupies a critically vulnerable zone defined by the Bio-Gravitational Number ($B_g \approx 0.01$), making shape maintenance entirely dependent on metabolic energy (ATP).
+2. The Energy Deficit Window: The transient scaling mismatch where the structural metabolic cost scales as $L^4$, but the vascular supply only scales as $L^2$, leading to localized mechanogenetic failure.
+3. The Derivative Gain Trap: The adolescent growth spurt increases absolute neural delay ($\tau$), inducing a supercritical Hopf bifurcation that turns stable childhood damping into destabilizing buckling.
+The visual encapsulates these control-theoretic and thermodynamic scaling principles, redefining AIS progression as a fundamental delay-induced instability in an actively controlled inverted pendulum system.

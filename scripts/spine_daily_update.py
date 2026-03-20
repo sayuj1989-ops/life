@@ -159,6 +159,47 @@ def save_report(report):
 
     return filepath
 
+def update_roadmap_file(filepath, data, expected_date):
+    """
+    Updates the Progress Tracking section in the roadmap file.
+    """
+    if not os.path.exists(filepath):
+        return
+
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    # Determine current phase
+    active_phase = "None"
+    for phase, stats in data['phases'].items():
+        phase_percent = (stats['completed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+        if phase_percent < 100 and active_phase == "None":
+            active_phase = phase
+
+    # If all phases are 100%, set it to the last phase or 'Completed'
+    if active_phase == "None" and data['phases']:
+        active_phase = "Completed"
+
+    # Replace the progress tracking section
+    new_progress_tracking = f"""## Progress Tracking
+
+**Current Phase:** {active_phase}
+**Percent Complete:** {data['percent_complete']:.1f}%
+**Expected Completion Date:** {expected_date}
+**Status:** In Progress"""
+
+    # Use regex to replace the section from ## Progress Tracking to the end of the file
+    updated_content = re.sub(
+        r'## Progress Tracking\s*\n.*',
+        new_progress_tracking,
+        content,
+        flags=re.DOTALL
+    )
+
+    with open(filepath, 'w') as f:
+        f.write(updated_content)
+
+
 if __name__ == "__main__":
     roadmap_path = "docs/spine_submission_roadmap.md"
     data, error = parse_roadmap(roadmap_path)
@@ -167,7 +208,10 @@ if __name__ == "__main__":
         print(error)
         sys.exit(1)
     else:
+        expected_date = calculate_projection(data)
         report = generate_report(data)
         print(report)
         saved_path = save_report(report)
+        update_roadmap_file(roadmap_path, data, expected_date)
         print(f"\nReport saved to: {saved_path}")
+        print(f"Updated progress tracking in {roadmap_path}")

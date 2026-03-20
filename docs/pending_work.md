@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-20
 **Status:** In Progress
 **Priority Level:** High (Final Push to Submission: References and Figures)
 
@@ -21,12 +21,12 @@
 
 ## 3. Manuscript Tasks (High Priority)
 
-| ID | Task | Description | Effort | Dependencies | Risk Level | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
-| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
-| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
-| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Status | Acceptance Criteria |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** | 80+ refs in `.bib` file. |
+| **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** | Unified styling and confirmed captions. |
+| **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** | <150 words. |
+| **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** | Full package ready. |
 
 ## 4. Theory & Validation (Completed)
 

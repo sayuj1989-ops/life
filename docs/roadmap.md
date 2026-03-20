@@ -1,8 +1,8 @@
 # Research Roadmap: Biological Countercurvature
 
 **Target:** *Nature* Submission
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-13.md](progress_update_2026-03-13.md)
+**Timeline:** 4 Weeks (March 20 - April 17, 2026)
+**Latest Progress Update:** [docs/progress_update_2026-03-20.md](progress_update_2026-03-20.md)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -15,9 +15,9 @@
 
 ## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
 
-- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
+- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7). 🟡 **In Progress**
 - [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
-- [ ] **References:** Complete Bibliography (80-100 refs).
+- [ ] **References:** Complete Bibliography (80-100 refs). 🔴 **Critical Block**
 
 ## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
 

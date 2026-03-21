@@ -77,3 +77,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Final Root Directory Cleanup (Medium Priority)
+
+- [x] **Clean Root Miscellaneous Files**: Move `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, `Supplementary_Statistics_Table.csv`, `00_START_HERE.txt`, `research_schedule_gravity_optimization.md`, `commit_message.txt`, and `test_output_2.txt` to appropriate directories or archive them.

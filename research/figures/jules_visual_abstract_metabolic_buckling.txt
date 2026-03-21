@@ -1,0 +1,16 @@
+# Visual Abstract: Biological Countercurvature of Spacetime and the Allometric Trap
+
+This visual abstract synthesizes the core findings of the Information-Cosserat framework for understanding the human spine and the thermodynamic vulnerability of Adolescent Idiopathic Scoliosis (AIS).
+
+## 1. Mathematical Formulation: Bio-Gravitational Number
+-  Introduce the Bio-Gravitational Number, $\mathcal{B}_g = \frac{EI}{MgL^2}$, a dimensionless Froude-like scaling parameter indicating a structure's reliance on metabolic energy for shape maintenance.
+-  **The Allometric Trap**: Highlight that humans are unique among species in having $\mathcal{B}_g \approx 0.01$, placing the human spine in a regime where active biological shape maintenance is obligatory.
+
+## 2. Information-Elasticity Coupling (IEC) and Countercurvature
+- Show that HOX patterning and developmental "information fields" ($I(s)$) act as a "countercurvature" metric against gravity. The system's optimal energy state is non-trivial geometry (the S-curve) dictated by information.
+-  This active system is formalized as a continuous control system governed by a Delay Differential Equation (DDE), subject to neural delay ($\tau$).
+
+## 3. The Pathological Transition: The Energy Deficit Window & Metabolic Buckling
+-  Illustrate the critical phase transition during the adolescent growth spurt: The energetic cost of active geometry ($L^4$) surpasses available metabolic supply ($L^2$).
+-  This localized energy deficit impairs NAD+ dependent metabolic damping.
+-  Show the resulting "Derivative Gain Trap," where essential feedback damping becomes a destabilizing force due to increased temporal delay, driving the structural collapse known as AIS.

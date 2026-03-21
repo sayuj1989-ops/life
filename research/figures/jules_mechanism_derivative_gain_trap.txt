@@ -1,0 +1,8 @@
+# Biological Countercurvature: The Derivative Gain Trap & Metabolic Buckling Mechanism
+
+This diagram illustrates the cascading failure mechanism leading to Adolescent Idiopathic Scoliosis (AIS).
+
+1.  **The Allometric Trap**: The human spine scales such that gravitational load demands (scaling with $L^4$) rapidly outpace the metabolic supply (scaling with $L^2$) during the adolescent growth spurt, creating a temporary **Energy Deficit Window**.
+2.  **The Information-Elasticity Coupling (IEC)**: Healthy spinal geometry is actively maintained by integrating proprioceptive feedback via mechanotransduction sensors into targeted tissue stiffening.
+3.  **The Derivative Gain Trap**: As spine length ($L$) increases, the necessary neural transmission delay ($\tau$) also increases. During rapid growth, the derivative gain (damping), which usually stabilizes the structure, becomes a destabilizing force due to this increased delay.
+4.  **Metabolic Buckling**: When the energy deficit impairs the metabolic supply needed to damp out these delay-induced oscillations, the active control system undergoes a supercritical Hopf bifurcation. This results in the emergent structural buckling we observe as scoliosis (e.g., Lenke curve types).

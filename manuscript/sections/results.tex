@@ -92,16 +92,17 @@ This section summarizes the independent re-analysis of the model's predictive po
 \hline
 \textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
 Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
-Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
-Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
-Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
-Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
+Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $3.58\times10^{-17}$ & STRONG. Saturates at anisotropy $\ge 6.0$. \\ \hline
+Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. Deficit predicts buckling. \\ \hline
+Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.59\times10^{-4}$ & MODERATE. Jetlag amplifies risk. \\ \hline
+Vector Mismatch Localisation & Peak mismatch pos = 0.596 & Simulation measurement & N/A & STRONG. Matches T-L junction vulnerability. \\ \hline
+Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. Validates $L_{\mathrm{crit}} \approx 11.67$\,yr. \\ \hline
 \end{tabular}
 \caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
 \label{tab:comprehensive_stats}
 \end{table}
 
 \subsection{Bayesian Model Comparison and Sensitivity Analysis}
-Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290.
+Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis (passive elastic beam under gravity lacking information coupling) using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290. This demonstrates that the IEC model substantially outperforms the null model in explaining the structural dynamics during the adolescent growth window.
 
-Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models (pLDDT < 70) reduced the original mean anisotropy of 2.74 to 2.62. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence IDR coordinates.
+Furthermore, a sensitivity analysis removing 7 low-confidence AlphaFold protein models ($\text{pLDDT} < 70$, such as POC5, GHR, and MESP2) reduced the original mean anisotropy from 2.74 to 2.62. This demonstrates robustness, confirming that structural predictions hold even when strictly relying on high-confidence domains, and that intrinsically disordered regions predominantly map to the expected metabolic supply signaling hubs.

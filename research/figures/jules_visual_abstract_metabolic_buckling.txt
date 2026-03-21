@@ -1,0 +1,24 @@
+Visual Abstract: Biological Countercurvature and Metabolic Buckling
+
+Title: The Thermodynamic Origins of Adolescent Idiopathic Scoliosis
+
+Central Subject: An illuminated, glowing S-shaped spine transitioning dynamically from a stable state to a buckling scoliotic curve.
+
+The image should be divided into three interconnected visual zones, each representing a core pillar of the theory:
+
+1. Base (The Allometric Trap):
+- A scale or gauge showing a very small number: "Bio-Gravitational Number (Bg) ~ 0.01".
+- Visual metaphor: The spine is resting on a tiny, precarious pivot point, representing humanity's unique evolutionary position of relying entirely on active metabolic energy to maintain upright posture against gravity.
+
+2. Middle (The Energy Deficit Window):
+- A glowing graph superimposed on the thoracic region of the spine.
+- Two crossing lines: A steep exponential curve labeled "$L^4$ Geometric Scaling Cost" crossing over a flatter curve labeled "$L^2$ Metabolic Supply".
+- The area between the lines after they cross is shaded red, labeled "Energy Deficit Window" with molecules of NAD+ depicted as depleted/fading.
+
+3. Top (The Derivative Gain Trap):
+- Overlapping the cervical/upper thoracic region, a neural feedback loop is visualized.
+- A glowing signal travels from the spine to a brain-like icon and back.
+- The return signal is labeled "Proprioceptive Delay (\tau)" and is depicted as stretched out or "lagging".
+- The delay causes a destabilizing wave (oscillations) that directly initiates the twisting/buckling of the scoliotic curve shown on the right side of the central spine.
+
+Style: High-end scientific rendering (3D, luminescent, dark background). Combines precise mathematical annotations with striking biological structures. Color palette: Deep blues for stable/healthy, transitioning to intense reds/oranges for instability, deficit, and buckling.

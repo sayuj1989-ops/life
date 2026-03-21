@@ -1,0 +1,19 @@
+A conceptual diagram explaining the "Derivative Gain Trap" and the "Mechanogenetic Demand-Supply Gap" in the context of Adolescent Idiopathic Scoliosis (AIS).
+
+The diagram should clearly contrast two states of spinal control: "Stable Childhood" and "Adolescent Vulnerability (Metabolic Buckling)".
+
+Left Side (Stable Childhood):
+- A block diagram of a control system.
+- The "Derivative Gain" block is highlighted in a positive, stabilizing color (e.g., green).
+- A short "Neural Delay (\tau)" is shown, indicating fast feedback.
+- Below the block diagram, a stable, healthy S-shaped spine is depicted.
+- A "Supply" bar (metabolic energy) is shown as slightly taller than a "Demand" bar (mechanical stress), indicating a healthy energy balance.
+
+Right Side (Adolescent Vulnerability - Metabolic Buckling):
+- A similar block diagram, but the "Derivative Gain" block is now a dangerous, destabilizing color (e.g., glowing red).
+- A significantly longer "Neural Delay (\tau)" is shown, representing the "Derivative Gain Trap" caused by the adolescent growth spurt.
+- The feedback loop shows amplified, oscillating signals leading to instability.
+- Below this, a buckling, scoliotic spine is depicted, buckling under the amplified signals.
+- A "Supply" bar is now much shorter than a dramatically increased "Demand" bar, illustrating the "Mechanogenetic Demand-Supply Gap" and the $L^4$ scaling cost of geometry versus $L^2$ metabolic supply (the Energy Deficit Window).
+
+Style: High-impact scientific publication style suitable for Nature or Science. Clear, professional typography, distinct color coding for stable vs. unstable regimes, and precise system architecture iconography.

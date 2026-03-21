@@ -1,0 +1,6 @@
+gene_symbol,uniprot_id,organism,priority_score
+PIEZO1,Q92508,Homo sapiens,100
+PIEZO2,Q9H5I5,Homo sapiens,100
+FBN1,P35555,Homo sapiens,100
+ACAN,P16112,Homo sapiens,100
+ITGB1,P05556,Homo sapiens,100

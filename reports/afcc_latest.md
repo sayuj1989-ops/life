@@ -512,3 +512,43 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rod Persistence**: GHR remains the top anisotropic candidate (5.13, pLDDT: 58.7), supporting its role as a potential structural and growth signal integration point.
 - **Extracellular Link**: JAG1 (Anisotropy: 2.76, pLDDT: 73.1) and DAG1 (Anisotropy: 2.39, pLDDT: 68.2) both display intermediate structures, highlighting their role in signaling and structural connections respectively.
 - **Circadian-Mechanic Coupling**: ARNTL (Anisotropy: 3.32, pLDDT: 65.5) continues to show extended characteristics, suggesting its circadian regulatory function may couple with mechanically sensitive structures.
+
+# AFCC Daily Refresh: 2026-03-21
+
+## Run Summary
+- **Candidates Processed**: 5
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| PPARGC1A | 2.19 | 52.7 | Intermediate |
+| IGF1R | 1.43 | 78.0 | Globular |
+| DMD | 1.32 | 76.3 | Globular |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 3 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+
+# AFCC Daily Refresh: 2026-03-21
+
+## Run Summary
+- **Candidates Processed**: 4
+- **Top Candidate**: PIEZO2 (Anisotropy: 4.44)
+- **Failures**: 1
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| PIEZO1 | 3.90 | 72.0 | Fibrous/Extended |
+| ITGB1 | 3.23 | 85.9 | Fibrous/Extended |
+| ACAN | 2.66 | 51.9 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 1 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 1 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: PIEZO2 remains the most anisotropic structure in this batch.

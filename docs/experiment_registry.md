@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-21
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
@@ -20,8 +20,9 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_07_MutationMap** | `scripts/experiment_optimization_failure.py` | Generate Figure 4 specific mutations: Maps `FBN1` etc. to simulation parameters. | Console/CSV output with `--run-mutations`. | ✅ **Active** | Integrated within Optimization Failure script. |
 | **EXP_08_SShapeEmergence** | `scripts/sim_active_curvature_sweep.py` | Sweeps `chi_kappa` under growth + anisotropic stiffness. | `outputs/sim/2026-03-01/results.csv` | ✅ **Active** | Emergence of structural S-shape. |
 | **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
-| **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
-| **EXP_11_LocomotorResonance**| `scripts/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_10_SpineSonification**| `scripts/experiments/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
+| **EXP_11_LocomotorResonance**| `scripts/experiments/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_12_MetabolicPacing**| `scripts/experiments/experiment_metabolic_pacing.py`| Simulates Latent Imagination and Temporal Perception under growth. Tests "Spinal Sleep Spindles" hypothesis. | `figures/main/experiment_metabolic_pacing.png` | ✅ **Active** | Validates neural delay coupling with metabolic supply. |
 
 ## 2. Toy Models (Validation)
 

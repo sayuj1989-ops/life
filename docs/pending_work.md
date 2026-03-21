@@ -1,8 +1,8 @@
 # Pending Work
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-21
 **Status:** In Progress
-**Priority Level:** High (Final Push to Submission: References and Figures)
+**Priority Level:** High (Final Push to Submission: Figures)
 
 ## 1. Data Gaps (Completed)
 
@@ -23,7 +23,7 @@
 
 | ID | Task | Description | Effort | Dependencies | Risk Level | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **MS-01** | **Reference Completeness** | Add 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 1.5 days | None | High | 🔴 **Critical Block** |
+| **MS-01** | **Reference Completeness** | Verify 70-85 missing references (Nature format). Focus on Spinal Biomechanics, HOX genes, Microgravity. | 0.5 days | None | Low | ✅ **Completed** |
 | **MS-02** | **Figure Finalization** | Assemble generated plots into final multi-panel figures (Figure 1-7). Ensure uniform style. Write final captions. | 3 days | Output scripts | Medium | 🟡 **In Progress** |
 | **MS-03** | **Abstract Trimming** | Reduce abstract from 210 to 150 words. | 0.5 hour | None | Low | ✅ **Completed** |
 | **MS-04** | **Internal PI Review Package** | Combine updated manuscript text, final figures, and expanded bibliography for final review. | 1 day | MS-01, MS-02 | Low | ⚪ **Planned** |
@@ -42,5 +42,5 @@
 2.  **Missing References:** The Nature manuscript requires a comprehensive reference list, which currently has gaps. **Mitigation:** Execute an intense literature extraction phase over the next 24-48 hours.
 
 **Next Actions:**
-1.  Target **MS-01**: Massive expansion of the `.bib` file.
-2.  Target **MS-02**: Verify and format all plot artifacts for Figure 1-7 assembly.
+1.  Target **MS-02**: Verify and format all plot artifacts for Figure 1-7 assembly.
+2.  Target **MS-04**: Internal PI Review Package creation.

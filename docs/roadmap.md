@@ -2,7 +2,7 @@
 
 **Target:** *Nature* Submission
 **Timeline:** 4 Weeks (March 01 - March 29, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-13.md](progress_update_2026-03-13.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-21.md](progress_update_2026-03-21.md)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -17,7 +17,7 @@
 
 - [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
 - [x] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
-- [ ] **References:** Complete Bibliography (80-100 refs).
+- [x] **References:** Complete Bibliography (80-100 refs).
 
 ## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
 
@@ -30,7 +30,7 @@
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
 | **Week 1 (Mar 01)** | Code & Sweep Validation | Team | ✅ **Completed** |
-| **Week 2 (Mar 08)** | Manuscript Final Text & Refs | PI | 🟡 **In Progress** (Text Completed) |
+| **Week 2 (Mar 08)** | Manuscript Final Text & Refs | PI | ✅ **Completed** |
 | **Week 3 (Mar 15)** | Figure Assembly (1-7) & Polish | Design/Team | 🚨 **Starting** |
 | **Week 4 (Mar 22)** | Internal Review & **SUBMISSION** | PI | ⚪ Planned |
 
@@ -50,11 +50,10 @@
 ## 8. Next 7 / 30 Days Plan
 
 **Next 7 Days (Sprint):**
-- **Day 1-2:** Output all final plot figures from updated scripts (Cross-Species, Optimization Failure, S-Shape).
-- **Day 3-4:** Assemble finalized Panels for Figures 1-4.
-- **Day 5-6:** Finish expanding the manuscript bibliography (`references.bib`) and integrate into `manuscript/submission_manuscript.tex`.
-- **Day 7:** Trim the Abstract and finalize standard Nature text styling requirements.
+- **Day 1-3:** Execute figure generation scripts and assemble finalized Panels 1-4 with unified styling.
+- **Day 4-5:** Finalize Panels 5-7 and draft Extended Data/Supplementary Methods sections.
+- **Day 6-7:** Deliver complete unified LaTeX draft + PDF for Internal PI Review.
 
 **Next 30 Days:**
-- **Weeks 2-3:** Finalize all text formatting, complete internal team review of the full manuscript and supplementary data.
-- **Week 4:** Pre-submission Checklist and submit to *Nature*.
+- **Weeks 2-3:** Conduct Internal PI Review, resolve formatting tweaks (line numbers, cross-references), compile Final Nature Resubmission Package.
+- **Week 4:** Execute `SUBMISSION_MASTER_CHECKLIST.md` and officially submit to *Nature*.

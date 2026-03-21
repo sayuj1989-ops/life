@@ -694,6 +694,30 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Tension-Torsion Coupling Factor ($\mathcal{C}_{TT}$)
+
+We formalize the "Tethered Twist" hypothesis, linking differential longitudinal growth (asymmetry driven by the Hueter-Volkmann law) to a torsional moment due to an asymmetric structural tether (e.g., neuro-central synchondrosis or short pedicle). We define $\mathcal{C}_{TT}$ as the coupling constant mapping the differential axial growth strain rate ($\Delta \dot{\varepsilon}_{axial}$) to the torsional moment ($\mathbf{T}_{twist}$) in the presence of an asymmetric tethering constraint ($\mu_{tether}$).
+
+$$ \mathbf{T}_{twist} = \mathcal{C}_{TT} \cdot \mu_{tether} \cdot \Delta \dot{\varepsilon}_{axial} $$
+
+*   **Symbols**:
+    *   $\mathbf{T}_{twist}$: Torsional (twisting) moment acting on the functional spinal unit $[M L^2 T^{-2}]$.
+    *   $\mu_{tether}$: Dimensionless asymmetry index of the structural tether (e.g., offset of the effective center of resistance from the center of mass) $[1]$.
+    *   $\Delta \dot{\varepsilon}_{axial}$: Differential axial growth strain rate (convex vs concave) $[T^{-1}]$.
+    *   $\mathcal{C}_{TT}$: Tension-Torsion Coupling Constant $[M L^2 T^{-1}]$.
+*   **Dimensions**: The required dimensions are torque over strain rate: $[M L^2 T^{-2}] / [T^{-1}] = [M L^2 T^{-1}]$. This is dimensionally equivalent to a dynamic rotational viscosity.
+*   **Physical Interpretation**: A high $\mathcal{C}_{TT}$ indicates that the growing spine is highly sensitive to asymmetric growth forces, converting them efficiently into a 3D torsional deformity rather than pure 2D lateral bending.
+*   **Measurable Proxy**: The ratio of the segmental axial rotation angle to the rate of longitudinal growth during the adolescent spurt, measured via serial 3D CT reconstructions.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Symmetrical Growth Torsion**
+    *   **Data Needed**: 3D geometric tracking of curve progression in a fast-growing scoliotic animal model treated with a symmetrical axial compressive load designed to uniformly suppress growth (Hueter-Volkmann nullification).
+    *   **Refutation**: If axial rotation (torsion) continues to progress despite the complete elimination of the differential longitudinal growth rate ($\Delta \dot{\varepsilon}_{axial} \to 0$), the torsion is driven independently of growth asymmetry. (Reference: Stokes, 2007).
+*   **Test 2: The Tether Release Rescue**
+    *   **Data Needed**: Measurement of spinal torsion progression in a rapidly growing model where the asymmetric posterior tether (e.g., unilateral pedicle or muscular restriction) is surgically released or pharmacologically softened, driving $\mu_{tether} \to 0$.
+    *   **Refutation**: If the application of an asymmetric growth driver still produces a robust torsional deformity even when all physical tethers are symmetrical or released, the intrinsic coupling does not require a structural offset. (Reference: Brink et al., 2017).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1125,3 +1149,5 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+77. **Stokes, I. A. (2007).** "Analysis and simulation of progressive adolescent scoliosis by biomechanical growth modulation." *European Spine Journal*, 16(10). (Biomechanical modeling of Hueter-Volkmann growth asymmetry in scoliosis progression).
+78. **Brink, R. C., et al. (2017).** "Asymmetry of the Vertebral Body and Pedicles in the True Transverse Plane in Adolescent Idiopathic Scoliosis: A CT-Based Study." *Spine Deformity*, 5(5). (Connects 3D growth asymmetry to torsional deformity).

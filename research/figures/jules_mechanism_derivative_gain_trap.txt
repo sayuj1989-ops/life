@@ -1,0 +1,18 @@
+Complex Mechanism Diagram: "The Derivative Gain Trap in Spinal Control"
+
+Style: Professional scientific diagram, clean lines, intuitive flow.
+Theme: Bridging control theory, biology, and biomechanics.
+
+Layout: A two-part comparative diagram showing "Stable Childhood" vs "Adolescent Buckling".
+
+Part 1 (Top/Left): Stable State (Childhood)
+- Visual: A straight, upright spine modeled as an inverted pendulum with active control.
+- Mechanism: A short neural feedback delay ($\tau$). A control block showing PD (Proportional-Derivative) control.
+- Outcome: The derivative gain provides necessary damping, stabilizing the structure against perturbations. The energy state is minimized at the vertical equilibrium.
+
+Part 2 (Bottom/Right): Unstable State (Adolescence)
+- Visual: A buckling, S-shaped spine.
+- Mechanism: A significantly increased neural feedback delay ($\tau$), visually depicted as longer nerve pathways due to rapid bone growth.
+- Outcome: The delay exceeds the critical threshold (Hopf bifurcation). The same derivative gain that previously provided damping now injects energy out of phase, creating destabilizing oscillations. The system undergoes "Metabolic Buckling" to find a new, non-vertical energy minimum (the scoliotic curve).
+
+Key Annotations: Include mathematical notation: Delay ($\tau$), Predictive Horizon ($T_{pred}$), and highlight the transition from $T_{pred} \ge \tau$ to $T_{pred} < \tau$.

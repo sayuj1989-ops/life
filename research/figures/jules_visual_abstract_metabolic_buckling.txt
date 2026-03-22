@@ -1,0 +1,18 @@
+Visual Abstract: "Biological Countercurvature: Metabolic Buckling in Adolescent Idiopathic Scoliosis"
+
+Style: Scientific, Nature/Science journal style, high contrast, clean vector aesthetic.
+Layout: A tripartite composition showing the three pillars of the theory converging.
+
+Panel 1 (Left): "The Allometric Trap"
+- Visual: A cross-species phylogenetic tree or comparative scale.
+- Content: Humans positioned at a critical Bio-Gravitational Number ($Bg \approx 0.01$). Show a transition from stable quadrupedal/small bipedal forms to the vulnerable human form, completely dependent on metabolic energy to maintain upright posture against gravity.
+
+Panel 2 (Center): "The Energy Deficit Window"
+- Visual: Two intersecting growth curves during adolescence.
+- Content: An upward-curving line representing the $L^4$ geometric scaling cost of maintaining the spine. A shallower line representing the $L^2$ metabolic supply (mitochondrial capacity). Highlight the shaded region between them where demand exceeds supply ("Energy Deficit Window", causing NAD+ depletion).
+
+Panel 3 (Right): "The Derivative Gain Trap"
+- Visual: A feedback control loop diagram transforming into a buckling spine.
+- Content: Show the neural delay ($\tau$) increasing during the adolescent growth spurt. Illustrate how this shifts the system across a Hopf bifurcation: what was stabilizing derivative control (damping) becomes a destabilizing force, initiating the characteristic S-curve scoliotic buckling ("Metabolic Buckling").
+
+Connecting Elements: Arrows flowing from Left, Center, and Right merging into a final central outcome: a clinical 3D rendering of an scoliotic spine, representing the physical consequence of these thermodynamic and control-theoretic failures.

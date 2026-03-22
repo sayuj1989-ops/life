@@ -1,0 +1,8 @@
+Title: The Derivative Gain Trap: Adolescent Growth and Metabolic Buckling
+
+Description:
+This diagram illustrates the core mechanism of Adolescent Idiopathic Scoliosis (AIS) within the Biological Countercurvature framework. It shows a feedback control system where proprioceptive signals from the spine (representing position and velocity) are processed by the CNS and sent back as corrective muscle forces.
+
+During childhood, derivative gains (damping) effectively stabilize the spine. However, the adolescent growth spurt causes a sudden increase in the absolute neural delay (\tau) due to rapid axonal lengthening. The diagram should show how this increased delay, interacting with the existing derivative gains, pushes the system across a supercritical Hopf bifurcation threshold.
+
+Visually contrast the stable childhood state (short delay, effective damping) with the unstable adolescent state (long delay, destabilizing delayed damping leading to scoliotic oscillations/buckling). This transition is termed the "Derivative Gain Trap."

@@ -1,0 +1,10 @@
+Title: Visual Abstract: Biological Countercurvature of Spacetime and Adolescent Idiopathic Scoliosis
+
+Description:
+A comprehensive visual abstract summarizing the three pillars of the biological countercurvature theory explaining AIS.
+
+1. **The Allometric Trap**: Display a cross-species scaling graph highlighting humans uniquely occupying an unstable regime where the Bio-Gravitational Number (Bg ~ 0.01) demands constant active metabolic control to maintain upright posture against gravity.
+2. **The Energy Deficit Window**: Show a thermodynamic plot comparing metabolic supply (scaling with length squared, L^2) versus structural maintenance cost (scaling with length to the fourth power, L^4). Highlight the critical "Energy Deficit Window" during the adolescent growth spurt where demand outstrips supply, leading to localized metabolic (NAD+) depletion.
+3. **The Derivative Gain Trap**: Depict the control-theoretic failure. Show how the rapid increase in neural transmission delay (\tau) during the adolescent growth spurt turns previously stable derivative (damping) gains into destabilizing forces, resulting in "Metabolic Buckling" (scoliosis).
+
+The overarching theme should be the spine as an active control system failing under thermodynamic and temporal constraints, rather than a purely passive mechanical failure.

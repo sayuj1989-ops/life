@@ -31,35 +31,42 @@ def analytical_hopf_boundary(Kp, Kd, b=1.0, I=0.8, mgL=73.575):
     Modulus condition: Kp² + (Kd·ω)² = (bω)² + (Iω² + mgL)²
     Phase gives τ via arctan2.
     """
-    omega_grid = np.linspace(0.5, 60, 6000)
+    omega = np.linspace(0.5, 60, 6000)
+
+    # Vectorized computation of lhs and rhs
+    lhs = Kp**2 + (Kd * omega)**2
+    rhs = (b * omega)**2 + (I * omega**2 + mgL)**2
+    max_val = np.maximum(lhs, rhs)
+    max_val = np.maximum(max_val, 1e-12)
+
+    # Check modulus condition vectorized, avoiding a slow 6000-iteration python loop
+    mask = np.abs(lhs - rhs) / max_val < 0.002
+    valid_omegas = omega[mask]
+
     best_tau = None
     best_residual = np.inf
 
-    for omega in omega_grid:
-        lhs = Kp**2 + (Kd * omega)**2
-        rhs = (b * omega)**2 + (I * omega**2 + mgL)**2
-        # Check modulus condition
-        if abs(lhs - rhs) / max(lhs, rhs, 1e-12) < 0.002:
-            A = I * omega**2 + mgL
-            B = b * omega
-            denom = Kp**2 + (Kd * omega)**2
-            cos_wt = (A * Kp - B * Kd * omega) / denom
-            sin_wt = (A * Kd * omega + B * Kp) / denom
-            if abs(cos_wt) <= 1.01 and abs(sin_wt) <= 1.01:
-                cos_wt = np.clip(cos_wt, -1, 1)
-                sin_wt = np.clip(sin_wt, -1, 1)
-                wt = np.arctan2(sin_wt, cos_wt)
-                if wt < 0:
-                    wt += 2 * np.pi
-                tau_c = wt / omega
-                if 0.001 < tau_c < 0.5:
-                    # Verify residual
-                    r_real = -I*omega**2 - mgL + Kp*np.cos(omega*tau_c) + Kd*omega*np.sin(omega*tau_c)
-                    r_imag = b*omega - Kp*np.sin(omega*tau_c) + Kd*omega*np.cos(omega*tau_c)
-                    residual = r_real**2 + r_imag**2
-                    if residual < best_residual:
-                        best_residual = residual
-                        best_tau = tau_c
+    for w in valid_omegas:
+        A = I * w**2 + mgL
+        B = b * w
+        denom = Kp**2 + (Kd * w)**2
+        cos_wt = (A * Kp - B * Kd * w) / denom
+        sin_wt = (A * Kd * w + B * Kp) / denom
+        if abs(cos_wt) <= 1.01 and abs(sin_wt) <= 1.01:
+            cos_wt = np.clip(cos_wt, -1, 1)
+            sin_wt = np.clip(sin_wt, -1, 1)
+            wt = np.arctan2(sin_wt, cos_wt)
+            if wt < 0:
+                wt += 2 * np.pi
+            tau_c = wt / w
+            if 0.001 < tau_c < 0.5:
+                # Verify residual
+                r_real = -I*w**2 - mgL + Kp*np.cos(w*tau_c) + Kd*w*np.sin(w*tau_c)
+                r_imag = b*w - Kp*np.sin(w*tau_c) + Kd*w*np.cos(w*tau_c)
+                residual = r_real**2 + r_imag**2
+                if residual < best_residual:
+                    best_residual = residual
+                    best_tau = tau_c
     return best_tau if best_tau else 0.0
 
 

@@ -1,9 +1,9 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-13
+**Last Updated:** 2026-03-22
 **Status:** Active
 
-This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript.
+This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.
 
 ## 1. Core Simulation Experiments
 
@@ -40,6 +40,15 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **AFCC_Pipeline** | `research/alphafold_countercurvature/scripts/run_afcc_daily.py` | Generate Figure 6: Protein Structure Integration. Fetches AFDB structures, computes Anisotropy/Disorder metrics. | `research/alphafold_countercurvature/data/processed/candidates.csv` | ✅ **Active** | Successfully ranks candidates (PIEZO2, COL1A1, etc.). |
 | **AFCC_Report** | `research/alphafold_countercurvature/scripts/bolt_biofold_report.py` | Generate structured analysis reports. | `reports/afcc_latest.md` | ✅ **Active** | Summarizes protein metrics. |
 
-## 4. Missing / Pending Experiments
+## 4. Clinical Validation Data Tracking (Phase 2)
 
-*All previously missing critical scripts and mapping procedures (Cross-Species Validation, Mutation Mapping) have now been successfully integrated into the active model logic.*
+| Dataset/Analysis | Target Application | Purpose | Expected Output | Status | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **CLIN_01_PHV** | `experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. |
+| **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
+| **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
+| **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
+
+## 5. Missing / Pending Experiments
+
+*All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_01 - CLIN_04).*

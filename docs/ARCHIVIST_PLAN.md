@@ -77,3 +77,11 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Final Root Script & Artifact Cleanup (High Priority)
+
+- [x] **Move Root-Level AlphaFold Scripts**: Move `alphafold_pipeline_v2.py`, `gen_alphafold_figs.py`, and `create_alphafold_section.js` to `scripts/alphafold/` (create if missing) to declutter the root directory.
+- [ ] **Move Root-Level Benchmark Scripts**: Move `benchmark_pae.py`, `benchmark_pae2.py`, `benchmark_pae_domain.py`, `benchmark_rg.py`, and `benchmark_var.py` to `scripts/benchmarks/` to keep all benchmarks grouped.
+- [ ] **Archive Root Testing/Scratch Files**: Move `test_genai.py`, `test_output_2.txt`, and `plan.md` to `archive/scratch/` (create if missing) to clean up temporary development files.
+- [ ] **Move Root Image Artifacts**: Move `js_creature_t0.png` and `js_creature_tPI.png` to `figures/archive/` or `archive/figures/` (create if missing).
+- [ ] **Move Root Supplementary Files**: Move `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, and `Supplementary_Statistics_Table.csv` to `manuscript/supplementary/` (create if missing).

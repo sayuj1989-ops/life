@@ -19,12 +19,13 @@ jobs:
 
       - name: Generate daily update
         run: |
-          python scripts/spine_daily_update.py
+          python scripts/generate_spine_daily_update.py
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add reports/
+          git add docs/spine_submission_roadmap.md
           git commit -m "docs: generate daily Spine update report" || echo "No changes to commit"
           git push

@@ -1,14 +1,11 @@
 import datetime
 import os
 import re
-
+import sys
 
 def parse_roadmap(filepath):
-    """
-    Parses the roadmap markdown file to extract tasks and calculate progress.
-    """
     if not os.path.exists(filepath):
-        return None, "Roadmap file not found."
+        return None, f"Roadmap file not found at {filepath}"
 
     with open(filepath, 'r') as f:
         content = f.read()
@@ -18,6 +15,7 @@ def parse_roadmap(filepath):
     completed_tasks = 0
     phases = {}
     current_phase = None
+    next_milestones = []
 
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
     target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
@@ -39,6 +37,13 @@ def parse_roadmap(filepath):
                 completed_tasks += 1
                 if current_phase:
                     phases[current_phase]['completed'] += 1
+            elif line.strip().startswith('- [ ]'):
+                if len(next_milestones) < 3:
+                    task = line.strip().replace('- [ ]', '').strip()
+                    task = task.replace('**', '')
+                    if ':' in task:
+                        task = task.split(':')[0]
+                    next_milestones.append(task)
 
     percent_complete = (completed_tasks / total_tasks * 100) if total_tasks > 0 else 0
 
@@ -48,31 +53,63 @@ def parse_roadmap(filepath):
         'percent_complete': percent_complete,
         'phases': phases,
         'start_date': start_date,
-        'target_date': target_date
+        'target_date': target_date,
+        'next_milestones': next_milestones
     }, None
 
-def generate_report(data):
-    """
-    Generates a formatted daily update report.
-    """
-    today = datetime.date.today()
+def calculate_projection(data):
+    if not data['start_date']:
+        return "Unknown (Start Date missing)"
 
-    if data['target_date']:
-        days_remaining = (data['target_date'] - today).days
-        expected_completion_str = f"{data['target_date']} ({days_remaining} days remaining)"
-    else:
-        expected_completion_str = "TBD"
+    today = datetime.date.today()
+    days_elapsed = (today - data['start_date']).days
+
+    if days_elapsed <= 0:
+        days_elapsed = 1
+
+    velocity = data['completed_tasks'] / days_elapsed
+
+    if velocity <= 0:
+        return "Unknown (No tasks completed yet)"
+
+    tasks_remaining = data['total_tasks'] - data['completed_tasks']
+    days_remaining_est = tasks_remaining / velocity
+
+    expected_date = today + datetime.timedelta(days=int(days_remaining_est))
+
+    return expected_date
+
+def update_roadmap(filepath, data):
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    # update the percent complete line
+    new_content = re.sub(
+        r'\*\*Percent Complete:\*\* .*',
+        f'**Percent Complete:** {data["percent_complete"]:.1f}% (Calculated by script)',
+        content
+    )
+
+    with open(filepath, 'w') as f:
+        f.write(new_content)
+
+def generate_report(data):
+    today = datetime.date.today()
+    expected_date = calculate_projection(data)
 
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
+**Strategy:** Reframe as "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
 - **Tasks Completed:** {data['completed_tasks']} / {data['total_tasks']}
-- **Expected Completion:** {expected_completion_str}
+- **Projected Completion:** {expected_date}
+- **Target Deadline:** {data['target_date']}
 
 ## Phase Breakdown
 """
@@ -88,7 +125,35 @@ def generate_report(data):
 
     report += f"\n**Current Focus:** {active_phase}\n"
 
+    report += "\n## Next Milestones\n"
+    if data['next_milestones']:
+        for i, milestone in enumerate(data['next_milestones'], 1):
+            report += f"{i}. {milestone}\n"
+    else:
+        report += "No milestones remaining!\n"
+
+    report += "\nRun `python scripts/generate_spine_daily_update.py` to regenerate this report."
+
     return report
+
+def save_report(report):
+    today = datetime.date.today()
+    output_dir = "reports/daily_updates"
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    filename = f"{today}_spine_update.md"
+    filepath = os.path.join(output_dir, filename)
+
+    with open(filepath, 'w') as f:
+        f.write(report)
+
+    latest_filepath = os.path.join("reports", "daily_update_latest.md")
+    with open(latest_filepath, 'w') as f:
+        f.write(report)
+
+    return filepath
 
 if __name__ == "__main__":
     roadmap_path = "docs/spine_submission_roadmap.md"
@@ -96,5 +161,10 @@ if __name__ == "__main__":
 
     if error:
         print(error)
+        sys.exit(1)
     else:
-        print(generate_report(data))
+        update_roadmap(roadmap_path, data)
+        report = generate_report(data)
+        print(report)
+        saved_path = save_report(report)
+        print(f"\nReport saved to: {saved_path}")

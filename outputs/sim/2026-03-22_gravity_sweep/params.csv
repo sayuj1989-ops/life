@@ -1,0 +1,2 @@
+gravity_min,gravity_max,anisotropy_values,active_curvature,initial_lateral_defect,duration,dt,n_elements,seed
+0.0,19.62,"[1.0, 2.0, 4.0]",10.0,0.05,2.0,0.0001,50,42

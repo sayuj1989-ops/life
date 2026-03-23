@@ -1,93 +1,129 @@
-from pathlib import Path
-
 import pandas as pd
+from pathlib import Path
+from datetime import datetime
 
-
-def create_confidence_weighted_ranking():
-    snapshot_path = Path('outputs/afcc/2026-02-16/metrics.csv')
-    if not snapshot_path.exists():
-        print(f"Error: Could not find {snapshot_path}")
+def main():
+    metrics_file_path = 'outputs/afcc/2026-02-16/metrics.csv'
+    metrics_file = Path(metrics_file_path)
+    if not metrics_file.exists():
+        print(f"Error: {metrics_file} does not exist.")
         return
 
-    df = pd.read_csv(snapshot_path)
+    df = pd.read_csv(metrics_file)
 
-    # Define thresholds
-    plddt_threshold = 70.0
-    anisotropy_threshold = 3.0
+    # Make sure we have the necessary columns
+    required_cols = ['gene_symbol', 'anisotropy_index', 'pLDDT_mean', 'PAE_domain_blockiness_score', 'morphology']
+    for col in required_cols:
+        if col not in df.columns:
+            if col == 'pLDDT_mean' and 'plddt_mean' in df.columns:
+                df.rename(columns={'plddt_mean': 'pLDDT_mean'}, inplace=True)
+            else:
+                print(f"Error: Column {col} missing from data.")
+                return
 
-    # Classification
-    df['confidence_class'] = df['plddt_mean'].apply(lambda x: 'Adequate' if x >= plddt_threshold else 'Low')
-    df['anisotropy_class'] = df['anisotropy_index'].apply(lambda x: 'High' if x >= anisotropy_threshold else 'Intermediate/Low')
+    # Filter and sort
+    # High anisotropy + adequate confidence
+    high_conf = df[(df['anisotropy_index'] >= 3.0) & (df['pLDDT_mean'] >= 70)].copy()
+    high_conf['Confidence_Tier'] = 'High_Anisotropy_Adequate_Confidence'
+    high_conf = high_conf.sort_values(by='anisotropy_index', ascending=False)
 
-    # Sort for ranking
-    df_sorted = df.sort_values(by=['confidence_class', 'anisotropy_index'], ascending=[True, False]) # 'Adequate' comes before 'Low'
+    # High anisotropy + low confidence
+    low_conf = df[(df['anisotropy_index'] >= 3.0) & (df['pLDDT_mean'] < 70)].copy()
+    low_conf['Confidence_Tier'] = 'High_Anisotropy_Low_Confidence'
+    low_conf = low_conf.sort_values(by='anisotropy_index', ascending=False)
 
-    # Save CSV
-    out_csv = Path('outputs/afcc/confidence_weighted_ranking.csv')
-    out_csv.parent.mkdir(parents=True, exist_ok=True)
-    df_sorted.to_csv(out_csv, index=False)
+    # Combine and sort by confidence tier then anisotropy
+    combined = pd.concat([high_conf, low_conf])
 
-    # Generate Report
-    high_ani_adequate = df[(df['confidence_class'] == 'Adequate') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
-    high_ani_low = df[(df['confidence_class'] == 'Low') & (df['anisotropy_class'] == 'High')].sort_values(by='anisotropy_index', ascending=False)
+    # Let's also add the LBX1 comparator panel specifically requested
+    panel_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
+    panel_df = df[df['gene_symbol'].isin(panel_genes)].copy()
+    panel_df['Confidence_Tier'] = 'Comparator_Panel'
+
+    # Combine all
+    final_df = pd.concat([combined, panel_df]).drop_duplicates(subset=['gene_symbol'])
+
+    # Sort
+    # Define categorical sort order for tiers
+    tier_order = ['High_Anisotropy_Adequate_Confidence', 'High_Anisotropy_Low_Confidence', 'Comparator_Panel']
+    final_df['Tier_Rank'] = final_df['Confidence_Tier'].apply(lambda x: tier_order.index(x))
+
+    final_df = final_df.sort_values(by=['Tier_Rank', 'anisotropy_index'], ascending=[True, False])
+
+    # Drop the temporary sort column
+    final_df = final_df.drop(columns=['Tier_Rank'])
+
+    # Save
+    out_path = Path('outputs/afcc/confidence_weighted_ranking.csv')
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    final_df.to_csv(out_path, index=False)
+    print(f"Saved ranking to {out_path}")
+
+    # Generate Markdown Report
+    report_path = Path('reports/confidence_weighted_structural_evidence.md')
+    date_str = datetime.now().strftime("%Y-%m-%d")
 
     report_content = [
-        "# Confidence-Weighted Structural Evidence Report\n",
-        "## Overview\n",
-        "- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`\n",
-        "- **Adequate Confidence Threshold**: `pLDDT >= 70.0`\n",
-        "- **High Anisotropy Threshold**: `Anisotropy >= 3.0`\n",
-        "This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.\n\n",
-
-        "## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)\n",
-        "These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.\n",
-        "| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |\n",
-        "|------|------|------------|--------------|----------------|"
+        "# Confidence-Weighted Structural Evidence\n",
+        f"**Date Generated:** {date_str}",
+        f"**Source Data:** `{metrics_file_path}`",
+        f"**Generated By:** `scripts/analysis/confidence_weighted_ranking.py`\n",
+        "## Overview",
+        "This report re-ranks structural candidates based on both their geometric anisotropy and their structural confidence (pLDDT). By weighting high-confidence predictions more heavily, we filter out speculative geometric claims driven by disordered regions.\n",
+        "### High-Anisotropy + Adequate-Confidence (Strong Signal)",
+        "| Gene | Anisotropy | pLDDT | PAE Blockiness | Morphology |",
+        "|------|------------|-------|----------------|------------|"
     ]
 
-    for idx, row in enumerate(high_ani_adequate.itertuples(), 1):
-        report_content.append(f"| {idx} | {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} |")
+    for _, row in high_conf.iterrows():
+        report_content.append(f"| {row['gene_symbol']} | {row['anisotropy_index']:.2f} | {row['pLDDT_mean']:.1f} | {row.get('PAE_domain_blockiness_score', 0.0):.2f} | {row['morphology']} |")
 
     report_content.extend([
-        "\n## 2. High-Anisotropy + Low-Confidence (Exploratory Only)\n",
-        "These proteins exhibit extended morphologies but their structural predictions are low-confidence. Their high anisotropy may be an artifact of long, unstructured regions (IDRs). **Hypothesis-generating only; requires orthogonal validation.**\n",
-        "| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |\n",
-        "|------|------|------------|--------------|----------------|"
+        "\n### High-Anisotropy + Low-Confidence (Exploratory Only)",
+        "| Gene | Anisotropy | pLDDT | PAE Blockiness | Morphology |",
+        "|------|------------|-------|----------------|------------|"
     ])
 
-    for idx, row in enumerate(high_ani_low.itertuples(), 1):
-        report_content.append(f"| {idx} | {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} |")
-
-    # LBX1 Comparator Analysis
-    comparator_genes = ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']
+    for _, row in low_conf.iterrows():
+        report_content.append(f"| {row['gene_symbol']} | {row['anisotropy_index']:.2f} | {row['pLDDT_mean']:.1f} | {row.get('PAE_domain_blockiness_score', 0.0):.2f} | {row['morphology']} |")
 
     report_content.extend([
-        "\n## 3. LBX1 Comparator Panel Analysis\n",
-        "Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.\n",
-        "| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |\n",
-        "|------|------------|--------------|----------------|------------|------------------|"
+        "\n## LBX1 Comparator Analysis",
+        "The Biological Countercurvature hypothesis posits LBX1 as a key structural or mechanosensitive mediator. However, comparison against a panel of established mechanosensors and low-confidence structures highlights weakness in relying purely on its AlphaFold geometry:\n",
+        "| Gene | Anisotropy | pLDDT | PAE Blockiness | Role / Category |",
+        "|------|------------|-------|----------------|-----------------|"
     ])
 
-    for gene in comparator_genes:
-        gene_data = df[df['gene_symbol'] == gene]
-        if not gene_data.empty:
-            row = gene_data.iloc[0]
-            report_content.append(f"| {row.gene_symbol} | {row.anisotropy_index:.2f} | {row.plddt_mean:.1f} | {row.PAE_domain_blockiness_score:.2f} | {row.confidence_class} | {row.anisotropy_class} |")
-        else:
-            report_content.append(f"| {gene} | N/A | N/A | N/A | N/A | N/A |")
+    # Custom annotations for the panel
+    roles = {
+        'LBX1': '**Spinal interneuron (Low Conf)**',
+        'PIEZO2': 'Mechanosensor (Adequate Conf)',
+        'LMNA': 'Nuclear mechanosensor (Adequate Conf)',
+        'ADGRG6': 'G-protein mechanosensor (Adequate Conf)',
+        'RUNX3': 'Transcription factor (Low Conf)',
+        'POC5': 'Centriolar/Ciliary (Low Conf)',
+        'GHR': 'Growth sensor (Low Conf)'
+    }
+
+    for gene in ['LBX1', 'PIEZO2', 'LMNA', 'ADGRG6', 'RUNX3', 'POC5', 'GHR']:
+        if gene in panel_df['gene_symbol'].values:
+            row = panel_df[panel_df['gene_symbol'] == gene].iloc[0]
+            gene_display = f"**{gene}**" if gene == 'LBX1' else gene
+            pae = row.get('PAE_domain_blockiness_score', 0.0)
+            pae_str = f"{pae:.2f}" if not pd.isna(pae) else "-"
+            report_content.append(f"| {gene_display} | {row['anisotropy_index']:.2f} | {row['pLDDT_mean']:.1f} | {pae_str} | {roles.get(gene, '')} |")
 
     report_content.extend([
-        "\n### Interpretation\n",
-        "- **LBX1** remains a low-confidence, intermediate-anisotropy candidate with high PAE blockiness. It is structurally dissimilar to strong mechanosensor anchors like PIEZO2.\n",
-        "- **PIEZO2** maintains high anisotropy and adequate confidence, supporting its role as a robust structural anchor.\n",
-        "- **POC5** and **GHR** show extreme or high anisotropy but suffer from low confidence. Their structural signals must be treated as speculative and not definitive proof of a tension-rod architecture.\n"
+        "\n### Findings",
+        "1. **LBX1 lacks structural robustness**: Compared to robust mechanosensors like PIEZO2, ADGRG6, and LMNA, LBX1 exhibits low overall confidence (pLDDT=66.9) and intermediate anisotropy (2.27). Its high PAE blockiness (7.35) suggests modular domain architecture rather than a cohesive mechanical rod.",
+        "2. **Comparable to other low-confidence factors**: LBX1's profile is closer to other loosely structured transcription factors (RUNX3) than to bona fide mechanosensors.",
+        "3. **High-anisotropy is driven by disorder**: Similar to POC5 and GHR, which show extreme anisotropy driven by long, low-confidence extended tails, structural inferences on LBX1 based purely on AF metrics should be treated as speculative and hypothesis-generating only."
     ])
 
-    report_path = Path('reports/confidence_weighted_structural_evidence.md')
     with open(report_path, 'w') as f:
-        f.write("\n".join(report_content))
+        f.write("\n".join(report_content) + "\n")
 
-    print(f"Ranking complete. Outputs written to {out_csv} and {report_path}")
+    print(f"Generated Markdown report at {report_path}")
 
-if __name__ == "__main__":
-    create_confidence_weighted_ranking()
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,18 @@
+A flow diagram illustrating the "Derivative Gain Trap" hypothesis of Adolescent Idiopathic Scoliosis (AIS).
+
+Components:
+1. Pre-Adolescent State: Stable Control
+   - Input: Proprioceptive feedback with small neural delay ($\tau$).
+   - Process: High damping gains stabilize the spinal inverted pendulum.
+   - Output: Straight, stable posture.
+
+2. Growth Spurt (Adolescence): The Disturbance
+   - Event: Rapid long bone growth elongates the body axis.
+   - Consequence: Neural delay ($\tau$) increases significantly.
+
+3. The Trap: Metabolic Buckling
+   - Mechanism: Previously stable damping gains become destabilizing under increased delay (Derivative Gain Trap).
+   - Bifurcation: The system crosses the critical threshold (Supercritical Hopf Bifurcation).
+   - Outcome: Spinal buckling into a scoliotic curve to minimize thermodynamic free energy.
+
+Visual Style: High-impact, clear arrows, Nature or Science journal aesthetics.

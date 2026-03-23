@@ -1,0 +1,18 @@
+A visual abstract summarizing the "Biological Countercurvature" theory of spinal geometry and scoliotic buckling.
+
+The graphic should cleanly divide into three distinct yet connected pillars:
+
+1. The Allometric Trap:
+   - A visual of the Bio-Gravitational Number ($B_g \approx 0.01$).
+   - Showing how humans, as bipedal inverted pendulums, have uniquely precarious biomechanics entirely dependent on active metabolic energy to maintain shape.
+
+2. The Energy Deficit Window:
+   - A graph or conceptual curve showing $L^4$ geometric cost scaling outstripping $L^2$ metabolic supply during the adolescent growth spurt.
+   - Highlighting localized energy insufficiency (e.g., NAD+ depletion).
+
+3. The Derivative Gain Trap:
+   - A control theory schematic showing how increased neural delay ($\tau$) transforms protective damping into destabilizing oscillations (Metabolic Buckling).
+
+Synthesis: The diagram should converge these three pillars into a single scoliotic spine outcome, indicating that Adolescent Idiopathic Scoliosis is a predictable thermodynamic scaling failure, not merely a mechanical defect.
+
+Visual Style: Clean, modern, scientific visual abstract format suitable for top-tier journals.

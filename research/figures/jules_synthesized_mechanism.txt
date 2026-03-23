@@ -1,9 +1,7 @@
-This diagram illustrates the "Mechanogenetic Demand-Supply Gap" at the molecular and structural levels.
+The "Metabolic Buckling" mechanism, driven by the "Derivative Gain Trap" during the adolescent growth spurt, explains the onset of Adolescent Idiopathic Scoliosis (AIS).
 
-Key Elements:
-1.  **Demand Side (Gravity Sensors)**: Left side shows large, complex, thermodynamically expensive protein structures (like PIEZO2 or Fibrillin) acting as "Structural Mechanosensors". They are robust, highly ordered, and deeply embedded in a cellular membrane or matrix. These represent the high "Demand" of sensing mechanical stress against gravity.
-2.  **Supply Side (Metabolic Regulators)**: Right side shows intrinsically disordered, flexible, "fragile" protein strings (representing metabolic regulators). These represent the limited "Supply" of metabolic energy control.
-3.  **The Gap**: A clear visual chasm or "Gap" exists between the robust sensors and the disordered regulators. A red lightning bolt or fracture line highlights this "72% Anisotropy Gap".
-4.  **Energy Deficit Window**: Below the molecular gap, show a timeline or growth curve labeled "Adolescent Growth Spurt ($L > 0.35$ m)". At this critical length, the Gap widens significantly, entering a red "Energy Deficit Window" causing structural instability (depicted as a wavering or buckling spine).
+During childhood, neural derivative gains provide essential damping to stabilize the spine against gravity. However, during the rapid adolescent growth spurt, the physical lengthening of the spine leads to an increase in the absolute neural feedback delay (\tau).
 
-Style: High-impact scientific illustration suitable for Nature or Science. Use stark contrasts—robust, structured metallic elements for Demand vs. chaotic, ethereal strands for Supply. Crisp annotations and modern vector-style aesthetics.
+Due to the increased delay, these previously stabilizing derivative gains undergo a phase shift, becoming destabilizing. This triggers a supercritical Hopf bifurcation, where the body's own control system inadvertently drives the spine into a scoliotic buckling event.
+
+This process is further exacerbated by a transient "Energy Deficit Window." The metabolic cost of maintaining a straightened spine scales geometrically (L^4), whereas metabolic supply scales with cross-sectional area (L^2). This mismatch causes localized energy insufficiency (e.g., NAD+ depletion), reducing damping capacity right when it is most needed, locking the system into the buckling trajectory.

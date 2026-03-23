@@ -1,16 +1,10 @@
-A breathtaking, conceptual "Visual Abstract" for the "Biological Countercurvature of Spacetime" theory, focusing on the Allometric Trap ($\mathcal{B}_g \approx 0.01$).
+Visual Abstract: Biological Countercurvature of Spacetime
 
-Central Concept:
-- A glowing, majestic S-shaped human spine (lordosis and kyphosis perfectly balanced) stands in the center. The spine represents an active, energy-consuming structural standing wave, glowing in an intense, pulsating golden energy.
+The human spine maintains its unique S-shaped sagittal profile not as a passive mechanical structure, but as an active computational system defying gravity. This theory of "Biological Countercurvature" models the spine as an Information-Cosserat framework where biological shape emerges from active, metabolic shape-maintenance against gravitational load.
 
-Spacetime and Gravity:
-- The spine is set within a dynamic, warped 3D cosmic or spacetime mesh grid. Heavy, imposing dark arrows representing the "Gravity Vector ($g$)" press down upon the structure from above, attempting to warp the grid downwards (gravitational collapse).
+Three core pillars define this framework:
+1. The Allometric Trap: The human spine operates near a critical Bio-Gravitational Number (Bg ~ 0.01), making shape stability intrinsically dependent on active metabolic control rather than passive stiffness.
+2. The Energy Deficit Window: During the adolescent growth spurt, the geometric cost of shape maintenance scales to the fourth power (L^4), whereas metabolic supply scales to the second power (L^2). This creates a transient window of localized energy deficit and NAD+ insufficiency.
+3. The Derivative Gain Trap: Neural feedback loops, essential for damping and stability in childhood, are destabilized during rapid growth due to increasing neural delay (\tau). This phase shift turns stabilizing derivative gains into scoliotic buckling forces—triggering Adolescent Idiopathic Scoliosis (AIS) through a supercritical Hopf bifurcation.
 
-Biological Countercurvature:
-- The spine radiates powerful, ascending beams of golden light—the "Information Field" or "Developmental Patterning". These beams perfectly counteract the dark gravity vectors, pushing back against the spacetime mesh and maintaining the complex geometric equilibrium.
-
-The Allometric Trap:
-- A dial, gauge, or dimensionless number readout floating near the center reads: "Bio-Gravitational Number ($\mathcal{B}_g$) $\approx 0.01$".
-- The overall scene conveys an intense energetic cost—a metabolic fire burning to maintain shape against an overwhelming physical force.
-
-Style: High-impact, photorealistic rendering suitable for a cover image. High contrast between the dark void of gravity/spacetime and the intense golden radiance of biological information and metabolic supply. Clean, elegant, scientific typography.
+Conclusion: AIS is not purely mechanical but a metabolic and temporal control failure, suggesting future prevention via targeted metabolic interventions.

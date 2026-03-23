@@ -1,91 +1,53 @@
-# AlphaFold Structural Analysis — IEC Framework Proteins
+# Bolt-BioFold ⚡ Analysis Report
 
-## Data Source & Methods
+**Quality & Reproducibility Checklist:**
+- **Data Source:** AlphaFold DB (v6 endpoint)
+- **Date/time of run:** `$(date -u)`
+- **Code Version / Parameters:** pLDDT ≥ 70 for geometry computations; PCA for principal axis/anisotropy; curvature approximation via vector derivatives.
+- **Notes:** MESP2 was skipped due to HTTP 404 on the AlphaFold DB for the queried identifer. Seed list defaults (LBX1, POC5, ADGRG6) used as no custom protein IDs were provided. PAE matrices were downloaded but due to IDR dominance and length limits in two out of three proteins, the metrics rely strictly on 3D geometry from high-confidence coordinates.
 
-All structural data was fetched from the **AlphaFold Database v6** (alphafold.ebi.ac.uk) on February 23, 2026. For each of the 23 proteins, we downloaded the full predicted PDB structure and computed the following metrics from Cα coordinates:
+## A) Results Table
 
-- **Anisotropy Ratio** = √(λ₁/λ₃), where λ₁ > λ₂ > λ₃ are eigenvalues of the gyration tensor. Higher values indicate more elongated, structurally costly conformations.
-- **Disorder Fraction** = fraction of residues with pLDDT < 50
-- **Mean pLDDT** = average per-residue confidence from AlphaFold
-- **Radius of Gyration (Rg)** = overall protein compactness
-- **Hinge Candidates** = residues with pLDDT < 60 flanked by confident regions (pLDDT > 70), indicating potential flexible hinges
-- **Asphericity** = κ² shape descriptor (0 = sphere, 1 = rod)
+| protein | uniprot | length | pLDDT_mean | pLDDT_median | pLDDT_frac_high | pLDDT_frac_ok | pLDDT_frac_low | Rg | end_to_end | anisotropy_index | curvature_mean | low_confidence | IDR_heavy |
+|---------|---------|--------|------------|--------------|-----------------|---------------|----------------|----|------------|------------------|----------------|----------------|-----------|
+| LBX1 | P52954 | 281 | 66.87 | 60.25 | 0.23 | 0.16 | 0.61 | 22.69 | 54.39 | 2.71 | 0.33 | True | False |
+| POC5 | Q8NA72 | 575 | 63.97 | 50.91 | 0.33 | 0.06 | 0.61 | 87.28 | 39.39 | 102.15 | 0.36 | True | True |
+| ADGRG6 | Q86SQ4 | 1221 | 73.73 | 81.00 | 0.16 | 0.54 | 0.30 | 51.33 | 94.46 | 4.30 | 0.30 | False | False |
 
-All 23/23 proteins were successfully retrieved and analyzed.
+**CSV-ready Block:**
+```csv
+protein,uniprot,length,pLDDT_mean,pLDDT_median,pLDDT_fraction_high,pLDDT_fraction_ok,pLDDT_fraction_low,Rg,end_to_end,anisotropy_index,curvature_mean,low_confidence_warning,likely_IDR_heavy
+LBX1,P52954,281,66.86779359430605,60.25,0.2313167259786477,0.15658362989323843,0.6120996441281139,22.694646921843987,54.39289469222979,2.7115218109036294,0.32743200035154035,True,False
+POC5,Q8NA72,575,63.974834782608696,50.91,0.33217391304347826,0.06086956521739131,0.6069565217391304,87.28345622547697,39.38945682539936,102.15388336220066,0.35989167252270965,True,True
+ADGRG6,Q86SQ4,1221,73.72809172809173,81.0,0.1638001638001638,0.5356265356265356,0.30057330057330056,51.329351327023446,94.45647863963593,4.296379746708081,0.29977804065392494,False,False
+```
 
----
+## B) Key Plots Summary
 
-## Key Results
+* **pLDDT vs Residue Index Plot (`plddt_vs_residue.png`) generated:** Plots the per-residue confidence scores for LBX1, POC5, and ADGRG6 overlaid with a threshold line at pLDDT = 70.
+  * LBX1 and POC5 show long unstructured stretches with narrow, high-confidence domain peaks.
+  * ADGRG6 maintains >70 confidence across much of its large multi-domain architecture.
 
-### 1. The Demand–Supply Anisotropy Gap: 72% (p = 0.011)
+## C) Interpretation
 
-| Metric | Demand (n=12) | Supply (n=11) | p-value |
-|--------|---------------|---------------|---------|
-| **Anisotropy** | **3.08 ± 1.44** | **1.79 ± 0.56** | **0.011** (MW) |
-| Disorder | 23.7% ± 18.2% | 34.8% ± 21.4% | 0.127 |
-| Mean pLDDT | 71.7 ± 9.4 | 68.8 ± 13.2 | 0.567 |
-| Cohen's d | 1.19 (large effect) | | |
+* **LBX1 (P52954):**
+  * *What we see:* Highly disordered overall (61% low confidence) with a compact, structured homeobox domain (Rg=22.6, anisotropy=2.7).
+  * *Why it matters:* As a top GWAS hit for AIS, its function relies on this rigid, compact DNA-binding module directing somite/proprioceptor migration, while the IDRs likely facilitate flexible protein-protein interactions.
+  * *Confidence:* Low globally, but High for the geometric domain core.
+  * *Next test:* Map known AIS missense mutations to the high-confidence domain to see if they disrupt the local binding geometry.
 
-**The central thesis is statistically confirmed:** demand-side proteins (mechanosensors and cytoskeletal elements) have significantly higher structural anisotropy than supply-side proteins (metabolic regulators), with a 72% gap (Mann-Whitney U p = 0.011, Cohen's d = 1.19).
+* **POC5 (Q8NA72):**
+  * *What we see:* Severe global disorder (61% low confidence, labeled IDR-heavy) but the structured core is extremely elongated/anisotropic (anisotropy index ~102) with a large Rg (~87).
+  * *Why it matters:* This massive anisotropy indicates a rod-like structural role, perfectly suited for the ciliary scaffold where POC5 is known to operate. Cilia are the primary load/flow sensors in mechanotransduction, which aligns mechanically with the biological countercurvature hypothesis.
+  * *Confidence:* Low globally, High for the anisotropic rod segment.
+  * *Next test:* Compare the Rg and anisotropy of POC5 orthologs in species that do not experience axial gravity loads.
 
-### 2. VIM Cascade — Failure Sequence Confirmed
+* **ADGRG6 / GPR126 (Q86SQ4):**
+  * *What we see:* Mostly well-structured (mean pLDDT > 73) large receptor (1221 residues). Structurally it's mildly anisotropic (anisotropy ~4.3) with a massive end-to-end distance (~94.5), reflecting its long multi-domain architecture (e.g. extracellular stalk).
+  * *Why it matters:* As an essential GPCR for myelination and mechanotransduction, this rigid, extended topology would theoretically allow it to act as a tension-sensing "spring" in the ECM, translating mechanical stretching into a proprioceptive delay signal ($\tau_{\text{afferent}}$).
+  * *Confidence:* Medium-High.
+  * *Next test:* Calculate the sequence of hinge regions (low pLDDT boundaries between high pLDDT domains) and run a targeted simulation testing the physical compliance of this extended extracellular structure under tension.
 
-The highest-anisotropy proteins (most vulnerable to metabolic deficit) follow the predicted cascade order:
+## D) Best Next Move
 
-1. **VIM** (Vimentin): Anisotropy = 5.57, Vulnerability Index = 3.11× supply mean
-2. **LMNA** (Lamin A/C): Anisotropy = 4.71
-3. **PIEZO2**: Anisotropy = 3.45
-4. **CAV1**: Anisotropy = 2.52
-5. **PIEZO1**: Anisotropy = 3.14
-6. **EGR3**: Anisotropy = 1.56
-7. **LBX1**: Anisotropy = 1.36
-
-### 3. Supply-Side Disorder Paradox — Confirmed
-
-Supply proteins are cheaper (lower anisotropy) but **more fragile** (higher disorder fraction). PPARGC1A, the master regulator of mitochondrial biogenesis, is:
-- pLDDT = 52.7 (lowest confidence among supply proteins)
-- 61.9% disordered (highest disorder among all proteins except COL1A1)
-- This creates the predicted positive feedback trap: energy scarcity → PPARGC1A degradation → fewer mitochondria → less ATP → more degradation
-
-### 4. Top 5 Most Anisotropic Proteins (All Demand)
-
-| Rank | Protein | Anisotropy | Category | Role |
-|------|---------|------------|----------|------|
-| 1 | VIM | 5.57 | Demand | Intermediate filament scaffold |
-| 2 | PTK7 | 5.28 | Demand | Planar cell polarity receptor |
-| 3 | LMNA | 4.71 | Demand | Nuclear lamina |
-| 4 | DSTYK | 3.65 | Demand | Mechanical antenna kinase |
-| 5 | PIEZO2 | 3.45 | Demand | Phasic vector mechanosensor |
-
----
-
-## Important Note: Manuscript Values Need Updating
-
-The manuscript was written using an earlier AlphaFold version or different analysis parameters. Several values differ from our v6 analysis. The key differences:
-
-| Metric | Manuscript | AlphaFold v6 | Direction |
-|--------|-----------|--------------|-----------|
-| VIM anisotropy | 7.47 | 5.57 | Still highest |
-| Gap | 34% | 72% | **Larger** (strengthens claim) |
-| PIEZO2 fragment | Note: v6 only covers residues 1-709 | Full protein is 2822 aa | May explain lower anisotropy |
-
-**Critical:** PIEZO1 (2521 residues) and PIEZO2 (709 residues in v6 fragment) are large transmembrane proteins. AlphaFold v6 may fragment them, affecting anisotropy calculations. The manuscript should note which AlphaFold version/fragment was used, and ideally use full-length structures from AlphaFold3 multimer predictions if available.
-
----
-
-## Figures Generated
-
-All figures saved as both PDF (vector) and PNG (300 DPI):
-
-1. **fig_anisotropy_bar** — Main bar chart showing all 23 proteins sorted by anisotropy, color-coded by Demand/Supply
-2. **fig_scatter_panels** — Three-panel figure: (A) Anisotropy vs Disorder, (B) Anisotropy vs pLDDT, (C) Box plot with Mann-Whitney U test
-3. **fig_vim_cascade** — VIM Cascade failure sequence with anisotropy and disorder overlay
-4. **fig_supply_paradox** — Supply-Side Disorder Paradox visualization
-5. **fig_heatmap** — Comprehensive Z-score heatmap across all metrics and proteins
-6. **fig_plddt_profiles** — Per-residue pLDDT profiles for 6 key proteins (3 demand, 3 supply)
-
----
-
-## Raw Data
-
-All raw data including per-residue pLDDT scores and PDB files are saved in the working directory for reproducibility.
+* **Correlate curvature metrics with known phenotype genes:** Expand this geometric analysis pipeline (particularly the extreme anisotropy index found in POC5) against the entire pool of 30 top candidate genes in `data/candidates_master.csv` to see if high anisotropy + high IDR fraction uniquely fingerprints ciliary/mechanotransduction scoliosis targets.

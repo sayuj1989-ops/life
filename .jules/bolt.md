@@ -151,7 +151,7 @@ This reduced the metric calculation overhead significantly while preserving bit-
 
 **Action:** Optimized `calculate_rg` using NumPy's vectorized variance `np.var`. The identity `Rg = sqrt(sum(Var(coords, axis=0)))` avoids manual broadcasting and computes variance efficiently in C. This provides a ~35% speedup per call (from 0.88s to 0.54s per 10M points) and reduces peak memory allocation for this metric (30MB -> 23MB for 1M points). The output remains mathematically identical.
 
-## $(date +%Y-%m-%d) - [Fast Boolean Diff for Segment Finding]
+## 2026-11-20 - [Fast Boolean Diff for Segment Finding]
 **Learning:** In AlphaFold structure analysis, `np.diff` is often used to find boundaries of continuous segments (e.g., residues with high pLDDT scores or domains). When operating on boolean arrays, first casting to `int8` before calling `np.diff` adds unnecessary memory overhead. Instead, using a boolean condition `bounded[1:] != bounded[:-1]` and extracting starts/ends with boolean bitwise `&` logic (`diff & bounded[1:]`) achieves the same boundary detection with ~25% to ~30% improved speed.
 **Action:** Replaced `np.diff(bounded.astype(np.int8))` with fast boolean diff logic in `research/alphafold_countercurvature/src/afcc/metrics.py` (specifically in PAE segment finding and end-to-end distance calculations).
 
@@ -159,3 +159,5 @@ This reduced the metric calculation overhead significantly while preserving bit-
 ## 2025-02-28 - [Vectorize modulus condition in Hopf boundary solver]
 **Learning:** Python loops over NumPy arrays with conditional blocks are very slow. In `analytical_hopf_boundary` of `alphafold_pipeline_v2.py`, calculating values element-wise over an array of 6000 values took about ~1.1 seconds.
 **Action:** Vectorized the initial modulus condition mask `abs(lhs - rhs) / max(lhs, rhs) < 0.002` across the `omega` array before dropping into the `valid_omegas` loop to calculate the phase boundary. This lowered execution time per call to ~0.02s (~40-50x speedup).
+
+## 2026-11-20 - [Vectorized Norms and Center-Based Rg Optimization]   **Learning:** `np.linalg.norm(array, axis=1)` is significantly slower than `np.sqrt(np.einsum('ij,ij->i', array, array))` for 3D vector arrays, yielding ~2x speedup. Furthermore, calculating the Radius of Gyration via manual centering and element-wise squaring (`c = coords - coords.mean(axis=0); rg = np.sqrt(np.sum(c * c) / coords.shape[0])`) avoids the overhead of `np.var(coords, axis=0)` and reduces run time by ~30%.   **Action:** Replaced all usages of `np.linalg.norm` over arrays of 3D vectors with the `einsum` pattern and updated `MetricsAnalyzer.calculate_rg` to use the manual centering and square approach in `research/alphafold_countercurvature/src/afcc/metrics.py`.

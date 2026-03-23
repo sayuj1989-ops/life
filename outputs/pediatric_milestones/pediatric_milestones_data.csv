@@ -1,0 +1,156 @@
+Stage,L,tau,T_pred,Free_Energy,Stable
+Supine Infant (Stable),0.1,0.05,0.0,,False
+Supine Infant (Stable),0.1,0.05,0.01,,False
+Supine Infant (Stable),0.1,0.05,0.02,,False
+Supine Infant (Stable),0.1,0.05,0.03,,False
+Supine Infant (Stable),0.1,0.05,0.04,0.2312690280578653,True
+Supine Infant (Stable),0.1,0.05,0.05,0.01901892444335963,True
+Supine Infant (Stable),0.1,0.05,0.06,0.10577284648750072,True
+Supine Infant (Stable),0.1,0.05,0.07,0.19252953874913098,True
+Supine Infant (Stable),0.1,0.05,0.08,0.2792881662831713,True
+Supine Infant (Stable),0.1,0.05,0.09,0.36604776160502545,True
+Supine Infant (Stable),0.1,0.05,0.1,0.452807215225571,True
+Supine Infant (Stable),0.1,0.05,0.11,0.5395687832366879,True
+Supine Infant (Stable),0.1,0.05,0.12,0.6263309407460498,True
+Supine Infant (Stable),0.1,0.05,0.13,0.7130887403959025,True
+Supine Infant (Stable),0.1,0.05,0.14,0.7998404191274503,True
+Supine Infant (Stable),0.1,0.05,0.15,0.8865840743125918,True
+Supine Infant (Stable),0.1,0.05,0.16,0.9733176320501652,True
+Supine Infant (Stable),0.1,0.05,0.17,1.0600388460409207,True
+Supine Infant (Stable),0.1,0.05,0.18,1.1467452984819229,True
+Supine Infant (Stable),0.1,0.05,0.19,1.2334344021518988,True
+Supine Infant (Stable),0.1,0.05,0.2,1.3201034035788615,True
+Supine Infant (Stable),0.1,0.05,0.21,1.406749387196686,True
+Supine Infant (Stable),0.1,0.05,0.22,1.4933692803961274,True
+Supine Infant (Stable),0.1,0.05,0.23,1.5799598593730992,True
+Supine Infant (Stable),0.1,0.05,0.24,1.6665177556765214,True
+Supine Infant (Stable),0.1,0.05,0.25,1.7530394633590682,True
+Supine Infant (Stable),0.1,0.05,0.26,1.839521346636651,True
+Supine Infant (Stable),0.1,0.05,0.27,1.9259596479659737,True
+Supine Infant (Stable),0.1,0.05,0.28,2.0123504964539682,True
+Supine Infant (Stable),0.1,0.05,0.29,2.0123504964539682,True
+Supine Infant (Stable),0.1,0.05,0.3,2.184973836720813,True
+Head Control (3mo),0.15,0.08,0.0,,False
+Head Control (3mo),0.15,0.08,0.01,,False
+Head Control (3mo),0.15,0.08,0.02,,False
+Head Control (3mo),0.15,0.08,0.03,,False
+Head Control (3mo),0.15,0.08,0.04,,False
+Head Control (3mo),0.15,0.08,0.05,,False
+Head Control (3mo),0.15,0.08,0.06,2.7464968093195936,True
+Head Control (3mo),0.15,0.08,0.07,1.703024896653944,True
+Head Control (3mo),0.15,0.08,0.08,1.8079247203759916,True
+Head Control (3mo),0.15,0.08,0.09,4.165017187371336,True
+Head Control (3mo),0.15,0.08,0.1,5.377445953868257,True
+Head Control (3mo),0.15,0.08,0.11,6.130915102515495,True
+Head Control (3mo),0.15,0.08,0.12,6.6545539548510835,True
+Head Control (3mo),0.15,0.08,0.13,7.046228280043457,True
+Head Control (3mo),0.15,0.08,0.14,7.354898992365042,True
+Head Control (3mo),0.15,0.08,0.15,7.607869198305241,True
+Head Control (3mo),0.15,0.08,0.16,7.822376445547495,True
+Head Control (3mo),0.15,0.08,0.17,8.01186681099405,True
+Head Control (3mo),0.15,0.08,0.18,8.195430944116762,True
+Head Control (3mo),0.15,0.08,0.19,8.442414563929262,True
+Head Control (3mo),0.15,0.08,0.2,8.8947542576102,True
+Head Control (3mo),0.15,0.08,0.21,9.573942600309204,True
+Head Control (3mo),0.15,0.08,0.22,10.936437180248761,True
+Head Control (3mo),0.15,0.08,0.23,13.512544504212705,True
+Head Control (3mo),0.15,0.08,0.24,18.553967471784294,True
+Head Control (3mo),0.15,0.08,0.25,28.172516371113694,True
+Head Control (3mo),0.15,0.08,0.26,43.89608982254529,True
+Head Control (3mo),0.15,0.08,0.27,63.61079092122528,True
+Head Control (3mo),0.15,0.08,0.28,86.59751815838125,True
+Head Control (3mo),0.15,0.08,0.29,86.59751815838125,True
+Head Control (3mo),0.15,0.08,0.3,2379.2886222440025,True
+Sitting (6mo),0.35,0.12,0.0,,False
+Sitting (6mo),0.35,0.12,0.01,,False
+Sitting (6mo),0.35,0.12,0.02,,False
+Sitting (6mo),0.35,0.12,0.03,,False
+Sitting (6mo),0.35,0.12,0.04,,False
+Sitting (6mo),0.35,0.12,0.05,42.67017765673386,True
+Sitting (6mo),0.35,0.12,0.06,4.421765865568073,True
+Sitting (6mo),0.35,0.12,0.07,1.9562536303213325,True
+Sitting (6mo),0.35,0.12,0.08,1.7249816122295485,True
+Sitting (6mo),0.35,0.12,0.09,1.6399925280851468,True
+Sitting (6mo),0.35,0.12,0.1,1.627509436451403,True
+Sitting (6mo),0.35,0.12,0.11,1.6711023516108776,True
+Sitting (6mo),0.35,0.12,0.12,1.7324384394266266,True
+Sitting (6mo),0.35,0.12,0.13,3.00113168284079,True
+Sitting (6mo),0.35,0.12,0.14,3.9184738619996096,True
+Sitting (6mo),0.35,0.12,0.15,4.617565553754595,True
+Sitting (6mo),0.35,0.12,0.16,5.172255728965489,True
+Sitting (6mo),0.35,0.12,0.17,5.626372339854884,True
+Sitting (6mo),0.35,0.12,0.18,6.007465718946928,True
+Sitting (6mo),0.35,0.12,0.19,6.333701475369073,True
+Sitting (6mo),0.35,0.12,0.2,6.617539324368638,True
+Sitting (6mo),0.35,0.12,0.21,6.867810474182233,True
+Sitting (6mo),0.35,0.12,0.22,7.090950044057774,True
+Sitting (6mo),0.35,0.12,0.23,7.291759886673594,True
+Sitting (6mo),0.35,0.12,0.24,7.473898223314784,True
+Sitting (6mo),0.35,0.12,0.25,7.640203930440964,True
+Sitting (6mo),0.35,0.12,0.26,7.792917290156245,True
+Sitting (6mo),0.35,0.12,0.27,7.933834038737473,True
+Sitting (6mo),0.35,0.12,0.28,8.0644154996287,True
+Sitting (6mo),0.35,0.12,0.29,8.0644154996287,True
+Sitting (6mo),0.35,0.12,0.3,8.299212430463859,True
+Standing (12mo),0.55,0.15,0.0,,False
+Standing (12mo),0.55,0.15,0.01,,False
+Standing (12mo),0.55,0.15,0.02,,False
+Standing (12mo),0.55,0.15,0.03,680.7100352708225,True
+Standing (12mo),0.55,0.15,0.04,133.59500655775057,True
+Standing (12mo),0.55,0.15,0.05,23.05287581865341,True
+Standing (12mo),0.55,0.15,0.06,4.703342312300889,True
+Standing (12mo),0.55,0.15,0.07,1.8305690441413836,True
+Standing (12mo),0.55,0.15,0.08,1.5755368416179643,True
+Standing (12mo),0.55,0.15,0.09,1.5863617097547646,True
+Standing (12mo),0.55,0.15,0.1,1.6105860076626373,True
+Standing (12mo),0.55,0.15,0.11,1.6295219945598003,True
+Standing (12mo),0.55,0.15,0.12,1.6468945231481396,True
+Standing (12mo),0.55,0.15,0.13,1.6668461622393131,True
+Standing (12mo),0.55,0.15,0.14,1.6919990051872782,True
+Standing (12mo),0.55,0.15,0.15,1.724517964451542,True
+Standing (12mo),0.55,0.15,0.16,2.59203624836043,True
+Standing (12mo),0.55,0.15,0.17,3.2975405232881863,True
+Standing (12mo),0.55,0.15,0.18,3.8848981886147165,True
+Standing (12mo),0.55,0.15,0.19,4.383606240072115,True
+Standing (12mo),0.55,0.15,0.2,4.814091727814294,True
+Standing (12mo),0.55,0.15,0.21,5.19089256743703,True
+Standing (12mo),0.55,0.15,0.22,5.5246150407331545,True
+Standing (12mo),0.55,0.15,0.23,5.823170513555388,True
+Standing (12mo),0.55,0.15,0.24,6.092577543113355,True
+Standing (12mo),0.55,0.15,0.25,6.337495457596437,True
+Standing (12mo),0.55,0.15,0.26,6.561587875759917,True
+Standing (12mo),0.55,0.15,0.27,6.767775890617461,True
+Standing (12mo),0.55,0.15,0.28,6.9584179949978475,True
+Standing (12mo),0.55,0.15,0.29,6.9584179949978475,True
+Standing (12mo),0.55,0.15,0.3,7.300432369437357,True
+Walking Toddler,0.7,0.18,0.0,,False
+Walking Toddler,0.7,0.18,0.01,,False
+Walking Toddler,0.7,0.18,0.02,,False
+Walking Toddler,0.7,0.18,0.03,395.9294487053781,True
+Walking Toddler,0.7,0.18,0.04,149.55300450346863,True
+Walking Toddler,0.7,0.18,0.05,48.23141166480658,True
+Walking Toddler,0.7,0.18,0.06,15.631164728574893,True
+Walking Toddler,0.7,0.18,0.07,5.810702525090135,True
+Walking Toddler,0.7,0.18,0.08,2.797577616474773,True
+Walking Toddler,0.7,0.18,0.09,1.9906629061532572,True
+Walking Toddler,0.7,0.18,0.1,1.8220822868210267,True
+Walking Toddler,0.7,0.18,0.11,1.7990534805748244,True
+Walking Toddler,0.7,0.18,0.12,1.8092023208915913,True
+Walking Toddler,0.7,0.18,0.13,1.8232904703510353,True
+Walking Toddler,0.7,0.18,0.14,1.8370090784227977,True
+Walking Toddler,0.7,0.18,0.15,1.8514058163012224,True
+Walking Toddler,0.7,0.18,0.16,1.868331898917155,True
+Walking Toddler,0.7,0.18,0.17,1.8895125251609322,True
+Walking Toddler,0.7,0.18,0.18,1.9164228949680475,True
+Walking Toddler,0.7,0.18,0.19,2.5993893504046715,True
+Walking Toddler,0.7,0.18,0.2,3.1823475396473047,True
+Walking Toddler,0.7,0.18,0.21,3.6873047289349152,True
+Walking Toddler,0.7,0.18,0.22,4.1303026636470435,True
+Walking Toddler,0.7,0.18,0.23,4.523253547988823,True
+Walking Toddler,0.7,0.18,0.24,4.875160594035345,True
+Walking Toddler,0.7,0.18,0.25,5.192941630912737,True
+Walking Toddler,0.7,0.18,0.26,5.481993778743705,True
+Walking Toddler,0.7,0.18,0.27,5.746586986343527,True
+Walking Toddler,0.7,0.18,0.28,5.990142825457058,True
+Walking Toddler,0.7,0.18,0.29,5.990142825457058,True
+Walking Toddler,0.7,0.18,0.3,6.424736933159037,True

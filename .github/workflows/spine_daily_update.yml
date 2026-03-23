@@ -19,7 +19,7 @@ jobs:
 
       - name: Generate daily update
         run: |
-          python scripts/spine_daily_update.py
+          python scripts/generate_spine_daily_update.py
 
       - name: Commit and push changes
         run: |

@@ -51,23 +51,45 @@ def parse_roadmap(filepath):
         'target_date': target_date
     }, None
 
+def calculate_projection(data):
+    """
+    Calculates expected completion date based on velocity.
+    """
+    if not data['start_date']:
+        return "Unknown (Start Date missing)"
+
+    today = datetime.date.today()
+    days_elapsed = (today - data['start_date']).days
+
+    if days_elapsed <= 0:
+        days_elapsed = 1
+
+    velocity = data['completed_tasks'] / days_elapsed
+
+    if velocity <= 0:
+        return "Unknown (No tasks completed yet)"
+
+    tasks_remaining = data['total_tasks'] - data['completed_tasks']
+    days_remaining_est = tasks_remaining / velocity
+
+    expected_date = today + datetime.timedelta(days=int(days_remaining_est))
+    return expected_date.strftime('%Y-%m-%d')
+
 def generate_report(data):
     """
     Generates a formatted daily update report.
     """
     today = datetime.date.today()
 
-    if data['target_date']:
-        days_remaining = (data['target_date'] - today).days
-        expected_completion_str = f"{data['target_date']} ({days_remaining} days remaining)"
-    else:
-        expected_completion_str = "TBD"
+    expected_completion_str = calculate_projection(data)
 
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
+**Strategy:** Reframe as "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
@@ -90,6 +112,18 @@ def generate_report(data):
 
     return report
 
+def save_report(report):
+    """
+    Saves the report to the latest daily update file.
+    """
+    output_dir = "reports"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    latest_filepath = os.path.join(output_dir, "daily_update_latest.md")
+    with open(latest_filepath, 'w') as f:
+        f.write(report)
+
 if __name__ == "__main__":
     roadmap_path = "docs/spine_submission_roadmap.md"
     data, error = parse_roadmap(roadmap_path)
@@ -97,4 +131,6 @@ if __name__ == "__main__":
     if error:
         print(error)
     else:
-        print(generate_report(data))
+        report = generate_report(data)
+        print(report)
+        save_report(report)

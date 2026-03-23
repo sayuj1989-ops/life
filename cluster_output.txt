@@ -1,0 +1,39 @@
+Loaded 15 merged candidates.
+
+Cluster 0: N=3
+  Mean Anisotropy: 1.83
+  Mean Disorder: 0.28
+  Top Tags: ['Muscle', 'Somite', 'Proprioception', 'Gravity_Sensing', 'Ion_Channel']
+  Target Score: 0.33
+
+Cluster 1: N=4
+  Mean Anisotropy: 2.83
+  Mean Disorder: 0.56
+  Top Tags: ['Proprioception', 'Thermodynamic_Cost', 'Signaling', 'Muscle', 'Transcription_Factor']
+  Target Score: 0.50
+
+Cluster 2: N=3
+  Mean Anisotropy: 4.20
+  Mean Disorder: 0.14
+  Top Tags: ['Mechanotransduction', 'Proprioception', 'Nucleus', 'Cytoskeleton', 'ECM']
+  Target Score: 1.00
+
+Cluster 3: N=1
+  Mean Anisotropy: 5.13
+  Mean Disorder: 0.50
+  Top Tags: ['Thermodynamic_Cost']
+  Target Score: 1.00
+
+Cluster 4: N=4
+  Mean Anisotropy: 1.66
+  Mean Disorder: 0.15
+  Top Tags: ['Signaling', 'Mechanotransduction', 'Thermodynamic_Cost', 'Proprioception', 'Development']
+  Target Score: 1.00
+
+Best Cluster (ID 2):
+- PIEZO2: Anisotropy=4.44, Disorder=0.14, Tags=Mechanotransduction,Proprioception
+- LMNA: Anisotropy=4.75, Disorder=0.26, Tags=Mechanotransduction,Nucleus,Cytoskeleton
+- PLOD1: Anisotropy=3.40, Disorder=0.03, Tags=ECM,Enzyme
+
+High Anisotropy Cluster (ID 3):
+- GHR: Anisotropy=5.13, Disorder=0.50, Tags=Thermodynamic_Cost

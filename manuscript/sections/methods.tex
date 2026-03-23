@@ -48,6 +48,12 @@ To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular rea
     \item \textbf{Validation:} We verified predicted molecular stiffness against AFM nanoindentation measurements and bulk mechanical tissue tests, achieving an $R^2 \approx 0.81$.
 \end{enumerate}
 
+\subsection{Statistical Analysis}
+
+All statistical analyses were performed independently in Python 3.11 using \texttt{scipy.stats} (v1.11) and \texttt{statsmodels} (v0.14). Cross-species allometric scaling of the Bio-Gravitational Number ($\mathcal{B}_g$) against body mass was assessed via log-log linear regression. To rigorously quantify scaling uncertainty and avoid distributional assumptions, we utilized BCa bootstrap resampling ($n = 10,000$ iterations) to construct 95\% confidence intervals for the scaling exponent. We performed a Bayesian model comparison using the Bayesian Information Criterion (BIC) to evaluate the Allometric Scaling hypothesis against a constant gravity scaling null model, computing approximate Bayes factors.
+
+For continuous variable associations (e.g., energy deficit magnitude vs. Cobb angle, $L_{\text{crit}}$ vs. tissue anisotropy), Pearson and linear regression analyses were employed. Group comparisons, such as evaluating the impact of circadian disruption ("Spinal Jetlag") under high information-coupling conditions compared to an entrained baseline, were conducted using the non-parametric Mann-Whitney U test. For the AlphaFold structural analysis, differences in anisotropy distributions between demand-side and supply-side proteins were also evaluated using the Mann-Whitney U test. A sensitivity analysis was conducted by repeating the structural evaluations after excluding low-confidence protein predictions (pLDDT $< 70$) to ensure robustness of the findings. All tests were two-sided with significance defined at $\alpha = 0.05$.
+
 \subsection{Protein Dynamics and Energy Modeling}
 
 We simulated the temporal competition between protein classes using a system of coupled differential equations (see Supplementary Information, Section~S7). The model tracks the energy pool $E(t)$ available for protein synthesis/maintenance over the 5--20 year age range.

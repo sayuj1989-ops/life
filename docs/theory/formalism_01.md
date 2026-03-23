@@ -1125,3 +1125,36 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+
+## 3. The Hueter-Volkmann Mechanogenetic Coupling ($\gamma_{HV}$)
+
+The biological counter-curvature must dynamically respond to gravitational loading through differential growth. This is formalized by the Hueter-Volkmann Mechanogenetic Coupling Constant ($\gamma_{HV}$), which defines how local mechanical stress gradients induce asymmetric vertebral growth, thereby updating the intrinsic curvature target over developmental time.
+
+### 3.1. Definitions and Units
+
+| Symbol | Definition | Dimensions | Units (SI) |
+| :--- | :--- | :--- | :--- |
+| $\Delta \sigma$ | Local transpedicular stress differential | $[ML^{-1}T^{-2}]$ | $Pa$ ($N/m^2$) |
+| $\Delta \dot{\varepsilon}_g$ | Differential volumetric growth strain rate | $[T^{-1}]$ | $s^{-1}$ |
+| $\gamma_{HV}$ | Mechanogenetic Coupling Constant | $[M^{-1}LT]$ | $Pa^{-1} \cdot s^{-1}$ |
+| $\mathbf{G}_{ani}$ | Measurable Proxy: Growth Tensor Anisotropy | $[1]$ | Dimensionless |
+
+### 3.2. Dimensional Analysis and Coupling
+
+The temporal rate of change of the intrinsic curvature ($\frac{\partial \boldsymbol{\kappa}_{rest}}{\partial t}$) is driven by the differential growth strain rate ($\Delta \dot{\varepsilon}_g$) across the vertebral body. We define this as driven by the local stress differential:
+
+$$ \Delta \dot{\varepsilon}_g = -\gamma_{HV} \cdot \Delta \sigma $$
+
+*   **Dimensions**: $\Delta \dot{\varepsilon}_g$ is $[T^{-1}]$. $\Delta \sigma$ is $[ML^{-1}T^{-2}]$. Therefore, $\gamma_{HV}$ must have dimensions $[T^{-1}] / [ML^{-1}T^{-2}] = [M^{-1}LT]$.
+*   **Physical Interpretation**: $\gamma_{HV}$ quantifies the sensitivity of the epiphyseal growth plate to mechanical loading. A negative sign indicates the classical Hueter-Volkmann law: increased compressive stress reduces the growth rate (Smit, 2020).
+*   **Measurable Proxy**: **Vertebral Growth Tensor Anisotropy ($\mathbf{G}_{ani}$)**. Extracted from longitudinal pediatric MRIs, this maps the spatial divergence of the growth strain tensor in response to the gravity vector.
+
+### 3.3. Falsifiable Tests
+
+**Test 1: Growth Tensor Divergence Prior to Cobb Angle Progression**
+*   **Data Needed**: High-resolution longitudinal spinal MRIs of pre-adolescent cohorts (e.g., ALSPAC subset) capturing $\mathbf{G}_{ani}$ at $t=0$ and Cobb angle at $t=1$ (24 months later).
+*   **Refutation**: If significant Cobb angle progression occurs in individuals exhibiting an isotropic (uniform) vertebral growth tensor ($\mathbf{G}_{ani} \approx 0$) prior to curve acceleration, the hypothesis that mechanical coupling drives the counter-curvature failure is falsified. (Reference: Aronsson et al., 2013).
+
+**Test 2: Nullification under Microgravity Unloading**
+*   **Data Needed**: Murine or computationally simulated spinal development models subject to prolonged simulated microgravity (unloading $\Delta \sigma \to 0$), measuring the resulting rest curvature $\boldsymbol{\kappa}_{rest}$.
+*   **Refutation**: If the intrinsic spinal curvature develops normally and forms characteristic sagittal alignments despite the absence of gravitational stress differentials ($\Delta \sigma = 0$), the requirement for $\gamma_{HV}$ coupling in biological counter-curvature is refuted.

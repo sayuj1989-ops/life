@@ -139,3 +139,18 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Observation of ectopic structural curves or altered vertebral morphology.
     *   **Expected Outcome:** Altered HOX expression induces predictable changes in the resting curvature of the spine.
     *   **Stop Condition:** Consistent phenotype observed in $>50\%$ of treated embryos ($N=50$).
+
+## Toy Model F: 2D Spinal Tensegrity
+
+**Goal:** Demonstrate the "Biological Countercurvature" theory by modeling the spine as rigid struts stabilized by an active tension network.
+
+**Setup:**
+- 2D spring-mass-strut network representing rigid vertebrae and active cables (muscles/ligaments).
+- **Passive State:** Gravity causes compression/buckling.
+- **Active State:** Asymmetric contraction (S-curve gain) counters gravity.
+- **Pathological State:** Excessive information-gain triggers scoliotic buckling.
+
+**Implementation:**
+- Script: `scripts/experiment_tensegrity_spine.py`
+- **Output:** [`figures/main/toy_model_tensegrity.png`](../figures/main/toy_model_tensegrity.png)
+- **Status:** ✅ **Implemented**

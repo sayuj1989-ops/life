@@ -1,7 +1,7 @@
 # Manuscript Structure Documentation
 
 ## Overview
-This directory contains the main manuscript "Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry" by Dr. Sayuj Krishnan S.
+This directory contains the main manuscript "Biological Counter-Curvature: An Information-Cosserat Framework for Vertebral Geometry and Adolescent Scoliosis" by Dr. Sayuj Krishnan S.
 
 ## Main Files
 

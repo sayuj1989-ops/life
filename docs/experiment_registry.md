@@ -32,6 +32,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **TOY_03_JSCreature** | `scripts/experiments/toy_model_js_creature.py` | **Toy Model C:** Secondary 2D minimal representation for biomechanics reviewers. | `outputs/js_creature_toy_model` | ✅ **Active** | Potential visual addition for robustness. |
 | **TOY_04_Lenke** | `scripts/experiments/toy_model_lenke_classes.py` | **Toy Model D:** Lenke Classifications. Spatial deficit distribution | `outputs/figures/toy_model_lenke_classes.png` | ✅ **Active** | Predicts scoliotic curve shape. |
 | **TOY_05_Torsional** | `scripts/experiments/toy_model_torsional_buckling.py` | **Toy Model E:** Torsional Buckling Model. | `outputs/figures/toy_model_torsional_buckling.png` | ✅ **Active** | Demonstrates active torque resistance. |
+| **TOY_06_Tensegrity** | `scripts/experiment_tensegrity_spine.py` | **Toy Model F:** 2D Spinal Tensegrity. Demonstrates Biological Countercurvature via active tension network stabilizing rigid struts. | `outputs/figures/toy_model_tensegrity_spine.png` | ✅ **Active** | 2D Tensegrity model. |
 
 ## 3. Protein Structure Pipeline (AFCC)
 

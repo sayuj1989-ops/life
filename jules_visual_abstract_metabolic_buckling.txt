@@ -1,0 +1,20 @@
+A visual abstract illustrating the concept of "Metabolic Buckling" in Adolescent Idiopathic Scoliosis (AIS).
+
+The diagram should be divided into three clear, interconnected panels:
+
+Panel 1: The Allometric Trap (Left)
+- Show a cross-species comparison emphasizing humans.
+- Label: Bio-Gravitational Number (Bg ~ 0.01).
+- Visual: A stable, energetically balanced human inverted pendulum spine (S-curve) requiring active metabolic maintenance to counteract gravity.
+
+Panel 2: The Energy Deficit Window (Center)
+- Show a graphical representation of scaling costs during the adolescent growth spurt.
+- Visual: Two diverging curves. One curve (red) represents the L^4 metabolic cost of structural maintenance. The other curve (blue) represents the L^2 metabolic supply.
+- Label: Highlight the gap between them as the "Energy Deficit Window" leading to localized NAD+ insufficiency.
+
+Panel 3: The Derivative Gain Trap (Right)
+- Show a feedback control loop schematic.
+- Visual: A stable feedback loop with a small neural delay (\tau) during childhood. Then, contrast it with a destabilized loop during the adolescent growth spurt where increased neural delay (\tau) turns damping gains into scoliotic buckling ("Metabolic Buckling").
+- Label: The transition from stable damping to destabilizing delay-induced instability.
+
+Overall Style: Clean, modern scientific illustration suitable for a high-impact journal like Nature or Science. Use professional color palettes (e.g., cool blues, warm reds) and clear, readable typography.

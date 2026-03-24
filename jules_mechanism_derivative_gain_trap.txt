@@ -1,0 +1,13 @@
+A complex conceptual diagram explaining the "Derivative Gain Trap" in Adolescent Idiopathic Scoliosis (AIS).
+
+The diagram should focus on illustrating how neural delay (\tau) destabilizes spinal control during the adolescent growth spurt, creating scoliotic buckling ("Metabolic Buckling").
+
+Key visual elements:
+- A central block representing the spine as an inverted pendulum control system.
+- An incoming "Information-Elasticity Coupling" (IEC) signal or active feedback loop trying to maintain the spine's S-curve against gravity.
+- Two distinct phases shown side-by-side or top-to-bottom:
+  - Phase 1: Childhood. The neural feedback loop has a short delay (\tau). The control system provides stable, effective damping against perturbations. Visual: A smooth, stable S-curve.
+  - Phase 2: Adolescent Growth Spurt. Rapid lengthening ($L$) causes the absolute neural delay ($\tau$) to increase. The previously stable damping gains become destabilizing. Visual: The feedback loop is out of sync, leading to a supercritical Hopf bifurcation. The spine buckles into an unstable scoliotic curve.
+- Mathematical annotation: Show the Delay Differential Equation (DDE) concept, emphasizing the role of increased $\tau$. The transition should explicitly show that derivative gains intended to stabilize now induce instability.
+
+Style: Highly detailed, technical yet accessible system control diagram. Use color coding to distinguish stable vs unstable regimes (e.g., green for stable, red/orange for unstable). Suitable for a high-impact scientific manuscript.

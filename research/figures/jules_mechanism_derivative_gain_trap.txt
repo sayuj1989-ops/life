@@ -1,0 +1,8 @@
+Create a highly detailed, professional scientific diagram illustrating the "Mechanogenetic Demand-Supply Gap" mechanism (also known as the "Derivative Gain Trap").
+The diagram should show two parallel pathways or trajectories.
+On the left or top side (Demand), depict the scaling of metabolic cost for maintaining spinal alignment, which follows an L^4 scaling law (where L is spinal length).
+On the right or bottom side (Supply), depict the scaling of metabolic energy supply via capillaries and mitochondrial networks, which follows a slower L^2 scaling law.
+Show an intersection or divergence point at a critical length (L_crit ≈ 0.35 m, corresponding to peak height velocity).
+At this critical point, highlight a widening gap labeled "Energy Deficit Window" or "Demand-Supply Mismatch."
+Within this gap, visualize the cascading failure of highly ordered (high Conformational Ordering Index, COI) mechanosensory proteins. Show Vimentin intermediate filaments depolymerizing first, followed by Lamin A/C collapse, and finally Piezo2 ion channel downregulation.
+The overall style should be suitable for a high-impact journal like Nature or Science: clean lines, distinct colors for Demand (e.g., red) and Supply (e.g., blue), legible sans-serif typography, and a modern aesthetic with minimalistic but clear visual metaphors for the proteins.

@@ -6,15 +6,17 @@ set -e
 # Ensure output directories exist
 mkdir -p research/figures/
 
+export GEMINI_API_KEY="dummy"
+
 echo "=== High-Impact Visualization Pipeline ==="
 
 # 1. Complex Mechanism
-paperbanana generate --input research/figures/complex_mechanism_derivative_gain_trap.txt --output research/figures/autonomous_mechanism_derivative_gain_trap.png
+paperbanana generate --input research/figures/jules_mechanism_derivative_gain_trap.txt --output research/figures/jules_autonomous_mechanism_derivative_gain_trap.png
 
 # 2. Key Result
-paperbanana plot --data outputs/thermodynamic_cost/phase_diagram_energy_deficit_for_plot.csv --x L --y chi_kappa --color R_deficit --output research/figures/autonomous_thermodynamic_phase_diagram.png
+paperbanana plot --data outputs/thermodynamic_cost/phase_diagram_energy_deficit.csv --x L --y chi_kappa --color R_deficit --output research/figures/jules_autonomous_thermodynamic_phase_diagram.png
 
 # 3. Visual Abstract
-paperbanana generate --input research/figures/biological_countercurvature_abstract.txt --output research/figures/autonomous_visual_abstract_metabolic_buckling.png
+paperbanana generate --input research/figures/jules_visual_abstract_metabolic_buckling.txt --output research/figures/jules_autonomous_visual_abstract_metabolic_buckling.png
 
 echo "Pipeline complete."

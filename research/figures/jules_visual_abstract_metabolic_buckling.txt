@@ -1,0 +1,7 @@
+Create a striking, high-impact Visual Abstract summarizing the "Biological Countercurvature of Spacetime" theory for Adolescent Idiopathic Scoliosis (AIS).
+The visual abstract must integrate three core theoretical pillars into a cohesive, central graphic.
+Pillar 1: "The Allometric Trap" - Illustrate the cross-species biomechanical concept where humans (represented by a bipedal figure) operate at a very low Bio-Gravitational Number (Bg ~ 0.01), distinguishing them from quadrupeds and necessitating active metabolic maintenance against gravity.
+Pillar 2: "The Energy Deficit Window" - Incorporate a graphical element showing the mismatch between L^4 metabolic demand and L^2 metabolic supply during the adolescent growth spurt, creating a phase of thermodynamic instability.
+Pillar 3: "Derivative Gain Trap / Metabolic Buckling" - Show how the failure of metabolically expensive mechanosensors (like Vimentin, shown with high COI) leads to a loss of proprioceptive control and "Metabolic Buckling."
+The central image should be a stylized human spine transitioning from a healthy S-curve (sagittal plane) to a buckled, helical 3D deformity (Lenke curve type), symbolizing a thermodynamic phase transition.
+Use a professional, elegant color palette (e.g., deep blue, vivid orange, and crisp white background) characteristic of top-tier scientific publishing (Nature/Science). Use bold, clean typography for the main labels.

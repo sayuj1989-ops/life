@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-03-24
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.
@@ -12,7 +12,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_CORE_01** | `scripts/experiments/experiment_minimal_elastica.py` | **Primary Simulation.** Runs the full Cosserat rod model with IEC coupling. Maps anisotropy/growth to curvature ($L$ vs $\chi_\kappa$, $A$). | `outputs/minimal_experiment_results_v2.csv` | ✅ **Active** | Validated. Generates core S-curve results. |
 | **EXP_01a_DeficitWindow** | `scripts/experiments/experiment_energy_deficit_window.py` | Generate Figure 2 (Line Plot): Energy Deficit Window ($L$ vs Cost). Shows $P \sim L^2$ vs $S \sim L^{0.5}$ crossover. | `outputs/thermodynamic_cost/energy_deficit_window.csv` | ✅ **Active** | Confirms $L_{crit} \approx 0.35$m. |
 | **EXP_01b_PhaseDiagram** | `scripts/experiment_energy_phase_diagram.py` | Generate Figure 2 (Heatmap): Bifurcation Diagram ($L$ vs $\chi_\kappa$). Shows instability region. | `outputs/figures/energy_phase_diagram.png` | ✅ **Active** | Visualizes the "Energy Cliff". |
-| **EXP_02_SpinalJetlag** | `scripts/experiment_spinal_jetlag.py` | Generate Figure 5: Microgravity & Jetlag predictions. Simulates circadian mismatch ($\phi$) and gravity loss ($g \to 0$). | `outputs/spinal_jetlag/jetlag_cycles.csv` | ✅ **Active** | Supports "Spinal Jetlag" hypothesis. |
+| **EXP_02_SpinalJetlag** | `scripts/experiments/experiment_spinal_jetlag.py` | Generate Figure 5: Microgravity & Jetlag predictions. Simulates circadian mismatch ($\phi$) and gravity loss ($g \to 0$). | `outputs/spinal_jetlag/jetlag_cycles.csv` | ✅ **Active** | Supports "Spinal Jetlag" hypothesis. |
 | **EXP_03_OptimizationFailure** | `scripts/experiment_optimization_failure.py` | Generate Figure 4 (Proxy): "Exploding Gradient" map. Sweeps $\chi_\kappa$ vs Sensory Noise $\sigma$. | `outputs/optimization_failure/exploding_gradient.csv` | ✅ **Active** | Models "generic" failure. |
 | **EXP_04_DefectSensitivity** | `scripts/weekly_sim_defect_sensitivity.py` | Investigate "Basin of Attraction". Sweeps initial lateral defect vs $\chi_\kappa$. | `outputs/sim/2026-02-20/results.csv` | ✅ **Active** | Shows high growth drive amplifies small defects. |
 | **EXP_05_Proteins** | `scripts/experiments/experiment_thermodynamic_cost_proteins.py` | Generate Table 2: Assigns metabolic cost terms to specific proteins (e.g., PPARGC1A). | `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv` | ✅ **Active** | Validated against manuscript Table 2. |
@@ -44,9 +44,9 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Dataset/Analysis | Target Application | Purpose | Expected Output | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN_01_PHV** | `experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. |
+| **CLIN_01_PHV** | `scripts/experiments/experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. Needs script creation. |
 | **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
-| **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
+| **CLIN_03_Marfan** | `scripts/experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
 | **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
 
 ## 5. Missing / Pending Experiments

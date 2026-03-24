@@ -2,8 +2,9 @@
 
 **Target:** *Spine* Submission (IF: 3.30, Q1, H-index: 300)
 **Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
-**Timeline:** 6 Weeks (Feb 23 - April 06, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-22.md](progress_update_2026-03-22.md)
+**Start Date:** 2026-02-23
+**Target Submission Date:** 2026-04-06 (6 Weeks)
+**Latest Progress Update:** [docs/progress_update_2026-03-24.md](progress_update_2026-03-24.md)
 
 ## Phase 1: Computational Framework (Weeks 1-2)
 
@@ -31,14 +32,14 @@
 
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
-| **Week 1-2** | Computational Framework | Team | ✅ **Mostly Complete** |
-| **Week 3-4** | Clinical Validation Mapping | PI | 🚨 **Active Sprint** |
+| **Week 1-2** | Computational Framework | Team | 🔄 **In Progress (75%)** |
+| **Week 3-4** | Clinical Validation Mapping | PI | ⚪ Planned |
 | **Week 5** | Manuscript Reformatting (IMRaD) | PI | ⚪ Planned |
 | **Week 6 (Apr 06)**| Internal Review & **SUBMISSION** | PI | ⚪ Planned |
 
 ## Timeline Estimate
 
-- **Best Case:** 2 Weeks. Cohort data extraction is straightforward; existing simulations cleanly map to PHV timing and Lenke classes. Manuscript reformatting completed swiftly.
+- **Best Case:** 2 Weeks (Target 2026-04-06). Cohort data extraction is straightforward; existing simulations cleanly map to PHV timing and Lenke classes.
 - **Expected:** 3 Weeks. Buffer for complex literature extraction matching specific simulation parameters, plus internal iterations on the "Clinical Relevance" text.
 - **Worst Case:** 4 Weeks. Clinical validation mapping requires significant re-tuning of PyElastica Cosserat parameters to match human physiological ranges.
 

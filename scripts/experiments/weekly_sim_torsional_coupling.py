@@ -30,8 +30,8 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
 
 def run_experiment():
     # 1. Setup Output
-    today_str = "2026-02-07"
-    output_dir = Path(f"outputs/sim/{today_str}")
+    today_str = "2026-03-24"
+    output_dir = Path(f"outputs/sim/{today_str}_torsion_sweep")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Running Weekly Sim: Torsional Coupling -> {output_dir}")
@@ -55,8 +55,8 @@ def run_experiment():
     chi_tau_values = [0.0, 0.2, 0.5, 1.0, 1.5, 2.0, 3.0, 5.0]
 
     L = 1.0
-    n_elements = 50
-    final_time = 2.0
+    n_elements = 30 # Reduced elements to match previous faster test speed constraints
+    final_time = 1.0 # Reduced time to match previous faster test speed constraints
     dt = 1e-4
 
     # 3. Define Info Field (Gradient)
@@ -159,6 +159,22 @@ def run_experiment():
     plt.tight_layout()
     plt.savefig(output_dir / "plot_torsion_sweep.png")
     plt.close()
+
+    # 6. Report skeleton
+    report_path = output_dir / "report.md"
+    if not report_path.exists():
+        with open(report_path, 'w') as f:
+            f.write("# Simulation Report: Torsional Coupling Sweep\n\n")
+            f.write("**Date**: 2026-03-24\n\n")
+            f.write("## Hypothesis\n")
+            f.write("Testing whether increasing torsional coupling (chi_tau) breaks the symmetry of planar S-curves and induces 3D scoliosis-like buckling.\n\n")
+            f.write("## Parameters\n")
+            f.write(f"- **Torsion Sweep**: {chi_tau_values}\n")
+            f.write(f"- **Growth Drive (chi_kappa)**: {FIXED_CHI_KAPPA}\n")
+            f.write("- **Anisotropy (R)**: {FIXED_ANISOTROPY}\n")
+            f.write("- **Boundary Condition**: Fixed\n\n")
+            f.write("## Results\n")
+            f.write("See attached `plot_torsion_sweep.png`.\n\n")
 
     print("Experiment Complete.")
 

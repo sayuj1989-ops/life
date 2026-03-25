@@ -1,0 +1,5 @@
+Parameter,Value
+seed,42
+chi_kappa,10.0
+stiffness_anisotropy,2.0
+Description,Sweep chi_tau (Torsional Coupling). Fixed Growth & Anisotropy.

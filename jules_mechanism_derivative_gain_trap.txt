@@ -1,0 +1,24 @@
+Concept: Derivative Gain Trap in Biological Countercurvature
+Focus: The transition from stable damping to "Metabolic Buckling" during adolescent growth spurt.
+
+Visual Elements:
+1. Two connected panels comparing "Childhood Spine" vs "Adolescent Spine" (Growth Spurt).
+2. Left Panel (Childhood):
+   - Normal S-curve spine.
+   - Low neural delay (\tau).
+   - Derivative gain (D-gain) provides "Stable Damping".
+   - Shows a strong, balanced inverted pendulum.
+3. Right Panel (Adolescent Growth Spurt):
+   - Deformed scoliotic spine (buckling).
+   - High neural delay (\tau).
+   - The same Derivative gain now causes "Metabolic Buckling" (Destabilizing).
+   - Visual cue of "Delay-induced instability" creating an unstable inverted pendulum.
+
+Key Labels & Annotations:
+- "The Derivative Gain Trap" (Main Title)
+- "Childhood: \tau is low -> D-gain stabilizes"
+- "Adolescence: \tau is high -> D-gain destabilizes"
+- "Metabolic Buckling"
+- Mathematical hint: "Supercritical Hopf bifurcation"
+
+Style: Professional scientific illustration, clean lines, high-contrast colors (e.g., blue for stable, red for unstable/buckling), suitable for Nature/Science visual abstract.

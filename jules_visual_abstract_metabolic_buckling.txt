@@ -1,0 +1,24 @@
+Concept: Visual Abstract of the "Biological Countercurvature" Theory
+Focus: The emergence of Adolescent Idiopathic Scoliosis (AIS) as a thermodynamic scaling failure and delay-induced instability.
+
+Visual Elements:
+1. Central Core: A multi-scale human spine growing from childhood to adolescence (scaling up L).
+2. The "Allometric Trap":
+   - A box or region showing Bio-Gravitational Number (B_g ~ 0.01)
+   - Emphasizing high metabolic cost of shape.
+3. The "Energy Deficit Window":
+   - A graph or balance scale showing $L^4$ geometric cost vs $L^2$ metabolic supply.
+   - Resulting in local NAD+ energy deficit.
+4. The "Derivative Gain Trap" & "Metabolic Buckling":
+   - Increased neural delay (\tau) due to growth spurt.
+   - The feedback loop turning from stable to unstable scoliotic curve.
+5. Actionable Outcome:
+   - "Metabolic Intervention vs Mechanical Bracing" showing a metabolic rescue arrow.
+
+Key Labels & Annotations:
+- "Biological Countercurvature" (Main Title)
+- "Allometric Trap ($B_g \approx 0.01$)"
+- "Energy Deficit ($L^4$ vs $L^2$)"
+- "Delay $\tau$ + D-gain = Metabolic Buckling"
+
+Style: High-impact, infographic style, multi-panel visual abstract. Clear scientific typography. High contrast (orange/red for risk/deficit, green/blue for stable). Fit for a top-tier biology or physics journal cover page.

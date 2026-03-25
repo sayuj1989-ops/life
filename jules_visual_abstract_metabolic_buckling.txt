@@ -1,0 +1,5 @@
+The "Biological Countercurvature" framework reimagines biological form as an active counter-process against spacetime curvature (gravity). This visual abstract synthesizes three interconnected theoretical pillars:
+1. The "Allometric Trap" where the Bio-Gravitational Number (Bg ~ 0.01) highlights human uniqueness and total reliance on metabolic maintenance of shape.
+2. The "Energy Deficit Window," an ontogenetic period where metabolic supply (L^2 scaling) structurally fails to meet scaling costs (L^4 scaling), localized as NAD+ insufficiency.
+3. The "Derivative Gain Trap," where heightened neural delay (tau) transforms neuromuscular damping into "Metabolic Buckling" - the precipitating event of Adolescent Idiopathic Scoliosis (AIS).
+The framework replaces purely mechanical descriptions with an Information-Elasticity Coupling (IEC) and active thermodynamics, providing a quantifiable explanation for human spinal vulnerability.

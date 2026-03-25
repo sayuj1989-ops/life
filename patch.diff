@@ -1,0 +1,26 @@
+--- notes/synthesis/2026-13__microgravity_spine.md
++++ notes/synthesis/2026-13__microgravity_spine.md
+@@ -10,13 +10,13 @@
+
+ ### Key Findings
+
+-1.  **Accelerated Cellular Senescence ("Space Aging")** (Observed)
+-    *   Young donor-derived myobundles exposed to microgravity exhibited a transcriptomic signature strikingly similar to that of old, sedentary donors on Earth. Key "aging genes" (e.g., *ALOX5AP*, *CDKN1A*) were upregulated, suggesting that unloading drives a rapid, sterile inflammatory state ("Inflammaging").
+-    *   *Citation:* Parafati, M. et al., *Stem Cell Reports* / *bioRxiv* (2025).
++1.  **Reorganization of Integrin-Based Adhesions** (Observed)
++    *   Under microgravity, focal adhesion numbers decrease, and integrin contacts are redistributed above the nucleus within 30 minutes. This disrupts cytoskeletal stability and extracellular matrix tension, impacting structural adaptation.
++    *   *Citation:* Andreeva et al., *Life (Basel)* (2022).
+
+-2.  **Loss of Plasticity in Aged Tissue** (Observed)
+-    *   Electrical Stimulation (E-Stim) successfully rescued mitochondrial biogenesis (e.g., *PPARGC1A* upregulation) and contractile function in **Young** tissues in microgravity. However, **Old** tissues were refractory to this rescue, showing blunted transcriptional responses. This implies a "Plasticity Threshold" where aged or chronically unloaded muscle loses the ability to respond to mechanical cues.
+-    *   *Citation:* Parafati, M. et al., *Stem Cell Reports* / *bioRxiv* (2025).
++2.  **Collagen Network Switch** (Observed)
++    *   Prolonged spaceflight in rat femurs leads to reduced mineralization and downregulation of collagen type I, replaced by the appearance of collagen type III, typical of early embryonic tissues and inflammation.
++    *   *Citation:* Andreeva et al., *Life (Basel)* (2022) / Arnaud et al., *J. Gravit. Physiol.* (2000).
+
+-3.  **Mitochondrial "Stress-Test" Failure** (Observed)
+-    *   In young tissue, microgravity triggered a compensatory upregulation of Oxidative Phosphorylation (OXPHOS) genes (Complex I/III/IV/V), effectively a "stress response" to maintain ATP under metabolic duress. In old tissue, this compensatory mechanism failed, leading to metabolic collapse.
+-    *   *Citation:* Parafati, M. et al., *Stem Cell Reports* / *bioRxiv* (2025).
++3.  **Matrisome Transcriptional Divergence** (Observed)
++    *   The transcriptional activity of matrisome-related genes (e.g., COL1A1, THBS, PLOD1/2) undergoes complex time-dependent shifts in microgravity, indicating that structural uncoupling begins at the genomic level before macroscopic tissue failure occurs.
++    *   *Citation:* Andreeva et al., *Life (Basel)* (2022).

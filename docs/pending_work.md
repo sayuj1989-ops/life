@@ -1,17 +1,17 @@
 # Pending Work
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-03-25
 **Status:** In Progress
 **Priority Level:** High (Phase 2: Clinical Validation for Spine Submission)
 
 ## 1. Clinical Validation Mapping (Current Sprint)
 
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN-01** | **PHV Timing Mapping** | Extract Peak Height Velocity data from literature and graph against model instability window. | 2 days | Literature search | 🔴 **Pending** |
-| **CLIN-02** | **Curve Type Prediction** | Refine `toy_model_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | 🟡 **In Progress** |
-| **CLIN-03** | **Sexual Dimorphism** | Map model parameters (e.g., stiffness ratios, growth rates) to female/male prevalence epidemiological data. | 1.5 days | Literature search | ⚪ **Planned** |
-| **CLIN-04** | **ALSPAC/Marfan Cross-check** | Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence. | 1 day | None | ⚪ **Planned** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Acceptance Criteria | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CLIN-01** | **PHV Timing Mapping** | Extract Peak Height Velocity data from literature and graph against model instability window. | 2 days | Literature search | High | Overlay plot matches literature Cobb progression points. | 🟡 **In Progress** |
+| **CLIN-02** | **Curve Type Prediction** | Refine `experiment_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | Low | Script generates all 6 modes matching standard classifications. | ✅ **Completed** |
+| **CLIN-03** | **Sexual Dimorphism** | Map model parameters (e.g., stiffness ratios, growth rates) to female/male prevalence epidemiological data. | 1.5 days | Literature search | Medium | Explains 7:1 ratio based on $R_{peak}$ differences. | ✅ **Completed** |
+| **CLIN-04** | **ALSPAC/Marfan Cross-check** | Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence. | 1 day | None | Medium | Literature references successfully integrated into manuscript text. | ⚪ **Planned** |
 
 ## 2. Manuscript Reformatting (Spine IMRaD)
 
@@ -24,18 +24,18 @@
 
 ## 3. Data Gaps (Completed Phase 1)
 
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data for 9 species. | 2 days | None | ✅ **Completed** |
-| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for FBN1/matrix protein variants. | 1 day | None | ✅ **Completed** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Acceptance Criteria | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data for 9 species. | 2 days | None | Low | Dataset built and script matches regression line. | ✅ **Completed** |
+| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for FBN1/matrix protein variants. | 1 day | None | Medium | Hardcoded parameter mapping accurately predicts buckling risk. | ✅ **Completed** |
 
 ## 4. Theory & Models (Completed Phase 1)
 
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Energy Deficit / Rescue Cliff**| Establish fundamental physics models and parameter sweeps. | - | None | ✅ **Completed** |
-| **CODE-02** | **Spinal Jetlag Simulation** | Demonstrate circadian modulation of curvature. | - | None | ✅ **Completed** |
-| **THEORY-01** | **Physical Toy Models A-E** | Create simple 1D models to build intuition for PyElastica behavior. | - | None | ✅ **Completed** |
+| ID | Task | Description | Effort | Dependencies | Risk Level | Acceptance Criteria | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CODE-01** | **Energy Deficit / Rescue Cliff**| Establish fundamental physics models and parameter sweeps. | - | None | Low | S-curve emergence observed. | ✅ **Completed** |
+| **CODE-02** | **Spinal Jetlag Simulation** | Demonstrate circadian modulation of curvature. | - | None | Low | Simulation produces diurnal $L_{crit}$ fluctuations. | ✅ **Completed** |
+| **THEORY-01** | **Physical Toy Models A-E** | Create simple 1D models to build intuition for PyElastica behavior. | - | None | Low | All 5 toy models execute and generate expected plots. | ✅ **Completed** |
 
 ## Summary of Risks
 
@@ -44,4 +44,4 @@
 
 **Next Actions:**
 1.  Target **CLIN-01**: Execute literature search for high-quality Peak Height Velocity (PHV) cohort charts.
-2.  Target **CLIN-02**: Finalize output parameters of the Lenke classification script.
+2.  Target **CLIN-04**: Extract ALSPAC / Marfan's prevalence data to confirm physiological bounds for model parameters.

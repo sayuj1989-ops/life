@@ -1,0 +1,7 @@
+To explain the diversity of Lenke curve types (1-6) in Adolescent Idiopathic Scoliosis, the single-link delayed inverted pendulum model is extended to a multi-segment Cosserat rod model.
+While global instability (Metabolic Buckling) triggers scoliosis at peak height velocity (PHV) when the energy deficit is highest, the spatial pattern (where and how the spine curves) depends on regional parameter heterogeneity:
+1. Stiffness (EI): Varies due to thoracic rib cage buttressing (stiffer) vs lumbar segments (more flexible).
+2. Proprioceptive delay (tau): Mechanoreceptor density changes along the spinal cord.
+3. Damping (b): Due to disc properties and muscle bulk differences at T5-T12 vs L1-L5.
+4. Asymmetric loading: Offset cardiac mass and handedness.
+Create a conceptual diagram showing a multi-segment 3D Cosserat rod of the human spine. The diagram should label regions like 'Main Thoracic' (Lenke Type 1) with specific parameter vulnerabilities (e.g. minimal rib cage stiffening and maximal moment arm) and 'Thoracolumbar' (Lenke Type 5), demonstrating that the localized buckling eigenmode depends on these spatially varying parameters (stiffness, delay, damping).

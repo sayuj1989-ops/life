@@ -1,0 +1,8 @@
+The Polygenic Stacking model explains the 2-4% prevalence of Adolescent Idiopathic Scoliosis. While all human adolescents enter the Allometric Trap (a period of maximal gravitational vulnerability due to L^4 vs L^2 scaling mismatch), the baseline population maintains a narrow stability margin of +5.3 ms.
+However, in a subset of the population, individual genetic variants stack unfavorably:
+1. Reduced damping (b) via COL1A1/COL2A1 variants (more flexibility).
+2. Increased proprioceptive delay (tau) via PIEZO2/GPR126 variants (delayed signaling).
+3. Shifted derivative gain (Kd) via LBX1 variants.
+4. Increased gravitational load parameter (mgL) via PAX1 variants.
+When combined, these modifiers push the stability margin past the Hopf bifurcation point to -26.3 ms, triggering Metabolic Buckling.
+Create a diagram showing a population bell curve or distribution shifting over a critical threshold, with these specific genetic modifiers 'stacking' as distinct blocks that cumulatively push an individual from the stable green zone into the unstable red zone.

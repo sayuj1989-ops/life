@@ -77,3 +77,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Archive Legacy Submission**: Move `submission/` to `archive/submission/`.
 - [x] **Clean Root Drafts**: Move root `.docx` files to `manuscript/drafts/`.
 - [x] **Clean Root Markdown/Text Files**: Move manuscript-related markdown and text files (e.g. `MANUSCRIPT_CONTENTS_AND_NEXT_STEPS.md`, `NATURE_MANUSCRIPT_FORMATTING_GUIDE.md`) to `docs/manuscript/`.
+
+## Phase 9: Paper 5 Setup (High Priority)
+
+- [ ] **Create Paper 5 Environment**: Establish directories and files for Paper 5 ("The Predictive Processing Bridge"). Includes `paper5_literature/`, `paper5_math/`, `paper5_model/`, `paper5_figures/`, `paper5_draft/sections/`, and `paper5_progress.md`.

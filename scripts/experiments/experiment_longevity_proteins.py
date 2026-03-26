@@ -1,120 +1,143 @@
 #!/usr/bin/env python3
 """
-Longevity Protein Analysis Extension
-====================================
+Thermodynamic Cost of Countercurvature: Extended Longevity Protein Analysis
+===========================================================================
 
-Extends the base thermodynamic cost analysis to include 5 specific longevity proteins
-(FOXO3, SIRT1, Klotho, YAP1, PGC-1α) to support the longevity squat-stand study.
+Extends the 23-protein thermodynamic cost analysis to include 5 longevity
+proteins (FOXO3, Klotho, YAP1, SIRT1_L, PPARGC1A_L).
+
+Output: Extended CSV with all 28 proteins (23 + 3 new + 2 flagged dual-role)
 
 Author: Dr. Sayuj Krishnan S
-Date: 2026-02-07
 """
 
 import csv
+import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List
 
 import numpy as np
+import pandas as pd
 
-# Configuration
+# Ensure src is in path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+
+from scripts.experiments.experiment_thermodynamic_cost_proteins import (
+    load_all_metrics, TARGETS as BASE_TARGETS, ProteinTarget, generate_report
+)
+
+# Also import run_focused_cycle to get metrics if missing
+try:
+    from research.alphafold_countercurvature.scripts.bolt_focused_cycle import run_focused_cycle
+except ImportError:
+    pass
+
 OUTPUT_DIR = Path("outputs/thermodynamic_cost")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-METRICS_DIRS = [
-    Path("outputs/afcc"),
-    Path("research/alphafold_countercurvature/outputs/afcc"),
+
+
+LONGEVITY_TARGETS: List[ProteinTarget] = [
+    ProteinTarget(
+        gene="FOXO3", uniprot="O43524", term="longevity",
+        role="Downstream of eta_a (AMPK activation from muscle contraction)",
+        prediction="Translates thermodynamic dissipation into longevity maintenance; upregulated by cyclic mechanical loading.",
+        scaling="constant"
+    ),
+    ProteinTarget(
+        gene="SIRT1_L", uniprot="Q96EB6", term="longevity",
+        role="Dual-role: energy gauge + longevity effector via NAD+ cycling",
+        prediction="Couples the metabolic cost of countercurvature directly to cellular lifespan and repair mechanisms.",
+        scaling="constant"
+    ),
+    ProteinTarget(
+        gene="Klotho", uniprot="Q9UEF7", term="longevity",
+        role="Downstream of eta_p (Ca2+ from PIEZO1/2)",
+        prediction="Acts as a systemic anti-aging hormone released in response to proprioceptive feedback dissipation.",
+        scaling="constant"
+    ),
+    ProteinTarget(
+        gene="YAP1", uniprot="P46937", term="longevity",
+        role="Direct mechanosensor bridging eta_a to nuclear signaling",
+        prediction="Mechanotransducer that responds to tension changes during thermodynamic cycling (squat-to-stand).",
+        scaling="constant"
+    ),
+    ProteinTarget(
+        gene="PPARGC1A_L", uniprot="Q9UBK2", term="longevity",
+        role="Dual-role: mitochondrial supply + exercise-induced biogenesis",
+        prediction="Drives mitochondrial biogenesis in response to active moment dissipation (eta_a), increasing energy supply.",
+        scaling="constant"
+    ),
 ]
 
-# We include the original 23 proteins PLUS the 5 longevity proteins.
-# Note: SIRT1 and PGC-1a (PPARGC1A) are already in the original 23 as Gamma_m components.
-# In the longevity framework, they take on dual roles. We will explicitly define
-# the longevity-specific downstream forms here.
+def ensure_metrics(targets):
+    """Ensure we have metrics for the longevity targets by using Bolt BioFold if necessary."""
+    metrics = load_all_metrics()
+    missing_targets = []
 
-class ProteinTarget:
-    def __init__(self, gene: str, uniprot: str, term: str, role: str, prediction: str, scaling: str, dual_role: bool = False):
-        self.gene = gene
-        self.uniprot = uniprot
-        self.term = term
-        self.role = role
-        self.prediction = prediction
-        self.scaling = scaling
-        self.dual_role = dual_role
+    dual_role_map = {"SIRT1_L": "SIRT1", "PPARGC1A_L": "PPARGC1A"}
 
-TARGETS = [
-    # ===== Original 23 Proteins =====
-    ProteinTarget("PIEZO2", "Q9H5I5", "eta_p", "Vector mechanosensor", "High anisotropy", "L"),
-    ProteinTarget("EGR3", "Q06889", "eta_p", "Muscle spindle TF", "High disorder", "L"),
-    ProteinTarget("RUNX3", "Q13761", "eta_p", "Proprioceptive TF", "High disorder", "L"),
-    ProteinTarget("NTRK3", "Q16288", "eta_p", "Survival signal", "Cost scales with L", "L"),
-    ProteinTarget("PIEZO1", "Q92508", "eta_p", "Scalar mechanosensor", "Extended", "L^2"),
+    for t in targets:
+        lookup_gene = dual_role_map.get(t.gene, t.gene)
+        if lookup_gene not in metrics:
+            missing_targets.append((t.uniprot, lookup_gene))
 
-    ProteinTarget("DMD", "P11532", "eta_a", "ECM linker", "Essential for tone", "L^3"),
-    ProteinTarget("MYLK", "Q15746", "eta_a", "Tonic contraction", "Regulator", "L^2"),
-    ProteinTarget("LBX1", "P52954", "eta_a", "Paraspinal TF", "Sensitive to stiffness", "L^2"),
-    ProteinTarget("FLNA", "P21333", "eta_a", "Crosslinker", "Tension-gated", "L^3"),
-    ProteinTarget("VIM", "P08670", "eta_a", "Strain gauge", "Collapses in microgravity", "L^3"),
-    ProteinTarget("LMNA", "P02545", "eta_a", "Nuclear mechanostat", "Highest TF anisotropy", "L^2"),
-    ProteinTarget("CAV1", "Q03135", "eta_a", "Curvature sensor", "Membrane-embedded", "L^2"),
+    if missing_targets:
+        print(f"Fetching metrics for {missing_targets} using Bolt-BioFold...")
+        # Since run_focused_cycle writes to research/alphafold_countercurvature/data/processed/bolt_biofold_results.csv
+        # we can parse it and write out the required metrics.csv files.
+        try:
+            run_focused_cycle(missing_targets)
 
-    ProteinTarget("COL1A1", "P02452", "Gamma_m", "Primary structural", "Turnover cost", "L^3"),
-    ProteinTarget("COMP", "P49747", "Gamma_m", "Disc ECM", "Scaffold", "L"),
-    ProteinTarget("SIRT1", "Q96EB6", "Gamma_m", "Metabolic sensor", "Fuel gauge", "constant"),
-    ProteinTarget("SOX9", "P48436", "Gamma_m", "Chondrogenic TF", "Drives growth", "L"),
-    ProteinTarget("SHH", "Q15465", "Gamma_m", "Morphogen", "Gradient maintenance", "L"),
-    ProteinTarget("CDKN1A", "P38936", "Gamma_m", "Cell cycle inhibitor", "Unloading signal", "threshold"),
-    ProteinTarget("PPARGC1A", "Q9UBK2", "Gamma_m", "Mitochondrial supply", "Supply bottleneck", "L"),
-    ProteinTarget("IGF1R", "P08069", "Gamma_m", "Growth factor receptor", "Signaling", "L"),
-    ProteinTarget("GHR", "P10912", "Gamma_m", "Growth hormone receptor", "Rate regulator", "L"),
-    ProteinTarget("ARNTL", "O00327", "Gamma_m", "Circadian clock", "Rhythm", "L"),
+            df = pd.read_csv("research/alphafold_countercurvature/data/processed/bolt_biofold_results.csv")
+            for _, row in df.iterrows():
+                gene = row["protein_id"]
+                out_dir = Path(f"outputs/afcc/{gene}")
+                out_dir.mkdir(parents=True, exist_ok=True)
 
-    # ===== Longevity Specific Targets (New + Explicit Dual Roles) =====
-    # FOXO3: Downstream of eta_a (AMPK) and Gamma_m (SIRT1)
-    ProteinTarget("FOXO3", "O43524", "longevity", "Stress resistance TF", "Downstream of AMPK/SIRT1", "longevity"),
-    # Klotho: Downstream of eta_p (PIEZO/Ca2+)
-    ProteinTarget("KLOTHO", "Q9UEF7", "longevity", "Anti-aging hormone", "Downstream of PIEZO2 Ca2+ influx", "longevity"),
-    # YAP1: Downstream of eta_a (VIM/LMNA tension)
-    ProteinTarget("YAP1", "P46937", "longevity", "Tissue repair TF", "Nuclear translocation requires cytoskeletal tension", "longevity"),
+                out_dict = {
+                    "gene_symbol": row["protein_id"],
+                    "anisotropy_index": row["anisotropy_index"],
+                    "morphology": "Extended" if row["anisotropy_index"] > 2.0 else "Globular",
+                    "radius_of_gyration": row["radius_of_gyration"],
+                    "plddt_mean": row["pLDDT_mean"],
+                    "n_residues": row["length"],
+                    "hinge_candidates": row["hinge_candidates"],
+                    "disorder_fraction_proxy": row["disorder_fraction_proxy"],
+                    "PAE_domain_blockiness_score": row["PAE_domain_blockiness_score"]
+                }
+                pd.DataFrame([out_dict]).to_csv(out_dir / "metrics.csv", index=False)
 
-    # Dual role explicitly marked for output clarity
-    ProteinTarget("SIRT1_L", "Q96EB6", "longevity", "FOXO3 deacetylase", "Dual-role: metabolic gauge + longevity effector", "longevity", dual_role=True),
-    ProteinTarget("PPARGC1A_L", "Q9UBK2", "longevity", "Mitochondrial biogenesis", "Dual-role: developmental bottleneck + exercise-induced supply", "longevity", dual_role=True),
-]
+            metrics = load_all_metrics() # reload
+        except Exception as e:
+            print(f"Failed to fetch missing metrics automatically: {e}")
 
-def load_all_metrics() -> Dict[str, Dict[str, Any]]:
-    """Load all pre-computed AFCC metrics."""
-    all_proteins = {}
-    for metrics_dir in METRICS_DIRS:
-        if not metrics_dir.exists():
-            continue
-        for metrics_file in sorted(metrics_dir.glob("*/metrics.csv")):
-            with open(metrics_file) as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    gene = row.get("gene_symbol", "")
-                    if gene:
-                        all_proteins[gene] = row
-    return all_proteins
+    return metrics
 
 def main():
     print("=" * 70)
-    print("  LONGEVITY PROTEIN EXTENSION: Thermodynamic Cost Analysis")
+    print("  THERMODYNAMIC COST OF COUNTERCURVATURE: Extended Longevity Analysis")
     print("=" * 70)
 
-    metrics = load_all_metrics()
+    # 28 targets total
+    all_targets = BASE_TARGETS + LONGEVITY_TARGETS
+
+    # Check and Fetch metrics
+    metrics = ensure_metrics(LONGEVITY_TARGETS)
+
     print(f"\n  Loaded metrics for {len(metrics)} proteins")
 
     # Save Extended CSV
     csv_path = OUTPUT_DIR / "thermodynamic_cost_proteins_extended.csv"
     rows = []
+    dual_role_map = {"SIRT1_L": "SIRT1", "PPARGC1A_L": "PPARGC1A"}
 
-    matched_count = 0
-    for t in TARGETS:
-        # For dual roles, look up the base gene name
-        lookup_gene = t.gene.replace("_L", "")
+    for t in all_targets:
+        lookup_gene = dual_role_map.get(t.gene, t.gene)
         m = metrics.get(lookup_gene, {})
 
-        if lookup_gene in metrics:
-            matched_count += 1
+        dual_role_flag = "True" if t.gene in dual_role_map else "False"
 
         rows.append({
             "gene": t.gene,
@@ -122,7 +145,6 @@ def main():
             "term": t.term,
             "role": t.role,
             "scaling": t.scaling,
-            "dual_role": "True" if t.dual_role else "False",
             "anisotropy": m.get("anisotropy_index", ""),
             "morphology": m.get("morphology", ""),
             "rg": m.get("radius_of_gyration", ""),
@@ -130,18 +152,17 @@ def main():
             "n_residues": m.get("n_residues", ""),
             "hinge_candidates": m.get("hinge_candidates", ""),
             "disorder_fraction": m.get("disorder_fraction_proxy", ""),
-            "PAE_blockiness": m.get("pae_blockiness", m.get("PAE_domain_blockiness_score", "")),
+            "PAE_blockiness": m.get("PAE_domain_blockiness_score", ""),
             "status": "matched" if lookup_gene in metrics else "missing",
+            "dual_role": dual_role_flag
         })
-
-    print(f"\n  Matched: {matched_count}/{len(TARGETS)} targets")
 
     if rows:
         with open(csv_path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             writer.writeheader()
             writer.writerows(rows)
-        print(f"  ✅ Extended CSV written to: {csv_path}")
+        print(f"  ✅ Extended CSV: {csv_path}")
 
 if __name__ == "__main__":
     main()

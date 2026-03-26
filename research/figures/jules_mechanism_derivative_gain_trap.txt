@@ -1,0 +1,12 @@
+# Mechanism: Derivative Gain Trap and VIM Cascade
+
+The human inverted pendulum is maintained through active continuous postural control. During childhood, stabilizing derivative gains ($\tau_{child}$) provide critical damping to counteract small postural perturbations.
+
+However, during the adolescent growth spurt, rapid elongation increases the absolute neural transmission delay ($\tau$). As $\tau$ crosses a critical threshold, these previously stabilizing derivative gains become destabilizing. This phenomenon is known as the "Derivative Gain Trap."
+
+Concurrently, a metabolic "VIM Cascade" occurs due to the energy deficit:
+1. Vimentin (VIM) depolymerizes, removing the primary gravitational strain gauge.
+2. Lamin A/C collapses.
+3. Piezo2 is downregulated, severing the feedback loop.
+
+This combined mechanical (delay-induced instability) and metabolic (sensor failure) breakdown leads to "Metabolic Buckling," clinically observed as Adolescent Idiopathic Scoliosis (AIS).

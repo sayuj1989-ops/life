@@ -1,0 +1,26 @@
+\section{The Predictive Processing Bridge}
+
+This section connects the PID control model of spinal geometry to the principles of predictive processing and active inference, establishing a foundation for understanding biological counter-curvature as an information-theoretic optimization process.
+
+\subsection{Active Inference and PID Control}
+As demonstrated by Baltieri \& Buckley (2019), classical PID control can be formally mapped to active inference within the free energy principle. In the context of the spinal counter-curvature model, we establish the following correspondences:
+\begin{itemize}
+    \item $K_p \leftrightarrow$ sensory precision on position
+    \item $K_d \leftrightarrow$ sensory precision on velocity (generalised motion)
+    \item $K_i \leftrightarrow$ prior precision on persistent causes
+    \item $\tau \leftrightarrow$ sensory delay
+\end{itemize}
+
+These mappings provide a mechanism by which the developing organism minimizes surprise (variational free energy) regarding its postural state under gravitational loading.
+
+\subsection{Latent Imagination and World Models}
+Drawing upon the 'Dream to Control' framework (Hafner et al., 2019), the central nervous system must learn a compact latent world model of both the body's biomechanics and the external gravitational field. Through latent imagination, the system backpropagates value estimates through imagined trajectories, allowing it to optimize long-horizon behaviors (i.e., maintaining the complex S-shape of the spine) despite significant proprioceptive delays ($\tau$) and potential precision collapse dynamics.
+
+[VERIFY] Extended proofs incorporating delayed observations and time-varying parameters (growth) follow standard active inference formulations but require explicit derivation of precision collapse under persistent gravitational load.
+
+\vspace{1em}
+\noindent \textbf{References:}
+\begin{itemize}
+    \item Baltieri, M., \& Buckley, C. L. (2019). PID control as a process of active inference with linear generative models. \textit{Entropy}, 21(3), 257.
+    \item Hafner, D., Lillicrap, T., Ba, J., \& Norouzi, M. (2019). Dream to control: Learning behaviors by latent imagination. \textit{arXiv preprint arXiv:1912.01603}.
+\end{itemize}

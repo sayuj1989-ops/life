@@ -1,0 +1,7 @@
+Scenario,Margin (ms)
+Baseline,5.3
+Reduced Damping (COL1A1/COL2A1),-3.2
+Increased Delay (PIEZO2/GPR126),-7.8999999999999995
+Shifted Kd (LBX1),-0.6000000000000005
+Increased Load (PAX1),1.2999999999999998
+Combined Polygenic Stack,-26.3

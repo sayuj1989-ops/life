@@ -52,3 +52,4 @@ This registry tracks all computational experiments supporting the "Biological Co
 ## 5. Missing / Pending Experiments
 
 *All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_01 - CLIN_04).*
+| **EXP_12_ExceptionalPoint** | `scripts/experiments/experiment_exceptional_point_scoliosis.py` | Generate 3D Riemann surfaces and non-linear sensitivity map demonstrating the Non-Hermitian Exceptional Point in spinal biomechanics. | `outputs/exceptional_points/ep_sensitivity_map.png` | ✅ **Active** | Bridges topological physics with spinal biomechanics. |

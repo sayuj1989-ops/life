@@ -2,7 +2,6 @@ import datetime
 import os
 import re
 
-
 def parse_roadmap(filepath):
     """
     Parses the roadmap markdown file to extract tasks and calculate progress.
@@ -18,6 +17,7 @@ def parse_roadmap(filepath):
     completed_tasks = 0
     phases = {}
     current_phase = None
+    next_milestones = []
 
     start_date_match = re.search(r'\*\*Start Date:\*\* (\d{4}-\d{2}-\d{2})', content)
     target_date_match = re.search(r'\*\*Target Submission Date:\*\* (\d{4}-\d{2}-\d{2})', content)
@@ -39,6 +39,11 @@ def parse_roadmap(filepath):
                 completed_tasks += 1
                 if current_phase:
                     phases[current_phase]['completed'] += 1
+            else:
+                # Extract task name for next milestones
+                task_match = re.search(r'- \[ \] \*\*(.*?)\*\*', line)
+                if task_match and len(next_milestones) < 3:
+                    next_milestones.append(task_match.group(1))
 
     percent_complete = (completed_tasks / total_tasks * 100) if total_tasks > 0 else 0
 
@@ -48,7 +53,8 @@ def parse_roadmap(filepath):
         'percent_complete': percent_complete,
         'phases': phases,
         'start_date': start_date,
-        'target_date': target_date
+        'target_date': target_date,
+        'next_milestones': next_milestones
     }, None
 
 def generate_report(data):
@@ -57,22 +63,37 @@ def generate_report(data):
     """
     today = datetime.date.today()
 
+    # Calculate expected completion date based on task velocity
+    expected_completion_str = "TBD"
+    projected_completion = "TBD"
+
+    if data['start_date'] and data['completed_tasks'] > 0:
+        days_passed = (today - data['start_date']).days
+        if days_passed > 0:
+            velocity = data['completed_tasks'] / days_passed
+            remaining_tasks = data['total_tasks'] - data['completed_tasks']
+            if velocity > 0:
+                days_remaining_proj = remaining_tasks / velocity
+                proj_date = today + datetime.timedelta(days=int(days_remaining_proj))
+                projected_completion = f"{proj_date.strftime('%Y-%m-%d')}"
+
+    target_deadline_str = "TBD"
     if data['target_date']:
-        days_remaining = (data['target_date'] - today).days
-        expected_completion_str = f"{data['target_date']} ({days_remaining} days remaining)"
-    else:
-        expected_completion_str = "TBD"
+        target_deadline_str = f"{data['target_date'].strftime('%Y-%m-%d')}"
 
     report = f"""# Daily Update: Spine Submission
 
 **Date:** {today}
-**Target Journal:** Spine (IF: 3.30, Q1)
-**Strategy:** Computational Framework + Clinical Validation
+**Target Journal:** Spine (IF: 3.30, Q1, H-index: 300)
+**Why:** The highest prestige spine journal by H-index. Publishes basic science.
+**Fit score:** 6/10 — High bar; will need experimental validation or strong clinical dataset comparison.
+**Strategy:** Reframe as "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 
 ## Status Overview
 - **Percent Complete:** {data['percent_complete']:.1f}%
 - **Tasks Completed:** {data['completed_tasks']} / {data['total_tasks']}
-- **Expected Completion:** {expected_completion_str}
+- **Projected Completion:** {projected_completion}
+- **Target Deadline:** {target_deadline_str}
 
 ## Phase Breakdown
 """
@@ -88,6 +109,12 @@ def generate_report(data):
 
     report += f"\n**Current Focus:** {active_phase}\n"
 
+    report += "\n## Next Milestones\n"
+    for i, milestone in enumerate(data['next_milestones']):
+        report += f"{i+1}. {milestone}\n"
+
+    report += "\nRun `python scripts/generate_spine_daily_update.py` to regenerate this report.\n"
+
     return report
 
 if __name__ == "__main__":
@@ -97,4 +124,8 @@ if __name__ == "__main__":
     if error:
         print(error)
     else:
-        print(generate_report(data))
+        report_content = generate_report(data)
+        os.makedirs("reports", exist_ok=True)
+        with open("reports/daily_update_latest.md", "w") as f:
+            f.write(report_content)
+        print("Successfully generated reports/daily_update_latest.md")

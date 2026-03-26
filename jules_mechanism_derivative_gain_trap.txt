@@ -1,0 +1,8 @@
+A detailed causal diagram explaining the "Derivative Gain Trap" in Adolescent Idiopathic Scoliosis.
+The diagram should show the human inverted pendulum model.
+During childhood, normal neural delay (\tau) provides stable damping, maintaining the S-curve.
+During the adolescent growth spurt, the sudden increase in bone length causes absolute neural feedback delay (\tau) to increase rapidly.
+This increased delay turns previously stabilizing derivative gains into destabilizing positive feedback.
+The system undergoes a supercritical Hopf bifurcation (Metabolic Buckling).
+A causal loop showing: Increased Length (L) -> Increased Delay (\tau) -> Destabilizing Feedback -> Buckling -> Scoliotic Curve.
+Visual style should be professional, academic, using a clean flowchart or systems biology aesthetic.

@@ -1,0 +1,86 @@
+--- Cluster Analysis (k=5) ---
+
+Cluster 0: 1 members
+  Mean Features:
+    length: 2521.00
+    pLDDT_mean: 72.05
+    anisotropy_index: 15.18
+    disorder_fraction_proxy: 0.17
+    predicted_domain_segments: 24.00
+    elongation: 2.88
+  Top Pathways:
+    Mechanotransduction: 1
+    Growth_Plate: 1
+    Ion_Channel: 1
+  Representative Members:
+    PIEZO1 (Aniso: 15.18, Domains: 24)
+
+------------------------------
+
+Cluster 1: 1 members
+  Mean Features:
+    length: 709.00
+    pLDDT_mean: 79.44
+    anisotropy_index: 19.72
+    disorder_fraction_proxy: 0.14
+    predicted_domain_segments: 5.00
+    elongation: 2.26
+  Top Pathways:
+    Mechanotransduction: 1
+    Proprioception: 1
+  Representative Members:
+    PIEZO2 (Aniso: 19.72, Domains: 5)
+
+------------------------------
+
+Cluster 2: 1 members
+  Mean Features:
+    length: 798.00
+    pLDDT_mean: 85.87
+    anisotropy_index: 10.43
+    disorder_fraction_proxy: 0.03
+    predicted_domain_segments: 9.00
+    elongation: 1.76
+  Top Pathways:
+    Mechanotransduction: 1
+    Adhesion: 1
+  Representative Members:
+    ITGB1 (Aniso: 10.43, Domains: 9)
+
+------------------------------
+
+Cluster 3: 2 members
+  Mean Features:
+    length: 392.50
+    pLDDT_mean: 62.13
+    anisotropy_index: 4.55
+    disorder_fraction_proxy: 0.36
+    predicted_domain_segments: 2.00
+    elongation: 2.14
+  Top Pathways:
+    Somite: 1
+    Muscle: 1
+    Proprioception: 1
+    Mechanotransduction: 1
+    Hippo: 1
+  Representative Members:
+    LBX1 (Aniso: 5.14, Domains: 1)
+    YAP1 (Aniso: 3.96, Domains: 3)
+
+------------------------------
+
+Cluster 4: 1 members
+  Mean Features:
+    length: 824.00
+    pLDDT_mean: 76.35
+    anisotropy_index: 7.86
+    disorder_fraction_proxy: 0.23
+    predicted_domain_segments: 3.00
+    elongation: 2.61
+  Top Pathways:
+    Cilia: 1
+    Mechanotransduction: 1
+  Representative Members:
+    IFT88 (Aniso: 7.86, Domains: 3)
+
+------------------------------

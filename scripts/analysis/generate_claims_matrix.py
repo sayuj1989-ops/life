@@ -1,4 +1,7 @@
-# Countercurvature Claims Matrix
+from pathlib import Path
+
+def generate_claims_matrix():
+    report_content = """# Countercurvature Claims Matrix
 
 **Date**: 2026-02-19
 
@@ -34,3 +37,12 @@ These claims over-interpret static inputs, rely on unverified structural states,
 | **LBX1's structural state evolved over Jan-Feb, supporting new mechanistic interactions.** | Cluster narratives (refuted by static metrics) | `2026-01-20__cluster_note.md`, `2026-02-01__blocky_lbx1.md` flagged in `reports/alphafold_data_assessment_2026-02-16.md` |
 | **POC5's extreme anisotropy directly translates to load-bearing mechanotransduction.** | Extrapolation from geometry | `POC5` (anisotropy=24.69, pLDDT=63.97) in `outputs/afcc/2026-02-16/metrics.csv` |
 | **Changes in LMNA conformation actively drive proprioceptive delay.** | AlphaFold geometry metrics and speculative narrative | `LMNA` not present in 2026-02-16 snapshot; metrics were static from `2026-01-14` to `2026-02-26` |
+"""
+    report_path = Path('reports/countercurvature_claims_matrix.md')
+    with open(report_path, 'w') as f:
+        f.write(report_content)
+
+    print(f"Report generated at {report_path}")
+
+if __name__ == "__main__":
+    generate_claims_matrix()

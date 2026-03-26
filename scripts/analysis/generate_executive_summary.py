@@ -1,4 +1,7 @@
-# Next Step Evidence Summary
+from pathlib import Path
+
+def generate_executive_summary():
+    report_content = """# Next Step Evidence Summary
 
 **Date**: 2026-02-19
 **Context**: This executive summary synthesizes the findings from the Evidence Freshness Audit, Confidence-Weighted Structural Evidence Report, LBX1 Falsifiability Plan, and Countercurvature Claims Matrix to evaluate the current evidentiary basis for the Biological Countercurvature hypothesis.
@@ -21,3 +24,12 @@
 1. **Direct Force-Induced Nuclear Translocation of LBX1**: Culturing cells on varying stiffness gradients and applying uniaxial stretch to determine if LBX1 subcellular localization is directly coupled to mechanotransduction, independent of biochemical signaling.
 2. **Nuclear Strain Disruption via LINC Complex Modulation**: Using a dominant-negative KASH domain construct (DN-KASH) to decouple nuclear mechanotransmission and quantify the attenuation of tension-induced downstream LBX1 target gene expression.
 3. **Biophysical Rigidity and Unfolding of Recombinant LBX1**: Performing single-molecule atomic force microscopy (smAFM) on full-length LBX1 to measure its unfolding force, distinguishing a stable load-bearing domain from an intrinsically disordered polymer.
+"""
+    report_path = Path('reports/next_step_evidence_summary.md')
+    with open(report_path, 'w') as f:
+        f.write(report_content)
+
+    print(f"Report generated at {report_path}")
+
+if __name__ == "__main__":
+    generate_executive_summary()

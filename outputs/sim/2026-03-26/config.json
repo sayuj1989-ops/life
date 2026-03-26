@@ -1,0 +1,18 @@
+{
+    "anisotropy": 3.0,
+    "torsion_drive": 0.5,
+    "initial_lateral_defect": 0.05,
+    "active_curvature_sweep": [
+        5.0,
+        7.0,
+        9.0,
+        11.0,
+        13.0,
+        15.0,
+        17.0,
+        19.0,
+        21.0,
+        23.0,
+        25.0
+    ]
+}

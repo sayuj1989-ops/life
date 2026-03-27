@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{caption}
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\title{Supplementary Information\\[0.5em]
+\large Metabolic buckling of the growing spine}
+
+\author{Sayuj Krishnan S., MBBS, DNB (Neurosurgery) \\
+\textit{Yashoda Hospitals, Hyderabad, India}}
+
+\date{}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+
+%% ---- Table S1 ----
+\input{table_S1_validation}
+
+\clearpage
+
+%% ---- Figure S1 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S1_sensitivity.pdf}
+\caption{\textbf{Parameter sensitivity analysis.}
+Normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ as a function of number of Cosserat rod elements $n$.
+Convergence to within 1\% is achieved for $n \geq 50$, confirming numerical adequacy of the discretization used in all main-text simulations ($n = 100$).}
+\label{fig:S1}
+\end{figure}
+
+\clearpage
+
+%% ---- Figure S2 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S2_monte_carlo.pdf}
+\caption{\textbf{Monte Carlo robustness analysis.}
+Distribution of critical spinal length $L_{\mathrm{crit}}$ from 1{,}000 Monte Carlo samples with $\pm 10\%$ uniform perturbation of all model parameters.
+The distribution is unimodal with mean $L_{\mathrm{crit}} = 0.353 \pm 0.018$\,m, confirming that the metabolic buckling threshold is robust to parameter uncertainty.}
+\label{fig:S2}
+\end{figure}
+
+\clearpage
+
+%% ---- Figure S3 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S3_adaptation.pdf}
+\caption{\textbf{Adaptive remodeling dynamics.}
+Temporal evolution of the information field $\chi_\kappa(s,t)$ during simulated adolescent growth.
+The model captures the progressive degradation of mechanosensory fidelity during the energy deficit window and subsequent recovery as growth velocity decelerates post-PHV.}
+\label{fig:S3}
+\end{figure}
+
+\clearpage
+
+%% ---- Figure S4 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S4_2dof.pdf}
+\caption{\textbf{Two-degree-of-freedom delayed feedback model.}
+Phase portraits of the 2-DOF inverted pendulum model with delayed PD control.
+Left: stable regime ($\tau < \tau_{\mathrm{crit}}$). Right: unstable regime ($\tau > \tau_{\mathrm{crit}}$), showing the limit-cycle oscillation that corresponds to progressive scoliotic deformity.
+The Euler column analogy: buckling localizes at mid-span under the boundary conditions (fixed pelvis, semi-free rib cage), predicting the clinically observed T8--T10 apex.}
+\label{fig:S4}
+\end{figure}
+
+\clearpage
+
+%% ---- Figure S5 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S5_localization.pdf}
+\caption{\textbf{Buckling localization along the spinal axis.}
+Spatial distribution of lateral deflection amplitude as a function of position along the Cosserat rod.
+Peak deflection occurs at $s/L \approx 0.55$--$0.65$, corresponding to the T8--T10 vertebral levels, consistent with the most common clinical presentation of right thoracic AIS.
+This mid-trunk localization emerges naturally from the boundary conditions without requiring any anatomical inhomogeneity.}
+\label{fig:S5}
+\end{figure}
+
+\clearpage
+
+%% ---- Figure S6 ----
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_S6_temporal_evolution.pdf}
+\caption{\textbf{Temporal evolution of scoliotic deformity.}
+Simulated Cobb angle progression over the 10--18\,year age range for three scenarios:
+(i)~normal development (no energy deficit, Cobb $< 5^\circ$),
+(ii)~AIS without intervention (progressive increase to $\sim$$25^\circ$),
+(iii)~AIS with brace intervention at Cobb $= 15^\circ$ (stabilization and partial correction).
+The brace is modeled as haptic $K_d$ augmentation that restores the stability margin, consistent with the BrAIST trial outcomes~(Weinstein et al.\ 2013).}
+\label{fig:S6}
+\end{figure}
+
+\end{document}

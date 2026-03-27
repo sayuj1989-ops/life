@@ -1,0 +1,12 @@
+Biological Countercurvature: An Information-Cosserat Framework for Spinal Geometry
+
+The "Biological Countercurvature" framework redefines Adolescent Idiopathic Scoliosis (AIS) not as a pathological failure, but as a predictable thermodynamic phase transition—a survival mechanism against gravity.
+
+Three interconnected theoretical pillars drive this mechanism:
+1. The Allometric Trap: Humans uniquely occupy a vulnerability zone where the bio-gravitational number (Bg ~ 0.01) dictates an absolute dependence on active metabolic expenditure to maintain shape and prevent collapse.
+2. The Energy Deficit Window: The active torque required to maintain vertebral alignment scales as the fourth power of height (L^4), whereas metabolic supply scales as the square of height (L^2). During the adolescent growth spurt, this mismatch opens an "Energy Deficit Window" where energy demand exceeds supply.
+3. The Derivative Gain Trap: The rapid spinal elongation increases neural conduction delay (\tau). In control systems, increasing derivative gain with excessive delay flips stable damping into destabilizing buckling.
+
+When the metabolic deficit becomes unsustainable, it triggers the "VIM Cascade," a sequential failure of metabolically expensive mechanosensors (Vimentin -> Lamin A/C -> Piezo2). Deprived of continuous ATP for structural maintenance and proprioceptive feedback, the spine buckles into a helical deformity.
+
+"Metabolic Buckling" is the resulting scoliotic curve—a thermodynamic standing wave that sheds the energy cost the organism can no longer afford, trading geometric perfection for survival.

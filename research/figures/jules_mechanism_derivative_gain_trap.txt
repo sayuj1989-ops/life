@@ -1,0 +1,7 @@
+The Derivative Gain Trap is a core hypothesis of the Biological Countercurvature theory explaining the onset of Adolescent Idiopathic Scoliosis (AIS).
+
+During the adolescent growth spurt (Peak Height Velocity), the spine undergoes rapid longitudinal elongation. This elongation significantly increases the physical distance between mechanosensors (like Piezo2) and the paraspinal muscles they control, leading to an increased neural conduction delay (\tau).
+
+Normally, the neuromuscular control system utilizes derivative gain (damping) to prevent the spine, which acts as an inverted pendulum, from oscillating and buckling under gravity. However, control theory dictates that when the delay (\tau) exceeds a critical threshold, increasing the derivative gain no longer stabilizes the system. Instead, the delayed damping feedback actively drives instability.
+
+This phenomenon, termed the "Derivative Gain Trap" or "Metabolic Buckling," occurs when stable damping gains become destabilizing scoliotic buckling forces due to the increased neural delay during rapid growth. This critical failure is exacerbated by the "Energy Deficit Window," where the metabolic cost of maintaining straightness scales as L^4, while metabolic supply scales only as L^2.

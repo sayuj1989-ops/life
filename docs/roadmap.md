@@ -3,7 +3,7 @@
 **Target:** *Spine* Submission (IF: 3.30, Q1, H-index: 300)
 **Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 **Timeline:** 6 Weeks (Feb 23 - April 06, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-22.md](progress_update_2026-03-22.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-27.md](progress_update_2026-03-27.md)
 
 ## Phase 1: Computational Framework (Weeks 1-2)
 
@@ -15,9 +15,9 @@
 ## Phase 2: Clinical Validation (Weeks 3-4)
 
 - [ ] **Cohort Data Extraction:** Extract clinical cohort data (Cobb angle distributions, progression rates) from published literature.
-- [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
+- [x] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
 - [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
-- [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
+- [x] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
 
 ## Phase 3: Manuscript Preparation (Weeks 5-6)
 

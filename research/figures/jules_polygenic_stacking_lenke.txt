@@ -1,0 +1,5 @@
+A data visualization or infographic illustrating the polygenic threshold model for Adolescent Idiopathic Scoliosis.
+
+The image should show a baseline state with a small positive stability margin (+5.3 ms), representing the Allometric Trap that all adolescents pass through. Below this, show individual genetic factors (reduced damping, increased delay, shifted gain, increased load) acting as small negative shifts.
+
+Finally, show the "stacking" effect where these variants combine in a specific individual, causing the stability margin to collapse deeply into the unstable zone (-26.3 ms), triggering metabolic buckling. The visual should have a scientific, clinical aesthetic suitable for a high-impact journal, using colors to indicate stable (blue/green) vs unstable (red/orange) regimes.

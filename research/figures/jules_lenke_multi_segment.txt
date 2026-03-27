@@ -1,0 +1,5 @@
+A biomechanical visualization of the multi-segment Cosserat rod model explaining Lenke curve diversity in the human spine.
+
+The image should depict a 3D spinal column divided into segments (cervical, thoracic, lumbar) with distinct regional properties. Highlighting should indicate variations in flexural stiffness (rib cage buttressing in the thoracic), proprioceptive delay (mechanoreceptor density), and local damping (paraspinal muscle bulk).
+
+Additionally, show asymmetric loading arrows (e.g., aortic pulsation displacing the descending thoracic spine leftward, causing a rightward bias). The visual should demonstrate how these regional parameter heterogeneities lead to different dominant eigenmodes (the 6 Lenke classifications) once the global stability threshold is crossed. The aesthetic should be clean, biomechanical, and scientific, suitable for a Nature or Science publication.

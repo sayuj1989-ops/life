@@ -1,0 +1,12 @@
+\section{Dreamer to Active Inference Mathematical Mapping}
+
+The core thesis of The Predictive Processing Bridge posits that the PID controller from Paper 2 acts as a predictive processing system. Drawing from the latent imagination framework of Dreamer (Hafner et al., 2019), we can formally map the control variables to Friston's active inference formalism:
+
+\begin{itemize}
+    \item $K_p \leftrightarrow$ sensory precision on position ($\Pi_x$)
+    \item $K_d \leftrightarrow$ sensory precision on velocity or generalized motion ($\Pi_{x'}$)
+    \item $K_i \leftrightarrow$ prior precision on persistent causes ($\Pi_\mu$)
+    \item $\tau \leftrightarrow$ sensory delay
+\end{itemize}
+
+By backpropagating value estimates through trajectories imagined in a compact latent space, the Dreamer framework effectively performs variational inference over future states, akin to minimizing Expected Free Energy (EFE) in active inference. The PID gains parameterize the precision of the sensory and prior distributions, governing the update dynamics in the face of delayed observations ($\tau$).

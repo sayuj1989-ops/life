@@ -1,13 +1,11 @@
-from pathlib import Path
-
 import pandas as pd
-
+from pathlib import Path
 
 def audit_afcc_freshness():
     afcc_dir = Path('outputs/afcc')
 
-    # Get all dated subdirectories in outputs/afcc
-    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')])
+    # Get all dated subdirectories in outputs/afcc within the trend window (<= 2026-02-16)
+    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-') and d.name <= '2026-02-16'])
 
     metrics_history = {}
     missing_metrics = []

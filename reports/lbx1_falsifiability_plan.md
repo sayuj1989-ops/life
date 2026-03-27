@@ -1,47 +1,30 @@
 # LBX1 Falsifiability Plan
 
-This document outlines three concrete, quantitative experiments designed to explicitly falsify the hypothesis that LBX1 acts as a mechanosensor or structural tension rod in the context of biological countercurvature.
+This plan outlines explicit experiments designed to falsify the hypothesis linking LBX1 strictly to structural mechanotransduction in the biological countercurvature model.
 
-## Core Hypothesis
-LBX1 possesses an intermediate-anisotropy, modular (blocky) architecture that allows it to transduce mechanical tension into biochemical signals, distinct from classical extended tension rods like PIEZO2 or LMNA.
+## Rationale
+Current AlphaFold metrics (outputs/afcc/2026-02-16/metrics.csv) indicate LBX1 possesses low structural confidence (pLDDT ~66.9) and high PAE blockiness (~7.35). High anisotropy alone is insufficient to establish it as a core mechanosensor like PIEZO2. This requires experimental falsification.
 
-*If this hypothesis is false, LBX1 will not exhibit tension-dependent localization, conformational changes under physiological stress, or structural integrity under mechanical load.*
+## Experiment 1: In Vitro Nuclear Tension Perturbation
 
-**Source Data / Rationale**: Based on `outputs/afcc/2026-02-16/metrics.csv`, LBX1 has an `anisotropy_index` of 2.27, a `plddt_mean` of 66.9 (Low confidence), and a high `PAE_domain_blockiness_score` of 7.35.
+- **Hypothesis**: If LBX1's blocky/extended geometry is a functional mechanosensor, altering local nuclear tension will modify its localization or transcriptional activity.
+- **Assay Design**: Subject somite/neural crest-derived cells expressing tagged LBX1 to cyclic stretch or modify the LINC complex (e.g., LMNA knockdown) to reduce nuclear mechanical coupling.
+- **Quantitative Readout**: Ratio of nucleoplasmic to chromatin-bound LBX1 via fractionation, and target gene expression (e.g., downstream proprioceptive markers).
+- **Expected Direction**: Reduced tension leads to delocalization or altered activity if it's purely a structural sensor.
+- **Falsification Threshold**: If nuclear tension perturbation yields less than a 10% change in LBX1 localization or target activity compared to static controls, the direct mechanosensor geometry hypothesis is falsified.
 
----
+## Experiment 2: Truncation/Disorder Domain Deletion
 
-## Experiment 1: Nuclear Tension-Dependent Localization
-**Hypothesis**: If LBX1 responds to mechanical cues, modulating nuclear tension via LMNA/LINC complex disruption will alter LBX1 nuclear localization or chromatin binding affinity.
-**Assay Design**:
-- Cell line expressing tagged LBX1.
-- Perturb nuclear tension using LINC complex dominant-negative constructs (e.g., KASH domain overexpression) or direct LMNA knockdown.
-- Measure LBX1 nuclear/cytoplasmic ratio and chromatin-bound fraction via quantitative immunofluorescence and cellular fractionation.
-**Quantitative Readout**: Ratio of nuclear to cytoplasmic LBX1 intensity; percentage of chromatin-bound LBX1 relative to total protein.
-**Expected Direction (if true)**: Decreased nuclear tension reduces LBX1 chromatin binding or nuclear retention.
-**Falsification Threshold**: If the change in LBX1 nuclear/chromatin localization between wild-type and tension-depleted cells is $< 10\%$ (p $> 0.05$), the hypothesis that LBX1 localization is tension-dependent is falsified.
+- **Hypothesis**: The high PAE blockiness and low pLDDT regions of LBX1 are intrinsically disordered and mechanically irrelevant to its primary function.
+- **Assay Design**: Construct LBX1 mutants lacking the lowest-confidence, high-blockiness domains identified by AlphaFold. Compare binding kinetics and transcriptional rescue in a knockout background against wild-type.
+- **Quantitative Readout**: Transcription factor binding affinity (via ChIP-qPCR) and phenotypic rescue in cellular models.
+- **Expected Direction**: Deletion of purely structural 'spring' regions should alter mechanically-induced signaling but preserve basal transcription.
+- **Falsification Threshold**: If the deletion mutant perfectly rescues wild-type function under all mechanical loading conditions, the extended 'spring' geometry is not required for mechanotransduction.
 
----
+## Experiment 3: Biophysical Stiffness Measurement (AFM)
 
-## Experiment 2: Single-Molecule Force Spectroscopy (smFS)
-**Hypothesis**: If LBX1's "blocky" PAE domains (Score: 7.35, low confidence pLDDT: 66.9 per `outputs/afcc/2026-02-16/metrics.csv`) represent mechanically functional hinges or springs rather than unstructured artifactual IDRs, it will exhibit a characteristic force-extension curve distinct from pure globular or pure fibrous proteins, unfolding at specific, physiologically relevant forces.
-**Assay Design**:
-- Purify recombinant LBX1 protein.
-- Perform Atomic Force Microscopy (AFM) based single-molecule force spectroscopy.
-- Pull the protein from N- to C-terminus.
-**Quantitative Readout**: Unfolding force peaks (pN) and contour length increments ($\Delta L_c$ in nm) during mechanical unfolding.
-**Expected Direction (if true)**: Step-wise unfolding corresponding to the predicted modular blocks, with initial unfolding events occurring at forces comparable to known mechanosensors (e.g., 5-20 pN).
-**Falsification Threshold**: If LBX1 unfolds in a single, catastrophic event at high forces ($> 50$ pN) typical of stable globular proteins, or shows no structured resistance (pure disorder), the hypothesis that it acts as a modular mechanical spring is falsified.
-
----
-
-## Experiment 3: In Vivo Mechanotransduction via Orthogonal Reporter
-**Hypothesis**: If LBX1 is a critical upstream mechanotransducer in spinal tissue, its targeted degradation will abolish tension-induced downstream transcriptional responses (e.g., YAP/TAZ target gene expression) under cyclical mechanical loading.
-**Assay Design**:
-- Engineered 3D somite/myotome tissue culture.
-- Inducible degron (AID) tagged LBX1.
-- Subject tissue to cyclical mechanical stretch (10% strain, 1 Hz).
-- Measure downstream mechanosensitive gene expression (e.g., *CTGF*, *CYR61*) via RT-qPCR.
-**Quantitative Readout**: Fold-change in downstream target mRNA expression in stretched vs. static conditions, comparing LBX1-intact vs. LBX1-degraded tissues.
-**Expected Direction (if true)**: LBX1 degradation significantly dampens or abolishes the stretch-induced upregulation of mechanosensitive targets.
-**Falsification Threshold**: If the stretch-induced fold-change of target genes in LBX1-degraded tissues is $\geq 90\%$ of the response in LBX1-intact tissues, the hypothesis that LBX1 is a required primary mechanotransducer in this pathway is falsified.
+- **Hypothesis**: Purified LBX1 protein exhibits anisotropic stiffness consistent with a load-bearing mechanosensor or 'tension rod'.
+- **Assay Design**: Perform single-molecule Atomic Force Microscopy (AFM) on purified full-length LBX1 to measure unfolding force and stiffness.
+- **Quantitative Readout**: Unfolding force (pN) and contour length extension compared to canonical mechanosensors like Talin or PIEZO2 fragments.
+- **Expected Direction**: LBX1 should exhibit a distinct force-extension curve typical of modular 'blocky' springs.
+- **Falsification Threshold**: If the unfolding force is identical to globular null-controls or lacks the characteristic stepwise unfolding of a blocky spring, the 'tension rod' structural hypothesis is falsified.

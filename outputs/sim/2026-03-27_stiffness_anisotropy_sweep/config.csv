@@ -1,0 +1,2 @@
+active_curvature,initial_lateral_defect,torsion_drive,duration,gravity,n_elements,natural_kyphosis
+10.0,0.05,0.5,2.0,9.81,50,2.0

@@ -110,6 +110,15 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Output:** [`figures/main/toy_model_holographic_lattice.png`](../figures/main/toy_model_holographic_lattice.png)
     *   **Status:** ✅ **Implemented**
 
+4.  **Growth Vector Mismatch Ablation Model (Negative Control):**
+    *   **Objective:** Demonstrate that decoupling the growth vector from the gravitational scalar abolishes the protective effect of countercurvature.
+    *   **Method:** 1D Cosserat simulation where the directional scalar tracking gravity is artificially held constant while physical mass increases.
+    *   **Success Metric:** System buckling at length scales far shorter than normal physiological models.
+    *   **Expected Outcome:** Immediate transition to Lenke-style scoliotic shapes at $L < L_{crit}$.
+    *   **Stop Condition:** Robust phase change documented in 5 distinct parametric sweeps.
+    *   **Implementation:** `scripts/experiments/toy_model_vector_mismatch.py`
+    *   **Status:** ⚪ **Planned**
+
 ### Proposed Real Validation Experiments
 
 1.  **PIEZO2 Conditional Knockout (Mouse Model):**
@@ -139,3 +148,10 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Observation of ectopic structural curves or altered vertebral morphology.
     *   **Expected Outcome:** Altered HOX expression induces predictable changes in the resting curvature of the spine.
     *   **Stop Condition:** Consistent phenotype observed in $>50\%$ of treated embryos ($N=50$).
+
+5.  **Clinical Cohort Mapping of Marfan FBN1 Variances (Epidemiological):**
+    *   **Objective:** Validate the 'Optimization Failure' basin of attraction directly against Marfan prevalence rates.
+    *   **Method:** Extract exact Marfan scoliosis prevalence rates from 3 major patient cohorts and correlate to FBN1 protein anisotropy defect metrics in the model.
+    *   **Success Metric:** $R^2 > 0.8$ correlation between simulated instability range size and clinical prevalence.
+    *   **Expected Outcome:** Higher structural uncertainty directly tracks clinical prevalence percentages in the Marfan cohorts.
+    *   **Stop Condition:** 3 cohorts analyzed and standard errors plotted.

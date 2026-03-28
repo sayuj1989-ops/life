@@ -1,0 +1,24 @@
+Title: The Derivative Gain Trap in Adolescent Idiopathic Scoliosis
+
+Structure: A flowchart detailing the feedback loop between Neural Delay (\tau), Proprioceptive Gain (K), and Spinal Growth (\dot{L}) leading to Metabolic Buckling.
+
+Top Node: Normal Childhood Growth
+- Shows passive stable regime ($Bg \approx 0.11$).
+- Arrow pointing down to 'Adolescent Growth Spurt'
+
+Middle Section (The Loop):
+- Node Left: Increased Neural Delay (\tau)
+- Node Right: High Derivative Gain (K)
+- Node Bottom: Rapid Elongation (\dot{L})
+- Arrows connecting these three nodes in a cycle, labeled "Information-Elasticity Coupling (IEC)"
+- The loop is highlighted with a warning color (orange/red)
+
+Convergence Node: The Derivative Gain Trap
+- Arrow from the Loop pointing down to the Trap
+- Description: "Gains that stabilize damping in childhood become destabilizing delays."
+
+Final State: Metabolic Buckling (Scoliosis)
+- Arrow from the Trap pointing down to Metabolic Buckling
+- Illustration: A spine buckling under the combined stress of the trap, transitioning from an S-curve to a scoliotic curve.
+
+Style: Clean, professional scientific diagram, using distinct colors for healthy growth (green), the destabilizing loop (orange), and the final failure state (red).

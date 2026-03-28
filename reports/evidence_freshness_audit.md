@@ -2,7 +2,7 @@
 
 ## Data Integrity and Freshness
 
-- **Runs Audited**: 29
+- **Runs Audited**: 31
 
 - **Missing Linked Outputs**: 0 (None)
 
@@ -16,9 +16,9 @@ The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) a
 | Gene | Runs Present | First Date | Last Date | Anisotropy | pLDDT |
 
 |------|--------------|------------|-----------|------------|-------|
-| NTRK3 | 17 | 2026-01-27 | 2026-02-28 | 1.936111715585754 | 76.81557806912993 |
+| NTRK3 | 18 | 2026-01-27 | 2026-03-05 | 1.936111715585754 | 76.81557806912993 |
+| RUNX3 | 14 | 2026-01-27 | 2026-03-05 | 2.0611670656856456 | 60.564096385542165 |
 | LMNA | 13 | 2026-01-14 | 2026-02-26 | 4.751667397697646 | 76.37072289156627 |
-| RUNX3 | 13 | 2026-01-27 | 2026-02-18 | 2.0611670656856456 | 60.564096385542165 |
 | NF1 | 12 | 2026-01-18 | 2026-02-26 | 1.9279279346731688 | 87.17264755480608 |
 | OTOP1 | 10 | 2026-01-27 | 2026-02-26 | 1.7507094616744632 | 75.68916666666668 |
 | EGR3 | 10 | 2026-01-27 | 2026-02-26 | 3.762072398804325 | 49.96868217054263 |
@@ -109,6 +109,8 @@ The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) a
 - **2026-02-26**: Reused static metrics for 6 genes (e.g., LMNA, NF1, NTRK3, OTOP1, EGR3...)
 
 - **2026-02-28**: Reused static metrics for 1 genes (e.g., NTRK3...)
+
+- **2026-03-05**: Reused static metrics for 2 genes (e.g., NTRK3, RUNX3...)
 
 
 ## Conclusion

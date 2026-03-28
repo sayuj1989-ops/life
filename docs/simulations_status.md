@@ -52,3 +52,4 @@
 | 2026-03-11 | weekly-sim-torsion-sweep | torsion_drive | Torsional coupling transforms S-curve into complex 3D scoliosis peaking at 101 deg Cobb | [Report](../outputs/sim/2026-03-11/report.md) |
 | 2026-03-12 | weekly-sim-active-curvature-sweep | active_curvature | Sweep 0.0-15.0 at Anisotropy=3.0; No lateral buckling (Cobb=0) emerged without symmetry breaking. | [Report](../outputs/sim/2026-03-12/report.md) |
 | 2026-03-22 | weekly-sim-gravity-sweep | gravity, anisotropy | Low anisotropy (R=1.0) with gravity loading triggers high Cobb angle (87 deg); high anisotropy stabilizes. | [Report](../outputs/sim/2026-03-22_gravity_sweep/report.md) |
+| 2026-03-28 | weekly-sim-growth-anisotropy-s-shape-emergence | stiffness_anisotropy | Swept Anisotropy (0.5-10.0) against Growth (15.0) in vertical rod; Higher anisotropy stabilizes planar S-curve vs lateral buckling. | [Report](../outputs/sim/2026-03-28/report.md) |

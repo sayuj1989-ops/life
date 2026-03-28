@@ -1,0 +1,52 @@
+=== Results for: proprioceptive delay components ===
+Title: Differential termination of the exteroceptive and proprioceptive components of the cuneocerebellar tract
+DOI: 10.1016/0006-8993(72)90748-2
+Abstract: No abstract
+
+Title: Proprioceptive taping for posture
+DOI: 10.5040/9781350926486
+Abstract: No abstract
+
+Title: Delay Margin Computation in Micro Grid Systems with Time Delay by using Fractional Order Controller
+DOI: 10.1080/15325008.2021.1971333
+Abstract: No abstract
+
+=== Results for: electromechanical delay human ===
+Title: COMPENSATING DELAY AND TIME CONSTANTS IN HUMAN OPERATOR MOTOR DYNAMICS
+DOI: 10.32782/2072-2052.2024.4.67.1
+Abstract: No abstract
+
+Title: Electromechanical delay lines
+DOI: 10.1016/0041-624x(71)90645-7
+Abstract: No abstract
+
+Title: Electromechanical delay lines
+DOI: 10.1016/0041-624x(71)90442-2
+Abstract: No abstract
+
+=== Results for: proprioceptive conduction velocity afferent ===
+Title: Spindle afferent conduction velocity
+DOI: 10.1212/wnl.14.7.674
+Abstract: No abstract
+
+Title: Compound nerve conduction velocity – A reflection of proprioceptive afferents?
+DOI: 10.1016/j.clinph.2007.09.129
+Abstract: No abstract
+
+Title: Conduction velocity in motor, cutaneous afferent, and muscle afferent fibers within the same mixed nerve
+DOI: 10.1002/mus.880170712
+Abstract: <jats:title>Abstract</jats:title><jats:p>Mammalian axons subserving different functions have different conduction velocities (CV); motor fibers conduct more slowly than cutaneous fibers, which conduct slower than muscle afferents. However, human studies have yielded conflicting results. We studied isolated fiber populations in human sciatic nerve to examine further this question. Motor studies were performed in standard fashion, stimulating at gluteal fold (GF) and popliteal fossa (PF) and recording soleus. In addition, conduction velocity of a pure motor nerve volley was calculated for 3 subjects. Stimulating and recording electrodes were needles placed close to the nerve. Cutaneous afferents were studied by stimulating the sural nerve at the ankle and recording at PF and GF. Muscle afferent velocity was assessed by comparing soleus H reflex latency with stimulation at PF and GF. Results in 10 subjects showed muscle afferent CV of 57.6, cutaneous afferent CV of 55.1, motor CV of 52.4. and mixed nerve CV of 56.3 m/s. Although statistically significant, these differences are much smaller than in animal studies. These results have implications for understanding what fibers contribute to Spinal reflexes. © 1994 John Wiley &amp; Sons, Inc.</jats:p>
+
+=== Results for: spinal relay delay proprioception ===
+Title: A neural geometry for forelimb proprioception in the cervical spinal cord
+DOI: 10.1101/2025.09.26.678887
+Abstract: <jats:title>Abstract</jats:title>
+                <jats:p>Precise, real-time somatosensory feedback is essential for coordinated movement. While the anatomy and physiology of these sensory pathways is well described, their neural code and its construction remains unclear. Here we show that neurons in the cervical spinal cord generate a precise neural representation of the forelimb’s kinematic state using muscle and tendon sensory afferent inputs. We identify two classes of movement responsive neurons - the first encodes speed, position and direction of the limb, while the second exhibits precise firing at specific limb positions or grid-like firing patterns that tile space. Their composite population activity is constrained to a low dimensional manifold that is an ordered representation of the position and velocity of the limb. Ablating muscle and tendon sensory afferents, but not cutaneous sensory afferents, disrupts this neural manifold. Moreover, transient perturbations of muscle and tendon afferents in freely moving mice reaching to spatial targets cause end-point errors as predicted by the deficits in the neural code. Our findings demonstrate that spinal networks, one synapse from the periphery, perform the complex computations necessary to represent forelimb movement.</jats:p>
+
+Title: On Stable Periodic Solutions of One Time Delay System Containing Some Nonideal Relay Nonlinearities
+DOI: 10.5772/15486
+Abstract: No abstract
+
+Title: 12 Motor system I spinal cord and proprioception
+DOI: 10.1016/s0921-8696(86)80032-9
+Abstract: No abstract

@@ -1,0 +1,64 @@
+=== Results for: muscle spindle afferent conduction velocity human m/s ===
+Title: Spindle afferent conduction velocity
+DOI: 10.1212/wnl.14.7.674
+Abstract: No abstract
+
+Title: Relation of afferent fiber conduction velocity to reactivity of muscle spindle receptors after cerebellectomy.
+DOI: 10.1152/jn.1967.30.6.1513
+Abstract: No abstract
+
+Title: Conduction velocity in motor, cutaneous afferent, and muscle afferent fibers within the same mixed nerve
+DOI: 10.1002/mus.880170712
+Abstract: <jats:title>Abstract</jats:title><jats:p>Mammalian axons subserving different functions have different conduction velocities (CV); motor fibers conduct more slowly than cutaneous fibers, which conduct
+
+=== Results for: electromechanical delay human ms ===
+Title: COMPENSATING DELAY AND TIME CONSTANTS IN HUMAN OPERATOR MOTOR DYNAMICS
+DOI: 10.32782/2072-2052.2024.4.67.1
+Abstract: No abstract
+
+Title: Electromechanical delay lines
+DOI: 10.1016/0041-624x(71)90645-7
+Abstract: No abstract
+
+Title: Electromechanical delay lines
+DOI: 10.1016/0041-624x(71)90442-2
+Abstract: No abstract
+
+=== Results for: spinal reflex delay latency ms ===
+Title: LONG-LATENCY SPINAL REFLEX IN MAN AFTER FLEXOR REFLEX AFFERENT STIMULATION
+DOI: 10.1093/brain/110.3.707
+Abstract: No abstract
+
+Title: H reflex latency as an adequate predictor of the spinal evoked potential latency
+DOI: 10.1016/0013-4694(88)90195-2
+Abstract: No abstract
+
+Title: M2-A Long Latency Spinal Reflex due to Skin Afferents in Man
+DOI: 10.1007/978-1-4615-7508-5_7
+Abstract: No abstract
+
+=== Results for: cerebellar processing delay latency ms ===
+Title: Fig. 1. An example of the ERP P300 in the central region of the brain: a — subject A. from the group with minimal risk to IA (N2 latency=184 ms, P300 latency=284 ms, amplitude — 11 mkV); b — subject B. from the group with moderate risk of developing IA (N2 latency=205 ms, LV P300 latency=297 ms, amplitude — 10 mkV); c — the subject M. from the group with Internet addiction (N2 latency=210 ms, P300 latency=315 ms, amplitude — 12 mkV).
+DOI: 10.17816/humeco89348-68679
+Abstract: No abstract
+
+Title: Table 6: Propagation latency (ms).
+DOI: 10.7717/peerj-cs.2464/table-6
+Abstract: No abstract
+
+Title: Fig. 1. An example of the ERP P300 in the frontal region of the brain (responses as a result of averaging : a — subject A from the control group (N2 latency=224 ms, P300 latency=350 ms, amplitude — 10.5 mkV); b — subject L from the group with arterial hypertension receiving antihypertensive treatment, controlling blood pressure within normal values (N2 latency=230 ms, P300 latency=352 ms, amplitude — 9 mkV); c — subject M from the group with arterial hypertension receiving no antihypertensive treatment or receiving it regularly or irregularly, but not controlling blood pressure (N2 latency=250 ms, P300 latency=390 ms, amplitude — 5.5 mkV).
+DOI: 10.17816/humeco633767-4219795
+Abstract: No abstract
+
+=== Results for: peripheral mechanotransduction delay ms piezo2 ===
+Title: Decision letter: Myotubularin related protein-2 and its phospholipid substrate PIP2 control Piezo2-mediated mechanotransduction in peripheral sensory neurons
+DOI: 10.7554/elife.32346.018
+Abstract: No abstract
+
+Title: Author response: Myotubularin related protein-2 and its phospholipid substrate PIP2 control Piezo2-mediated mechanotransduction in peripheral sensory neurons
+DOI: 10.7554/elife.32346.019
+Abstract: No abstract
+
+Title: Piezo2 in Cutaneous and Proprioceptive Mechanotransduction in Vertebrates
+DOI: 10.1016/bs.ctm.2016.11.002
+Abstract: No abstract

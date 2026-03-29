@@ -3,7 +3,7 @@
 **Target:** *Spine* Submission (IF: 3.30, Q1, H-index: 300)
 **Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 **Timeline:** 6 Weeks (Feb 23 - April 06, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-22.md](progress_update_2026-03-22.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-29.md](progress_update_2026-03-29.md)
 
 ## Phase 1: Computational Framework (Weeks 1-2)
 

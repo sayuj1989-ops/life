@@ -694,6 +694,26 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Flexoelectric Curvature-Gain Number ($\mathcal{F}_{curve}$)
+
+We define biological flexoelectricity as the direct biophysical transduction of tissue curvature (strain gradients) into a stable electrochemical polarization field. Unlike piezoelectricity (which requires uniform strain), flexoelectricity couples the gradient of mechanical strain to local voltage potentials. This is the operational mechanism by which the macroscopic geometric parameter (curvature $\boldsymbol{\kappa}$) is directly 'read' by cells to alter the morphogenetic information field $I(s,t)$.
+
+$$ \mathcal{F}_{curve} = \frac{\mu_{flex} \cdot |\nabla \boldsymbol{\kappa}| \cdot L_{cell}}{k_B T} $$
+
+*   **Symbols**:
+    *   $\mu_{flex}$: Effective biological flexoelectric coefficient of the extracellular matrix and cytoskeletal network $[V \cdot m]$.
+    *   $|\nabla \boldsymbol{\kappa}|$: Magnitude of the spatial gradient of curvature (strain gradient) across the tissue segment $[L^{-2}]$.
+    *   $L_{cell}$: Characteristic length scale of the sensing cell (e.g., osteocyte or chondrocyte network) $[L]$.
+    *   $k_B T$: Thermal energy floor $[M L^2 T^{-2}]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{F}_{curve} \gg 1$: The curvature-induced voltage field strongly overrides thermal noise, establishing a deterministic, macroscopic morphogen drift via electrophoresis or voltage-gated ion channel activation (e.g., modifying Piezo1/2 open probability or calcium influx).
+    *   $\mathcal{F}_{curve} \ll 1$: Strain gradients are too shallow to generate a coherent electrical field, and the tissue relies solely on scalar mechanical sensors (uniform stress) rather than geometric sensors.
+    *   **Biological Context**: In the counter-curvature framework, the S-curve requires the system to distinguish between concave and convex surfaces. Flexoelectricity inherently breaks symmetry (positive potential on the convex side, negative on the concave), providing a directional cue for asymmetric growth that piezoelectricity cannot.
+*   **Measurable Proxy**: Extracellular fluid voltage potentials measured via microelectrode arrays across an intervertebral disc or growth plate subjected to pure bending (gradient strain) versus pure compression (uniform strain).
+
+    *   **Refutation**: If neutralizing the transverse voltage gradient does not abolish the mechanically-induced differential growth (concave vs convex cellular proliferation rates), then the flexoelectric field is an epiphenomenon and not the causal driver of the morphomechanical coupling $\chi_M(t)$. (Reference: Sun et al., 2019).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1047,6 +1067,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Measurement of Cobb angle progression and vertebral wedging in a mechanically loaded mouse model treated with a VEGFR inhibitor (e.g., SU5416) versus vehicle control.
 *   **Refutation**: If the progression of the curve is identical or slower with VEGFR inhibition, the adaptive vascular response is not a critical buffering mechanism against mechanically-induced hypoxia. (Reference: Grosso et al., 2017).
 
+### Test BK: The Curvature-Voltage Transduction
+*   **Hypothesis**: Tissue flexoelectricity is the primary geometric sensor mapping the curvature gradient $\nabla \boldsymbol{\kappa}$ into an electrochemical information field.
+*   **Data Needed**: Measurement of steady-state transverse voltage potentials across a long-bone or spinal segment explant under four-point bending (pure curvature, zero shear) compared to pure axial compression.
+*   **Refutation**: If transverse electrical polarization is generated equally by uniform compression as it is by bending, the primary transducer is piezoelectric, not flexoelectric, falsifying the hypothesis that the tissue specifically 'reads' curvature gradients ($\mathcal{F}_{curve} \approx 0$). (Reference: Cowin & Doty, 2007).
+
+### Test BL: The Voltage-Gated Growth Asymmetry
+*   **Hypothesis**: The endogenous flexoelectric field drives the asymmetric morphomechanical coupling required for the counter-curvature S-shape formation.
+*   **Data Needed**: Spinal morphogenetic symmetry in embryonic models cultured in an external, neutralizing DC electric field that counteracts the endogenous flexoelectric potential generated by intrinsic bending during development.
+*   **Refutation**: If neutralizing the transverse voltage gradient does not abolish the mechanically-induced differential growth (concave vs convex cellular proliferation rates), then the flexoelectric field is an epiphenomenon and not the causal driver of the morphomechanical coupling $\chi_M(t)$. (Reference: Sun et al., 2019).
+
 ## 7. References
 
 1.  **Karner, C. M., et al. (2015).** "Gpr126/Adgrg6 gene is essential for Schwann cell myelination and spinal column development." *Science*, 347(6223). (Demonstrates genetic link to stiffness/integrity).
@@ -1125,3 +1155,5 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+77. **Cowin, S. C., & Doty, S. B. (2007).** "Tissue Mechanics." *Springer*. (Foundational text establishing piezoelectric and flexoelectric limits in biological tissues).
+78. **Sun, J., et al. (2019).** "Piezo1 channels are inherently mechanosensitive." *eLife*. (Establishes Piezo1 as a scalar sensor responding to membrane tension, contrasting with geometric/flexoelectric sensing).

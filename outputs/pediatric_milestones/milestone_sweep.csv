@@ -1,0 +1,165 @@
+Milestone,L,m,T_pred,Stable,Free_Energy
+Supine,0.0,5.0,0.0,True,0.0752579758392961
+Supine,0.0,5.0,0.01,True,0.06023666308598126
+Supine,0.0,5.0,0.02,True,0.049688408203018834
+Supine,0.0,5.0,0.03,True,0.04196604189960319
+Supine,0.0,5.0,0.04,True,0.03612925956374841
+Supine,0.0,5.0,0.05,True,0.03160951201169199
+Supine,0.0,5.0,0.06,True,0.028043874337123124
+Supine,0.0,5.0,0.07,True,0.02518968934107469
+Supine,0.0,5.0,0.08,True,0.022878350946975625
+Supine,0.0,5.0,0.09,True,0.0209889055569968
+Supine,0.0,5.0,0.1,True,0.019432235500467864
+Supine,0.0,5.0,0.11,True,0.01814118563455183
+Supine,0.0,5.0,0.12,True,0.017064178852133068
+Supine,0.0,5.0,0.13,True,0.01616095938281928
+Supine,0.0,5.0,0.14,True,0.015399677355278536
+Supine,0.0,5.0,0.15,True,0.014754843607974095
+Supine,0.0,5.0,0.16,True,0.014205863747204074
+Supine,0.0,5.0,0.17,True,0.013735966654556685
+Supine,0.0,5.0,0.18,True,0.013331407187114657
+Supine,0.0,5.0,0.19,True,0.013040990608726684
+Supine,0.0,5.0,0.2,True,0.012765654379519997
+Supine,0.0,5.0,0.21,True,0.012504330320272178
+Supine,0.0,5.0,0.22,True,0.012256048520343243
+Supine,0.0,5.0,0.23,True,0.012019926307634684
+Supine,0.0,5.0,0.24,True,0.011795158669119465
+Supine,0.0,5.0,0.25,True,0.011581009904659217
+Supine,0.0,5.0,0.26,True,0.011376806333135392
+Supine,0.0,5.0,0.27,True,0.011181929899568743
+Supine,0.0,5.0,0.28,True,0.010995812556212096
+Supine,0.0,5.0,0.29,True,0.010995812556212096
+Supine,0.0,5.0,0.3,True,0.010647803850227792
+Supine,0.0,5.0,0.31,True,0.010484984666751266
+Supine,0.0,5.0,0.32,True,0.010329061615050438
+Supine,0.0,5.0,0.33,True,0.010179652850779911
+Supine,0.0,5.0,0.34,True,0.010036404099062592
+Supine,0.0,5.0,0.35000000000000003,True,0.009898986213214264
+Supine,0.0,5.0,0.36,True,0.009767092988224452
+Supine,0.0,5.0,0.37,True,0.009640439198518865
+Supine,0.0,5.0,0.38,True,0.00951875883362071
+Supine,0.0,5.0,0.39,True,0.009401803508813646
+Supine,0.0,5.0,0.4,True,0.009289341030885327
+Head Control,0.1,1.5,0.0,False,inf
+Head Control,0.1,1.5,0.01,False,inf
+Head Control,0.1,1.5,0.02,False,inf
+Head Control,0.1,1.5,0.03,False,inf
+Head Control,0.1,1.5,0.04,False,inf
+Head Control,0.1,1.5,0.05,False,inf
+Head Control,0.1,1.5,0.06,False,inf
+Head Control,0.1,1.5,0.07,False,inf
+Head Control,0.1,1.5,0.08,False,inf
+Head Control,0.1,1.5,0.09,False,inf
+Head Control,0.1,1.5,0.1,False,inf
+Head Control,0.1,1.5,0.11,False,inf
+Head Control,0.1,1.5,0.12,False,inf
+Head Control,0.1,1.5,0.13,False,inf
+Head Control,0.1,1.5,0.14,False,inf
+Head Control,0.1,1.5,0.15,False,inf
+Head Control,0.1,1.5,0.16,False,inf
+Head Control,0.1,1.5,0.17,True,0.008192688405832078
+Head Control,0.1,1.5,0.18,True,0.019656846595023886
+Head Control,0.1,1.5,0.19,True,0.059832440592675
+Head Control,0.1,1.5,0.2,True,0.1722896650571431
+Head Control,0.1,1.5,0.21,True,0.3436703538807945
+Head Control,0.1,1.5,0.22,True,0.5121677376135333
+Head Control,0.1,1.5,0.23,True,0.6682809751401241
+Head Control,0.1,1.5,0.24,True,0.8135428625115887
+Head Control,0.1,1.5,0.25,True,0.9470514741545192
+Head Control,0.1,1.5,0.26,True,1.0699981053000582
+Head Control,0.1,1.5,0.27,True,1.188544719440505
+Head Control,0.1,1.5,0.28,True,1.3058834279788412
+Head Control,0.1,1.5,0.29,True,1.3058834279788412
+Head Control,0.1,1.5,0.3,True,1.5269284234584721
+Head Control,0.1,1.5,0.31,True,1.630262570938444
+Head Control,0.1,1.5,0.32,True,1.7420352415447642
+Head Control,0.1,1.5,0.33,True,1.9903809057412398
+Head Control,0.1,1.5,0.34,True,16.019359059942158
+Head Control,0.1,1.5,0.35000000000000003,True,27.776681872888513
+Head Control,0.1,1.5,0.36,True,35.55617849428281
+Head Control,0.1,1.5,0.37,True,40.55134496794386
+Head Control,0.1,1.5,0.38,True,43.599599170622945
+Head Control,0.1,1.5,0.39,True,45.22628023044862
+Head Control,0.1,1.5,0.4,True,44.92987987594414
+Sitting,0.3,5.0,0.0,False,inf
+Sitting,0.3,5.0,0.01,False,inf
+Sitting,0.3,5.0,0.02,False,inf
+Sitting,0.3,5.0,0.03,False,inf
+Sitting,0.3,5.0,0.04,False,inf
+Sitting,0.3,5.0,0.05,False,inf
+Sitting,0.3,5.0,0.06,False,inf
+Sitting,0.3,5.0,0.07,False,inf
+Sitting,0.3,5.0,0.08,False,inf
+Sitting,0.3,5.0,0.09,False,inf
+Sitting,0.3,5.0,0.1,False,inf
+Sitting,0.3,5.0,0.11,False,inf
+Sitting,0.3,5.0,0.12,False,inf
+Sitting,0.3,5.0,0.13,False,inf
+Sitting,0.3,5.0,0.14,False,inf
+Sitting,0.3,5.0,0.15,False,inf
+Sitting,0.3,5.0,0.16,False,inf
+Sitting,0.3,5.0,0.17,False,inf
+Sitting,0.3,5.0,0.18,False,inf
+Sitting,0.3,5.0,0.19,False,inf
+Sitting,0.3,5.0,0.2,False,inf
+Sitting,0.3,5.0,0.21,True,3.214163366053982
+Sitting,0.3,5.0,0.22,True,1.5614981948920574
+Sitting,0.3,5.0,0.23,True,0.38042603398658215
+Sitting,0.3,5.0,0.24,True,0.06623803669502105
+Sitting,0.3,5.0,0.25,True,0.015753138300503317
+Sitting,0.3,5.0,0.26,True,0.0073881589473401
+Sitting,0.3,5.0,0.27,True,0.005624234794876802
+Sitting,0.3,5.0,0.28,True,0.0051740847028241
+Sitting,0.3,5.0,0.29,True,0.0051740847028241
+Sitting,0.3,5.0,0.3,True,0.005178220644477276
+Sitting,0.3,5.0,0.31,True,0.005336001872194705
+Sitting,0.3,5.0,0.32,True,0.005544370310179013
+Sitting,0.3,5.0,0.33,True,0.0057901679475003374
+Sitting,0.3,5.0,0.34,True,0.00606726858291296
+Sitting,0.3,5.0,0.35000000000000003,True,0.006373121556821987
+Sitting,0.3,5.0,0.36,True,0.006707221809361054
+Sitting,0.3,5.0,0.37,True,0.007070369942157833
+Sitting,0.3,5.0,0.38,True,0.0074642954631494295
+Sitting,0.3,5.0,0.39,True,0.007891464239257734
+Sitting,0.3,5.0,0.4,True,0.008354988667357833
+Standing,0.6,10.0,0.0,False,inf
+Standing,0.6,10.0,0.01,False,inf
+Standing,0.6,10.0,0.02,False,inf
+Standing,0.6,10.0,0.03,False,inf
+Standing,0.6,10.0,0.04,False,inf
+Standing,0.6,10.0,0.05,False,inf
+Standing,0.6,10.0,0.06,False,inf
+Standing,0.6,10.0,0.07,False,inf
+Standing,0.6,10.0,0.08,False,inf
+Standing,0.6,10.0,0.09,False,inf
+Standing,0.6,10.0,0.1,False,inf
+Standing,0.6,10.0,0.11,False,inf
+Standing,0.6,10.0,0.12,False,inf
+Standing,0.6,10.0,0.13,False,inf
+Standing,0.6,10.0,0.14,False,inf
+Standing,0.6,10.0,0.15,False,inf
+Standing,0.6,10.0,0.16,False,inf
+Standing,0.6,10.0,0.17,False,inf
+Standing,0.6,10.0,0.18,False,inf
+Standing,0.6,10.0,0.19,False,inf
+Standing,0.6,10.0,0.2,False,inf
+Standing,0.6,10.0,0.21,False,inf
+Standing,0.6,10.0,0.22,False,inf
+Standing,0.6,10.0,0.23,False,inf
+Standing,0.6,10.0,0.24,False,inf
+Standing,0.6,10.0,0.25,False,inf
+Standing,0.6,10.0,0.26,False,inf
+Standing,0.6,10.0,0.27,False,inf
+Standing,0.6,10.0,0.28,False,inf
+Standing,0.6,10.0,0.29,False,inf
+Standing,0.6,10.0,0.3,False,inf
+Standing,0.6,10.0,0.31,False,inf
+Standing,0.6,10.0,0.32,False,inf
+Standing,0.6,10.0,0.33,False,inf
+Standing,0.6,10.0,0.34,False,inf
+Standing,0.6,10.0,0.35000000000000003,False,inf
+Standing,0.6,10.0,0.36,False,inf
+Standing,0.6,10.0,0.37,True,14.34209143546751
+Standing,0.6,10.0,0.38,True,7.645987859370971
+Standing,0.6,10.0,0.39,True,3.6009500665380214
+Standing,0.6,10.0,0.4,True,1.628645642055512

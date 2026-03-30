@@ -1,0 +1,40 @@
+name: Daily Spine Progress Update
+
+on:
+  schedule:
+    # Run every day at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate_update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run spine_daily_update.py
+        run: |
+          python scripts/spine_daily_update.py
+
+      - name: Generate docs progress update
+        run: |
+          python scripts/generate_progress_update.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add reports/daily_updates/*
+          git add reports/daily_update_latest.md
+          git add docs/progress_update_*.md
+          git commit -m "chore: auto-generate daily spine progress update" || echo "No changes to commit"
+          git push

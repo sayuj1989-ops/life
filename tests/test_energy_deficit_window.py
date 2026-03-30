@@ -1,12 +1,13 @@
-
-import os
+from pathlib import Path
+import subprocess
 import sys
 
 import numpy as np
 import pandas as pd
 
-# Ensure src is in pythonpath
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = REPO_ROOT / "scripts" / "experiment_energy_deficit_window.py"
 
 def test_energy_deficit_output():
     """
@@ -14,15 +15,14 @@ def test_energy_deficit_output():
     and that the data follows the qualitative trends required by the hypothesis.
     """
     # Run the experiment script
-    exit_code = os.system("python scripts/experiment_energy_deficit_window.py")
-    assert exit_code == 0, "Experiment script failed to run."
+    subprocess.run([sys.executable, str(SCRIPT)], check=True, cwd=REPO_ROOT)
 
     # Check for output files
-    csv_path = "outputs/thermodynamic_cost/energy_deficit_window.csv"
-    png_path = "outputs/figures/energy_deficit_window.png"
+    csv_path = REPO_ROOT / "outputs" / "thermodynamic_cost" / "energy_deficit_window.csv"
+    png_path = REPO_ROOT / "outputs" / "figures" / "energy_deficit_window.png"
 
-    assert os.path.exists(csv_path), "CSV output not found."
-    assert os.path.exists(png_path), "PNG output not found."
+    assert csv_path.exists(), "CSV output not found."
+    assert png_path.exists(), "PNG output not found."
 
     # Analyze CSV data
     df = pd.read_csv(csv_path)

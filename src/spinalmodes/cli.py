@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from pathlib import Path
 
 try:
     import typer  # type: ignore
@@ -25,7 +26,11 @@ else:
 
 def _run(pyfile: str) -> int:
     """Execute a Python script and return its exit code."""
-    return subprocess.call([sys.executable, pyfile])
+    path = Path(pyfile)
+    if not path.exists():
+        print(f"Expected script not found: {path}", file=sys.stderr)
+        return 1
+    return subprocess.call([sys.executable, str(path)])
 
 
 def cmd_validate() -> int:
@@ -36,8 +41,8 @@ def cmd_validate() -> int:
 def cmd_figures() -> int:
     """Regenerate all figures and tables."""
     for f in [
-        "scripts/analysis/01_data_audit.py",
         "scripts/validation/validate_solver_figures.py",
+        "scripts/analysis/01_data_audit.py",
         "scripts/analysis/03_iec_phase_amp.py",
         "scripts/analysis/04_countercurvature.py",
         "scripts/analysis/05_longevity_demo.py",
@@ -49,8 +54,12 @@ def cmd_figures() -> int:
 
 
 def cmd_paper() -> int:
-    """Invoke paper build via Makefile."""
-    return subprocess.call(["make", "paper"])
+    """Create the manuscript submission bundle."""
+    bundle_script = Path("scripts/reporting/arxiv_bundle.sh")
+    if not bundle_script.exists():
+        print(f"Expected bundle script not found: {bundle_script}", file=sys.stderr)
+        return 1
+    return subprocess.call(["bash", str(bundle_script)])
 
 
 if typer is not None:

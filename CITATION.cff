@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or results, please cite:"
-title: "Biological Countercurvature: An Information–Cosserat Framework for Spinal Geometry"
+title: "Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry"
 version: 0.4.0
 authors:
   - family-names: Krishnan S
@@ -17,12 +17,9 @@ keywords:
   - "information-elasticity coupling"
   - "biomechanics"
   - "cosserat rod"
-identifiers:
-  - type: doi
-    value: 10.0000/placeholder-doi
 preferred-citation:
   type: article
-  title: "Biological Countercurvature: An Information–Cosserat Framework for Spinal Geometry"
+  title: "Biological Countercurvature of Spacetime: An Information--Cosserat Framework for Spinal Geometry"
   authors:
     - family-names: Krishnan S
       given-names: Sayuj

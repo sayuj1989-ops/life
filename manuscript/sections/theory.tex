@@ -5,7 +5,7 @@
 For a vertebral column of length $L$, flexural stiffness $EI$, mass $M$, and gravitational acceleration $g$, we define the \textbf{Bio-Gravitational Number}:
 \begin{equation}
 \mathcal{B}_g = \frac{EI}{M g L^2},
-\label{eq:bg_number}
+\label{eq:bg_number_passive}
 \end{equation}
 a dimensionless ratio of passive flexural resistance to gravitational bending moment. When $\mathcal{B}_g > 0.1$, an organism can resist gravitational collapse through passive stiffness alone. When $\mathcal{B}_g < 0.1$, the organism enters the ``Allometric Trap'': it must actively maintain its shape at continuous metabolic cost. Cross-species analysis reveals that small quadrupeds operate well above this threshold, while humans ($\mathcal{B}_g \approx 0.01$) are deep within the trap, relying almost entirely on active metabolic maintenance to prevent spinal collapse~\cite{smit2020adolescent}. The Bio-Gravitational Number is analogous to the Froude number for locomotion, defining a fundamental physical boundary for spinal stability. However, scaling exponents vary systematically depending on physiological state~\cite{glazier2022variable}, and vertebral scaling exhibits size-dependent breakpoints~\cite{smith2024small}, emphasizing that bipedalism and human-specific axial loading uniquely exacerbate this vulnerability~\cite{gorman2009idiopathic}.
 
@@ -19,8 +19,8 @@ The active maintenance of spinal alignment relies on proprioceptive feedback fro
 
 The proprioceptive control law generating corrective force $F_{control}$ with feedback delay $\tau$ is:
 \begin{equation}
-F_{control}(s,t) = -K_P \, e(s, t-\tau) - K_D \, \dot{e}(s, t-\tau)
-\label{eq:pd_control}
+\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
+\label{eq:kappa_rest_field}
 \end{equation}
 where $K_P$ and $K_D$ are proportional and derivative gains, and the error is $e(s,t) = \kappa_{measured}(s,t) - \kappa_{target}$.
 
@@ -30,7 +30,12 @@ Linearizing around the straight configuration, the dynamics of the spinal column
 \label{eq:dde_spine}
 \end{equation}
 
-Stability analysis of such delayed systems reveals a restricted ``D-shaped'' stability region in the $K_P$-$K_D$ parameter space~\cite{peterka2002sensorimotor, masani2006controlling}. Crucially, as the feedback delay $\tau$ increases, this stability region shrinks.
+The stability of this active structure is governed by the dimensionless Bio-Gravitational Number $\mathcal{B}_g$:
+\begin{equation}
+\mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}.
+\label{eq:bg_number_info}
+\end{equation}
+Crucially, when $\mathcal{B}_g > 1$, the biological system effectively dominates gravitational mechanics. At the molecular level, this coupling relies on the structural rigidity of patterning transcription factors; AlphaFold structural analysis of critical HOX proteins (e.g., HOXC8, UniProt P31273; HOXB13, UniProt Q92826) reveals conserved, high-confidence DNA-binding domains capable of enforcing the sharp spatial identity boundaries required by our field parameterization.
 
 During the adolescent growth spurt, the spine elongates rapidly. Because nerve conduction velocity in the extremities does not scale proportionately with rapid height increases~\cite{lang1985nerve, robinson2001nerve}, the absolute neural feedback delay $\tau$ increases significantly. We term this vulnerability the \textbf{Derivative Gain Trap}: derivative gains ($K_D$) that provide essential damping and stability during childhood become destabilizing as the delay $\tau$ crosses a critical threshold $\tau_c$.
 
@@ -40,8 +45,8 @@ When the neural delay exceeds the critical threshold ($\tau > \tau_c$), the syst
 
 Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} \sin\left(\frac{n\pi s}{L}\right)$, the characteristic equation is:
 \begin{equation}
-\rho A \lambda^2 + \eta \lambda + EI \left(\frac{n\pi}{L}\right)^4 + (K_P + \lambda K_D) e^{-\lambda \tau} = 0
-\label{eq:characteristic_dde}
+\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
+\label{eq:kappa_rest_iec}
 \end{equation}
 
 For purely imaginary roots $\lambda = \pm i\omega$ (defining the bifurcation boundary), the system transitions from damped stability to active oscillation. This mathematical control theory precisely explains why Adolescent Idiopathic Scoliosis (AIS) uniquely coincides with the rapid adolescent growth spurt: it is the exact developmental window where increasing $\tau$ pushes the neuromotor control system across the Hopf bifurcation boundary.

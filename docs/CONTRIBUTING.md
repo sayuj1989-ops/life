@@ -8,10 +8,10 @@ Understanding the layout is crucial for placing your code correctly:
 
 *   **`src/`**: **Core Library.** Contains polished, tested, and reusable packages. This code is held to the highest standard.
 *   **`research/`**: **Exploratory Space.** Contains active research scripts, one-off experiments, and hypothesis testing code. While flexible, code here should still be readable and roughly typed.
-*   **`tests/`**: **Test Suite.** Mirrors the structure of `src/`. All core functionality must have accompanying tests.
-*   **`docs/`**: **Documentation.** Project plans, theory notes, and API references.
+*   **`tests/`**: **Test Suite.** Mirrors the structure of `src/`. Core functionality should have accompanying tests.
+*   **`docs/`**: **Documentation.** Project plans, reproducibility notes, and API references.
 *   **`scripts/`**: **Utilities.** Helper scripts for maintenance, data processing, or running simulations.
-*   **`data/`**: **Inputs.** Raw and processed data files. (Note: Large files should not be committed).
+*   **`data/`**: **Inputs.** Raw and processed data files. Large generated files should not be committed unless they are a canonical input dataset.
 *   **`archive/`**: **Legacy.** Deprecated code and old experiments. Do not modify files here.
 
 ## Development Workflow
@@ -30,7 +30,7 @@ We enforce strict standards to ensure uniformity.
 
 ### 1. Formatting
 We use **Black** for code formatting.
-*   Line length: 88 characters.
+*   Line length: 100 characters.
 *   Double quotes for strings.
 *   Run: `black .`
 
@@ -41,8 +41,8 @@ We use **Ruff** for linting.
 
 ### 3. Typing
 We use **MyPy** for static type checking.
-*   **Strict Typing**: All function arguments and return values must have type hints.
-*   Use `typing.Optional`, `typing.List`, `typing.Dict`, etc., or standard collection types (Python 3.9+).
+*   **Strict Typing**: Aim for type hints on public function arguments and return values.
+*   Use `typing.Optional`, `typing.List`, `typing.Dict`, etc., or standard collection types (Python 3.10+).
 *   Use `numpy.typing.NDArray` for arrays.
 
 **Example:**
@@ -95,8 +95,8 @@ def solve_system(a: float, b: float) -> float:
 We use **pytest**.
 *   **Unit Tests**: Place in `tests/`.
 *   **Naming**: Files must start with `test_`. Functions must start with `test_`.
-*   **Coverage**: Aim for high coverage on `src/` modules.
-*   **Run**: `pytest`
+*   **Coverage**: Aim for high coverage on `src/` modules and keep core checks fast.
+*   **Run**: `make test` for the repository's core validation subset, or `pytest -q` when you want the full test suite.
 
 ## Versioning
 
@@ -105,11 +105,11 @@ We follow **Semantic Versioning (SemVer)** (e.g., `MAJOR.MINOR.PATCH`).
 *   **MINOR**: Backwards-compatible functionality additions.
 *   **PATCH**: Backwards-compatible bug fixes.
 
-The single source of truth for the version number is **`pyproject.toml`**. This version is automatically mirrored in `src/spinalmodes/__init__.py`.
+The single source of truth for the version number is **`pyproject.toml`**. Keep `src/spinalmodes/__init__.py` in sync when releasing.
 
 ## Environment
 
-*   Manage dependencies via `requirements.txt` or `pyproject.toml`.
+*   Manage dependencies via `requirements.txt` and `pyproject.toml`.
 *   Always use a virtual environment (`.venv`, `env`, or `conda`).
 
 ---

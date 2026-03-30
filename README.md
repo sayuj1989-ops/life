@@ -1,6 +1,6 @@
 # Biological Countercurvature of Spacetime
 
-**An Information-Cosserat Framework for Spinal Geometry**
+**An Information--Cosserat Framework for Spinal Geometry**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -25,13 +25,12 @@ The repository is organized into clear functional domains:
 
 ```
 .
-├── theory/                       # Theoretical frameworks, derivations, and living hypotheses
-│
 ├── src/                          # Core Python packages
 │   ├── spinalmodes/              # Main IEC model and Cosserat implementation
-│   └── afcc/                     # Protein structure utilities
+│   └── alphafold/                # AlphaFold/EBI client utilities
 │
-├── research/                     # Active research modules (e.g., AlphaFold Countercurvature)
+├── research/                     # Active research modules
+│   └── alphafold_countercurvature/
 │
 ├── manuscript/                   # Camera-ready manuscript sources
 │   ├── main.tex                  # Main LaTeX file
@@ -60,8 +59,8 @@ cd life
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install dependencies
-pip install -r requirements.txt
+# Install the editable package plus local validation dependencies
+make install
 ```
 
 ### 2. Run a Basic Simulation
@@ -69,12 +68,30 @@ pip install -r requirements.txt
 To run the minimal Elastica experiment utilizing the Counter-Curvature Rod System:
 
 ```bash
-python scripts/experiment_minimal_elastica.py
+python scripts/experiments/experiment_minimal_elastica.py
 ```
 
-### 3. AlphaFold Counter-Curvature Analysis
+### 3. Validate the Environment
 
-For protein structure analysis steps, refer to `research/alphafold_countercurvature/README.md` (if available) or explore the module directly.
+```bash
+make smoke
+make test
+```
+
+These targets exercise the core local validation path used for this repository snapshot.
+
+### 4. Build the Manuscript
+
+```bash
+cd manuscript
+make all
+```
+
+This requires a local TeX toolchain (`pdflatex` and `bibtex`, or `latexmk`).
+
+### 5. AlphaFold Counter-Curvature Analysis
+
+For protein structure analysis steps, refer to [research/alphafold_countercurvature/README.md](research/alphafold_countercurvature/README.md) or explore the module directly.
 
 ---
 

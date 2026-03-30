@@ -20,12 +20,11 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -U pip
       - run: python -m pip install -e .
-      - run: python -m pip install -U pytest pytest-cov
-      - run: pytest -q --cov=spinalmodes
-      - run: python -m pip install seaborn pyyaml
-      - run: pytest research/alphafold_countercurvature/tests
+      - run: python -m pip install -U pytest pytest-cov build seaborn pyyaml
+      - run: python -m pytest -q --cov=spinalmodes --cov=research/alphafold_countercurvature/src/afcc --cov-report=term-missing
       - name: Smoke figures
         run: |
+          python -m spinalmodes.cli version
           python scripts/validation/validate_solvers.py
           ls -lh figures | sed -n '1,50p'
 

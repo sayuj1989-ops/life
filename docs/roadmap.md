@@ -3,14 +3,14 @@
 **Target:** *Spine* Submission (IF: 3.30, Q1, H-index: 300)
 **Strategy:** "A computational framework predicting adolescent scoliosis onset" with clinical validation against published cohort data.
 **Timeline:** 6 Weeks (Feb 23 - April 06, 2026)
-**Latest Progress Update:** [docs/progress_update_2026-03-22.md](progress_update_2026-03-22.md)
+**Latest Progress Update:** [docs/progress_update_2026-03-30.md](progress_update_2026-03-30.md)
 
 ## Phase 1: Computational Framework (Weeks 1-2)
 
 - [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
 - [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (`experiment_anisotropy_rescue.py`).
 - [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
-- [ ] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
+- [x] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
 
 ## Phase 2: Clinical Validation (Weeks 3-4)
 

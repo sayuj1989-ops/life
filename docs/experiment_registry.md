@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-03-30
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.

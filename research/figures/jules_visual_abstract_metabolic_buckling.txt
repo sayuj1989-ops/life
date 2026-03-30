@@ -1,0 +1,9 @@
+Visual Abstract: Biological Countercurvature of Spacetime and Metabolic Buckling
+
+Core Narrative: Human posture is not a static given, but an active, energy-intensive process of "counter-curving" spacetime against gravity, which can fail during rapid growth.
+
+Key Visual Panels/Elements:
+1.  **The Allometric Trap:** Humans occupy a unique parameter space ($\mathcal{B}_g \approx 0.01$) where structural stability is entirely dependent on active metabolic maintenance, unlike quadrupeds. Represent this with a scaling curve or a silhouette showing bipedal vulnerability.
+2.  **The Energy Deficit Window:** During the adolescent growth spurt, metabolic demand for maintenance scales as $L^4$, while supply scales as $L^2$. Show a growing spine with a widening gap between a "Demand" curve and a "Supply" curve.
+3.  **Derivative Gain Trap & Metabolic Buckling:** As length increases, neural delay ($\tau$) increases. The system's dampening mechanism becomes destabilizing, leading to the spine collapsing from a healthy S-curve into a scoliotic 3D helical deformity. Show a clear transition from a stable S-curve to a buckled helix, annotated with the instability criterion ($\mathcal{S}_{co} > \mathcal{S}_{crit}$).
+4.  **Overall Theme:** The unifying theme is the "Information-Elasticity Coupling" (IEC) failing under metabolic constraints, visualized as the "Biological Metric" decoupling from the "Gravitational Metric".

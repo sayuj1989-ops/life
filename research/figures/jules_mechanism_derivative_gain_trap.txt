@@ -1,0 +1,12 @@
+The "Derivative Gain Trap" Mechanism:
+During the adolescent growth spurt, a critical instability emerges due to a delay in the sensory feedback loop.
+
+1.  **Normal Growth:** The spine maintains stability against gravity via a predictive control policy involving proprioception (sensors like PIEZO2) and muscle actuation. The control system uses a derivative gain ($K_D$) to dampen oscillations.
+2.  **Adolescent Growth Spurt:** Spinal length ($L$) increases rapidly. This structural scaling drastically increases the neural transport delay ($\tau$) because the physical distance signals must travel increases.
+3.  **The Trap:** As the delay ($\tau$) exceeds a critical threshold ($\tau_{crit}$), the previously stabilizing derivative gain ($K_D$) becomes destabilizing. The dampening force now acts out of phase with the spinal oscillations, injecting energy into the system rather than removing it.
+4.  **Metabolic Buckling:** This out-of-phase feedback leads to a supercritical Hopf bifurcation. The system enters a limit cycle of expanding oscillations, which structurally manifests as scoliotic buckling (a 3D helical deformity) due to the energetic cost of control outstripping metabolic supply.
+
+Visual Elements:
+-   Show a control block diagram or causal loop.
+-   Highlight the feedback delay ($\tau$) scaling with Length ($L$).
+-   Show a transition from stable damped oscillations (small $L$, small $\tau$) to unstable growing oscillations (large $L$, large $\tau$) due to the out-of-phase $K_D$ gain.

@@ -694,6 +694,21 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.40. The Morphoelastic Retardation Number ($\mathcal{R}_{morpho}$)
+
+We propose that the balance between extracellular matrix (ECM) stress relaxation and bone growth rate governs the symmetric development of the spine. We define $\mathcal{R}_{morpho}$ as the ratio of the ECM viscoelastic relaxation time to the characteristic time scale of somatic growth.
+
+$$ \mathcal{R}_{morpho} = \frac{\tau_{relax}}{\tau_{growth}} $$
+
+*   **Symbols**:
+    *   $\tau_{relax}$: The characteristic viscoelastic relaxation time of the spinal ECM (e.g., intervertebral disc and growth plate) $[T]$.
+    *   $\tau_{growth}$: The characteristic time scale of vertebral bone growth and remodeling, inversely proportional to Peak Height Velocity (PHV) $[T]$.
+*   **Dimensions**: $[1]$ (Dimensionless).
+*   **Physical Interpretation**:
+    *   $\mathcal{R}_{morpho} \ll 1$: The tissue relaxes applied mechanical stresses much faster than the bone grows. This represents a highly adaptive state where residual stresses are rapidly dissipated, maintaining symmetric structural growth.
+    *   $\mathcal{R}_{morpho} \ge 1$: The ECM's ability to dissipate stress is impaired. Residual mechanical stresses become trapped, generating chronic mechanotransduction signals that bias the anisotropic growth tensor $\mathbf{\Omega}$, leading to a counter-curvature buckling event.
+*   **Measurable Proxy**: The ratio of the ECM stress relaxation half-life (measured via micro-indentation of disc explants) to the somatic growth rate (Peak Height Velocity).
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -1046,6 +1061,16 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Hypothesis**: Pharmacologically inhibiting angiogenesis (e.g., via VEGFR2 blockade) under mechanical loading will exacerbate the asymmetric metabolic deficit ($\mathbf{M}_{curve}$ effect) and accelerate scoliotic progression by preventing vascular adaptation.
 *   **Data Needed**: Measurement of Cobb angle progression and vertebral wedging in a mechanically loaded mouse model treated with a VEGFR inhibitor (e.g., SU5416) versus vehicle control.
 *   **Refutation**: If the progression of the curve is identical or slower with VEGFR inhibition, the adaptive vascular response is not a critical buffering mechanism against mechanically-induced hypoxia. (Reference: Grosso et al., 2017).
+
+### Test BK: The Viscoelastic Mismatch Prediction
+*   **Hypothesis**: The onset of scoliotic buckling corresponds to individuals with an elevated Morphoelastic Retardation Number ($\mathcal{R}_{morpho} \ge 1$), where residual mechanical stress cannot dissipate fast enough to match rapid somatic growth during Peak Height Velocity.
+*   **Data Needed**: Longitudinal measurements of ECM stress relaxation times ($\tau_{relax}$) from intervertebral disc biopsies and somatic growth rates ($\tau_{growth}^{-1}$) in an adolescent cohort prior to scoliosis onset.
+*   **Refutation**: If scoliotic buckling occurs in individuals with $\mathcal{R}_{morpho} \ll 1$ (rapid stress relaxation relative to growth), then trapped residual stress is not the causal driver of the deformity. (Reference: Ambrosi et al., 2011).
+
+### Test BL: The Crosslink-Induced Buckling
+*   **Hypothesis**: Artificially increasing $\mathcal{R}_{morpho}$ during peak growth will increase the incidence and severity of asymmetric spinal curvature.
+*   **Data Needed**: Measurement of spinal curvature in a rapidly growing animal model where ECM relaxation time ($\tau_{relax}$) is artificially extended using non-lethal pharmacological crosslinkers (e.g., advanced glycation end-products) without altering initial stiffness.
+*   **Refutation**: If artificially extending the ECM relaxation time does not induce asymmetric spinal growth, the morphoelastic retardation mechanism is falsified. (Reference: Taber, 1995).
 
 ## 7. References
 

@@ -1,69 +1,88 @@
 # Gravity as an Optimization Process: 12-Week Research Schedule
 
-**Principal Investigator:** Jules (AI)
-**Date:** 2026-03-02
-**Status:** Approved for Execution
-
-## Executive Summary
-
-This schedule outlines a rigorous 12-week program to validate the "Gravity as an Optimization Process" framework for spinal morphogenesis. We posit that the spine is the result of a Gradient Descent Optimization where the Cost Function $U_{CC}$ (Total Potential Energy) is minimized by biological actuators (growth/muscle) guided by mechanosensory gradients. Scoliosis represents a failure of this optimizer—either trapping in a local minimum or experiencing an exploding gradient due to sensory noise.
-
-The program integrates computational modeling (PyElastica) with theoretical formalism ($\mathcal{B}_g$, Vector-Scalar Mismatch) and culminates in specific wet-lab validation designs.
+**Principal Investigator:** Jules (AI Assistant)
+**Date:** 2026-03-08
+**Focus:** Testing the "Gradient Descent" Hypothesis of Spinal Alignment
 
 ---
 
-## Phase 1: Computational Proof-of-Concept (Weeks 1-4)
+## Summary
 
-**Objective:** Define the "Cost Function" explicitly and simulate the baseline "Optimization Failure" modes using PyElastica. Establish the Bio-Gravitational Number $\mathcal{B}_g$.
+This research schedule outlines a 12-week program to validate the "Gravity as an Optimization Process" hypothesis. The core premise is that spinal alignment is a gradient descent process minimizing a cost function $U_{CC}$ (Counter-Curvature Energy), where failure modes (scoliosis) arise from "exploding gradients" or "learning rate" desynchronization (Spinal Jetlag).
 
-| Week | Focus | Task | Hypothesis | Tone |
-| :--- | :--- | :--- | :--- | :--- |
-| **1** | **The Cost Function Landscape** | **Develop `scripts/visualize_cost_landscape.py`**: Utilize `pyelastica_bridge.compute_U_CC` to map $U_{CC}$ vs. Curvature ($\kappa$) and Torsion ($\tau$). Verify that the healthy spine sits in a global minimum and scoliosis is a local minimum. | **H_2026_03_03_GlobalMinimum**: The healthy spine corresponds to the global minimum of $U_{CC} = U_{grav} + U_{elastic} - U_{info}$. | rigorous, foundational, referencing `pyelastica_bridge.py` |
-| **2** | **The Bio-Gravitational Number** | **Develop `scripts/experiment_cross_species_scaling.py`**: Calculate $\mathcal{B}_g = \frac{\chi_M \langle \nabla I \rangle}{\rho A g L^2}$ (defined in `formalism_01.md`) for 9 species (Mouse to Whale). Determine if $\mathcal{B}_g \approx 1$ is conserved across scales. | **H_2026_03_04_Bg_Conservation**: $\mathcal{B}_g$ is an invariant dimensionless number across vertebrate species, indicating evolutionary tuning. | comparative, quantitative, grounded in `formalism_01.md` |
-| **3** | **Optimization Failure (Scoliosis)** | **Refine `scripts/experiment_optimization_failure.py`**: Simulate "Exploding Gradient" by introducing sensory noise $\eta$ into the feedback loop: $\chi_{eff} = \chi_M (1 + \eta)$. Sweep noise amplitude vs. $\mathcal{B}_g$. | **H_2026_03_05_Noise_Induced_Buckling**: High sensory noise ($\eta > \eta_{crit}$) causes the optimizer to diverge (scoliosis) even with sufficient muscle strength. | chaotic, critical |
-| **4** | **Mutation Mapping** | **Update `experiment_optimization_failure.py`**: Map specific gene variants to model parameters (e.g., FBN1 $\to$ Stiffness $\downarrow$, LBX1 $\to$ Proprioceptive Gain $\uparrow$). | **H_2026_03_06_Genotype_Phenotype**: Specific genetic defects map to distinct failure modes (e.g., "Buckling" vs. "Hunting") in the optimization landscape. | integrative, predictive |
+The schedule is divided into three phases:
+1.  **Computational Proof-of-Concept**: Establishing the cost function and simulating failure modes.
+2.  **The "Spinal Jetlag" Simulation**: Integrating circadian modulation and testing desynchronization.
+3.  **Experimental Validation Design**: translating computational findings into wet-lab protocols.
 
----
-
-## Phase 2: The "Spinal Jetlag" Simulation (Weeks 5-8)
-
-**Objective:** Integrate the Circadian Clock (BMAL1) as a time-dependent "Learning Rate". Simulate the consequences of desynchronization (Jetlag) and Vector-Scalar Mismatch (Microgravity).
-
-| Week | Focus | Task | Hypothesis | Tone |
-| :--- | :--- | :--- | :--- | :--- |
-| **5** | **Circadian Learning Rate** | **Execute `scripts/experiment_spinal_jetlag.py` (Baseline)**: Implement $\chi_\kappa(t) = \chi_0 (1 + A \cos(\omega t + \phi))$ via `pyelastica_bridge.CircadianParams`. Verify that phase-locking ($\phi=0$) minimizes energy cost $U_{CC}$. | **H_2026_02_17_SpinalJetlag**: The circadian clock modulates the "learning rate" of spinal adaptation; synchronization with gravity ($\phi=0$) is energetically optimal. | temporal, rhythmic, referencing `pyelastica_bridge.py` |
-| **6** | **Desynchronization Drift** | **Run `experiment_spinal_jetlag.py` (Phase Sweep)**: Sweep phase lag $\phi \in [0, \pi]$. Quantify the accumulation of geometric error (Cobb angle) as $\phi \to \pi$ (Shift Work / Jetlag). | **H_2026_03_07_Phase_Error**: Constant phase mismatch leads to accumulation of asymmetric growth, manifesting as progressive curvature. | alarming, precise |
-| **7** | **Vector-Scalar Mismatch** | **Run `experiment_spinal_jetlag.py` (Microgravity)**: Simulate **High Scalar / Zero Vector**: Set $g \approx 0$ (Vector $\to$ 0) but keep $\chi_0$ high (Scalar Pressure $\to$ High). Compare to "decay" model where $\chi_0 \to 0$. Reference `formalism_01.md` Section 2.7 ($\Phi_{VS}$). | **H_2026_03_08_VS_Mismatch**: The "Confusion" state (High Signal, No Load) is more destabilizing than "Silence" (No Signal, No Load) due to sensor noise amplification. | theoretical, novel, referencing `formalism_01.md` |
-| **8** | **The Exploding Gradient** | **Simulate `Exploding Gradient` in Time**: Combine Phase Lag ($\phi=\pi$) with High Noise ($\eta$). Test if the "Optimizer" diverges exponentially (rapid progression). | **H_2026_03_09_Synergistic_Failure**: The combination of desynchronization and sensory noise triggers a "runaway" scoliosis (Exploding Gradient). | catastrophic, systemic |
-| **8b** | **Peristaltic Waves** | **Execute `scripts/experiment_peristaltic_spine.py`**: Model stiffness as a traveling wave $\chi(s,t) = \chi_0(1 + A \cos(ks - \omega t))$. Sweep wavenumber $k$ and speed $v$. | **H_2026_03_14_Peristaltic_Buckling**: Static spatial phase disorder ($k>0, v=0$) is more destabilizing than global jetlag ($k=0$), while traveling waves ($v>0$) may induce mode switching. | dynamic, wave-mechanics |
+Key theoretical integrations include the **Bio-Gravitational Number ($\mathcal{B}_g$)** as a stability criterion and the **Vector-Scalar Mismatch** as a driver of microgravity-induced degeneration.
 
 ---
 
-## Phase 3: Experimental Validation Design (Weeks 9-12)
+## 12-Week Schedule
 
-**Objective:** Design specific wet-lab experiments to validate computational predictions, focusing on the Clock, Metabolic Limits, and Vector-Scalar sensing.
+### Phase 1: Computational Proof-of-Concept (Weeks 1-4)
+*Goal: Define the "Cost Function" explicitly and simulate "Optimization Failure".*
 
-| Week | Focus | Task | Hypothesis | Tone |
-| :--- | :--- | :--- | :--- | :--- |
-| **9** | **Test T_Clock** | **Design "Clock Rescue" Experiment**: Outline protocol for culturing *Per2::Luc* IVD explants under cyclic loading (1g) vs. static (0g). Test if 1Hz loading rescues amplitude in 0g. | **H_2026_03_10_Mechanical_Entrainment**: Mechanical loading is the primary Zeitgeber for the spinal clock; its absence causes damping of BMAL1. | experimental, biological |
-| **10** | **Metabolic Limits** | **Design "Hyperoxic Rescue" / "Glycolytic Shift"**: Protocol for Zebrafish in Hyperoxic ($120\% O_2$) vs. Hypoxic water. Measure $L_{crit}$ (onset of curvature). Validates $\mathcal{K}_{Eu}$ from `formalism_01.md`. | **H_2026_03_11_Metabolic_Constraint**: Increasing supply ($O_2$) extends the stability window ($L_{crit}$), validating the $\mathcal{K}_{Eu}$ number. | metabolic, physiological, referencing `formalism_01.md` |
-| **11** | **Vector-Scalar Separation** | **Design "Centrifuge + Swelling"**: Factorial design using (1) Centrifuge (Vector $\uparrow$) and (2) Hypo-osmotic media (Scalar $\uparrow$). Test if $\Phi_{VS}$ mismatch drives curvature. | **H_2026_03_12_VS_Independence**: The spine requires coincident Vector and Scalar signals; independent modulation induces "hallucinations" (curvature). | physical, dissociative |
-| **12** | **Synthesis & Manuscript** | **Update `docs/theory/formalism_01.md` and `nature_manuscript.tex`**: Integrate results from Phases 1-3. Generate final Figures (Phase Diagram, Jetlag Cycles, Scaling). Submit. | **H_2026_03_13_Unified_Theory**: Gravity is the optimizer, and scoliosis is the failure of this optimization process. | conclusive, authoritative |
+| Week | Focus | Task | Hypothesis / Theory |
+| :--- | :--- | :--- | :--- |
+| **1** | **The Cost Function ($U_{CC}$)** | Verify `compute_U_CC` in `src/spinalmodes/countercurvature/pyelastica_bridge.py`. Visualize energy landscapes for straight vs. scoliotic spines using `experiment_optimization_failure.py`. | **Hypothesis:** The organism minimizes $U_{CC} = U_{grav} + U_{elastic} - U_{info}$. Scoliosis represents a local minimum where $U_{info}$ gain outweighs elastic cost. |
+| **2** | **Optimization Failure** | Run `scripts/experiment_optimization_failure.py` to map the "Exploding Gradient" region in $(\chi_\kappa, \sigma_{noise})$ space. | **Exploding Gradient:** High learning rates ($\chi_\kappa$) combined with sensory noise ($\sigma_{noise}$) lead to instability. |
+| **3** | **The Bio-Gravitational Number ($\mathcal{B}_g$)** | Create `scripts/calculate_bio_gravitational_number.py` to compute $\mathcal{B}_g = \frac{\chi_M \langle |\nabla I| \rangle}{\rho A g L^2}$ for human, zebrafish, and mouse parameters. | **Stability Criterion:** $\mathcal{B}_g > 1$ is required for stable counter-curvature (Formalism 2.3). If $\mathcal{B}_g < 1$, gravity dominates (buckling). |
+| **4** | **Vector-Scalar Mismatch** | Simulate "Microgravity" using `pyelastica_bridge.py` by setting `gravity=0.0` (Vector $\to 0$) but maintaining `active_curvature` (Scalar signal). Introduce "Sensory Confusion" noise. | **Mismatch Hypothesis:** In microgravity, the vector signal vanishes ($\Phi_{VS} = \frac{|\mathbf{S}_{vec}|}{S_{scalar}} \to 0$), but scalar growth continues, leading to geometric hallucination. |
+
+### Phase 2: The "Spinal Jetlag" Simulation (Weeks 5-8)
+*Goal: Integrate a time-dependent "Learning Rate" (Circadian Clock) and test desynchronization.*
+
+| Week | Focus | Task | Hypothesis / Theory |
+| :--- | :--- | :--- | :--- |
+| **5** | **Circadian Integration** | Verify `CircadianParams` in `pyelastica_bridge.py`. Implement a "Clock Robustness" test where phase $\phi$ is perturbed. | **Gating:** The learning rate $\chi_\kappa(t)$ is gated by the circadian clock to coincide with activity/loading. |
+| **6** | **Spinal Jetlag Simulation** | Run `scripts/experiment_spinal_jetlag.py`. Sweep phase offset $\phi$ from 0 to $\pi$ (anti-phase). | **Jetlag Hypothesis:** Desynchronization ($\phi \approx \pi$) leads to destructive interference ($\chi_\kappa(t) \approx 0$), suppressing the shape-maintenance signal. |
+| **7** | **Frequency Mismatch** | Modify `experiment_spinal_jetlag.py` to test mismatch between Loading Frequency ($f_{load}$) and Clock Frequency ($f_{clock}$). | **Entrainment:** The clock must be entrained to the loading cycle. Mismatch ($f_{load} \neq f_{clock}$) breaks the "Tunable Antenna" (Formalism 2.17). |
+| **8** | **Phase Space Analysis** | Generate phase diagrams of Cobb Angle vs. Phase Lag ($\phi$) and Amplitude ($A$). Identify the "Safe Zone" for shift work/spaceflight. | **Critical Threshold:** There exists a critical phase lag $\phi_c$ beyond which stability is lost regardless of mean $\chi_\kappa$. |
+
+### Phase 3: Experimental Validation Design (Weeks 9-12)
+*Goal: Outline specific wet-lab experiments to validate computational predictions.*
+
+| Week | Focus | Task | Hypothesis / Theory |
+| :--- | :--- | :--- | :--- |
+| **9** | **Test T_Clock Design** | Design experiment "Test T_Clock" (Validation of Circadian Integration). Protocol: Culture PER2::LUC spine explants under cyclic loading with phase shifts. | **Prediction:** Loading in anti-phase to the clock will dampen PER2 amplitude and downregulate *Col1a1*. (Reference: `experiment_spinal_jetlag.py` results). |
+| **10** | **Vector-Scalar Experiments** | Design "Test K" (Mismatch Rescue) and "Test L" (Scalar Overload). Protocol: Zebrafish in clinostat with magnetic tweezers (artificial vector). | **Prediction:** Restoring the vector component ($\mathbf{S}_{vec}$) artificially in microgravity should rescue spinal tone. |
+| **11** | **Cross-Species $\mathcal{B}_g$** | Refine `calculate_bio_gravitational_number.py` to ingest allometric data from literature (West et al., 1997) for broad verification. | **Scaling Law:** $\mathcal{B}_g$ should remain $\approx 1$ across scales (mouse to human) despite massive $L$ differences, implying $\chi_M \propto L^4$. |
+| **12** | **Synthesis & Proposal** | Synthesize results into a "Gravity as Optimization" paper outline. Prepare Grant Proposal for "Spinal Jetlag" investigation. | **Unified Theory:** Gravity is not just a load, but the primary training signal for the spinal optimization algorithm. |
 
 ---
 
 ## Risk Assessment
 
-### Theoretical Bottlenecks
-*   **Dimensional Analysis:** The scaling of $\chi_M$ with species size $L$ is hypothetical. If $\chi_M$ does not scale as $L^3$ (matching Torque $L^4$ / Curvature $L^{-1}$), $\mathcal{B}_g$ may not be invariant.
-    *   *Mitigation:* Use allometric data from existing literature (e.g., focused on muscle cross-section) to constrain parameters in `formalism_01.md`.
-*   **PyElastica Constraints:** Simulating "growth" (weeks) using a dynamic solver (seconds) requires careful time-scaling. The "Learning Rate" analogy must be mathematically rigorous.
-    *   *Mitigation:* Explicitly define the mapping $t_{sim} \to t_{dev}$ using the Morphogenetic Deborah Number $\mathcal{D}_{morph}$ defined in `formalism_01.md`.
+### 1. Theoretical Bottlenecks
+*   **Definition of Information Energy ($U_{info}$):** The conversion of "Information Alignment" into Joules (Energy) is phenomenological.
+    *   *Mitigation:* Use relative/normalized energy units and focus on the *ratio* ($U_{info} / U_{elastic}$) rather than absolute values.
+*   **Vector-Scalar Separation:** distinguishing "Vector" (Gravity) from "Scalar" (Pressure) signals in biological tissues is complex as they often co-vary.
+    *   *Mitigation:* Focus on Microgravity (where Vector $\to 0$ but Scalar persists) as the clean separation case.
 
-### Experimental Risks (Design Phase)
-*   **Vector-Scalar Decoupling:** Finding a pure "Scalar" signal that doesn't induce "Vector" strains is difficult in 1g. Osmotic swelling induces isotropic stress, but boundary conditions might create shear.
-    *   *Mitigation:* Use detailed FEA (Finite Element Analysis) to validate the "Scalar-ness" of the osmotic perturbation before wet-lab.
+### 2. Computational Risks
+*   **PyElastica Stability:** Long-duration simulations (weeks of biological time) may be computationally prohibitive or accumulate numerical error.
+    *   *Mitigation:* Use "Quasi-static" approximations where we simulate discrete snapshots of equilibrium rather than continuous time evolution, as done in `experiment_spinal_jetlag.py`.
+*   **Parameter Sensitivity:** The "Exploding Gradient" might be too narrow a region to find easily.
+    *   *Mitigation:* Use the broad parameter sweeps defined in Phase 1 Week 2 to bracket the instability before fine-tuning.
 
-### "Optimization" Analogy
-*   **Local Minima:** The biological system is open and dissipative. A "local minimum" in potential energy might not correspond to a stable biological state if metabolic input ceases.
-    *   *Mitigation:* Ensure the Cost Function $U_{CC}$ includes metabolic terms (Maintenance Cost) to reflect the open nature of the system.
+### 3. Experimental Feasibility
+*   **Clinostat + Tweezers:** Integrating magnetic tweezers into a clinostat is engineering-heavy.
+    *   *Mitigation:* Propose alternative "Vector" rescue using optical tweezers or directional light (phototropism) if magnetic is not feasible.
+
+---
+
+## References to Codebase
+
+*   **`src/spinalmodes/countercurvature/pyelastica_bridge.py`**:
+    *   Core physics engine.
+    *   `CounterCurvatureRodSystem`: Implements the rod model.
+    *   `CircadianParams`: Handles time-dependent modulation.
+    *   `compute_U_CC`: Calculates the Cost Function.
+*   **`scripts/experiment_optimization_failure.py`**:
+    *   Implements Phase 1, Week 2 (Exploding Gradient).
+*   **`scripts/experiment_spinal_jetlag.py`**:
+    *   Implements Phase 2, Week 6 (Spinal Jetlag).
+*   **`docs/theory/formalism_01.md`**:
+    *   Defines $\mathcal{B}_g$, $\Phi_{VS}$, and theoretical foundations.

@@ -179,45 +179,63 @@ def main():
         curvature = data_dict['curvature']
 
         # 1. pLDDT Plot
-        plt.figure(figsize=(8, 3))
-        plt.plot(plddt, color='blue', alpha=0.7)
-        plt.title(f"{symbol} - Per-Residue Confidence (pLDDT)")
-        plt.xlabel("Residue Index")
-        plt.ylabel("pLDDT")
-        plt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
-        plt.legend(loc='upper right')
-        plt.tight_layout()
-        plt.savefig(os.path.join(FIG_DIR, f"{symbol}_plddt.png"))
-        plt.close()
+        if not hasattr(main, 'fig_plddt'):
+            main.fig_plddt, main.ax_plddt = plt.subplots(figsize=(8, 3))
+        else:
+            main.ax_plddt.clear()
+
+        main.ax_plddt.plot(plddt, color='blue', alpha=0.7)
+        main.ax_plddt.set_title(f"{symbol} - Per-Residue Confidence (pLDDT)")
+        main.ax_plddt.set_xlabel("Residue Index")
+        main.ax_plddt.set_ylabel("pLDDT")
+        main.ax_plddt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
+        main.ax_plddt.legend(loc='upper right')
+        main.fig_plddt.tight_layout()
+        main.fig_plddt.savefig(os.path.join(FIG_DIR, f"{symbol}_plddt.png"))
 
         # 2. Curvature Plot (Only for high-confidence regions pLDDT >= 70)
         hc_mask = plddt >= 70
 
         if np.any(hc_mask) and np.any(~np.isnan(curvature[hc_mask])):
-            plt.figure(figsize=(8, 3))
+            if not hasattr(main, 'fig_curv'):
+                main.fig_curv, main.ax_curv = plt.subplots(figsize=(8, 3))
+            else:
+                main.ax_curv.clear()
 
             # Create a masked array to avoid plotting lines across low-confidence gaps
             kappa_plot = np.where(hc_mask, curvature, np.nan)
 
-            plt.plot(kappa_plot, color='purple', alpha=0.8)
-            plt.title(f"{symbol} - Curvature Along Backbone (High Confidence Only)")
-            plt.xlabel("Residue Index")
-            plt.ylabel("Curvature (κ)")
-            plt.tight_layout()
-            plt.savefig(os.path.join(FIG_DIR, f"{symbol}_curvature.png"))
-            plt.close()
+            main.ax_curv.plot(kappa_plot, color='purple', alpha=0.8)
+            main.ax_curv.set_title(f"{symbol} - Curvature Along Backbone (High Confidence Only)")
+            main.ax_curv.set_xlabel("Residue Index")
+            main.ax_curv.set_ylabel("Curvature (κ)")
+            main.fig_curv.tight_layout()
+            main.fig_curv.savefig(os.path.join(FIG_DIR, f"{symbol}_curvature.png"))
 
     # Only plot PAE for top 3 interesting ones to keep minimal plots
     interesting_symbols = ["FN1", "ITGB1", "SHH"]
+    fig_pae = None
+    ax_pae = None
     for symbol in interesting_symbols:
         if symbol in pae_data:
-            plt.figure(figsize=(5, 4))
-            plt.imshow(pae_data[symbol], cmap='viridis_r', vmin=0, vmax=31)
-            plt.colorbar(label='Expected Position Error (Å)')
-            plt.title(f"{symbol} PAE")
-            plt.tight_layout()
-            plt.savefig(os.path.join(FIG_DIR, f"{symbol}_pae.png"))
-            plt.close()
+            if fig_pae is None:
+                fig_pae, ax_pae = plt.subplots(figsize=(5, 4))
+            else:
+                ax_pae.clear()
+                # Remove old colorbar to avoid stacking
+                if len(fig_pae.axes) > 1:
+                    fig_pae.delaxes(fig_pae.axes[1])
+
+            im = ax_pae.imshow(pae_data[symbol], cmap='viridis_r', vmin=0, vmax=31)
+            fig_pae.colorbar(im, ax=ax_pae, label='Expected Position Error (Å)')
+            ax_pae.set_title(f"{symbol} PAE")
+            fig_pae.tight_layout()
+            fig_pae.savefig(os.path.join(FIG_DIR, f"{symbol}_pae.png"))
+
+    # Cleanup figures
+    if hasattr(main, 'fig_plddt'): plt.close(main.fig_plddt)
+    if hasattr(main, 'fig_curv'): plt.close(main.fig_curv)
+    if fig_pae is not None: plt.close(fig_pae)
 
     md_report.append("* Generated `*_plddt.png` for all proteins showing confidence vs threshold (70).")
     md_report.append("* Generated `*_pae.png` for key proteins (e.g. FN1, ITGB1) mapping domain interactions.")

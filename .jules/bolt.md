@@ -159,3 +159,9 @@ This reduced the metric calculation overhead significantly while preserving bit-
 ## 2025-02-28 - [Vectorize modulus condition in Hopf boundary solver]
 **Learning:** Python loops over NumPy arrays with conditional blocks are very slow. In `analytical_hopf_boundary` of `alphafold_pipeline_v2.py`, calculating values element-wise over an array of 6000 values took about ~1.1 seconds.
 **Action:** Vectorized the initial modulus condition mask `abs(lhs - rhs) / max(lhs, rhs) < 0.002` across the `omega` array before dropping into the `valid_omegas` loop to calculate the phase boundary. This lowered execution time per call to ~0.02s (~40-50x speedup).
+
+## 2026-03-30 - [Matplotlib Figure Reuse]
+
+**Learning:** Repeatedly calling `plt.figure()` and `plt.close()` inside a loop over N structures is slow and creates significant overhead for large datasets due to matplotlib's internal canvas initialization and teardown.
+
+**Action:** Initialized `fig, ax = plt.subplots()` once outside the plotting loops. Reused the axis object inside the loop by calling `ax.clear()` (or `line.set_data()` where appropriate) to reset the data while preserving the figure container. This reduces matplotlib overhead yielding a measurable speedup for the plotting stage while outputting identical figures.

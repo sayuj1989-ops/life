@@ -1,0 +1,4 @@
+Polygenic Stacking Threshold Model for Adolescent Idiopathic Scoliosis (AIS).
+The allometric trap creates a universal vulnerability window with a +5.3 ms baseline stability margin.
+Individual-specific genetic variants (e.g., reduced damping from COL1A1, increased delay from PIEZO2, shifted Kd from LBX1, increased load from PAX1) each narrow the margin.
+The combined polygenic trap flips the margin to -26.3 ms, explaining the 2-4% clinical prevalence.

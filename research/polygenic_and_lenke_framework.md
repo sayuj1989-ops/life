@@ -20,3 +20,13 @@ While the global stability margin captures the *onset* of instability, we must e
 - **Asymmetric loading**: Cardiac offset, aortic pulsation, handedness.
 
 These regional differences dictate which vertebral segments destabilize *first* once the global Hopf threshold is breached. The resulting curve morphology emerges as the dominant buckling eigenmode of the multi-segment system.
+
+Specifically, this spatially-resolved modeling naturally produces the **six distinct Lenke curve types**:
+- **Type 1 (Main Thoracic):** Emerges as the dominant eigenmode when thoracic buckling outpaces lumbar instability, reflecting a regional minimization of rib cage stiffening and localized structural asymmetry.
+- **Type 2 (Double Thoracic):** Represents coupled upper-thoracic and main-thoracic instability due to overlapping vulnerabilities in both proximal and mid-thoracic regions.
+- **Type 3 (Double Major):** Arises from simultaneous, coupled instability domains spanning both the thoracic and lumbar segments, where the instability drive ($Q$) is critically elevated in both regions concurrently.
+- **Type 4 (Triple Major):** A whole-spine cascade where the instability eigenmode encompasses the proximal thoracic, main thoracic, and lumbar segments simultaneously.
+- **Type 5 (Thoracolumbar/Lumbar):** Driven by primary vulnerability concentrated at the thoracolumbar junction transition zone (where baseline stiffness drops by up to 31.1%).
+- **Type 6 (Thoracolumbar/Lumbar - Main Thoracic):** A complex eigenmode resulting from interacting instability domains between a dominant thoracolumbar transition vulnerability and a secondary thoracic peak.
+
+By solving the generalized eigenvalue problem $(B y'')'' = \lambda Q y$ under these variable regional parameters, we mathematically map the single-link allometric trap (the upstream trigger) directly to the specific 3D clinical morphologies (the downstream patterning) observed in patients.

@@ -11,8 +11,8 @@ if [ ! -f outputs/experiments/polygenic_stacking_results.csv ]; then
     python3 scripts/experiments/experiment_polygenic_stacking.py
 fi
 
-if [ ! -f outputs/experiments/lenke_eigenmodes.csv ]; then
-    python3 scripts/experiments/experiment_lenke_classes.py
+if [ ! -f outputs/experiments/lenke_six_types.csv ]; then
+    PYTHONPATH=src:scripts:scripts/experiments:scripts/data_management python3 scripts/experiments/experiment_lenke_classes.py
 fi
 
 # Generate text descriptions for paperbanana
@@ -23,24 +23,26 @@ Individual-specific genetic variants (e.g., reduced damping from COL1A1, increas
 The combined polygenic trap flips the margin to -26.3 ms, explaining the 2-4% clinical prevalence.
 TXT
 
-cat << 'TXT' > jules_lenke_multi_segment.txt
-Multi-segment Cosserat Rod Modeling of Lenke Curve Types.
-Different Lenke types (1-6) emerge as distinct buckling eigenmodes dictated by regional parameter variations:
-- Thoracic rib cage buttressing (stiffness EI variations)
-- Thoracolumbar vulnerability (31.1% stiffness reduction)
-- Segmental mechanoreceptor density differences (proprioceptive delay τ)
-- Asymmetric loading
-These regional differences map global instability onset to specific 3D spatial curve morphologies.
+cat << 'TXT' > jules_lenke_6_types_abstract.txt
+Multi-segment Cosserat Rod Modeling of all 6 Lenke Curve Types.
+Different Lenke types (1-6) emerge as distinct, dominant buckling eigenmodes dictated by spatial parameter variations:
+- Main Thoracic (Type 1): Thoracic buckling dominates due to minimum rib cage buttressing.
+- Double Thoracic (Type 2): Upper and main thoracic vulnerability.
+- Double Major (Type 3): Coupled instability across the thoracic and lumbar segments.
+- Triple Major (Type 4): Whole-spine cascade across three domains.
+- Thoracolumbar/Lumbar (Type 5): Primary vulnerability concentrated at the thoracolumbar junction transition zone.
+- Thoracolumbar/Lumbar - Main Thoracic (Type 6): Complex interactions between thoracic and thoracolumbar transition parameters.
+These physical mechanisms map global allometric trap instability directly to specific 3D clinical morphologies.
 TXT
 
 # Generate conceptual diagrams
 paperbanana generate --input jules_polygenic_stacking_lenke.txt --caption "Polygenic Threshold: The 2-4% Prevalence" --output research/figures/jules_polygenic_stacking_lenke.png
 
-paperbanana generate --input jules_lenke_multi_segment.txt --caption "Multi-segment Cosserat Rod: Lenke Curve Morphologies" --output research/figures/jules_lenke_multi_segment.png
+paperbanana generate --input jules_lenke_6_types_abstract.txt --caption "Multi-segment Cosserat Rod: 6 Lenke Curve Morphologies" --output research/figures/jules_lenke_6_types.png
 
 # Generate data plots
-paperbanana plot --data outputs/experiments/polygenic_stacking_results.csv --x Scenario --y Stability_Margin_ms --output research/figures/plot_polygenic_stacking.png
+paperbanana plot --data outputs/experiments/polygenic_stacking_results.csv --intent "Plot a bar chart mapping the Scenario to the X-axis and Stability Margin to the Y-axis. Highlight the Combined Polygenic Trap scenario." --output research/figures/plot_polygenic_stacking.png
 
-paperbanana plot --data outputs/experiments/lenke_eigenmodes.csv --x Normalized_Position --y Mode_1 --output research/figures/plot_lenke_mode1.png
+paperbanana plot --data outputs/experiments/lenke_six_types.csv --intent "Plot a line chart mapping the Normalized Position to the X-axis and Type 1 through 6 eigenmodes to the Y-axis. Use distinct colors for each curve type." --output research/figures/jules_plot_lenke_6_types.png
 
 echo "Autonomous Lenke artifacts generated."

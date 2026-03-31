@@ -1,0 +1,9 @@
+Multi-segment Cosserat Rod Modeling of all 6 Lenke Curve Types.
+Different Lenke types (1-6) emerge as distinct, dominant buckling eigenmodes dictated by spatial parameter variations:
+- Main Thoracic (Type 1): Thoracic buckling dominates due to minimum rib cage buttressing.
+- Double Thoracic (Type 2): Upper and main thoracic vulnerability.
+- Double Major (Type 3): Coupled instability across the thoracic and lumbar segments.
+- Triple Major (Type 4): Whole-spine cascade across three domains.
+- Thoracolumbar/Lumbar (Type 5): Primary vulnerability concentrated at the thoracolumbar junction transition zone.
+- Thoracolumbar/Lumbar - Main Thoracic (Type 6): Complex interactions between thoracic and thoracolumbar transition parameters.
+These physical mechanisms map global allometric trap instability directly to specific 3D clinical morphologies.

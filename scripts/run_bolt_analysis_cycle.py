@@ -181,15 +181,18 @@ def main():
         # 1. pLDDT Plot
         if not hasattr(main, 'fig_plddt'):
             main.fig_plddt, main.ax_plddt = plt.subplots(figsize=(8, 3))
+            main.line_plddt, = main.ax_plddt.plot(plddt, color='blue', alpha=0.7)
+            main.ax_plddt.set_xlabel("Residue Index")
+            main.ax_plddt.set_ylabel("pLDDT")
+            main.ax_plddt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
+            main.ax_plddt.legend(loc='upper right')
         else:
-            main.ax_plddt.clear()
-
-        main.ax_plddt.plot(plddt, color='blue', alpha=0.7)
+            main.line_plddt.set_data(range(len(plddt)), plddt)
+            main.ax_plddt.relim()
+            main.ax_plddt.autoscale_view()
         main.ax_plddt.set_title(f"{symbol} - Per-Residue Confidence (pLDDT)")
-        main.ax_plddt.set_xlabel("Residue Index")
-        main.ax_plddt.set_ylabel("pLDDT")
-        main.ax_plddt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
-        main.ax_plddt.legend(loc='upper right')
+        main.ax_plddt.set_xlim(0, len(plddt))
+        main.ax_plddt.set_ylim(0, 105)
         main.fig_plddt.tight_layout()
         main.fig_plddt.savefig(os.path.join(FIG_DIR, f"{symbol}_plddt.png"))
 
@@ -197,18 +200,19 @@ def main():
         hc_mask = plddt >= 70
 
         if np.any(hc_mask) and np.any(~np.isnan(curvature[hc_mask])):
+            kappa_plot = np.where(hc_mask, curvature, np.nan)
             if not hasattr(main, 'fig_curv'):
                 main.fig_curv, main.ax_curv = plt.subplots(figsize=(8, 3))
+                main.line_curv, = main.ax_curv.plot(kappa_plot, color='purple', alpha=0.8)
+                main.ax_curv.set_xlabel("Residue Index")
+                main.ax_curv.set_ylabel("Curvature (κ)")
             else:
-                main.ax_curv.clear()
+                main.line_curv.set_data(range(len(kappa_plot)), kappa_plot)
+                main.ax_curv.relim()
+                main.ax_curv.autoscale_view()
 
-            # Create a masked array to avoid plotting lines across low-confidence gaps
-            kappa_plot = np.where(hc_mask, curvature, np.nan)
-
-            main.ax_curv.plot(kappa_plot, color='purple', alpha=0.8)
             main.ax_curv.set_title(f"{symbol} - Curvature Along Backbone (High Confidence Only)")
-            main.ax_curv.set_xlabel("Residue Index")
-            main.ax_curv.set_ylabel("Curvature (κ)")
+            main.ax_curv.set_xlim(0, len(kappa_plot))
             main.fig_curv.tight_layout()
             main.fig_curv.savefig(os.path.join(FIG_DIR, f"{symbol}_curvature.png"))
 

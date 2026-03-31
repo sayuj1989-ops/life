@@ -22,4 +22,4 @@ S20,Protein Anisotropy vs Rg,Spearman,rho,0.380,0.081,N/A,N/A,N/A,22 proteins,Tr
 S21,Protein Sensitivity (High-conf only),Mann-Whitney,p_aniso,0.844,0.844,N/A,N/A,N/A,"11 high, 11 low",No bias from low-confidence proteins
 S22,Power Analysis (Clinical),Sample size calc,n_needed,35,N/A,"For r=0.46, α=0.05, power=0.80",N/A,N/A,N/A,35 patients needed for validation
 S23,Power Analysis (Allometric),Sample size calc,n_needed,8,N/A,"For r=0.863, α=0.05, power=0.80",N/A,N/A,Current n=10,Adequately powered
-S24,Clinical Age Mapping,Interpolation,Age at L_crit,8.5 years,N/A,Deficit begins; peak at 13 yrs,N/A,N/A,Growth chart data,Consistent with AIS onset (11-14 yrs)
+S24,Clinical Age Mapping,Interpolation,Age at L_crit,11 years,N/A,Deficit begins; peak at 13 yrs,N/A,N/A,Growth chart data,Consistent with AIS onset (11-14 yrs)

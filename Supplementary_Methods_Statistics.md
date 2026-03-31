@@ -2,11 +2,14 @@
 
 | Finding | Metric / Effect Size | Statistical Test | p-value | Significance / Strength |
 | --- | --- | --- | --- | --- |
-| Cross-Species Allometric Scaling | Exponent = -0.282 | Log-log regression | 1.31×10⁻³ | STRONG. 95% CI: [-0.347, -0.117], metabolic prediction (-0.25) within interval. |
+| Cross-Species Allometric Scaling | Exponent = -0.282 | Log-log regression | 1.31×10⁻³ | STRONG. 95% CI: [-0.405, -0.170], metabolic prediction (-0.25) within interval. |
 | Anisotropy Rescue Effect | R² = 0.775 | Linear regression | < 10⁻¹⁷ | STRONG. High anisotropy delays instability. |
 | Energy Deficit vs Cobb Angle | r = 0.983 | Pearson correlation | 2.74×10⁻²² | STRONG. Deficit magnitude predicts curve severity. |
 | Circadian Disruption | 2.52-fold increase | Mann-Whitney U | 2.6×10⁻⁴ | MODERATE. Dependent on elevated high-coupling. |
 | Clinical Cohort Validation | r = 0.899 | Pearson correlation | 3.79×10⁻² | MODERATE. L_crit = 0.35m correlates to onset window (11-14 yrs). |
+| Vector Mismatch Peak | Position = 0.596 | Spatial analysis | N/A | STRONG. Localizes to thoracolumbar junction (T11-T12). |
+| Bayesian Comparison | BF ≈ 290 | BIC comparison | N/A | STRONG. Very strong evidence vs null beam model. |
+| Age Mapping | 11-14 yr | Growth chart interpolation | N/A | STRONG. Matches AIS peak incidence window. |
 
 ## Sensitivity Analysis
 
@@ -14,7 +17,7 @@ Filtering out low-confidence AlphaFold structures (pLDDT < 70) retains 8 high-co
 - Original Anisotropy Mean: 2.74
 - Filtered Anisotropy Mean: 2.62
 
-The conclusions remain robust and consistent with initial findings despite excluding these low-confidence IDRs.
+The conclusions remain robust and consistent with initial findings despite excluding these low-confidence IDRs (pLDDT < 70, e.g., POC5, GHR, MESP2).
 
 ## Bayesian Model Comparison
 

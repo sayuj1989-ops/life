@@ -52,3 +52,4 @@ This registry tracks all computational experiments supporting the "Biological Co
 ## 5. Missing / Pending Experiments
 
 *All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_01 - CLIN_04).*
+| **EXP_CROSS_SPECIES** | `scripts/experiment_cross_species_scaling.py` | Validates cross-species scaling. Uses `data/species_parameters.csv`. | `outputs/thermodynamic_cost/cross_species_scaling.csv` | ✅ **Active** | Phase 1 Completed. |

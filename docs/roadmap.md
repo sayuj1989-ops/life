@@ -12,7 +12,7 @@
 
 ## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
 
-- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
+- [x] **Figures:** Generate Final Publication-Quality Figures (1-7).
 - [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
 - [ ] **References:** Complete Bibliography (80-100 refs).
 

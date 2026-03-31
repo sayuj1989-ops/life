@@ -165,3 +165,7 @@ This reduced the metric calculation overhead significantly while preserving bit-
 **Learning:** Repeatedly calling `plt.figure()` and `plt.close()` inside a loop over N structures is slow and creates significant overhead for large datasets due to matplotlib's internal canvas initialization and teardown.
 
 **Action:** Initialized `fig, ax = plt.subplots()` once outside the plotting loops. Reused the axis object inside the loop by calling `ax.clear()` (or `line.set_data()` where appropriate) to reset the data while preserving the figure container. This reduces matplotlib overhead yielding a measurable speedup for the plotting stage while outputting identical figures.
+
+## 2026-03-31 - [Plotting Optimization]
+**Learning:** The previous code called `ax.clear()` in the plotting loop for each protein, causing matplotlib to redraw all axes labels, limits, legends, and titles. This took ~2.4 seconds for 8 proteins.
+**Action:** Replaced `ax.clear()` with pre-initializing `Line2D` objects outside the loop and updating their data with `set_data()` inside the loop, while manually setting x/y limits. This dropped the plot time to ~1.0-1.5 seconds.

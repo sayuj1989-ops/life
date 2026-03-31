@@ -694,6 +694,34 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+
+### 2.40. The Cortical Tension-Growth Factor ($\Gamma_{ctg}$)
+
+We propose that the cortical tension of osteoblasts acts as a master regulator of bone deposition rate, linking macroscopic load to microscopic matrix synthesis via ATP-dependent actomyosin contractility. We define $\Gamma_{ctg}$ as the sensitivity of the local growth rate ($r_g$) to changes in cortical tension ($T_{cortex}$) (Salbreux et al., 2012).
+
+$$ r_g = r_{g,0} \left( 1 + \Gamma_{ctg} \frac{T_{cortex} - T_{homeo}}{T_{homeo}} \right) $$
+
+*   **Symbols**:
+    *   $r_g$: Local bone matrix deposition rate $[M L^{-2} T^{-1}]$.
+    *   $r_{g,0}$: Basal deposition rate $[M L^{-2} T^{-1}]$.
+    *   $T_{cortex}$: Actomyosin-dependent cortical tension $[M T^{-2}]$.
+    *   $T_{homeo}$: Homeostatic cortical tension setpoint $[M T^{-2}]$.
+    *   $\Gamma_{ctg}$: Dimensionless coupling constant $[1]$.
+*   **Physical Interpretation**: A high $\Gamma_{ctg}$ means the cell's synthetic machinery is highly sensitive to the mechanical state of its cortex. In microgravity, reduced external loading decreases $T_{cortex}$, leading to a drop in $r_g$ (osteopenia).
+*   **Measurable Proxy**: The ratio of osteoid seam width (measured via histology) to the total intensity of phosphorylated myosin light chain (pMLC, a proxy for cortical tension) in actively bone-forming regions.
+
+#### Falsifiable Tests
+
+**Test BK: The Myosin-Inhibited Growth Uncoupling**
+*   **Hypothesis**: The load-induced increase in bone deposition relies on active cortical tension, not just passive membrane deformation.
+*   **Data Needed**: Measurement of localized bone deposition rates (using fluorescent calcein labeling) in an in vivo axial loading model, comparing vehicle-treated animals with those treated with a low-dose myosin II inhibitor (e.g., Blebbistatin) that reduces $T_{cortex}$ without causing cell death.
+*   **Refutation Condition**: The hypothesis is refuted if Blebbistatin-treated bones still exhibit the same load-induced increase in $r_g$ as controls, demonstrating that $\Gamma_{ctg}$ is near zero and macroscopic load stimulates growth via a tension-independent pathway.
+
+**Test BL: The Tension-ATP Energy Scaling**
+*   **Hypothesis**: Maintaining the homeostatic cortical tension ($T_{homeo}$) required for basal bone deposition constitutes a significant, measurable fraction of the osteoblast's ATP budget (Laughlin, 2001).
+*   **Data Needed**: Real-time measurement of oxygen consumption rates (OCR, via Seahorse assay) in cultured osteoblasts under normal 1G conditions versus simulated microgravity (clinostat), both before and after acute depolymerization of the actin cortex (e.g., via Latrunculin A).
+*   **Refutation Condition**: The hypothesis is refuted if the drop in ATP consumption upon actin depolymerization is identical in 1G and microgravity, implying that $T_{homeo}$ maintenance does not scale with gravitational load and cannot explain the metabolic shift seen in spaceflight.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

@@ -1,23 +1,7 @@
-1. **Incorporate comprehensive statistical results into the manuscript (`manuscript/sections/results.tex` or `manuscript/sections/tables.tex`):**
-   - Add the statistical findings identified in the Independent Data Analysis Report:
-     - Cross-Species Allometric Scaling ($Bg$ vs body mass): $R^2 = 0.744, p = 1.31 \times 10^{-3}$, scaling exponent $-0.282 \pm 0.072$.
-     - Anisotropy Rescue Effect: $R^2 = 0.775, p < 10^{-17}$.
-     - Energy Deficit Window: correlation of spine length with Cobb angle $r = 0.983, p = 2.74 \times 10^{-22}$.
-     - Circadian Disruption: 2.52-fold increase in Cobb angle, $p = 2.59 \times 10^{-4}$.
-     - Vector Mismatch Localization: peak stiffness mismatch at $0.596$.
-
-2. **Add Sensitivity Analysis acknowledging low-confidence proteins:**
-   - In the protein analysis section (likely `manuscript/sections/results.tex` and/or `discussion.tex`), explicitly acknowledge that 7/27 proteins have low AlphaFold confidence ($pLDDT < 70$), specifically mentioning key narrative proteins like POC5, GHR, and MESP2.
-   - Mention intrinsically disordered regions (IDRs) limitation and that the Gamma_m proteins' higher disorder fraction fits their role as signaling hubs.
-
-3. **Incorporate a formal Statistical Summary Table into `manuscript/sections/tables.tex`**
-   - Create a table presenting the 4 core statistical claims from the peer review report.
-
-4. **Address L_crit clinical mapping:**
-   - In `manuscript/sections/results.tex`, state that the predicted $L_{crit} \approx 0.35$ m corresponds to age 11-12 years in standard CDC/WHO growth charts, providing retrospective clinical validation.
-
-5. **Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.**
-   - Run `pre_commit_instructions` tool and execute the checks.
-
-6. **Submit changes:**
-   - Commit and submit.
+1. **Add new BibTeX entries**: Add 5 real, verifiable citations regarding mechanotransduction (Piezo1), biomechanics, and gravity to `manuscript/references.bib`. I have collected these in `new_real_refs.bib`.
+2. **Refresh Section**: Update `manuscript/sections/introduction.tex`. Add a specific subsection/paragraph bridging the mechanobiology of Piezo1 and gravity (Background), defining why counter-curvature acts as a thermodynamic standing wave against gravity (Bridge), and add 3 bulleted predictions regarding the Energy Deficit and metabolic interventions. Ensure the word count change is modest (small surgical improvement).
+3. **Update Figure Caption**: Update Figure 1's caption in `manuscript/sections/figures.tex` to specifically call out Piezo1 and the mechanosensory loop in the context of the allometric trap.
+4. **Formatting Check**: Run the test suite (`pytest tests/`) if applicable and clean up artifacts. Verify the LaTeX builds correctly using `make quick` in `manuscript/`.
+5. **Git Operations**: Run `git status`, add the modified files, and `git commit` with the message `monthly-manuscript: Mechanotransduction and Counter-Curvature Integration`.
+6. **Pre-commit**: Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.
+7. **Submit**: Open PR "monthly-manuscript: Mechanotransduction and Counter-Curvature Integration" via the submit tool.

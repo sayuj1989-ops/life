@@ -1,5 +1,7 @@
+import argparse
 import os
 import sys
+from pathlib import Path
 
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -23,7 +25,16 @@ def bimodal_gaussian(s, L, Ac=0.5, sc=0.80, sigmac=0.08, Al=0.7, sl=0.25, sigmal
 def compute_gradient(field, s):
     return np.gradient(field, s)
 
-def main():
+DEFAULT_OUTPUT_CSV = Path("outputs/thermodynamic_cost/energy_deficit_window.csv")
+DEFAULT_OUTPUT_FIGURE = Path("outputs/figures/energy_deficit_window.png")
+DEFAULT_MANUSCRIPT_FIGURE = Path("manuscript/figures/energy_deficit_window.png")
+
+
+def main(
+    output_csv: Path = DEFAULT_OUTPUT_CSV,
+    output_figure: Path = DEFAULT_OUTPUT_FIGURE,
+    manuscript_figure: Path | None = DEFAULT_MANUSCRIPT_FIGURE,
+):
     # Setup parameters
     L_range = np.linspace(0.25, 0.55, 30)
     chi_kappa = 0.05
@@ -129,8 +140,8 @@ def main():
     df['S_proprio_alpha10'] = S0 * ((df['L'] / L0) ** 1.0)
 
     # Save CSV
-    os.makedirs('outputs/thermodynamic_cost', exist_ok=True)
-    df.to_csv('outputs/thermodynamic_cost/energy_deficit_window.csv', index=False)
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(output_csv, index=False)
 
     # Generate Figure
     plt.figure(figsize=(10, 6))
@@ -164,12 +175,46 @@ def main():
     plt.grid(True, alpha=0.3)
 
     # Save figures
-    os.makedirs('outputs/figures', exist_ok=True)
-    os.makedirs('manuscript/figures', exist_ok=True)
-    plt.savefig('outputs/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
-    plt.savefig('manuscript/figures/energy_deficit_window.png', dpi=300, bbox_inches='tight')
-    print("Saved outputs/figures/energy_deficit_window.png")
-    print("Saved manuscript/figures/energy_deficit_window.png")
+    output_figure.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(output_figure, dpi=300, bbox_inches='tight')
+    print(f"Saved {output_figure}")
+
+    if manuscript_figure is not None:
+        manuscript_figure.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(manuscript_figure, dpi=300, bbox_inches='tight')
+        print(f"Saved {manuscript_figure}")
+
+    plt.close()
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description="Generate the energy deficit window analysis.")
+    parser.add_argument(
+        "--output-csv",
+        type=Path,
+        default=DEFAULT_OUTPUT_CSV,
+        help="Path for the output CSV.",
+    )
+    parser.add_argument(
+        "--output-figure",
+        type=Path,
+        default=DEFAULT_OUTPUT_FIGURE,
+        help="Path for the output PNG figure.",
+    )
+    parser.add_argument(
+        "--manuscript-figure",
+        type=Path,
+        default=DEFAULT_MANUSCRIPT_FIGURE,
+        help="Path for the manuscript figure output.",
+    )
+    parser.add_argument(
+        "--skip-manuscript-figure",
+        action="store_true",
+        help="Skip writing the manuscript figure copy.",
+    )
+    args = parser.parse_args()
+
+    main(
+        output_csv=args.output_csv,
+        output_figure=args.output_figure,
+        manuscript_figure=None if args.skip_manuscript_figure else args.manuscript_figure,
+    )

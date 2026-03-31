@@ -48,6 +48,21 @@ Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} \sin\left(\frac{n\
 \boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
 \label{eq:kappa_rest_iec}
 \end{equation}
+where $\chi_\kappa$ is a geometric coupling constant and $\boldsymbol{\kappa}_{\mathrm{gen}}$ is the baseline genetic curvature.
+
+\paragraph{Stiffness modulation (IEC-2).}
+The information field modulates the effective bending and torsional stiffness:
+\begin{equation}
+B_{\mathrm{eff}}(s) = E_0 I_{\mathrm{area}} (1 + \chi_E I(s)), \qquad
+C_{\mathrm{eff}}(s) = G_0 J (1 + \chi_C I(s)).
+\label{eq:stiffness_modulation}
+\end{equation}
+
+The total energy functional governing the rod's equilibrium is:
+\begin{equation}
+\mathcal{E}_{\mathrm{total}} = \int_0^L \left[ \frac{1}{2} B_{\mathrm{eff}}(\kappa - \kappa_{\mathrm{rest}})^2 + \frac{1}{2} C_{\mathrm{eff}} \tau^2 + \frac{1}{2} K_{\mathrm{eff}} \varepsilon^2 + \rho A \mathbf{r} \cdot \mathbf{g} \right] ds.
+\label{eq:iec_energy}
+\end{equation}
 
 For purely imaginary roots $\lambda = \pm i\omega$ (defining the bifurcation boundary), the system transitions from damped stability to active oscillation. This mathematical control theory precisely explains why Adolescent Idiopathic Scoliosis (AIS) uniquely coincides with the rapid adolescent growth spurt: it is the exact developmental window where increasing $\tau$ pushes the neuromotor control system across the Hopf bifurcation boundary.
 

@@ -22,6 +22,7 @@ Where:
 """
 
 import argparse
+import os
 import sys
 import time
 from dataclasses import dataclass
@@ -41,13 +42,8 @@ from spinalmodes.countercurvature.pyelastica_bridge import (
     compute_U_CC,
 )
 
-# Ensure output directory exists
-OUTPUT_DIR = Path("outputs/hydraulic_buckling")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-FIGURES_DIR = Path("outputs/figures")
-FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-REPORTS_DIR = Path("reports")
-REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+DEFAULT_FIGURES_DIR = Path("outputs/figures")
+DEFAULT_REPORTS_DIR = Path("reports")
 
 @dataclass
 class HydraulicState:
@@ -208,6 +204,8 @@ def run_experiment(
     duration_hours: float = 72.0,
     dt_hours: float = 1.0,
     quick_test: bool = False,
+    figures_dir: Path = DEFAULT_FIGURES_DIR,
+    reports_dir: Path = DEFAULT_REPORTS_DIR,
 ):
     """
     Run the full hydraulic buckling experiment across 3 scenarios.
@@ -223,6 +221,9 @@ def run_experiment(
         n_elements = 10
     else:
         n_elements = 30
+
+    figures_dir.mkdir(parents=True, exist_ok=True)
+    reports_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 80)
     print(f"EXPERIMENT: Hydraulic Buckling (Duration={duration_hours}h)")
@@ -318,12 +319,13 @@ def run_experiment(
     ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plot_path = FIGURES_DIR / "hydraulic_buckling_dynamics.png"
+    plot_path = figures_dir / "hydraulic_buckling_dynamics.png"
     plt.savefig(plot_path)
     print(f"Saved Plot: {plot_path}")
 
     # --- Generate Report ---
-    report_path = REPORTS_DIR / "hydraulic_buckling_report.md"
+    report_path = reports_dir / "hydraulic_buckling_report.md"
+    plot_reference = Path(os.path.relpath(plot_path, start=report_path.parent))
     with open(report_path, "w") as f:
         f.write("# Hydraulic Buckling Experiment Report\n\n")
         f.write(f"**Date:** {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n")
@@ -345,13 +347,30 @@ def run_experiment(
         f.write("and the energy the organism 'expects' (based on a healthy stiffness reference).\n")
         f.write("A large positive mismatch indicates the system is 'softer than expected', leading to gain errors.\n\n")
 
-        f.write(f"![Dynamics]({plot_path.relative_to(REPORTS_DIR.parent)})\n")
+        f.write(f"![Dynamics]({plot_reference.as_posix()})\n")
 
     print(f"Saved Report: {report_path}")
+    plt.close(fig)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--quick-test", action="store_true", help="Run fast simulation for testing")
+    parser.add_argument(
+        "--figures-dir",
+        type=Path,
+        default=DEFAULT_FIGURES_DIR,
+        help="Directory for generated figures.",
+    )
+    parser.add_argument(
+        "--reports-dir",
+        type=Path,
+        default=DEFAULT_REPORTS_DIR,
+        help="Directory for generated reports.",
+    )
     args = parser.parse_args()
 
-    run_experiment(quick_test=args.quick_test)
+    run_experiment(
+        quick_test=args.quick_test,
+        figures_dir=args.figures_dir,
+        reports_dir=args.reports_dir,
+    )

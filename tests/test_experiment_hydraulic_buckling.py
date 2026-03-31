@@ -6,23 +6,36 @@ Verifies that the experiment script runs successfully and produces expected arti
 
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
-def test_hydraulic_buckling_execution():
+def test_hydraulic_buckling_execution(tmp_path):
     """
     Run the experiment script with --quick-test flag.
     Verify:
     1. Exit code is 0 (Success).
     2. Output artifacts exist.
     """
-    script_path = Path("scripts/experiments/experiment_hydraulic_buckling.py")
+    script_path = REPO_ROOT / "scripts" / "experiments" / "experiment_hydraulic_buckling.py"
+    figures_dir = tmp_path / "figures"
+    reports_dir = tmp_path / "reports"
 
     # Run script
     result = subprocess.run(
-        [sys.executable, str(script_path), "--quick-test"],
+        [
+            sys.executable,
+            str(script_path),
+            "--quick-test",
+            "--figures-dir",
+            str(figures_dir),
+            "--reports-dir",
+            str(reports_dir),
+        ],
         capture_output=True,
-        text=True
+        text=True,
+        cwd=REPO_ROOT,
     )
 
     # Check execution
@@ -33,9 +46,6 @@ def test_hydraulic_buckling_execution():
     assert result.returncode == 0, "Experiment script failed to execute."
 
     # Check artifacts
-    figures_dir = Path("outputs/figures")
-    reports_dir = Path("reports")
-
     assert (figures_dir / "hydraulic_buckling_dynamics.png").exists(), "Plot not generated."
     assert (reports_dir / "hydraulic_buckling_report.md").exists(), "Report not generated."
 
@@ -46,5 +56,6 @@ def test_hydraulic_buckling_execution():
     assert "## Proprioceptive Mismatch" in report_content
 
 if __name__ == "__main__":
-    test_hydraulic_buckling_execution()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        test_hydraulic_buckling_execution(Path(tmpdir))
     print("Test Passed: Hydraulic Buckling Experiment verified.")

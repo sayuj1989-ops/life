@@ -1,6 +1,7 @@
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 import numpy as np
 import pandas as pd
@@ -9,17 +10,28 @@ import pandas as pd
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = REPO_ROOT / "scripts" / "experiment_energy_deficit_window.py"
 
-def test_energy_deficit_output():
+def test_energy_deficit_output(tmp_path):
     """
     Verify that the energy deficit experiment generates the expected output files
     and that the data follows the qualitative trends required by the hypothesis.
     """
-    # Run the experiment script
-    subprocess.run([sys.executable, str(SCRIPT)], check=True, cwd=REPO_ROOT)
+    csv_path = tmp_path / "energy_deficit_window.csv"
+    png_path = tmp_path / "energy_deficit_window.png"
 
-    # Check for output files
-    csv_path = REPO_ROOT / "outputs" / "thermodynamic_cost" / "energy_deficit_window.csv"
-    png_path = REPO_ROOT / "outputs" / "figures" / "energy_deficit_window.png"
+    # Run the experiment script
+    subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--output-csv",
+            str(csv_path),
+            "--output-figure",
+            str(png_path),
+            "--skip-manuscript-figure",
+        ],
+        check=True,
+        cwd=REPO_ROOT,
+    )
 
     assert csv_path.exists(), "CSV output not found."
     assert png_path.exists(), "PNG output not found."
@@ -62,7 +74,8 @@ def test_energy_deficit_output():
 if __name__ == "__main__":
     # Manually run the test function if executed as script
     try:
-        test_energy_deficit_output()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            test_energy_deficit_output(Path(tmpdir))
         print("Test passed!")
     except AssertionError as e:
         print(f"Test failed: {e}")

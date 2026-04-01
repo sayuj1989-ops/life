@@ -1125,3 +1125,33 @@ The theory makes specific predictions about the relationship between genetic ani
 74. **Elosegui-Artola, A., et al. (2016).** "Mechanical regulation of a molecular clutch defines force transmission and transduction in response to matrix rigidity." *Nature Cell Biology*, 18(5). (Clutch model of stiffness sensing).
 75. **Daems M, et al. (2020).** "Fluid flow as a driver of embryonic morphogenesis." *Development*, 147(15).
 76. **Tanaka Y, et al. (2005).** "FGF-induced vesicular release of Sonic hedgehog and retinoic acid in leftward nodal flow is critical for left-right determination." *Nature*, 435(7039).
+
+## 2.40. Vector-Tensor Mismatch in Geometric Coupling
+
+While basic models treat Information-Elasticity Coupling as a scalar relationship ($E(s) = E_0 \cdot f(I(s))$), the true biological environment is fundamentally tensorial. The effective stiffness depends on the alignment between the spatial gradient of the developmental information field and the local principal stress vectors.
+
+### 2.40.1 The Alignment Parameter ($\alpha(s)$)
+
+We define the Alignment Parameter $\alpha(s)$ as the dot product between the normalized information gradient and the normalized principal stress direction:
+
+$$ \alpha(s) = \hat{\mathbf{n}}_{info}(s) \cdot \hat{\mathbf{n}}_{stress}(s) $$
+
+*   **Symbols**:
+    *   $\hat{\mathbf{n}}_{info} = \nabla I(s) / |\nabla I(s)|$ (Direction of the developmental gradient).
+    *   $\hat{\mathbf{n}}_{stress}$: Principal eigenvector of the local stress tensor $\boldsymbol{\sigma}(s)$.
+*   **Physical Interpretation**:
+    *   $\alpha \approx 1$: Perfect alignment. Information gradient and mechanical load are parallel (e.g., vertical growth against gravity).
+    *   $\alpha \approx 0$: Orthogonal mismatch. The developmental gradient is perpendicular to the load (e.g., lateral perturbations).
+    *   $\alpha \approx -1$: Anti-aligned.
+
+### 2.40.2 Orientation-Dependent Effective Stiffness ($E_{eff}$)
+
+The effective tissue stiffness ($E_{eff}$) experienced by the Cosserat rod at cross-section $s$ is orientation-dependent, resolving the tensor into the operational plane:
+
+$$ E_{eff}(s, \theta) = E_{parallel} \cdot \cos^2(\theta) + E_{perpendicular} \cdot \sin^2(\theta) $$
+
+*   **Symbols**:
+    *   $\theta$: Angle derived from $\cos(\theta) = \alpha(s)$.
+    *   $E_{parallel}$: Stiffness when $\alpha = 1$ (typically very high, e.g., $E_{parallel} \gg E_{perpendicular}$).
+    *   $E_{perpendicular}$: Stiffness when $\alpha = 0$.
+*   **Consequence for Scoliosis**: A small left-right asymmetry in HOX patterning generates a lateral information gradient. Because this gradient is orthogonal to the vertical gravitational stress ($\alpha \to 0$), the local effective stiffness drops dramatically ($E_{eff} \to E_{perpendicular}$), creating a localized vulnerability to lateral buckling.

@@ -1,0 +1,3 @@
+The "Derivative Gain Trap" during the adolescent growth spurt is a core hypothesis of the Biological Countercurvature theory.
+Increased neural delay (\tau) due to rapid spinal lengthening turns stable damping gains into destabilizing scoliotic buckling ("Metabolic Buckling").
+This mechanism represents a critical failure mode where the predictive horizon (T_pred) cannot compensate for the physical neural delays, exacerbated by the Energy Deficit Window ($L^4$ scaling cost vs $L^2$ metabolic supply).

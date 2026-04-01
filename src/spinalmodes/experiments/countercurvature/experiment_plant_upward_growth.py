@@ -173,8 +173,8 @@ def run_plant_experiment(
     D_geo_norm = geo_metrics["D_geo_norm"]
 
     # Compare with plain L2 difference
-    plain_l2_diff = np.sqrt(np.trapz((kappa_info - kappa_passive) ** 2, x=s))
-    plain_l2_norm = plain_l2_diff / (np.sqrt(np.trapz(kappa_passive**2, x=s)) + 1e-9)
+    plain_l2_diff = np.sqrt(np.trapezoid((kappa_info - kappa_passive) ** 2, x=s))
+    plain_l2_norm = plain_l2_diff / (np.sqrt(np.trapezoid(kappa_passive**2, x=s)) + 1e-9)
 
     # Save results to CSV
     df = pd.DataFrame(

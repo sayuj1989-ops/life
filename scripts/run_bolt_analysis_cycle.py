@@ -39,17 +39,24 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(FIG_DIR, exist_ok=True)
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
+def fetch_afdb_data(uniprot_id: str, session: requests.Session) -> Optional[Dict[str, str]]:
     api_url = f"https://alphafold.ebi.ac.uk/api/prediction/{uniprot_id}"
     pdb_path = os.path.join(TEMP_DIR, f"{uniprot_id}.pdb")
     pae_path = os.path.join(TEMP_DIR, f"{uniprot_id}.json")
 
-    if os.path.exists(pdb_path) and os.path.exists(pae_path):
-        return {"pdb": pdb_path, "pae": pae_path}
+    # ⚡ Bolt Optimization: Skip API call entirely if we already have the expected files
+    # (Checking existence of both because some proteins might legitimately lack PAE,
+    # but for our default set we expect both. We can refine to just PDB check if PAE is optional).
+    # Since we check both, if a protein doesn't have PAE, we will hit the API again.
+    # To fix this, we can also write a small .done file or check if PDB exists
+    if os.path.exists(pdb_path):
+        # We assume if PDB exists, we've already fetched it. Return PAE if it exists.
+        return {"pdb": pdb_path, "pae": pae_path if os.path.exists(pae_path) else None}
 
     print(f"Querying API for {uniprot_id}...")
     try:
-        response = requests.get(api_url)
+        # ⚡ Bolt Optimization: Use connection pooling via session
+        response = session.get(api_url)
         if response.status_code != 200:
              print(f"API Error for {uniprot_id}: {response.status_code}")
              return None
@@ -64,13 +71,13 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         if not pdb_url:
              return None
 
-        pdb_resp = requests.get(pdb_url)
+        pdb_resp = session.get(pdb_url)
         if pdb_resp.status_code == 200:
              with open(pdb_path, 'wb') as f:
                  f.write(pdb_resp.content)
 
         if pae_url:
-            pae_resp = requests.get(pae_url)
+            pae_resp = session.get(pae_url)
             if pae_resp.status_code == 200:
                 with open(pae_path, 'wb') as f:
                     f.write(pae_resp.content)
@@ -101,12 +108,14 @@ def main():
 
     md_report.append("## A) Results Table\n")
 
+    session = requests.Session()
+
     for prot in DEFAULT_SEED_LIST:
         uid = prot['uniprot']
         symbol = prot['symbol']
         print(f"Processing {symbol} ({uid})...")
 
-        paths = fetch_afdb_data(uid)
+        paths = fetch_afdb_data(uid, session)
         if not paths:
             print(f"Skipping {symbol} - data fetch failed.")
             continue
@@ -181,15 +190,16 @@ def main():
         # 1. pLDDT Plot
         if not hasattr(main, 'fig_plddt'):
             main.fig_plddt, main.ax_plddt = plt.subplots(figsize=(8, 3))
-        else:
-            main.ax_plddt.clear()
+            main.line_plddt, = main.ax_plddt.plot([], color='blue', alpha=0.7)
+            main.ax_plddt.set_xlabel("Residue Index")
+            main.ax_plddt.set_ylabel("pLDDT")
+            main.ax_plddt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
+            main.ax_plddt.legend(loc='upper right')
 
-        main.ax_plddt.plot(plddt, color='blue', alpha=0.7)
+        main.line_plddt.set_data(np.arange(len(plddt)), plddt)
+        main.ax_plddt.set_xlim(0, max(1, len(plddt) - 1))
+        main.ax_plddt.set_ylim(min(0, np.nanmin(plddt)), max(100, np.nanmax(plddt)))
         main.ax_plddt.set_title(f"{symbol} - Per-Residue Confidence (pLDDT)")
-        main.ax_plddt.set_xlabel("Residue Index")
-        main.ax_plddt.set_ylabel("pLDDT")
-        main.ax_plddt.axhline(70, color='red', linestyle='--', alpha=0.5, label='Threshold (70)')
-        main.ax_plddt.legend(loc='upper right')
         main.fig_plddt.tight_layout()
         main.fig_plddt.savefig(os.path.join(FIG_DIR, f"{symbol}_plddt.png"))
 
@@ -199,16 +209,22 @@ def main():
         if np.any(hc_mask) and np.any(~np.isnan(curvature[hc_mask])):
             if not hasattr(main, 'fig_curv'):
                 main.fig_curv, main.ax_curv = plt.subplots(figsize=(8, 3))
-            else:
-                main.ax_curv.clear()
+                main.line_curv, = main.ax_curv.plot([], color='purple', alpha=0.8)
+                main.ax_curv.set_xlabel("Residue Index")
+                main.ax_curv.set_ylabel("Curvature (κ)")
 
             # Create a masked array to avoid plotting lines across low-confidence gaps
             kappa_plot = np.where(hc_mask, curvature, np.nan)
 
-            main.ax_curv.plot(kappa_plot, color='purple', alpha=0.8)
+            main.line_curv.set_data(np.arange(len(kappa_plot)), kappa_plot)
+            main.ax_curv.set_xlim(0, max(1, len(kappa_plot) - 1))
+            valid_k = kappa_plot[~np.isnan(kappa_plot)]
+            if len(valid_k) > 0:
+                min_k, max_k = np.nanmin(valid_k), np.nanmax(valid_k)
+                margin = (max_k - min_k) * 0.05 if max_k > min_k else 0.1
+                main.ax_curv.set_ylim(min_k - margin, max_k + margin)
+
             main.ax_curv.set_title(f"{symbol} - Curvature Along Backbone (High Confidence Only)")
-            main.ax_curv.set_xlabel("Residue Index")
-            main.ax_curv.set_ylabel("Curvature (κ)")
             main.fig_curv.tight_layout()
             main.fig_curv.savefig(os.path.join(FIG_DIR, f"{symbol}_curvature.png"))
 
@@ -216,18 +232,19 @@ def main():
     interesting_symbols = ["FN1", "ITGB1", "SHH"]
     fig_pae = None
     ax_pae = None
+    im_pae = None
     for symbol in interesting_symbols:
         if symbol in pae_data:
             if fig_pae is None:
                 fig_pae, ax_pae = plt.subplots(figsize=(5, 4))
+                im_pae = ax_pae.imshow(pae_data[symbol], cmap='viridis_r', vmin=0, vmax=31)
+                fig_pae.colorbar(im_pae, ax=ax_pae, label='Expected Position Error (Å)')
             else:
-                ax_pae.clear()
-                # Remove old colorbar to avoid stacking
-                if len(fig_pae.axes) > 1:
-                    fig_pae.delaxes(fig_pae.axes[1])
+                im_pae.set_data(pae_data[symbol])
+                # update extent or limits based on shape
+                shape = pae_data[symbol].shape
+                im_pae.set_extent((-0.5, shape[1]-0.5, shape[0]-0.5, -0.5))
 
-            im = ax_pae.imshow(pae_data[symbol], cmap='viridis_r', vmin=0, vmax=31)
-            fig_pae.colorbar(im, ax=ax_pae, label='Expected Position Error (Å)')
             ax_pae.set_title(f"{symbol} PAE")
             fig_pae.tight_layout()
             fig_pae.savefig(os.path.join(FIG_DIR, f"{symbol}_pae.png"))

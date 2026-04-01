@@ -81,7 +81,7 @@ This document tracks the daily incremental refactor of the repository towards pu
 ## Phase 9: Additional Root Cleanup (High Priority)
 
 - [x] **Organize Root Images**: Move root image files (e.g., `js_creature_*.png`) to an appropriate directory like `figures/` or `archive/`.
-- [ ] **Clean Root Markdown Files**: Move root markdown/text files (e.g., `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, `00_START_HERE.txt`) to `docs/` or `manuscript/`.
-- [ ] **Move AlphaFold Scripts**: Move `alphafold_pipeline_v2.py`, `gen_alphafold_figs.py`, and related scripts to `scripts/pipeline/` or `scripts/alphafold/`.
-- [ ] **Move Benchmark Scripts**: Move benchmark scripts (`benchmark_pae.py`, `benchmark_pae2.py`, `benchmark_pae_domain.py`, `benchmark_rg.py`, `benchmark_var.py`) to `scripts/benchmarks/`.
-- [ ] **Clean Root Miscellany**: Move loose scripts like `create_alphafold_section.js`, `generate_submission.py`, `main.py`, `test_genai.py`, `run_cluster.py` to `scripts/` or `archive/` depending on relevance. Move artifacts like `plan.md` and `test_output_2.txt` to `archive/`.
+- [x] **Clean Root Markdown Files**: Move root markdown/text files (e.g., `AlphaFold_Analysis_Summary.md`, `Supplementary_Methods_Statistics.md`, `00_START_HERE.txt`) to `docs/` or `manuscript/`.
+- [x] **Move AlphaFold Scripts**: Move `alphafold_pipeline_v2.py`, `gen_alphafold_figs.py`, and related scripts to `scripts/pipeline/` or `scripts/alphafold/`.
+- [x] **Move Benchmark Scripts**: Move benchmark scripts (`benchmark_pae.py`, `benchmark_pae2.py`, `benchmark_pae_domain.py`, `benchmark_rg.py`, `benchmark_var.py`) to `scripts/benchmarks/`.
+- [x] **Clean Root Miscellany**: Move loose scripts like `create_alphafold_section.js`, `generate_submission.py`, `main.py`, `test_genai.py`, `run_cluster.py` to `scripts/` or `archive/` depending on relevance. Move artifacts like `plan.md` and `test_output_2.txt` to `archive/`.

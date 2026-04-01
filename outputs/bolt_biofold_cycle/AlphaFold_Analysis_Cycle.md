@@ -96,7 +96,7 @@ Generated output files under `outputs/bolt_biofold_cycle/figures/`:
 ## Quality & Reproducibility Checklist
 
 * **Data source:** AlphaFold DB (fetched dynamically)
-* **Date/time of run:** 2026-03-30 14:34:37
+* **Date/time of run:** 2026-04-01 19:18:19
 * **Code version:** scripts/run_bolt_analysis_cycle.py
 * **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.
 * **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.

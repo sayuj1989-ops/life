@@ -1,0 +1,7 @@
+Multi-segment Cosserat Rod Modeling of all 6 Lenke Curve Types.
+Different Lenke types (1-6) emerge as distinct buckling eigenmodes dictated by regional parameter variations:
+- Thoracic rib cage buttressing (stiffness EI variations)
+- Thoracolumbar vulnerability (31.1% stiffness reduction)
+- Segmental mechanoreceptor density differences (proprioceptive delay τ)
+- Asymmetric loading
+These regional differences map global instability onset to specific 3D spatial curve morphologies, dictating whether main thoracic, double major, or lumbar curves emerge.

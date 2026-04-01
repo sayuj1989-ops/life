@@ -33,7 +33,7 @@ def main():
     scenarios = [
         {'Scenario': 'Baseline', 'b': 1.0, 'tau_ms': 70.0, 'K_d': 10.0, 'mgL': 73.6},
         {'Scenario': 'COL1A1/COL2A1 (Reduced Damping)', 'b': 0.71, 'tau_ms': 70.0, 'K_d': 10.0, 'mgL': 73.6},
-        {'Scenario': 'PIEZO2/GPR126 (Increased Delay)', 'b': 1.0, 'tau_ms': 96.4, 'K_d': 10.0, 'mgL': 73.6},
+        {'Scenario': 'PIEZO2/GPR126/MTNR1B (Increased Delay)', 'b': 1.0, 'tau_ms': 96.4, 'K_d': 10.0, 'mgL': 73.6},
         {'Scenario': 'LBX1 (Shifted K_d)', 'b': 1.0, 'tau_ms': 70.0, 'K_d': 12.96, 'mgL': 73.6},
         {'Scenario': 'PAX1 (Increased Load)', 'b': 1.0, 'tau_ms': 70.0, 'K_d': 10.0, 'mgL': 93.7},
         {'Scenario': 'Combined (Polygenic Trap)', 'b': 0.71, 'tau_ms': 96.4, 'K_d': 12.96, 'mgL': 93.7}

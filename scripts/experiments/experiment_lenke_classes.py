@@ -5,41 +5,70 @@ import os
 import matplotlib.pyplot as plt
 from scipy.linalg import eigh
 
-def solve_buckling_eigenmodes(N=100):
+def solve_buckling_eigenmodes(N=100, lenke_type=1):
     """
     Simplified generalized eigenvalue problem for multi-segment Cosserat rod
     (B y'')'' = lambda Q y
+
+    Now models Lenke 1-6 explicitly by modulating regional parameters.
     """
-    # z from 0 (sacrum) to L (T1)
+    # z from 0 (sacrum) to 1 (T1)
     z = np.linspace(0, 1, N)
     dz = z[1] - z[0]
 
-    # B: Regional stiffness. Higher in thoracic (rib cage), lower at thoracolumbar junction
-    # Normalized stiffness profile
-    B = np.ones(N)
-    thoracic_idx = (z > 0.4) & (z < 0.8) # T5-T12 approx
-    tl_junction_idx = (z >= 0.3) & (z <= 0.4) # T11-L1
+    # Base parameters
+    B = np.ones(N) * 1.0  # Stiffness
+    Q = np.ones(N) * 0.1  # Instability drive
 
+    # Regional masks (approximate normalized spine locations)
+    lumbar_idx = (z >= 0.0) & (z < 0.3)      # L5-L1
+    tl_junction_idx = (z >= 0.3) & (z < 0.4) # T12-T11
+    thoracic_idx = (z >= 0.4) & (z < 0.8)    # T10-T2
+    proximal_t_idx = (z >= 0.8) & (z <= 1.0) # T1-C
+
+    # Base regional stiffness differences
     B[thoracic_idx] *= 1.5 # Rib cage buttressing
-    B[tl_junction_idx] *= 0.8 # Thoracolumbar vulnerability (31.1% reduction)
+    B[tl_junction_idx] *= 0.689 # Thoracolumbar vulnerability (31.1% reduction)
+    B[lumbar_idx] *= 1.2 # Lumbar lordosis structural bulk
 
-    # Q: Instability drive (product of gravitational moment arm and local growth plate velocity)
-    # Higher in thoracic region due to moment arm, also high in lumbar
-    Q = np.sin(np.pi * z) + 0.5 * np.sin(2 * np.pi * z)
-    Q = np.maximum(Q, 0.1)
+    # We modulate Q based on regional variations in tau, damping b, and asymmetric loading
+    # to trigger specific Lenke patterns.
+    # Q represents the effective destabilizing drive (Energy Deficit window overlap).
 
-    # Construct finite difference matrices (simplified)
-    # 4th derivative matrix D4 for (B y'')''
-    # 2nd derivative matrix D2 for y''
+    if lenke_type == 1:
+        # Type 1 (Main Thoracic): Minimal paraspinal muscle mass + max moment arm
+        Q[thoracic_idx] *= 5.0
+    elif lenke_type == 2:
+        # Type 2 (Double Thoracic): Proximal thoracic and main thoracic destabilize
+        Q[thoracic_idx] *= 4.0
+        Q[proximal_t_idx] *= 4.0
+    elif lenke_type == 3:
+        # Type 3 (Double Major): Thoracic and lumbar simultaneously buckle
+        Q[thoracic_idx] *= 4.0
+        Q[lumbar_idx] *= 4.0
+    elif lenke_type == 4:
+        # Type 4 (Triple Major): Proximal thoracic, main thoracic, and lumbar
+        Q[proximal_t_idx] *= 3.0
+        Q[thoracic_idx] *= 3.0
+        Q[lumbar_idx] *= 3.0
+    elif lenke_type == 5:
+        # Type 5 (Thoracolumbar/Lumbar): T-L junction vulnerability dominates
+        Q[tl_junction_idx] *= 6.0
+        Q[lumbar_idx] *= 3.0
+    elif lenke_type == 6:
+        # Type 6 (Thoracolumbar/Lumbar-Main Thoracic): Lumbar > Thoracic drive
+        Q[thoracic_idx] *= 2.5
+        Q[tl_junction_idx] *= 5.0
+        Q[lumbar_idx] *= 5.0
+
+    # Smooth the profiles
+    B = np.convolve(B, np.ones(5)/5, mode='same')
+    Q = np.convolve(Q, np.ones(5)/5, mode='same')
+
+    # Construct finite difference matrices
     D2 = np.diag(-2 * np.ones(N)) + np.diag(np.ones(N-1), 1) + np.diag(np.ones(N-1), -1)
     D2 = D2 / (dz**2)
 
-    # Boundary conditions: Pinned-Pinned (y=0, y''=0 at ends)
-    # For a realistic spine, boundaries are more complex (e.g., fixed at pelvis, free at head)
-    # We use clamped-free for inverted pendulum
-    D4 = np.dot(D2, D2)
-
-    # Apply B to D4 (approximate)
     B_matrix = np.diag(B)
     L_matrix = np.dot(D2, np.dot(B_matrix, D2))
 
@@ -48,52 +77,63 @@ def solve_buckling_eigenmodes(N=100):
     Q_matrix = np.diag(Q)[2:-2, 2:-2]
 
     # Solve generalized eigenvalue problem: L y = lambda Q y
-    # eigh solves A x = lambda B x for symmetric matrices
     eigenvalues, eigenvectors = eigh(L_matrix, Q_matrix)
 
-    # Sort by eigenvalue (lowest buckling load)
+    # Get lowest buckling mode (first eigenvector)
     idx = np.argsort(eigenvalues)
     eigenvalues = eigenvalues[idx]
     eigenvectors = eigenvectors[:, idx]
 
-    return z, eigenvalues, eigenvectors, B, Q
+    return z, eigenvalues[0], eigenvectors[:, 0], B, Q
 
 def main():
     os.makedirs('outputs/experiments', exist_ok=True)
     os.makedirs('outputs/figures', exist_ok=True)
 
-    z, evals, evecs, B, Q = solve_buckling_eigenmodes(N=100)
+    fig, axes = plt.subplots(2, 3, figsize=(15, 10), sharey=True)
+    axes = axes.flatten()
 
-    # Lenke curves correspond to lowest eigenmodes under different regional B and Q distributions
-    # Here we just save the first few modes which correspond to Types 1, 5, etc.
+    all_modes = []
 
-    modes_df = pd.DataFrame({'Normalized_Position': z})
-    modes_df['Stiffness_B'] = B
-    modes_df['Instability_Q'] = Q
+    for l_type in range(1, 7):
+        z, eval, evec, B, Q = solve_buckling_eigenmodes(N=100, lenke_type=l_type)
 
-    # Add full zeros vector to match boundary conditions
-    for i in range(3):
         full_mode = np.zeros(100)
-        full_mode[2:-2] = evecs[:, i]
-        full_mode = full_mode / np.max(np.abs(full_mode)) # Normalize
-        modes_df[f'Mode_{i+1}'] = full_mode
+        full_mode[2:-2] = evec
+        full_mode = full_mode / np.max(np.abs(full_mode)) # Normalize amplitude
 
-    modes_df.to_csv('outputs/experiments/lenke_eigenmodes.csv', index=False)
-    print("Saved outputs/experiments/lenke_eigenmodes.csv")
+        # Determine dominant direction to align visuals nicely
+        if np.sum(full_mode) < 0:
+             full_mode = -full_mode
 
-    # Plot modes
-    plt.figure(figsize=(10, 6))
-    plt.plot(z, B, 'k--', label='Stiffness (B)')
-    for i in range(3):
-        plt.plot(z, modes_df[f'Mode_{i+1}'], label=f'Eigenmode {i+1} (Lenke Type approx)')
+        all_modes.append(full_mode)
 
-    plt.title('Multi-segment Cosserat Rod Buckling Eigenmodes (Lenke Curves)')
-    plt.xlabel('Normalized Position (Sacrum to T1)')
-    plt.ylabel('Amplitude / Normalized Value')
-    plt.legend()
-    plt.grid(True)
-    plt.savefig('outputs/figures/lenke_eigenmodes.png')
-    print("Saved outputs/figures/lenke_eigenmodes.png")
+        ax = axes[l_type-1]
+        ax.plot(full_mode, z, linewidth=3, label=f'Eigenmode (Mode 1)')
+        ax.plot(Q/np.max(Q), z, 'r--', alpha=0.5, label='Instability Drive Q')
+        ax.axvline(0, color='k', linestyle=':', alpha=0.5)
+
+        ax.set_title(f'Lenke Type {l_type}')
+        if l_type % 3 == 1:
+            ax.set_ylabel('Normalized Position (0=Sacrum, 1=T1)')
+        if l_type > 3:
+            ax.set_xlabel('Lateral Deviation')
+        ax.grid(True, alpha=0.3)
+
+    axes[0].legend(loc='upper left', fontsize='small')
+    plt.suptitle('Multi-segment Cosserat Rod: Lenke Curve Morphologies', fontsize=16)
+    plt.tight_layout()
+    plt.savefig('outputs/figures/lenke_six_types.png')
+    print("Saved outputs/figures/lenke_six_types.png")
+
+    # Save data
+    z = np.linspace(0, 1, 100)
+    df = pd.DataFrame({'Normalized_Position': z})
+    for l_type in range(1, 7):
+        df[f'Lenke_Type_{l_type}'] = all_modes[l_type-1]
+
+    df.to_csv('outputs/experiments/lenke_six_types.csv', index=False)
+    print("Saved outputs/experiments/lenke_six_types.csv")
 
 if __name__ == '__main__':
     main()

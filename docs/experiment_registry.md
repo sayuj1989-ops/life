@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-04-01
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.
@@ -44,11 +44,11 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Dataset/Analysis | Target Application | Purpose | Expected Output | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN_01_PHV** | `experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. |
+| **CLIN_01_PHV** | `scripts/experiment_phv_timing.py` | Map model Instability Window against Peak Height Velocity clinical growth charts. | `manuscript/figures/fig_phv_timing.png` | ✅ **Active** | Instability aligned with clinical PHV curves. |
 | **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
-| **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
+| **CLIN_03_Marfan** | `scripts/experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
 | **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
 
 ## 5. Missing / Pending Experiments
 
-*All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_01 - CLIN_04).*
+*All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_02 - CLIN_04).*

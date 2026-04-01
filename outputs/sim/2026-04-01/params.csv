@@ -1,0 +1,4 @@
+parameter,value
+random_seed,42
+active_curvature,15.0
+anisotropy,3.0

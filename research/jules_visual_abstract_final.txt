@@ -1,0 +1,6 @@
+The "Grand Unification" Visual Abstract for Adolescent Idiopathic Scoliosis
+
+This composite figure synthesizes the three core mechanisms underlying the biophysical origin of AIS:
+1. Top section: The "Gravity Well". Visual representation of spacetime curvature illustrating the continuous metabolic cost of maintaining a non-geodesic trajectory (standing up) against gravity.
+2. Middle section: The "Control Loop". A feedback diagram showing the CNS interacting with muscles, highlighting the critical Delay Block (e^{-s\tau}) representing the neural latency gap during rapid growth.
+3. Bottom section: The "Bifurcation" Phase Diagram. Left side shows stable growth (a straight spine). Right side shows unstable growth (helical scoliotic buckling). These two states are separated by the highlighted "Energy Deficit Window" where metabolic supply fails to meet the L^4 scaling demand.

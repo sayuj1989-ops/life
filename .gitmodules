@@ -1,0 +1,3 @@
+[submodule "src/dreamer"]
+	path = src/dreamer
+	url = https://github.com/danijar/dreamer

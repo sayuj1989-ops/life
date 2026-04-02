@@ -16,50 +16,85 @@ def solve_buckling_eigenmodes(N=100, lenke_type=1):
     z = np.linspace(0, 1, N)
     dz = z[1] - z[0]
 
-    # Base parameters
-    B = np.ones(N) * 1.0  # Stiffness
-    Q = np.ones(N) * 0.1  # Instability drive
-
     # Regional masks (approximate normalized spine locations)
     lumbar_idx = (z >= 0.0) & (z < 0.3)      # L5-L1
     tl_junction_idx = (z >= 0.3) & (z < 0.4) # T12-T11
     thoracic_idx = (z >= 0.4) & (z < 0.8)    # T10-T2
     proximal_t_idx = (z >= 0.8) & (z <= 1.0) # T1-C
 
-    # Base regional stiffness differences
-    B[thoracic_idx] *= 1.5 # Rib cage buttressing
-    B[tl_junction_idx] *= 0.689 # Thoracolumbar vulnerability (31.1% reduction)
-    B[lumbar_idx] *= 1.2 # Lumbar lordosis structural bulk
+    # Base parameters for multi-segment Cosserat rod
+    EI = np.ones(N) * 1.0       # Regional stiffness EI
+    tau = np.ones(N) * 1.0      # Segmental proprioceptive delay tau
+    b_damp = np.ones(N) * 1.0   # Local damping b
+    F_asym = np.ones(N) * 0.1   # Asymmetric loading (baseline)
 
-    # We modulate Q based on regional variations in tau, damping b, and asymmetric loading
-    # to trigger specific Lenke patterns.
-    # Q represents the effective destabilizing drive (Energy Deficit window overlap).
+    # Base regional stiffness differences
+    EI[thoracic_idx] *= 1.5 # Rib cage buttressing
+    EI[tl_junction_idx] *= 0.689 # Thoracolumbar vulnerability (31.1% reduction)
+    EI[lumbar_idx] *= 1.2 # Lumbar lordosis structural bulk
+
+    # Modulate parameter stacks to trigger specific Lenke patterns.
+    # Instability drive Q is proportional to (tau * F_asym) / b_damp
+    # representing the localized instability criterion (delayed feedback overcoming damping)
 
     if lenke_type == 1:
-        # Type 1 (Main Thoracic): Minimal paraspinal muscle mass + max moment arm
-        Q[thoracic_idx] *= 5.0
+        # Type 1 (Main Thoracic): Minimal paraspinal muscle mass (low damping), high tau, asymmetric aortic load
+        tau[thoracic_idx] *= 2.0
+        b_damp[thoracic_idx] *= 0.5
+        F_asym[thoracic_idx] *= 1.25
     elif lenke_type == 2:
         # Type 2 (Double Thoracic): Proximal thoracic and main thoracic destabilize
-        Q[thoracic_idx] *= 4.0
-        Q[proximal_t_idx] *= 4.0
+        tau[thoracic_idx] *= 1.8
+        b_damp[thoracic_idx] *= 0.6
+        tau[proximal_t_idx] *= 2.0
+        b_damp[proximal_t_idx] *= 0.5
+        F_asym[thoracic_idx] *= 1.1
     elif lenke_type == 3:
         # Type 3 (Double Major): Thoracic and lumbar simultaneously buckle
-        Q[thoracic_idx] *= 4.0
-        Q[lumbar_idx] *= 4.0
+        tau[thoracic_idx] *= 1.8
+        b_damp[thoracic_idx] *= 0.6
+        tau[lumbar_idx] *= 1.8
+        b_damp[lumbar_idx] *= 0.6
+        F_asym[thoracic_idx] *= 1.1
+        F_asym[lumbar_idx] *= 1.1
     elif lenke_type == 4:
         # Type 4 (Triple Major): Proximal thoracic, main thoracic, and lumbar
-        Q[proximal_t_idx] *= 3.0
-        Q[thoracic_idx] *= 3.0
-        Q[lumbar_idx] *= 3.0
+        tau[proximal_t_idx] *= 1.6
+        b_damp[proximal_t_idx] *= 0.7
+        tau[thoracic_idx] *= 1.6
+        b_damp[thoracic_idx] *= 0.7
+        tau[lumbar_idx] *= 1.6
+        b_damp[lumbar_idx] *= 0.7
+        F_asym[proximal_t_idx] *= 1.1
+        F_asym[thoracic_idx] *= 1.1
+        F_asym[lumbar_idx] *= 1.1
     elif lenke_type == 5:
-        # Type 5 (Thoracolumbar/Lumbar): T-L junction vulnerability dominates
-        Q[tl_junction_idx] *= 6.0
-        Q[lumbar_idx] *= 3.0
+        # Type 5 (Thoracolumbar/Lumbar): T-L junction and lumbar vulnerability dominates
+        tau[tl_junction_idx] *= 2.0
+        b_damp[tl_junction_idx] *= 0.4
+        tau[lumbar_idx] *= 1.5
+        b_damp[lumbar_idx] *= 0.8
+        F_asym[tl_junction_idx] *= 1.2
     elif lenke_type == 6:
         # Type 6 (Thoracolumbar/Lumbar-Main Thoracic): Lumbar > Thoracic drive
-        Q[thoracic_idx] *= 2.5
-        Q[tl_junction_idx] *= 5.0
-        Q[lumbar_idx] *= 5.0
+        tau[thoracic_idx] *= 1.4
+        b_damp[thoracic_idx] *= 0.8
+        tau[tl_junction_idx] *= 1.8
+        b_damp[tl_junction_idx] *= 0.5
+        tau[lumbar_idx] *= 1.8
+        b_damp[lumbar_idx] *= 0.5
+        F_asym[tl_junction_idx] *= 1.2
+        F_asym[lumbar_idx] *= 1.2
+
+    # Calculate effective Instability Drive Q
+    Q = (tau * F_asym) / b_damp
+    B = EI
+
+    # Keep a copy of original arrays to return in params
+    EI_orig = EI.copy()
+    tau_orig = tau.copy()
+    b_damp_orig = b_damp.copy()
+    F_asym_orig = F_asym.copy()
 
     # Smooth the profiles
     B = np.convolve(B, np.ones(5)/5, mode='same')

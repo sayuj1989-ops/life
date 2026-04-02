@@ -1,0 +1,10 @@
+A conceptual diagram illustrating the 'Derivative Gain Trap' during adolescent growth in the context of the Biological Countercurvature theory. The diagram should show a control-theoretic feedback loop where physical neural delay ($\tau$) increases as the spinal length ($L$) grows during the adolescent growth spurt.
+
+The visual should depict how the cognitive predictive horizon ($T_{pred}$) fails to keep up with the physical delay, causing a 'Derivative Gain Gap'. This gap turns otherwise stable neuromuscular damping gains into a destabilizing force, leading to 'Metabolic Buckling' and the onset of scoliotic curvature.
+
+Key elements to include:
+- A timeline or growth axis showing the rapid increase in Length ($L$).
+- Two curves: one for physical neural delay ($\tau(t)$) growing rapidly, and one for the cognitive predictive horizon ($T_{pred}(t)$) lagging behind.
+- A critical intersection or 'gap' region highlighted as the 'Derivative Gain Trap'.
+- A schematic of the spine transitioning from a stable S-curve to a buckled scoliotic shape within this gap region.
+- Labels for 'Neuromuscular Damping', 'Instability', and 'Metabolic Buckling'.

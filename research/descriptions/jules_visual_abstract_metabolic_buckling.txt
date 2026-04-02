@@ -1,0 +1,9 @@
+A comprehensive visual abstract for the 'Biological Countercurvature of Spacetime' paper, synthesizing its three core theoretical pillars into a unified thermodynamic hypothesis for the emergence of Adolescent Idiopathic Scoliosis (AIS).
+
+The visual should be split into three interconnected panels or sections:
+
+1. **The Allometric Trap**: Illustrate the dimensionless Bio-Gravitational Number ($\mathcal{B}_g = EI / (MgL^2) \approx 0.01$). Show human bipedalism at a precarious balance point, where the spine's mechanical stability is marginal compared to other species, rendering it highly sensitive to metabolic and neural perturbations.
+2. **The Energy Deficit Window**: Depict the mismatch during the adolescent growth spurt ($L > 0.35$ m) where the thermodynamic cost of maintaining the upright posture scales with $L^4$, while metabolic energy supply scales only with $L^2$. Highlight a '72% demand-supply anisotropy gap' involving 23 mechanotransduction proteins (e.g., Piezo2, Lamin A/C).
+3. **The Derivative Gain Trap**: Show the control-theoretic failure where increased spinal length ($L$) leads to increased neural transmission delay ($\tau$). Because the cognitive predictive horizon ($T_{pred}$) cannot compensate, normal neuromuscular damping gains become destabilizing, resulting in 'Metabolic Buckling'.
+
+The central theme should unify these three pillars to show that the spinal S-curve is an energetic ground state, and AIS is not a purely mechanical failure, but a complex *thermodynamic scaling failure* where metabolic limits and neural delays cause the system to buckle to minimize Free Energy. Include the equation for Information-Elasticity Coupling (IEC) as a central graphical motif.

@@ -1,0 +1,7 @@
+parameter,value
+anisotropy,3.0
+torsion_drive,0.0
+duration,2.0
+n_elements,50.0
+initial_lateral_defect,0.01
+seed,42.0

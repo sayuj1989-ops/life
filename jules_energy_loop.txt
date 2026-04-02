@@ -1,0 +1,6 @@
+Mechanogenetic Energy Crisis Loop in Adolescent Idiopathic Scoliosis.
+1. Growth Drivers (Stressor): Rapid adolescent growth driven by GHR/IGF1 increases the thermodynamic cost (L^4 scaling) of maintaining upright posture.
+2. Energy Supply (Constraint): PGC-1α (mitochondria) and BMAL1 (circadian) limit the energy supply rate (L^2 scaling).
+3. Deficit Bifurcation: When Demand exceeds Supply, the system enters an Energy Deficit Window.
+4. Mechanosensory Failure: High-cost sensors like Vimentin, Lamin A/C, and Piezo2 undergo thermal degradation first.
+5. Pathological Outcome: Loss of proprioceptive feedback causes asymmetric buckling, resulting in scoliosis (helical S-curve collapse) as a thermodynamic adaptation.

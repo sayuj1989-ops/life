@@ -1,0 +1,2 @@
+anisotropy_min,anisotropy_max,steps,active_curvature,gravity,initial_lateral_defect,duration,dt,n_elements,seed
+1.0,5.0,20,14.0,9.81,0.05,2.0,0.0001,50,42

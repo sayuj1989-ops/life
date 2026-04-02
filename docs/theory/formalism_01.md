@@ -694,6 +694,30 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+
+### 2.40. The Morphogenetic Growth-Anisotropy Coupling ($\Gamma_{aniso}$)
+
+We define a formal coupling constant linking the spatial morphogen gradient to the anisotropy of the growth tensor. This bridges chemical fields to geometrical strain rates.
+
+$$ \Delta \dot{\boldsymbol{\varepsilon}}_{aniso} = \Gamma_{aniso} \cdot \nabla I $$
+
+*   **Symbols**:
+    *   $\Delta \dot{\boldsymbol{\varepsilon}}_{aniso}$: The anisotropic component of the growth strain rate tensor $[T^{-1}]$.
+    *   $\nabla I$: Spatial gradient of the morphogenetic information field $[L^{-1}]$.
+    *   $\Gamma_{aniso}$: Morphogenetic Growth-Anisotropy Coupling Constant $[L T^{-1}]$.
+*   **Dimensions**:
+    *   $[\Gamma_{aniso}] = [\Delta \dot{\boldsymbol{\varepsilon}}_{aniso}] / [\nabla I] = [T^{-1}] / [L^{-1}] = [L T^{-1}]$.
+*   **Physical Interpretation**: $\Gamma_{aniso}$ determines the velocity at which an information gradient can command directional, non-spherical growth.
+*   **Measurable Proxy**: The ratio of longitudinal to radial cell expansion rates (growth tensor anisotropy) in vertebral chondrocytes.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Gradient-Nullification Growth Arrest**
+    *   **Data Needed**: Measurement of the growth strain rate tensor ($\dot{\boldsymbol{\varepsilon}}_g$) in 3D-cultured spinal organoids subjected to an engineered uniform morphogen bath ($\nabla I = 0$) versus a controlled spatial gradient.
+    *   **Refutation**: If growth remains highly anisotropic despite the erasure of the morphogen gradient ($\nabla I = 0$), the geometric directionality of growth does not require spatial chemical gradients, falsifying $\Gamma_{aniso}$ dependency. (Reference: Taber, 1995).
+*   **Test 2: The Isotropic Mutagenesis Rescue**
+    *   **Data Needed**: Vertebral aspect ratios measured during the adolescent growth spurt in a scoliotic animal model treated with a targeted mutation that artificially reduces $\Gamma_{aniso}$ (promoting isotropic "bloating").
+    *   **Refutation**: If reducing growth anisotropy does not mitigate scoliotic buckling, the hypothesis that high-anisotropy directional growth is the required target of the morphogenetic field is falsified. (Reference: Goriely, 2017).
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.

@@ -9,7 +9,7 @@
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **CLIN-01** | **PHV Timing Mapping** | Extract Peak Height Velocity data from literature and graph against model instability window. | 2 days | Literature search | 🔴 **Pending** |
-| **CLIN-02** | **Curve Type Prediction** | Refine `toy_model_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | 🟡 **In Progress** |
+| **CLIN-02** | **Curve Type Prediction** | Refine `experiment_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | 🟡 **In Progress** |
 | **CLIN-03** | **Sexual Dimorphism** | Map model parameters (e.g., stiffness ratios, growth rates) to female/male prevalence epidemiological data. | 1.5 days | Literature search | ⚪ **Planned** |
 | **CLIN-04** | **ALSPAC/Marfan Cross-check** | Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence. | 1 day | None | ⚪ **Planned** |
 

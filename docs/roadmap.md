@@ -1,55 +1,50 @@
-# Research Roadmap: Biological Countercurvature
+# Research Roadmap: Biological Countercurvature (Spine Submission)
 
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
+**Timeline:** 4 Weeks (April 02 - April 30, 2026)
 
-## Phase 1: Data Gathering & Code (Completed)
+## Phase 1: Computational Framework (Completed)
 
-- [x] **Data:** Collect Literature Data for Cross-Species Validation (9 Species: $L, R, EI, Mass$). **CRITICAL**
-- [x] **Code:** Create `experiment_cross_species_scaling.py` and reproduce Figure 3.
-- [x] **Code:** Implement Specific Mutation Mapping in `experiment_optimization_failure.py`.
-- [x] **Validation:** Run all scripts and ensure clean outputs (CSV/PNG). (Core & Toy Models Done)
-- [x] **Toy Models:** Develop Toy Models A & B for Reviewer Defense. (Done)
+- [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
+- [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4.
+- [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
+- [x] **Toy Models:** Develop Toy Models A-E for Reviewer Defense.
 
-## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
+## Phase 2: Clinical Validation (Weeks 1-2: April 02 - April 16)
 
-- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
-- [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
-- [ ] **References:** Complete Bibliography (80-100 refs).
+- [ ] **Cohort Data Extraction:** Extract clinical cohort data (Cobb angle distributions, progression rates) from literature.
+- [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
+- [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
+- [ ] **Curve Types:** Verify if model can reproduce common curve types (Lenke classification) based on initial conditions (`experiment_lenke_classes.py`).
 
-## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
+## Phase 3: Manuscript Polish & Review (Weeks 3-4: April 16 - April 30)
 
-- [ ] **Internal Review:** PI Review of full package (Manuscript + Supp Info).
+- [ ] **Reformatting:** Adapt `nature_manuscript.tex` to *Spine* format (IMRaD structure).
+- [ ] **Abstract:** Draft Structured Abstract.
+- [ ] **Clinical Relevance:** Write "Clinical Relevance" section highlighting predictive value.
+- [ ] **Figures:** Generate "Clinical Translation" figures (Model vs. Patient Data overlays).
+- [ ] **References:** Update bibliography to include relevant *Spine* and *Eur Spine J* citations.
 - [ ] **Pre-Submission:** Run `SUBMISSION_MASTER_CHECKLIST.md`.
-
-## Gantt Chart
-
-| Week | Task | Owner | Status |
-| :--- | :--- | :--- | :--- |
-| **Week 1 (Mar 01)** | Figure Assembly (1-7) | PI / Design | 🚨 **Starting** |
-| **Week 2 (Mar 08)** | Manuscript Final Text | PI | ⚪ Planned |
-| **Week 3 (Mar 15)** | Internal Review & Polish | Team | ⚪ Planned |
-| **Week 4 (Mar 22)** | **SUBMISSION** | PI | ⚪ Planned |
 
 ## Timeline Estimate
 
-- **Best Case:** 2 Weeks. Assuming figure assembly goes smoothly and internal review clears quickly.
-- **Expected:** 3 Weeks. Allowing some buffer for editing the manuscript sections and verifying specific Nature formatting requirements.
-- **Worst Case:** 5 Weeks. If figure redesign is requested during internal review or if more parameter sweeps are deemed necessary.
+- **Best Case:** 2 Weeks. Assuming clinical mapping goes smoothly.
+- **Expected:** 3 Weeks. Allowing buffer for finding exact epidemiological datasets.
+- **Worst Case:** 4 Weeks. If PyElastica Cosserat parameters need re-tuning to match human physiological ranges.
 
 ## Risks & Mitigations
 
-1.  **Figure Inconsistency:** Script outputs may lack unified visual styling. **Risk: Medium.** *Mitigation:* Unify style across scripts immediately.
-2.  **Missing References:** The Nature manuscript is still missing critical references (around 70-85 needed). **Risk: High.** *Mitigation:* Focus heavily on literature review and reference expansion in the next few days.
-3.  **Reviewer Skepticism:** Toy models essential to clarify "Metabolic Buckling" vs simple Euler Buckling. **Mitigation:** Toy Models A & B are implemented. **Risk: Low.**
+1.  **Clinical Data Mismatch:** Abstract physics parameters ($\chi_\kappa$, Anisotropy) may not map linearly to clinical metrics like Cobb angle progression. **Risk: Medium.** *Mitigation:* Focus on qualitative onset timing and relative scaling.
+2.  **IMRaD Reformatting Burden:** Stripping dense mathematical theory into supplementary sections while maintaining narrative flow is challenging. **Risk: High.** *Mitigation:* Treat the simulation strictly as an *in silico* experiment in the Methods section.
+3.  **Missing References:** The manuscript may lack sufficient targeted clinical references. **Risk: Medium.** *Mitigation:* Execute targeted literature review prioritizing recent *Spine* and *Eur Spine J* papers.
 
 ## Next 7 / 30 Days Plan
 
 **Next 7 Days (Sprint):**
-- **Day 1-2:** Output all final plot figures from updated scripts (Cross-Species, Optimization Failure, S-Shape).
-- **Day 3-4:** Assemble finalized Panels for Figures 1-4.
-- **Day 5-6:** Finish expanding the manuscript bibliography (`references.bib`) and integrate into `manuscript/submission_manuscript.tex`.
-- **Day 7:** Trim the Abstract and finalize standard Nature text styling requirements.
+- **Day 1-2:** Execute CLIN-01. Extract Peak Height Velocity (PHV) cohort data from literature and overlay with our PyElastica instability window.
+- **Day 3-4:** Execute CLIN-02. Refine `experiment_lenke_classes.py` to produce a finalized figure mapping spatial deficits to Lenke Classifications.
+- **Day 5-6:** Execute CLIN-03. Map sexual dimorphism metrics to model parameters.
+- **Day 7:** Begin structural draft overhaul (IMRaD) for *Spine* (MS-01).
 
 **Next 30 Days:**
-- **Weeks 2-3:** Finalize all text formatting, complete internal team review of the full manuscript and supplementary data.
-- **Week 4:** Pre-submission Checklist and submit to *Nature*.
+- **Weeks 2-3:** Finalize all "Clinical Translation" figures, complete the IMRaD manuscript reformatting, and circulate the updated draft for PI review.
+- **Week 4:** Address final internal review feedback, run submission checklist, and submit to *Spine*.

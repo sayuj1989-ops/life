@@ -85,12 +85,19 @@ def geodesic_curvature_deviation(
 
     # Weighted L2 distance in the countercurvature metric
     integrand = g_eff * dkappa**2
-    D_geo_sq = float(np.trapz(integrand, s))
+    # Support numpy 2.0+ where trapz is renamed to trapezoid
+    if hasattr(np, 'trapezoid'):
+        D_geo_sq = float(np.trapezoid(integrand, s))
+    else:
+        D_geo_sq = float(np.trapz(integrand, s))
     D_geo = float(np.sqrt(max(D_geo_sq, 0.0)))
 
     # Baseline: passive curvature "energy" in g_eff
     base_integrand = g_eff * kappa_passive**2
-    base_energy = float(np.trapz(base_integrand, s))
+    if hasattr(np, 'trapezoid'):
+        base_energy = float(np.trapezoid(base_integrand, s))
+    else:
+        base_energy = float(np.trapz(base_integrand, s))
 
     # Normalized distance (dimensionless)
     D_geo_norm = D_geo / (np.sqrt(base_energy) + eps)

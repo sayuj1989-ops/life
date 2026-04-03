@@ -21,7 +21,7 @@
 
 **Implementation:**
 - Script: `scripts/experiments/toy_model_thermostatic.py`
-- **Output:** [`outputs/figures/toy_model_thermostatic.png`](../outputs/figures/toy_model_thermostatic.png)
+- **Output:** `outputs/figures/toy_model_thermostatic.png`
 - **Status:** ✅ **Implemented**
 
 ## Toy Model B: The "Active" Elastica (Mechanical)
@@ -38,7 +38,7 @@
 
 **Implementation:**
 - Script: `scripts/toy_model_anisotropy_link.py`
-- **Output:** [`outputs/figures/toy_model_anisotropy_bifurcation.png`](../outputs/figures/toy_model_anisotropy_bifurcation.png)
+- **Output:** `outputs/figures/toy_model_anisotropy_bifurcation.png`
 - **Status:** ✅ **Implemented**
 
 ## Schedule
@@ -69,7 +69,7 @@
 
 **Implementation:**
 - Script: `scripts/experiments/toy_model_lenke_classes.py`
-- **Output:** [`outputs/figures/toy_model_lenke_classes.png`](../outputs/figures/toy_model_lenke_classes.png)
+- **Output:** `outputs/figures/toy_model_lenke_classes.png`
 - **Status:** ✅ **Implemented**
 
 ---
@@ -80,21 +80,14 @@ To further de-risk the theory and provide robust validation, the following toy m
 
 ### Proposed Additional Toy Models
 
-1.  **Torsional Buckling Model:**
-    *   **Objective:** Demonstrate that information-coupled systems resist torsional loads better than passive Euler columns.
-    *   **Method:** 1D Cosserat rod with an active twisting moment counteracting applied torque.
-    *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.
-    *   **Expected Outcome:** Active model maintains stability up to $2\times$ the passive $T_{crit}$.
-    *   **Stop Condition:** Analytical solution matches numerical simulation within 5% error.
-
-2.  **Information-Coupled Thermostatic Column:**
+1.  **Information-Coupled Thermostatic Column:**
     *   **Objective:** Extend Toy Model A to include a delayed feedback loop mimicking biological sensor lag.
     *   **Method:** 1D column with a PID controller regulating stiffness based on strain, with a defined time delay $\tau$.
     *   **Success Metric:** Identification of a critical delay $\tau_{crit}$ that induces oscillatory instability (hunting).
     *   **Expected Outcome:** System becomes unstable when $\tau$ exceeds the mechanical relaxation time.
     *   **Stop Condition:** Phase diagram maps stable vs. unstable regions across $(\tau, L)$ parameter space.
 
-3.  **Holographic Instability Lattice:**
+2.  **Holographic Instability Lattice:**
     *   **Objective:** Verify the "Exploding Gradient" region using a minimal 2D lattice.
     *   **Method:** 2D spring-mass lattice where resting lengths update based on local stress gradients.
     *   **Success Metric:** Emergence of macroscopic curvature from isotropic initial conditions under high information-coupling ($\chi_\kappa$).

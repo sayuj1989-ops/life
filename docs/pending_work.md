@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-04-03
 **Status:** In Progress
 **Priority Level:** High (Phase 2: Clinical Validation for Spine Submission)
 
@@ -23,25 +23,10 @@
 | **MS-04** | **Targeted References** | Update bibliography focusing on *Spine*, *Eur Spine J*, and clinical biomechanics. | 1.5 days | None | Low | ⚪ **Planned** |
 
 ## 3. Data Gaps (Completed Phase 1)
-
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **DATA-01** | **Cross-Species Dataset** | Compile cross-species scaling data for 9 species. | 2 days | None | ✅ **Completed** |
-| **DATA-02** | **Mutation Parameter Mapping** | Define explicit mappings for FBN1/matrix protein variants. | 1 day | None | ✅ **Completed** |
+- **DATA-01:** Cross-Species Dataset ✅
+- **DATA-02:** Mutation Parameter Mapping ✅
 
 ## 4. Theory & Models (Completed Phase 1)
-
-| ID | Task | Description | Effort | Dependencies | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CODE-01** | **Energy Deficit / Rescue Cliff**| Establish fundamental physics models and parameter sweeps. | - | None | ✅ **Completed** |
-| **CODE-02** | **Spinal Jetlag Simulation** | Demonstrate circadian modulation of curvature. | - | None | ✅ **Completed** |
-| **THEORY-01** | **Physical Toy Models A-E** | Create simple 1D models to build intuition for PyElastica behavior. | - | None | ✅ **Completed** |
-
-## Summary of Risks
-
-1.  **Clinical Data Mismatch:** Abstract physics parameters ($\chi_\kappa$, Anisotropy) may not map linearly to clinical metrics like Cobb angle progression. **Mitigation:** Focus on qualitative onset timing and relative scaling.
-2.  **IMRaD Reformatting Burden:** Stripping dense mathematical theory into supplementary sections while maintaining narrative flow is challenging. **Mitigation:** Treat the simulation strictly as an *in silico* experiment in the Methods section.
-
-**Next Actions:**
-1.  Target **CLIN-01**: Execute literature search for high-quality Peak Height Velocity (PHV) cohort charts.
-2.  Target **CLIN-02**: Finalize output parameters of the Lenke classification script.
+- **CODE-01:** Energy Deficit / Rescue Cliff ✅
+- **CODE-02:** Spinal Jetlag Simulation ✅
+- **THEORY-01:** Physical Toy Models A-E ✅

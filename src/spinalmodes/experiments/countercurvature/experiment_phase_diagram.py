@@ -214,7 +214,7 @@ def run_phase_diagram_experiment(
             )
 
             # Compute passive curvature energy (for reference)
-            passive_energy = np.trapz(kappa_passive**2, x=s)
+            passive_energy = np.trapezoid(kappa_passive**2, x=s)
 
             phase_data.append({
                 "chi_kappa": chi_k,

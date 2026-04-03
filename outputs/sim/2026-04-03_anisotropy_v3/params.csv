@@ -1,0 +1,5 @@
+parameter,value
+random_seed,42
+active_curvature,15.0
+torsion_drive,0.1
+duration,2.0

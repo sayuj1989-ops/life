@@ -8,6 +8,8 @@ Generates a Bolt-BioFold ⚡ style analysis report.
 import argparse
 import sys
 from pathlib import Path
+from datetime import datetime
+import subprocess
 
 import pandas as pd
 
@@ -105,6 +107,11 @@ def main():
 
         print(f"| {identity} | {conf_str} | {arch_str} | {geom_str} | {inter_str} | {flag_str} |")
 
+    print("\n#### CSV-Ready Block")
+    print("```csv")
+    print(df.to_csv(index=False))
+    print("```")
+
     print("\n### B) Key Plots Summary")
     print("*   **pLDDT vs Residue:** Generated for all targets. Profiles confirm domain boundaries vs IDRs.")
     print("*   **PAE Heatmap:** Analyzed for multi-domain candidates (e.g. PIEZO2, GHR).")
@@ -141,6 +148,17 @@ def main():
 
     print("\n### D) Best Next Move")
     print("*   **Prioritize High-Anisotropy Candidates:** Focus simulation efforts on **VIM**, **PIEZO2**, and **GHR** as they exhibit the structural characteristics (High Anisotropy > 4) required for the 'Thermodynamic Standing Wave' mechanics.")
+
+    print("\n### Quality & Reproducibility Checklist")
+    print("*   **Data source:** Local files (parsed from AlphaFold DB)")
+    print(f"*   **Date/time of run:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    try:
+        commit_hash = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('utf-8').strip()
+        print(f"*   **Code version / commit hash:** {commit_hash}")
+    except Exception:
+        print("*   **Code version / commit hash:** N/A")
+    print("*   **Parameters:** Geometry computations use pLDDT >= 70, disorder defined as pLDDT < 50.")
+    print("*   **Notes:** Missing artifacts are flagged (e.g. low confidence or missing PAE).")
 
 if __name__ == "__main__":
     main()

@@ -71,7 +71,7 @@ Correlate curvature metrics (especially hinge locations) with known pathogenic v
 
 ## Quality & Reproducibility Checklist
 - [x] Data source: AlphaFold DB (fetched dynamically/cached)
-- [x] Date/time of run: 2026-03-01 19:36:00
+- [x] Date/time of run: 2026-04-03 14:24:14
 - [x] Code version: Current HEAD
 - [x] Parameters: pLDDT >= 70 threshold for structure, discrete curvature computation
 - [x] Notes: SASA not computed to strictly adhere to zero new dependency rules.

@@ -52,3 +52,4 @@ This registry tracks all computational experiments supporting the "Biological Co
 ## 5. Missing / Pending Experiments
 
 *All previously missing critical core scripts (Cross-Species Validation, Mutation Mapping) are active. Focus is entirely on executing Phase 2 Clinical Validation tasks (CLIN_01 - CLIN_04).*
+| **EXP_12_TensegrityResonance**| `scripts/experiments/experiment_tensegrity_resonance.py`| Generates Tensegrity Resonance plots. Tests if structured physiological noise (e.g., muscle tremor harmonics) stabilizes buckling better than white noise via sensor dithering. | `outputs/figures/toy_model_tensegrity_resonance.png` | ✅ **Active** | Out-of-the-box enhancement testing structured vs unstructured noise. |

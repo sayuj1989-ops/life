@@ -1,0 +1,10 @@
+Title: The Derivative Gain Gap and Thermodynamic Instability (Scoliosis)
+
+Description:
+A phase diagram and conceptual illustration showing the onset of Adolescent Idiopathic Scoliosis (AIS) as a catastrophic structural failure of temporal cognition.
+The x-axis represents the Physical Neural Delay ($\tau$), which scales with nerve length during the adolescent growth spurt.
+The y-axis represents the Cognitive Predictive Horizon ($T_{pred}$), which adapts via neural plasticity.
+A distinct "Zone of Life" (green) exists where $T_{pred} \ge \tau$, maintaining the upright inverted pendulum geometry by bounding thermodynamic Free Energy.
+However, during peak growth velocity, $\tau$ outpaces $T_{pred}$, pushing the system into the "Zone of Death" or "Metabolic Trap" (red).
+To avoid energetic collapse in this zone, the spine spontaneously breaks symmetry (buckles) into a 3D helical S-curve (Scoliosis). This exaptation lowers the center of mass and changes the stability criteria, effectively pulling the system back into a new, deformed "Zone of Life".
+Include a visual of a straight spine falling vs. a buckled scoliotic spine surviving the temporal mismatch.

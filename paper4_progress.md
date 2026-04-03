@@ -2,6 +2,7 @@
 
 ## Completed Sessions
 * **Phase 1, Day 1 (Literature Review — Decomposing τ)** [2024-05-14]: Completed. Decomposed the total proprioceptive delay ($\tau$) into its constituent components (peripheral transduction, afferent conduction, spinal relay, cerebellar processing, efferent conduction, NMJ, and electromechanical delay). Identified initial molecular targets for each component. Incorporated PIEZO2 human mechanosensation literature (Chesler et al., 2016, DOI: 10.1056/NEJMoa1602812) and EMD values (Hopkins et al., 2009, DOI: 10.1002/jor.20934). Explicitly flagged numerical latency estimates requiring specific human paraspinal confirmation. Output generated in `paper4_literature/day1_tau_decomposition.md`.
+* **Phase 1, Day 2 (Literature Review — AIS genetics)** [2024-05-15]: Completed. Reviewed GWAS hits for AIS with DOIs: LBX1 (rs11190870, OR 1.56, mapped to $\tau_{spinal}$), GPR126 (rs6570507, OR 1.28, mapped to $\tau_{afferent}$ via myelination), PAX1 (enhancer locus, female-specific), and BNC2 (rs10738445, OR 1.21). Output generated in `paper4_literature/day2_ais_gwas.md`.
 
 ## Key Findings/Decisions Made
 * The total proprioceptive delay can be precisely modeled as a sum of 7 distinct physiological steps.

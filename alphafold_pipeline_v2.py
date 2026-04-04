@@ -8,7 +8,7 @@ The integrated analysis now uses the correct Hopf bifurcation solver.
 """
 
 import numpy as np
-import json, os, warnings
+import json, os, warnings, functools
 from pathlib import Path
 
 warnings.filterwarnings("ignore")
@@ -19,6 +19,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 FIG.mkdir(parents=True, exist_ok=True)
 
 # ─── Fixed Hopf boundary solver (from validated Phase 3) ──────────────
+@functools.lru_cache(maxsize=None)
 def analytical_hopf_boundary(Kp, Kd, b=1.0, I=0.8, mgL=73.575):
     """
     Correct Hopf bifurcation boundary for the DDE:

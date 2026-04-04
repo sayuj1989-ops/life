@@ -13,3 +13,15 @@
 
 ## Next Session
 * **Phase 1, Day 2**: Literature Review — AIS genetics. Comprehensive review of GWAS hits (GPR126, LBX1, PAX1, and others). Detail risk allele, effect size, population frequency, and proposed biological function for each locus. Output to `paper4_literature/day2_ais_gwas.md`.
+
+* **Phase 1, Day 2 (Literature Review — AIS genetics)** [2024-05-14]: Completed. Comprehensive review of GWAS hits for Adolescent Idiopathic Scoliosis (AIS). Detailed the risk alleles, effect sizes, population frequencies, and proposed biological functions for major loci (GPR126, LBX1, PAX1). Output generated in `paper4_literature/day2_ais_gwas.md`.
+
+## Key Findings/Decisions Made (Day 2)
+* AIS GWAS variants cluster into two functional categories relevant to the PID model: Controller variants that likely modulate $\tau$ (GPR126 for $\tau_{aff}$, LBX1 for $\tau_{spin}$) and Plant variants that alter the mechanical structure (PAX1 for vertebral development).
+* LBX1 remains the strongest signal and maps cleanly to spinal relay delay. GPR126 maps cleanly to afferent conduction delay via myelination.
+
+## Issues / Questions for Dr. Sayuj (Day 2)
+* PAX1 primarily affects vertebral development. Does Dr. Sayuj want to include a modified 'plant' model in Paper 4 to show how structural variants interact with $\tau$ variants, or should we strictly isolate the focus to the molecular determinants of $\tau$?
+
+## Next Session
+* **Phase 1, Day 3**: GPR126 deep dive — role in Schwann cell myelination, peripheral nerve development, knockout phenotypes, any conduction velocity data. Search for AlphaFold structure and AIS variant mapping. Output to `paper4_literature/day3_gpr126.md`.

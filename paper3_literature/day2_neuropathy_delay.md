@@ -1,0 +1,10 @@
+# Day 2: Peripheral Neuropathy and Nerve Conduction Velocity Changes with Age
+
+## Summary of Findings
+- **Nerve Conduction Velocity (NCV) Decline**: Research indicates a linear decline in NCV with age. One study (Tong et al., 2004) found median sensory velocities decrease at a rate of 0.14 m/s per year, while Werner et al. (2012) observed a decrease of 0.41 m/s per year of age. This physiological change occurs independently of anthropometric factors and demonstrates a progressive slowing of the peripheral nervous system's signaling capability. DOI: 10.4103/jnrp.jnrp_311_17
+- **Late Responses and Sensorimotor Delay**: Patients with older age exhibit longer latencies and slower conduction velocities compared to younger individuals. The change with age is greater in sensory nerve conduction and late responses (such as F-waves and H-reflexes) in all peripheral nerves. This directly contributes to an increased systemic time delay ($\tau$) in the postural control loop.
+- **Peripheral Neuropathy as a Fall Risk**: A case-cohort study (Kohle et al., 2024) demonstrated that peripheral neuropathy is an independent risk factor for falls in the elderly, specifically impairing stepping as a postural control mechanism. This links the reduction in nerve conduction (increasing $\tau$) to the behavioral failure of biological counter-curvature. DOI: 10.1111/jns.12656
+- **Sensorimotor Delay and Posture**: While the older nervous system can adapt to unexpected sensorimotor delays under certain conditions, baseline age-related impairments in balance learning exist. As NCV decreases, the intrinsic sensorimotor delay ($\tau$) inherently increases, pushing the neuromuscular controller closer to the instability margin. PMID: 38161590
+
+## Implications for the Ageing PID Model
+The progressive decline in NCV mathematically guarantees a slow, secular increase in $\tau$ over decades. If $\tau$ increases sufficiently, it will degrade the derivative gain $K_d$ and eventually cause the system's stability margin to collapse, matching the hypothesis of a "terminal derivative gain gap".

@@ -234,7 +234,7 @@ class BVPSolver(BaseSolver):
         # 2. Energy conservation check
         # Elastic energy: U = ∫ 0.5 * EI * (κ - κ̄)² ds
         EI = state.E_field * self.params.I_moment
-        elastic_energy = np.trapz(
+        elastic_energy = np.trapezoid(
             0.5 * EI * (state.kappa - state.kappa_target) ** 2, state.s
         )
 
@@ -243,7 +243,7 @@ class BVPSolver(BaseSolver):
         external_work = self.params.P_load * state.theta[-1] * self.params.length
 
         # Active work from IEC-3
-        active_work = np.trapz(state.M_active * state.kappa, state.s)
+        active_work = np.trapezoid(state.M_active * state.kappa, state.s)
 
         # Energy balance (elastic ≈ external - active)
         total_work = external_work - active_work

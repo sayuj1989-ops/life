@@ -87,9 +87,9 @@ def information_elasticity_energy(
 
     delta_kappa = kappa_profile - kappa_ref
 
-    info_energy = 0.5 * k_info * float(np.trapz(info.dIds**2, s))
-    gravity_energy = 0.5 * float(np.trapz(metric_field * (rhoA * gravity) * delta_kappa**2, s))
-    bending_energy = 0.5 * float(np.trapz(metric_field * B_field * delta_kappa**2, s))
+    info_energy = 0.5 * k_info * float(np.trapezoid(info.dIds**2, s))
+    gravity_energy = 0.5 * float(np.trapezoid(metric_field * (rhoA * gravity) * delta_kappa**2, s))
+    bending_energy = 0.5 * float(np.trapezoid(metric_field * B_field * delta_kappa**2, s))
 
     total = info_energy + gravity_energy + bending_energy
     return {

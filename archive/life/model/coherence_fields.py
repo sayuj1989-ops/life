@@ -152,4 +152,4 @@ def compute_gradient_norm(
         ||∇I|| = sqrt(∫ (∂I/∂s)^2 ds) / L
     """
     grad = compute_gradient(field, s)
-    return float(np.sqrt(np.trapz(grad**2, s)) / (s[-1] - s[0]))
+    return float(np.sqrt(np.trapezoid(grad**2, s)) / (s[-1] - s[0]))

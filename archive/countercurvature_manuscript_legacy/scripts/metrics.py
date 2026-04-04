@@ -80,7 +80,7 @@ def compute_metrics_from_simulation(centerline: np.ndarray,
     
     # Energy
     ds = arc_length[1] - arc_length[0] if len(arc_length) > 1 else 1.0
-    E_bend = 0.5 * bending_stiffness * np.trapz(curvature**2, dx=ds)
+    E_bend = 0.5 * bending_stiffness * np.trapezoid(curvature**2, dx=ds)
     E_gravity = -rod_density * gravity * np.mean(centerline[:, 2])
     E_shear = 0.1 * E_bend
     E_stretch = 0.05 * E_bend

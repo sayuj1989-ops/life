@@ -162,12 +162,12 @@ def geodesic_curvature_deviation(
 
     # Weighted L2 distance in the countercurvature metric
     integrand = g_eff * dkappa**2
-    D_geo_sq = float(np.trapz(integrand, s))
+    D_geo_sq = float(np.trapezoid(integrand, s))
     D_geo = float(np.sqrt(max(D_geo_sq, 0.0)))
 
     # Baseline: passive curvature "energy" in g_eff
     base_integrand = g_eff * kappa_passive**2
-    base_energy = float(np.trapz(base_integrand, s))
+    base_energy = float(np.trapezoid(base_integrand, s))
 
     # Normalized distance (dimensionless)
     D_geo_norm = D_geo / (np.sqrt(base_energy) + eps)
@@ -228,7 +228,7 @@ def compute_countercurvature_energy(
         # Integrated squared distance
         diff = centerline_info - centerline_passive
         squared_distances = np.sum(diff**2, axis=-1)
-        return float(np.trapz(squared_distances))
+        return float(np.trapezoid(squared_distances))
 
     elif method == "curvature_diff":
         # Compute curvature from centerline and compare
@@ -236,14 +236,14 @@ def compute_countercurvature_energy(
         kappa_passive = _compute_curvature_from_centerline(centerline_passive)
         kappa_info = _compute_curvature_from_centerline(centerline_info)
         diff_squared = (kappa_info - kappa_passive) ** 2
-        return float(np.trapz(diff_squared))
+        return float(np.trapezoid(diff_squared))
 
     elif method == "arc_length":
         # Arc-length weighted distance
         ds = _compute_arc_length_elements(centerline_info)
         diff = centerline_info - centerline_passive
         squared_distances = np.sum(diff**2, axis=-1)
-        return float(np.trapz(squared_distances, x=ds))
+        return float(np.trapezoid(squared_distances, x=ds))
 
     else:
         raise ValueError(f"Unknown method: {method}")
@@ -291,7 +291,7 @@ def compute_effective_metric_deviation(
     if s is not None:
         # Integrate with respect to arc-length
         integrand = delta_kappa**2
-        metric_dev = np.sqrt(np.trapz(integrand, x=s))
+        metric_dev = np.sqrt(np.trapezoid(integrand, x=s))
     else:
         # Uniform spacing
         metric_dev = np.linalg.norm(delta_kappa) / np.sqrt(len(delta_kappa))

@@ -161,7 +161,7 @@ def test_d_geo_scaled_curvature():
 
     # D_geo should be proportional to epsilon
     # D_geo^2 = ∫ g_eff * (ε * kappa_passive)^2 ds
-    expected_D_geo_sq = epsilon**2 * np.trapz(g_eff * kappa_passive**2, s)
+    expected_D_geo_sq = epsilon**2 * np.trapezoid(g_eff * kappa_passive**2, s)
     expected_D_geo = np.sqrt(expected_D_geo_sq)
 
     relative_error = abs(result["D_geo"] - expected_D_geo) / (

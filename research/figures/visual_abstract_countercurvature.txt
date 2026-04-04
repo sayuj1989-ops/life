@@ -1,18 +1,6 @@
-A high-impact Visual Abstract summarizing the "Biological Countercurvature of Spacetime" theoretical framework.
-
-The central focus is a glowing, ethereal human spine demonstrating the "S-curve" (lordosis and kyphosis).
-
-Key Elements:
-1.  **The Spine**: The spine should be depicted as a dynamic, energy-consuming structure, not just passive bone. It should glow from within, with distinct segments.
-2.  **Spacetime Grid**: The spine is superimposed on a 3D, warped cosmic or energetic grid (representing the local spacetime metric). The grid should actively bend and contour around the S-curve of the spine, illustrating that the biological structure is modifying the effective metric.
-3.  **Forces**:
-    *   Downward-pointing red arrows indicating the "Gravity Vector (g)".
-    *   Upward/outward-pointing golden arrows emanating from the spinal curves, labeled "Information Countercurvature (I) - HOX Patterning".
-4.  **Balance**: The image should convey a dynamic equilibrium—the golden information arrows perfectly counteracting the red gravity arrows to maintain the complex geometry.
-
-Text Labels:
-*   Top Title: "Biological Countercurvature of Spacetime"
-*   Subtitle: "An Information-Cosserat Framework"
-*   Bottom Callout: "S-Curve as an Energetic Ground State"
-
-Aesthetic: Photorealistic, high-contrast (neon on deep background), scientifically rigorous yet breathtaking. Think of a cover image for a major interdisciplinary journal bridging physics and biology.
+A comprehensive visual abstract for the theoretical framework "Biological Countercurvature of Spacetime".
+The visual should synthesize the three core pillars of the theory in an elegant, interconnected way.
+1. The "Allometric Trap": Depict human bipedalism and growth pushing the Bio-Gravitational Number (B_g) to a critically low threshold (~0.01), distinguishing humans from other species.
+2. The "Energy Deficit Window": Show a crossing-curve graph where metabolic cost scales as L^4 (or demand as L^2) while supply scales only as L^2 (or L^0.7), highlighting the vulnerability window during adolescent rapid growth.
+3. The "Derivative Gain Trap" & "Metabolic Buckling": Illustrate how increased neural/proprioceptive delay disrupts the Information-Elasticity Coupling, causing the healthy S-curve (the energetic ground state) to undergo symmetry breaking into a 3D scoliotic deformity to minimize Thermodynamic Free Energy.
+The style should be clean, highly professional, using minimal text but impactful icons and plots, suitable as the central visual abstract for a top-tier physics or biology journal. Use a unified color palette connecting information, mechanics, and pathology.

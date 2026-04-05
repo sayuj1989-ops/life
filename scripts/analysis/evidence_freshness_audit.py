@@ -22,12 +22,20 @@ def audit_afcc_freshness():
 
         try:
             df = pd.read_csv(metrics_file)
+
+            # fallback for gene_symbol column
+            gene_col = 'gene_symbol'
             if 'gene_symbol' not in df.columns:
-                print(f"Schema drift: {metrics_file} missing 'gene_symbol'")
-                continue
+                if 'Gene' in df.columns:
+                    gene_col = 'Gene'
+                elif len(df.columns) > 0:
+                    gene_col = df.columns[0]
+                else:
+                    print(f"Schema drift: {metrics_file} missing recognizable gene column")
+                    continue
 
             for _, row in df.iterrows():
-                gene = row['gene_symbol']
+                gene = row[gene_col]
                 # Store the full vector, extracting key metrics to check for identity
                 # Here we use anisotropy, pLDDT, PAE_domain_blockiness_score if available
                 metrics_vector = {
@@ -55,6 +63,9 @@ def audit_afcc_freshness():
             for date, vector in history[1:]:
                 # compare keys: anisotropy, plddt, pae_blockiness
                 for key in ['anisotropy', 'plddt', 'pae_blockiness']:
+                    # Handle NaNs
+                    if pd.isna(vector[key]) and pd.isna(first_vector[key]):
+                        continue
                     if vector[key] != first_vector[key]:
                         is_static = False
                         break

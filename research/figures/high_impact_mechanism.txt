@@ -1,9 +1,5 @@
-A high-impact scientific diagram illustrating the "Mechanogenetic Demand-Supply Gap" in the human spine.
-
-The diagram is split into two connected halves:
-1. "Structural Demand" (Left): Depicts large, rigid, and robust mechanosensor protein structures (e.g., PIEZO2). These act as antennas detecting gravitational stress and HOX genetic patterning. They are glowing with a solid, structured energy, representing their high thermodynamic cost.
-2. "Metabolic Supply" (Right): Depicts intrinsically disordered, flexible, and fragile metabolic regulatory proteins (e.g., SIRT1, FOXO3). They are shown as dynamic, loose chains struggling to produce energetic molecules (ATP/NAD+).
-
-Connecting the two halves is a large, stressed central arrow labeled "72% Anisotropy Gap".
-
-Below the main interaction, a timeline or growth phase illustrates "Adolescent Growth Spurt". Here, the "Demand" drastically outpaces the "Supply", creating a red "Energy Deficit Window". Within this window, a small, healthy S-shaped spine is shown buckling into a severe, twisted scoliotic curve, illustrating that Adolescent Idiopathic Scoliosis is a thermodynamic failure when metabolic supply cannot meet structural demand. The style should be suitable for a high-impact journal like Nature, using clean lines, clear typography, and a professional color palette (blues, reds, and golds).
+The Mechanogenetic Demand-Supply Gap represents the core thermodynamic instability driving Adolescent Idiopathic Scoliosis.
+1. The Allometric Trap dictates that metabolic cost scales as L^4, while blood supply networks scale as L^2.
+2. During the rapid adolescent growth spurt (L > 0.35m), the required energetic cost to maintain the straight inverted pendulum spinal column exceeds the nutrient delivery capacity.
+3. This generates an Energy Deficit Window.
+4. To bound Thermodynamic Free Energy, biological countercurvature emerges, breaking symmetry to form the 3D spiral shape of scoliosis as a lower-energy stable attractor state.

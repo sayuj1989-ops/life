@@ -1,6 +1,6 @@
 # Research Roadmap: Biological Countercurvature
 
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
+**Timeline:** 4 Weeks (April 06 - May 04, 2026)
 
 ## Phase 1: Data Gathering & Code (Completed)
 
@@ -25,10 +25,10 @@
 
 | Week | Task | Owner | Status |
 | :--- | :--- | :--- | :--- |
-| **Week 1 (Mar 01)** | Figure Assembly (1-7) | PI / Design | 🚨 **Starting** |
-| **Week 2 (Mar 08)** | Manuscript Final Text | PI | ⚪ Planned |
-| **Week 3 (Mar 15)** | Internal Review & Polish | Team | ⚪ Planned |
-| **Week 4 (Mar 22)** | **SUBMISSION** | PI | ⚪ Planned |
+| **Week 1 (Apr 06)** | PHV & Clinical Mapping | PI / Comp Sci | 🚨 **Starting** |
+| **Week 2 (Apr 13)** | IMRaD Restructuring | PI | ⚪ Planned |
+| **Week 3 (Apr 20)** | Figure Assembly (Clinical) | Design | ⚪ Planned |
+| **Week 4 (Apr 27)** | Internal Review & SUBMISSION | PI / Team | ⚪ Planned |
 
 ## Timeline Estimate
 
@@ -45,11 +45,11 @@
 ## Next 7 / 30 Days Plan
 
 **Next 7 Days (Sprint):**
-- **Day 1-2:** Output all final plot figures from updated scripts (Cross-Species, Optimization Failure, S-Shape).
-- **Day 3-4:** Assemble finalized Panels for Figures 1-4.
-- **Day 5-6:** Finish expanding the manuscript bibliography (`references.bib`) and integrate into `manuscript/submission_manuscript.tex`.
-- **Day 7:** Trim the Abstract and finalize standard Nature text styling requirements.
+- **Day 1-2:** Conduct targeted literature search for Peak Height Velocity (PHV) cohort charts.
+- **Day 3-4:** Complete `CLIN-02`: Finalize parameters for Lenke classification script.
+- **Day 5-6:** Write `experiment_phv_timing.py` (CLIN-01) mapping model to extracted PHV data.
+- **Day 7:** Update `docs/pending_work.md` and initiate MS-01 (IMRaD Restructuring).
 
 **Next 30 Days:**
-- **Weeks 2-3:** Finalize all text formatting, complete internal team review of the full manuscript and supplementary data.
-- **Week 4:** Pre-submission Checklist and submit to *Nature*.
+- **Weeks 2-3:** Complete IMRaD restructuring, generate final Clinical Translation figures (MS-03), and draft "Clinical Relevance" section (MS-02).
+- **Week 4:** Final Internal Review of IMRaD version, targeted reference updates, and Pre-Submission checklist completion.

@@ -1,15 +1,17 @@
 # Paper 5: The Predictive Processing Bridge - Progress Tracker
 
 ## Current Status
-**Phase 1, Day 1: FEP Foundations** - Completed (Date: 2026-04-01)
+**Phase 1, Day 2: Active Inference and Motor Control** - Completed (Date: 2026-04-02)
 
 ## Key Findings
-- Reviewed core FEP papers (Friston 2010, Friston 2006).
-- Mapped the concept of surprise minimization to the "derivative gain gap": rapid growth causes a persistent increase in sensory surprise because the physical body changes faster than the generative model updates.
-- Identified that motor commands in active inference are predictions of proprioceptive states; when these predictions are misspecified during growth, both perception and action fail to minimize free energy, potentially leading to a local minimum (asymmetric posture).
+- Reviewed core FEP papers (Friston 2010, Friston 2006) on Day 1.
+- Day 2: Active inference reframes motor control (Adams et al. 2013). Motor commands are descending proprioceptive predictions, and movement occurs via classical reflex arcs suppressing proprioceptive prediction errors.
+- The equilibrium-point hypothesis aligns with active inference: descending signals specify an equilibrium state (a prediction).
+- The derivative gain gap during rapid growth corresponds to a systematic mismatch between predictions and sensory feedback, leading to a down-weighting of the precision of velocity prediction errors. This precision drop is equivalent to the degradation of the derivative gain ($K_d$).
 
 ## Decisions / Issues
-- Need to formally map the PID components to the generative model (upcoming in Part A derivation).
+- The connection between precision of velocity prediction errors and $K_d$ is the critical mathematical bridge.
+- Need to formalize how generalized coordinates of motion handle this precision weighting (upcoming Day 3).
 
 ## Next Session Plan
-- **Phase 1, Day 2:** Active inference and motor control. Focus on Friston et al. and Adams et al. regarding the equilibrium-point hypothesis as active inference.
+- **Phase 1, Day 3:** Generalised coordinates of motion in FEP. Review Friston's formalism for encoding velocity, acceleration, jerk etc. as "generalised motion." Understand how precision on generalised motion relates to derivative control.

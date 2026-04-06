@@ -1,0 +1,6 @@
+Visual Abstract for "Biological Countercurvature of Spacetime".
+This framework connects developmental biology with Cosserat rod mechanics and general relativity analogs.
+HOX-patterned developmental fields act as an information field (biological "countercurvature") that modifies the effective metric experienced by the spine.
+Through the Information-Elasticity Coupling (IEC), this countercurvature balances gravity.
+The characteristic spinal S-curve emerges naturally as the thermodynamic energetic ground state.
+When scaled to human proportions, the Bio-Gravitational Number (Bg ~ 0.01) creates an "Allometric Trap", explaining our unique susceptibility to scoliosis compared to other species.

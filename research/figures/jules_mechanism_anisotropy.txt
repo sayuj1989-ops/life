@@ -1,0 +1,4 @@
+The "Demand-Supply Anisotropy" feedback loop in mechanotransduction.
+AlphaFold structural analysis of 23 mechanotransduction proteins reveals a 72% demand-supply anisotropy gap.
+During adolescent growth (when length L > 0.35m), the physical distance and scale outpace the metabolic supply of mechanosensory proteins (like Piezo2).
+This creates an "Energy Deficit Window" where the spine's active control cannot match the gravitational demand, leading to thermodynamic instability and buckling (scoliosis) as an energy-minimization strategy.

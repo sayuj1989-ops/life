@@ -22,6 +22,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
 | **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
 | **EXP_11_LocomotorResonance**| `scripts/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_12_Chronobiomechanics** | `scripts/experiments/experiment_chronobiomechanics.py` | Generates Chronobiomechanical Vulnerability Map. Sweeps time of day against locomotor frequency. | `outputs/figures/chronobiomechanics_heatmap.png` | ✅ **Active** | Out-of-the-box enhancement merging circadian phase and resonance. |
 
 ## 2. Toy Models (Validation)
 

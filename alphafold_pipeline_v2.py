@@ -13,8 +13,8 @@ from pathlib import Path
 
 warnings.filterwarnings("ignore")
 
-OUT = Path("/sessions/gracious-relaxed-dirac/mnt/life/results")
-FIG = Path("/sessions/gracious-relaxed-dirac/mnt/life/figures_alphafold")
+OUT = Path("outputs/results")
+FIG = Path("outputs/figures_alphafold")
 OUT.mkdir(parents=True, exist_ok=True)
 FIG.mkdir(parents=True, exist_ok=True)
 
@@ -98,7 +98,7 @@ def simulate_dde(Kp, Kd, tau, duration=8.0, dt=0.002, b=1.0, I=0.8,
 
 
 # ─── AlphaFold structure parser ────────────────────────────────────────
-def download_alphafold_pdb(uniprot_id, cache_dir="/sessions/gracious-relaxed-dirac/af_cache"):
+def download_alphafold_pdb(uniprot_id, cache_dir="data/af_cache"):
     os.makedirs(cache_dir, exist_ok=True)
     path = f"{cache_dir}/{uniprot_id}.pdb"
     if os.path.exists(path):

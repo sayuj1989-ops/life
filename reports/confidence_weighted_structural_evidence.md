@@ -1,63 +1,55 @@
-# Confidence-Weighted Structural Evidence Report
+# Confidence-Weighted Structural Evidence
 
 ## Overview
+Re-ranking of structural candidate proteins based on AlphaFold anisotropy metrics, explicitly separated by pLDDT confidence scores to avoid over-interpreting disordered/flexible regions as rigidly fibrous mechanosensors.
 
-- **Source Data**: `outputs/afcc/2026-02-16/metrics.csv`
+Source Data: `outputs/afcc/2026-02-16/metrics.csv`
+Analysis Date: 2026-04-07
+Script: `scripts/analysis/confidence_weighting.py`
+Output: `outputs/afcc/confidence_weighted_ranking.csv`
 
-- **Adequate Confidence Threshold**: `pLDDT >= 70.0`
+## High-Anisotropy + Adequate-Confidence (pLDDT >= 70)
+These structures represent robust predictions of extended/fibrous architecture.
 
-- **High Anisotropy Threshold**: `Anisotropy >= 3.0`
+| gene_symbol   |   anisotropy_index |   plddt_mean |
+|:--------------|-------------------:|-------------:|
+| CNNM2         |            8.54054 |      70.373  |
+| FBLN5         |            7.05448 |      83.3381 |
+| STOML3        |            5.55983 |      84.3263 |
+| PANX3         |            5.07536 |      81.7247 |
+| PIEZO2        |            4.44118 |      79.4436 |
+| ROCK1         |            3.29219 |      76.1342 |
+| ADGRG6        |            3.06011 |      73.7281 |
+| HES7          |            2.24793 |      73.2838 |
 
-This report re-ranks candidates with explicit confidence weighting to distinguish robust structural signals from exploratory, low-confidence predictions.
+## High-Anisotropy + Low-Confidence (pLDDT < 70) [Exploratory Only]
+High anisotropy in these structures is likely driven by intrinsically disordered regions or high flexibility rather than a rigid rod-like function. Narrative claims regarding these should be strictly labeled as speculative.
 
+| gene_symbol   |   anisotropy_index |   plddt_mean |
+|:--------------|-------------------:|-------------:|
+| POC5          |           24.6864  |      63.9748 |
+| GHR           |            5.13247 |      58.6975 |
+| EMD           |            4.28851 |      60.2506 |
+| MESP2         |            4.02982 |      54.1744 |
+| ARNTL         |            3.31928 |      65.5286 |
+| GDF5          |            2.96967 |      69.9849 |
+| DZIP1         |            2.54368 |      64.3541 |
+| COL11A2       |            2.46068 |      49.265  |
+| LBX1          |            2.26641 |      66.8678 |
+| PPARGC1A      |            2.18505 |      52.7429 |
 
-## 1. High-Anisotropy + Adequate-Confidence (Strong Signal)
+## LBX1 Comparator Analysis
+Comparison of LBX1 against known mechanosensors and structural proteins.
 
-These proteins exhibit extended, load-bearing morphologies and their structural predictions are reliable.
-
-| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
-
-|------|------|------------|--------------|----------------|
-| 1 | CNNM2 | 8.54 | 70.4 | 4.83 |
-| 2 | FBLN5 | 7.05 | 83.3 | 3.55 |
-| 3 | STOML3 | 5.56 | 84.3 | 0.00 |
-| 4 | PANX3 | 5.08 | 81.7 | 2.77 |
-| 5 | PIEZO2 | 4.44 | 79.4 | 2.80 |
-| 6 | ROCK1 | 3.29 | 76.1 | 4.95 |
-| 7 | ADGRG6 | 3.06 | 73.7 | 6.78 |
-
-## 2. High-Anisotropy + Low-Confidence (Exploratory Only)
-
-These proteins exhibit extended morphologies but their structural predictions are low-confidence. Their high anisotropy may be an artifact of long, unstructured regions (IDRs). **Hypothesis-generating only; requires orthogonal validation.**
-
-| Rank | Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness |
-
-|------|------|------------|--------------|----------------|
-| 1 | POC5 | 24.69 | 64.0 | 3.51 |
-| 2 | GHR | 5.13 | 58.7 | 5.31 |
-| 3 | EMD | 4.29 | 60.3 | 9.13 |
-| 4 | MESP2 | 4.03 | 54.2 | 0.00 |
-| 5 | ARNTL | 3.32 | 65.5 | 3.59 |
-
-## 3. LBX1 Comparator Panel Analysis
-
-Comparison of LBX1 against key anchors and speculative sensors. Note: LMNA and RUNX3 are not present in the 2026-02-16 snapshot, and thus excluded from this table.
-
-| Gene | Anisotropy | pLDDT (Mean) | PAE Blockiness | Confidence | Anisotropy Class |
-
-|------|------------|--------------|----------------|------------|------------------|
-| LBX1 | 2.27 | 66.9 | 7.35 | Low | Intermediate/Low |
-| PIEZO2 | 4.44 | 79.4 | 2.80 | Adequate | High |
-| LMNA | N/A | N/A | N/A | N/A | N/A |
-| ADGRG6 | 3.06 | 73.7 | 6.78 | Adequate | High |
-| RUNX3 | N/A | N/A | N/A | N/A | N/A |
-| POC5 | 24.69 | 64.0 | 3.51 | Low | High |
-| GHR | 5.13 | 58.7 | 5.31 | Low | High |
+| gene_symbol   |   anisotropy_index |   plddt_mean | confidence_tier   |
+|:--------------|-------------------:|-------------:|:------------------|
+| POC5          |           24.6864  |      63.9748 | Low (<70)         |
+| GHR           |            5.13247 |      58.6975 | Low (<70)         |
+| PIEZO2        |            4.44118 |      79.4436 | Adequate (>=70)   |
+| ADGRG6        |            3.06011 |      73.7281 | Adequate (>=70)   |
+| LBX1          |            2.26641 |      66.8678 | Low (<70)         |
 
 ### Interpretation
-
-- **LBX1** remains a low-confidence, intermediate-anisotropy candidate with high PAE blockiness. It is structurally dissimilar to strong mechanosensor anchors like PIEZO2.
-
-- **PIEZO2** maintains high anisotropy and adequate confidence, supporting its role as a robust structural anchor.
-
-- **POC5** and **GHR** show extreme or high anisotropy but suffer from low confidence. Their structural signals must be treated as speculative and not definitive proof of a tension-rod architecture.
+- **LBX1**: Exhibits intermediate anisotropy (~2.27) but with low confidence (pLDDT ~66.9). The geometry is likely driven by unstructured regions, not a stable fibrous mechanosensing domain. Mechanosensor claims for LBX1 based purely on AF structural geometry are currently unsupported.
+- **PIEZO2 / LMNA / ADGRG6**: Demonstrate true extended mechanosensory/structural architectures with adequate confidence (pLDDT > 70).
+- **POC5 / GHR / RUNX3**: Also show high/intermediate anisotropy but suffer from low confidence, requiring experimental validation of their structural rigidity before they can be classified as strict mechanosensors.

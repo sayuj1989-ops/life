@@ -1,20 +1,21 @@
 # Next Step Evidence Summary
 
-## 1. What is stronger now than baseline
-* **Clear separation of Confidence vs. Shape**: We have explicitly separated candidates with high anisotropy into those with adequate confidence (`pLDDT >= 70`) versus those with low confidence. For instance, `PIEZO2` (anisotropy 4.44, pLDDT 79.4, per `outputs/afcc/2026-02-16/metrics.csv`), `CNNM2`, `FBLN5`, and `STOML3` are now confirmed as robust tension-rod models, whereas `POC5` and `GHR` are downgraded to speculative due to low pLDDT.
-* **Refined understanding of LBX1**: LBX1's profile is now rigorously defined as an intermediate-anisotropy (2.27), highly blocky (PAE blockiness 7.35) structure with low confidence (pLDDT 66.9) per `outputs/afcc/2026-02-16/metrics.csv`. This falsifies simplistic "LBX1 is a rigid tension rod" narratives and properly bounds its hypothesized function to a modular or spring-like role.
-* **Data Freshness and Narrative Discipline**: The audit (`reports/evidence_freshness_audit.md`) revealed that multiple daily and cluster reports had generated "new" narratives from completely static structural metrics (e.g., PIEZO2, LMNA, LBX1 metric vectors were unchanged over the trend window from `outputs/afcc/2026-01-09` to `outputs/afcc/2026-02-16`). We now have a clear claims matrix (`reports/countercurvature_claims_matrix.md`) that separates direct measurements from narrative inference.
+## Executive Summary
+This report summarizes the updated evidentiary baseline for the Biological Countercurvature hypothesis following rigorous data auditing and structural confidence weighting.
 
-## 2. What remains weak
-* **Biological Validation of "Blocky" IDRs**: For candidates like LBX1, we rely heavily on AlphaFold's PAE blockiness to infer modular function. However, the low overall pLDDT means these hinges might simply be unstructured IDRs without any spring-like mechanical properties.
-* **Causal Link Between Shape and Function**: High anisotropy, even with high confidence (like `FBLN5` or `PIEZO2`), is currently just a geometric property. We lack direct experimental evidence showing these specific structural features actively transduce tension in the spinal somite context.
-* **Low-Confidence Outliers**: Extreme anisotropy candidates (like `POC5` at 24.69, per `outputs/afcc/2026-02-16/metrics.csv`) remain entirely speculative. Their high anisotropy might simply be an AlphaFold artifact for long, natively unstructured sequences.
+Source Data: `outputs/afcc/2026-02-16/metrics.csv`
+Analysis Date: 2026-04-07
 
-## 3. Evidence AGAINST or weakening the current hypothesis
-* **LBX1 is not a strong structural anchor**: The data directly contradicts the hypothesis that LBX1 is a purely structural, fibrous tension rod. Its intermediate anisotropy (2.27) and low pLDDT (66.9) (per `outputs/afcc/2026-02-16/metrics.csv`) position it closer to a standard globular or modular protein, significantly weakening claims of its direct load-bearing capacity.
-* **Static "Evolution" of Structural Narratives**: The freshness audit (`reports/evidence_freshness_audit.md`) demonstrates that previously hypothesized "emerging structural classes" or "evolution" of candidate geometries over Jan-Feb 2026 were based on static, unchanged AlphaFold inputs. The narrative outpaced the measured evidence, meaning any temporal or causal inferences drawn during that period are unsupported by the underlying data.
+### What is Stronger Now than the Baseline
+1.  **Refined Structural Candidates:** By strictly filtering AlphaFold predictions for adequate confidence (pLDDT >= 70), we have isolated a more robust set of potential mechanosensors. Proteins like **ADGRG6** (Anisotropy: 3.06, pLDDT: 73.7), **PIEZO2** (4.44, 79.4), and **FBLN5** (7.05, 83.3) represent strong, data-backed candidates for structurally rigid tension-sensors.
+2.  **Data Integrity:** The freshness audit exposed the reuse of cached metric vectors in previous reports, allowing us to discard false narratives about "dynamic" daily structural shifts and focus on verified static geometries.
 
-## 4. Top 3 highest-leverage next experiments
-1. **smFS of LBX1 and Modular Candidates**: Perform single-molecule force spectroscopy on recombinant LBX1 to test if its "blocky" domains exhibit discrete, force-dependent unfolding steps characteristic of a mechanical spring, thereby validating the PAE-based hypothesis.
-2. **Nuclear Tension Perturbation (LINC complex)**: Modulate nuclear tension via LMNA knockdown or LINC complex disruption and measure the nuclear/chromatin localization of intermediate candidates like LBX1. This directly tests the core mechanotransduction hypothesis independent of AlphaFold predictions.
-3. **Ensemble Modeling / MD of IDRs**: For low-confidence, high-anisotropy outliers (POC5, GHR), use ensemble modeling tools (e.g., AlphaFold-Multimer, Rosetta, or molecular dynamics relaxation) to determine if their extended structures represent stable physiological states or transient/artifactual conformations.
+### What Remains Weak (Evidence Against Current Narratives)
+1.  **LBX1 as a Direct Mechanosensor:** The structural evidence actively *weakens* the claim that LBX1 functions as a rigid, load-bearing mechanosensor. Its intermediate anisotropy (2.27) combined with low confidence (pLDDT: 66.9) strongly implies a flexible or disordered architecture, not a structural "tension rod."
+2.  **Over-interpretation of High Anisotropy:** Extreme anisotropy values for proteins like **POC5** (24.69) and **GHR** (5.13) are heavily confounded by low confidence scores (pLDDT < 70). Continuing to treat these as guaranteed rigid fibers without experimental validation is a speculative overreach.
+
+### Top 3 Highest-Leverage Next Experiments
+To defend the Biological Countercurvature hypothesis for publication, we must execute the following falsifiable tests:
+1.  **LBX1 In Vitro Tension Assay:** Apply cyclical strain to cultured osteoblasts to determine if LBX1 exhibits direct mechanotransductive responses (nuclear translocation or transcriptional upregulation). This resolves whether it is a mechanosensor or merely downstream of one.
+2.  **ADGRG6/PIEZO2 Structural Validation:** Perform Atomic Force Microscopy (AFM) single-molecule force spectroscopy on purified ADGRG6 and PIEZO2 to confirm that their high predicted anisotropy translates to true high physical persistence length (rigidity) under tension.
+3.  **In Vivo Morphogenic Loading Model:** Utilize conditional knock-out models (e.g., *Lbx1* or *Adgrg6* null) under bipedal gravitational loading protocols to directly measure (via micro-CT) if the target gene is strictly required to induce the compensatory S-shaped spinal curvature.

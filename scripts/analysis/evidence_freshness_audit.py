@@ -1,118 +1,95 @@
-from pathlib import Path
-
+import os
 import pandas as pd
+import glob
 
+def audit_freshness(base_dir='outputs/afcc'):
+    dates = sorted([d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d)) and d.startswith('2026')])
 
-def audit_afcc_freshness():
-    afcc_dir = Path('outputs/afcc')
-
-    # Get all dated subdirectories in outputs/afcc
-    date_dirs = sorted([d for d in afcc_dir.iterdir() if d.is_dir() and d.name.startswith('2026-')])
-
-    metrics_history = {}
+    schema_drift = []
     missing_metrics = []
+    identical_vectors = []
 
-    for d in date_dirs:
-        date = d.name
-        metrics_file = d / 'metrics.csv'
+    # Audit logic
+    previous_data = {} # {gene_symbol: {metrics}}
 
-        if not metrics_file.exists():
+    for date in dates:
+        csv_path = os.path.join(base_dir, date, 'metrics.csv')
+        if not os.path.exists(csv_path):
             missing_metrics.append(date)
             continue
 
         try:
-            df = pd.read_csv(metrics_file)
-            if 'gene_symbol' not in df.columns:
-                print(f"Schema drift: {metrics_file} missing 'gene_symbol'")
-                continue
-
-            for _, row in df.iterrows():
-                gene = row['gene_symbol']
-                # Store the full vector, extracting key metrics to check for identity
-                # Here we use anisotropy, pLDDT, PAE_domain_blockiness_score if available
-                metrics_vector = {
-                    'anisotropy': row.get('anisotropy_index', None),
-                    'plddt': row.get('plddt_mean', None),
-                    'pae_blockiness': row.get('PAE_domain_blockiness_score', None),
-                    'file': str(metrics_file)
-                }
-
-                if gene not in metrics_history:
-                    metrics_history[gene] = []
-
-                metrics_history[gene].append((date, metrics_vector))
+            df = pd.read_csv(csv_path)
         except Exception as e:
-            print(f"Error reading {metrics_file}: {e}")
+            continue
 
-    # Analyze for static metrics
-    static_genes = []
-    reused_reports = []
+        cols = df.columns.tolist()
 
-    for gene, history in metrics_history.items():
-        if len(history) > 1:
-            first_vector = history[0][1]
-            is_static = True
-            for date, vector in history[1:]:
-                # compare keys: anisotropy, plddt, pae_blockiness
-                for key in ['anisotropy', 'plddt', 'pae_blockiness']:
-                    if vector[key] != first_vector[key]:
-                        is_static = False
-                        break
-                if not is_static:
-                    break
+        # Schema drift check
+        gene_col = None
+        if 'gene_symbol' in cols:
+            gene_col = 'gene_symbol'
+        elif 'Gene' in cols:
+            gene_col = 'Gene'
+            schema_drift.append((date, 'Used "Gene" instead of "gene_symbol"'))
+        else:
+            schema_drift.append((date, f'Missing gene identifier. Columns: {cols[:5]}'))
+            continue
 
-            if is_static:
-                static_genes.append({
-                    'gene': gene,
-                    'runs': len(history),
-                    'first_date': history[0][0],
-                    'last_date': history[-1][0],
-                    'anisotropy': first_vector['anisotropy'],
-                    'plddt': first_vector['plddt']
-                })
-                # Add to reused reports if it's static across runs
-                for date, vector in history[1:]:
-                    reused_reports.append({'date': date, 'gene': gene})
+        # Reused identical per-gene vectors check
+        current_data = {}
+        for _, row in df.iterrows():
+            gene = row[gene_col]
+            metrics = {
+                'anisotropy_index': row.get('anisotropy_index', row.get('anisotropy')),
+                'plddt_mean': row.get('pLDDT_mean', row.get('plddt_mean'))
+            }
+            current_data[gene] = metrics
 
-    # Generate Report
-    report_content = [
-        "# Evidence Freshness Audit Report\n",
-        "## Data Integrity and Freshness\n",
-        f"- **Runs Audited**: {len(date_dirs)}\n",
-        f"- **Missing Linked Outputs**: {len(missing_metrics)} ({', '.join(missing_metrics) if missing_metrics else 'None'})\n",
-        "- **Schema Drifts**: None detected in scoped files with `gene_symbol`.\n\n",
-        "## Identical Per-Gene Vectors Across Runs (Static Metrics)\n",
-        "The following genes have identical metrics (anisotropy, pLDDT, PAE blockiness) across multiple runs, indicating reused static inputs rather than fresh measurements:\n",
-        "| Gene | Runs Present | First Date | Last Date | Anisotropy | pLDDT |\n",
-        "|------|--------------|------------|-----------|------------|-------|"
-    ]
+            if gene in previous_data:
+                prev = previous_data[gene]
+                if pd.notna(metrics['anisotropy_index']) and pd.notna(prev['anisotropy_index']) and metrics['anisotropy_index'] == prev['anisotropy_index']:
+                    if pd.notna(metrics['plddt_mean']) and pd.notna(prev['plddt_mean']) and metrics['plddt_mean'] == prev['plddt_mean']:
+                        identical_vectors.append({'date': date, 'gene': gene, 'anisotropy': metrics['anisotropy_index'], 'plddt': metrics['plddt_mean']})
 
-    for item in sorted(static_genes, key=lambda x: x['runs'], reverse=True):
-        report_content.append(f"| {item['gene']} | {item['runs']} | {item['first_date']} | {item['last_date']} | {item['anisotropy']} | {item['plddt']} |")
+        previous_data = current_data
 
-    report_content.append("\n## When 'New' Reports Reuse Unchanged Values\n")
-
-    # Group reused reports by date
-    reused_by_date = {}
-    for item in reused_reports:
-        d = item['date']
-        if d not in reused_by_date:
-            reused_by_date[d] = []
-        reused_by_date[d].append(item['gene'])
-
-    for d in sorted(reused_by_date.keys()):
-        genes = reused_by_date[d]
-        report_content.append(f"- **{d}**: Reused static metrics for {len(genes)} genes (e.g., {', '.join(genes[:5])}...)\n")
-
-    report_content.append("\n## Conclusion\n")
-    report_content.append("- **Actionable Insight**: Many core candidates (e.g., LBX1, PIEZO2, LMNA) show static values across the trend window. This confirms the caveat that high-anisotropy narratves may over-interpret static inputs.")
-
-    # Write report
-    report_path = Path('reports/evidence_freshness_audit.md')
+    # Generate report
+    report_path = 'reports/evidence_freshness_audit.md'
+    os.makedirs('reports', exist_ok=True)
     with open(report_path, 'w') as f:
-        f.write("\n".join(report_content))
+        f.write("# Evidence Freshness Audit\n\n")
+        f.write("## Overview\n")
+        f.write("Audit of AFCC run history to detect reused/static metrics, schema drifts, and missing outputs.\n\n")
 
-    print(f"Audit complete. Report written to {report_path}")
+        f.write("## Missing Outputs\n")
+        if missing_metrics:
+            for d in missing_metrics:
+                f.write(f"- {d}: Missing metrics.csv\n")
+        else:
+            f.write("- No missing metrics.csv files found.\n")
+        f.write("\n")
+
+        f.write("## Schema Drifts\n")
+        if schema_drift:
+            for d, issue in schema_drift:
+                f.write(f"- {d}: {issue}\n")
+        else:
+            f.write("- No schema drifts found.\n")
+        f.write("\n")
+
+        f.write("## Identical Per-Gene Vectors Across Runs\n")
+        if identical_vectors:
+            df_identical = pd.DataFrame(identical_vectors)
+            counts = df_identical.groupby('gene').size().sort_values(ascending=False).head(20)
+            f.write("Warning: The following genes exhibit identical structural metrics (anisotropy and pLDDT) across consecutive dates, suggesting cached/static reuse rather than fresh analysis.\n\n")
+            f.write("| Gene | Consecutive Reuses | Example Anisotropy | Example pLDDT |\n")
+            f.write("|---|---|---|---|\n")
+            for gene, count in counts.items():
+                example = df_identical[df_identical['gene'] == gene].iloc[0]
+                f.write(f"| {gene} | {count} | {example['anisotropy']} | {example['plddt']} |\n")
+        else:
+            f.write("- No identically reused metrics vectors found.\n")
 
 if __name__ == "__main__":
-    audit_afcc_freshness()
+    audit_freshness()

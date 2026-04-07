@@ -1,14 +1,1 @@
-Title: Visual Abstract: Biological Countercurvature
-
-Concept: A glowing, ethereal human spine suspended in a dark, warped grid (representing spacetime/gravity).
-
-Central Element: A golden, S-shaped spine. It is not just bone, but composed of flowing "data streams" or "information threads" (like fiber optics) that are actively pushing back against the downward purple/blue arrows of gravity.
-
-Contrast:
-- Gravity: Represented by heavy, dark blue/purple arrows pushing down and trying to buckle the spine.
-- Countercurvature: Represented by the golden/white light of the spine, pushing upwards and outwards, maintaining the S-shape.
-
-Background: A faint grid (like a gravity well) that is warped by the presence of the spine.
-
-Style: High-end scientific illustration, 3D render style, glowing effects. "Cyber-biological".
-Annotation: "Information = Geometry".
+A highly engaging visual abstract summarizing the 'Biological Countercurvature of Spacetime' theory. It illustrates how Developmental Information (HOX) acts as a structural countercurvature against Gravity, establishing the spinal S-curve as the thermodynamic ground state. It prominently highlights the 'Allometric Trap' scaling issue in humans (Bg ~ 0.01) and shows the 72% Demand-Supply Anisotropy gap that creates an Energy Deficit Window during adolescent growth (L > 0.35m), ultimately leading to Adolescent Idiopathic Scoliosis as a thermodynamic scaling failure.

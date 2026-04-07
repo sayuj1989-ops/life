@@ -167,7 +167,7 @@ def run_torsional_buckling_model():
     ax.legend()
     ax.grid(True)
 
-    output_dir = "figures/main"
+    output_dir = "outputs/figures"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "toy_model_torsional_buckling.png")
     plt.tight_layout()

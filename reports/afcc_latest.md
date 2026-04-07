@@ -512,3 +512,26 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rod Persistence**: GHR remains the top anisotropic candidate (5.13, pLDDT: 58.7), supporting its role as a potential structural and growth signal integration point.
 - **Extracellular Link**: JAG1 (Anisotropy: 2.76, pLDDT: 73.1) and DAG1 (Anisotropy: 2.39, pLDDT: 68.2) both display intermediate structures, highlighting their role in signaling and structural connections respectively.
 - **Circadian-Mechanic Coupling**: ARNTL (Anisotropy: 3.32, pLDDT: 65.5) continues to show extended characteristics, suggesting its circadian regulatory function may couple with mechanically sensitive structures.
+
+# AFCC Daily Refresh: 2026-04-07
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| LBX1 | 2.27 | 66.9 | Intermediate |
+
+## Key Observations
+- **Tension Rods**: Found 2 candidates with Anisotropy > 4.0, suggesting fibrous/extended load-bearing structures.
+- **Structural Confidence**: 6 candidates have low confidence (pLDDT < 70), indicating disorder or flexibility.
+- **Top Mover**: GHR remains the most anisotropic structure in this batch.
+- **Structural Flexibility in Tension Rods**: The top two highly anisotropic candidates, GHR (5.13) and PIEZO2 (4.44), show distinct structural confidences (pLDDT: 58.7 vs 79.4), suggesting a split between flexible load-sensing and more rigid force-transmission architectures.
+- **Intermediate Signaling Connectors**: DAG1 (2.39) and LBX1 (2.27) both fall into the intermediate morphology category, indicating potential roles bridging extended sensing domains with structured globular domains.
+- **Clock and Growth Synergy**: The continued prominence of GHR (growth signaling) alongside ARNTL (circadian clock regulator) in the top 5 extended structures highlights a persistent morphological link between temporal control and growth sensing.

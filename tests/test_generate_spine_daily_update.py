@@ -42,6 +42,8 @@ class TestSpineUpdateScript(unittest.TestCase):
         self.assertAlmostEqual(data['percent_complete'], 40.0)
         self.assertEqual(data['phases']['Phase 1: Computational Framework (Weeks 1-2)']['total'], 4)
         self.assertEqual(data['phases']['Phase 1: Computational Framework (Weeks 1-2)']['completed'], 2)
+        self.assertIn('Spinal Jetlag', data['next_milestones'])
+        self.assertIn('Robustness', data['next_milestones'])
 
     def test_generate_report(self):
         data, error = parse_roadmap(TEMP_ROADMAP)

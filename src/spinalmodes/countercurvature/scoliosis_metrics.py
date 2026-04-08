@@ -254,12 +254,18 @@ def cobb_like_angle(
     # Bottom segment
     z_bottom = z[:k]
     y_bottom = y[:k]
-    m_bottom, _ = np.polyfit(z_bottom, y_bottom, deg=1)
+    mean_z_bottom = np.mean(z_bottom)
+    mean_y_bottom = np.mean(y_bottom)
+    var_z_bottom = np.sum((z_bottom - mean_z_bottom)**2)
+    m_bottom = np.sum((z_bottom - mean_z_bottom) * (y_bottom - mean_y_bottom)) / var_z_bottom if var_z_bottom > 0 else 0.0
 
     # Top segment
     z_top = z[-k:]
     y_top = y[-k:]
-    m_top, _ = np.polyfit(z_top, y_top, deg=1)
+    mean_z_top = np.mean(z_top)
+    mean_y_top = np.mean(y_top)
+    var_z_top = np.sum((z_top - mean_z_top)**2)
+    m_top = np.sum((z_top - mean_z_top) * (y_top - mean_y_top)) / var_z_top if var_z_top > 0 else 0.0
 
     theta_bottom = np.arctan(m_bottom)
     theta_top = np.arctan(m_top)

@@ -1155,3 +1155,28 @@ $$ E_{eff}(s, \theta) = E_{parallel} \cdot \cos^2(\theta) + E_{perpendicular} \c
     *   $E_{parallel}$: Stiffness when $\alpha = 1$ (typically very high, e.g., $E_{parallel} \gg E_{perpendicular}$).
     *   $E_{perpendicular}$: Stiffness when $\alpha = 0$.
 *   **Consequence for Scoliosis**: A small left-right asymmetry in HOX patterning generates a lateral information gradient. Because this gradient is orthogonal to the vertical gravitational stress ($\alpha \to 0$), the local effective stiffness drops dramatically ($E_{eff} \to E_{perpendicular}$), creating a localized vulnerability to lateral buckling.
+### 2.41. The Gravity-Gradient Alignment Tensor ($\mathbf{\Upsilon}_{grav}$)
+
+We define the **Gravity-Gradient Alignment Tensor** ($\mathbf{\Upsilon}_{grav}$) to formalize the directional correlation between the global gravitational vector ($\mathbf{g}$) and the local trabecular bone density gradient ($\nabla \rho_{trab}$) within a vertebral body. This tensor couples the mechanotransductive bone remodeling process to the global morphogenetic coordinate system.
+
+$$ \mathbf{\Upsilon}_{grav} = \frac{\nabla \rho_{trab} \otimes \mathbf{g}}{|\nabla \rho_{trab}| |\mathbf{g}|} $$
+
+*   **Symbols**:
+    *   $\mathbf{\Upsilon}_{grav}$: Gravity-Gradient Alignment Tensor (Dimensionless, Rank-2).
+    *   $\nabla \rho_{trab}$: Spatial gradient vector of trabecular bone mineral density (BMD) $[M L^{-4}]$.
+    *   $\mathbf{g}$: Gravitational acceleration vector $[L T^{-2}]$.
+*   **Physical Interpretation**:
+    *   The trace of this tensor, $\text{Tr}(\mathbf{\Upsilon}_{grav}) = \frac{\nabla \rho_{trab} \cdot \mathbf{g}}{|\nabla \rho_{trab}| |\mathbf{g}|}$, acts as a cosine similarity metric ($\cos \theta$).
+    *   $\text{Tr}(\mathbf{\Upsilon}_{grav}) \approx 1$: Perfect alignment. The bone density gradient strictly follows the gravitational plumb line, indicating stable vertical growth and properly functioning mechanically-coupled osteogenesis (Wolff's Law).
+    *   $\text{Tr}(\mathbf{\Upsilon}_{grav}) \approx 0$ or negative: Misalignment or orthogonal coupling. This implies the bone is remodeling in response to asymmetric stress not aligned with gravity, such as the pathological shear/bending loads in the concavity of a scoliotic spine.
+*   **Biological Mechanism**: Mechanical loading stimulates Piezo1 and downstream osteogenic pathways (e.g., Wnt/$\beta$-catenin) locally. $\mathbf{\Upsilon}_{grav}$ represents how this local cellular action integrates to form a macroscopic structural gradient that either opposes gravity correctly or drives a pathological buckling (wedge formation).
+*   **Measurable Proxy**: The spatial vector gradient of Hounsfield Units (HU) calculated from 3D quantitative computed tomography (qCT) or micro-CT of individual vertebral bodies, compared to the anatomical plumb line in a standing patient.
+
+#### Falsifiable Tests
+
+*   **Test 1: The Misaligned Gravity Vector Rescue**
+    *   **Data Needed**: Measurement of $\text{Tr}(\mathbf{\Upsilon}_{grav})$ and Cobb angle progression in bipedal or upright animal models (e.g., non-human primates) subjected to chronic, altered gravitational vectors (e.g., via centrifugation or prolonged tilted bed-rest).
+    *   **Refutation**: If the trabecular density gradient completely realigns with the new effective gravity vector (maintaining $\text{Tr}(\mathbf{\Upsilon}_{grav}) \approx 1$) yet the spine still develops a scoliotic curvature relative to its own anatomical axis, then the density gradient alignment is an epiphenomenon, falsifying the hypothesis that maintaining $\mathbf{\Upsilon}_{grav}$ is strictly required for stable straight growth. (Reference: LeBlanc et al., 2007).
+*   **Test 2: The Mechanically Uncoupled Gradient**
+    *   **Data Needed**: High-resolution mapping of $\nabla \rho_{trab}$ in scoliotic animal models with osteocyte-specific deletions of key mechanosensors (e.g., *Piezo1* conditional knockout).
+    *   **Refutation**: If the asymmetric trabecular gradient (wedging) forms identically in both mechanosensor-deficient mutants and wild-type controls under the same scoliotic stress, then the gradient formation is purely passive (or genetically predetermined independent of load), meaning $\mathbf{\Upsilon}_{grav}$ is not an active, mechanically-driven biological correction signal. (Reference: Ramli et al., 2024).

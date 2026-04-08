@@ -15,3 +15,7 @@
 
 ## Next Session Plan
 - **Phase 1, Day 3:** Generalised coordinates of motion in FEP. Review Friston's formalism for encoding velocity, acceleration, jerk etc. as "generalised motion." Understand how precision on generalised motion relates to derivative control.
+
+## Dreamer Integration
+- Integrated Dreamer implementation as a submodule in `paper5_model/dreamer`.
+- It will be conceptually integrated to model the brain's generative models and latent imagination within the active inference framework.

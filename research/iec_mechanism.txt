@@ -1,0 +1,7 @@
+Information-Elasticity Coupling (IEC) Mechanism
+
+This causal diagram visualizes the multi-scale feedback loop defining the Information-Elasticity Coupling (IEC) framework during spinal development:
+- **Top Level (Genetics & Information)**: HOX gene patterning establishes a target informational field across the spinal length.
+- **Middle Level (Transduction & Coupling)**: Mechanosensory proteins (e.g., Piezo2, Vimentin) act as transducers. They detect deviations between the physical shape and the genetic target field. This establishes the structural "supply" of the system.
+- **Bottom Level (Physics & Mechanics)**: The physical spinal column, modeled as a Cosserat rod, experiences gravitational loading and grows in length ($L$). As $L$ increases during the adolescent growth spurt, metabolic demand outpaces mechanosensory supply, creating an "Energy Deficit Window."
+- **The Loop / Feedback**: The IEC bridges the developmental target field and physical elasticity. When the system operates optimally, it minimizes thermodynamic Free Energy to create the stable S-curve. However, during rapid growth ($L > 0.35$ m), the Demand-Supply Anisotropy gap severs this mechanosensory feedback, leading to thermodynamic instability and buckling (scoliosis).

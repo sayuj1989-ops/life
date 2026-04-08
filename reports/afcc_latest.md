@@ -512,3 +512,23 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rod Persistence**: GHR remains the top anisotropic candidate (5.13, pLDDT: 58.7), supporting its role as a potential structural and growth signal integration point.
 - **Extracellular Link**: JAG1 (Anisotropy: 2.76, pLDDT: 73.1) and DAG1 (Anisotropy: 2.39, pLDDT: 68.2) both display intermediate structures, highlighting their role in signaling and structural connections respectively.
 - **Circadian-Mechanic Coupling**: ARNTL (Anisotropy: 3.32, pLDDT: 65.5) continues to show extended characteristics, suggesting its circadian regulatory function may couple with mechanically sensitive structures.
+
+# AFCC Daily Refresh: 2026-04-08
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| LBX1 | 2.27 | 66.9 | Intermediate |
+
+## Key Observations
+- **Growth Sensors**: GHR shows extended fibrous architecture (Anisotropy 5.13, pLDDT: 58.7) characteristic of a mechanosensor.
+- **Structural Mechanosensing**: PIEZO2 acts as a tension rod with high anisotropy (4.44) and strong structural confidence (pLDDT: 79.4), suggesting it is a robust load-bearing structure.
+- **Circadian Rhythms**: ARNTL (Anisotropy 3.32) represents an extended circadian regulator likely coupling diurnal cycles with mechanical status.

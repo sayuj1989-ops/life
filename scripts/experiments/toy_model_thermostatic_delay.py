@@ -76,9 +76,9 @@ def main():
     ax.legend()
     ax.grid(True)
 
-    os.makedirs('figures/main', exist_ok=True)
-    plt.savefig('figures/main/toy_model_thermostatic_delay.png', dpi=300)
-    print("Saved to figures/main/toy_model_thermostatic_delay.png")
+    os.makedirs('outputs/figures', exist_ok=True)
+    plt.savefig('outputs/figures/toy_model_thermostatic_delay.png', dpi=300)
+    print("Saved to outputs/figures/toy_model_thermostatic_delay.png")
 
 if __name__ == "__main__":
     main()

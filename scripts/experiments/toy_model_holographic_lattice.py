@@ -106,9 +106,9 @@ def main():
             buckled_count += 1
 
     fig.suptitle(f'Holographic Instability Lattice\nConsistent Buckling: {buckled_count}/100 seeds', fontsize=14)
-    os.makedirs('figures/main', exist_ok=True)
-    plt.savefig('figures/main/toy_model_holographic_lattice.png', dpi=300)
-    print("Saved to figures/main/toy_model_holographic_lattice.png")
+    os.makedirs('outputs/figures', exist_ok=True)
+    plt.savefig('outputs/figures/toy_model_holographic_lattice.png', dpi=300)
+    print("Saved to outputs/figures/toy_model_holographic_lattice.png")
 
 if __name__ == "__main__":
     main()

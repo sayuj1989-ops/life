@@ -15,9 +15,9 @@
 ## Phase 2: Clinical Validation (Weeks 3-4)
 
 - [ ] **Cohort Data Extraction:** Extract clinical cohort data (Cobb angle distributions, progression rates) from published literature.
-- [ ] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
-- [ ] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
-- [ ] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
+- [x] **PHV Timing:** Compare model "Instability Window" with clinical Peak Height Velocity (PHV) timing data.
+- [x] **Sexual Dimorphism:** Validate model predictions for female vs. male prevalence against epidemiological data.
+- [x] **Curve Types:** Verify if model can reproduce common curve types (e.g., Lenke classification patterns) based on initial conditions.
 
 ## Phase 3: Manuscript Preparation (Weeks 5-6)
 

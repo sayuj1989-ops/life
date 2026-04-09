@@ -1,6 +1,6 @@
 # Pending Work
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-04-09
 **Status:** In Progress
 **Priority Level:** High (Phase 2: Clinical Validation for Spine Submission)
 
@@ -8,9 +8,9 @@
 
 | ID | Task | Description | Effort | Dependencies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN-01** | **PHV Timing Mapping** | Extract Peak Height Velocity data from literature and graph against model instability window. | 2 days | Literature search | 🔴 **Pending** |
-| **CLIN-02** | **Curve Type Prediction** | Refine `toy_model_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | 🟡 **In Progress** |
-| **CLIN-03** | **Sexual Dimorphism** | Map model parameters (e.g., stiffness ratios, growth rates) to female/male prevalence epidemiological data. | 1.5 days | Literature search | ⚪ **Planned** |
+| **CLIN-01** | **PHV Timing Mapping** | Extract Peak Height Velocity data from literature and graph against model instability window. | 2 days | Literature search | ✅ **Completed** |
+| **CLIN-02** | **Curve Type Prediction** | Refine `toy_model_lenke_classes.py` to robustly predict Lenke 1-6 classifications from spatial deficits. | 2 days | Toy Model D | ✅ **Completed** |
+| **CLIN-03** | **Sexual Dimorphism** | Map model parameters (e.g., stiffness ratios, growth rates) to female/male prevalence epidemiological data. | 1.5 days | Literature search | ✅ **Completed** |
 | **CLIN-04** | **ALSPAC/Marfan Cross-check** | Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence. | 1 day | None | ⚪ **Planned** |
 
 ## 2. Manuscript Reformatting (Spine IMRaD)
@@ -43,5 +43,5 @@
 2.  **IMRaD Reformatting Burden:** Stripping dense mathematical theory into supplementary sections while maintaining narrative flow is challenging. **Mitigation:** Treat the simulation strictly as an *in silico* experiment in the Methods section.
 
 **Next Actions:**
-1.  Target **CLIN-01**: Execute literature search for high-quality Peak Height Velocity (PHV) cohort charts.
-2.  Target **CLIN-02**: Finalize output parameters of the Lenke classification script.
+1.  Target **CLIN-04**: Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence.
+2.  Target **MS-01**: Convert draft into IMRaD format for *Spine*.

@@ -1,25 +1,27 @@
 # Research Roadmap: Biological Countercurvature
 
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
+**Timeline:** 4 Weeks (March 22 - April 19, 2026)
 
-## Phase 1: Data Gathering & Code (Completed)
+## Phase 1: Computational Framework (Completed)
 
-- [x] **Data:** Collect Literature Data for Cross-Species Validation (9 Species: $L, R, EI, Mass$). **CRITICAL**
-- [x] **Code:** Create `experiment_cross_species_scaling.py` and reproduce Figure 3.
-- [x] **Code:** Implement Specific Mutation Mapping in `experiment_optimization_failure.py`.
-- [x] **Validation:** Run all scripts and ensure clean outputs (CSV/PNG). (Core & Toy Models Done)
-- [x] **Toy Models:** Develop Toy Models A & B for Reviewer Defense. (Done)
+- [x] **Core Model:** Establish "Energy Deficit" model (`experiment_energy_deficit_window.py`).
+- [x] **Rescue Cliff:** Validate "Rescue Cliff" at Anisotropy ~2.4 (`experiment_anisotropy_rescue.py`).
+- [x] **Spinal Jetlag:** Run "Spinal Jetlag" simulation to demonstrate circadian modulation of curvature.
+- [x] **Robustness:** Ensure model stability across parameter sweeps (Sensitivity Analysis).
 
-## Phase 2: Manuscript Polish & Theory (Weeks 1-2: March 01 - March 15)
+## Phase 2: Clinical Validation (Weeks 1-2: March 22 - April 05)
 
-- [ ] **Figures:** Generate Final Publication-Quality Figures (1-7).
-- [ ] **Text:** Finalize Manuscript Text (Abstract, Methods, Discussion).
-- [ ] **References:** Complete Bibliography (80-100 refs).
+- [x] **PHV Timing Mapping:** Map instability window against clinical PHV (`scripts/experiment_phv_timing.py`).
+- [x] **Curve Type Prediction:** Refine Lenke 1-6 classifications prediction (`scripts/experiments/toy_model_lenke_classes.py`).
+- [x] **Sexual Dimorphism:** Map model parameters to prevalence data (`scripts/experiment_sexual_dimorphism.py`).
+- [ ] **ALSPAC/Marfan Cross-check:** Validate "Energy Deficit" vs low BMI (ALSPAC) and anisotropy vs Marfan syndrome prevalence.
 
-## Phase 3: Review & Submission (Weeks 3-4: March 15 - March 29)
+## Phase 3: Manuscript Polish & Theory (Weeks 3-4: April 05 - April 19)
 
-- [ ] **Internal Review:** PI Review of full package (Manuscript + Supp Info).
-- [ ] **Pre-Submission:** Run `SUBMISSION_MASTER_CHECKLIST.md`.
+- [ ] **IMRaD Restructuring:** Convert theory-dense draft into standard Introduction, Methods, Results, and Discussion sections.
+- [ ] **"Clinical Relevance" Section:** Draft dedicated section detailing the predictive clinical value for early intervention.
+- [ ] **Figure Finalization:** Assemble "Clinical Translation" figures overlaying model predictions on patient cohort data.
+- [ ] **Targeted References:** Update bibliography focusing on *Spine*, *Eur Spine J*, and clinical biomechanics.
 
 ## Gantt Chart
 

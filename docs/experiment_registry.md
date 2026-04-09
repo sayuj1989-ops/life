@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-04-09
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.
@@ -44,10 +44,10 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Dataset/Analysis | Target Application | Purpose | Expected Output | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN_01_PHV** | `experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. |
+| **CLIN_01_PHV** | `experiment_phv_timing.py` | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | ✅ **Active** | Validated against clinical onset windows. |
 | **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
 | **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
-| **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
+| **CLIN_04_SexRatio** | `experiment_sexual_dimorphism.py` | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ✅ **Active** | Generates prevalence map matching epidemiological data. |
 
 ## 5. Missing / Pending Experiments
 

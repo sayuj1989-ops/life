@@ -15,3 +15,15 @@
 
 ## Next Session Plan
 - **Phase 1, Day 3:** Generalised coordinates of motion in FEP. Review Friston's formalism for encoding velocity, acceleration, jerk etc. as "generalised motion." Understand how precision on generalised motion relates to derivative control.
+
+
+**Phase 1, Day 3: Generalised coordinates of motion** - Completed (Date: 2026-04-03)
+
+## Key Findings
+- Generalised coordinates of motion ($\tilde{x} = (x, x', x'', \dots)$) are Friston's way of encoding trajectories.
+- Prediction errors exist for each order of motion, weighted by precision matrices.
+- The precision on the 1st-order (velocity) prediction error corresponds directly to the derivative gain ($K_d$) in a PID controller.
+- Misspecified internal models during rapid growth cause systemic velocity prediction errors, leading the brain to downweight velocity precision. This precision collapse *is* the derivative gain gap.
+
+## Next Session Plan
+- **Phase 1, Day 4:** PID control derived from free-energy minimisation. Review Baltieri & Buckley (2019).

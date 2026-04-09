@@ -1,0 +1,18 @@
+Title: Visual Abstract: Biological Countercurvature and Thermodynamic Failure
+
+Concept: Connecting developmental biology, Cosserat mechanics, and thermodynamic scaling to explain spinal morphology.
+
+Layout: Three vertical panels showing the progression from normal biology to scaling failure.
+
+Panel 1: The Bio-Gravitational Number ($\mathcal{B}_g$)
+- A healthy human figure.
+- Text: "Humans are trapped in an 'Allometric Trap' ($\mathcal{B}_g \approx 0.01$)."
+
+Panel 2: Information-Elasticity Coupling
+- A detailed schematic of the spine acting as an active inverted pendulum, balanced by HOX-patterned mechanosensory input.
+
+Panel 3: The Energy Deficit Window
+- A scoliotic spine emerging.
+- A glowing 'Energy Deficit' region highlighting the breakdown of the $72\%$ demand-supply anisotropy gap, leading to "Metabolic Buckling".
+
+Style: High-impact Nature/Science visual abstract style.

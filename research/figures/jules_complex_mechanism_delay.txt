@@ -1,0 +1,20 @@
+Title: Mechanism: The Information-Elasticity Coupling (IEC) and Delay-Induced Instability
+
+Structure: A system dynamics flowchart showing how physical growth disrupts the sensory-motor feedback loop stabilizing the spine against gravity.
+
+Core Loop (Healthy State):
+- Node Left: Neural Delay ($\tau$) and Proprioceptive Sensivity ($K$)
+- Node Top: Muscle Activation ($M_{active}$) acting as 'Biological Countercurvature'
+- Node Right: Spinal Morphogenesis ($S$-curve)
+- Node Bottom: Gravitational Loading ($P$)
+- Arrows connecting these in a stable homeostatic loop.
+
+Disruption Event (Adolescent Growth Spurt):
+- A large arrow labeled "Rapid Growth ($\dot{L} > 0$)" pointing into the loop.
+- The arrow splits to specifically target "Neural Delay ($\tau$)" and "Proprioceptive Supply ($S_{proprio}$)".
+
+Failure State (Metabolic Buckling):
+- An explicit condition: "Energy Deficit ($P_{counter} > S_{proprio}$)" branches out from the main loop.
+- This leads to a final node: "Phase Transition to Scoliosis (Buckled state)", with a visual indicator of an unstable scoliotic curve replacing the healthy S-curve.
+
+Style: Clean, professional, using distinct colors for the stable loop (blue/green) and the destabilizing factors (orange/red).

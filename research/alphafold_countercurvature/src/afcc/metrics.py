@@ -119,7 +119,7 @@ class MetricsAnalyzer:
         if bond_vectors is None:
             bond_vectors = coords[1:] - coords[:-1]
         if bond_lengths is None:
-            bond_lengths = np.linalg.norm(bond_vectors, axis=1)
+            bond_lengths = np.sqrt(bond_vectors[:,0]**2 + bond_vectors[:,1]**2 + bond_vectors[:,2]**2)
 
         # Vectorized calculation using 3-point sliding window A(i-1), B(i), C(i+1)
         c_len = bond_lengths[:-1] # |A-B|
@@ -197,7 +197,7 @@ class MetricsAnalyzer:
         # n1 is normals[:-1] and n2 is normals[1:]
         # Instead of computing norms for overlapping segments twice, we compute once.
         if normals_norm is None:
-            normals_norm = np.linalg.norm(normals, axis=1)
+            normals_norm = np.sqrt(normals[:,0]**2 + normals[:,1]**2 + normals[:,2]**2)
 
         n1_norm = normals_norm[:-1]
         n2_norm = normals_norm[1:]
@@ -243,9 +243,8 @@ class MetricsAnalyzer:
 
         # Bolt Optimization: Fast boolean diff for segment finding
         # ~25% faster than casting to int8 and using np.diff
-        diff = bounded[1:] != bounded[:-1]
-        starts = np.where(diff & bounded[1:])[0]
-        ends = np.where(diff & bounded[:-1])[0]
+        starts = np.where(bounded[1:] > bounded[:-1])[0]
+        ends = np.where(bounded[:-1] > bounded[1:])[0]
 
         # Filter short segments (< 10 residues)
         valid = (ends - starts) >= 10
@@ -383,14 +382,14 @@ class MetricsAnalyzer:
 
         if len(coords) > 1:
             bond_vectors = coords[1:] - coords[:-1]
-            bond_lengths = np.linalg.norm(bond_vectors, axis=1)
+            bond_lengths = np.sqrt(bond_vectors[:,0]**2 + bond_vectors[:,1]**2 + bond_vectors[:,2]**2)
 
         # Bolt Optimization: Precompute Normals (Cross Products)
         # We need these for Torsion, and their norms provide Area for Curvature (saving Heron's formula)
         if len(coords) >= 3 and bond_vectors is not None:
              # Bolt Optimization: Use fast manual cross product
              normals = self._cross_product_fast(bond_vectors[:-1], bond_vectors[1:])
-             normals_norm = np.linalg.norm(normals, axis=1)
+             normals_norm = np.sqrt(normals[:,0]**2 + normals[:,1]**2 + normals[:,2]**2)
 
         # Geometry
         # Pass normals_norm to curvature to skip Heron's formula
@@ -426,9 +425,8 @@ class MetricsAnalyzer:
 
         # Bolt Optimization: Fast boolean diff for segment finding
         # ~25% faster than casting to int8 and using np.diff
-        diff = bounded[1:] != bounded[:-1]
-        starts = np.where(diff & bounded[1:])[0]
-        ends = np.where(diff & bounded[:-1])[0]
+        starts = np.where(bounded[1:] > bounded[:-1])[0]
+        ends = np.where(bounded[:-1] > bounded[1:])[0]
 
         lengths = ends - starts
         end_to_end = 0.0
@@ -439,7 +437,8 @@ class MetricsAnalyzer:
             e = ends[best_idx]
 
             if e - s > 1:
-                end_to_end = float(np.linalg.norm(coords[e-1] - coords[s]))
+                diff_vec = coords[e-1] - coords[s]
+                end_to_end = float(np.sqrt(diff_vec[0]**2 + diff_vec[1]**2 + diff_vec[2]**2))
 
         # Bending Hotspots
         hotspots = []

@@ -165,3 +165,10 @@ This reduced the metric calculation overhead significantly while preserving bit-
 **Learning:** Repeatedly calling `plt.figure()` and `plt.close()` inside a loop over N structures is slow and creates significant overhead for large datasets due to matplotlib's internal canvas initialization and teardown.
 
 **Action:** Initialized `fig, ax = plt.subplots()` once outside the plotting loops. Reused the axis object inside the loop by calling `ax.clear()` (or `line.set_data()` where appropriate) to reset the data while preserving the figure container. This reduces matplotlib overhead yielding a measurable speedup for the plotting stage while outputting identical figures.
+
+
+## 2026-04-09 - [Vectorized L2 Norm & Fast Boolean Diff Optimization]
+
+**Learning:** `np.linalg.norm` creates generic overhead for simply computing distances or magnitudes, and boolean transitions can be computed more directly. For computing the L2 norm of 3D vectors along an axis in performance-critical sections (like bond lengths or normals), replacing `np.linalg.norm(array, axis=1)` with explicit squared summations like `np.sqrt(array[:,0]**2 + array[:,1]**2 + array[:,2]**2)` yields measurable speedups. Similarly, for NumPy boolean array segmentation, using `bounded[1:] > bounded[:-1]` detects `False` -> `True` transitions and avoids intermediate bitwise array allocation.
+
+**Action:** Replaced `np.linalg.norm` and `diff = bounded[1:] != bounded[:-1]` in `research/alphafold_countercurvature/src/afcc/metrics.py`. This yielded significant speedups for geometry-heavy calculations while preserving identical scientific outputs.

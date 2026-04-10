@@ -1,0 +1,3 @@
+[submodule "paper5_model/dreamer"]
+	path = paper5_model/dreamer
+	url = https://github.com/danijar/dreamer.git

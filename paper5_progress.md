@@ -15,3 +15,7 @@
 
 ## Next Session Plan
 - **Phase 1, Day 3:** Generalised coordinates of motion in FEP. Review Friston's formalism for encoding velocity, acceleration, jerk etc. as "generalised motion." Understand how precision on generalised motion relates to derivative control.
+
+## Dreamer Integration (Phase 3 Prep)
+- Added `dreamerv2` (TensorFlow 2 implementation of Dream to Control) as a submodule to `paper5_model/dreamerv2`.
+- **Purpose**: To conceptually integrate Dreamer's reinforcement learning architecture to model the brain's generative models and latent imagination within the active inference framework.

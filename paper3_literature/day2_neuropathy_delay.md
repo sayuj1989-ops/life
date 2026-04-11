@@ -1,0 +1,5 @@
+# Day 2: Neuropathy and Nerve Conduction Velocity Changes with Age
+
+- **Sensory Nerve Conduction Velocity Decline**: Median sensory nerve conduction velocities have been found to decrease at a rate of 0.14 m/s per year of age (Tong et al., 2004). Other studies estimate an ulnar sensory conduction velocity decrease by 0.13 m/s per year of age. DOI: 10.18203/2320-6012.ijrms20151183
+- **Motor Nerve Conduction Velocity Decline**: Werner et al. observed a decrease in conduction velocity at a rate of 0.41 m/s per year of age. Falco et al. have shown a 10% reduction in the conduction rate at 60 years of age.
+- **Overall Impact on Proprioception Delay**: Because postural control heavily relies on proprioceptive feedback from the lower limbs, the age-related reduction in sensory and motor nerve conduction velocities directly increases the sensory delay parameter $\tau$ in the delayed PID controller. In particular, this continuous reduction in conduction velocity represents a terminal, rather than transient, degradation in the feedback loops essential for stabilizing the inverted pendulum of human posture.

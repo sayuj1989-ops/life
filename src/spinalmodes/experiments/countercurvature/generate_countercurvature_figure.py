@@ -1,9 +1,9 @@
-"""Generate publication-ready figure for countercurvature metrics.
+"""Generate publication-ready figure for IEC spine-mode metrics.
 
 This script creates a multi-panel figure showing:
 - Panel A: Curvature profiles (κ_passive vs κ_info)
-- Panel B: Countercurvature metric g_eff(s)
-- Panel C: Geodesic deviation vs coupling strength
+- Panel B: IEC coupling factor g_eff(s)
+- Panel C: Normalized shape deviation vs coupling strength
 - Panel D: Microgravity adaptation
 
 Usage:
@@ -40,7 +40,7 @@ def generate_figure(
     microgravity_summary_csv: str = "outputs/experiments/microgravity/microgravity_summary.csv",
     output_path: str = "outputs/figs/fig_countercurvature_metrics.png",
 ) -> None:
-    """Generate publication-ready countercurvature metrics figure.
+    """Generate publication-ready IEC spine-mode metrics figure.
 
     Parameters
     ----------
@@ -105,7 +105,7 @@ def generate_figure(
         ax_a.legend()
         ax_a.grid(alpha=0.3)
 
-    # === Panel B: Countercurvature metric ===
+    # === Panel B: IEC coupling factor ===
     ax_b = fig.add_subplot(gs[0, 1])
 
     # Load actual info field from experiment data
@@ -146,19 +146,19 @@ def generate_figure(
         g_eff = compute_countercurvature_metric(info_field, beta1=1.0, beta2=0.5)
 
         ax_b.plot(s / length, g_eff, "purple", linewidth=2, label="g_eff(s)")
-        ax_b.axhline(1.0, color="k", linestyle=":", alpha=0.5, label="Flat metric")
+        ax_b.axhline(1.0, color="k", linestyle=":", alpha=0.5, label="Reference (g_eff = 1)")
         ax_b_twin = ax_b.twinx()
         ax_b_twin.plot(s / length, I, "g-", linewidth=1.5, alpha=0.6, label="I(s)")
         ax_b.set_xlabel("Arc-length s/L")
-        ax_b.set_ylabel("Countercurvature metric g_eff(s)", color="purple")
+        ax_b.set_ylabel("IEC coupling factor g_eff(s)", color="purple")
         ax_b_twin.set_ylabel("Information density I(s)", color="g")
-        ax_b.set_title("(B) Biological Countercurvature Metric")
+        ax_b.set_title("(B) Information--elasticity coupling factor")
         ax_b.legend(loc="upper left")
         ax_b_twin.legend(loc="upper right")
         ax_b.grid(alpha=0.3)
         ax_b.set_yscale("log")
 
-    # === Panel C: Geodesic deviation vs coupling strength ===
+    # === Panel C: Shape deviation vs coupling strength ===
     ax_c = fig.add_subplot(gs[1, 0])
 
     if len(spine_summary) > 0:
@@ -175,8 +175,8 @@ def generate_figure(
             label="D_geo_norm",
         )
         ax_c.set_xlabel("Coupling strength χ_κ")
-        ax_c.set_ylabel("Geodesic deviation D̂_geo")
-        ax_c.set_title("(C) Geodesic Deviation vs Coupling")
+        ax_c.set_ylabel("Normalized deviation from passive sag D̂_shape")
+        ax_c.set_title("(C) Shape deviation vs IEC coupling")
         ax_c.legend()
         ax_c.grid(alpha=0.3)
 
@@ -197,8 +197,8 @@ def generate_figure(
             label="D_geo_norm",
         )
         ax_d.set_xlabel("Gravity (m/s²)")
-        ax_d.set_ylabel("Geodesic deviation D̂_geo")
-        ax_d.set_title("(D) Microgravity Adaptation")
+        ax_d.set_ylabel("Normalized deviation from passive sag D̂_shape")
+        ax_d.set_title("(D) Microgravity adaptation")
         ax_d.legend()
         ax_d.grid(alpha=0.3)
         ax_d.set_xscale("log")
@@ -215,7 +215,7 @@ def generate_figure(
         )
 
     plt.suptitle(
-        "Biological Countercurvature of Spacetime: Information-Driven Geometry",
+        "Information--elasticity coupling: sagittal spine modes vs gravity",
         fontsize=14,
         fontweight="bold",
         y=0.98,
@@ -227,8 +227,8 @@ def generate_figure(
 
 
 def main():
-    """Generate countercurvature metrics figure."""
-    print("📊 Generating countercurvature metrics figure...")
+    """Generate IEC spine-mode metrics figure."""
+    print("📊 Generating IEC spine-mode metrics figure...")
     print()
 
     generate_figure()
@@ -238,8 +238,8 @@ def main():
     print()
     print("   The figure shows:")
     print("   - Panel A: Curvature profiles (passive vs info-driven)")
-    print("   - Panel B: Countercurvature metric g_eff(s)")
-    print("   - Panel C: Geodesic deviation vs coupling strength")
+    print("   - Panel B: IEC coupling factor g_eff(s)")
+    print("   - Panel C: Normalized shape deviation vs coupling strength")
     print("   - Panel D: Microgravity adaptation")
 
 

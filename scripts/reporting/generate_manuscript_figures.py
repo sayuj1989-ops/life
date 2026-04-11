@@ -92,13 +92,13 @@ def generate_panel_b(spine_results_csv: str, output_path: str) -> None:
 
     fig, ax = plt.subplots(figsize=(5, 4))
     ax.plot(s / length, g_eff, "purple", linewidth=2, label="g_eff(s)")
-    ax.axhline(1.0, color="k", linestyle=":", alpha=0.5, label="Flat metric")
+    ax.axhline(1.0, color="k", linestyle=":", alpha=0.5, label="Reference (g_eff = 1)")
     ax_twin = ax.twinx()
     ax_twin.plot(s / length, info_field.I, "g-", linewidth=1.5, alpha=0.6, label="I(s)")
     ax.set_xlabel("Arc-length s/L")
-    ax.set_ylabel("Countercurvature metric g_eff(s)", color="purple")
+    ax.set_ylabel("IEC coupling factor g_eff(s)", color="purple")
     ax_twin.set_ylabel("Information density I(s)", color="g")
-    ax.set_title("(B) Biological Countercurvature Metric")
+    ax.set_title("(B) Information--elasticity coupling factor")
     ax.legend(loc="upper left")
     ax_twin.legend(loc="upper right")
     ax.grid(alpha=0.3)
@@ -111,7 +111,7 @@ def generate_panel_b(spine_results_csv: str, output_path: str) -> None:
 
 
 def generate_panel_c(spine_summary_csv: str, output_path: str) -> None:
-    """Generate Panel C: Geodesic deviation vs coupling."""
+    """Generate Panel C: Normalized shape deviation vs coupling."""
     df = pd.read_csv(spine_summary_csv)
 
     if len(df) == 0:
@@ -128,11 +128,11 @@ def generate_panel_c(spine_summary_csv: str, output_path: str) -> None:
         color="green",
         linewidth=2,
         markersize=8,
-        label="D̂_geo",
+        label=r"$\widehat{D}_{\mathrm{shape}}$",
     )
     ax.set_xlabel("Coupling strength χ_κ")
-    ax.set_ylabel("Geodesic deviation D̂_geo")
-    ax.set_title("(C) Geodesic Deviation vs Coupling")
+    ax.set_ylabel("Normalized deviation from passive sag D̂_shape")
+    ax.set_title("(C) Shape deviation vs IEC coupling")
     ax.legend()
     ax.grid(alpha=0.3)
 
@@ -160,11 +160,11 @@ def generate_panel_d(microgravity_summary_csv: str, output_path: str) -> None:
         color="orange",
         linewidth=2,
         markersize=8,
-        label="D̂_geo",
+        label=r"$\widehat{D}_{\mathrm{shape}}$",
     )
     ax.set_xlabel("Gravity (m/s²)")
-    ax.set_ylabel("Geodesic deviation D̂_geo")
-    ax.set_title("(D) Microgravity Adaptation")
+    ax.set_ylabel("Normalized deviation from passive sag D̂_shape")
+    ax.set_title("(D) Microgravity adaptation")
     ax.legend()
     ax.grid(alpha=0.3)
     ax.set_xscale("log")
@@ -245,7 +245,7 @@ def main():
             return
 
     # Generate panels A-D
-    print("Generating countercurvature panels...")
+    print("Generating IEC spine-mode panels...")
     generate_panel_a(
         spine_results_csv,
         str(manuscript_dir / "fig_countercurvature_panelA.pdf")

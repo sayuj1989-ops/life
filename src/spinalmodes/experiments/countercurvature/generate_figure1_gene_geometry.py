@@ -2,11 +2,11 @@
 
 This script creates a comprehensive schematic showing the mapping from
 genetic patterning (HOX domains) to the information field I(s) to the
-effective metric g_eff(s).
+IEC coupling factor g_eff(s) used in the countercurvature metric helper.
 
 Panel A: Conceptual HOX domain schematic along vertebral column
 Panel B: Information field I(s) derived from HOX/somite patterning
-Panel C: Effective metric factor g_eff(s) and biological metric
+Panel C: IEC coupling factor g_eff(s)
 
 Usage:
     python -m spinalmodes.experiments.countercurvature.generate_figure1_gene_geometry
@@ -119,28 +119,33 @@ def create_information_field_plot(ax, s, I_field: InfoField1D):
 
 
 def create_metric_factor_plot(ax, s, g_eff):
-    """Create Panel C: Effective metric factor g_eff(s)."""
+    """Create Panel C: IEC coupling factor g_eff(s)."""
     s_norm = s / s[-1]
 
     # Plot g_eff(s)
     ax.plot(s_norm, g_eff, 'k-', linewidth=2.5, label='$g_{\\mathrm{eff}}(s)$')
-    ax.axhline(1.0, color='gray', linestyle=':', linewidth=1.5, alpha=0.7, label='Flat metric')
+    ax.axhline(1.0, color='gray', linestyle=':', linewidth=1.5, alpha=0.7, label='Reference (g_eff = 1)')
 
     # Highlight regions where g_eff > 1 (information-enhanced)
     enhanced_regions = g_eff > 1.0
     ax.fill_between(s_norm, 1.0, g_eff, where=enhanced_regions,
-                     alpha=0.3, color='green', label='Enhanced effective length')
+                     alpha=0.3, color='green', label='IEC-enhanced coupling')
 
     ax.set_xlabel("Normalized Arc-length (s/L)", fontsize=10)
-    ax.set_ylabel("Metric Factor $g_{\\mathrm{eff}}(s)$", fontsize=10)
-    ax.set_title("(C) Biological Countercurvature Metric", fontsize=11, fontweight='bold', pad=10)
+    ax.set_ylabel("IEC coupling factor $g_{\\mathrm{eff}}(s)$", fontsize=10)
+    ax.set_title("(C) Information--elasticity coupling factor", fontsize=11, fontweight='bold', pad=10)
     ax.legend(loc='upper right', fontsize=9)
     ax.grid(alpha=0.3, linestyle='--')
 
-    # Add annotation explaining metric
-    ax.text(0.5, 0.05, r'$d\ell_{\mathrm{eff}}^2 = g_{\mathrm{eff}}(s) \, ds^2$',
-            transform=ax.transAxes, fontsize=10, ha='center',
-            bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
+    ax.text(
+        0.5,
+        0.05,
+        r"$g_{\mathrm{eff}}$ combines $I(s)$ and $\partial_s I$ into a local IEC weighting",
+        transform=ax.transAxes,
+        fontsize=9,
+        ha="center",
+        bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.8),
+    )
 
 
 def generate_figure1(
@@ -230,18 +235,18 @@ def main():
         "--beta1",
         type=float,
         default=1.0,
-        help="Metric coupling constant (local info)",
+        help="Coupling weight for local I(s)",
     )
     parser.add_argument(
         "--beta2",
         type=float,
         default=0.5,
-        help="Metric coupling constant (info gradient)",
+        help="Coupling weight for ∂_s I",
     )
     args = parser.parse_args()
 
     print("🧬 Generating Figure 1: From Genes to Geometry...")
-    print("   Mapping HOX domains → I(s) → g_eff(s)")
+    print("   Mapping HOX domains → I(s) → g_eff(s) (IEC coupling factor)")
     print()
 
     results = generate_figure1(
@@ -258,7 +263,7 @@ def main():
     print("   This figure demonstrates:")
     print("   - Panel A: HOX gene expression domains along vertebral column")
     print("   - Panel B: Derived information field I(s) with cervical/lumbar peaks")
-    print("   - Panel C: Resulting biological metric g_eff(s) showing countercurvature")
+    print("   - Panel C: Resulting IEC coupling factor g_eff(s)")
 
 
 if __name__ == "__main__":

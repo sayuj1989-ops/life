@@ -170,7 +170,7 @@ def main(
 
     plt.xlabel('Spinal Length $L$ (m)')
     plt.ylabel('Metabolic Power / Supply (normalized)')
-    plt.title('Thermodynamic Cost of Countercurvature')
+    plt.title('Metabolic demand vs supply during growth (IEC active profile)')
     plt.legend()
     plt.grid(True, alpha=0.3)
 

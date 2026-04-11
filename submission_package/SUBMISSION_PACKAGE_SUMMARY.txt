@@ -1,12 +1,12 @@
 ================================================================================
-  NATURE SUBMISSION PACKAGE: BIOLOGICAL COUNTERCURVATURE OF SPACETIME
-  Complete Publication-Ready Materials
+  SPINE DEFORMITY SUBMISSION PACKAGE (IEC / METABOLIC BUCKLING)
+  Manuscript materials and supplementary files
 ================================================================================
 
-PROJECT: Bridging Developmental Biology, Physics, and Biomechanics
+PROJECT: Computational biomechanics and AIS (Information--Elasticity Coupling)
 AUTHOR:  Dr. Sayuj K.S. (hellodr@drsayuj.info)
-TARGET:  Nature (Primary) → Nature Biomedical Engineering or eLife (Backup)
-STATUS:  READY FOR SUBMISSION (Weeks 1-9 Timeline)
+TARGET:  Spine Deformity (Springer Nature)
+STATUS:  Materials aligned for resubmission per journal formatting guidance
 
 ================================================================================
                             📦 WHAT'S INCLUDED
@@ -144,13 +144,14 @@ WEEKS 10-12: AWAIT EDITORIAL DECISION
 
 THE PROBLEM:
 → Spinal S-curves are universal across vertebrates, yet their developmental
-  origin is poorly understood. Current models (passive geodesics) fail to
+  origin is poorly understood. Passive elastic-beam models alone do not
   explain zero-gravity observations and scoliotic deviations.
 
 YOUR SOLUTION:
-→ Biological Countercurvature: Developmental information (HOX genes) acts
-  as a geometric modifier of tissue elasticity, creating Information-
-  Elasticity Coupling (IEC) that generates the S-curve independent of gravity.
+→ Information--Elasticity Coupling (IEC): developmental patterning (HOX
+  genes) acts as a modifier of tissue reference curvature and stiffness,
+  producing the S-curve as an actively maintained configuration rather
+  than passive sag under gravity alone.
 
 KEY FINDINGS:
 1. Phase diagram: Three regimes (gravity-dominated, cooperative, information-dominated)

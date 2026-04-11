@@ -1,5 +1,5 @@
 # Nature Submission: Master Checklist & Timeline
-## Biological Countercurvature of Spacetime
+## Spine Deformity submission (IEC / metabolic buckling)
 
 **Project:** Bridging developmental biology, physics, and biomechanics to explain spinal geometry
 **Target Journal:** Nature
@@ -23,7 +23,7 @@
 - [ ] **Introduction completed**
   - [ ] Opens with biological phenomenon
   - [ ] Explains why S-curve is remarkable
-  - [ ] Describes existing passive geodesics model
+  - [ ] Describes existing passive elastic / gravity-only sag models
   - [ ] Lists specific failures of existing models
   - [ ] Introduces Information-Elasticity Coupling (IEC) concept
   - [ ] States research questions
@@ -147,7 +147,7 @@
 - [ ] **Introduction simplified**
   - [ ] Technical language minimized where possible
   - [ ] Unfamiliar concepts explained on first use
-  - [ ] Analogy used to explain "countercurvature" concept
+  - [ ] Analogy used to explain the IEC / active profile-maintenance concept
   - [ ] Physicists can understand biology sections
   - [ ] Biologists can understand physics sections
 
@@ -166,7 +166,7 @@
   - [ ] Broader themes: Information → Form in biology
 
 - [ ] **Comparison table created**
-  - [ ] Your model vs. passive geodesics
+  - [ ] Your model vs. passive gravity-only elastic sag
   - [ ] Assumptions compared
   - [ ] Predictions compared
   - [ ] Evidence for each model summarized

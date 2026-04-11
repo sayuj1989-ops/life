@@ -1,0 +1,4 @@
+parameter,values
+anisotropies,[3.0]
+chi_kappas,[0.0, 5.0, 10.0, 15.0, 20.0]
+fixed_params,BC=fixed, gravity=9.81

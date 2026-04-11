@@ -53,3 +53,4 @@
 | 2026-03-12 | weekly-sim-active-curvature-sweep | active_curvature | Sweep 0.0-15.0 at Anisotropy=3.0; No lateral buckling (Cobb=0) emerged without symmetry breaking. | [Report](../outputs/sim/2026-03-12/report.md) |
 | 2026-03-22 | weekly-sim-gravity-sweep | gravity, anisotropy | Low anisotropy (R=1.0) with gravity loading triggers high Cobb angle (87 deg); high anisotropy stabilizes. | [Report](../outputs/sim/2026-03-22_gravity_sweep/report.md) |
 | 2026-04-05 | weekly-sim-torsion-coupling | torsion_drive | Torsional coupling transforms planar S-curve into severe 3D scoliosis (Cobb angle peaking > 100 deg). | [Report](../outputs/sim/2026-04-05_torsional_coupling/report.md) |
+| 2026-04-11 | weekly-sim-gravity-growth | chi_kappa | Increased growth under gravity induces S-shape, with excessive growth leading to increased lateral deviation and Cobb angle despite anisotropy. | [Report](../outputs/sim/2026-04-11/report.md) |

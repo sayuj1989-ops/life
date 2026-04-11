@@ -31,11 +31,11 @@ plt.rcParams.update({
     "savefig.bbox": "tight",
 })
 
-FIG = Path("/sessions/gracious-relaxed-dirac/mnt/life/figures_alphafold")
+FIG = Path("figures_alphafold")
 FIG.mkdir(parents=True, exist_ok=True)
 
 # Load results
-with open("/sessions/gracious-relaxed-dirac/mnt/life/results/alphafold_molecular_results.json") as f:
+with open("results/alphafold_molecular_results.json") as f:
     data = json.load(f)
 
 # ─── Color palette ────────────────────────────────────────────────────

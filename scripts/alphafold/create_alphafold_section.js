@@ -14,7 +14,7 @@ const {
 } = require("docx");
 
 // ── Load figure images ──────────────────────────────────────────────
-const FIG_DIR = "/sessions/gracious-relaxed-dirac/mnt/life/figures_alphafold";
+const FIG_DIR = "figures_alphafold";
 const figImages = {};
 for (const fn of ["fig6_molecular_parameters.png", "fig7_vulnerability_curves.png",
                    "fig8_kd_trap_molecular.png", "fig9_trajectories.png",
@@ -731,7 +731,7 @@ const doc = new Document({
   }]
 });
 
-const OUT_PATH = "/sessions/gracious-relaxed-dirac/mnt/life/manuscript_alphafold_extension.docx";
+const OUT_PATH = "manuscript/drafts/manuscript_alphafold_extension.docx";
 
 Packer.toBuffer(doc).then(buffer => {
   fs.writeFileSync(OUT_PATH, buffer);

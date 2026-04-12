@@ -1,0 +1,1 @@
+A detailed causal loop diagram illustrating the Mechanogenetic Demand-Supply Gap. It shows 'Spinal Growth (L)' increasing 'Physical Scale', which drives up the 'Thermodynamic Cost of Control'. This cost demands more 'Sensory Feedback (Piezo2)'. However, an 'Anisotropy Gap' restricts the supply, leading to an 'Energy Deficit' that causes 'Metabolic Buckling' (Scoliosis).

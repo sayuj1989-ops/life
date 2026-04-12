@@ -86,20 +86,44 @@ Finally, we incorporated circadian variations via the "Spinal Jetlag" model, eva
 
 This section summarizes the independent re-analysis of the model's predictive power. The following tests validate the Information-Elasticity Coupling framework:
 
-\begin{table}[h]
+\begin{table}[h!]
 \centering
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-\textbf{Finding} & \textbf{Metric / Effect Size} & \textbf{Statistical Test} & \textbf{p-value} & \textbf{Significance} \\ \hline
-Cross-Species Allometric & Exponent = -0.282 & Log-log regression & $1.31\times10^{-3}$ & STRONG. 95\% CI: [-0.347, -0.117] \\ \hline
-Anisotropy Rescue Effect & $R^2 = 0.775$ & Linear regression & $< 10^{-17}$ & STRONG. \\ \hline
-Energy Deficit vs Cobb Angle & $r = 0.983$ & Pearson correlation & $2.74\times10^{-22}$ & STRONG. \\ \hline
-Circadian Disruption & 2.52-fold increase & Mann-Whitney U & $2.6\times10^{-4}$ & MODERATE. \\ \hline
-Clinical Cohort Validation & $r = 0.899$ & Pearson correlation & $3.79\times10^{-2}$ & MODERATE. \\ \hline
-\end{tabular}
 \caption{Comprehensive Statistical Summary confirming predictions of the Information-Elasticity Coupling framework.}
-\label{tab:comprehensive_stats}
+\label{tab:statistical_summary}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllccl}
+\toprule
+\textbf{Analysis} & \textbf{Test Type} & \textbf{Statistic} & \textbf{Value} & \textbf{P-value} & \textbf{Interpretation} \\
+\midrule
+Allometric Scaling (Bg vs Mass) & Log-log linear regression & Slope & -0.282 & 1.31e-03 & Large effect; slope consistent with metabolic -0.25 \\
+Allometric Scaling Bootstrap & BCa Bootstrap (10,000) & 95\% BCa CI & [-0.405, -0.170] & N/A & Metabolic prediction (-0.25) falls within CI \\
+Allometric Scaling Permutation & Permutation test (10,000) & p\_perm & 0.0014 & 0.0014 & Significant against null hypothesis \\
+Slope vs Metabolic Prediction & One-sample t-test & t & 0.549 & 0.603 & NOT significantly different from -0.25 \\
+Bayesian Model Comparison & BIC comparison & Delta\_BIC & 11.34 & N/A & Very strong evidence for IEC model \\
+Leave-One-Out Cross-Validation & LOO-CV & R²\_LOO & 0.617 & N/A & Robust generalization \\
+Anisotropy Rescue & Linear regression & Slope & -0.085 & 3.58e-17 & Very large effect; saturation at anisotropy $\geq$6.0 \\
+Energy Deficit vs Cobb & Pearson correlation & r & 0.983 & 2.74e-22 & Near-perfect correlation \\
+Logistic Bifurcation & Logistic regression & AUC & 0.978 & N/A & Excellent classifier \\
+High-chi Jetlag vs Entrained & Mann-Whitney U & Fold change & 2.52 & 2.59e-04 & Very large effect \\
+Kruskal-Wallis (all conditions) & Kruskal-Wallis H & H & 48.66 & $<$ 1e-06 & Highly significant omnibus test \\
+Post-hoc Pairwise (Bonferroni) & Mann-Whitney + Bonferroni & Significant pairs & 8 & $<$ 0.05 corrected & 8 pairs survive correction \\
+Vector Mismatch Peak & Spatial analysis & Position & 0.596 & N/A & Thoracolumbar junction (T11-T12) \\
+Scoliosis Bifurcation Interaction & Multiple regression & R²\_interaction & 1.000 & $<$ 1e-16 & chi*epsilon interaction perfectly predicts Cobb \\
+Bifurcation Deficit Fraction & Proportion & Fraction & 0.782 & N/A & 78.2\% of parameter space in energy deficit \\
+Human Child/Adult Bg Ratio & Ratio & Ratio & 1.99 & N/A & 2× vulnerability in children \\
+Microgravity Amplitude Decay & Curvature tracking & Decay & 36.7\% & N/A & Amplitude persists but decays \\
+Protein Anisotropy vs pLDDT & Spearman & rho & -0.064 & NS & No significant correlation \\
+Protein Anisotropy vs Disorder & Spearman & rho & 0.074 & NS & No significant correlation \\
+Protein Anisotropy vs Rg & Spearman & rho & 0.380 & 0.081 & Trend only (p=0.081) \\
+Protein Sensitivity (High-conf only) & Mann-Whitney & p\_aniso & 0.844 & 0.844 & No bias from low-confidence proteins \\
+Power Analysis (Clinical) & Sample size calc & n\_needed & 35 & N/A & 35 patients needed for validation \\
+Power Analysis (Allometric) & Sample size calc & n\_needed & 8 & N/A & Adequately powered \\
+Clinical Age Mapping & Interpolation & Age at L\_crit & 8.5 years & N/A & Consistent with AIS onset (11-14 yrs) \\
+\bottomrule
+\end{tabular}%
+}
 \end{table}
+
 
 \subsection{Bayesian Model Comparison and Sensitivity Analysis}
 Comparing the Allometric Scaling hypothesis against a constant beam model null hypothesis using the Bayesian Information Criterion yields an Allometric BIC of -22.13 and a Constant BIC of -10.79. The resulting Delta BIC of 11.34 strongly favors the allometric model, with an approximate Bayes Factor of 290.

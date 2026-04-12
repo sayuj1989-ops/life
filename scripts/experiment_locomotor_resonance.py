@@ -38,19 +38,24 @@ if not PYELASTICA_AVAILABLE:
 class LocomotorGravity(ea.NoForces):
     """
     Custom Forcing class to simulate locomotor resonance.
-    Applies an oscillating vertical acceleration (gravity) to simulate walking/running.
+    Applies an oscillating vertical acceleration (gravity) and lateral sway to simulate walking/running.
     """
-    def __init__(self, base_gravity: float = 9.81, amplitude: float = 0.5, frequency: float = 2.0):
+    def __init__(self, base_gravity: float = 9.81, amplitude: float = 0.5, frequency: float = 2.0, walking_speed: float = 0.0):
         super().__init__()
         self.base_gravity = base_gravity
         self.amplitude = amplitude
         self.frequency = frequency
+        self.walking_speed = walking_speed
 
     def apply_forces(self, system, time: float = 0.0):
         # Oscillating gravity: g(t) = g0 * (1 + A * sin(2 * pi * f * t))
         g_t = self.base_gravity * (1.0 + self.amplitude * np.sin(2.0 * np.pi * self.frequency * time))
+        # Add a lateral force proportional to walking speed to simulate lateral sway
+        lat_force = self.walking_speed * 0.1 * np.sin(2.0 * np.pi * (self.frequency / 2.0) * time)
+
         # Apply force: F = m * a
         system.external_forces[2, :] -= system.mass * g_t
+        system.external_forces[0, :] += system.mass * lat_force
 
 
 def run_locomotor_simulation(
@@ -59,12 +64,13 @@ def run_locomotor_simulation(
     anisotropy: float = 5.0,
     active_curvature: float = 2.0,
     length: float = 0.4, # ~Adolescent spine length
-    n_elements: int = 40,
-    duration: float = 3.0,
-    dt: float = 1e-4,
+    n_elements: int = 20, # reduced for speed
+    duration: float = 2.0, # reduced for speed
+    dt: float = 2e-4, # increased for speed
     gravity: float = 9.81,
     initial_lateral_defect: float = 0.05,
     natural_kyphosis: float = 2.0,
+    walking_speed: float = 0.0,
 ):
     """Runs a single locomotor resonance simulation."""
     tracemalloc.start()
@@ -124,7 +130,8 @@ def run_locomotor_simulation(
             LocomotorGravity,
             base_gravity=gravity,
             amplitude=amplitude,
-            frequency=frequency
+            frequency=frequency,
+            walking_speed=walking_speed
         )
 
         # Apply damping
@@ -217,41 +224,50 @@ def run_locomotor_simulation(
 
 
 def run_experiment():
-    print("Running Locomotor Resonance Catastrophe Experiment...")
-    frequencies = np.linspace(0.5, 4.0, 36) # 0.5 to 4.0 Hz
-    results = []
+    print("Running Enhanced Locomotor Resonance Catastrophe Experiment...")
+    frequencies = np.linspace(0.5, 4.0, 15) # reduced points
+
+    # We will test two walking speeds: 0.0 (standing/bouncing) and 1.5 (typical walking speed with lateral sway)
+    speeds = [0.0, 1.5]
+
+    all_results = []
 
     out_dir = Path("outputs/locomotor_resonance")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    for f in frequencies:
-        print(f"  Testing Frequency: {f:.2f} Hz")
-        res = run_locomotor_simulation(frequency=f)
-        if res["success"]:
-            print(f"    -> Cobb: {res.get('cobb_angle', 0):.2f}°, Max Dynamic Lat: {res['max_dynamic_lat']:.4f}m")
-            results.append(res)
-        else:
-            print(f"    -> FAILED: {res['error']}")
-
-    df = pd.DataFrame(results)
-    csv_path = out_dir / "locomotor_resonance_metrics.csv"
-    df.to_csv(csv_path, index=False)
-    print(f"Saved metrics to {csv_path}")
-
-    # Plot
     plt.figure(figsize=(10, 6))
-    plt.plot(df["frequency"], df["cobb_angle"], 'b-o', label='Final Cobb Angle')
+
+    for speed in speeds:
+        print(f"\n--- Testing Walking Speed: {speed} m/s ---")
+        results = []
+        for f in frequencies:
+            print(f"  Testing Frequency: {f:.2f} Hz")
+            res = run_locomotor_simulation(frequency=f, walking_speed=speed)
+            if res["success"]:
+                print(f"    -> Cobb: {res.get('cobb_angle', 0):.2f}°, Max Dynamic Lat: {res['max_dynamic_lat']:.4f}m")
+                results.append(res)
+                all_results.append(res)
+            else:
+                print(f"    -> FAILED: {res['error']}")
+
+        df = pd.DataFrame(results)
+        plt.plot(df["frequency"], df["cobb_angle"], '-o', label=f'Walking Speed {speed} m/s')
+
+    df_all = pd.DataFrame(all_results)
+    csv_path = out_dir / "locomotor_resonance_enhanced_metrics.csv"
+    df_all.to_csv(csv_path, index=False)
+    print(f"Saved metrics to {csv_path}")
 
     # Highlight normal human walking freq (1.5 - 2.5 Hz)
     plt.axvspan(1.5, 2.5, color='orange', alpha=0.3, label='Human Walking Freq Range')
 
-    plt.title("Locomotor Resonance Catastrophe in Adolescent Spine")
+    plt.title("Enhanced Locomotor Resonance Catastrophe in Adolescent Spine\n(Including Lateral Sway Effect)")
     plt.xlabel("Locomotor Frequency (Hz)")
-    plt.ylabel("Cobb Angle (°)")
+    plt.ylabel("Final Cobb Angle (°)")
     plt.legend()
     plt.grid(True)
 
-    plot_path = out_dir / "locomotor_resonance_peak.png"
+    plot_path = out_dir / "locomotor_resonance_enhanced_peak.png"
     plt.savefig(plot_path, dpi=300)
     plt.close()
     print(f"Saved plot to {plot_path}")

@@ -2,7 +2,7 @@
 
 **Purpose:** To de-risk the complex Cosserat simulation and provide intuitive validation for "Metabolic Buckling" and "Active Countercurvature".
 
-**Status:** ✅ Completed (2026-03-06)
+**Status:** ✅ Completed (2026-03-06), new proposed experiments pending.
 
 ## Toy Model A: 1D Thermostatic Column (Thermodynamic)
 
@@ -41,18 +41,6 @@
 - **Output:** [`outputs/figures/toy_model_anisotropy_bifurcation.png`](../outputs/figures/toy_model_anisotropy_bifurcation.png)
 - **Status:** ✅ **Implemented**
 
-## Schedule
-
-| Model | Owner | Effort | Status |
-| :--- | :--- | :--- | :--- |
-| **Toy A** | PI/Theory | 0.5 day | ✅ **Completed** |
-| **Toy B** | Comp Bio | 1 day | ✅ **Completed** |
-| **Toy C** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_js_creature.py`) |
-| **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_lenke_classes.py`) |
-| **Toy E** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_torsional_buckling.py`) |
-
----
-
 ## Toy Model D: Lenke Classifications (Spatial Deficit)
 
 **Goal:** Demonstrate how the spatial distribution of the Energy Deficit dictates the resulting scoliotic curve shape, predicting specific Lenke classifications (types 1-6).
@@ -70,11 +58,9 @@
 **Implementation:**
 - Script: `scripts/experiments/toy_model_lenke_classes.py`
 - **Output:** [`outputs/figures/toy_model_lenke_classes.png`](../outputs/figures/toy_model_lenke_classes.png)
-- **Status:** ✅ **Implemented**
+- **Status:** 🟡 **In Progress**
 
----
-
-## Part 2: Proposed Validation Experiments (Future)
+## Proposed Validation Experiments (Future)
 
 To further de-risk the theory and provide robust validation, the following toy models and real experiments are proposed:
 
@@ -100,6 +86,13 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Emergence of macroscopic curvature from isotropic initial conditions under high information-coupling ($\chi_\kappa$).
     *   **Expected Outcome:** Lattice reliably buckles into a defined curve when $\chi_\kappa > \chi_{crit}$.
     *   **Stop Condition:** Consistent buckling mode observed across 100 random noise seeds.
+
+4.  **PHV Clinical Overlay Model (New):**
+    *   **Objective:** Statistically map theoretical energy deficit spikes to clinical Peak Height Velocity (PHV) growth charts.
+    *   **Method:** Create a simplified 1D growth timeline model, overlaying clinical age-curve probabilities with theoretical structural failure points.
+    *   **Success Metric:** Pearson correlation > 0.7 between predicted instability window and clinical onset ages.
+    *   **Expected Outcome:** Clear visualization showing that when growth rate exceeds metabolic compensation capacity, buckling probability spikes.
+    *   **Stop Condition:** A stable, reproducible plot clearly aligning theory with clinical cohort data.
 
 ### Proposed Real Validation Experiments
 
@@ -130,3 +123,10 @@ To further de-risk the theory and provide robust validation, the following toy m
     *   **Success Metric:** Observation of ectopic structural curves or altered vertebral morphology.
     *   **Expected Outcome:** Altered HOX expression induces predictable changes in the resting curvature of the spine.
     *   **Stop Condition:** Consistent phenotype observed in $>50\%$ of treated embryos ($N=50$).
+
+5.  **Clinical Cohort Energy Deficit Mapping (Real Experiment):**
+    *   **Objective:** Statistically validate the predicted "Energy Cliff" threshold.
+    *   **Method:** Run the PyElastica model parametrized by 100 anonymized clinical DXA/growth histories to blindly predict scoliosis onset.
+    *   **Success Metric:** ROC-AUC > 0.8 for binary scoliosis diagnosis prediction.
+    *   **Expected Outcome:** The theoretical framework differentiates healthy from scoliotic cohorts better than simple geometric parameters.
+    *   **Stop Condition:** Completed validation of the full Phase 2 dataset mapping.

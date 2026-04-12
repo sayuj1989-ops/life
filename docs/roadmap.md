@@ -1,6 +1,6 @@
 # Research Roadmap: Biological Countercurvature
 
-**Timeline:** 4 Weeks (March 01 - March 29, 2026)
+**Timeline:** 4 Weeks (April 12 - May 10, 2026)
 
 ## Phase 1: Data Gathering & Code (Completed)
 

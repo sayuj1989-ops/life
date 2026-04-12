@@ -1,6 +1,6 @@
 # Experiment Registry
 
-**Last Updated:** 2026-03-22
+**Last Updated:** 2026-04-12
 **Status:** Active
 
 This registry tracks all computational experiments supporting the "Biological Countercurvature" manuscript, focusing on the *Spine* journal validation metrics.
@@ -30,7 +30,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **TOY_01_Thermostatic** | `scripts/experiments/toy_model_thermostatic.py` | **Toy Model A:** 1D Thermostatic Column. Validates "Metabolic Buckling" concept without rod mechanics. | `outputs/figures/toy_model_thermostatic.png` | ✅ **Active/Validated** | Simple demonstration of $L^5$ vs $L^2$ scaling mismatch. |
 | **TOY_02_Anisotropy** | `scripts/toy_model_anisotropy_link.py` | **Toy Model B:** Anisotropy-Stability Link. Validates $L_{crit} \propto A^{-0.5}$. | `outputs/figures/toy_model_anisotropy_bifurcation.png` | ✅ **Active/Validated** | Connects protein aspect ratio to spinal stability. |
 | **TOY_03_JSCreature** | `scripts/experiments/toy_model_js_creature.py` | **Toy Model C:** Secondary 2D minimal representation for biomechanics reviewers. | `outputs/js_creature_toy_model` | ✅ **Active** | Potential visual addition for robustness. |
-| **TOY_04_Lenke** | `scripts/experiments/toy_model_lenke_classes.py` | **Toy Model D:** Lenke Classifications. Spatial deficit distribution | `outputs/figures/toy_model_lenke_classes.png` | ✅ **Active** | Predicts scoliotic curve shape. |
+| **TOY_04_Lenke** | `scripts/experiment_lenke_classes.py` | **Toy Model D:** Lenke Classifications. Spatial deficit distribution | `manuscript/figures/fig_lenke_classes.png` | ✅ **Active** | Predicts scoliotic curve shape. |
 | **TOY_05_Torsional** | `scripts/experiments/toy_model_torsional_buckling.py` | **Toy Model E:** Torsional Buckling Model. | `outputs/figures/toy_model_torsional_buckling.png` | ✅ **Active** | Demonstrates active torque resistance. |
 
 ## 3. Protein Structure Pipeline (AFCC)
@@ -44,10 +44,10 @@ This registry tracks all computational experiments supporting the "Biological Co
 
 | Dataset/Analysis | Target Application | Purpose | Expected Output | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLIN_01_PHV** | `experiment_phv_timing.py` (Pending) | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | 🔴 **Pending** | Required for Spine clinical relevance. |
+| **CLIN_01_PHV** | `scripts/experiment_phv_timing.py` | Map model Instability Window against Peak Height Velocity clinical growth charts. | Overlay plot (Simulated Deficit vs PHV Age) | ✅ **Active** | Required for Spine clinical relevance. |
 | **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
 | **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
-| **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
+| **CLIN_04_SexRatio** | `scripts/experiment_sexual_dimorphism.py` | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ✅ **Active** | Crucial for epidemiological alignment. |
 
 ## 5. Missing / Pending Experiments
 

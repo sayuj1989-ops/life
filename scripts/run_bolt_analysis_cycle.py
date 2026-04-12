@@ -47,11 +47,18 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
     if os.path.exists(pdb_path) and os.path.exists(pae_path):
         return {"pdb": pdb_path, "pae": pae_path}
 
+    cache_dir = "data/afdb_cache"
+    cache_pdb = os.path.join(cache_dir, f"{uniprot_id}.pdb")
+    cache_pae = os.path.join(cache_dir, f"{uniprot_id}.json")
+
     print(f"Querying API for {uniprot_id}...")
     try:
         response = requests.get(api_url)
         if response.status_code != 200:
              print(f"API Error for {uniprot_id}: {response.status_code}")
+             if os.path.exists(cache_pdb):
+                 print(f"Falling back to local cache for {uniprot_id}...")
+                 return {"pdb": cache_pdb, "pae": cache_pae if os.path.exists(cache_pae) else None}
              return None
         data = response.json()
         if not data or not isinstance(data, list):
@@ -147,8 +154,8 @@ def main():
             "torsion_summary": f"{metrics['torsion_summary']:.4f}",
             "anisotropy_index": f"{metrics['anisotropy_index']:.2f}",
             "bending_hotspots": metrics['bending_hotspots'],
-            "exposed_surface_proxy": f"{metrics['exposed_surface_proxy']:.2f}",
-            "charged_patch_score": f"{metrics['charged_patch_score']:.2f}",
+            "exposed_surface_proxy": "SASA not computed",
+            "charged_patch_score": "Not implemented",
             "low_confidence_warning": metrics['low_confidence_warning'],
             "multi_domain_uncertain": metrics['multi_domain_uncertain'],
             "likely_IDR_heavy": metrics['likely_IDR_heavy']
@@ -171,6 +178,8 @@ def main():
     md_report.append("```")
     md_report.append("</details>\n")
 
+    csv_path = os.path.join(OUTPUT_DIR, "metrics.csv")
+    df.to_csv(csv_path, index=False)
     md_report.append("## B) Key Plots Summary\n")
     md_report.append("Generated output files under `outputs/bolt_biofold_cycle/figures/`:\n")
 
@@ -289,7 +298,7 @@ def main():
     md_report.append("* **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.")
     md_report.append("* **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.")
 
-    report_path = os.path.join(OUTPUT_DIR, "AlphaFold_Analysis_Cycle.md")
+    report_path = os.path.join(OUTPUT_DIR, "report.md")
     with open(report_path, "w") as f:
         f.write("\n".join(md_report))
 

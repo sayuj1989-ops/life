@@ -733,6 +733,38 @@ $$ U_{CC} = \frac{\int_0^L \mathbf{M}_{bio}(s) \cdot (\boldsymbol{\kappa}(s) - \
 
 A higher $U_{CC}$ indicates a stronger "anti-gravity" response driven by information.
 
+## 5.1. Operational Proxy: The ECM Stiffness Gradient ($\nabla E_{ECM}$)
+
+While the morphogenetic information field $I(s,t)$ is challenging to measure directly *in vivo*, we propose the ECM Stiffness Gradient as its primary measurable mechanical proxy. Biological counter-curvature requires an asymmetric deposition or cross-linking of the extracellular matrix to maintain the active biological moment $\mathbf{M}_{bio}$.
+
+### 5.1.1. Definitions and Units
+
+| Symbol | Definition | Dimensions | Units (SI) |
+| :--- | :--- | :--- | :--- |
+| $E_{ECM}(\mathbf{x})$ | Local Young's modulus of the ECM | $[ML^{-1}T^{-2}]$ | $Pa$ or $N/m^2$ |
+| $\nabla E_{ECM}$ | Spatial gradient of ECM stiffness | $[ML^{-2}T^{-2}]$ | $Pa/m$ |
+| $c_K$ | Mechano-chemical compliance factor | $[M^{-1}L^2T^2]$ | $m^2/N$ |
+
+### 5.1.2. The Stiffness Gradient as an Information Proxy
+
+We postulate that the spatial gradient of information ($\nabla I$) is linearly proportional to the resulting gradient in ECM stiffness during the developmental window $t_{dev}$:
+
+$$ \nabla E_{ECM} = \frac{1}{c_K} \nabla I $$
+
+where $c_K$ serves as a measurable compliance constant representing the tissue's capacity to translate biochemical signaling (e.g., LOX-mediated collagen crosslinking) into solid mechanics.
+
+### Falsifiable Tests
+
+#### Test BK: The Durotactic Information Flow Prediction
+*   **Hypothesis**: The spatial gradient of ECM stiffness ($\nabla E_{ECM}$) established during early development dictates the directional migration and polarization of osteoblasts and chondrocytes via durotaxis, acting as the physical instantiation of $\nabla I$.
+*   **Data Needed**: Atomic Force Microscopy (AFM) mapping of spatial stiffness gradients in the developing vertebral bodies of embryonic animal models, correlated with live-cell imaging of chondrocyte migration.
+*   **Refutation**: If chondrocytes migrate or align independently of the measured $\nabla E_{ECM}$, or if altering the stiffness gradient (via LOX inhibitors like BAPN) does not disrupt the formation of the counter-curvature structure, the proxy relationship is falsified. (References: Lo et al., 2000; Engler et al., 2006).
+
+#### Test BL: The Stiffness Gradient Collapse in Scoliosis
+*   **Hypothesis**: In scoliotic progression, the breakdown of the morphogenetic information field precedes macroscopic curvature and manifests as a measurable loss or reversal of the physiological left-right $\nabla E_{ECM}$ in the intervertebral disc.
+*   **Data Needed**: Spatially resolved Magnetic Resonance Elastography (MRE) or localized shear wave elastography of early-stage scoliotic discs (e.g., in bipedal rat models) before the onset of the Cobb angle deformity.
+*   **Refutation**: If the left-right $\nabla E_{ECM}$ remains symmetric prior to curve onset, or only becomes asymmetric *after* structural wedging has occurred, then the stiffness gradient is merely a reactive consequence, not a leading morphogenetic proxy. (References: Iskratsch et al., 2014; Taber, 1995).
+
 ## 6. Falsifiable Predictions & Tests
 
 The theory makes specific predictions about the relationship between genetic anisotropy, gravity, and spinal geometry.

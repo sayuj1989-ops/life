@@ -11,8 +11,10 @@
 | 7 | "Hypothesis-generating" stated in abstract and intro | ✅ | Abstract Conclusions: "This computational model generates the hypothesis that…"; Introduction final sentence: "This work is hypothesis-generating; the model makes testable predictions that require clinical validation." |
 | 8 | No physics-metaphor language | ✅ | Full-text search: zero instances of spacetime, holography, Rindler, AdS-CFT, horizon, brane, bulk/boundary duality, wormhole, information paradox |
 | 9 | No disease-reclassification claims | ✅ | No statements proposing reclassification, renaming, or redefinition of AIS |
-| 10 | No unsupported causal therapeutic claims | ✅ | All clinical implications framed as testable hypotheses ("warrants investigation", "may warrant investigation"); no "works because" language |
+| 10 | No unsupported causal therapeutic claims | ✅ | All clinical implications framed as testable hypotheses; no "works because" language |
 | 11 | AlphaFold restricted to supplement/exploratory | ✅ | AlphaFold content not present in manuscript body, abstract, or conclusions |
 | 12 | Vancouver-style references | ✅ | Numbered reference list using \begin{thebibliography}, consistent with Spine Deformity Vancouver style |
 | 13 | Key words present | ✅ | "adolescent idiopathic scoliosis, postural control, computational model, Hopf bifurcation, growth velocity" |
 | 14 | All parameters sourced or flagged as assumed | ✅ | Table in Assumptions subsection lists all parameters with source or "Postulated—no direct measurement"; transparency sentence applied to α, β, β_female, β_male |
+| 15 | No interpretive language in Results | ✅ | (Post-editorial review) All clinical comparisons, mechanistic explanations, and speculative interpretations moved from Results to Discussion. Results now report simulation outcomes only. |
+| 16 | Results subsection headings are descriptive, not interpretive | ✅ | (Post-editorial review) "Brace Mechanism Reinterpretation" renamed to "Simulated External Derivative Gain Augmentation" |

@@ -1,0 +1,8 @@
+Visual Abstract: Biological Countercurvature of Spacetime
+
+This visual abstract illustrates the core theory of Biological Countercurvature. It contrasts three key regimes in developmental biology against gravity:
+1. **Gravity-Dominated**: Without developmental information, physical structures succumb to gravity, slumping downward along passive gravitational geodesics.
+2. **Cooperative / Normal Physiology**: The optimal state where Biological Information (HOX gene patterning) acts as a "Countercurvature" field. This counter-field couples with physical elasticity (Information-Elasticity Coupling, IEC) to perfectly balance gravitational pull. The result is the emergent characteristic spinal S-curve, representing the thermodynamic energetic ground state.
+3. **Information-Dominated / Pathology**: When the informational drive or mechanical coupling overshoots, it leads to severe geometric distortion and thermodynamic scaling failure, leading to pathologies such as Adolescent Idiopathic Scoliosis (AIS).
+
+The background could show a gradient transitioning from the pure pull of physical gravity to the biological "spacetime" metric structured by genetic information, emphasizing that life defines its own geometric frame of reference to stand upright.

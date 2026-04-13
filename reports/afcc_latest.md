@@ -512,3 +512,23 @@ Cluster by geometry and correlate curvature metrics with known phenotype genes.
 - **Tension Rod Persistence**: GHR remains the top anisotropic candidate (5.13, pLDDT: 58.7), supporting its role as a potential structural and growth signal integration point.
 - **Extracellular Link**: JAG1 (Anisotropy: 2.76, pLDDT: 73.1) and DAG1 (Anisotropy: 2.39, pLDDT: 68.2) both display intermediate structures, highlighting their role in signaling and structural connections respectively.
 - **Circadian-Mechanic Coupling**: ARNTL (Anisotropy: 3.32, pLDDT: 65.5) continues to show extended characteristics, suggesting its circadian regulatory function may couple with mechanically sensitive structures.
+
+# AFCC Daily Refresh: 2026-04-13
+
+## Run Summary
+- **Candidates Processed**: 10
+- **Top Candidate**: GHR (Anisotropy: 5.13)
+
+## Top 5 High-Anisotropy Structures
+| Gene | Anisotropy | pLDDT (Mean) | Morphology |
+|------|------------|--------------|------------|
+| GHR | 5.13 | 58.7 | Fibrous/Extended |
+| PIEZO2 | 4.44 | 79.4 | Fibrous/Extended |
+| ARNTL | 3.32 | 65.5 | Fibrous/Extended |
+| DAG1 | 2.39 | 68.2 | Intermediate |
+| LBX1 | 2.27 | 66.9 | Intermediate |
+
+## Key Observations
+- **Structural Flexibility in Tension Hubs**: GHR (5.13) and PIEZO2 (4.44) both show fibrous architectures, but PIEZO2 presents significantly higher structural confidence (pLDDT: 79.4 vs 58.7), highlighting PIEZO2's stability in mechanical signaling.
+- **Transmembrane Regulators**: DAG1 (Anisotropy: 2.39, pLDDT: 68.2) maintains an intermediate morphology, potentially supporting its role in anchoring the dystrophin-glycoprotein complex and transducing extracellular forces.
+- **Nuclear Factor Variability**: ARNTL (Anisotropy: 3.32) and LBX1 (Anisotropy: 2.27) show distinct elongation profiles, possibly reflecting varied requirements for dynamic complex assembly during circadian regulation and mechanosensitive gene expression.

@@ -50,7 +50,7 @@ Email: sayujkrishnan@gmail.com
 \noindent\textbf{Running head:} Derivative Gain Gap in AIS
 
 \bigskip
-\noindent\textbf{Key words:} adolescent idiopathic scoliosis, postural control, delayed feedback, Hopf bifurcation, growth velocity, proprioception, bracing
+\noindent\textbf{Key words:} adolescent idiopathic scoliosis, postural control, computational model, Hopf bifurcation, growth velocity
 
 \bigskip
 \noindent\textbf{Level of Evidence:} Not applicable (computational modeling study)
@@ -66,10 +66,10 @@ Email: sayujkrishnan@gmail.com
 Despite decades of investigation, the etiology of adolescent idiopathic scoliosis (AIS) remains incompletely understood. Proprioceptive abnormalities and associations with peak height velocity have been reported but lack a unifying mechanistic framework. We propose a control-theoretic model in which growth-velocity-dependent degradation of the derivative (rate-sensing) gain in the trunk postural controller creates a transient instability window---the ``derivative gain gap''---that may explain the clinical epidemiology of AIS.
 
 \noindent\textbf{Methods:}
-The human trunk was modeled as an inverted pendulum governed by delayed proportional-derivative (PD) feedback, with controller gains scaled from published postural control parameters. Delay-differential equation simulations were performed across a parameter space of derivative gain ($K_d$), proprioceptive delay ($\tau$), and growth velocity. Sex-specific growth curves from published CDC/WHO data were used to model growth-phase trajectories through the stability landscape.
+In this computational modeling study, the human trunk was modeled as an inverted pendulum governed by delayed proportional-derivative (PD) feedback, with controller gains scaled from published postural control parameters. Delay-differential equation simulations were performed across a parameter space of derivative gain ($K_d$), proprioceptive delay ($\tau$), and growth velocity. Sex-specific growth curves from published CDC/WHO data were used to model growth-phase trajectories through the stability landscape.
 
 \noindent\textbf{Results:}
-The relationship between derivative gain and critical delay ($\tau^*$) was non-monotonic, with an optimal $K_d$ maximizing the stability corridor. Growth-velocity-dependent $K_d$ degradation drove the system trajectory across the Hopf bifurcation boundary exclusively when rapid growth velocity ($>$6\,cm/yr) co-occurred with elevated proprioceptive processing delay ($\tau > 200$\,ms). The model predicted female vulnerability at 10.6--11.8 years and male vulnerability at 12.2--14.2 years, consistent with published clinical data. Simulated external bracing, modeled as haptic augmentation of $K_d$, restored stability without altering intrinsic neuromuscular parameters.
+The relationship between derivative gain and critical delay ($\tau^*$) was non-monotonic, with an optimal $K_d$ maximizing the stability corridor. Growth-velocity-dependent $K_d$ degradation drove the system trajectory across the Hopf bifurcation boundary when rapid growth velocity ($>$6\,cm/yr) co-occurred with elevated proprioceptive processing delay ($\tau > 200$\,ms). The model predicted female vulnerability at 10.6--11.8 years and male vulnerability at 12.2--14.2 years, consistent with published clinical data. Simulated external bracing, modeled as haptic augmentation of $K_d$, suggested that stability may be restored without altering intrinsic neuromuscular parameters.
 
 \noindent\textbf{Conclusions:}
 This computational model generates the hypothesis that AIS onset reflects a transient derivative gain gap during peak growth velocity. The model reproduces sex-specific timing, female preponderance, and spontaneous stabilization at skeletal maturity, and suggests testable predictions for clinical validation.
@@ -89,9 +89,9 @@ The human postural control system can be modeled as a feedback controller stabil
 
 A growing body of control-theoretic literature has examined postural stability in the context of time-delayed feedback \citep{milton2009delay, cabrera2004human, asai2009model}. These studies demonstrate that increased feedback delay narrows the stability region in gain--delay parameter space, and that a Hopf bifurcation---the transition from stable equilibrium to sustained oscillation---occurs when delay-induced phase lag exceeds a critical threshold. However, to our knowledge, no prior work has specifically examined how \textit{growth-velocity-dependent changes} in controller gains interact with delay to create a transient instability window during adolescence.
 
-In this study, we develop a computational model of trunk postural control in which the derivative gain ($K_d$) undergoes transient degradation during rapid growth, reflecting the hypothesis that rapid elongation of the proprioceptive pathway degrades rate-sensing performance before adaptive recalibration can occur. We demonstrate that this ``derivative gain gap'' creates a non-trivial stability landscape in which the system trajectory crosses the Hopf bifurcation boundary at ages consistent with clinical AIS onset. We further show that the model naturally reproduces sex-specific timing differences and suggests a mechanistic reinterpretation of brace therapy as haptic augmentation of the degraded derivative gain.
+In this study, we develop a computational model of trunk postural control in which the derivative gain ($K_d$) undergoes transient degradation during rapid growth, reflecting the hypothesis that rapid elongation of the proprioceptive pathway degrades rate-sensing performance before adaptive recalibration can occur. The model suggests that this ``derivative gain gap'' creates a non-trivial stability landscape in which the system trajectory may cross the Hopf bifurcation boundary at ages consistent with clinical AIS onset. The model further suggests a mechanistic reinterpretation of brace therapy as haptic augmentation of the degraded derivative gain.
 
-We emphasize that this work is hypothesis-generating. The model makes specific, falsifiable predictions that warrant clinical testing but has not been validated against patient data.
+This work is hypothesis-generating; the model makes testable predictions that require clinical validation.
 
 % ============================================================
 % Methods
@@ -167,6 +167,36 @@ v_g(t) = v_{g,\text{max}} \cdot \exp\left[-\frac{(t - t_{\text{PHV}})^2}{2\sigma
 
 \noindent where $\sigma_g = 1.5$\,years for females and $\sigma_g = 1.8$\,years for males, reflecting the longer growth spurt duration in males.
 
+\subsection{Assumptions and Parameterization Limits}
+
+The model relies on several parameters for which direct experimental measurements are limited or unavailable. Table~\ref{tab:assumptions} summarizes all assumed parameters, their values, sources, and the sensitivity of results to each.
+
+\begin{table}[h]
+\centering
+\caption{Model parameters: sources and sensitivity.}
+\label{tab:assumptions}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Source} & \textbf{Sensitivity} \\
+\midrule
+$I$ (trunk inertia) & 0.8\,kg$\cdot$m$^2$ & Estimated from anthropometric data & Low \\
+$m$ (trunk mass) & 25\,kg & Standard pediatric anthropometry & Low \\
+$L$ (moment arm) & 0.30\,m & Anatomical estimate & Low \\
+$b$ (passive damping) & 1.0\,N$\cdot$m$\cdot$s/rad & \citep{winter1995human} & Low \\
+$K_p$ (proportional gain) & 120\,N$\cdot$m/rad & Scaled from \citep{peterka2002sensorimotor} & Moderate \\
+$K_{d,\text{base}}$ (derivative gain) & 8\,N$\cdot$m$\cdot$s/rad & Scaled from \citep{peterka2002sensorimotor} & High \\
+$\tau_0$ (baseline delay) & 150\,ms & \citep{peterka2002sensorimotor, winter1995human} & High \\
+$\alpha$ (delay--growth scaling) & 10\,ms/(cm/yr) & Postulated---no direct measurement & Moderate \\
+$\beta$ (max.\ $K_d$ degradation) & 0.6 & Postulated---no direct measurement & High \\
+$\beta_{\text{female}}$/$\beta_{\text{male}}$ & 0.65/0.50 & Postulated---no direct measurement & Moderate \\
+$\sigma_g$ (growth pulse width) & 1.5/1.8\,yr & \citep{tanner1966growth} & Low \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The parameters $\alpha$, $\beta$, $\beta_{\text{female}}$, and $\beta_{\text{male}}$ lack direct experimental measurements and should be regarded as assumed values pending direct empirical measurement. Parameter sensitivity analysis (Supplementary Figure~S1) indicated that the qualitative predictions of the model---non-monotonic $K_d$--$\tau^*$ relationship, female-before-male onset, PHV-correlated vulnerability---were preserved across wide ranges of $\beta$ (0.3--0.8) and $\alpha$ (5--20\,ms per cm/yr).
+
 % ============================================================
 % Results
 % ============================================================
@@ -214,7 +244,7 @@ This reinterpretation is consistent with the clinical observation that brace eff
 
 \subsection{Stochastic Sensitivity}
 
-The stochastic analysis (Sweep E) demonstrated that sensory noise substantially modulated the effective stability boundary. At the optimal $K_d$, the system tolerated noise levels up to $\sigma = 5$\,N$\cdot$m without destabilization. However, at suboptimal $K_d$ values (near the stability boundary), even modest noise ($\sigma = 1$\,N$\cdot$m) triggered instability in 30\% of simulation trials, and high noise ($\sigma = 5$\,N$\cdot$m) triggered instability in over 70\% of trials.
+The stochastic analysis (Sweep E) indicated that sensory noise substantially modulated the effective stability boundary. At the optimal $K_d$, the system tolerated noise levels up to $\sigma = 5$\,N$\cdot$m without destabilization. However, at suboptimal $K_d$ values (near the stability boundary), even modest noise ($\sigma = 1$\,N$\cdot$m) triggered instability in 30\% of simulation trials, and high noise ($\sigma = 5$\,N$\cdot$m) triggered instability in over 70\% of trials.
 
 This suggests that individuals with noisier proprioceptive signals---potentially due to genetic variants affecting mechanosensory channel function \citep{assaraf2020piezo2, coste2010piezo}---may have a lower effective stability threshold and therefore greater susceptibility to AIS onset during the growth spurt.
 
@@ -225,97 +255,52 @@ This suggests that individuals with noisier proprioceptive signals---potentially
 
 \subsection{Principal Findings}
 
-This computational modeling study introduces the concept of a ``derivative gain gap''---a transient deficit in the rate-sensing component of trunk postural control that arises during rapid adolescent growth. The model demonstrates that this gap creates a defined instability window through a Hopf bifurcation mechanism, and that the timing and sex-specificity of this window are consistent with the known clinical epidemiology of AIS.
+This computational modeling study introduces the concept of a ``derivative gain gap''---a transient deficit in the rate-sensing component of trunk postural control that arises during rapid adolescent growth. The model suggests that this gap may create a defined instability window through a Hopf bifurcation mechanism, and that the timing and sex-specificity of this window are consistent with the known clinical epidemiology of AIS. The central insight is that the relationship between derivative gain and delay tolerance is non-monotonic, meaning that growth-induced changes may push the system outside a bounded stability corridor even when the proportional gain remains adequate. Supplementary analyses suggest that these conclusions are not artifacts of specific parameter choices: the parameter sensitivity analysis (Figure~S1) showed that qualitative predictions held across wide ranges of $\beta$ and $\alpha$, and the Monte Carlo analysis (Figure~S2) was consistent with robustness to individual growth variability.
 
-The central insight is that the relationship between derivative gain and delay tolerance is non-monotonic. This means that the postural controller operates within a bounded stability corridor, and that growth-induced changes can push the system outside this corridor even when the proportional gain remains adequate. The ``trap'' lies in the derivative channel specifically: the rate-sensing pathway is more vulnerable to growth-related disruption than the position-sensing pathway because it requires finer temporal calibration.
+\subsection{Comparison with Existing AIS Literature}
 
-Importantly, the supplementary analyses demonstrate that these conclusions are not artifacts of specific parameter choices. The parameter sensitivity analysis (Figure~S1) showed that the qualitative predictions held across wide ranges of $\beta$ and $\alpha$, and the Monte Carlo analysis (Figure~S2) confirmed robustness to individual growth variability. The introduction of adaptive gain recovery (Figure~S3) provided a natural explanation for why most adolescents do \textit{not} develop AIS: rapid neuromuscular recalibration closes the derivative gain gap before sustained oscillation can develop. Finally, the two-degree-of-freedom extension (Figure~S4) confirmed that the instability mechanism persists in a coupled sagittal--lateral model, supporting the generalizability of the single-plane findings to the three-dimensional clinical deformity.
+The derivative gain gap hypothesis is consistent with several previously disconnected lines of evidence in the AIS literature. The documented proprioceptive deficits in AIS patients---including impaired trunk repositioning accuracy and altered vibration perception thresholds \citep{lao2008proprioceptive, simoneau2006altered}---are consistent with the degraded $K_d$ predicted by our model and may represent the clinical correlate of the derivative gain gap. The well-established correlation between PHV and AIS onset \citep{sanders2017maturity, burwell2009aetiopathogenesis} is a direct prediction of the model rather than an incidental association. Increased postural sway in AIS patients \citep{dalleau2012postural} is consistent with the reduced stability margin during the derivative gain gap.
 
-\subsection{A Two-Layer Mechanistic Account}
+The model is also consistent with biomechanical progression theories: the Hueter-Volkmann effect (asymmetric loading driving asymmetric growth) \citep{stokes2006hueter, villemure2009growth} may serve as a downstream progression mechanism once the initial deviation is established by the control-theoretic instability proposed here. The model's brace predictions are consistent with the clinical observation that brace efficacy depends on compliance duration rather than corrective force magnitude \citep{weinstein2013bracing, negrini2018sosort}, and that nighttime braces providing primarily haptic feedback show clinical efficacy \citep{price1997efficacy}. These correspondences provide supportive context but do not constitute validation; each requires independent prospective testing.
 
-The single-degree-of-freedom model addresses onset: it identifies when postural control becomes unstable and predicts who is at risk. The multi-segment model addresses morphology: it shows where the deformity localizes and why it acquires a three-dimensional character. Together, they offer a parsimonious account in which a delayed-feedback instability determines onset, regional compliant-span mechanics determines why the deformity localizes to the thoracic and thoracolumbar spans, and vertebral bend-twist coupling determines why lateral deviation becomes axial rotation rather than a simple planar lean.
+\subsection{Clinical Implications as Testable Hypotheses}
 
-Stated precisely: \textit{a delayed-feedback instability may determine onset, while regional compliant-span mechanics and bend-twist coupling determine where the deformity localizes and why it becomes three-dimensional.}
-
-Both layers are required; neither is sufficient alone. The pendulum model cannot predict localization at T7--L1 rather than any other spinal level. The multi-segment model, absent the control-theoretic instability, provides no account of timing or sex specificity. The two models are complementary, not redundant.
-
-\subsection{Comparison with Existing AIS Theories}
-
-The derivative gain gap hypothesis is not in conflict with existing AIS theories but rather provides a mechanistic link between several previously disconnected observations:
-
-\begin{itemize}
-\item \textbf{Biomechanical theories} \citep{stokes2006hueter, villemure2009growth}: The Hueter-Volkmann effect (asymmetric loading driving asymmetric growth) may serve as the \textit{progression} mechanism once the initial deviation is established by the control-theoretic instability proposed here.
-
-\item \textbf{Proprioceptive theories} \citep{lao2008proprioceptive, simoneau2006altered}: The documented proprioceptive deficits in AIS patients are consistent with the degraded $K_d$ predicted by our model, and may represent the clinical correlate of the derivative gain gap.
-
-\item \textbf{Growth-related theories} \citep{sanders2017maturity, burwell2009aetiopathogenesis}: The correlation between PHV and AIS onset is a direct prediction of our model, not an incidental association.
-
-\item \textbf{Genetic predisposition}: In our framework, genetic variants (e.g., in PIEZO2 or other mechanosensory genes) may manifest as altered baseline $K_d$ or increased proprioceptive noise ($\sigma$), lowering the threshold for growth-induced instability.
-\end{itemize}
-
-\subsection{Testable Predictions}
-
-The model generates eight specific, falsifiable predictions:
+The framework generates several clinically testable hypotheses rather than treatment recommendations:
 
 \begin{enumerate}
-\item \textbf{Proprioceptive velocity sensing:} AIS patients should demonstrate degraded trunk velocity perception (derivative sensing) more consistently than position perception (proportional sensing), testable with psychophysical threshold protocols.
+\item \textit{Screening hypothesis:} If the derivative gain gap precedes curve onset, then proprioceptive velocity sensing tests administered during annual school screening may identify children entering the vulnerability window before curves become clinically apparent.
 
-\item \textbf{PHV correlation:} The onset of the derivative gain gap should temporally precede curve detection by 6--12 months, testable with prospective longitudinal monitoring of proprioceptive function and growth velocity.
+\item \textit{Brace design hypothesis:} If braces function partly through haptic augmentation of $K_d$, then brace designs optimized for cutaneous sensory feedback rather than corrective force magnitude may warrant investigation.
 
-\item \textbf{Delay prolongation:} Somatosensory evoked potential latencies should be longer in AIS patients at diagnosis compared with age- and height-matched controls.
+\item \textit{Physiotherapy hypothesis:} Targeted proprioceptive training focused on velocity sensing (e.g., perturbation-based balance training) during the peripubertal period warrants investigation as a potential preventive intervention.
 
-\item \textbf{Noise amplification:} Postural sway spectral analysis should reveal elevated high-frequency content in pre-scoliotic children during PHV, reflecting inadequate derivative damping.
-
-\item \textbf{Brace haptic effect:} Thin, compliant braces providing primarily tactile feedback (with minimal corrective force) should demonstrate measurable improvement in postural stability metrics in AIS patients.
-
-\item \textbf{Sex-specific timing:} The proprioceptive deficit should appear approximately 2 years earlier in girls than boys, coinciding with their respective PHV timing.
-
-\item \textbf{Maturity-dependent resolution:} Proprioceptive velocity sensing deficits should normalize with skeletal maturity, even in untreated patients with established curves.
-
-\item \textbf{Stochastic vulnerability:} Patients with known PIEZO2 polymorphisms should show a higher incidence of AIS and earlier onset age, consistent with the increased noise sensitivity demonstrated in our stochastic simulations.
+\item \textit{Timing hypothesis:} Proprioceptive velocity sensing deficits may appear approximately 2 years earlier in girls than boys, coinciding with their respective PHV timing, and may normalize with skeletal maturity.
 \end{enumerate}
 
-\subsection{Clinical Implications}
+Each of these hypotheses requires clinical validation before any implications for practice can be drawn.
 
-If validated, this model has several implications for clinical practice:
+\subsection{Limitations}
 
-\textit{Screening.} Proprioceptive velocity sensing tests administered during annual school screening could identify children entering the derivative gain gap before curves become clinically apparent. This could enable targeted monitoring during the brief high-risk window.
+This study has several important limitations. First, the model is a single-plane, single-degree-of-freedom simplification; real spinal biomechanics involve coupled three-dimensional motion, multiple vertebral segments, and complex muscle activation patterns. Second, no patient-level validation data were collected or analyzed. The model has not been validated against clinical measurements, and although model predictions are consistent with eight independently published clinical observations (Supplementary Table~S1), prospective clinical validation remains essential. Third, the key parameters governing growth-dependent degradation ($\beta$ and $\alpha$) are postulated values, not empirically measured quantities. These parameters should be regarded as assumed values pending direct empirical measurement, although sensitivity analysis (Supplementary Figure~S1) indicates that qualitative predictions are preserved across wide parameter ranges. Fourth, the growth-velocity model is a population-mean Gaussian pulse derived from CDC/WHO reference data and does not capture individual growth variability; Monte Carlo analysis (Supplementary Figure~S2) suggests robustness across the sampled population. Fifth, the brace model is a simplified haptic proxy ($K_{d,\text{ext}}$) and does not capture the full biomechanical and sensory complexity of brace--trunk interaction. Sixth, the differential $\beta$ values for males and females were assumed rather than derived from independent evidence, though indirect support exists from reports of sex differences in proprioceptive maturation \citep{hirabayashi2009age, tanner1966growth}.
 
-\textit{Brace design.} If braces function partly through haptic augmentation of $K_d$, then brace design could be optimized for cutaneous sensory feedback rather than purely corrective force. This might permit lighter, more compliant braces with improved patient compliance.
+\subsection{Validation Roadmap}
 
-\textit{Physiotherapy.} Targeted proprioceptive training focused on velocity sensing (e.g., perturbation-based training) during the peripubertal period could be investigated as a preventive intervention.
+Three concrete validation steps are warranted to test the predictions of this model:
 
-\subsection{Future Directions}
+\begin{enumerate}
+\item \textbf{Prospective posturography in an AIS cohort during growth.} Longitudinal measurement of proprioceptive function (trunk velocity perception thresholds) and postural sway in a cohort of pre-pubertal children followed through skeletal maturity would test whether a measurable derivative gain deficit precedes or co-occurs with curve onset.
 
-Several extensions of this work are warranted. First, a fully three-dimensional rigid-body model with explicit intervertebral disc and facet joint mechanics would improve biomechanical fidelity beyond the current multi-segment extension; in particular, modelling axial rotation as a driven degree of freedom rather than a coupled consequence would test whether the bend-twist mechanism is sufficient to generate the observed rotational magnitudes without additional torsional loading. Second, incorporation of muscle-specific activation dynamics and co-contraction strategies would improve physiological fidelity. Third, formal sensitivity analysis using Latin hypercube sampling across all parameters would more rigorously characterize model robustness. Fourth, validation against clinical data---specifically, prospective measurement of proprioceptive function, growth velocity, and spinal alignment in a cohort of pre-pubertal children followed through skeletal maturity---would provide the essential empirical test of the hypothesis.
+\item \textbf{Comparison of model predictions with longitudinal Risser/Sanders staging.} The model predicts that the vulnerability window aligns with specific skeletal maturity stages. Correlating predicted instability onset with standardized maturity markers in clinical cohorts would test the temporal precision of the model.
 
-% ============================================================
-% Limitations
-% ============================================================
-\section{Limitations}
-
-This study has several limitations that must be acknowledged, along with the steps taken to mitigate their impact.
-
-First, this is a purely computational modeling study. No patient data were collected or analyzed, and the model has not been validated against clinical measurements. To partially address this, we performed a systematic comparison of model predictions against eight independently published clinical observations (Supplementary Table~S1), including AIS onset timing, sex ratio, PHV correlation, brace efficacy, proprioceptive deficits, and height association. The model's predictions were consistent with all eight observations, supporting its plausibility. Nevertheless, prospective clinical validation remains essential.
-
-Second, the model is restricted to a single sagittal plane, whereas clinical AIS is a three-dimensional deformity. To assess whether this simplification invalidates our conclusions, we extended the model to a two-degree-of-freedom coupled sagittal--lateral system (Supplementary Figure~S4). The Hopf bifurcation occurred at similar parameter values in the coupled model, and the lateral mode inherited instability from the sagittal mode via mechanical coupling, indicating that the single-plane model captures the essential instability mechanism. A full multi-segment three-dimensional model would add realism but is unlikely to alter the fundamental growth-delay interaction reported here.
-
-Third, the growth velocity curves were modeled as simplified Gaussian pulses based on population-level CDC/WHO reference data. To assess the impact of individual growth variability, we performed a Monte Carlo analysis with 1{,}000 simulated individuals drawn from published distributions of PHV age ($\pm 1$\,year), PHV magnitude ($\pm 1.5$\,cm/yr), and baseline delay ($\pm 20$\,ms) (Supplementary Figure~S2). The qualitative predictions---female-before-male onset, PHV-correlated vulnerability, spontaneous stabilization---were robust across the sampled population, and the fraction of individuals experiencing instability was consistent with published AIS prevalence estimates when adaptation rate variability was included.
-
-Fourth, the degradation function for $K_d$ (Eq.~\ref{eq:kd_degrade}) was postulated based on plausibility rather than directly measured. A full parameter sensitivity analysis (Supplementary Figure~S1) demonstrated that the qualitative predictions of the model were preserved across a wide range of $\beta$ (0.3--0.8) and $\alpha$ (5--20\,ms per cm/yr), indicating that the conclusions do not depend on precise parameter tuning. Nonetheless, direct measurement of proprioceptive gain during adolescent growth remains a priority for clinical validation.
-
-Fifth, the baseline model does not account for neuromuscular adaptation, which would allow some individuals to recalibrate their control gains and avoid the instability window. To address this, we introduced an adaptive gain recovery term representing CNS recalibration at variable rates (Supplementary Figure~S3). The extended model showed that fast adapters (recalibration rate $> 0.3$/year) avoided instability entirely, while slow adapters (rate $< 0.1$/year) experienced prolonged vulnerability windows. This naturally explains both the low overall prevalence of AIS (2--4\%) and the observation that not all rapidly growing adolescents develop scoliosis: individual variation in adaptation rate acts as a gating mechanism.
-
-Sixth, the inverted pendulum model uses a rigid-body approximation with a single lumbar pivot. The spine is a multi-segmental, viscoelastic structure, and this simplification reduces biomechanical fidelity. However, the delayed-feedback instability we describe is a property of the control loop architecture, not the plant dynamics per se, and would be expected to persist in more detailed musculoskeletal models with similar delay and gain characteristics.
-
-Seventh, the differential $\beta$ values used for males and females were assumed rather than derived from independent evidence. Published data support an indirect basis for this assumption: female adolescents show earlier proprioceptive maturation plateaus \citep{hirabayashi2009age}, different muscle activation timing patterns, and a narrower growth spurt window \citep{tanner1966growth}, all of which are consistent with a higher effective $\beta$ in females. However, direct longitudinal measurement of sex-differential proprioceptive gain degradation during growth has not been performed and remains a key prediction of this model.
+\item \textbf{Direct measurement of proprioceptive delay during PHV.} Somatosensory evoked potential latency measurements in adolescents undergoing rapid growth, compared with age-matched controls past PHV, would test the delay-amplification hypothesis directly.
+\end{enumerate}
 
 % ============================================================
 % Conclusions
 % ============================================================
 \section{Conclusions}
 
-We present a control-theoretic model of trunk postural control in which growth-velocity-dependent degradation of the derivative gain creates a transient ``derivative gain gap'' during adolescence. This computational model reproduces several hallmark features of AIS epidemiology: adolescent onset, correlation with peak height velocity, sex-specific timing, female preponderance, and spontaneous stabilization at skeletal maturity. The model further suggests a mechanistic reinterpretation of brace therapy as haptic augmentation of the degraded rate-sensing channel. These findings are consistent with the hypothesis that AIS onset reflects a transient control-theoretic instability rather than a static structural defect. Clinical validation through prospective proprioceptive testing during the peripubertal growth spurt is warranted to test the specific predictions generated by this model.
+This computational model generates the hypothesis that AIS onset reflects a transient derivative gain gap during peak growth velocity, in which growth-dependent degradation of rate-sensing feedback interacts with proprioceptive delay to create a Hopf bifurcation instability. The model's predictions---sex-specific onset timing, female preponderance, PHV correlation, and spontaneous stabilization at skeletal maturity---are consistent with published clinical data. Prospective validation through longitudinal posturographic assessment during the peripubertal growth spurt is required to test these predictions.
 
 % ============================================================
 % Acknowledgments

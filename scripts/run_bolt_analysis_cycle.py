@@ -171,6 +171,11 @@ def main():
     md_report.append("```")
     md_report.append("</details>\n")
 
+    # Save CSV directly
+    csv_path = os.path.join(OUTPUT_DIR, "metrics.csv")
+    df.to_csv(csv_path, index=False)
+
+
     md_report.append("## B) Key Plots Summary\n")
     md_report.append("Generated output files under `outputs/bolt_biofold_cycle/figures/`:\n")
 
@@ -295,7 +300,7 @@ def main():
     md_report.append("* **Parameters:** pLDDT >= 70 threshold for structure/geometry computation.")
     md_report.append("* **Notes:** SASA not explicitly computed to adhere strictly to zero-new-dependencies rule; used coordinate-based neighborhood proxy instead.")
 
-    report_path = os.path.join(OUTPUT_DIR, "AlphaFold_Analysis_Cycle.md")
+    report_path = os.path.join(OUTPUT_DIR, "report.md")
     with open(report_path, "w") as f:
         f.write("\n".join(md_report))
 

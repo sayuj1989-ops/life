@@ -85,3 +85,11 @@ This document tracks the daily incremental refactor of the repository towards pu
 - [x] **Move AlphaFold Scripts**: Move `alphafold_pipeline_v2.py`, `gen_alphafold_figs.py`, and related scripts to `scripts/pipeline/` or `scripts/alphafold/`.
 - [x] **Move Benchmark Scripts**: Move benchmark scripts (`benchmark_pae.py`, `benchmark_pae2.py`, `benchmark_pae_domain.py`, `benchmark_rg.py`, `benchmark_var.py`) to `scripts/benchmarks/`.
 - [x] **Clean Root Miscellany**: Move loose scripts like `create_alphafold_section.js`, `generate_submission.py`, `main.py`, `test_genai.py`, `run_cluster.py` to `scripts/` or `archive/` depending on relevance. Move artifacts like `plan.md` and `test_output_2.txt` to `archive/`.
+
+## Phase 10: Additional Root Cleanup (Part 2)
+
+- [x] **Clean Root Text Files**: Move root text files (e.g., `jules_lenke_6_types.txt`, `jules_lenke_multi_segment.txt`, `jules_mechanism_derivative_gain_trap.txt`, `jules_mechanism_vim_cascade.txt`, `jules_polygenic_stacking_lenke.txt`, `jules_visual_abstract_biological_countercurvature.txt`, `jules_visual_abstract_metabolic_buckling.txt`) to `notes/` or `archive/`.
+- [ ] **Clean Root Scripts**: Move root scripts like `check_elastica.py` to `scripts/` or `tests/`.
+- [ ] **Clean Plan and Messages**: Move `plan_draft.md` and `commit_message.txt` to `archive/`.
+- [ ] **Clean Root Markdown**: Move `research_schedule_gravity_optimization.md` to `docs/` or `notes/`.
+- [ ] **Consolidate Figures**: Investigate `figures/`, `figures_alphafold/`, `figures_v2/`, `alphafold_figures/` and consolidate into a single `figures/` directory or move to `archive/`.

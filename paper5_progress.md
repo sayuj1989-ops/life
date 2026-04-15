@@ -1,7 +1,7 @@
 # Paper 5: The Predictive Processing Bridge - Progress Tracker
 
 ## Current Status
-**Phase 3, Day 13: Formal derivation Part C (Landscape)** - Completed (Date: 2026-04-13)
+**Phase 3, Day 14: Python simulation** - Completed (Date: 2026-04-14)
 
 ## Key Findings
 - Reviewed core FEP papers (Friston 2010, Friston 2006) on Day 1.
@@ -26,6 +26,7 @@
   - Derivative Gain ($K_d$) $\leftrightarrow$ Precision on velocity ($\Pi_{y,1}$)
   - Integral Gain ($K_i$) $\leftrightarrow$ Precision on prior ($\Pi_{v,0}$)
 - The Baltieri & Buckley mapping is solid. The next mathematical challenge (Phase 3) will be extending their model to include delayed observations ($\tau$) and time-varying plant parameters (growth), leading to the dynamic precision collapse of $\Pi_{y,1}$.
+- Day 14: Created `paper5_model/active_inference_posture.py` to simulate the active inference version of the postural model. Demonstrated that rapid growth (true inertia outstripping internal model inertia) leads to persistent prediction errors, forcing the optimal Bayesian precision $\Pi_{y,1}$ to collapse. This directly causes the effective derivative gain $K_d$ to degrade, leading to postural instability and lateral curvature, perfectly reproducing the analytical predictions from Phase 3, Days 11-13.
 
 ## Next Session Plan
-- **Phase 3, Day 14:** Python simulation — implement the active inference version of the postural model. Show that it reproduces Paper 2's results but with richer dynamics (precision updating, model learning).
+- **Phase 4, Day 15:** Begin drafting the manuscript (`paper5_draft/sections/`). Outline the sections and write the Introduction, linking active inference, derivative gain, and adolescent idiopathic scoliosis.

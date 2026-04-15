@@ -1,1 +1,9 @@
-A visual abstract for the Biological Countercurvature of Spacetime theory. It depicts a human spine emerging as an S-curve, representing the energetic ground state between two opposing forces: 'Gravity (Mechanical Loading)' pulling down, and 'Developmental Information (HOX Patterning)' acting as a counter-force upward, stabilizing the structure.
+TITLE: Visual Abstract: Biological Countercurvature of Spacetime
+STYLE: Grand, conceptual physics-biology crossover. Sci-Fi yet academic. Deep background (dark navy or black).
+PALETTE: Bioluminescent Cyan/Electric Blue (Information Field), Golden Amber (Spacetime Grid/Gravity), Slate Gray (Structure).
+
+COMPONENTS:
+1. "The Core Geometry" (Center): A glowing, ethereal human spinal column forming a perfect S-curve (lordosis/kyphosis).
+2. "The Gravity Vector" (Right/Downwards): Heavy, rigid, amber or deep red downward arrows pressing against the structure.
+3. "The Information Field" (Left/Upwards): Shimmering, fluid cyan vectors or waves originating from the base wrapping helically around the spine and pushing *upwards* against gravity.
+4. "The Metric Tensor" (Background): A distorted Cartesian grid curving dramatically inward around the glowing spine to support its shape.

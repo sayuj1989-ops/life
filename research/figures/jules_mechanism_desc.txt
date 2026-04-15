@@ -1,1 +1,9 @@
-A detailed causal loop diagram illustrating the Mechanogenetic Demand-Supply Gap. It shows 'Spinal Growth (L)' increasing 'Physical Scale', which drives up the 'Thermodynamic Cost of Control'. This cost demands more 'Sensory Feedback (Piezo2)'. However, an 'Anisotropy Gap' restricts the supply, leading to an 'Energy Deficit' that causes 'Metabolic Buckling' (Scoliosis).
+TITLE: Mechanogenetic Demand-Supply Gap in Spinal Geometry
+STYLE: High-Impact Scientific Diagram (Nature/Science style), clean, minimalist, vector-like, isometric or flowchart.
+PALETTE: Teal (Supply), Crimson/Orange (Demand), Slate Gray (Structure).
+
+COMPONENTS:
+1. "The Demand Node" (Bottom Left): A schematic of a mechanical sensor complex (representing Fibrillin/PIEZO2) experiencing tensile stress.
+2. "The Supply Node" (Bottom Right): A schematic of intrinsically disordered metabolic regulators (FOXO3/AMPK) in a fragmented state.
+3. "The Gap" (Center Bottom): A jagged, lightning-like break between Demand and Supply. Label: "The 72% Anisotropy Gap".
+4. "The Feedback Loop" (Top): An upward arrow leading from the Gap to a warped, twisting spinal column. Label: "Control Failure -> Torsional Instability".

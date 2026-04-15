@@ -1,3 +1,9 @@
+## 2026-04-15 - [Explicit component-wise multiplication for row-wise dot products]
+
+**Learning:** `np.einsum('ij,ij->i', u, v)` is slower than explicit component-wise multiplication and addition `u[:,0]*v[:,0] + u[:,1]*v[:,1] + u[:,2]*v[:,2]` for computing row-wise dot products of 3D vectors (N x 3 arrays) due to NumPy's dispatch overhead.
+
+**Action:** Replaced `np.einsum` with explicit component-wise multiplication and addition in `MetricsAnalyzer.calculate_curvature`. This yields measurable speedups without changing the scientific output.
+
 ## 2026-01-23 - [SASA with cKDTree]
 
 **Learning:** Calculating exposed surface proxy (SASA) using manual block-based neighbor search is slow ((N^2)$ worst case) and CPU-intensive for large proteins.

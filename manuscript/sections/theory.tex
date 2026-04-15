@@ -17,12 +17,12 @@ This anomaly suggests that the S-shape is not a passive equilibrium but an activ
 
 The active maintenance of spinal alignment relies on proprioceptive feedback from paraspinal muscles and mechanosensors. However, neural conduction and central processing are not instantaneous. Established models of human postural control demonstrate that the upright state is stabilized by proportional-derivative (PD) or proportional-derivative-acceleration (PDA) feedback, subject to a time delay $\tau$~\cite{milton2009time, insperger2013acceleration}. We formalize the spine as an active control system governed by a Delay Differential Equation (DDE).
 
-The proprioceptive control law generating corrective force $F_{control}$ with feedback delay $\tau$ is:
+The proprioceptive control law generating corrective force $F_{\mathrm{control}}$ with feedback delay $\tau$ is:
 \begin{equation}
-\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s).
-\label{eq:kappa_rest_field}
+F_{\mathrm{control}}(s,t) = K_P e(s, t-\tau) + K_D \frac{\partial e}{\partial t}(s, t-\tau),
+\label{eq:control_law}
 \end{equation}
-where $K_P$ and $K_D$ are proportional and derivative gains, and the error is $e(s,t) = \kappa_{measured}(s,t) - \kappa_{target}$.
+where $K_P$ and $K_D$ are proportional and derivative gains, and the error is $e(s,t) = \kappa_{\mathrm{measured}}(s,t) - \kappa_{\mathrm{target}}$.
 
 Linearizing around the straight configuration, the dynamics of the spinal column become:
 \begin{equation}
@@ -43,12 +43,12 @@ During the adolescent growth spurt, the spine elongates rapidly. Because nerve c
 
 When the neural delay exceeds the critical threshold ($\tau > \tau_c$), the system undergoes a supercritical Hopf bifurcation~\cite{landry2005dynamics}. The previously stable upright equilibrium becomes unstable, and stable limit cycles (oscillations) emerge. In the context of the spine, these delay-induced oscillations manifest as continuous, micro-mechanical buckling events that asymmetric biomechanical loading then locks into a permanent scoliotic deformity.
 
-Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} \sin\left(\frac{n\pi s}{L}\right)$, the characteristic equation is:
+Assuming solutions of the form $\kappa(s,t) = A e^{\lambda t} y_n(s)$, where $y_n(s)$ are the spatial eigenmodes of the clamped-free column, the characteristic equation determining the stability eigenvalues $\lambda$ is:
 \begin{equation}
-\boldsymbol{\kappa}_{\mathrm{rest}}(s) = \boldsymbol{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s),
-\label{eq:kappa_rest_iec}
+\rho A \lambda^2 + \eta \lambda + EI \beta_n^4 + (K_P + K_D \lambda) e^{-\lambda \tau} = 0,
+\label{eq:dde_characteristic}
 \end{equation}
-where $\chi_\kappa$ is a geometric coupling constant and $\boldsymbol{\kappa}_{\mathrm{gen}}$ is the baseline genetic curvature.
+where $\beta_n$ represents the characteristic roots for the spatial boundary conditions.
 
 \paragraph{Stiffness modulation (IEC-2).}
 The information field modulates the effective bending and torsional stiffness:

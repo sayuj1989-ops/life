@@ -1,0 +1,42 @@
+% WP1: Revised Table 1 — Cross-species Bio-Gravitational Number
+% All Bg values recomputed with correct formula: Bg = EI / (M * 9.81 * L^2)
+% EI quality: (M) = directly measured, (D) = derived from biomechanical data, (E) = estimated from allometry
+%
+% CRITICAL NOTE: The original Table 1 contained a systematic ~100x error in Bg 
+% for all species except Human (adult), due to an apparent g-value unit error.
+% All values below have been recomputed from the corrected formula.
+
+\begin{table}[h!]
+\centering
+\caption{Cross-species Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$.
+All species above $\sim\!100$\,g have $\mathcal{B}_g \ll 1$, indicating universal dependence on active muscular maintenance of spinal geometry.
+Bipedal species (shaded) plot \emph{above} the allometric regression line, suggesting evolutionary compensation for axial loading.
+The allometric scaling exponent $\alpha = -0.26 \pm 0.05$ ($R^2 = 0.72$, $p < 10^{-3}$) confirms that $\mathcal{B}_g$ decreases systematically with body mass.
+Superscripts indicate EI provenance: $^\mathrm{M}$\,=\,measured, $^\mathrm{D}$\,=\,derived, $^\mathrm{E}$\,=\,estimated.}
+\label{tab:cross_species}
+\small
+\begin{tabular}{lccccll}
+\toprule
+\textbf{Species} & \textbf{Mass (kg)} & \textbf{$L$ (m)} & \textbf{$EI$ (Nm$^2$)} & \textbf{$\mathcal{B}_g$} & \textbf{Posture} & \textbf{Source} \\
+\midrule
+Mouse & 0.03 & 0.05 & $8.0 \times 10^{-5\;\mathrm{E}}$ & 0.109 & Quadruped & \todo{SOURCE NEEDED} \\
+Rat & 0.3 & 0.15 & $1.0 \times 10^{-3\;\mathrm{E}}$ & 0.015 & Quadruped & \todo{SOURCE NEEDED} \\
+Rabbit & 2.5 & 0.35 & $2.5 \times 10^{-2\;\mathrm{D}}$ & 0.008 & Quadruped & G\'{a}l 1993 \\
+Cat & 4.0 & 0.40 & $5.0 \times 10^{-2\;\mathrm{D}}$ & 0.008 & Quadruped & Lu et al.\ 2024 \\
+Dog & 20.0 & 0.65 & $0.45^{\mathrm{D}}$ & 0.005 & Quadruped & Schulz et al.\ 1996 \\
+\rowcolor{blue!8} Chimpanzee & 50.0 & 0.45 & $1.5^{\mathrm{E}}$ & 0.015 & Fac.\ biped & \todo{SOURCE NEEDED} \\
+\rowcolor{yellow!15} Human (child) & 30.0 & 0.38 & $0.7^{\mathrm{D}}$ & 0.016 & Biped & Panjabi et al.\ 1976$^*$ \\
+\rowcolor{yellow!15} Human (adult) & 70.0 & 0.60 & $2.5^{\mathrm{M}}$ & 0.010 & Biped & Panjabi et al.\ 1976 \\
+Horse & 500 & 1.50 & $40^{\mathrm{D}}$ & 0.004 & Quadruped & Schlacher et al.\ 2004 \\
+Elephant & 4000 & 2.50 & $500^{\mathrm{E}}$ & 0.002 & Quadruped & \todo{SOURCE NEEDED} \\
+\midrule
+\multicolumn{7}{l}{\textit{Boundary-case species}} \\
+Giraffe & 1200 & 2.20 & $180^{\mathrm{D}}$ & 0.003 & Quadruped & van Sittert et al.\ 2010 \\
+Dolphin & 200 & 0.80 & $15^{\mathrm{D}}$ & 0.012 & Aquatic & Long et al.\ 1997 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.3em}
+{\footnotesize $^*$Scaled from adult cadaveric data using adolescent vertebral dimensions ($\sim$70\% adult diameter).\\
+Allometric fit (terrestrial, $n=11$): $\mathcal{B}_g = 0.020\,M^{-0.259\pm0.053}$, $R^2 = 0.72$, $p = 9.0 \times 10^{-4}$.}
+\end{table}

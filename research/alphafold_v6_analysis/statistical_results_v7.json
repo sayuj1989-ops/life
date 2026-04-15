@@ -1,0 +1,332 @@
+{
+  "n_total": 31,
+  "n_demand": 19,
+  "n_supply": 12,
+  "anisotropy_mwu": {
+    "demand_mean": 2.9548380927415665,
+    "demand_std": 1.3141103856271859,
+    "demand_median": 2.7984564139638723,
+    "supply_mean": 1.7337765484072785,
+    "supply_std": 0.5928369907450366,
+    "supply_median": 1.6184521071594737,
+    "U_statistic": 185.0,
+    "p_value_one_sided": 0.0021238723149504084,
+    "cohens_d": 1.1122776109275345,
+    "rank_biserial": -0.6228070175438596,
+    "cliffs_delta": 0.6228070175438597,
+    "gap_percent": 70.42784985504663
+  },
+  "disorder_mwu": {
+    "demand_mean": 0.19850973025426102,
+    "supply_mean": 0.3721480659971191,
+    "U_statistic": 66.0,
+    "p_value_one_sided": 0.027028510357773206,
+    "cohens_d": -0.9077534298558392
+  },
+  "fisher_exact": {
+    "contingency_table": [
+      [
+        2,
+        13
+      ],
+      [
+        6,
+        10
+      ]
+    ],
+    "odds_ratio": 0.2564102564102564,
+    "p_value_two_sided": 0.2199728092942776,
+    "gwas_genes_found": [
+      "LBX1",
+      "ADGRG6",
+      "FBN2",
+      "SOX9",
+      "SHH",
+      "SCUBE3",
+      "PAX1",
+      "BNC2"
+    ]
+  },
+  "bonferroni_threshold": 0.016666666666666666,
+  "per_protein": {
+    "PIEZO2": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 3.4544279836640346,
+      "disorder_fraction": 0.1368124118476728,
+      "seq_length": 709,
+      "mean_plddt": 79.4436389280677,
+      "is_gwas": false
+    },
+    "LBX1": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 1.3553576696057497,
+      "disorder_fraction": 0.3333333333333333,
+      "seq_length": 348,
+      "mean_plddt": 61.73591954022988,
+      "is_gwas": true
+    },
+    "DSTYK": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 3.653116685902516,
+      "disorder_fraction": 0.10333692142088267,
+      "seq_length": 929,
+      "mean_plddt": 80.19223896663078,
+      "is_gwas": false
+    },
+    "EGR3": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 1.5573739051315822,
+      "disorder_fraction": 0.6434108527131783,
+      "seq_length": 387,
+      "mean_plddt": 49.96868217054263,
+      "is_gwas": false
+    },
+    "RUNX3": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 1.569750741785103,
+      "disorder_fraction": 0.5614457831325301,
+      "seq_length": 415,
+      "mean_plddt": 60.564096385542165,
+      "is_gwas": false
+    },
+    "VIM": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 5.5677587299205555,
+      "disorder_fraction": 0.24034334763948498,
+      "seq_length": 466,
+      "mean_plddt": 77.08560085836909,
+      "is_gwas": false
+    },
+    "LMNA": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 4.705531259206728,
+      "disorder_fraction": 0.2575301204819277,
+      "seq_length": 664,
+      "mean_plddt": 76.37072289156627,
+      "is_gwas": false
+    },
+    "CAV1": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 2.517343966395376,
+      "disorder_fraction": 0.028089887640449437,
+      "seq_length": 178,
+      "mean_plddt": 78.36162921348316,
+      "is_gwas": false
+    },
+    "PIEZO1": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 3.1369536227931265,
+      "disorder_fraction": 0.1701705672352241,
+      "seq_length": 2521,
+      "mean_plddt": 72.0459182863943,
+      "is_gwas": false
+    },
+    "ADGRG6": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 2.7984564139638723,
+      "disorder_fraction": 0.15315315315315314,
+      "seq_length": 1221,
+      "mean_plddt": 73.72809172809173,
+      "is_gwas": true
+    },
+    "FBN2": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 1.423018263004321,
+      "disorder_fraction": 0.12287847929395791,
+      "seq_length": 1473,
+      "mean_plddt": 68.39040733197557,
+      "is_gwas": true
+    },
+    "PTK7": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 5.277950740318861,
+      "disorder_fraction": 0.09439252336448598,
+      "seq_length": 1070,
+      "mean_plddt": 82.69006542056074,
+      "is_gwas": false
+    },
+    "GHR": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 2.2720795546487036,
+      "disorder_fraction": 0.5047021943573667,
+      "seq_length": 638,
+      "mean_plddt": 58.69753918495297,
+      "is_gwas": false
+    },
+    "IGF1R": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.44346883252034,
+      "disorder_fraction": 0.1572787125091441,
+      "seq_length": 1367,
+      "mean_plddt": 78.01789319678127,
+      "is_gwas": false
+    },
+    "PPARGC1A": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.3462508803780429,
+      "disorder_fraction": 0.6190476190476191,
+      "seq_length": 798,
+      "mean_plddt": 52.74286967418547,
+      "is_gwas": false
+    },
+    "ARNTL": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 2.1256372580289447,
+      "disorder_fraction": 0.40415335463258784,
+      "seq_length": 626,
+      "mean_plddt": 65.52864217252394,
+      "is_gwas": false
+    },
+    "SIRT1": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.2841334210788258,
+      "disorder_fraction": 0.46586345381526106,
+      "seq_length": 747,
+      "mean_plddt": 65.02440428380187,
+      "is_gwas": false
+    },
+    "SOX9": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.300097881793058,
+      "disorder_fraction": 0.4911591355599214,
+      "seq_length": 509,
+      "mean_plddt": 55.97495088408645,
+      "is_gwas": true
+    },
+    "SHH": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.9436454073081288,
+      "disorder_fraction": 0.1645021645021645,
+      "seq_length": 462,
+      "mean_plddt": 78.37738095238096,
+      "is_gwas": true
+    },
+    "CDKN1A": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.7934353817986073,
+      "disorder_fraction": 0.25,
+      "seq_length": 164,
+      "mean_plddt": 69.00341463414635,
+      "is_gwas": false
+    },
+    "COMP": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.942313628961914,
+      "disorder_fraction": 0.06472919418758256,
+      "seq_length": 757,
+      "mean_plddt": 88.13581241743726,
+      "is_gwas": false
+    },
+    "COL1A1": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.1202893650290047,
+      "disorder_fraction": 0.6734972677595629,
+      "seq_length": 1464,
+      "mean_plddt": 52.72999316939891,
+      "is_gwas": false
+    },
+    "PLOD1": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 3.12614735285298,
+      "disorder_fraction": 0.030261348005502064,
+      "seq_length": 727,
+      "mean_plddt": 92.72865199449795,
+      "is_gwas": false
+    },
+    "TRPV4": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 2.2636379885675826,
+      "disorder_fraction": 0.2537313432835821,
+      "seq_length": 871,
+      "mean_plddt": 71.60041331802526,
+      "is_gwas": false
+    },
+    "ASIC3": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 4.564758750021579,
+      "disorder_fraction": 0.1318267419962335,
+      "seq_length": 531,
+      "mean_plddt": 82.81214689265536,
+      "is_gwas": false
+    },
+    "KCNK2": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 2.809105624252152,
+      "disorder_fraction": 0.21830985915492956,
+      "seq_length": 426,
+      "mean_plddt": 76.10387323943662,
+      "is_gwas": false
+    },
+    "TMC1": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 2.475218944444562,
+      "disorder_fraction": 0.09473684210526316,
+      "seq_length": 760,
+      "mean_plddt": 76.88184210526316,
+      "is_gwas": false
+    },
+    "DPYSL4": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 1.7849967927809332,
+      "disorder_fraction": 0.08391608391608392,
+      "seq_length": 572,
+      "mean_plddt": 90.08613636363637,
+      "is_gwas": false
+    },
+    "SCUBE3": {
+      "category": "Demand",
+      "subcategory": "Cytoskeletal",
+      "anisotropy": 3.3586046387195547,
+      "disorder_fraction": 0.10372608257804633,
+      "seq_length": 993,
+      "mean_plddt": 77.14065458207453,
+      "is_gwas": true
+    },
+    "PAX1": {
+      "category": "Demand",
+      "subcategory": "Proprioceptive",
+      "anisotropy": 1.8685610416115785,
+      "disorder_fraction": 0.04054054054054054,
+      "seq_length": 74,
+      "mean_plddt": 86.7281081081081,
+      "is_gwas": true
+    },
+    "BNC2": {
+      "category": "Supply",
+      "subcategory": "Metabolic",
+      "anisotropy": 1.1078196164887948,
+      "disorder_fraction": 0.640582347588717,
+      "seq_length": 1099,
+      "mean_plddt": 53.49764331210191,
+      "is_gwas": true
+    }
+  }
+}

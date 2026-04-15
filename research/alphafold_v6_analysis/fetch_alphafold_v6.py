@@ -1,6 +1,9 @@
 """
-Fetch AlphaFold v6 structural data for all 23 IEC framework proteins.
+Fetch AlphaFold v6 structural data for all 32 IEC framework proteins.
 Uses API to get correct URLs, then downloads PDB for structural analysis.
+
+Expanded from 23 to 32 proteins (WP4) to achieve n>=30 for robust
+statistical testing of the Demand-Supply anisotropy gap.
 """
 import json
 import os
@@ -37,6 +40,20 @@ PROTEINS = {
     "COMP":     {"uniprot": "P49747", "category": "Supply", "subcategory": "Metabolic", "role": "Cartilage oligomeric matrix protein"},
     "COL1A1":   {"uniprot": "P02452", "category": "Supply", "subcategory": "Metabolic", "role": "Type I collagen alpha-1"},
     "PLOD1":    {"uniprot": "Q02809", "category": "Supply", "subcategory": "Metabolic", "role": "Collagen crosslinking enzyme"},
+    # ---- WP4 EXPANSION (9 new proteins) ----
+    # DEMAND — additional mechanosensory channels
+    "TRPV4":    {"uniprot": "Q9HBA0", "category": "Demand", "subcategory": "Cytoskeletal", "role": "Osmotic/mechanical ion channel"},
+    "ASIC3":    {"uniprot": "Q9UHC3", "category": "Demand", "subcategory": "Proprioceptive", "role": "Acid-sensing ion channel (nociception)"},
+    "KCNK2":    {"uniprot": "O95069", "category": "Demand", "subcategory": "Proprioceptive", "role": "TREK-1 mechanosensitive K+ channel"},
+    "TMC1":     {"uniprot": "Q8TDI8", "category": "Demand", "subcategory": "Proprioceptive", "role": "Mechanotransduction channel (hair cells)"},
+    # DEMAND — cytoskeletal / GWAS-linked
+    "DPYSL4":   {"uniprot": "O14531", "category": "Demand", "subcategory": "Cytoskeletal", "role": "CRMP-3 / axon guidance / cytoskeletal remodeling"},
+    "SCUBE3":   {"uniprot": "Q8IX30", "category": "Demand", "subcategory": "Cytoskeletal", "role": "BMP signaling modulator (AIS GWAS)"},
+    "HSPG2":    {"uniprot": "P98160", "category": "Demand", "subcategory": "Cytoskeletal", "role": "Perlecan / ECM mechanotransduction hub"},
+    # DEMAND — AIS GWAS-linked patterning
+    "PAX1":     {"uniprot": "P15858", "category": "Demand", "subcategory": "Proprioceptive", "role": "Vertebral patterning TF (AIS GWAS)"},
+    # SUPPLY — AIS GWAS-linked
+    "BNC2":     {"uniprot": "Q6ZN30", "category": "Supply", "subcategory": "Metabolic", "role": "Zinc-finger TF (AIS GWAS)"},
 }
 
 ALPHAFOLD_API = "https://alphafold.ebi.ac.uk/api"
@@ -124,7 +141,9 @@ def main():
     print("ALPHAFOLD v6 STRUCTURAL ANALYSIS — IEC FRAMEWORK (23 PROTEINS)")
     print("=" * 70)
 
-    os.makedirs("/sessions/youthful-pensive-allen/alphafold_data", exist_ok=True)
+    output_base = os.path.join(os.path.dirname(__file__), "..", "..", "data", "processed", "alphafold_data")
+    output_base = os.path.abspath(output_base)
+    os.makedirs(output_base, exist_ok=True)
     results = {}
 
     for gene, info in PROTEINS.items():
@@ -151,7 +170,7 @@ def main():
             continue
 
         # Save PDB locally
-        pdb_path = f"/sessions/youthful-pensive-allen/alphafold_data/{gene}_{uid}.pdb"
+        pdb_path = os.path.join(output_base, f"{gene}_{uid}.pdb")
         with open(pdb_path, 'w') as f:
             f.write(pdb_resp.text)
 
@@ -186,11 +205,13 @@ def main():
     for gene, data in results.items():
         save_results[gene] = {k: v for k, v in data.items() if k != "plddt_per_residue"}
 
-    with open("/sessions/youthful-pensive-allen/alphafold_data/protein_metrics.json", "w") as f:
+    metrics_path = os.path.join(output_base, "protein_metrics.json")
+    with open(metrics_path, "w") as f:
         json.dump(save_results, f, indent=2)
 
     # Also save full data including per-residue
-    with open("/sessions/youthful-pensive-allen/alphafold_data/protein_metrics_full.json", "w") as f:
+    metrics_full_path = os.path.join(output_base, "protein_metrics_full.json")
+    with open(metrics_full_path, "w") as f:
         json.dump(results, f, indent=2)
 
     # ===== SUMMARY STATISTICS =====

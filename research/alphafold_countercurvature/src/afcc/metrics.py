@@ -203,12 +203,12 @@ class MetricsAnalyzer:
         n2_norm = normals_norm[1:]
 
         with np.errstate(divide='ignore', invalid='ignore'):
-            cos_phi = np.einsum('ij,ij->i', n1, n2) / (n1_norm * n2_norm)
+            cos_phi = (n1[:, 0] * n2[:, 0] + n1[:, 1] * n2[:, 1] + n1[:, 2] * n2[:, 2]) / (n1_norm * n2_norm)
             cos_phi = np.clip(cos_phi, -1.0, 1.0)
             phi = np.arccos(cos_phi)
 
             # Sign check
-            sign_check = np.einsum('ij,ij->i', b1, n2)
+            sign_check = b1[:, 0] * n2[:, 0] + b1[:, 1] * n2[:, 1] + b1[:, 2] * n2[:, 2]
             sign = np.sign(sign_check)
 
         torsion = phi * sign # in radians

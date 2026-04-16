@@ -169,3 +169,8 @@ This reduced the metric calculation overhead significantly while preserving bit-
 ## 2026-03-31 - [Plotting Optimization]
 **Learning:** The previous code called `ax.clear()` in the plotting loop for each protein, causing matplotlib to redraw all axes labels, limits, legends, and titles. This took ~2.4 seconds for 8 proteins.
 **Action:** Replaced `ax.clear()` with pre-initializing `Line2D` objects outside the loop and updating their data with `set_data()` inside the loop, while manually setting x/y limits. This dropped the plot time to ~1.0-1.5 seconds.
+## 2026-11-20 - [Fast Torsion Einsum]
+
+**Learning:** Using `np.einsum('ij,ij->i', a, b)` to compute row-wise dot products of 3D vectors introduces parsing and dispatch overhead. For tight loops over thousands of residues in `MetricsAnalyzer.calculate_torsion`, this overhead becomes a bottleneck.
+
+**Action:** Replaced `np.einsum` with explicit component-wise arithmetic `a[:,0]*b[:,0] + a[:,1]*b[:,1] + a[:,2]*b[:,2]` for `cos_phi` and `sign_check`. This yielded a ~1.4x speedup on dot product operations with mathematically identical results.

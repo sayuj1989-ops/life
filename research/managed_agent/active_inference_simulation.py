@@ -633,9 +633,9 @@ def make_figure(res):
                                    lw=1.2))
 
     outfile = 'active_inference_buckling.png'
-    fig.savefig(outfile, dpi=150, facecolor=fig.get_facecolor(),
+    fig.savefig(outfile, dpi=300, facecolor=fig.get_facecolor(),
                 bbox_inches='tight')
-    print(f"\nFigure saved to: {outfile}")
+    print(f"\nFigure saved to: {outfile}  (300 DPI, Spine-ready)")
     return fig
 
 # =============================================================================

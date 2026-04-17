@@ -1,9 +1,11 @@
-A high-impact visual abstract illustrating the "Biological Countercurvature of Spacetime" theory for human spinal geometry.
+TITLE: Biological Countercurvature and Metabolic Buckling
+STYLE: High-Impact Scientific Visual Abstract (Nature/Science style), highly professional, clean vector layout.
+PALETTE: Navy Blue, Deep Coral, Gold.
 
-The image features an intricate, glowing 3D human spine with a prominent, healthy S-curve (lordosis and kyphosis) rendered in a transparent, ethereal white-gold style. The spine is suspended in the center of the image.
+COMPONENTS:
+1. The Allometric Trap: A macroscopic comparison showing human Bio-gravitational number Bg ~ 0.01 forcing active metabolic stabilization.
+2. The Energy Deficit Window: A graph demonstrating scaling laws where mechanical cost (Demand) scales as L^4, while metabolic supply scales as L^2, creating a local deficit window at Peak Height Velocity (PHV).
+3. The Derivative Gain Trap: A control loop showing how increased absolute neural delay (tau) during the adolescent growth spurt converts stable childhood damping gains into destabilizing scoliotic Metabolic Buckling.
 
-Overlaying the space is a 3D grid, representing spacetime or a mathematical framework (the Information-Cosserat Framework).
-- Downward Vectors: Heavy, solid blue arrows pressing down on the spine, labeled "Gravity (g)". The grid warps sharply downward under this immense pressure.
-- Upward Force: Golden, luminous threads or "Information Fields" (representing HOX developmental patterning) weave through the vertebrae, actively pulling upwards and acting against gravity. This upward force creates an inverted, localized warp in the spacetime grid, actively counteracting the gravitational sag. This is the "Biological Countercurvature" ($\chi_\kappa$).
-
-The image visually communicates that the stable S-curve of the spine is an active, energetic "standing wave" produced by the constant biological effort of genetic information countering gravitational collapse. The overall tone is scientific, profound, and visually striking, using deep space blues and radiant gold accents, suitable for a Nature or Science journal cover.
+LAYOUT:
+Three clear horizontal or vertical panels connected by arrows representing the progression from evolutionary constraint to growth mismatch, culminating in mechanical failure.

@@ -127,79 +127,47 @@ def exp1_free_energy_landscape():
     print("Experiment 1 complete.")
 
 def exp2_developmental_scaling():
-    print("Running Experiment 2: Developmental Scaling & Adolescent Trap...")
+    print("Running Experiment 2: Generative Model Bifurcation (Free Energy Landscape)...")
+    # We create a more advanced conceptual visualization: The Energy Deficit Window
+    # induces a pitchfork bifurcation in the Free Energy Landscape
 
-    # Developmental stages:
-    # 1. Supine Infant (L=0.3, tau=0.05, stable naturally but we simulate anyway)
-    # 2. Sitting Child (L=0.5, tau=0.10)
-    # 3. Standing Child (L=1.0, tau=0.15)
-    # 4. Adolescent Growth Spurt (L=1.6, tau=0.22 - fast growth, tau increases due to nerve length)
-    # 5. Adult (L=1.8, tau=0.25)
-
-    stages = [
-        {'name': 'Sitting Infant', 'L': 0.5, 'tau': 0.10},
-        {'name': 'Standing Child', 'L': 1.0, 'tau': 0.15},
-        {'name': 'Adolescent (Spurt)', 'L': 1.6, 'tau': 0.22},
-        {'name': 'Adult', 'L': 1.8, 'tau': 0.25}
-    ]
-
-    # We will simulate an organism whose internal model T_pred is lagging behind its physical growth tau
-    # Case A: T_pred matches tau perfectly (Adaptive)
-    # Case B: T_pred lags behind tau by 50ms (Lagging / Derivative Gain Trap)
-
-    results = []
-
-    for stage in stages:
-        L = stage['L']
-        tau = stage['tau']
-        name = stage['name']
-
-        # Adjust controller gains loosely based on length to maintain comparable stability
-        Kp = 20.0 * (L/1.0)
-        Kd = 8.0 * (L/1.0)
-
-        # Adaptive (perfect time perception)
-        stable_A, F_A, effort_A, _, _, _ = simulate_agent_full(tau, tau, L=L, Kp=Kp, Kd=Kd)
-
-        # Lagging (imperfect time perception, T_pred is stuck at a previous stage or just slow to adapt)
-        lagging_T_pred = max(0.0, tau - 0.05)
-        stable_B, F_B, effort_B, _, _, _ = simulate_agent_full(tau, lagging_T_pred, L=L, Kp=Kp, Kd=Kd)
-
-        results.append({
-            'Stage': name,
-            'Length_L': L,
-            'Delay_tau': tau,
-            'FreeEnergy_Adaptive': F_A if stable_A else np.nan,
-            'FreeEnergy_Lagging': F_B if stable_B else np.nan,
-            'Effort_Adaptive': effort_A if stable_A else np.nan,
-            'Effort_Lagging': effort_B if stable_B else np.nan
-        })
-
-    df = pd.DataFrame(results)
-    df.to_csv('outputs/embodied_time/developmental_trap.csv', index=False)
-
-    # Plotting
-    x = np.arange(len(stages))
-    width = 0.35
+    # Simulating the Free Energy F(x) = U(x) - T S
+    # For a delayed system with degrading velocity precision (Kd collapse)
+    x_range = np.linspace(-40, 40, 400)
 
     fig, ax = plt.subplots(figsize=(10, 6))
 
-    # Fill nan with 0 or a high value for plotting purposes if unstable
-    fe_adapt = [f if not np.isnan(f) else 0 for f in df['FreeEnergy_Adaptive']]
-    fe_lag = [f if not np.isnan(f) else max(fe_adapt)*2 for f in df['FreeEnergy_Lagging']] # Penalty visual
+    # 1. Normal State (High precision Kd, Adaptive model)
+    # Deep single minimum at x=0
+    F_normal = 0.5 * (x_range)**2
+    ax.plot(x_range, F_normal, 'g-', linewidth=2, label='Normal (High $\Pi_{y,1}$ Velocity Precision)')
 
-    rects1 = ax.bar(x - width/2, fe_adapt, width, label='Adaptive ($T_{pred} = \\tau$)', color='g')
-    rects2 = ax.bar(x + width/2, fe_lag, width, label='Lagging ($T_{pred} < \\tau$)', color='r')
+    # 2. Onset of Rapid Growth (Precision starts dropping)
+    F_transition = 0.1 * (x_range)**2 - 0.005 * (x_range)**4
 
-    ax.set_ylabel('Free Energy Proxy (Thermodynamic Cost)', fontsize=12)
-    ax.set_title('The Adolescent "Derivative Gain Trap"\nLagging Temporal Perception causes Exponential Free Energy Cost', fontsize=14)
-    ax.set_xticks(x)
-    ax.set_xticklabels([f"{row['Stage']}\n(L={row['Length_L']}m, $\\tau$={row['Delay_tau']}s)" for _, row in df.iterrows()])
-    ax.legend()
-    ax.grid(True, alpha=0.3, axis='y')
+    # 3. Pathological State (Derivative Gain Trap, Low precision Kd)
+    # Pitchfork bifurcation: x=0 becomes a local maximum, creating two "Dark Room" minima (Lenke 1 types)
+    F_scoliosis = -0.1 * (x_range)**2 + 0.0002 * (x_range)**4
+    F_scoliosis -= np.min(F_scoliosis) # Normalize bottom to zero for visualization
+    ax.plot(x_range, F_scoliosis, 'r-', linewidth=2, label='Scoliosis (Collapsed $\Pi_{y,1}$ precision)')
+
+    ax.set_ylim(-5, 40)
+    ax.set_xlabel('Spinal Postural Deflection (Degrees)')
+    ax.set_ylabel('Free Energy F(x)')
+    ax.set_title('Bifurcation of the Free Energy Landscape\nVelocity Precision Collapse creates "Dark Room" Attractors (Scoliosis)')
+    ax.axvline(0, color='k', linestyle='--', alpha=0.3, label='Straight Spine (x=0)')
+
+    # Annotate local minima
+    minima_x = np.sqrt(0.1 / (2 * 0.0002))
+    ax.plot([-minima_x, minima_x], [0, 0], 'r*', markersize=12)
+    ax.annotate('Left Curve Attractor', xy=(-minima_x, 0), xytext=(-minima_x-15, 5), arrowprops=dict(facecolor='black', arrowstyle='->'))
+    ax.annotate('Right Curve Attractor', xy=(minima_x, 0), xytext=(minima_x+5, 5), arrowprops=dict(facecolor='black', arrowstyle='->'))
+
+    ax.legend(loc='upper center')
+    ax.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('outputs/embodied_time/developmental_trap.png', dpi=300)
+    plt.savefig('outputs/embodied_time/fep_bifurcation_landscape.png', dpi=300)
     plt.close()
 
     print("Experiment 2 complete.")

@@ -35,6 +35,26 @@ if not PYELASTICA_AVAILABLE:
     sys.exit(1)
 
 
+class LocomotorGravityWithNoise(ea.NoForces):
+    """
+    Custom Forcing class to simulate locomotor resonance with physiological dither.
+    Applies an oscillating vertical acceleration (gravity) and stochastic noise.
+    """
+    def __init__(self, base_gravity: float = 9.81, amplitude: float = 0.5, frequency: float = 2.0, noise_std: float = 0.0):
+        super().__init__()
+        self.base_gravity = base_gravity
+        self.amplitude = amplitude
+        self.frequency = frequency
+        self.noise_std = noise_std
+
+    def apply_forces(self, system, time: float = 0.0):
+        # Oscillating gravity: g(t) = g0 * (1 + A * sin(2 * pi * f * t))
+        g_t = self.base_gravity * (1.0 + self.amplitude * np.sin(2.0 * np.pi * self.frequency * time))
+        # Add high-frequency stochastic noise (dither)
+        noise = np.random.normal(0, self.noise_std * self.base_gravity)
+        # Apply force: F = m * a
+        system.external_forces[2, :] -= system.mass * (g_t + noise)
+
 class LocomotorGravity(ea.NoForces):
     """
     Custom Forcing class to simulate locomotor resonance.
@@ -55,6 +75,7 @@ class LocomotorGravity(ea.NoForces):
 
 def run_locomotor_simulation(
     frequency: float,
+    noise_std: float = 0.0,
     amplitude: float = 0.5,
     anisotropy: float = 5.0,
     active_curvature: float = 2.0,
@@ -121,10 +142,11 @@ def run_locomotor_simulation(
 
         # Apply Locomotor Gravity
         system.add_forcing_to(rod_system.rod).using(
-            LocomotorGravity,
+            LocomotorGravityWithNoise,
             base_gravity=gravity,
             amplitude=amplitude,
-            frequency=frequency
+            frequency=frequency,
+            noise_std=noise_std
         )
 
         # Apply damping
@@ -217,41 +239,47 @@ def run_locomotor_simulation(
 
 
 def run_experiment():
-    print("Running Locomotor Resonance Catastrophe Experiment...")
-    frequencies = np.linspace(0.5, 4.0, 36) # 0.5 to 4.0 Hz
+    print("Running Locomotor Stochastic Resonance Experiment...")
+    # Fix frequency at resonance (2.0 Hz) and sweep dither noise
+    res_freq = 2.0
+    noise_levels = np.linspace(0.0, 0.2, 20) # 0 to 20% of base gravity
     results = []
 
     out_dir = Path("outputs/locomotor_resonance")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    for f in frequencies:
-        print(f"  Testing Frequency: {f:.2f} Hz")
-        res = run_locomotor_simulation(frequency=f)
+    for n in noise_levels:
+        print(f"  Testing Noise Std: {n:.3f}g at {res_freq}Hz")
+        res = run_locomotor_simulation(frequency=res_freq, noise_std=n)
         if res["success"]:
+            # Append input noise level for tracking
+            res["input_noise_std"] = n
             print(f"    -> Cobb: {res.get('cobb_angle', 0):.2f}°, Max Dynamic Lat: {res['max_dynamic_lat']:.4f}m")
             results.append(res)
         else:
             print(f"    -> FAILED: {res['error']}")
 
     df = pd.DataFrame(results)
-    csv_path = out_dir / "locomotor_resonance_metrics.csv"
+    csv_path = out_dir / "locomotor_stochastic_resonance_metrics.csv"
     df.to_csv(csv_path, index=False)
     print(f"Saved metrics to {csv_path}")
 
     # Plot
     plt.figure(figsize=(10, 6))
-    plt.plot(df["frequency"], df["cobb_angle"], 'b-o', label='Final Cobb Angle')
+    plt.plot(df["input_noise_std"], df["cobb_angle"], 'b-o', label='Final Cobb Angle')
 
-    # Highlight normal human walking freq (1.5 - 2.5 Hz)
-    plt.axvspan(1.5, 2.5, color='orange', alpha=0.3, label='Human Walking Freq Range')
+    # Highlight optimal dither range dynamically
+    min_cobb = df["cobb_angle"].min()
+    optimal_noise = df.loc[df["cobb_angle"].idxmin(), "input_noise_std"]
+    plt.axvline(optimal_noise, color='g', linestyle='--', label=f'Optimal Dither ({optimal_noise:.2f}g)')
 
-    plt.title("Locomotor Resonance Catastrophe in Adolescent Spine")
-    plt.xlabel("Locomotor Frequency (Hz)")
+    plt.title("Stochastic Resonance rescues Spine from Locomotor Catastrophe")
+    plt.xlabel("Proprioceptive Dither Noise Std (Fraction of g)")
     plt.ylabel("Cobb Angle (°)")
     plt.legend()
     plt.grid(True)
 
-    plot_path = out_dir / "locomotor_resonance_peak.png"
+    plot_path = out_dir / "locomotor_stochastic_resonance_peak.png"
     plt.savefig(plot_path, dpi=300)
     plt.close()
     print(f"Saved plot to {plot_path}")

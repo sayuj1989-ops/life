@@ -1006,7 +1006,7 @@ def compute_U_CC(
         B_22 * kappa[:, 1]**2 +
         B_33 * kappa[:, 2]**2
     )
-    U_elastic_straight = scipy.integrate.trapezoid(energy_density_straight, s)
+    U_elastic_straight = np.trapz(energy_density_straight, s)
 
     # 7. Compute U_info_coupling
     # Need kappa_rest_info (rest curvature due solely to information)
@@ -1020,7 +1020,7 @@ def compute_U_CC(
         B_22 * kappa[:, 1] * kappa_rest_info[:, 1] +
         B_33 * kappa[:, 2] * kappa_rest_info[:, 2]
     )
-    U_info_coupling = scipy.integrate.trapezoid(energy_density_info, s)
+    U_info_coupling = np.trapz(energy_density_info, s)
 
     # --- U_CC ---
     # U_CC = U_gravity + U_elastic_straight - U_info_coupling

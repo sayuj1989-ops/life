@@ -187,8 +187,87 @@ RULES:
 """
 
 
+WP_PROMPTS[9] = """
+## WP9 — Final Verification Audit of allometric_trap_v2_manuscript.tex
+
+CONTEXT: You are the final scientific editor for the manuscript "The Allometric Trap:
+Growth-Velocity-Gated Precision Collapse as the Biomechanical Origin of Adolescent
+Idiopathic Scoliosis" (v2). The manuscript integrates findings from WP1–WP8 and is
+being prepared for submission to Spine (Wolters Kluwer).
+
+FILES TO VERIFY:
+- research/spine_submission/allometric_trap_v2_manuscript.tex  (primary)
+- research/spine_submission/references.bib
+
+MANDATE: Perform a STRICT, thorough, multi-dimensional verification covering:
+
+### A. INTERNAL CONSISTENCY
+1. Every numerical claim in the Abstract must match the same claim in Results.
+   Check: alpha=-0.259, R2=0.72, DAIC=45.8, r=0.73, p=0.017, MWU p=0.002,
+   d=1.11, Cliff delta=0.62, cross-species n=12, proteins n=31, sim tau=80ms,
+   Hopf crossing t*=28.3s, Kd_eff=6.8, Kd_crit=9.4.
+2. Every equation label referenced in the text (\\ref{eq:...}) must exist as
+   \\label{eq:...} in the file.
+3. Every table/figure reference (\\ref{tab:...}, \\ref{fig:...}) must have a
+   matching \\label.
+4. Check the four-constraint Introduction list: each constraint must have at
+   least one \\cite{} call backing the quantitative claim.
+
+### B. BIBLIOGRAPHY INTEGRITY
+5. Verify every \\cite{} and \\citealt{} key in the .tex resolves in references.bib.
+6. Flag any BibTeX entries with missing DOIs (acceptable only if pmid present).
+7. List all entries marked %%VERIFY and assess whether a Bhatt DL/DK author is
+   plausible (Bhatt DL = Dhruv L Bhatt, cardiologist — wrong field for these papers).
+   For each, write: LIKELY_CORRECT / LIKELY_WRONG / UNCERTAIN.
+
+### C. SCIENTIFIC RIGOUR
+8. Check the stability derivation in Appendix A: does the small-delay approximation
+   (cos(omega*tau)≈1, sin(omega*tau)≈omega*tau) apply at tau=80ms for the AIS case?
+   (hint: if omega ~ sqrt(g/L) ~ sqrt(9.81/0.56) ~ 4.2 rad/s, then omega*tau ~
+    0.33 rad — check if this is genuinely small).
+9. Verify the cross-species power law claim: is alpha=-0.259 truly consistent with
+   the theoretical -0.25? Show the dimensional analysis linking M~L^3,
+   P_demand~L^4, P_supply~L^2 step by step to derive the expected exponent.
+10. Verify epidemiology claim: does "dL/dt predicts with DAIC=45.8" correctly
+    interpret the WP2 results (check: WP2 says DAIC = Model1_AIC - Model2_AIC =
+    611.84 - 566.09 = 45.75, reported as 45.8 — is the sign convention correct?
+    Higher AIC = worse model, so dL/dt model has LOWER AIC = better).
+11. Check the simulation Hopf crossing parameters: at t*=28.3s and the sigmoid
+    L(t) = 0.45 + 0.25/(1+exp(-(t-27)/3)), what is L(28.3)? Verify this is
+    consistent with Kd_crit = m*g*L*tau/(1-Kp*tau/(mL^2)) at m=40, g=9.81,
+    tau=0.08, Kp=120 (from WP8 params: PI_Y0_PRIOR=120).
+
+### D. JOURNAL-SPECIFIC REQUIREMENTS (Spine, Wolters Kluwer)
+12. Word count: Abstract should be ≤250 words for Spine. Estimate the word count.
+13. Check structured abstract requirement: Spine uses Study Design / Objective /
+    Summary of Background Data / Methods / Results / Conclusions format.
+    Does the current abstract match?
+14. Figures: Spine requires minimum 300 DPI for figures. Note this requirement.
+15. Keywords: Spine allows 3-5 keywords. Count current keywords.
+
+### E. OUTPUT FORMAT
+Produce a structured audit report with sections:
+- PASS (item, rationale)
+- WARN (item, specific issue, recommended fix)
+- FAIL (item, specific error, required fix before submission)
+
+Save the full report to: research/managed_agent/wp9_final_verification.md
+
+Include a final summary table:
+| Check | Status | Action needed |
+
+At the end, provide an overall SUBMISSION READINESS SCORE: X/20 items passed.
+
+RULES:
+- Show your arithmetic for all numerical checks.
+- Do NOT modify any manuscript files — audit only.
+- Be strict. If something is ambiguous, mark it WARN not PASS.
+- The %%VERIFY BibTeX assessment is critical — be specific about each entry.
+"""
+
+
 # Best available model
-MODEL = "claude-sonnet-4-6"
+MODEL = "claude-opus-4-5"
 
 
 def run_wp(wp_number: int):

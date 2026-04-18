@@ -2,14 +2,15 @@
 
 ## Completed Sessions
 * **Phase 1, Day 1 (Literature Review — Decomposing τ)** [2024-05-14]: Completed. Decomposed the total proprioceptive delay ($\tau$) into its constituent components (peripheral transduction, afferent conduction, spinal relay, cerebellar processing, efferent conduction, NMJ, and electromechanical delay). Identified initial molecular targets for each component. Incorporated PIEZO2 human mechanosensation literature (Chesler et al., 2016, DOI: 10.1056/NEJMoa1602812) and EMD values (Hopkins et al., 2009, DOI: 10.1002/jor.20934). Explicitly flagged numerical latency estimates requiring specific human paraspinal confirmation. Output generated in `paper4_literature/day1_tau_decomposition.md`.
+* **Phase 1, Day 2 (Literature Review — AIS Genetics)** [Today]: Completed. Conducted a comprehensive review of major AIS GWAS hits (*GPR126*, *LBX1*, *PAX1*, *BNC2*). Extracted risk alleles, effect sizes (Odds Ratios ranging 1.21-1.56), and biological functions. Mapped each locus to the control-theoretic model: *GPR126* to afferent delay ($\tau_{aff}$), *LBX1* to spinal relay delay ($\tau_{spin}$), and *PAX1* as a structural "plant" modifier. Output generated in `paper4_literature/day2_ais_gwas.md`.
 
 ## Key Findings/Decisions Made
-* The total proprioceptive delay can be precisely modeled as a sum of 7 distinct physiological steps.
-* Key molecular targets map cleanly onto different components: e.g., Piezo2 handles transduction ($\tau_{trans}$), GPR126 handles afferent conduction ($\tau_{aff}$), LBX1 handles spinal relay ($\tau_{spin}$).
-* Most precise latency values in human electrophysiology literature are derived from appendicular (limb) muscles. Exact paraspinal values remain sparse and are flagged as "unverified — needs literature confirmation".
+* **GPR126 (rs6570507, OR 1.28):** Strongly links to Schwann cell myelination, directly supporting the hypothesis that delayed/impaired afferent conduction velocity ($\tau_{aff}$) contributes to AIS.
+* **LBX1 (rs11190870, OR 1.56):** The most significant genetic risk factor. As a key specifier of dorsal interneurons, it maps cleanly to the spinal relay processing delay ($\tau_{spin}$).
+* **PAX1 (rs6137473, OR 1.30):** Notable for strong female-specific risk. Modulates spinal cord/disc enhancers. Decided to classify *PAX1* not as a controller delay ($\tau$) gene, but as a modifier of the physical spine (the "plant" in the PID model) that increases structural vulnerability to the derivative gain gap.
 
 ## Issues / Questions for Dr. Sayuj
-* Does Dr. Sayuj prefer to focus strictly on long-loop (transcortical/cerebellar) postural reflexes for the total $\tau$ budget (~100-200ms), or should we also model short-loop (spinal) stretch reflexes (~30-50ms) as a secondary control loop? The current decomposition applies to both, but $\tau_{cereb}$ is the dominant term for postural control.
+* Does Dr. Sayuj agree with the classification of *PAX1* as a "plant" parameter rather than a controller/$\tau$ parameter? This helps maintain the purity of the $\tau$ budget while acknowledging the strongest GWAS hits.
 
 ## Next Session
-* **Phase 1, Day 2**: Literature Review — AIS genetics. Comprehensive review of GWAS hits (GPR126, LBX1, PAX1, and others). Detail risk allele, effect size, population frequency, and proposed biological function for each locus. Output to `paper4_literature/day2_ais_gwas.md`.
+* **Phase 1, Day 3**: GPR126 deep dive — role in Schwann cell myelination, peripheral nerve development, knockout phenotypes, any conduction velocity data. Search for AlphaFold structure and AIS variant mapping. Output to `paper4_literature/day3_gpr126.md`.

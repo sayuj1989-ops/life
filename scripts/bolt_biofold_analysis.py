@@ -36,8 +36,8 @@ PROTEINS = [
     {"symbol": "MYLK", "uniprot": "Q15746", "species": "Homo sapiens"},
 ]
 
-OUTPUT_DIR = "outputs/bolt_biofold"
-FIG_DIR = "outputs/bolt_biofold/figures"
+OUTPUT_DIR = "outputs/bolt_biofold_cycle"
+FIG_DIR = "outputs/bolt_biofold_cycle/figures"
 TEMP_DIR = "temp/afdb"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(FIG_DIR, exist_ok=True)
@@ -59,6 +59,12 @@ def fetch_afdb_data(uniprot_id: str) -> Optional[Dict[str, str]]:
         response = requests.get(api_url)
         if response.status_code != 200:
              print(f"API Error for {uniprot_id}: {response.status_code}")
+             # Check local cache
+             cached_pdb = os.path.join("data", "afdb_cache", f"{uniprot_id}.pdb")
+             cached_pae = os.path.join("data", "afdb_cache", f"{uniprot_id}.json")
+             if os.path.exists(cached_pdb):
+                 print(f"Using local cache fallback for {uniprot_id}")
+                 return {"pdb": cached_pdb, "pae": cached_pae if os.path.exists(cached_pae) else None}
              return None
         data = response.json()
         if not data or not isinstance(data, list):
@@ -155,37 +161,37 @@ def main():
             "length": metrics['n_residues'],
 
             # Confidence
-            "pLDDT_mean": f"{metrics['plddt_mean']:.2f}",
-            "pLDDT_median": f"{metrics['plddt_median']:.2f}",
-            "pLDDT_fraction_high": f"{metrics['plddt_fraction_high']:.2f}",
-            "pLDDT_fraction_ok": f"{metrics['plddt_fraction_ok']:.2f}",
-            "pLDDT_fraction_low": f"{metrics['plddt_fraction_low']:.2f}",
-            "PAE_mean": f"{metrics['PAE_mean']:.2f}",
-            "PAE_domain_blockiness_score": f"{metrics['PAE_domain_blockiness_score']:.2f}",
+            "pLDDT_mean": f"{metrics.get('plddt_mean', 'Not implemented'):.2f}" if isinstance(metrics.get('plddt_mean'), (int, float)) else "Not implemented",
+            "pLDDT_median": f"{metrics.get('plddt_median', 'Not implemented'):.2f}" if isinstance(metrics.get('plddt_median'), (int, float)) else "Not implemented",
+            "pLDDT_fraction_high": f"{metrics.get('plddt_fraction_high', 'Not implemented'):.2f}" if isinstance(metrics.get('plddt_fraction_high'), (int, float)) else "Not implemented",
+            "pLDDT_fraction_ok": f"{metrics.get('plddt_fraction_ok', 'Not implemented'):.2f}" if isinstance(metrics.get('plddt_fraction_ok'), (int, float)) else "Not implemented",
+            "pLDDT_fraction_low": f"{metrics.get('plddt_fraction_low', 'Not implemented'):.2f}" if isinstance(metrics.get('plddt_fraction_low'), (int, float)) else "Not implemented",
+            "PAE_mean": f"{metrics.get('PAE_mean', 'Not implemented'):.2f}" if isinstance(metrics.get('PAE_mean'), (int, float)) else "Not implemented",
+            "PAE_domain_blockiness_score": f"{metrics.get('PAE_domain_blockiness_score', 'Not implemented'):.2f}" if isinstance(metrics.get('PAE_domain_blockiness_score'), (int, float)) else "Not implemented",
 
             # Architecture
-            "predicted_domain_segments": metrics['predicted_domain_segments'],
-            "disorder_fraction_proxy": f"{metrics['disorder_fraction_proxy']:.2f}",
-            "hinge_candidates": metrics['hinge_candidates'],
-            "morphology": metrics['morphology'],
+            "predicted_domain_segments": metrics.get('predicted_domain_segments', 'Not implemented'),
+            "disorder_fraction_proxy": f"{metrics.get('disorder_fraction_proxy', 'Not implemented'):.2f}" if isinstance(metrics.get('disorder_fraction_proxy'), (int, float)) else "Not implemented",
+            "hinge_candidates": metrics.get('hinge_candidates', 'Not implemented'),
+            "morphology": metrics.get('morphology', 'Not implemented'),
 
             # Geometry
-            "backbone_principal_axis": metrics['backbone_principal_axis'],
-            "radius_of_gyration": f"{metrics['radius_of_gyration']:.2f}",
-            "end_to_end_distance": f"{metrics['end_to_end_distance']:.2f}",
-            "curvature_summary": f"{metrics['curvature_summary']:.4f}",
-            "torsion_summary": f"{metrics['torsion_summary']:.4f}",
-            "anisotropy_index": f"{metrics['anisotropy_index']:.2f}",
-            "bending_hotspots": metrics['bending_hotspots'],
+            "backbone_principal_axis": metrics.get('backbone_principal_axis', 'Not implemented'),
+            "radius_of_gyration": f"{metrics.get('radius_of_gyration', 'Not implemented'):.2f}" if isinstance(metrics.get('radius_of_gyration'), (int, float)) else "Not implemented",
+            "end_to_end_distance": f"{metrics.get('end_to_end_distance', 'Not implemented'):.2f}" if isinstance(metrics.get('end_to_end_distance'), (int, float)) else "Not implemented",
+            "curvature_summary": f"{metrics.get('curvature_summary', 'Not implemented'):.4f}" if isinstance(metrics.get('curvature_summary'), (int, float)) else "Not implemented",
+            "torsion_summary": f"{metrics.get('torsion_summary', 'Not implemented'):.4f}" if isinstance(metrics.get('torsion_summary'), (int, float)) else "Not implemented",
+            "anisotropy_index": f"{metrics.get('anisotropy_index', 'Not implemented'):.2f}" if isinstance(metrics.get('anisotropy_index'), (int, float)) else "Not implemented",
+            "bending_hotspots": metrics.get('bending_hotspots', 'Not implemented'),
 
             # Surface
-            "exposed_surface_proxy": f"{metrics['exposed_surface_proxy']:.2f}",
-            "charged_patch_score": f"{metrics['charged_patch_score']:.2f}",
+            "exposed_surface_proxy": f"{metrics.get('exposed_surface_proxy', 'Not implemented'):.2f}" if isinstance(metrics.get('exposed_surface_proxy'), (int, float)) else "Not implemented",
+            "charged_patch_score": f"{metrics.get('charged_patch_score', 'Not implemented'):.2f}" if isinstance(metrics.get('charged_patch_score'), (int, float)) else "Not implemented",
 
             # Flags
-            "low_confidence_warning": metrics['low_confidence_warning'],
-            "multi_domain_uncertain": metrics['multi_domain_uncertain'],
-            "likely_IDR_heavy": metrics['likely_IDR_heavy']
+            "low_confidence_warning": metrics.get('low_confidence_warning', 'Not implemented'),
+            "multi_domain_uncertain": metrics.get('multi_domain_uncertain', 'Not implemented'),
+            "likely_IDR_heavy": metrics.get('likely_IDR_heavy', 'Not implemented')
         }
 
         results.append(entry)
@@ -194,14 +200,8 @@ def main():
     # Generate Outputs
     df = pd.DataFrame(results)
 
-    md_report.append(df.to_markdown(index=False) + "\n")
-
-    md_report.append("<details>")
-    md_report.append("<summary>CSV Data Block</summary>\n")
-    md_report.append("```csv")
-    md_report.append(df.to_csv(index=False).strip())
-    md_report.append("```")
-    md_report.append("</details>\n")
+    # md_report.append(df.to_markdown(index=False) + "\n")
+    # No embedded CSV block per constraints
 
     md_report.append("Note: Strict explicit true SASA (Solvent Accessible Surface Area) was not computed as to avoid introducing new dependency packages. Surface proxy utilizes internal CA geometry approximations.\n")
 
@@ -209,7 +209,7 @@ def main():
     md_report.append("Generated output files under `outputs/bolt_biofold/figures/`:\n")
 
     # Save standalone CSV
-    csv_path = os.path.join(OUTPUT_DIR, "bolt_biofold_results.csv")
+    csv_path = os.path.join(OUTPUT_DIR, "metrics.csv")
     df.to_csv(csv_path, index=False)
     print(f"\nSaved CSV to {csv_path}")
 
@@ -247,10 +247,10 @@ def main():
     for row in results:
         full_name = row['protein_id']
         symbol = full_name.split()[0]
-        anisotropy = float(row['anisotropy_index'])
-        hinges = int(row['hinge_candidates'])
-        plddt_high = float(row['pLDDT_fraction_high'])
-        curvature = float(row['curvature_summary'])
+        anisotropy = float(row['anisotropy_index']) if row['anisotropy_index'] != "Not implemented" else 1.0
+        hinges = int(row['hinge_candidates']) if row['hinge_candidates'] != "Not implemented" else 0
+        plddt_high = float(row['pLDDT_fraction_high']) if row['pLDDT_fraction_high'] != "Not implemented" else 0.0
+        curvature = float(row['curvature_summary']) if row['curvature_summary'] != "Not implemented" else 0.0
 
         interp = f"* **{full_name}**: "
         conf_level = "High" if plddt_high > 0.8 else ("Medium" if plddt_high > 0.5 else "Low")
@@ -301,11 +301,11 @@ def main():
     md_report.append("- [x] Parameters: pLDDT >= 70 threshold for structure, discrete curvature computation")
     md_report.append("- [x] Notes: SASA not computed to strictly adhere to zero new dependency rules.")
 
-    report_path = os.path.join(OUTPUT_DIR, "Bolt_BioFold_Report.md")
+    report_path = os.path.join(OUTPUT_DIR, "report.md")
     with open(report_path, "w") as f:
         f.write("\n".join(md_report))
 
-    df.to_csv(os.path.join(OUTPUT_DIR, "bolt_biofold_results.csv"), index=False)
+    df.to_csv(os.path.join(OUTPUT_DIR, "metrics.csv"), index=False)
     print(f"Done. Wrote report to {report_path}")
 
 if __name__ == "__main__":

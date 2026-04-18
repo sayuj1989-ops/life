@@ -1,0 +1,5 @@
+A high-impact scientific diagram illustrating the "Derivative Gain Trap" in Adolescent Idiopathic Scoliosis.
+The diagram shows a feedback loop where rapid adolescent spine elongation (L > 0.35m) increases neural transmission delay (tau) past a critical instability threshold (tau_crit).
+The left side shows a stable, healthy spine with synchronized velocity feedback.
+The right side shows a spine buckling into a scoliotic curve due to delayed, destabilizing oscillatory perturbations.
+Style: Nature/Science journal quality, clean lines, professional color palette (blues, reds, golds).

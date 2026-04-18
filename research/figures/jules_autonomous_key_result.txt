@@ -1,0 +1,3 @@
+Plot a heatmap mapping L (Spinal Length) on the X-axis and chi_kappa (Coupling Strength) on the Y-axis.
+Color intensity represents R_deficit (Energy Deficit Ratio).
+Use the viridis colormap and draw a red dashed line at the R=1 instability limit to show the Energy Deficit Window.

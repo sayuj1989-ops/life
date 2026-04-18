@@ -244,8 +244,14 @@ def compute_curvature_torsion(coords: np.ndarray, window: int = 5) -> Tuple[np.n
     dt = np.gradient(t, axis=0)
 
     cross_d1_d2 = np.cross(t, dt)
-    num = np.linalg.norm(cross_d1_d2, axis=1)
-    denom = np.linalg.norm(t, axis=1)**3
+
+    # ⚡ Bolt Optimization: Replace slow np.linalg.norm and np.sum(..., axis=1)
+    # with explicit vectorized component operations (avoiding dispatch overhead)
+    cross_sq = cross_d1_d2[:, 0]*cross_d1_d2[:, 0] + cross_d1_d2[:, 1]*cross_d1_d2[:, 1] + cross_d1_d2[:, 2]*cross_d1_d2[:, 2]
+    num = np.sqrt(cross_sq)
+
+    t_sq = t[:, 0]*t[:, 0] + t[:, 1]*t[:, 1] + t[:, 2]*t[:, 2]
+    denom = t_sq * np.sqrt(t_sq)  # equivalent to norm**3
 
     curvature = np.zeros_like(num)
     mask = denom > 1e-6
@@ -253,8 +259,8 @@ def compute_curvature_torsion(coords: np.ndarray, window: int = 5) -> Tuple[np.n
 
     # Torsion
     ddt = np.gradient(dt, axis=0)
-    num_tau = np.sum(cross_d1_d2 * ddt, axis=1)
-    denom_tau = np.linalg.norm(cross_d1_d2, axis=1)**2
+    num_tau = cross_d1_d2[:, 0]*ddt[:, 0] + cross_d1_d2[:, 1]*ddt[:, 1] + cross_d1_d2[:, 2]*ddt[:, 2]
+    denom_tau = cross_sq
 
     torsion = np.zeros_like(num_tau)
     mask_tau = denom_tau > 1e-6

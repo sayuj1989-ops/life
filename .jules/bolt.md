@@ -169,3 +169,7 @@ This reduced the metric calculation overhead significantly while preserving bit-
 ## 2026-03-31 - [Plotting Optimization]
 **Learning:** The previous code called `ax.clear()` in the plotting loop for each protein, causing matplotlib to redraw all axes labels, limits, legends, and titles. This took ~2.4 seconds for 8 proteins.
 **Action:** Replaced `ax.clear()` with pre-initializing `Line2D` objects outside the loop and updating their data with `set_data()` inside the loop, while manually setting x/y limits. This dropped the plot time to ~1.0-1.5 seconds.
+
+## 2023-10-25 - [Curvature and Torsion calculation overhead]
+**Learning:** `np.linalg.norm` and `np.sum(..., axis=1)` used repeatedly in discrete curvature and torsion computations are expensive due to object creation, axis-handling overhead, and dispatch overhead.
+**Action:** Replace `np.linalg.norm(..., axis=1)` and `np.sum(..., axis=1)` with explicit NumPy array squaring and summation over vector components (`v[:,0]*v[:,0] + v[:,1]*v[:,1] + v[:,2]*v[:,2]`), and `np.sqrt()`. This preserves identical outputs while significantly reducing runtime.

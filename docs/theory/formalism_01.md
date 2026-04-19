@@ -694,6 +694,22 @@ $$ \mathcal{M}_{poro} = \frac{v_{flow} L_{seg}}{D_{morph}} $$
     *   **Data Needed**: Spinal curvature progression in a growing animal model where endplate permeability is selectively reduced (e.g., via targeted pharmacological crosslinking to increase hydraulic resistance, dropping $v_{flow}$) without altering the mechanical stiffness of the disc itself.
     *   **Refutation**: If curvature development and morphogen-dependent cellular patterning (e.g., left-right asymmetry markers) remain unaffected by the blockade of fluid flow, the mechanical fluid shift is not a causal driver of the information field. (Reference: Tanaka et al., 2005).
 
+### 2.41. The Transverse-Shear Proprioceptive Coupling ($\Gamma_{shear}$)
+
+We formalize the "Transverse-Shear Proprioceptive Coupling" hypothesis, where intervertebral disc shearing motions (transverse displacements perpendicular to the primary gravitational axis) are actively sensed by the proprioceptive network and converted into a corrective shear restoring force.
+
+We define $\Gamma_{shear}$ as the coupling constant mapping the local shear strain ($\gamma_{xz}, \gamma_{yz}$) detected by proprioceptive sensors (e.g., muscle spindles in the multifidus or Golgi tendon organs in the ligaments) to the active transverse biological restoring force ($\mathbf{F}_{bio}^{\perp}$).
+
+$$ \mathbf{F}_{bio}^{\perp}(s) = \Gamma_{shear} \cdot \boldsymbol{\gamma}^{\perp}(s) $$
+
+*   **Symbols**:
+    *   $\mathbf{F}_{bio}^{\perp}(s)$: Active biological restoring force in the transverse plane per unit length $[M L T^{-2}]$.
+    *   $\boldsymbol{\gamma}^{\perp}(s)$: Local transverse shear strain vector (dimensionless) $[1]$.
+    *   $\Gamma_{shear}$: Transverse-Shear Proprioceptive Coupling Constant $[M L T^{-2}]$.
+*   **Physical Interpretation**: A higher $\Gamma_{shear}$ indicates a highly responsive proprioceptive system that aggressively corrects even minor lateral translational drifts before they couple into macroscopic rotational buckling (scoliosis).
+
+*   **Measurable Proxy**: High-frequency stiffness in the transverse plane measured via dynamic mechanical analysis (DMA) or elastography of the paraspinal muscular-ligamentous complex during active neuromuscular engagement.
+
 ## 3. The Tissue Anisotropy Tensor ($\mathbf{\Lambda}$)
 
 The tensor $\mathbf{\Lambda}$ is a rank-2, dimensionless operator representing the statistical alignment of Planar Cell Polarity (PCP) vectors and ECM fiber orientation within the vertebral cross-section.
@@ -767,27 +783,37 @@ The theory makes specific predictions about the relationship between genetic ani
 *   **Data Needed**: Comparative transcriptomics and biomechanics of mice raised in hyper-gravity (2g centrifuge) vs. 1g controls, focusing on ECM synthesis genes (*Col1a1*, *Fbn1*) and paraspinal muscle stiffness.
 *   **Refutation**: If hyper-gravity fails to elicit a proportional upregulation of $\chi_M$ (e.g., muscle/ECM density), the feedback gain $\alpha$ is insufficient to explain spinal stability. (Reference: Shi et al., 2021).
 
-### Test G: The Swelling-Torsion Switch
+### Test G: The Shear-Coupling Proprioceptive Decay
+*   **Hypothesis**: Disruption of proprioceptive signaling (e.g., via Egr3 knockout) selectively reduces the Transverse-Shear Proprioceptive Coupling ($\Gamma_{shear}$) before significantly altering the axial morphomechanical stiffness ($\chi_M$). This temporal decoupling allows lateral shear instabilities to precipitate scoliosis even if longitudinal growth forces appear normal.
+*   **Data Needed**: Serial *in vivo* elastography or dynamic shear wave imaging of the paraspinal complex in *Egr3* mutant mice during the pre-scoliotic rapid growth phase, compared to wild-type controls.
+*   **Refutation**: If *Egr3* mutants exhibit a simultaneous or primary loss of axial compressive stiffness ($\chi_M$) rather than an isolated early drop in transverse shear stiffness ($\Gamma_{shear}$), or if $\Gamma_{shear}$ remains high while curves develop, the specific shear-proprioception link is falsified. (Reference: Blecher et al., 2017).
+
+### Test H: The Mechanosensory Matrix Threshold
+*   **Hypothesis**: The Transverse-Shear Proprioceptive Coupling ($\Gamma_{shear}$) relies on a mechanically continuous extracellular matrix (ECM) to transmit shear strains to mechanosensors (e.g., Piezo channels). Degradation of specific ECM bridging molecules (like fibronectin or specific collagens) below a critical density threshold will abruptly uncouple $\Gamma_{shear}$ from actual vertebral displacement, leading to "sensor blindness."
+*   **Data Needed**: Measurement of paraspinal shear modulus and active reflex electromyography (EMG) latency/amplitude in response to controlled lateral mechanical perturbations in models with graded matrix metalloproteinase (MMP) overexpression.
+*   **Refutation**: If proprioceptive reflex arcs (EMG output) remain tightly coupled to lateral displacement despite massive ECM degradation, the assumption that ECM continuity is the mandatory physical transducer for $\Gamma_{shear}$ is refuted. (Reference: Iskratsch et al., 2014).
+
+### Test I: The Swelling-Torsion Switch
 *   **Hypothesis**: Microgravity unloading causes disc hyper-hydration ($\phi > \phi_0$), which via $\beta_H$ specifically lowers torsional stiffness ($GJ$) relative to bending stiffness ($EI$), pushing the spine into a buckling regime where $EI/GJ > 1$.
 *   **Data Needed**: Pre- and post-bedrest (60 days) measurements of lumbar torsional stiffness (rotational dynamometry) correlated with disc height increases (MRI).
 *   **Refutation**: If hyper-hydrated discs show *increased* or unchanged torsional stiffness, the model of swelling-induced instability is incorrect. (Reference: Treffel et al., 2016).
 
-### Test H: The Adipogenic Trigger (Metabolic Switch)
+### Test J: The Adipogenic Trigger (Metabolic Switch)
 *   **Hypothesis**: The loss of gravitational strain ($\mathcal{B}_g \to \infty$) acts as a signal for paraspinal muscles to switch from myogenesis to adipogenesis to conserve energy, mediated by mitochondrial dysfunction.
 *   **Data Needed**: Lipidomic and transcriptomic profiling of paraspinal muscle biopsies from spaceflight (e.g., OSD-787) showing upregulation of *PPARG* and lipid accumulation pathways concurrent with downregulation of contractile proteins.
 *   **Refutation**: If muscle atrophy is purely proteolytic (ubiquitin-proteasome) without significant lipid replacement or metabolic reprogramming, the "switch" hypothesis is falsified. (Reference: Pandit et al., 2025; Burkhart et al., 2019).
 
-### Test I: The Lamin-Gravity Scaling Law
+### Test K: The Lamin-Gravity Scaling Law
 *   **Hypothesis**: Nuclear stiffness (Lamin A:B stoichiometry) should scale linearly with the effective gravitational vector ($g_{eff}$) across species and conditions.
 *   **Data Needed**: Quantitative immunofluorescence of Lamin A/C vs Lamin B in paraspinal myoblasts cultured in 0g (ISS), 1g (Ground), and 2g (Centrifuge).
 *   **Refutation**: If Lamin A/C levels are insensitive to $g$-load or saturate at 1g, the hypothesis of the nucleus as a gravity-tuned rheostat is falsified. (Reference: Swift et al., 2013).
 
-### Test J: The Chromatin Expansion Limit
+### Test L: The Chromatin Expansion Limit
 *   **Hypothesis**: Below a critical stiffness ($E_{crit}$), nuclear softening triggers a phase transition where heterochromatin de-compacts, measurable as an increase in nuclear volume and "sloshing" dynamics.
 *   **Data Needed**: 4D live-cell imaging of H3K9me3-labeled chromatin foci in cardiomyocytes or myoblasts during parabolic flight (varying $g$).
 *   **Refutation**: If chromatin compaction remains stable despite Lamin A/C downregulation in microgravity, the "Nuclear Stiffness Gauge" does not control genomic architecture. (Reference: Shao et al., 2025).
 
-### Test K: The Mismatch Rescue
+### Test M: The Mismatch Rescue
 *   **Hypothesis**: Restoring the vector component ($\mathbf{S}_{vec}$) artificially in microgravity should rescue spinal tone ($\chi_M$) even if the scalar component remains "unloaded".
 *   **Data Needed**: Spinal curvature and stiffness in zebrafish larvae raised in simulated microgravity (clinostat) but treated with magnetic tweezers to apply directional force to otoliths or cilia.
 *   **Refutation**: If artificial directional force fails to rescue the phenotype, the system does not rely on a vector-scalar coincidence detector. (Reference: Bearce et al., 2022).

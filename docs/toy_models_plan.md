@@ -51,6 +51,7 @@
 | **Toy D** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_lenke_classes.py`) |
 | **Toy E** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_torsional_buckling.py`) |
 | **Toy F** | Comp Bio | 1 day | ✅ **Completed** (`toy_model_thermostatic_delay.py`) |
+| **Toy G** | Comp Bio | 1 day | ✅ **Completed** (`experiment_dither_therapy_rescue.py`) |
 
 ---
 
@@ -79,9 +80,17 @@
 
 To further de-risk the theory and provide robust validation, the following toy models and real experiments are proposed:
 
+
 ### Proposed Additional Toy Models
 
-1.  **Torsional Buckling Model:**
+1.  **Dither Therapy Rescue Model:**
+    *   **Objective:** Demonstrate that external high-frequency mechanical noise (dither) can rescue a spine experiencing "sensor lock-up" due to low physiological noise during adolescent growth.
+    *   **Method:** 1D inverted pendulum with stochastic resonance PIEZO sensor dynamics. Simulates three phases: Normal physiology, Growth Spurt (low noise, buckling), and Dither Therapy (high external noise).
+    *   **Success Metric:** Spinal deflection exceeds $10^\circ$ during Phase 2, but returns to near $0^\circ$ during Phase 3.
+    *   **Expected Outcome:** Dither therapy restores active mechanotransductive feedback and straightens the spine.
+    *   **Status:** ✅ **Implemented** (`scripts/experiments/experiment_dither_therapy_rescue.py`)
+
+2.  **Torsional Buckling Model:**
     *   **Objective:** Demonstrate that information-coupled systems resist torsional loads better than passive Euler columns.
     *   **Method:** 1D Cosserat rod with an active twisting moment counteracting applied torque.
     *   **Success Metric:** $T_{crit}$ (critical torque) is significantly higher in the active model.

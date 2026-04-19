@@ -22,6 +22,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **EXP_09_AnisotropyRescue**| `scripts/experiment_anisotropy_rescue.py` | Validates vector constraints via anisotropy sweeps. | `outputs/thermodynamic_cost/anisotropy_rescue.csv` | ✅ **Active** | Generates Figure 4 (Therapeutic Rescue). |
 | **EXP_10_SpineSonification**| `scripts/experiment_spine_sonification.py`| Maps buckling instability parameters to audio frequencies. | `outputs/sim/*_spine_sonification/buckling_sonification.wav`| ✅ **Active** | Public engagement/supplementary material. |
 | **EXP_11_LocomotorResonance**| `scripts/experiment_locomotor_resonance.py`| Generates Locomotor Resonance peak plots. Tests "Locomotor Resonance Catastrophe" by applying oscillating vertical acceleration to mimic human walking (1.5-2.5 Hz). | `outputs/locomotor_resonance/locomotor_resonance_peak.png` | ✅ **Active** | Out-of-the-box enhancement testing resonance. |
+| **EXP_12_DitherTherapy**| `scripts/experiments/experiment_dither_therapy_rescue.py`| Simulates "Acoustic/Vibratory Dither Therapy" as a rescue mechanism for sensor lock-up. | `outputs/figures/dither_therapy_rescue.png` | ✅ **Active** | Tests stochastic resonance intervention. |
 
 ## 2. Toy Models (Validation)
 

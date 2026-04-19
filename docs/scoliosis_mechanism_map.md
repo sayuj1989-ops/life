@@ -85,7 +85,7 @@ Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$
 * **Path**: `Muscle Tone / Fluid Flow` $\rightarrow$ `Micro-Tremor (Dither)` $\rightarrow$ `PIEZO1/2` $\rightarrow$ `Gain (G_{mech})`
 * **Mechanism**: High-threshold mechanosensors (like PIEZO channels) require high-frequency physiological "noise" (e.g., muscle micro-tremors, vascular pulsation, Reissner fiber oscillation) to act as a "dither" signal. This noise keeps the sensors in their linear, high-sensitivity detection range, allowing them to sense slow, sub-threshold postural drifts (gravity).
 * **Role**: **Sensory Lock-up**. During rapid adolescent growth, muscle mass and vascular development often lag behind bone elongation. This reduces the baseline physiological "noise floor". Without this stochastic resonance dither, mechanosensors lock up and fail to detect the initial slow geometric drift, dropping the feedback gain ($G_{mech}$) to zero and precipitating buckling.
-> **Hypothesis**: Targeted acoustic or vibration therapy acting as an artificial dither during the Energy Deficit Window can artificially boost mechanosensor sensitivity, preventing the initial scoliotic bifurcation.
+> **Hypothesis**: Targeted acoustic or vibration therapy acting as an artificial dither during the Energy Deficit Window can artificially boost mechanosensor sensitivity, preventing or rescuing the initial scoliotic bifurcation.
 
 ### 17. Caveolin Gain Control
 * **Path**: `CAV1` $\rightarrow$ `Membrane Tension` $\rightarrow$ `YAP`

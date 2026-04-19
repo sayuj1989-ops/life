@@ -331,11 +331,18 @@ def solve_beam_static(
     kappa = kappa_target + (external_moment - M_active) / EI
 
     # Integrate curvature to obtain angle using the trapezoidal rule.
+    # Handle multi-dimensional kappa array from coupling.py (3, n_points)
+    if kappa.ndim > 1:
+        # Assuming we want to integrate the planar bending component (index 1)
+        k_1d = kappa[1, :]
+    else:
+        k_1d = kappa
+
     theta = np.zeros_like(s)
     ds = np.diff(s)
     if np.any(ds <= 0):
         raise ValueError("Spatial coordinates must be strictly increasing")
-    theta[1:] = np.cumsum(0.5 * (kappa[1:] + kappa[:-1]) * ds)
+    theta[1:] = np.cumsum(0.5 * (k_1d[1:] + k_1d[:-1]) * ds)
 
     return theta, kappa
 

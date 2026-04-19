@@ -1,4 +1,3 @@
-
 \section{Introduction}
 
 \subsection{Background: Gravity, Mechanobiology, and Spinal Morphogenesis}
@@ -17,11 +16,17 @@ When this neural delay exceeds a critical threshold, the system undergoes a supe
 
 Furthermore, this delay instability is exacerbated by an \textbf{Energy Deficit Window}. The metabolic cost of maintaining the active control against gravity scales as $L^4$, while nutrient supply to the avascular intervertebral disc scales only as $L^2$~\cite{urban2004nutrition, sato2025convective}. We propose that this transient energy deficit, potentially driving localized NAD+ insufficiency and axonal degradation~\cite{basse2021nampt, gerdts2015sarm1}, further increases proprioceptive delay and precipitates Adolescent Idiopathic Scoliosis (AIS). The intersection of increased neural delay and restricted metabolic capacity during peak height velocity (PHV) forms the biophysical foundation of scoliosis onset.
 
-\subsection{Predictions}
-By modeling the spine through a Delay Differential Equation (DDE) control framework, this model moves beyond correlative observations to a first-principles causal mechanism, generating specific, measurable predictions:
+\subsection{The Counter-Curvature Framework}
+Classical structural mechanics models the spine as an Euler-Bernoulli or Cosserat rod reacting passively to loads. However, maintaining the upright human posture in a gravitational field is an inherently active, far-from-equilibrium process~\cite{bastien2013unifying, smit2020adolescent}. We redefine spinal lordosis and kyphosis not as passive responses, but as an active \emph{Biological Counter-Curvature}: a thermodynamic standing wave driven by mechanotransduction to oppose gravity.
 
+This counter-curvature acts as a structural control system operating in a persistent ``Energy Deficit Window.'' The metabolic cost of countering gravitational torque scales super-linearly with column length (proportional to $L^4$), while the capacity to supply nutrients to the avascular intervertebral discs scales only with cross-sectional area ($L^2$)~\cite{urban2004nutrition, sato2025convective, miranda2024loss}. Consequently, during the peak height velocity (PHV) of adolescence, the rapid axial elongation forces the system across a critical threshold where metabolic demand outstrips supply, compromising proprioceptive integrity.
+
+In this energy-depleted state, the time delay $\tau$ in the neuromotor feedback loop increases. As modeled by delay differential equations (DDEs), when this delay surpasses a critical limit ($\tau_c$), the system undergoes a supercritical Hopf bifurcation~\cite{milton2009time, insperger2021postural}. The derivative gain that normally provides damping instead amplifies micro-perturbations, transforming stable counter-curvature into the buckling deformation observed in Adolescent Idiopathic Scoliosis (AIS)~\cite{landry2005dynamics}.
+
+\subsection{Testable Predictions}
+This theory yields several measurable, non-trivial predictions:
 \begin{itemize}
-    \item \textbf{Metabolic Rescue of Curve Progression:} Because scoliosis represents an energy deficit that increases neural delay, supplementation with mitochondrial cofactors (e.g., Nicotinamide Riboside to boost NAD+) during peak height velocity should measurably delay curve progression or reduce severity in susceptible populations.
-    \item \textbf{Neuromotor Delay as a Biomarker:} Longitudinal measurements of spinal proprioceptive latency $\tau$ should increase non-linearly during the adolescent growth spurt, with peak delays strictly correlating with the crossing of the Hopf bifurcation boundary and the initiation of scoliotic curvature.
-    \item \textbf{Ciliary Hunting and High-Frequency Dithering:} If structural sensing requires an active metabolic supply, cells under a severe energy deficit will upregulate ciliary length (``Ciliary Hunting'') or rely on stochastic micro-tremors (stochastic resonance) to maintain signal-to-noise ratios. These phenomena should be detectable in scoliotic osteoblasts prior to macroscopic collapse.
+    \item \textbf{Metabolic Rescue of Stability:} Interventions that artificially boost cellular energy supply (e.g., NAD+ precursors) during PHV will delay the Hopf bifurcation boundary, reducing the incidence or progression rate of scoliotic curves in high-risk demographics~\cite{basse2021nampt, gerdts2015sarm1}.
+    \item \textbf{Proprioceptive Latency Tracking:} The absolute neuromotor delay $\tau$ can serve as a longitudinal biomarker. $\tau$ will increase non-linearly immediately preceding the macroscopic onset of AIS, explicitly crossing the theoretically defined $\tau_c$.
+    \item \textbf{Molecular Anisotropy Gap:} Mechanosensors (e.g., PIEZO1/2) driving counter-curvature will demonstrate a higher structural anisotropy (and thus higher thermodynamic maintenance cost) compared to their downstream metabolic regulators~\cite{wuest2025vim}. This implies that structural sensing will fail before metabolic sensing under energy restriction.
 \end{itemize}

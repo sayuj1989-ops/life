@@ -1,6 +1,7 @@
 # Paper 4 Progress: The Molecular Basis of τ
 
 ## Completed Sessions
+* **Phase 1, Day 2 (Literature Review — AIS genetics)** [2024-05-15]: Completed. Reviewed comprehensive GWAS hits including GPR126, LBX1, and PAX1. Detailed risk alleles, effect sizes, population frequencies, and proposed biological functions. Distinguished between controller defects (LBX1, GPR126 impacting $	au$) and plant defects (PAX1 impacting vertebral mechanics). Output generated in `paper4_literature/day2_ais_gwas.md`.
 * **Phase 1, Day 1 (Literature Review — Decomposing τ)** [2024-05-14]: Completed. Decomposed the total proprioceptive delay ($\tau$) into its constituent components (peripheral transduction, afferent conduction, spinal relay, cerebellar processing, efferent conduction, NMJ, and electromechanical delay). Identified initial molecular targets for each component. Incorporated PIEZO2 human mechanosensation literature (Chesler et al., 2016, DOI: 10.1056/NEJMoa1602812) and EMD values (Hopkins et al., 2009, DOI: 10.1002/jor.20934). Explicitly flagged numerical latency estimates requiring specific human paraspinal confirmation. Output generated in `paper4_literature/day1_tau_decomposition.md`.
 
 ## Key Findings/Decisions Made
@@ -12,4 +13,4 @@
 * Does Dr. Sayuj prefer to focus strictly on long-loop (transcortical/cerebellar) postural reflexes for the total $\tau$ budget (~100-200ms), or should we also model short-loop (spinal) stretch reflexes (~30-50ms) as a secondary control loop? The current decomposition applies to both, but $\tau_{cereb}$ is the dominant term for postural control.
 
 ## Next Session
-* **Phase 1, Day 2**: Literature Review — AIS genetics. Comprehensive review of GWAS hits (GPR126, LBX1, PAX1, and others). Detail risk allele, effect size, population frequency, and proposed biological function for each locus. Output to `paper4_literature/day2_ais_gwas.md`.
+* **Phase 1, Day 3**: Literature Review — GPR126 deep dive. Role in Schwann cell myelination, peripheral nerve development, knockout phenotypes, conduction velocity data. Search for AlphaFold structure and AIS variant mapping. Output to `paper4_literature/day3_gpr126.md`.

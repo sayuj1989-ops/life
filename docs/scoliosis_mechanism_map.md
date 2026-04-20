@@ -64,35 +64,34 @@ Categories: Genetics, Processes, Tissue Properties ($EI$, $G_{mech}$, $\kappa_0$
 * **Path**: `PPARGC1A` $\rightarrow$ `Mitochondrial Biogenesis` $\rightarrow$ `Energy Deficit`
 * **Role**: Energetic supply ($L^2$) fails to keep up with structural scaling ($L^4$), compromising active postural networks (Krishnan S et al., 2025).
 
-### 13. Osteoblast Mechanotransduction Defect
-* **Path**: `CILIA` $\rightarrow$ `Actin Dynamics` $\rightarrow$ `VEGF-A` $\rightarrow$ `Gain (G_{mech})`
-* **Mechanism**: Osteoblasts use primary cilia to sense fluid flow. Flow normally triggers actin rearrangement and VEGF-A/PGE2 secretion. In AIS, cilia dynamics and actin rearrangement are defective, and flow-induced VEGF-A is blunted.
-* **Role**: **Loss of Adaptive Gain**. Counter-curvature relies on tissue translating strain into adaptive growth. This impaired mechanotransduction pathway leaves skeletal tissue "deaf" to forces, dropping the active feedback gain ($G_{mech}$).
-* **Evidence**: Oliazadeh et al. (2022) found AIS osteoblasts fail to orient properly and lack flow-induced VEGF-A secretion.
-> **Hypothesis**: The defective actin-VEGF-A axis in AIS osteoblasts acts as a molecular bottleneck that suppresses global feedback gain, compromising counter-curvature during adolescent growth.
+### 13. Osteoblast Defect
+* **Path**: `CILIA` $\rightarrow$ `Actin Dynamics` $\rightarrow$ `VEGF-A` $\rightarrow$ `Gain`
+* **Role**: **Loss of Gain**. Defective actin-VEGF-A axis drops feedback gain (Oliazadeh et al., 2022).
+> **Hypothesis**: This suppresses global feedback gain.
 
 ### 14. Voltage Gain
-* **Path**: `KCNQ` $\rightarrow$ `Mechanotransduction` $\rightarrow$ `Gain (G_{mech})`
-* **Role**: Resting membrane potential regulates Piezo2 sensitivity. Hyperpolarization (e.g., via KCNQ channels) dampens the proprioceptive error-correction loop, reducing the feedback gain and leading to Bastien instability (Sánchez-Carranza et al., 2024).
+* **Path**: `KCNQ` $\rightarrow$ `Mechanotransduction` $\rightarrow$ `Gain`
+* **Role**: Hyperpolarization dampens proprioceptive error-correction (Sánchez-Carranza et al., 2024).
 
-### 15. PIEZO1-GPX4 Ferroptosis Axis
+### 15. PIEZO1-GPX4 Axis
 * **Path**: `PIEZO1` $\rightarrow$ `GPX4` $\rightarrow$ `Ferroptosis` $\rightarrow$ `Growth Plate Dysplasia`
-* **Mechanism**: Mechanical stress upregulates the mechanosensitive ion channel PIEZO1 in vertebral growth plate chondrocytes. This overactivation inhibits GPX4 signaling, breaking down the cell's antioxidant defense.
-* **Role**: **Asymmetric Ossification**. Without GPX4, iron overload and lipid peroxidation trigger ferroptosis, driving growth plate degeneration and asymmetric ossification that compromises mechanical stability.
-* **Evidence**: Chen et al. (2025) demonstrated that the PIEZO1-GPX4 axis mediates mechanical stress-induced vertebral growth plate dysplasia via ferroptosis activation.
+* **Role**: Drives asymmetric ossification (Chen et al., 2025).
 
-### 16. Stochastic Resonance Mechanosensing (Dither Failure)
-* **Path**: `Muscle Tone / Fluid Flow` $\rightarrow$ `Micro-Tremor (Dither)` $\rightarrow$ `PIEZO1/2` $\rightarrow$ `Gain (G_{mech})`
-* **Mechanism**: High-threshold mechanosensors (like PIEZO channels) require high-frequency physiological "noise" (e.g., muscle micro-tremors, vascular pulsation, Reissner fiber oscillation) to act as a "dither" signal. This noise keeps the sensors in their linear, high-sensitivity detection range, allowing them to sense slow, sub-threshold postural drifts (gravity).
-* **Role**: **Sensory Lock-up**. During rapid adolescent growth, muscle mass and vascular development often lag behind bone elongation. This reduces the baseline physiological "noise floor". Without this stochastic resonance dither, mechanosensors lock up and fail to detect the initial slow geometric drift, dropping the feedback gain ($G_{mech}$) to zero and precipitating buckling.
-> **Hypothesis**: Targeted acoustic or vibration therapy acting as an artificial dither during the Energy Deficit Window can artificially boost mechanosensor sensitivity, preventing the initial scoliotic bifurcation.
+### 16. Stochastic Resonance (Dither)
+* **Path**: `Muscle Tone` $\rightarrow$ `Micro-Tremor` $\rightarrow$ `PIEZO` $\rightarrow$ `Gain`
+* **Role**: **Sensory Lock-up**. Loss of baseline noise causes sensors to fail detecting drift.
+> **Hypothesis**: Vibration therapy acts as artificial dither.
 
 ### 17. Caveolin Gain Control
 * **Path**: `CAV1` $\rightarrow$ `Membrane Tension` $\rightarrow$ `YAP`
-* **Mechanism**: Caveolin-1 (CAV1) functions as a mechanical "Gain Control" element by forming invaginated caveolae that flatten under tension, buffering the cell membrane against transient mechanical noise and sequestering YAP in the cytoplasm.
-* **Role**: **Mechanotransductive Hypersensitivity**. Loss of this buffering capacity (due to genetics or chronic unloading) causes constitutive YAP nuclear translocation, increasing mechanotransductive gain and pushing the system toward instability.
-* **Evidence**: Moreno-Vicente et al. (2018) demonstrated CAV1 modulates mechanotransduction responses to substrate stiffness through actin-dependent control of YAP.
-> **Hypothesis**: CAV1 deficiency lowers the critical buckling load of the spine by removing the "noise filter" that normally prevents random fluctuations from becoming self-reinforcing curves.
+* **Role**: **Mechanotransductive Hypersensitivity**. Loss of CAV1 buffering increases gain (Moreno-Vicente et al. 2018).
+> **Hypothesis**: Lowers critical buckling load.
+
+### 18. Costamere Force Transmission
+* **Path**: `DAG1` $\rightarrow$ `Force Transmission` $\rightarrow$ `Muscle Tone`
+* **Mechanism**: DAG1 connects the extracellular matrix to the cytoskeleton via the dystrophin-glycoprotein complex.
+* **Role**: **Force Transmission**. Essential for maintaining muscle tone against gravity. Muscular dystrophies (e.g. LAMA2/DAG1) feature severe scoliosis because the costamere link fails (PMC7545609).
+> **Hypothesis**: The failure of this costamere link specifically impairs the sensory-motor feedback loop required for active counter-curvature, leading to gravitational collapse.
 
 ---
 *Generated by Systems Mapper based on the Biological Counter-Curvature framework.*

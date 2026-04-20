@@ -1,13 +1,9 @@
-TITLE: Mechanogenetic Demand-Supply Gap in Spinal Geometry
-STYLE: High-Impact Scientific Diagram (Nature/Science style), clean, minimalist, vector-like, isometric or flowchart.
-PALETTE: Teal (Supply), Crimson/Orange (Demand), Slate Gray (Structure).
+A high-impact scientific diagram illustrating the "Mechanogenetic Demand-Supply Gap" in the human spine.
 
-COMPONENTS:
-1. "The Demand Node" (Bottom Left): A schematic of a mechanical sensor complex (representing Fibrillin/PIEZO2) experiencing tensile stress. Label: "Mechanical Demand ($\mathcal{P}_{counter}$) - High Thermodynamic Cost".
-2. "The Supply Node" (Bottom Right): A schematic of intrinsically disordered metabolic regulators (FOXO3/AMPK) in a fragmented state. Label: "Metabolic Supply ($\mathcal{S}_{proprio}$) - Low Stability/Anisotropic".
-3. "The Gap" (Center Bottom): A jagged, lightning-like break or a large inequality symbol between Demand and Supply. Label: "The 72% Anisotropy Gap".
-4. "The Feedback Loop" (Top): An upward arrow leading from the Gap to a warped, twisting spinal column (representing Scoliosis). Label: "Control Failure $\rightarrow$ Torsional Instability".
-5. "The Ground State" (Top Left inset): A balanced scale showing a healthy, synchronized S-curve spine. Label: "Cooperative Regime ($R < 1$)".
+The diagram is split into two connected halves:
+1. "Structural Demand" (Left): Depicts large, rigid, and robust mechanosensor protein structures (e.g., PIEZO2). These act as antennas detecting gravitational stress and HOX genetic patterning. They are glowing with a solid, structured energy, representing their high thermodynamic cost.
+2. "Metabolic Supply" (Right): Depicts intrinsically disordered, flexible, and fragile metabolic regulatory proteins (e.g., SIRT1, FOXO3). They are shown as dynamic, loose chains struggling to produce energetic molecules (ATP/NAD+).
 
-LAYOUT:
-A circular or figure-8 causal loop. The bottom half highlights the molecular/thermodynamic mismatch (Demand > Supply). This mismatch drives an arrow upward to the macroscopic consequence: the loss of the structural ground state, resulting in a scoliotic, torsioned spine. Use precise, thin connecting lines and bold typography for key variables like $R_{deficit} > 1$.
+Connecting the two halves is a large, stressed central arrow labeled "72% Anisotropy Gap".
+
+Below the main interaction, a timeline or growth phase illustrates "Adolescent Growth Spurt". Here, the "Demand" drastically outpaces the "Supply", creating a red "Energy Deficit Window". Within this window, a small, healthy S-shaped spine is shown buckling into a severe, twisted scoliotic curve, illustrating that Adolescent Idiopathic Scoliosis is a thermodynamic failure when metabolic supply cannot meet structural demand. The style should be suitable for a high-impact journal like Nature, using clean lines, clear typography, and a professional color palette (blues, reds, and golds).

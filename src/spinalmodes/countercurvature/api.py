@@ -27,6 +27,10 @@ from .info_fields import (
     make_uniform_grid,
 )
 from .pyelastica_bridge import CounterCurvatureRodSystem
+from .multi_segment import (
+    build_lenke_instability_drive,
+    build_regional_stiffness_multiplier,
+)
 from .scoliosis_metrics import (
     RegimeThresholds,
     ScoliosisMetrics,
@@ -53,4 +57,6 @@ __all__ = [
     "RegimeThresholds",
     "compute_scoliosis_metrics",
     "classify_scoliotic_regime",
+    "build_regional_stiffness_multiplier",
+    "build_lenke_instability_drive",
 ]

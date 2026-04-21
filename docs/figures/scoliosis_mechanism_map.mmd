@@ -38,6 +38,7 @@ graph TD
         PPARGC1A[PPARGC1A<br/>Mitochondrial Biogenesis]
         KCNQ[KCNQ<br/>Potassium Channel]
         GPX4[GPX4<br/>Antioxidant Defense]
+        PTCH1[PTCH1<br/>Hedgehog Receptor]
         CAV1[CAV1<br/>Caveolin-1]
     end
 
@@ -81,6 +82,7 @@ graph TD
         VEGF_A[VEGF-A/PGE2<br/>Secretory Response]
         Ferroptosis[Ferroptosis<br/>Iron Overload]
         Membrane_Tension[Membrane Tension<br/>Buffering Reserve]
+        Hedgehog_Signaling[Hedgehog Signaling<br/>Ciliary Transduction]
     end
 
     subgraph Tissue [Tissue Mechanics & Properties]
@@ -319,11 +321,18 @@ graph TD
     Muscle_Tone -- "Micro-Tremor Dither" --> PIEZO2
 
 
+
     %% NEW ARC: Caveolin Gain Control (Moreno-Vicente et al. 2018)
     CAV1 --> Membrane_Tension
     Membrane_Tension --> YAP
 
-    class HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A,KCNQ,GPX4,CAV1 gene;
-    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite,Actin_Dynamics,VEGF_A,Ferroptosis,Membrane_Tension process;
+    %% NEW ARC: Hedgehog Signaling (Hahn et al., 1996)
+    PTCH1 --> Hedgehog_Signaling
+    CILIA --> Hedgehog_Signaling
+    Hedgehog_Signaling --> Rest_Kappa
+
+
+    class PTCH1,HOX,COL,PIEZO1,PIEZO2,CILIA,LBX1,ADGRG6,PTK7,YAP,PKD2L1,MMP,URP,UTS2R,GFAP,VIM,LAMIN,BMAL1,RUNX3,METTL3,ESR1,MELATONIN,MT2,HIF1A,POC5,DSTYK,TFEB,Beta_Catenin,DPY19L1L,IGF1R,GHR,SOST,FBN1,CCN,PPARGC1A,KCNQ,GPX4,CAV1 gene;
+    class Region,ECM_Assembly,Mech_Trans,Sym_Break,Neur_Diff,Muscle_Diff,Disc_Maint,PCP_Sig,Nucl_Shuttle,CSF_Sensing,Degradation,Astrogliosis,mtROS,Adipogenesis,Hydraulic_Congestion,Immune_Infilt,Circadian_Entrain,Proprio_Maint,H3K9me3,VCL_Stasis,Glymphatic_Stasis,Vestibular_Input,Gi_cAMP,Ciliary_Tuning,Hypoxia,Osteogenesis,Ciliary_Splint,Vacuole_Biogenesis,C_Mannosylation,Rapid_Growth,Energy_Deficit,mtBiogenesis,Fibrosis,TGFB,Osteocyte_Dendrite,Actin_Dynamics,VEGF_A,Ferroptosis,Membrane_Tension,Hedgehog_Signaling process;
     class Rest_Kappa,Stiffness,Torsional_Stiffness,Gain,Torsion,Muscle_Tone,Anisotropy,TMD,Reissner_Fiber,Growth_Plate_Dysplasia tissue;
     class S_Curve,Stability,Scoliosis outcome;

@@ -6,6 +6,7 @@ This module exposes a minimal, stable surface for users:
 - Countercurvature metric and geodesic deviation
 - PyElastica bridge for 3D rods
 - Scoliosis metrics and regime classification
+- Multi-segment Cosserat rod extensions
 
 Usage
 -----
@@ -37,6 +38,7 @@ from .validation_and_metrics import (
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
 )
+from .multi_segment import create_lenke_profile
 
 __all__ = [
     "InfoField1D",
@@ -53,4 +55,5 @@ __all__ = [
     "RegimeThresholds",
     "compute_scoliosis_metrics",
     "classify_scoliotic_regime",
+    "create_lenke_profile",
 ]

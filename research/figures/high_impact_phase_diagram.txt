@@ -1,0 +1,1 @@
+Heatmap mapping L to X-axis, chi_kappa to Y-axis, R_deficit to color.

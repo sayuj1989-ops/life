@@ -9,6 +9,7 @@ from .scoliosis_metrics import (
     build_lateral_curvature_bump,
     thoracic_bump,
 )
+from .multi_segment import solve_polygenic_lenke_eigenmodes
 from .validation_and_metrics import (
     compare_with_beam_solver,
     compute_countercurvature_energy,
@@ -18,6 +19,7 @@ from .validation_and_metrics import (
 
 __all__ = [
     *api.__all__,  # type: ignore[name-defined]
+    "solve_polygenic_lenke_eigenmodes",
     "make_uniform_grid",
     "compute_countercurvature_energy",
     "compute_effective_metric_deviation",

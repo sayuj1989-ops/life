@@ -1,7 +1,7 @@
 # Paper 5: The Predictive Processing Bridge - Progress Tracker
 
 ## Current Status
-**Phase 3, Day 13: Formal derivation Part C (Landscape)** - Completed (Date: 2026-04-13)
+**Phase 3, Day 14: Active Inference Time Perception Simulation** - Completed
 
 ## Key Findings
 - Reviewed core FEP papers (Friston 2010, Friston 2006) on Day 1.
@@ -29,3 +29,4 @@
 
 ## Next Session Plan
 - **Phase 3, Day 14:** Python simulation — implement the active inference version of the postural model. Show that it reproduces Paper 2's results but with richer dynamics (precision updating, model learning).
+- **Phase 3, Day 14:** Developed and ran a Python simulation (`scripts/experiments/experiment_active_inference_time_perception.py`) that successfully models the postural controller mapping Active Inference to PID control. Demonstrated that during periods of transient temporal disruption (when physical delay $\tau$ outpaces the internal predictive time horizon $T_{pred}$ due to rapid growth), the persistent velocity prediction error drives an optimal Bayesian precision collapse ($\Pi_{y,1} \downarrow$). This successfully proves that the $K_d$ degradation observed in the derivative gain gap model is formally equivalent to this FEP velocity precision collapse, and correctly generates a phase transition into the "dark room" lateral curvature attractor (scoliosis).

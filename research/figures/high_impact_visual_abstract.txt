@@ -1,9 +1,3 @@
-A high-impact visual abstract illustrating the "Biological Countercurvature of Spacetime" theory for human spinal geometry.
-
-The image features an intricate, glowing 3D human spine with a prominent, healthy S-curve (lordosis and kyphosis) rendered in a transparent, ethereal white-gold style. The spine is suspended in the center of the image.
-
-Overlaying the space is a 3D grid, representing spacetime or a mathematical framework (the Information-Cosserat Framework).
-- Downward Vectors: Heavy, solid blue arrows pressing down on the spine, labeled "Gravity (g)". The grid warps sharply downward under this immense pressure.
-- Upward Force: Golden, luminous threads or "Information Fields" (representing HOX developmental patterning) weave through the vertebrae, actively pulling upwards and acting against gravity. This upward force creates an inverted, localized warp in the spacetime grid, actively counteracting the gravitational sag. This is the "Biological Countercurvature" ($\chi_\kappa$).
-
-The image visually communicates that the stable S-curve of the spine is an active, energetic "standing wave" produced by the constant biological effort of genetic information countering gravitational collapse. The overall tone is scientific, profound, and visually striking, using deep space blues and radiant gold accents, suitable for a Nature or Science journal cover.
+Title: Visual Abstract: Biological Countercurvature
+Style: Cell / Science
+Description: A high-impact visual abstract. On the left: a human spine experiencing the "Allometric Trap" (Bg ≈ 0.01) against strong downward gravity arrows. In the center: HOX-patterned fields generating developmental information (countercurvature). On the right: a balance scale showing energetic ground state vs thermodynamic scaling failure (Adolescent Idiopathic Scoliosis).

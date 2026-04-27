@@ -1,0 +1,8 @@
+The Energy Deficit Window represents a critical phase in biological development where structural scaling creates a mismatch between a system's metabolic demand and neural sensory supply.
+
+This mechanism can be visualized as a thermodynamic stability argument:
+As spinal length (L) increases isometrically, the energy required for the developmental countercurvature (metabolic demand) scales as roughly L^2, whereas the sensory supply capacity (e.g. proprioception through muscle spindles) scales sub-linearly (L^0.5 to L^1).
+
+When the demand significantly exceeds the supply during rapid adolescent growth, the system enters an "Energy Deficit Window."
+
+A heat map phase diagram best visualizes this. The axes should be Spinal Length L (m) and Coupling Strength \chi_\kappa, with the heat intensity reflecting the log deficit ratio P/S. The Cobb Angle (degree of scoliosis or deformation) also maps closely to this deficit regime, showing a clear phase boundary where stability is lost and buckling occurs.

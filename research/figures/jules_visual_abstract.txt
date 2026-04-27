@@ -1,9 +1,10 @@
-A high-impact visual abstract illustrating the "Biological Countercurvature of Spacetime" theory for human spinal geometry.
+The Biological Countercurvature of Spacetime is an Information-Cosserat Framework for Spinal Geometry.
 
-The image features an intricate, glowing 3D human spine with a prominent, healthy S-curve (lordosis and kyphosis) rendered in a transparent, ethereal white-gold style. The spine is suspended in the center of the image.
+It asserts that developmental information (e.g. from HOX genes) acts as a biological "countercurvature" that modifies the effective spacetime metric experienced by living structures, allowing them to maintain complex geometries (like the spinal S-curve) against gravitational loading.
 
-Overlaying the space is a 3D grid, representing spacetime or a mathematical framework (the Information-Cosserat Framework).
-- Downward Vectors: Heavy, solid blue arrows pressing down on the spine, labeled "Gravity (g)". The grid warps sharply downward under this immense pressure.
-- Upward Force: Golden, luminous threads or "Information Fields" (representing HOX developmental patterning) weave through the vertebrae, actively pulling upwards and acting against gravity. This upward force creates an inverted, localized warp in the spacetime grid, actively counteracting the gravitational sag. This is the "Biological Countercurvature" (\chi_\kappa).
+The visual abstract should have three parts:
+1. Normal physiology, where developmental information fields balance with gravity. This is the "Cooperative" regime.
+2. A cross-species comparison highlighting the human "Allometric Trap." As human height (Spinal Length L) scales up, humans reach a Bio-Gravitational scaling limit where sensory demand outpaces metabolic supply.
+3. The pathological transition. During adolescent growth spurts, this imbalance leads to an "Energy Deficit Window" and a "Derivative Gain Trap." These mechanisms cause a thermodynamic phase transition into a helical survival state, which is clinically known as Adolescent Idiopathic Scoliosis (AIS).
 
-The image visually communicates that the stable S-curve of the spine is an active, energetic "standing wave" produced by the constant biological effort of genetic information countering gravitational collapse. The overall tone is scientific, profound, and visually striking, using deep space blues and radiant gold accents, suitable for a Nature or Science journal cover.
+The abstract should connect the abstract concept of spacetime geometry to these biomechanical and molecular consequences.

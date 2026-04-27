@@ -1,0 +1,7 @@
+The "Derivative Gain Trap" is a biomechanical feedback mechanism underlying the structural instability seen in Adolescent Idiopathic Scoliosis (AIS).
+
+It describes a supercritical Hopf bifurcation scenario. During rapid adolescent spine elongation, the physical distance between sensory receptors and the central nervous system increases. This increases the neural transmission delay ($\tau$).
+
+When this delay passes a critical instability threshold ($\tau_{crit}$), the previously stabilizing velocity feedback loop (the derivative gain, Kd, used for proprioceptive control) flips into a destabilizing force. Instead of dampening perturbations, the delayed feedback amplifies oscillatory movements, driving the spinal rod out of its normal equilibrium into unstable buckling or twisting modes.
+
+The diagram should illustrate this control loop: a sensor sending a delayed signal $\tau$ to a controller, which applies a restoring force to a flexible spinal rod. It should visually contrast the stable regime ($\tau < \tau_{crit}$) with the unstable oscillatory regime ($\tau > \tau_{crit}$).

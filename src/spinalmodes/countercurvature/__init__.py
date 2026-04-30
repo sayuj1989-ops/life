@@ -1,5 +1,6 @@
 """Countercurvature modelling layer for spinalmodes."""
 
+from .multi_segment import solve_multi_segment_cosserat_buckling
 from . import api as api
 from .api import *  # noqa: F401,F403
 from .info_fields import make_uniform_grid
@@ -17,6 +18,7 @@ from .validation_and_metrics import (
 )
 
 __all__ = [
+    "solve_multi_segment_cosserat_buckling",
     *api.__all__,  # type: ignore[name-defined]
     "make_uniform_grid",
     "compute_countercurvature_energy",

@@ -4,6 +4,7 @@ from . import api as api
 from .api import *  # noqa: F401,F403
 from .info_fields import make_uniform_grid
 from .pyelastica_bridge import PYELASTICA_AVAILABLE, SimulationResult
+from .multi_segment import solve_multi_segment_cosserat_buckling
 from .scoliosis_metrics import (
     apply_info_asymmetry,
     build_lateral_curvature_bump,
@@ -28,4 +29,5 @@ __all__ = [
     "build_lateral_curvature_bump",
     "PYELASTICA_AVAILABLE",
     "SimulationResult",
+    "solve_multi_segment_cosserat_buckling",
 ]

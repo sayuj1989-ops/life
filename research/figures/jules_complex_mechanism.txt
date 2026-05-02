@@ -1,9 +1,1 @@
-A high-impact scientific diagram illustrating the "Mechanogenetic Demand-Supply Gap" in the human spine.
-
-The diagram is split into two connected halves:
-1. "Structural Demand" (Left): Depicts large, rigid, and robust mechanosensor protein structures (e.g., PIEZO2). These act as antennas detecting gravitational stress and HOX genetic patterning. They are glowing with a solid, structured energy, representing their high thermodynamic cost.
-2. "Metabolic Supply" (Right): Depicts intrinsically disordered, flexible, and fragile metabolic regulatory proteins (e.g., SIRT1, FOXO3). They are shown as dynamic, loose chains struggling to produce energetic molecules (ATP/NAD+).
-
-Connecting the two halves is a large, stressed central arrow labeled "72% Anisotropy Gap".
-
-Below the main interaction, a timeline or growth phase illustrates "Adolescent Growth Spurt". Here, the "Demand" drastically outpaces the "Supply", creating a red "Energy Deficit Window". Within this window, a small, healthy S-shaped spine is shown buckling into a severe, twisted scoliotic curve, illustrating that Adolescent Idiopathic Scoliosis is a thermodynamic failure when metabolic supply cannot meet structural demand. The style should be suitable for a high-impact journal like Nature, using clean lines, clear typography, and a professional color palette (blues, reds, and golds).
+A detailed conceptual diagram of the Information-Elasticity Coupling (IEC) feedback loop in spinal development. The visual shows a cycle: Gravity exerts force on the developing spine (Cosserat rod). Mechanosensory cells detect this stress, transmitting signals to gene regulatory networks (HOX patterning). These networks output an 'anisotropic supply' (developmental information). This information couples with the mechanical structure, creating a countercurvature that pushes back against gravity, stabilizing the spine.

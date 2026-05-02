@@ -33,6 +33,7 @@ from .scoliosis_metrics import (
     classify_scoliotic_regime,
     compute_scoliosis_metrics,
 )
+from .multi_segment import solve_multi_segment_cosserat_buckling
 from .validation_and_metrics import (
     compute_countercurvature_metric,
     geodesic_curvature_deviation,
@@ -48,6 +49,7 @@ __all__ = [
     "compute_active_moments",
     "compute_countercurvature_metric",
     "geodesic_curvature_deviation",
+    "solve_multi_segment_cosserat_buckling",
     "CounterCurvatureRodSystem",
     "ScoliosisMetrics",
     "RegimeThresholds",

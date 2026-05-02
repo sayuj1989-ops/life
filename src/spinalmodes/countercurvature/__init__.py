@@ -9,6 +9,7 @@ from .scoliosis_metrics import (
     build_lateral_curvature_bump,
     thoracic_bump,
 )
+from .multi_segment import solve_multi_segment_cosserat_buckling
 from .validation_and_metrics import (
     compare_with_beam_solver,
     compute_countercurvature_energy,
@@ -22,6 +23,7 @@ __all__ = [
     "compute_countercurvature_energy",
     "compute_effective_metric_deviation",
     "compute_shape_preservation_index",
+    "solve_multi_segment_cosserat_buckling",
     "compare_with_beam_solver",
     "thoracic_bump",
     "apply_info_asymmetry",

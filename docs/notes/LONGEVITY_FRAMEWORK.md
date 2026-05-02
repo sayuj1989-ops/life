@@ -38,84 +38,60 @@ Squat-to-Stand Cycle (thermodynamic perturbation of standing wave)
     |       |
     |       +→ Ca²⁺ → FGF23 → KLOTHO (anti-aging, anti-oxidant)
     |
-    +── η_a activation: VIM/LMNA/FLNA (cytoskeletal tension)
+    +── η_a activation: VIM → LMNA → Nuclear Pore Opening
     |       |
-    |       +→ YAP1 nuclear translocation → CTGF/CYR61 (tissue repair)
-    |       +→ muscle contraction → AMPK → FOXO3 (stress resistance)
+    |       +→ Cytoskeletal Tension → YAP1 Nuclear Entry (tissue repair)
     |
-    +── Γ_m boost: NAD⁺ pulse from exercise
+    +── Γ_m metabolic boost: Exercise → AMP/ATP ratio ↑ → AMPK
             |
-            +→ SIRT1 → FOXO3 deacetylation (autophagy, DNA repair)
-            +→ AMPK → PGC-1α (mitochondrial biogenesis)
+            +→ FOXO3 (stress resistance)
+            |
+            +→ NAD+ → SIRT1 (metabolic gauge) → FOXO3
+            |
+            +→ PGC-1α (mitochondrial biogenesis)
 ```
 
-### Complete Protein Table
+## Detailed Breakdown of 28 Proteins
 
-**Demand side ($\eta_p$ + $\eta_a$): 12 proteins, mean anisotropy 3.32**
-
-| Gene | Term | Anisotropy | pLDDT | Disorder | Longevity Role |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| PIEZO2 | $\eta_p$ | 4.44 | 79.4 | 14% | $Ca^{2+}$ influx $\to$ Klotho activation |
-| EGR3 | $\eta_p$ | 3.76 | 50.0 | 64% | Spindle maintenance (proprioceptive quality) |
-| RUNX3 | $\eta_p$ | 2.06 | 60.6 | 56% | Proprioceptive neuron survival |
-| NTRK3 | $\eta_p$ | 1.94 | 76.8 | 20% | Neurotrophic support |
-| PIEZO1 | $\eta_p$ | 3.90 | 72.0 | 17% | Membrane tension $\to$ scalar signal |
-| VIM | $\eta_a$ | **7.47** | 77.1 | 24% | **First domino**: collapse $\to$ YAP exclusion |
-| LMNA | $\eta_a$ | 4.75 | 76.4 | 26% | Nuclear mechanostat $\to$ gene access |
-| FLNA | $\eta_a$ | 2.50 | 76.5 | 5% | Crosslinker (116 hinges) |
-| CAV1 | $\eta_a$ | 3.98 | 78.4 | 3% | Membrane sensor $\to$ YAP/TAZ |
-| DMD | $\eta_a$ | 1.32 | 76.3 | 18% | Force transmission to ECM |
-| MYLK | $\eta_a$ | 1.46 | 65.8 | 35% | Tonic contraction $\to$ AMPK |
-| LBX1 | $\eta_a$ | 2.27 | 66.9 | 26% | Paraspinal muscle specification |
-
-**Supply side ($\Gamma_m$): 10 proteins, mean anisotropy 2.48**
-
-| Gene | Term | Anisotropy | pLDDT | Disorder | Longevity Role |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| SIRT1 | $\Gamma_m$ | 1.73 | 65.0 | 47% | **Dual**: energy gauge + FOXO3 deacetylase |
-| PPARGC1A | $\Gamma_m$ | 2.19 | 52.7 | **62%** | **Dual**: supply bottleneck + mitochondrial biogenesis |
-| ARNTL | $\Gamma_m$ | 3.32 | 65.5 | 40% | Circadian entrainment by regular cycling |
-| COL1A1 | $\Gamma_m$ | 2.80 | 52.7 | 67% | Loading-dependent collagen turnover |
-| GHR | $\Gamma_m$ | 5.13 | 58.7 | 50% | Growth hormone signaling |
-| COMP | $\Gamma_m$ | 1.72 | 88.1 | 6% | Disc ECM maintenance |
-| SOX9 | $\Gamma_m$ | 2.19 | 56.0 | 49% | Growth plate cartilage |
-| SHH | $\Gamma_m$ | 2.12 | 78.4 | 16% | Morphogen gradient maintenance |
-| CDKN1A | $\Gamma_m$ | 2.14 | 69.0 | 25% | Senescence marker (suppressed by cycling) |
-| IGF1R | $\Gamma_m$ | 1.43 | 78.0 | 16% | Growth factor receptor |
-
-**Longevity downstream: 5 proteins (3 new + 2 dual-role)**
-
-| Gene | UniProt | Upstream | Pathway | Status |
+| Protein | Role | Pathway/Term | Scaling | Longevity Effect |
 | :--- | :--- | :--- | :--- | :--- |
-| FOXO3 | O43524 | $\eta_a \to$ AMPK + $\Gamma_m \to$ SIRT1 | Stress resistance, autophagy | NEW |
-| SIRT1 | Q96EB6 | $\Gamma_m$ (NAD+ cycling) | FOXO3 deacetylation | DUAL-ROLE |
-| KLOTHO | Q9UEF7 | $\eta_p \to$ PIEZO $\to Ca^{2+}$ | Anti-oxidant, vascular health | NEW |
-| YAP1 | P46937 | $\eta_a \to$ VIM/LMNA tension | Tissue repair, proliferation | NEW |
-| PGC-1$\alpha$ | Q9UBK2 | $\Gamma_m$ (AMPK activation) | Mitochondrial quality control | DUAL-ROLE |
+| PIEZO2 | Vector mechanosensor | $\eta_p$ | $L$ | Initiates $Ca^{2+}$ flux |
+| EGR3 | Muscle spindle TF | $\eta_p$ | $L$ | Spindle structural integrity |
+| RUNX3 | Proprioceptive TF | $\eta_p$ | $L$ | Neural circuit maintenance |
+| NTRK3 | Survival signal | $\eta_p$ | $L$ | Nerve survival |
+| PIEZO1 | Scalar mechanosensor | $\eta_p$ | $L^2$ | Broad mechanotransduction |
+| DMD | ECM linker | $\eta_a$ | $L^3$ | Muscle tone baseline |
+| MYLK | Tonic contraction | $\eta_a$ | $L^2$ | Active state |
+| LBX1 | Paraspinal TF | $\eta_a$ | $L^2$ | Stiffness tuning |
+| FLNA | Crosslinker | $\eta_a$ | $L^3$ | Tension transmission |
+| VIM | Strain gauge | $\eta_a$ | $L^3$ | Collapse signal |
+| LMNA | Nuclear mechanostat | $\eta_a$ | $L^2$ | Nuclear pore control |
+| CAV1 | Curvature sensor | $\eta_a$ | $L^2$ | Membrane tension |
+| COL1A1 | Primary structural | $\Gamma_m$ | $L^3$ | Matrix framework |
+| COMP | Disc ECM | $\Gamma_m$ | $L$ | Scaffold integrity |
+| SOX9 | Chondrogenic TF | $\Gamma_m$ | $L$ | Disc cell identity |
+| SHH | Morphogen | $\Gamma_m$ | $L$ | Basal gradient |
+| CDKN1A | Cell cycle inhibitor | $\Gamma_m$ | Threshold | Senescence marker |
+| IGF1R | Growth factor receptor | $\Gamma_m$ | $L$ | Growth signaling |
+| GHR | Growth hormone receptor| $\Gamma_m$ | $L$ | Rate regulation |
+| ARNTL | Circadian clock | $\Gamma_m$ | $L$ | Diurnal rhythm |
+| **KLOTHO** | **Anti-aging hormone** | **Longevity** | **Systemic** | Downstream of PIEZO2 |
+| **YAP1** | **Tissue repair TF** | **Longevity** | **Systemic** | Downstream of VIM tension |
+| **FOXO3** | **Stress resistance** | **Longevity** | **Systemic** | Downstream of AMPK/SIRT1 |
+| **SIRT1** | **Metabolic sensor** | **$\Gamma_m$ / Longevity** | **Constant** | Fuel gauge & FOXO3 activator |
+| **PGC-1$\alpha$**| **Mitochondrial biogenesis**| **$\Gamma_m$ / Longevity** | **$L$** | Energy supply expansion |
 
 ---
-## Coupling Decay Model
 
-Without squat-to-stand cycling, coupling strengths decay exponentially:
+## The Sit-to-Rise Test (SRT) and the Clinical Proxy
 
-$$
-\chi(t) = \chi_0 \cdot \exp\left(-\frac{\Delta t}{\tau_{decay}}\right)
-$$
+The Sit-to-Rise Test evaluates an individual's ability to transition from standing to a cross-legged seated position on the floor, and back up, using a 10-point scale (deducting points for using hands or knees). This serves as a proxy for the geometric deviation ($D_{geo}$) of the spine from the optimal gravitational geodesic and reflects the underlying thermodynamic capacity of the system.
 
-Each cycle resets coupling. For N cycles/day, time-averaged coupling:
-
-$$
-\chi_{avg} = \chi_0 \cdot \left(\frac{\tau_{decay} \cdot N}{T_{day}}\right) \cdot \left(1 - \exp\left(-\frac{T_{day}}{N \cdot \tau_{decay}}\right)\right)
-$$
-
-**Quantitative predictions ($\tau_{decay} = 2$ hours):**
-
-| Lifestyle | Cycles/day | $\chi_{avg}/\chi_0$ | SRT Prediction (age 70) |
+### Predicted SRT Correlation to $\chi_{avg}$
+| Lifestyle | Cycles/Day ($N$) | Predicted $\chi_{avg}/\chi_0$ | Expected SRT Score |
 | :--- | :--- | :--- | :--- |
-| Bedridden | 0 | 0.0% | 0-1 |
-| Sedentary | 1 | 8.3% | 1-2 |
-| Chair-sitter | 3 | 24.5% | 2-4 |
-| Active-sitter | 20 | 75.2% | 5-7 |
+| Sedentary Chair-sitter | 3 | 28.5% | 0-4 |
+| Active Adult | 10 | 58.2% | 5-7 |
 | Floor-sitter | 50 | 88.9% | 7-9 |
 | Okinawan elder | 80 | 92.9% | 8-10 |
 

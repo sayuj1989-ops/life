@@ -17,6 +17,8 @@ import time
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -98,7 +100,6 @@ def define_squat_stand_trajectory(T_cycle: float = 4.0, dt: float = 0.1, n_eleme
 
     return trajectory
 
-
 def compute_cycle_dissipation(trajectory: List[Dict], n_elements: int = 50) -> Dict[str, float]:
     """
     Computes thermodynamic dissipation terms per cycle using quasi-static stepping.
@@ -174,7 +175,6 @@ def compute_cycle_dissipation(trajectory: List[Dict], n_elements: int = 50) -> D
         "total_cost": total_eta_p_cost + total_eta_a_cost + total_gamma_m_cost
     }
 
-
 def coupling_decay_model(cycles_per_day: int, chi_0: float = 1.0) -> float:
     """
     Phenomenological exponential decay of coupling strength, reset periodically.
@@ -196,17 +196,13 @@ def coupling_decay_model(cycles_per_day: int, chi_0: float = 1.0) -> float:
 
     return chi_avg
 
-
 def run_cycle_frequency_sweep(output_dir: Path, n_elements: int = 50, quick: bool = False):
     """
     Sweeps N=[1,2,5,10,20,50,100] cycles/day and computes time-averaged coupling.
     """
     print(f"Running Frequency Sweep (Quick mode: {quick})")
 
-    if quick:
-        freqs = [1, 10, 50]
-    else:
-        freqs = [1, 2, 5, 10, 20, 50, 100]
+    freqs = [1, 2, 5, 10, 20, 50, 100]
 
     chi_0 = BASE_PARAMS.chi_M
     results = []
@@ -246,7 +242,6 @@ def run_cycle_frequency_sweep(output_dir: Path, n_elements: int = 50, quick: boo
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         writer.writerows(results)
-
 
 def compare_chair_vs_floor(output_dir: Path, n_elements: int = 50, quick: bool = False):
     """
@@ -313,10 +308,8 @@ def compare_chair_vs_floor(output_dir: Path, n_elements: int = 50, quick: bool =
     plt.savefig(output_dir / "dissipation_breakdown.png", dpi=300)
     plt.close()
 
-
 def main():
-    parser = argparse.ArgumentParser(description="Longevity Squat-Stand Cycle Simulation")
-    parser.add_argument("--quick", action="store_true", help="Run a quick smoke test")
+    parser = StandardExperimentParser(description="Longevity Squat-Stand Cycle Simulation")
     args = parser.parse_args()
 
     print("=" * 70)

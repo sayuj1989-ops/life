@@ -5,6 +5,8 @@ Longevity Protein Analysis Extension
 
 Extends the base thermodynamic cost analysis to include 5 specific longevity proteins
 (FOXO3, SIRT1, Klotho, YAP1, PGC-1α) to support the longevity squat-stand study.
+It maps the full 28-protein cascade representing the biophysical pathways through which
+dynamic structural perturbation is transduced into extended physiological resilience.
 
 Author: Dr. Sayuj Krishnan S
 Date: 2026-02-07
@@ -14,21 +16,14 @@ import csv
 import time
 from pathlib import Path
 from typing import Any, Dict, List
-
 import numpy as np
 
-# Configuration
 OUTPUT_DIR = Path("outputs/thermodynamic_cost")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 METRICS_DIRS = [
     Path("outputs/afcc"),
     Path("research/alphafold_countercurvature/outputs/afcc"),
 ]
-
-# We include the original 23 proteins PLUS the 5 longevity proteins.
-# Note: SIRT1 and PGC-1a (PPARGC1A) are already in the original 23 as Gamma_m components.
-# In the longevity framework, they take on dual roles. We will explicitly define
-# the longevity-specific downstream forms here.
 
 class ProteinTarget:
     def __init__(self, gene: str, uniprot: str, term: str, role: str, prediction: str, scaling: str, dual_role: bool = False):
@@ -68,20 +63,15 @@ TARGETS = [
     ProteinTarget("ARNTL", "O00327", "Gamma_m", "Circadian clock", "Rhythm", "L"),
 
     # ===== Longevity Specific Targets (New + Explicit Dual Roles) =====
-    # FOXO3: Downstream of eta_a (AMPK) and Gamma_m (SIRT1)
     ProteinTarget("FOXO3", "O43524", "longevity", "Stress resistance TF", "Downstream of AMPK/SIRT1", "longevity"),
-    # Klotho: Downstream of eta_p (PIEZO/Ca2+)
     ProteinTarget("KLOTHO", "Q9UEF7", "longevity", "Anti-aging hormone", "Downstream of PIEZO2 Ca2+ influx", "longevity"),
-    # YAP1: Downstream of eta_a (VIM/LMNA tension)
     ProteinTarget("YAP1", "P46937", "longevity", "Tissue repair TF", "Nuclear translocation requires cytoskeletal tension", "longevity"),
 
-    # Dual role explicitly marked for output clarity
     ProteinTarget("SIRT1_L", "Q96EB6", "longevity", "FOXO3 deacetylase", "Dual-role: metabolic gauge + longevity effector", "longevity", dual_role=True),
     ProteinTarget("PPARGC1A_L", "Q9UBK2", "longevity", "Mitochondrial biogenesis", "Dual-role: developmental bottleneck + exercise-induced supply", "longevity", dual_role=True),
 ]
 
 def load_all_metrics() -> Dict[str, Dict[str, Any]]:
-    """Load all pre-computed AFCC metrics."""
     all_proteins = {}
     for metrics_dir in METRICS_DIRS:
         if not metrics_dir.exists():
@@ -95,6 +85,7 @@ def load_all_metrics() -> Dict[str, Dict[str, Any]]:
                         all_proteins[gene] = row
     return all_proteins
 
+
 def main():
     print("=" * 70)
     print("  LONGEVITY PROTEIN EXTENSION: Thermodynamic Cost Analysis")
@@ -103,13 +94,11 @@ def main():
     metrics = load_all_metrics()
     print(f"\n  Loaded metrics for {len(metrics)} proteins")
 
-    # Save Extended CSV
     csv_path = OUTPUT_DIR / "thermodynamic_cost_proteins_extended.csv"
     rows = []
 
     matched_count = 0
     for t in TARGETS:
-        # For dual roles, look up the base gene name
         lookup_gene = t.gene.replace("_L", "")
         m = metrics.get(lookup_gene, {})
 
@@ -129,7 +118,7 @@ def main():
             "plddt_mean": m.get("plddt_mean", ""),
             "n_residues": m.get("n_residues", ""),
             "hinge_candidates": m.get("hinge_candidates", ""),
-            "disorder_fraction": m.get("disorder_fraction_proxy", ""),
+            "disorder_fraction": m.get("disorder_fraction_proxy", m.get("disorder_fraction", "")),
             "PAE_blockiness": m.get("pae_blockiness", m.get("PAE_domain_blockiness_score", "")),
             "status": "matched" if lookup_gene in metrics else "missing",
         })

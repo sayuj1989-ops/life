@@ -1,0 +1,4 @@
+#!/bin/bash
+paperbanana generate --input research/figures/mechanogenetic_demand_supply.txt --caption 'Mechanogenetic Demand-Supply Gap' --output research/figures/mechanogenetic_demand_supply.png
+paperbanana plot --data outputs/thermodynamic_cost/phase_diagram_energy_deficit_for_plot.csv --intent 'Plot a heatmap mapping L (Spinal Length) to the X-axis, chi_kappa (Coupling Strength) to the Y-axis, and R_deficit (Energy Deficit Ratio) as the color intensity. Use the viridis colormap and draw a red dashed line at the R=1 instability limit if applicable. Use default fonts.' --output research/figures/thermodynamic_phase_diagram.png
+paperbanana generate --input research/figures/visual_abstract_countercurvature.txt --caption 'Visual Abstract: Biological Countercurvature' --output research/figures/visual_abstract_countercurvature.png

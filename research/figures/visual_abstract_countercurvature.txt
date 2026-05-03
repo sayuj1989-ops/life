@@ -1,6 +1,5 @@
-A comprehensive visual abstract for the theoretical framework "Biological Countercurvature of Spacetime".
-The visual should synthesize the three core pillars of the theory in an elegant, interconnected way.
-1. The "Allometric Trap": Depict human bipedalism and growth pushing the Bio-Gravitational Number (B_g) to a critically low threshold (~0.01), distinguishing humans from other species.
-2. The "Energy Deficit Window": Show a crossing-curve graph where metabolic cost scales as L^4 (or demand as L^2) while supply scales only as L^2 (or L^0.7), highlighting the vulnerability window during adolescent rapid growth.
-3. The "Derivative Gain Trap" & "Metabolic Buckling": Illustrate how increased neural/proprioceptive delay disrupts the Information-Elasticity Coupling, causing the healthy S-curve (the energetic ground state) to undergo symmetry breaking into a 3D scoliotic deformity to minimize Thermodynamic Free Energy.
-The style should be clean, highly professional, using minimal text but impactful icons and plots, suitable as the central visual abstract for a top-tier physics or biology journal. Use a unified color palette connecting information, mechanics, and pathology.
+Visual Abstract: Biological Countercurvature
+A stylized representation of the Biological Countercurvature theory.
+Show a human spine resisting a heavy gravitational field (visualized as curved spacetime lines).
+Superimpose a glowing biological information field (representing HOX genes) acting as the "countercurvature" to maintain the spine's geometry.
+Include the Bio-Gravitational Number equation B_g = EI/(MgL^2) in a prominent location.

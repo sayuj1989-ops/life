@@ -243,6 +243,7 @@ def cobb_like_angle(
     -------
     angle_deg : float
         Cobb-like angle between top and bottom segments, in degrees.
+        Returns 0.0 if linear fit fails (e.g., insufficient data or collinear points).
     """
     if not (z.shape == y.shape):
         raise ValueError("z and y must have the same shape.")
@@ -251,20 +252,24 @@ def cobb_like_angle(
     N = len(z)
     k = max(3, int(frac * N))
 
-    # Bottom segment
-    z_bottom = z[:k]
-    y_bottom = y[:k]
-    m_bottom, _ = np.polyfit(z_bottom, y_bottom, deg=1)
+    try:
+        # Bottom segment
+        z_bottom = z[:k]
+        y_bottom = y[:k]
+        m_bottom, _ = np.polyfit(z_bottom, y_bottom, deg=1)
 
-    # Top segment
-    z_top = z[-k:]
-    y_top = y[-k:]
-    m_top, _ = np.polyfit(z_top, y_top, deg=1)
+        # Top segment
+        z_top = z[-k:]
+        y_top = y[-k:]
+        m_top, _ = np.polyfit(z_top, y_top, deg=1)
 
-    theta_bottom = np.arctan(m_bottom)
-    theta_top = np.arctan(m_top)
-    cobb_rad = np.abs(theta_top - theta_bottom)
-    return float(np.degrees(cobb_rad))
+        theta_bottom = np.arctan(m_bottom)
+        theta_top = np.arctan(m_top)
+        cobb_rad = np.abs(theta_top - theta_bottom)
+        return float(np.degrees(cobb_rad))
+    except np.linalg.LinAlgError:
+        # Fit failed (e.g., collinear points, numerical instability)
+        return 0.0
 
 
 def compute_scoliosis_metrics(

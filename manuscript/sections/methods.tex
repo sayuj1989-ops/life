@@ -37,7 +37,7 @@ Regimes are classified based on the normalized geodesic deviation $\widehat{D}_{
 
 \subsection{Multi-Scale Protein Mechanics Pipeline}
 
-To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics.
+To ground the macroscopic parameters $\eta_p, \eta_a, \Gamma_m$ in molecular reality, we developed a multi-scale pipeline integrating AlphaFold predictions with structural energetics. \textit{Note: AlphaFold structures are used for hypothesis generation and qualitative geometric analysis only; experimental validation of protein mechanical properties via single-molecule force spectroscopy remains necessary for quantitative predictions.}
 \begin{enumerate}
     \item \textbf{Structure Prediction:} We retrieved high-confidence structures for 23 key spinal proteins from the AlphaFold Protein Structure Database.
     \item \textbf{Structural Metrics:} For each protein, we computed the \emph{Anisotropy Index} (ratio of principal moments of inertia) and \emph{Radius of Gyration} ($R_g$) using the `afcc` module. These metrics serve as proxies for the entropic cost of maintaining the protein's orientation against thermal noise.

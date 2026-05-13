@@ -23,7 +23,7 @@ The information field couples to spine mechanics through three channels: (1) res
 
 \subsection{Bio-Gravitational Number Calculation}
 
-For cross-species analysis, we computed $\mathcal{B}_g = EI/(MgL^2)$ using published allometric data for 18 vertebrate species spanning mouse to elephant. Spine length $L$, body mass $M$, and vertebral dimensions were obtained from comparative anatomy databases. Flexural stiffness $EI$ was estimated from vertebral cross-sectional geometry and published elastic moduli for bone-disc composites. Log-log regression was performed to extract scaling exponents with 95\% confidence intervals via bootstrap resampling (10,000 iterations).
+For cross-species analysis, we computed $\mathcal{B}_g = EI/(MgL^2)$ using published allometric data for 12 vertebrate species spanning mouse to dolphin (with both Human-Adult and Human-Child as separate developmental stages of the same hominin species; we acknowledge this limits independent biped sampling and recommend extension to gibbon, orangutan, and bonobo for stronger phylogenetic claims). Spine length $L$, body mass $M$, and vertebral dimensions were obtained from comparative anatomy databases. Flexural stiffness $EI$ was estimated from vertebral cross-sectional geometry and published elastic moduli for bone-disc composites. Log-log regression was performed to extract scaling exponents with 95\% confidence intervals via bootstrap resampling (10,000 iterations).
 
 \subsection{Energy Deficit Window Quantification}
 
@@ -31,7 +31,7 @@ Metabolic demand for counter-curvature maintenance was modeled as $D(L) \propto 
 
 \subsection{Outcome Metrics}
 
-For each simulation, we computed: (1) \textbf{Geodesic deviation} $\widehat{D}_{\mathrm{geo}}$ quantifying departure from passive gravitational shape, (2) \textbf{Lateral scoliosis index} $S_{\mathrm{lat}} = \max|y|/L_{\mathrm{eff}}$ measuring coronal-plane asymmetry, (3) \textbf{Cobb angle} via linear fits to upper and lower spine segments (standard clinical measure), and (4) \textbf{Lordosis/kyphosis angles} from sagittal curvature profiles, compared against clinical norms (cervical lordosis 40--60°, thoracic kyphosis 20--45°, lumbar lordosis 40--60°)~\cite{white_panjabi_spine}.
+For each simulation, we computed: (1) \textbf{Equilibrium deviation} $\widehat{D}_{\mathrm{geo}}$ quantifying departure from the gravity-only passive equilibrium configuration, (2) \textbf{Lateral scoliosis index} $S_{\mathrm{lat}} = \max|y|/L_{\mathrm{eff}}$ measuring coronal-plane asymmetry, (3) \textbf{Cobb angle} via linear fits to upper and lower spine segments (standard clinical measure), and (4) \textbf{Lordosis/kyphosis angles} from sagittal curvature profiles, compared against clinical norms (cervical lordosis 40--60°, thoracic kyphosis 20--45°, lumbar lordosis 40--60°)~\cite{white_panjabi_spine}.
 
 \subsection{AlphaFold Protein Structural Analysis}
 
@@ -39,6 +39,6 @@ We retrieved AlphaFold v6 predicted structures for 23 mechanotransduction and me
 
 \subsection{Numerical Validation}
 
-Convergence was verified by varying element count ($n=10$--200); geodesic deviation converged to within 1\% for $n \geq 50$. The PyElastica implementation was validated against analytical Euler-Bernoulli beam solutions for small deflections (error $< 10^{-4}$) and standard buckling benchmarks. All source code is available in the \texttt{spinalmodes} Python package (see Data Availability).
+Convergence was verified by varying element count ($n=10$--200); deviation from the gravity-only equilibrium converged to within 1\% for $n \geq 50$. The PyElastica implementation was validated against analytical Euler-Bernoulli beam solutions for small deflections (error $< 10^{-4}$) and standard buckling benchmarks. All source code is available in the \texttt{spinalmodes} Python package (see Data Availability).
 
 \textit{Detailed methods including steered molecular dynamics protocols, tissue homogenization calculations, and protein dynamics modeling are provided in Supplementary Methods Sections S5--S7.}

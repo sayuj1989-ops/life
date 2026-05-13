@@ -8,12 +8,28 @@
     \label{fig:allometric_trap}
 \end{figure}
 
+% Figure 1b: Bg phylogeny — extended-sweep simulation
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.85\textwidth]{fig_bg_phylogeny.pdf}
+    \caption{\textbf{Per-species countercurvature efficiency $\eta_{CC}$ across the full vertebrate $B_g$ range.} Direct simulation across $B_g \in [0.003, 8000]$ (1920 simulations, 4 body scales × 60 coupling values × 8 seeds) shows the human biped regime is structurally distinct from the quadruped regime in countercurvature efficiency. The shaded band marks the biped $B_g$ range ($0.005 < B_g < 0.07$); within it, both Human-Adult ($B_g = 0.01$) and Human-Child ($B_g = 0.06$) are now resolved as distinct simulated points. The simulation curve plateaus near zero in the biped band, indicating that humans operate in a regime where simulated active control demand is minimal --- consistent with the clinical observation that human spinal stability depends critically on active proprioceptive maintenance rather than passive bending stiffness. \textbf{Statistical caveat:} the biped subset comprises two developmental stages of a single hominin species (Human-Adult, Human-Child), so the biped/quadruped Mann--Whitney test is a within-species sweep rather than independent phylogenetic sampling; we report the simulation-curve regime contrast as the load-bearing observation. Extension to additional bipedal or facultatively-bipedal species (gibbon, orangutan, bonobo) is required for stronger phylogenetic claims.}
+    \label{fig:bg_phylogeny}
+\end{figure}
+
 % Figure 2: Protein Cost Landscape
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../alphafold_figures/fig_scatter_panels.pdf}
     \caption{\textbf{Molecular Basis of the Energy Deficit Window.} AlphaFold v6 structural analysis of 23 proteins involved in spinal mechanotransduction and metabolism. (A)~Structural anisotropy (elongation) versus disorder fraction. Mechanosensor proteins that detect mechanical strain (red: PIEZO1/2, Vimentin, Lamin A/C) are highly elongated and energy-expensive to maintain. Metabolic regulator proteins (blue: SIRT1, PGC-1α, ARNTL) are compact but structurally disordered. (B)~Anisotropy versus AlphaFold prediction confidence (pLDDT score). High-confidence proteins show the clearest demand-supply separation. (C)~Mechanosensor proteins require 72\% more structural maintenance than metabolic regulators ($p = 0.011$, Mann--Whitney U test), creating a molecular supply-demand mismatch during rapid growth. \textbf{Note:} This is an exploratory finding; AlphaFold has limitations in predicting mechanical properties under physiological loading conditions.}
     \label{fig:protein_landscape}
+\end{figure}
+
+% Figure 2b: Mechanosensor Hinge Density (extended cohort)
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig_hinge_density.pdf}
+    \caption{\textbf{Mechanosensor proteins are interior-rigid.} Hinge candidate regions per 100 residues across an extended AlphaFold panel of 61 candidate genes (afcc pipeline). Mechanosensors (Mechanotransduction/Proprioception/Cilia pathway tags, $N=31$) have $\sim 70$\% \emph{fewer} hinges per residue than other candidate proteins ($N=30$): mean $0.93$ vs $3.12$, fold-difference $0.30$, Mann--Whitney $p=0.003$. Box: interquartile range; horizontal bar: median; diamond: mean. This rigid-interior signature is consistent with mechanosensors operating as cooperative rigid-body conformational switches rather than flexible-jointed sensors --- a structural correlate of the anisotropy gap shown in Figure~\ref{fig:protein_landscape}.}
+    \label{fig:hinge_density}
 \end{figure}
 
 % Figure 3: Mode Spectrum and S-Curve Emergence
@@ -28,7 +44,7 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{fig_countercurvature_metrics.png}
-    \caption{\textbf{Spinal Geometry from First Principles.} (A)~Curvature profiles showing the transition from passive gravitational sag (blue) to the active S-shaped counter-curvature (orange), reproducing clinical lordosis (${\sim}42^\circ$) and kyphosis (${\sim}35^\circ$). (B)~The effective biological metric $g_{\mathrm{eff}}(s)$ shows dilation at lordotic regions. (C)~Geodesic deviation $\Dgeohat$ versus coupling strength, confirming robust counter-curvature above $\chi_\kappa \approx 0.03$. (D)~Microgravity prediction: $\Dgeohat$ remains stable at $\approx 0.091$ even as $g \to 0$, explaining astronaut S-curve persistence.}
+    \caption{\textbf{Spinal Geometry from First Principles.} (A)~Curvature profiles showing the transition from passive gravitational sag (blue) to the active S-shaped counter-curvature (orange), reproducing clinical lordosis (${\sim}42^\circ$) and kyphosis (${\sim}35^\circ$). (B)~The effective biological metric $g_{\mathrm{eff}}(s)$ shows dilation at lordotic regions. (C)~Deviation from the gravity-only equilibrium $\Dgeohat$ versus coupling strength, confirming robust counter-curvature above $\chi_\kappa \approx 0.03$. (D)~Microgravity prediction: $\Dgeohat$ remains stable at $\approx 0.091$ even as $g \to 0$, explaining astronaut S-curve persistence.}
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{fig_countercurvature_panelA.pdf}
     \end{subfigure}
@@ -45,21 +61,19 @@
         \includegraphics[width=\textwidth]{fig_countercurvature_panelD.pdf}
     \end{subfigure}
 
-    \caption{\textbf{Information-driven countercurvature as Active Inference.}
-    (A) Curvature profiles showing the transition from the \textbf{Passive Gravitational Prior} (blue, monotonic sag) to the \textbf{Active Posterior} (orange, S-shape). This transition represents the minimization of the Free Energy functional $U_{CC}$.
-    (B) The countercurvature metric $g_{\mathrm{eff}}(s)$ highlights regions where the Bio-Gravitational Number ($\mathcal{B}_g$) is maximized to resist deformation.
-    (C) Geodesic deviation $\widehat{D}_{\mathrm{geo}}$ (representing the prediction error $\mathcal{E}$) scales with coupling strength; stability requires the gain $\chi_\kappa$ to exceed a critical threshold.
-    (D) Microgravity adaptation ($g \to 0$) and \textbf{Spinal Jetlag}. The system relaxes towards the information reference state. The reduced mechanical strain $\gEff$ shown here corresponds to the \textbf{Convective Shutdown}~\cite{sato2025convective}, where loss of daily loading cycles halts solute transport. This triggers the ``Nuclear Stiffness Gauge'' downregulation (Active Inference failure) and stabilizes HIF-1$\alpha$, locking the spine in a ``permanent night'' swelling state that degrades the matrix ($B_{\mathrm{eff}}$) and precipitates scoliotic buckling.}
+    \caption{\textbf{Information-mechanical coupling produces the spinal S-curve and predicts microgravity adaptation.}
+    (A) Curvature profiles: the passive equilibrium under gravity (blue) is a monotonic sag, while the active control system with HOX-coupled stiffness modulation (orange) sustains the S-curve.
+    (B) Effective stiffness $g_{\mathrm{eff}}(s)$ highlights regions where the Bio-Gravitational Number ($\mathcal{B}_g$) is maximized to resist deformation.
+    (C) Deviation from the gravity-only equilibrium $\widehat{D}_{\mathrm{geo}}$ scales with coupling strength; stability requires the information--mechanical coupling $\chi_\kappa$ to exceed a critical threshold.
+    (D) Microgravity adaptation ($g \to 0$). The system relaxes towards the information reference state, predicting persistent S-curve geometry under unloading. This is consistent with astronaut spinal observations of persistent sagittal-plane curvature despite intervertebral disc expansion~\cite{green2018spinal}.}
     \label{fig:countercurvature_main}
 \end{figure}
 
 % Figure 5: Phase Diagram
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1.0\textwidth]{phase_diagram.png}
-    \caption{\textbf{Phase Diagram of Counter-Curvature Regimes.} Heatmap of normalized geodesic deviation $\Dgeohat$ in the $(\chi_\kappa, g)$ plane. Three regimes: (I)~Gravity-dominated (passive sag), (II)~Cooperative (stable S-curve, normal physiology), and (III)~Information-dominated (high $\chi_\kappa$, scoliosis-prone). The transition from regime~II to~III corresponds to the Energy Deficit Window, where metabolic demand exceeds supply.}
     \includegraphics[width=1.0\textwidth]{fig_phase_diagram_scoliosis.pdf}
-    \caption{\textbf{Phase Diagram of Countercurvature Regimes.} Heatmap of normalized geodesic deviation $\widehat{D}_{\mathrm{geo}}$ in the $(\chi_{\kappa},g)$ plane. Three distinct regimes are identified: (I) Gravity-dominated (sag), (II) Cooperative (stable S-curves matching biological norms), and (III) Information-dominated (high $\chi_\kappa$, leading to metric distortions and potential instability).}
+    \caption{\textbf{Phase Diagram of Counter-Curvature Regimes.} Heatmap of normalized deviation from the gravity-only equilibrium $\widehat{D}_{\mathrm{geo}}$ in the $(\chi_{\kappa},g)$ plane. Three regimes: (I)~Gravity-dominated (passive sag), (II)~Cooperative (stable S-curve matching biological norms), and (III)~Information-dominated (high $\chi_\kappa$, scoliosis-prone). The transition from regime~II to~III corresponds to the Energy Deficit Window where metabolic demand exceeds supply.}
     \label{fig:phase_diagram}
 \end{figure}
 
@@ -75,6 +89,6 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{energy_deficit_window.png}
-    \caption{\textbf{The Energy Deficit Window: Ages 11--15.} Metabolic power required to maintain the spinal S-curve (red) grows with spine length as $L^2$, while nutrient supply capacity to avascular intervertebral discs (blue) grows more slowly as $L^{0.5}$. The curves cross at spine length $L_{\mathrm{crit}} \approx 0.35$\,m, corresponding to ages 11--12 years (vertical dashed line). At L = 0.45\,m (typical 15-year-old adolescent), the energy deficit reaches ~41\%, creating peak vulnerability to scoliotic deformity. Gray shaded region: Energy Deficit Window where Adolescent Idiopathic Scoliosis risk is highest. This age-length correspondence explains the well-known clinical observation that AIS onset peaks during the pubertal growth spurt.}
+    \caption{\textbf{The Energy Deficit Window: Ages 11--15.} Integrated metabolic power required to maintain the spinal S-curve (red) grows with spine length as $L^4$ (active-tissue volume $\times$ moment arm), while diffusive nutrient supply to avascular intervertebral discs (blue) grows more slowly as $L^2$ (surface-area limited). The curves cross at spine length $L_{\mathrm{crit}} \approx 0.35$\,m, corresponding to ages 11--12 years (vertical dashed line). At L = 0.45\,m (typical 15-year-old adolescent), the energy deficit reaches ~41\%, creating peak vulnerability to scoliotic deformity. Gray shaded region: Energy Deficit Window where Adolescent Idiopathic Scoliosis risk is highest. This age-length correspondence explains the well-known clinical observation that AIS onset peaks during the pubertal growth spurt.}
     \label{fig:energy_deficit_window}
 \end{figure}

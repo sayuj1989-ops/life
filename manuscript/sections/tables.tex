@@ -137,7 +137,7 @@ IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & $L$ \\
 \end{table}
 \begin{table}[h!]
 \centering
-\caption{Comprehensive Statistical Summary of the Information-Elasticity Coupling (IEC) Framework. All statistical tests were independently computed using \textit{scipy.stats} to validate core computational claims.}
+\caption{Comprehensive Statistical Summary of the Information-Elasticity Coupling (IEC) Framework. All statistical tests were independently computed using \textit{scipy.stats} to summarize model-internal computational claims.}
 \label{tab:statistical_summary}
 \scriptsize
 \begin{tabular}{p{3.5cm}p{3cm}p{4cm}p{3.5cm}}
@@ -148,12 +148,11 @@ IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & $L$ \\
 Allometric Scaling & $Bg$ vs. Body Mass & Exponent = $-0.282 \pm 0.072$ \newline $R^2 = 0.744$ \newline Deviation from $-0.25$: $0.032$ & $p = 1.31 \times 10^{-3}$ \newline (Strong) \\
 \midrule
 \multicolumn{4}{l}{\textit{Energy Deficit Window \& Scoliosis Onset}} \\
-Critical Transition ($L_{crit}$) & Spine Length vs. Cobb Angle & $r = 0.983$ \newline Deficit Ratio Max = $38.5$ & $p = 2.74 \times 10^{-22}$ \newline (Strong) \\
-Anisotropy Rescue Effect & $L_{crit}$ vs. Anisotropy & $R^2 = 0.775$ \newline Saturation at $\ge 6.0$ & $p = 3.58 \times 10^{-17}$ \newline (Strong) \\
+Critical Transition ($L_{crit}$) & Spine Length vs. simulated Cobb Angle & $r = 0.983$ \newline Deficit Ratio Max = $38.5$ & $p = 2.74 \times 10^{-22}$ \newline (Model-internal) \\
+Anisotropy Rescue Effect & $L_{crit}$ vs. Anisotropy & $R^2 = 0.775$ \newline Saturation at $\ge 6.0$ & $p = 3.58 \times 10^{-17}$ \newline (Model-internal) \\
 \midrule
 \multicolumn{4}{l}{\textit{Mechanical Instability \& Directional-Stiffness Anisotropy}} \\
 Directional Misalignment & Peak Stiffness Mismatch & Position = $0.596$ (Normalized) \newline Reduction = $31.1\%$ & Matching Thoracolumbar Apex (Verified) \\
-Circadian Disruption (Jetlag) & Cobb Angle (Jetlag vs. Baseline) & $2.52$-fold increase \newline (Mean $24.18^\circ$ vs. $9.61^\circ$) & $p = 2.59 \times 10^{-4}$ \newline (Moderate) \\
 \bottomrule
 \end{tabular}
 \end{table}

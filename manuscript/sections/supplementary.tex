@@ -108,6 +108,31 @@ This mechanism generates three falsifiable predictions:
     \item Pulsatile axial compression at the appropriate circadian phase will preserve spinal geometry more effectively than static compression.
 \end{enumerate}
 
+\subsection{Exploratory Spinal-Jetlag Simulation}
+
+As an exploratory extension, we incorporated circadian variation into the information-coupling term and compared an entrained baseline with a high-$\chi_\kappa$ phase-shifted condition. The phase-shifted simulation produced a 2.52-fold increase in mean simulated Cobb angle compared with the entrained baseline ($24.18^\circ$ vs.\ $9.61^\circ$; Mann--Whitney U test, $p = 2.59\times 10^{-4}$). This result is retained as a supplementary hypothesis-generating analysis only. It is not used as a core claim of the main-text model and requires independent validation against disc-clock, actigraphy, and longitudinal AIS imaging data before clinical interpretation.
+
+\section{GPU Screening and PyElastica Refinement Workflow}
+
+We implemented an optional NVIDIA Warp workflow to accelerate broad passive-mechanics parameter screening before selecting cases for nonlinear Cosserat-rod refinement. The screening kernel evaluates the Euler--Bernoulli cantilever tip-sag approximation, the Bio-Gravitational Number $\mathcal{B}_g$, the passive sag ratio, and a dimensionless triage score across deterministic combinations of spine length ($0.25$--$0.55$\,m), radius ($0.007$--$0.014$\,m), effective Young's modulus ($10^6$--$1.5\times10^9$\,Pa), and tissue density ($900$--$1200$\,kg/m$^3$). This workflow is computational only: it is designed to identify parameter regimes requiring full nonlinear simulation, not to generate clinical predictions.
+
+The command
+\begin{verbatim}
+python scripts/experiments/experiment_nvidia_warp_beam_sweep.py \
+  --n-samples 100000 \
+  --device auto \
+  --out-dir results/nvidia_warp_beam_sweep \
+  --max-csv-rows 10000 \
+  --refine-pyelastica \
+  --refine-count 3 \
+  --refine-elements 20 \
+  --refine-final-time 0.5 \
+  --refine-max-sag-ratio 2.0
+\end{verbatim}
+was run on an NVIDIA GB10 GPU using \texttt{warp-lang} 1.13.0. The Warp kernel evaluated 100,000 candidate parameter sets in 0.0057\,s after compilation (approximately $1.74\times10^7$ samples/s). The screened distribution had median $\mathcal{B}_g = 27.41$, minimum $\mathcal{B}_g = 0.0083$, and 0.127\% of candidates below the $\mathcal{B}_g < 0.1$ low-passive-stability threshold. The 95th percentile passive sag ratio was 0.049.
+
+The bounded refinement stage selected high-risk rows with analytic sag ratio $\leq 2.0$ and re-ran three cases through the validated PyElastica beam setup. All three PyElastica refinements completed successfully. The refined cases had $\mathcal{B}_g \approx 0.063$ and analytic sag ratios near 2.0; their large discrepancy from the small-deflection analytic formula (maximum relative error 0.991) confirms that the Warp screen correctly identifies regimes where the analytic small-deflection approximation is no longer sufficient and nonlinear Cosserat refinement is required. These GPU-screening results are therefore reported as a reproducibility and triage tool rather than as a biological validation result.
+
 \section{Complete Theoretical Derivations}
 \label{sec:supp_theory}
 

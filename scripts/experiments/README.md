@@ -37,3 +37,23 @@ All scripts inheriting from `StandardExperimentParser` support:
 - `experiment_*.py`: General experiments (often reproducible or long-lived).
 - `weekly_sim_*.py`: Specific simulations tied to weekly research goals.
 - `run_*.py`: Legacy scripts (consider refactoring or using as wrappers).
+
+## NVIDIA Warp Acceleration
+
+`experiment_nvidia_warp_beam_sweep.py` is an optional GPU screening layer for
+large Euler-Bernoulli beam sweeps. It does not replace the PyElastica
+Cosserat-rod validation path; it is used to triage high-risk parameter regimes
+before slower nonlinear simulations.
+
+```bash
+python scripts/experiments/experiment_nvidia_warp_beam_sweep.py \
+  --n-samples 100000 \
+  --device auto \
+  --out-dir results/nvidia_warp_beam_sweep \
+  --refine-pyelastica \
+  --refine-count 3 \
+  --refine-max-sag-ratio 2.0
+```
+
+Install the optional dependency with `pip install warp-lang` if it is not
+already present.

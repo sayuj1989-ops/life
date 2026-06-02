@@ -1,0 +1,55 @@
+\section{Methods}
+
+\subsection{Computational Framework}
+
+We implemented the Information-Elasticity Coupling framework using two complementary approaches: (1) a fast deterministic beam model for parameter space exploration, and (2) full 3D Cosserat-rod simulations (a standard slender-continuum model in spine biomechanics) capturing both bending and twisting under large deformations.
+
+For 3D simulations, we used \texttt{PyElastica}~\cite{pyelastica_zenodo,gazzola2018forward}, an open-source Python implementation of Cosserat rod theory. The spine was modeled as a slender elastic rod ($n=50$--100 elements) with length $L=0.3$--0.5\,m, radius $r=0.01$\,m, Young's modulus $E_0=1$\,GPa, and density $\rho=1100$\,kg/m$^3$ (representative of vertebra-disc composite properties). Boundary conditions: clamped at base (sacrum), free at top (cranium), under uniform gravitational loading $\mathbf{g} = -9.81$\,m/s$^2$.
+
+As an optional acceleration layer, we implemented a GPU-native NVIDIA Warp screening workflow for large Euler--Bernoulli parameter sweeps. This workflow evaluates analytic passive-sag and $\mathcal{B}_g$ quantities across candidate length, radius, stiffness, and density combinations, then forwards selected high-risk regimes to the validated PyElastica beam setup for nonlinear refinement. Warp results are used only for computational triage and reproducibility auditing; all mechanistic claims in the main text remain based on the deterministic beam model, PyElastica Cosserat simulations, and model-internal statistical analyses described below.
+
+\subsection{Information Field Specification}
+
+The developmental information field $I(s)$ encoding HOX-patterned positional identity was parameterized as a bimodal Gaussian:
+\begin{equation}
+I(s) = A_c \exp\left[-\frac{(s/L - s_c)^2}{2\sigma_c^2}\right] + A_l \exp\left[-\frac{(s/L - s_l)^2}{2\sigma_l^2}\right] + I_0,
+\label{eq:info_field}
+\end{equation}
+with peaks at normalized positions $s_c = 0.80$ (cervical) and $s_l = 0.25$ (lumbar), widths $\sigma_c = 0.08$ and $\sigma_l = 0.10$, amplitudes $A_c = 0.5$ and $A_l = 0.7$, and baseline $I_0 = 0.3$. This functional form reproduces the anatomic distribution of lordotic (high $I$) and kyphotic (low $I$) regions.
+
+For scoliosis simulations, a small lateral asymmetry was introduced: $I(s) \to I(s) + \varepsilon_{\mathrm{asym}} \exp[-(s/L - 0.6)^2/(2 \cdot 0.08^2)]$ with $\varepsilon_{\mathrm{asym}} = 0.01$--0.05 (1--5\% left-right variation, representing normal developmental noise).
+
+\subsection{Information-Elasticity Coupling Implementation}
+
+The information field couples to spine mechanics through three channels: (1) rest curvature modulation: $\bm{\kappa}^0(s) = \bm{\kappa}_{\mathrm{gen}} + \chi_\kappa \nabla I(s)$, (2) stiffness modulation: $B(s) = E_0 I_{\mathrm{area}} (1 + \chi_E I(s))$, and (3) active moment generation: $\mathbf{M}_{\mathrm{active}}(s) = \chi_M I'(s) \hat{\mathbf{n}}(s)$. Coupling constants $\chi_\kappa$, $\chi_E$, $\chi_M$ were systematically varied to explore the parameter space. We implemented custom callbacks in PyElastica to update local material properties and rest configurations based on $I(s)$ at each timestep.
+
+\subsection{Bio-Gravitational Number Calculation}
+
+For cross-species analysis, we computed $\mathcal{B}_g = EI/(MgL^2)$ using published allometric data for 12 vertebrate species spanning mouse to dolphin (with both Human-Adult and Human-Child as separate developmental stages of the same hominin species; we acknowledge this limits independent biped sampling and recommend extension to gibbon, orangutan, and bonobo for stronger phylogenetic claims). Spine length $L$, body mass $M$, and vertebral dimensions were obtained from comparative anatomy databases. Flexural stiffness $EI$ was estimated from vertebral cross-sectional geometry and published elastic moduli for bone-disc composites. Log-log regression was performed to extract scaling exponents with 95\% confidence intervals via bootstrap resampling (10,000 iterations).
+
+\subsection{Energy Deficit Window Quantification}
+
+Metabolic demand for counter-curvature maintenance was modeled as $D(L) \propto L^4$ (bending moment $\sim L^2$, correction effort $\sim L^2$). Nutrient supply capacity to avascular discs was modeled as $S(L) \propto L^2$ (diffusion-limited by endplate surface area)~\cite{urban2004nutrition}. The crossover point $L_{\mathrm{crit}}$ was determined by equating $D(L_{\mathrm{crit}}) = S(L_{\mathrm{crit}})$. Age correspondence was mapped using WHO pediatric spine growth charts.
+
+\subsection{Outcome Metrics}
+
+For each simulation, we computed: (1) \textbf{Equilibrium deviation} $\widehat{D}_{\mathrm{geo}}$ quantifying departure from the gravity-only passive equilibrium configuration, (2) \textbf{Lateral scoliosis index} $S_{\mathrm{lat}} = \max|y|/L_{\mathrm{eff}}$ measuring coronal-plane asymmetry, (3) \textbf{Cobb angle} via linear fits to upper and lower spine segments (standard clinical measure), and (4) \textbf{Lordosis/kyphosis angles} from sagittal curvature profiles, compared against clinical norms (cervical lordosis $40$--$60^{\circ}$, thoracic kyphosis $20$--$45^{\circ}$, lumbar lordosis $40$--$60^{\circ}$)~\cite{white_panjabi_spine}.
+
+\subsection{Clinical Cohort and Bracing Simulation}
+
+We validated the model's clinical translation using a simulated cohort of $N=1,000$ pediatric patients (80\% female, ages 10--15, initial Cobb angles $10^\circ$--$30^\circ$, Risser stages 0--4). Patient age and sex were mapped to spinal length $L$ and total body mass $M$ using standard pediatric anthropometric growth charts: spinal length was interpolated using Dimeglio growth data, and body mass was interpolated using WHO weight-for-age charts. For prospective registry validation where direct radiographic spine-length measurement is unavailable, $L$ is approximated as $L = 0.31 \times h_{\mathrm{stand}}$ (Dimeglio scaling from standing height $h_{\mathrm{stand}}$); errors-in-variables correction is applied to $B_g^{\mathrm{eff}}$ estimates to account for proxy uncertainty.
+
+Skeletal maturity was mapped from Risser sign $R \in [0, 5]$ to spinal bending stiffness $E_0 I(R) = E_0 I_{\mathrm{base}} e^{\alpha R}$, where $E_0 I_{\mathrm{base}} = 1.2$\,N$\cdot$m$^2$ and $\alpha = 0.25$, modeling the exponential increase in flexural rigidity with progressive vertebral ossification. Cobb angle $\Phi$ (in degrees) was converted to radians and coupled to geometric stiffness reduction under gravity: $B_g^{\mathrm{eff}} = B_g / (1 + \mu \Phi_{\mathrm{rad}}^2)$ with a geometric scaling factor $\mu = 1.8$.
+
+We calculated the clinical Lonstein \& Carlson Progression Factor $PF = (\Phi - 3R)/\mathrm{Age}$ and its corresponding progression probability $P_{\mathrm{prog, clinical}} = 1 / (1 + e^{-k(PF - PF_0)})$ with $PF_0 = 1.5$ and $k=1.7$. The model's progression probability was defined as a transition sigmoid $P_{\mathrm{prog, model}} = 1 / (1 + e^{\lambda (B_g^{\mathrm{eff}} - B_{g,c})})$. We ran a grid search to calibrate the model's parameters to match the BrAIST trial's overall outcomes: $B_{g,c} = 0.0180$ and $\lambda = 110.0$. Bracing wear was simulated by introducing a load-sharing factor that reduces gravitational mass by 37\% ($M_{\mathrm{eff}} = 0.63 M$). Simulated success rates (defined as skeletal maturity without progression to a Cobb angle $\ge 50^\circ$) were computed and compared to the BrAIST trial overall and subgroup outcomes.
+
+\subsection{AlphaFold Protein Structural Analysis}
+
+We retrieved AlphaFold v6 predicted structures for 23 mechanotransduction and metabolic regulator proteins from the AlphaFold Database. Structural anisotropy (ratio of principal moments of inertia) and disorder fraction (DSSP secondary structure analysis) were computed as proxies for structural maintenance cost. Statistical comparison between demand-side (mechanosensors: PIEZO1/2, Vimentin, Lamin A/C) and supply-side (metabolic regulators: SIRT1, PGC-1$\alpha$, ARNTL) protein classes was performed via Mann-Whitney U test. This analysis is exploratory; AlphaFold limitations in predicting mechanical properties under load are acknowledged~\cite{gomes2022protein}.
+
+
+\subsection{Numerical Validation}
+
+Convergence was verified by varying element count ($n=10$--200); deviation from the gravity-only equilibrium converged to within 1\% for $n \geq 50$. The PyElastica implementation was validated against the analytical Euler-Bernoulli cantilever solution in the gravity-only small-deflection limit; relative tip-deflection error was below 10\% across $n=20$--80 elements and decreased with mesh refinement. The optional NVIDIA Warp screen was benchmarked separately as a high-throughput pre-filter and was not used as an independent validation of clinical behavior. All source code is available in the \texttt{spinalmodes} Python package (see Data Availability).
+
+\textit{Detailed methods including steered molecular dynamics protocols, tissue homogenization calculations, and protein dynamics modeling are provided in Supplementary Methods Sections S5--S7.}

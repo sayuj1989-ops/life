@@ -93,6 +93,26 @@ This requires a local TeX toolchain (`pdflatex` and `bibtex`, or `latexmk`).
 
 For protein structure analysis steps, refer to [research/alphafold_countercurvature/README.md](research/alphafold_countercurvature/README.md) or explore the module directly.
 
+### 6. Bio-Gravitational Number Validation Test
+
+**NEW (2026-05-04):** Falsifiable computational test of the $\mathcal{B}_g = 1.0$ critical point hypothesis.
+
+```bash
+# Run quick validation test (~30 min)
+python scripts/experiments/experiment_bg_critical_point_validation.py \
+    --phase all --scales 1.0 --seeds 3 --n-chi-M 20 \
+    --output results/bg_validation_quick/
+
+# Run full protocol (~6 hours, 3 scales × 8 seeds × 30 chi_M)
+python scripts/experiments/experiment_bg_critical_point_validation.py \
+    --phase all --scales 0.5 1.0 2.0 --seeds 8 --n-chi-M 30 \
+    --output results/bg_validation/
+```
+
+See [`VALIDATION_SUMMARY.md`](VALIDATION_SUMMARY.md) for hypothesis, design, and decision criteria.  
+See [`QUICKSTART_VALIDATION.md`](QUICKSTART_VALIDATION.md) for detailed usage.  
+See [`VALIDATION_TEST_DESIGN.md`](VALIDATION_TEST_DESIGN.md) for full protocol (analogy to consciousness-geometry Ising test).
+
 ---
 
 ## Key Results

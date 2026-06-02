@@ -1,0 +1,54 @@
+\documentclass[12pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
+
+\signature{Sayuj Krishnan S., MBBS, DNB (Neurosurgery)\\Consultant Neurosurgeon and Spine Surgeon\\Yashoda Hospitals, Malakpet\\Hyderabad 500036, India\\dr.sayujkrishnan@gmail.com}
+
+\address{Sayuj Krishnan S.\\Department of Neurosurgery\\Yashoda Hospitals, Malakpet\\Hyderabad 500036, India}
+
+\begin{document}
+
+\begin{letter}{The Editor-in-Chief\\Spine Deformity\\Springer Nature}
+
+\opening{Dear Editor,}
+
+We submit our manuscript entitled \textbf{``Active Geometric Maintenance of the Spinal S-Curve Against Gravity: An Information--Mechanical Coupling Model for Adolescent Idiopathic Scoliosis Onset''} for consideration as an Original Article in \textit{Spine Deformity}.
+
+The clinical question motivating this work is one every pediatric spine surgeon faces: \textit{why does adolescent idiopathic scoliosis (AIS) cluster so tightly at peak height velocity, in the thoracic spine, and overwhelmingly in girls?} Existing explanatory frameworks --- neuromuscular asymmetry, genetic predisposition, Hueter--Volkmann asymmetric loading, melatonin-circadian dysregulation --- each illuminate parts of the picture but none unify the timing, anatomic localization, and sex predominance under a single quantitative mechanism. As a result, treatment remains empirical and we cannot predict, prior to curve onset, which adolescents will progress.
+
+We propose that the spine maintains its three-dimensional geometry against gravity through an active control system whose operating cost rises sharply during the growth spurt. The framework is presented in three independently-testable strands: (i) a cross-species allometric law showing that humans uniquely operate near the boundary at which passive bending stiffness no longer suffices to maintain the upright spine; (ii) AlphaFold-derived structural analysis showing that a curated subset of extended-filament/channel mechanosensors (Vimentin, Lamin~A/C, PIEZO2, SCRIB, PTK7) are 72--80\% more structurally elongated than metabolic regulators ($p = 0.011$, Cohen's $d = 1.19$, $n = 23$ original; $p = 0.0094$, $d = 1.22$, $n = 26$ extended cohort). The signal narrows when broader mechanotransduction-tagged genes are included, and the result is borderline-fragile to single-gene removal in the small supply cohort ($n = 7$); these limitations are explicitly reported. Mechanosensors additionally show $\sim 70$\% fewer hinge regions per residue ($p = 0.003$, $n = 61$); and (iii) a delay-differential model of postural control showing in-silico that the model proprioceptive lag rises non-linearly during the growth spurt, with predicted control-energy cost coinciding with the timing of AIS clinical onset (model-internal correlation $r = 0.983$, $p = 2.7 \times 10^{-22}$); a separate in-silico analysis shows the simulated Cobb-angle response to tissue anisotropy follows a strong protective scaling ($R^2 = 0.775$, $p < 10^{-17}$). All reported correlations are model-internal; prospective external validation against AIS cohorts is identified as the immediate next step and is the principal limitation we acknowledge in the Discussion.
+
+The work is framed as complementing rather than displacing existing models. We use the standard Cosserat-rod biomechanics formulation augmented with a developmental-information field, and we explicitly identify how genetic risk loci (PIEZO2, LBX1, POC5) and metabolic factors (NAD$^+$/SIRT1) enter as parameters of the same control-system equations.
+
+Three hypothesis-generating clinical implications follow from the framework. We emphasize these are model-derived predictions intended to motivate prospective testing in IRB-approved cohorts; none should be interpreted as a current clinical recommendation.
+
+\begin{enumerate}
+\item \textbf{Proprioceptive latency as a candidate pre-clinical biomarker:} longitudinal somatosensory evoked potentials are predicted to rise non-linearly through the growth spurt in adolescents who later develop curves. If confirmed in a prospective cohort, this could in principle distinguish at-risk adolescents prior to Cobb-angle onset.
+\item \textbf{Metabolic rescue (hypothesis only):} the model predicts that mitochondrial cofactor availability (e.g., NAD$^+$) modulates simulated curve progression. This generates a testable hypothesis for randomized trials only; it \textbf{does not endorse off-label nutraceutical use in adolescents outside an IRB-approved protocol}.
+\item \textbf{Brace-timing rationale, complementing BRAIST:} the predicted threshold structure of the control system is consistent with the sharp efficacy window reported in the BRAIST trial (Weinstein \emph{et al.}, NEJM 2013) and offers, if validated, a quantitative scaffold for refining intervention timing relative to skeletal maturity. We make no claim that current bracing protocols should be altered on the basis of this model.
+\end{enumerate}
+
+All three predictions are testable in existing AIS cohorts without new instrumentation. Source code, data, and the full reproducibility package are publicly available at \url{https://github.com/sayujks0071/scoliosis} (current submission tag \texttt{v1.4-editorial}; the full revision history including \texttt{v1.0-submission} and intermediate tags is preserved).
+
+This manuscript has not been submitted elsewhere. The corresponding author has full clinical access to AIS patient cohorts at Yashoda Hospitals and welcomes collaboration with the journal's review process. We declare no competing interests; no external funding was received.
+
+We suggest the following potential reviewers with directly relevant expertise:
+
+\begin{itemize}
+\item \textbf{Prof.\ Stuart L.\ Weinstein} (University of Iowa) --- AIS natural history and bracing trials
+\item \textbf{Prof.\ Alain Moreau} (Universit\'{e} de Montr\'{e}al) --- AIS molecular biology, melatonin/POC5 axis
+\item \textbf{Prof.\ Carl-Eric Aubin} (Polytechnique Montr\'{e}al) --- spine biomechanics, Cosserat-rod modeling
+\item \textbf{Prof.\ Peter O.\ Newton} (Rady Children's Hospital, San Diego) --- pediatric spine surgery, Lenke classification
+\item \textbf{Prof.\ Tomohiko Kayano} (Saitama Medical University) --- LBX1 / AIS genetics
+\end{itemize}
+
+We believe the framework provides a quantitative scaffold around which the cumulative clinical, genetic, and biomechanical knowledge in our field can be organized --- and from which actionable, falsifiable predictions follow.
+
+Thank you for your consideration.
+
+\closing{Sincerely,}
+
+\end{letter}
+\end{document}

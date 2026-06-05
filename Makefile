@@ -23,7 +23,7 @@ smoke:
 	$(PYTHON) -m spinalmodes.cli version
 
 test:
-	$(PYTHON) -m pytest -q tests/test_cli.py tests/test_smoke.py tests/test_minimal_experiment_script.py tests/test_generate_spine_daily_update.py
+	$(PYTHON) -m pytest -q tests/test_cli.py tests/test_smoke.py tests/test_minimal_experiment_script.py tests/test_generate_spine_daily_update.py tests/test_longitudinal_progression.py
 
 build:
 	$(PYTHON) -m pip install build

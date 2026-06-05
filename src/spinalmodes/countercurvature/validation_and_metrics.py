@@ -18,6 +18,14 @@ from typing import TYPE_CHECKING, Optional
 import numpy as np
 from numpy.typing import NDArray
 
+try:
+    from scipy.integrate import trapezoid as trapz_integral
+except ImportError:
+    try:
+        from numpy import trapezoid as trapz_integral
+    except ImportError:
+        from numpy import trapz as trapz_integral
+
 from .info_fields import InfoField1D
 
 if TYPE_CHECKING:
@@ -85,12 +93,12 @@ def geodesic_curvature_deviation(
 
     # Weighted L2 distance in the countercurvature metric
     integrand = g_eff * dkappa**2
-    D_geo_sq = float(np.trapz(integrand, s))
+    D_geo_sq = float(trapz_integral(integrand, s))
     D_geo = float(np.sqrt(max(D_geo_sq, 0.0)))
 
     # Baseline: passive curvature "energy" in g_eff
     base_integrand = g_eff * kappa_passive**2
-    base_energy = float(np.trapz(base_integrand, s))
+    base_energy = float(trapz_integral(base_integrand, s))
 
     # Normalized distance (dimensionless)
     D_geo_norm = D_geo / (np.sqrt(base_energy) + eps)
@@ -174,7 +182,7 @@ def compute_countercurvature_energy(
     if method == "l2_distance":
         diff = centerline_info - centerline_passive
         squared_distances = np.sum(diff**2, axis=-1)
-        return float(np.trapz(squared_distances))
+        return float(trapz_integral(squared_distances))
     return 0.0
 
 def compute_effective_metric_deviation(
@@ -186,7 +194,7 @@ def compute_effective_metric_deviation(
     """Compute the L2 norm of curvature deviation as a metric deviation."""
     delta_kappa = kappa_info - kappa_passive
     if s is not None:
-        return float(np.sqrt(np.trapz(delta_kappa**2, x=s)))
+        return float(np.sqrt(trapz_integral(delta_kappa**2, x=s)))
     return float(np.linalg.norm(delta_kappa) / np.sqrt(len(delta_kappa)))
 
 def compute_shape_preservation_index(

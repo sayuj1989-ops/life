@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-04  
 **Principal Investigator:** Dr Sayuj Krishnan  
-**Status:** Ready for implementation  
+**Status:** Falsified (NULL result: Global Bg* median = 626.41 vs predicted 1.0)  
 **Analogy:** Consciousness-geometry Ising test (NULL result: ρ = -0.15, p = 0.53)
 
 ---
@@ -232,8 +232,22 @@ Manuscript must shift from "critical threshold" to "scaling law" narrative.
 - [x] Experiment script implemented (experiment_bg_critical_point_validation.py)
 - [x] Quick-start guide created (QUICKSTART_VALIDATION.md)
 - [x] Script validated (--help works, PyElastica available)
-- [ ] Analysis script implementation (Week 1)
-- [ ] Quick test run (Week 1)
-- [ ] Full protocol run (Week 2)
-- [ ] Decision summary (Week 3)
+- [x] Analysis script implementation (Week 1)
+- [x] Quick test run (Week 1)
+- [x] Full protocol run (Week 2)
+- [x] Decision summary (Week 3) -> **FAIL (Falsified)**
 - [ ] Manuscript update or falsification note (Week 4)
+
+---
+
+## Validation Results (Computed via JAX GPU Sweep)
+
+A full GPU-accelerated validation sweep of 720 simulations was completed (3 scales × 8 seeds × 30 $\chi_M$ values) using `experiment_bg_validation_jax.py` and analyzed using `validate_bg_critical_point.py`. The results **falsify** the Bio-Gravitational critical point prediction of $\mathcal{B}_g^* \approx 1.0$:
+
+- **Scale 0.5 (Mouse):** 0/8 curves yielded a good sigmoid fit ($R^2 > 0.9$).
+- **Scale 1.0 (Human):** 8/8 curves yielded good fits, but the critical point hit the optimization boundary $\mathcal{B}_g^* \approx 999.99$ (expected $\approx 1.0$).
+- **Scale 2.0 (Giraffe):** 8/8 curves yielded good fits, but the critical point was $\mathcal{B}_g^* \approx 252.83$.
+- **Universality:** Kruskal-Wallis test showed highly significant scale dependence ($H = 15.0$, $p = 0.0001$), meaning $\mathcal{B}_g$ does not serve as a universal dimensionless scaling parameter for critical stability.
+- **Global Median:** $\mathcal{B}_g^* \approx 626.4$, failing the prediction threshold ($0.3 < \mathcal{B}_g^* < 3.0$).
+
+**Verdict:** The Bio-Gravitational Number hypothesis of a sharp phase transition at $\mathcal{B}_g \approx 1.0$ is falsified. The manuscript narrative needs to transition to a smooth mechanical scaling/equilibrium description.

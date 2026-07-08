@@ -17,6 +17,15 @@ During adolescent growth, two unfavorable scaling relationships collide. The met
 
 These curves cross at a critical spine length $L_{\mathrm{crit}} \approx 0.35$\,m. For $L > L_{\mathrm{crit}}$, the system enters an \textbf{Energy Deficit Window} where metabolic demand exceeds supply capacity. At $L = 0.45$\,m (typical 15-year-old), the deficit reaches approximately 41\%. This age-length correspondence ($L_{\mathrm{crit}} \approx 0.35$\,m $\to$ ages 11--12) matches the well-known clinical peak incidence of Adolescent Idiopathic Scoliosis without parameter fitting to clinical data.
 
+\subsection{The Recovery Ratchet: Restoration versus Growth-Remodeling}
+
+We interpret AIS onset not as a postural-balance failure but as a \emph{geometry-recovery} failure. Growth continually perturbs the spine from its reference shape; the active system must restore that shape faster than growth cements the deviation. We split the standing curvature deviation into a recoverable elastic component $\kappa_e$ (the part that reduces supine or on bending films) and a permanently remodeled component $\kappa_p$. Two rates compete: the active geometric-restoration rate $k_r$ and the growth-remodeling rate $k_g(t)$, by which a sustained deviation is cemented through Hueter--Volkmann growth-plate modulation~\cite{stokes2006hueter, villemure2009growth}. For a perturbation that recoils at rate $k_r$ and is cemented at rate $k_g$, the fraction converted to permanent set is $k_g/(k_r+k_g)$, giving
+\begin{equation}
+\frac{d\kappa_p}{dt} = k_g(t)\,\kappa_e\,\frac{k_g(t)}{k_r + k_g(t)}, \qquad \mathrm{flexibility}(t) = \frac{\kappa_e}{\kappa_e + \kappa_p(t)}.
+\label{eq:recovery_ratchet}
+\end{equation}
+When $k_r \gg k_g$ the spine recoils and little sets (flexibility $\to 1$); when $k_g \gtrsim k_r$---as occurs when $k_g(t)$ peaks at peak height velocity (PHV)---each perturbation is partly cemented before it can be recovered, and the deviation \emph{ratchets} monotonically into a permanent curve (Fig.~\ref{fig:recovery_ratchet}). Because $k_g(t)$ is maximal during the growth spurt, the ratchet predicts the clustering of AIS onset at PHV \emph{without} invoking a postural-balance deficit, consistent with affected adolescents being otherwise neurologically normal and curves being detected incidentally. The Energy Deficit Window acts within this framework by lowering $k_r$---starving the metabolically expensive restoration machinery---and known genetic risk factors (reduced collagen-dependent damping, altered mechanosensation) likewise shift an individual toward the ratchet regime. The model yields a falsifiable structural signature: \emph{curve flexibility (reducibility) declines as $\kappa_p$ accumulates}, so progressing curves should become progressively less reducible on supine and bending films---a prediction already corroborated by the established clinical association between low curve flexibility and progression~\cite{cheung2020supine, ohrtnissen2016flexibility, alfraihat2022random}.
+
 \subsection{Information-Elasticity Coupling: HOX Genes to Geometry}
 
 The model formalizes how developmental patterning genes (particularly HOX genes encoding vertebral identity along the cranio-caudal axis) translate into mechanical geometry. We introduce an \textbf{Information Field} $I(s)$ representing the spatial concentration of HOX-encoded positional information along the spine (coordinate $s$). This field couples to spine mechanics through three channels (see Supplementary Theory for full derivation):
@@ -27,7 +36,7 @@ The model formalizes how developmental patterning genes (particularly HOX genes 
 \item \textbf{Active moment generation}: Information gradients drive active muscular moments maintaining the S-curve.
 \end{enumerate}
 
-When the energy deficit exceeds a critical threshold, this active control system can no longer suppress small left-right asymmetries (inevitable developmental noise, typically $\sim 1$--5\%). These asymmetries, benign during childhood, are amplified into macroscopic scoliotic deformities (Cobb angles $> 15^{\circ}$) during the deficit window.
+When the energy deficit exceeds a critical threshold, this active control system can no longer suppress small left-right asymmetries (inevitable developmental noise, typically $\sim 1$--5\%). Under the recovery ratchet above, such asymmetries---benign during childhood because they are readily recovered---are instead cemented rather than recovered once $k_g \gtrsim k_r$, ratcheting into macroscopic scoliotic deformities (Cobb angles $> 15^{\circ}$) during the deficit window.
 
 \subsection{Why Lateral (Coronal Plane) Buckling?}
 

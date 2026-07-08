@@ -61,7 +61,7 @@ releases/
 manuscript/submission_manuscript*.pdf
 manuscript/*_blinded.pdf
 manuscript/SDEF-*.pdf
-manuscript_overleaf_*.zip
+manuscript_overleaf*.zip
 
 # LaTeX (Manuscript build artifacts)
 manuscript/*.aux

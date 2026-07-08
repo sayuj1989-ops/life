@@ -56,6 +56,13 @@ logs/
 *.log
 cloudflared*.log
 
+# Release / submission build artifacts (regenerable; provenance only)
+releases/
+manuscript/submission_manuscript*.pdf
+manuscript/*_blinded.pdf
+manuscript/SDEF-*.pdf
+manuscript_overleaf_*.zip
+
 # LaTeX (Manuscript build artifacts)
 manuscript/*.aux
 manuscript/*.log

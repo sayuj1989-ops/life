@@ -18,7 +18,11 @@ def main():
     df['Weight_N'] = df['Mass_kg'] * g
     df['Bg'] = df['EI_Nm2'] / (df['Weight_N'] * df['Length_m']**2)
 
-    # Filter out Giraffe and Dolphin as per memory
+    # Pre-specified exclusions, reported in Methods and Results:
+    #   Giraffe - cervical specialisation makes L non-comparable to trunk-dominated spines
+    #   Dolphin - aquatic, no gravity-driven sagittal loading, so Bg has no equivalent meaning
+    # Note both sit BELOW/near the human adult on computed Bg (0.0032, 0.0199 vs 0.0101);
+    # excluding them does not manufacture human uniqueness and the paper no longer claims it.
     filtered_df = df[~df['Species'].isin(['Giraffe', 'Dolphin'])].copy()
 
     # Log-log regression

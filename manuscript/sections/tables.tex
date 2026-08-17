@@ -2,23 +2,23 @@
 
 \begin{table}[h!]
 \centering
-\caption{Cross-species Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$. Species with $\mathcal{B}_g < 0.1$ (shaded) require active metabolic maintenance of spinal geometry. Humans occupy the deepest position in the Allometric Trap.}
+\caption{Cross-species Bio-Gravitational Number $\mathcal{B}_g = EI/(MgL^2)$, computed directly from the tabulated $M$, $L$ and $EI$. $\mathcal{B}_g$ declines monotonically with body mass; on these stiffness estimates only the mouse exceeds $0.1$, and the human adult ($\mathcal{B}_g = 0.0101$) is \emph{not} distinguished from large quadrupeds by $\mathcal{B}_g$ alone. Shading marks the two human rows for reference, not a threshold crossing. $EI$ values are single-source estimates of heterogeneous provenance (see \texttt{Notes} in \texttt{data/species\_parameters.csv}); the ordering is provisional.}
 \label{tab:cross_species}
 \small
 \begin{tabular}{lccccl}
 \toprule
 \textbf{Species} & \textbf{Mass (kg)} & \textbf{Length (m)} & \textbf{EI (Nm$^2$)} & \textbf{$\mathcal{B}_g$} & \textbf{Posture} \\
 \midrule
-Mouse & 0.03 & 0.05 & 0.00008 & 10.9 & Quadruped \\
-Rat & 0.3 & 0.15 & 0.002 & 3.02 & Quadruped \\
-Rabbit & 2.5 & 0.35 & 0.03 & 0.99 & Quadruped \\
-Cat & 4.0 & 0.45 & 0.06 & 0.76 & Quadruped \\
-Dog & 20.0 & 0.75 & 0.5 & 0.45 & Quadruped \\
-Chimpanzee & 50.0 & 0.5 & 1.6 & 0.65 & Facultative biped \\
-\rowcolor{yellow!15} Human (child) & 30.0 & 0.45 & 1.2 & 0.06 & Biped \\
-\rowcolor{yellow!15} Human (adult) & 70.0 & 0.6 & 2.5 & 0.01 & Biped \\
-Horse & 500.0 & 1.5 & 40.0 & 0.36 & Quadruped \\
-Elephant & 4000.0 & 2.5 & 550.0 & 0.22 & Quadruped \\
+Mouse & 0.03 & 0.05 & 0.00008 & 0.1087 & Quadruped \\
+Rat & 0.3 & 0.15 & 0.002 & 0.0302 & Quadruped \\
+Rabbit & 2.5 & 0.35 & 0.03 & 0.0100 & Quadruped \\
+Cat & 4.0 & 0.45 & 0.06 & 0.0076 & Quadruped \\
+Dog & 20.0 & 0.75 & 0.5 & 0.0045 & Quadruped \\
+Chimpanzee & 50.0 & 0.5 & 1.6 & 0.0130 & Facultative biped \\
+\rowcolor{yellow!15} Human (child) & 30.0 & 0.45 & 1.2 & 0.0201 & Biped \\
+\rowcolor{yellow!15} Human (adult) & 70.0 & 0.6 & 2.5 & 0.0101 & Biped \\
+Horse & 500.0 & 1.5 & 40.0 & 0.0036 & Quadruped \\
+Elephant & 4000.0 & 2.5 & 550.0 & 0.0022 & Quadruped \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -145,11 +145,11 @@ IGF1R & P08069 & $\Gamma_{m}$ & 1.43 & Globular & 78.0 & $L$ \\
 \textbf{Mechanism / Hypothesis} & \textbf{Metric Evaluated} & \textbf{Statistical Result} & \textbf{Significance Level} \\
 \midrule
 \multicolumn{4}{l}{\textit{Cross-Species Scaling \& The Allometric Trap}} \\
-Allometric Scaling & $Bg$ vs. Body Mass & Exponent = $-0.282 \pm 0.072$ \newline $R^2 = 0.744$ \newline Deviation from $-0.25$: $0.032$ & $p = 1.31 \times 10^{-3}$ \newline (Strong) \\
+Allometric Scaling & $Bg$ vs. Body Mass ($n=10$) & Exponent = $-0.282$ (SE $0.058$) \newline $R^2 = 0.744$ \newline Bootstrap 95\% CI $[-0.347, -0.117]$ & $p = 1.31 \times 10^{-3}$ \\
 \midrule
 \multicolumn{4}{l}{\textit{Energy Deficit Window \& Scoliosis Onset}} \\
-Critical Transition ($L_{crit}$) & Spine Length vs. simulated Cobb Angle & $r = 0.983$ \newline Deficit Ratio Max = $38.5$ & $p = 2.74 \times 10^{-22}$ \newline (Model-internal) \\
-Anisotropy Rescue Effect & $L_{crit}$ vs. Anisotropy & $R^2 = 0.775$ \newline Saturation at $\ge 6.0$ & $p = 3.58 \times 10^{-17}$ \newline (Model-internal) \\
+Critical Transition ($L_{crit}$) & Spine Length vs. simulated Cobb Angle & Monotone rise; $\mathrm{Cobb} \approx aL + bL^3$ & Deterministic sweep; no $p$-value is defined. \\
+Structural anisotropy $\mathcal{A}$ & $L_{crit}$ vs. $\mathcal{A}$ & $r = -0.88$; $L_{crit}$ \emph{declines} with $\mathcal{A}$ \newline 20/50 points on search bounds & Deterministic sweep; no $p$-value is defined. \\
 \midrule
 \multicolumn{4}{l}{\textit{Mechanical Instability \& Directional-Stiffness Anisotropy}} \\
 Directional Misalignment & Peak Stiffness Mismatch & Position = $0.596$ (Normalized) \newline Reduction = $31.1\%$ & Matching Thoracolumbar Apex (Verified) \\

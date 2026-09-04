@@ -177,7 +177,12 @@ Assuming solutions of the form $\kappa(s,t) = A\,e^{\lambda t}\sin(n\pi s/L)$, E
 \rho A\,\lambda^{2} \;+\; \eta\,\lambda \;+\; EI\left(\frac{n\pi}{L}\right)^{4} \;+\; \left(K_P + K_D\,\lambda\right)e^{-\lambda\tau} \;=\; 0 .
 \label{eq:char_eq_supp}
 \end{equation}
-Setting $\lambda = i\omega$ gives the Hopf boundary $\tau_c(L)$, separating damped stability from sustained oscillation.
+Setting $\lambda = i\omega$ gives the Hopf boundary $\tau_c(L)$, separating damped stability from sustained oscillation. The boundary has a closed form. Writing the single-mode equation in the lumped form $I\ddot\theta + b\dot\theta - mgL\,\theta + K_P\theta(t-\tau) + K_D\dot\theta(t-\tau) = 0$ (with $I = \rho A$, $b = \eta$, $mgL \to EI(n\pi/L)^4$ absorbed into the restoring term) and substituting $\lambda = i\omega$, the real and imaginary parts are two linear equations in $(\cos\omega\tau,\ \sin\omega\tau)$; eliminating them with $\cos^2 + \sin^2 = 1$ yields an \emph{exact quadratic in} $x = \omega^2$:
+\begin{equation}
+I^2 x^2 + \left(2 I mgL + b^2 - K_D^2\right) x + \left(mgL^2 - K_P^2\right) = 0,
+\label{eq:hopf_quadratic_supp}
+\end{equation}
+whose positive root gives $\omega = \sqrt{x}$ and then $\tau_c = \operatorname{atan2}(\sin\omega\tau,\ \cos\omega\tau)/\omega$ from the $2\times 2$ system. No grid search, simulation, or amplitude classifier is involved (verified symbolically; \texttt{scripts/hopf\_exact.py}). Two structural facts read off the coefficients directly: (i)~whenever $K_P > mgL$ the constant term is negative, so a positive $\omega^2$ always exists --- no gain pair is delay-unconditionally stable; and (ii)~$\tau_c(K_D)$ is non-monotonic with a single interior maximum (at the model's $K_P = 120$: $K_D^* = 12.4$, $\tau_c = 79.0$\,ms), i.e.\ the derivative-gain-trap ridge exists but is bounded --- more damping buys delay margin only up to a point.
 
 \paragraph{The decisive test, and the rejection.}
 The hypothesis makes a sharp, checkable prediction: the utilisation $\tau/\tau_c$ must \emph{rise} through the growth spurt and cross unity within the AIS onset window. We evaluated this on the model's own developmental trajectory (logistic $L$: $0.6\to1.7$\,m centred at age 12; $\tau = \tau_0 + L/v$ with $\tau_0 = 0.05$\,s; gains $K_P = 20L$, $K_D = 8L$), solving Eq.~\ref{eq:char_eq_supp} for $\tau_c(L)$ at each age. \textbf{The prediction fails, and it fails in the wrong direction.}
@@ -186,7 +191,7 @@ At the conduction velocity used in the simulation ($v = 15$\,m/s), utilisation \
 
 The rejection does not depend on the choice of $v$. The value $v = 15$\,m/s in the simulation is itself roughly a quarter of the group~Ia afferent conduction velocity cited elsewhere in this work; at a physiological $v = 55$\,m/s the result is simply more emphatic, with utilisation falling $0.546 \to 0.324$ and the dimensionless delay $\tau/\sqrt{L/g}$ decreasing by $21.1\%$ across ages 5--20. Under either parameterization there is no crossing at any age.
 
-We therefore reject the delay-Hopf mechanism as the explanation for the clustering of AIS onset at peak height velocity, and replace it with the recovery ratchet (Section~2), whose competing-rates structure reproduces that clustering without requiring a stability boundary to be crossed. We note that this reversal is consistent with the clinical picture: affected adolescents are neurologically normal and do not present with the postural-oscillation signature a Hopf bifurcation would predict.
+We therefore reject the delay-Hopf mechanism as the explanation for the clustering of AIS onset at peak height velocity, and replace it with the recovery ratchet (Section~2), whose competing-rates structure reproduces that clustering without requiring a stability boundary to be crossed. We note that this reversal is consistent with the clinical picture: affected adolescents are neurologically normal and do not present with the postural-oscillation signature a Hopf bifurcation would predict. A second, independent reason concerns the plant itself: if postural control employs an internal forward model of the loop dynamics~\cite{wolpert1998internal}, raw afferent conduction delay is largely model-compensated, and the effective $\tau$ entering Eq.~\ref{eq:char_eq_supp} is a residual after prediction --- so growth-driven lengthening cannot be assumed to walk a raw delay across $\tau_c$ in the first place.
 
 \subsection{Information-Elasticity Coupling: Curvature and Stiffness}
 

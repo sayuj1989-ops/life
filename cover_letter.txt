@@ -3,15 +3,19 @@ Editor-in-Chief, Nature
 
 Dear Dr. Skipper,
 
-We are pleased to submit our manuscript, "Metabolic buckling of the growing spine: An Information-Elasticity Coupling framework for Adolescent Idiopathic Scoliosis," for consideration as an Article in Nature.
+We submit our revised manuscript, "Active Geometric Maintenance of the Spinal S-Curve Against Gravity: An Information--Mechanical Coupling Model for Adolescent Idiopathic Scoliosis Onset," for consideration as an Article in Nature.
 
-Adolescent Idiopathic Scoliosis (AIS) is a profound skeletal deformity affecting 3% of adolescents worldwide, yet its fundamental etiology has remained a "Grand Challenge" in developmental biology and orthopedics for decades. We propose a "Break Breakthrough": modeling the growing spine not as a static structure, but as a "Thermodynamic Standing Wave" that requires continuous metabolic energy to maintain its shape against gravity.
+Adolescent Idiopathic Scoliosis (AIS) affects 3% of adolescents, yet its etiology remains unresolved. Our framework models the growing spine as an active control system: a Cosserat rod whose segment-wise stiffness is set by developmental HOX patterning and stabilised against gravity by delayed proprioceptive feedback, in which curve onset is a slow ratchet — growth-remodeling overtaking geometric restoration through peak height velocity — rather than a sudden instability.
 
-Our Information-Elasticity Coupling (IEC) framework posits that AIS represents "Metabolic Buckling," occurring when the mechanical demand of straightness (scaling as L^4) outpaces the proprioceptive metabolic supply (scaling as L^2) during the adolescent growth spurt.
+The revision is substantially more conservative than the previous version, and we say so explicitly:
 
-Through robust computational and statistical analysis, we demonstrate that the scaling exponent of the gravitational buckling parameter across species closely matches metabolic scaling predictions (-0.282 vs. -0.25). Furthermore, our model perfectly predicts the temporal "Energy Deficit Window" coinciding with clinical AIS onset, localizes peak mechanical vulnerability precisely to the thoracolumbar junction, and quantifies a robust tissue anisotropy rescue effect (R^2 = 0.775) with direct implications for connective tissue disorders.
+- We report as negative results what earlier drafts claimed as findings: a delay-Hopf onset mechanism (retracted after exact-closed-form re-derivation), a universal bio-gravitational critical point (falsified on 2,640 GPU simulations), and a Bg threshold that purportedly isolated the human condition (the human adult is indistinguishable from the rabbit).
+- The retained quantitative claims are: cross-species Bg decline with mass (exponent -0.282, R^2 = 0.744); a recovery-ratchet mechanism predicting that curve reducibility declines through the growth spurt, with a prefactor-free ~29% demand-to-supply rise over the PHV interval; bracing simulation reproducing BrAIST overall rates (calibration targets) and replicating the Risser subgroups (not calibration targets) in direction but not magnitude; and a protein-structure analysis in which hinge-region paucity of mechanosensors (p = 0.003, q = 0.018) survives FDR correction as the lead molecular claim.
+- Every validation statement now discloses its own limitation: the Lonstein-Carlson correlation is a structural consistency check (both variables are deterministic functions of the same simulated inputs), and the anisotropy gap is reported with two-sided and one-sided p-values and marginal FDR status.
 
-This work unifies Cosserat rod mechanics, developmental information fields, and scaling theory to solve a centuries-old biomedical mystery, offering immediate non-surgical clinical hypotheses (e.g., targeting cytoskeletal stiffness or circadian entrainment).
+Three predictions are offered as hypothesis-generating, not clinical recommendations: declining curve reducibility as a progression predictor independent of skeletal maturity; NAD+-dependent modulation of progression (explicitly not endorsing nutraceutical use outside an IRB-approved trial); and increased ciliary length / cellular dithering in scoliotic osteoblasts before macroscopic onset.
+
+All code, data, and the generated-analysis scripts behind every table are public (availability statement), with no human-subject data used.
 
 We confirm that this manuscript is original, is not under consideration elsewhere, and that all authors approve its submission.
 

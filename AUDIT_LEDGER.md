@@ -156,7 +156,13 @@ effect size (72%, p = 0.021 two-sided / 0.011 one-sided, d = 1.13) rather than
 withdrawn, with hinge density (q = 0.018) as the lead protein-level claim.
 
 ### O-2 (B16) — cover letter describes the pre-reframe paper
-`cover_letter.txt` predates the recovery-ratchet reframe. Not yet re-read in detail.
+**RESOLVED 2026-09-04 (branch `fix/protein-table-provenance`).** `cover_letter.txt`
+rewritten around the current title and the recovery-ratchet reframe. The old letter
+pitched "Metabolic Buckling" / "Thermodynamic Standing Wave" / "perfectly predicts" and
+the R^2=0.775 anisotropy-rescue claim — none of which survives the audit. The new
+letter leads with the negative results, states which BrAIST numbers were calibration
+targets, and marks the protein result's marginal FDR status, so the letter cannot
+overshoot the manuscript.
 
 ### O-3 (B17) — availability statement false in three ways
 **RESOLVED 2026-09-04 (branch `fix/protein-table-provenance`).** `sections/availability.tex`

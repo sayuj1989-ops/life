@@ -31,6 +31,11 @@ For cross-species analysis, we computed $\mathcal{B}_g = EI/(MgL^2)$ using publi
 
 Metabolic demand for counter-curvature maintenance was modeled as $D(L) \propto L^3$ (elastic strain-energy route: $U \sim EI\kappa^2 L$). Nutrient supply capacity to avascular discs was modeled as $S(L) \propto L^2$ (diffusion-limited by endplate surface area)~\cite{urban2004nutrition}. The relative deficit growth $R(L)/R(L_0)=(L/L_0)$ was mapped to the peak-height-velocity interval using WHO pediatric spine growth charts.
 
+\subsection{Postural Feedback Operating Point}
+\label{sec:operating_point}
+
+Where the delayed proprioceptive feedback loop enters the analysis (lumped model and characteristic equation, Supplementary Section~\ref{sec:supp_hopf_rejected}), a single operating point is used throughout this work: $K_P = 120$, $K_D = 12$, resting feedback delay $\tau_0 = 45$\,ms, with the growth-spurt (peak-height-velocity) excursion to $K_D \approx 7$ at $\tau \approx 75$\,ms. The delay margin of this plant is bounded: the exact Hopf boundary (Supplementary Eq.~\ref{eq:hopf_quadratic_supp}) peaks at $\tau_c = 79$\,ms at $K_D^* = 12.4$, so the operating point sits inside the stable region at rest and approaches --- but does not cross --- the boundary at PHV. Earlier drafts quoted $K_D = 8$ with $\tau_0 = 150$\,ms; that point lies past the boundary ($\tau_c = 67$\,ms at $K_D = 8$) and is retired.
+
 \subsection{Outcome Metrics}
 
 For each simulation, we computed: (1) \textbf{Equilibrium deviation} $\widehat{D}_{\mathrm{geo}}$ quantifying departure from the gravity-only passive equilibrium configuration, (2) \textbf{Lateral scoliosis index} $S_{\mathrm{lat}} = \max|y|/L_{\mathrm{eff}}$ measuring coronal-plane asymmetry, (3) \textbf{Cobb angle} via linear fits to upper and lower spine segments (standard clinical measure), and (4) \textbf{Lordosis/kyphosis angles} from sagittal curvature profiles, compared against clinical norms (cervical lordosis $40$--$60^{\circ}$, thoracic kyphosis $20$--$45^{\circ}$, lumbar lordosis $40$--$60^{\circ}$)~\cite{white1990clinical}.

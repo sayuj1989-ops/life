@@ -138,14 +138,23 @@ def stability_metrics(t, theta):
 # Growth model: sex-specific growth velocity curves
 # ============================================================
 # CALIBRATION NOTE:
-# Critical tau for (Kp=120, Kd=8) is ~68ms. For Kd=3.2, tau_crit~40ms.
+# Exact Hopf boundary (scripts/hopf_exact.py) at the single operating point
+# (Methods "Postural Feedback Operating Point"): tau_crit(Kp=120, Kd=12) =
+# 78.9 ms; ridge peak Kd*=12.4 / tau*=79.0 ms; tau_crit(Kd=5) = 48.1 ms,
+# tau_crit(Kd=3.2) = 34.5 ms (lower branch).
 # baseline_tau must be below the DEGRADED critical tau so the system is
 # stable pre-growth and becomes unstable only during the PHV window when
 # both tau increases AND Kd degrades simultaneously.
 #
+# NOTE (2026-09): the Kd-degradation schedule used below (down to ~3.2)
+# crosses far below the ridge peak and is NOT the fig-script PHV excursion
+# (Kd~12 -> ~7, tau 45 -> ~75 ms, which stays sub-critical). This sweep is
+# the rejected-delay route's stress test, retained for the rejection
+# argument only -- do not cite it as the operating trajectory.
+#
 # Default calibration: baseline_tau=30ms, alpha=3 ms/(cm/yr)
-#   Pre-growth (gv=5): tau=45ms, Kd~5 -> tau_crit~50ms -> STABLE
-#   At PHV    (gv=8):  tau=54ms, Kd=3.2 -> tau_crit~40ms -> UNSTABLE
+#   Pre-growth (gv=5): tau=45ms, Kd~5 -> tau_crit~48ms -> STABLE
+#   At PHV    (gv=8):  tau=54ms, Kd=3.2 -> tau_crit~34ms -> UNSTABLE
 #   Post-PHV  (gv->5): returns to stable
 
 BASELINE_TAU_DEFAULT = 30.0   # ms — pre-pubertal sensorimotor delay

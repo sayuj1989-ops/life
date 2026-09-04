@@ -17,12 +17,13 @@ Published sources:
 import numpy as np
 from scipy import stats
 
-# ── Model parameters (from phase3_kd_trap.py) ──────────────────────
+# ── Model parameters (single operating point, Methods "Postural Feedback
+# Operating Point": Kp=120, Kd=12, tau_0=45ms; PHV excursion Kd~7) ─
 I_val = 0.8; b = 1.0; m = 25.0; g = 9.81; L = 0.30
 mgl = m * g * L
 Kp = 120.0
 
-def sim(tau_eff, Kd=8.0, duration=10.0, dt=0.001, theta0=0.05):
+def sim(tau_eff, Kd=12.0, duration=10.0, dt=0.001, theta0=0.05):
     N = int(duration / dt)
     ds = max(int(tau_eff / dt), 1) if tau_eff > 0 else 0
     th = np.zeros(N + ds); dth = np.zeros(N + ds)
@@ -47,17 +48,17 @@ def find_tau_crit(Kd):
 print("="*60)
 print("MODEL: tau_c vs K_d")
 print("="*60)
-kd_vals = [8.0, 7.0, 6.0, 5.5, 5.0, 4.5, 4.0, 3.5, 3.0]
+kd_vals = [12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0]
 tau_crits = {}
 for kd in kd_vals:
     tc = find_tau_crit(kd)
     tau_crits[kd] = tc
     print(f"  K_d = {kd:.1f}  ->  tau_c = {tc} ms")
 
-healthy_tau_c = tau_crits[8.0]
-deficit_tau_c = tau_crits[5.0]   # ~40% Kd degradation (Energy Deficit Window)
-print(f"\n  Healthy tau_c (K_d=8.0)     = {healthy_tau_c} ms")
-print(f"  Deficit tau_c (K_d=5.0)     = {deficit_tau_c} ms")
+healthy_tau_c = tau_crits[12.0]
+deficit_tau_c = tau_crits[7.0]   # PHV-window Kd degradation (~40%)
+print(f"\n  Healthy tau_c (K_d=12.0)    = {healthy_tau_c} ms")
+print(f"  Deficit tau_c (K_d=7.0)     = {deficit_tau_c} ms")
 print(f"  Clinical bifurcation range  = {deficit_tau_c}–{healthy_tau_c} ms")
 
 # ── Published proprioceptive latency data ──────────────────────────

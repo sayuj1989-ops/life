@@ -1,0 +1,10 @@
+{
+  "title": "spinalmodes: Information-Cosserat mechanics of the developing spine (AIS modelling framework)",
+  "version": "v1.6-protein-table-provenance",
+  "description": "Open-source computational framework underlying the manuscript 'Information-Cosserat Mechanics of Scoliosis'. Cosserat-rod spine simulations, cross-species allometric analysis (Bg = EI/MgL^2), AlphaFold-derived protein structural metrics, two-timescale recovery-ratchet model of curve setting, and bracing simulation calibrated against BrAIST. No human-subject data.",
+  "license": "MIT",
+  "keywords": ["scoliosis", "cosserat-rod", "biomechanics", "AIS", "allometry", "alphafold"],
+  "creators": [
+    {"name": "Krishnan, Sayuj", "affiliation": "Independent researcher"}
+  ]
+}

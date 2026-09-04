@@ -84,6 +84,35 @@ is part of why the duplicate survived.
 ## OPEN — blockers
 
 ### O-1 (was B21, and worse than labelled) — the Demand/Supply anisotropy result does not reproduce
+**RESOLVED 2026-09-04 (branch `fix/protein-table-provenance`).** The root cause was two
+divergent AlphaFold snapshots: `research/alphafold_v6_analysis/protein_metrics.json`
+("v6") and the earlier `outputs/thermodynamic_cost/thermodynamic_cost_proteins.csv`.
+Every Table-3/dissipation-table discrepancy in the original finding is a CSV-vs-v6
+delta (VIM 7.47 vs 5.57, PIEZO2 4.44 vs 3.45, GHR 5.13 vs 2.27, LBX1 P52954 vs
+P52951). Fix adopted:
+- **v6 JSON is the single source of truth** for shared proteins; CSV-only genes
+  (NTRK3, DMD, MYLK, FLNA) keep CSV values, dagger-flagged.
+- Both tables are now **generated files**
+  (`scripts/analysis/regenerate_table_thermodynamic.py`,
+  `regenerate_table_dissipation.py` → `manuscript/tables_generated/`), spliced into
+  `sections/tables.tex`. No hand-typed anisotropy values remain.
+- `scripts/analysis/protein_snapshot_provenance.py` prints the full snapshot
+  reconciliation + the headline statistic for any future check.
+- Headline restated at reproducible v6 values: 72% (ratio 1.72),
+  **p = 0.021 two-sided / 0.011 one-sided, d = 1.13, n = 23**. The one-sided p is what
+  the old `p = 0.011` was; the two-sided is now always shown alongside. Cohen's d
+  corrected 1.19 → 1.13 (pooled-SD definition).
+- S2 BH row rescored two-sided: p = 0.021 → **q = 0.049** (still < 0.05, flagged as
+  marginal in the S2 caption). Results §3.4 q-values updated (0.018 / 0.033 / 0.049).
+- Abstract, results, theory, figures caption all show two-sided + one-sided together.
+- Verified in compiled PDF text (pdftotext), not just source.
+
+What is NOT fixed: the CSV snapshot itself is unversioned and its provenance (which
+AlphaFold release produced VIM 7.47) is unknown. If the CSV is ever regenerated the
+dissipation-table daggers must be revisited.
+
+Original finding (kept as history):
+
 **Verified 2026-08-17. This is the most serious open finding.**
 
 Two independent source pipelines —
@@ -121,15 +150,22 @@ with explicit groups gives p=0.035/d=0.67, LOO significant in only 84.6% of iter
 and broadening the demand panel dilutes it to p=0.33". That is the same instability seen
 here from a different direction.
 
-Affects: abstract, Table 3 caption, results, supplementary. **Blocks resubmission** —
-the abstract currently reports p=0.011 as a finding. Decision required on whether to
-restate at the reproducible effect size (and lose significance) or withdraw the claim
-and lead with hinge density.
+Affects: abstract, Table 3 caption, results, supplementary. ~~**Blocks resubmission**~~
+— resolved per the fix note at the head of this finding: restated at the reproducible
+effect size (72%, p = 0.021 two-sided / 0.011 one-sided, d = 1.13) rather than
+withdrawn, with hinge density (q = 0.018) as the lead protein-level claim.
 
 ### O-2 (B16) — cover letter describes the pre-reframe paper
 `cover_letter.txt` predates the recovery-ratchet reframe. Not yet re-read in detail.
 
 ### O-3 (B17) — availability statement false in three ways
+**RESOLVED 2026-09-04 (branch `fix/protein-table-provenance`).** `sections/availability.tex`
+now names the public fork `github.com/sayuj1989-ops/life` (the `sayujks0071` remote
+cannot be pushed to — no token), lists only tags that actually exist
+(`v1.0.0-submission`, `v1.4.7-editorial`, `v1.5-scaling-falsification` — verified via
+`git tag` and `git ls-remote`), and `.zenodo.json` was created (it had been cited but
+never existed). Zenodo DOI minting remains a post-acceptance human step; the statement
+no longer claims a tag that does not exist.
 `sections/availability.tex` names submission tag `v1.4-editorial` (repo is past v1.6),
 says the Zenodo DOI "will be minted", and points at
 `github.com/sayujks0071/scoliosis` — which per memory **never received the June/July

@@ -232,7 +232,7 @@ Alongside the macroscopic recovery-ratchet dynamics, we explore the molecular ar
 
 \textbf{Symbol caution.} Two distinct quantities are called ``anisotropy'' in this literature and must not be conflated. The \emph{stiffness ratio} used in the mechanical sweeps is a directional-stiffness quantity for which a high value confers stability. The \emph{structural} anisotropy $\mathcal{A}$ defined here is a property of the proteome that enters the model as a multiplier on maintenance \emph{demand} ($P_{\mathrm{eff}} = P_{\mathrm{counter}}\,\mathcal{A}/\bar{\mathcal{A}}$), so a high value is costly, not protective: raising $\mathcal{A}$ lowers the critical spine length $L_{\mathrm{crit}}$ ($r = -0.88$ over a deterministic sweep). An earlier version of this manuscript described this relationship as ``protective scaling'', which inverted the sign; the therapeutic direction implied by the model is \emph{reduction} of $\mathcal{A}$.
 
-We tentatively propose a \textbf{Demand-Supply Anisotropy Gap} ($p = 0.011$ in our dataset): the proteins required to \emph{sense} mechanical geometry are structurally extended and thermodynamically expensive to maintain, while their metabolic regulators are compact and often intrinsically disordered. We emphasize that this observation is hypothesis-generating. Current AI structural prediction tools cannot directly infer mechanical properties under load~\cite{gomes2022protein, zonta2024sequence}, and confidence scores for extracellular matrix components are frequently low. Nonetheless, this structural asymmetry provides a compelling direction for future experimental validation of the cellular mechanisms underlying the Energy Deficit Window.
+We tentatively propose a \textbf{Demand-Supply Anisotropy Gap} ($p = 0.021$ two-sided, $p = 0.011$ one-sided, $n = 23$ in our dataset): the proteins required to \emph{sense} mechanical geometry are structurally extended and thermodynamically expensive to maintain, while their metabolic regulators are compact and often intrinsically disordered. We emphasize that this observation is hypothesis-generating. Current AI structural prediction tools cannot directly infer mechanical properties under load~\cite{gomes2022protein, zonta2024sequence}, and confidence scores for extracellular matrix components are frequently low. Nonetheless, this structural asymmetry provides a compelling direction for future experimental validation of the cellular mechanisms underlying the Energy Deficit Window.
 
 
 \section{Detailed Methods}
@@ -264,7 +264,7 @@ We simulated the temporal competition between protein classes using a system of 
 
 \begin{table}[h!]
 \centering
-\caption{Benjamini--Hochberg false-discovery-rate adjusted q-values (and Bonferroni-corrected p-values, for reference) across the seven independent statistical tests reported in the protein-stratification analyses (Results §3.4). Tests ordered by raw p-value. Three tests survive the standard $q < 0.05$ FDR threshold (hinge density, anisotropy gap extended trimmed, anisotropy gap original); the biped/quadruped Mann--Whitney result is reported with the explicit caveat that it does not survive correction.}
+\caption{Benjamini--Hochberg false-discovery-rate adjusted q-values (and Bonferroni-corrected p-values, for reference) across the seven independent statistical tests reported in the protein-stratification analyses (Results §3.4). Tests ordered by raw p-value. Three tests survive the standard $q < 0.05$ FDR threshold (hinge density, anisotropy gap extended trimmed, anisotropy gap original --- the last only marginally, $q = 0.049$, and only when the anisotropy-gap test is scored two-sided from the regenerated v6 table; the biped/quadruped Mann--Whitney result is reported with the explicit caveat that it does not survive correction).}
 \label{tab:S2}
 \small
 \begin{tabular}{lcccc}
@@ -273,7 +273,7 @@ We simulated the temporal competition between protein classes using a system of 
 \midrule
 Mechanosensor hinge density (n=61) & 61 & 0.0025 & 0.018 & \textbf{0.018} \\
 Anisotropy gap, extended cohort, trimmed & 26 & 0.0094 & 0.066 & \textbf{0.026} \\
-Anisotropy gap, original demand/supply & 23 & 0.0110 & 0.077 & \textbf{0.026} \\
+Anisotropy gap, original demand/supply & 23 & 0.0210 (two-sided; $0.0105$ one-sided) & 0.147 & \textbf{0.049} \\
 Biped vs Quadruped MWU (per-species) & 12 & 0.0440 & 0.308 & 0.077 \\
 Disorder $\times$ anisotropy in mechanosensors & 31 & 0.0720 & 0.504 & 0.101 \\
 AIS-strict-tagged vs other (text-match) & 61 & 0.2340 & 1.000 & 0.273 \\
@@ -287,7 +287,7 @@ Three additional robustness analyses (correlations \#6, \#7, \#8 in the analysis
 \begin{itemize}
 \item \textbf{Citation-bias check (correlation \#6):} no correlation between curated clinical-evidence priority score (0--100) and AlphaFold anisotropy across $n=61$ genes (Spearman $\rho = 0.016$, $p = 0.90$). The structural signal is mechanism-specific to the functional categorization, not a literature-popularity artifact.
 \item \textbf{Leave-one-out robustness (correlation \#7):} for the demand-vs-supply MWU (baseline $p = 0.035$), $84.6\%$ of LOO iterations remain $p < 0.05$ (LOO median $p = 0.041$, max $p = 0.092$). Result is borderline-fragile to single supply-side gene removal --- reflects the small supply cohort ($n = 7$). For the hinge-density test (baseline $p = 0.0025$), $100\%$ of LOO iterations remain $p < 0.01$ (LOO median $p = 0.003$, max $p = 0.0042$) --- fully robust.
-\item \textbf{Demand-panel expansion sensitivity (correlation \#8):} extending the demand panel from $n=19$ curated extended-filament/channel proteins to all $n=37$ mechanotransduction-tagged proteins dilutes the gap (relative-gap $93\% \rightarrow 42\%$, $p = 0.035 \rightarrow 0.33$). The published gap is therefore a property of extended-filament/channel mechanosensors specifically, not all mechanotransduction-tagged proteins. The headline numbers (72\%, $p = 0.011$, Cohen's $d = 1.19$) cited in Results §3.4 reference the curated $n = 23$ subset; the narrowed scope is reflected in the abstract and discussion.
+\item \textbf{Demand-panel expansion sensitivity (correlation \#8):} extending the demand panel from $n=19$ curated extended-filament/channel proteins to all $n=37$ mechanotransduction-tagged proteins dilutes the gap (relative-gap $93\% \rightarrow 42\%$, $p = 0.035 \rightarrow 0.33$). The published gap is therefore a property of extended-filament/channel mechanosensors specifically, not all mechanotransduction-tagged proteins. The headline numbers (72\%, $p = 0.021$ two-sided / $0.011$ one-sided, Cohen's $d = 1.13$) cited in Results §3.4 reference the curated $n = 23$ subset; the narrowed scope is reflected in the abstract and discussion.
 \end{itemize}
 
 \section{Bio-Gravitational Critical-Point Falsification (GPU Validation)}

@@ -235,7 +235,7 @@ print("=" * 70)
 t_start = time.time()
 
 beta_vals = np.linspace(0.3, 0.8, 20)
-alpha_vals = np.linspace(1.0, 10.0, 20)  # ms/(cm/yr), calibrated to tau_crit~68ms
+alpha_vals = np.linspace(1.0, 10.0, 20)  # ms/(cm/yr), calibrated to tau_crit~79ms (Kd=12)
 
 # For each (beta, alpha): check which clinical features are reproduced
 # Feature 1: Female vulnerability window overlaps 10-13

@@ -40,8 +40,8 @@ where $\gamma_{cost}$ is the specific metabolic cost per unit curvature, which i
 Healthy morphogenesis requires the integration of directional signals (gravity sensing via proprioception) with isotropic growth signals (IGF-1/GH). We term the failure of this integration \textbf{directional-signal loss}: under metabolic constraint, the directional sensing channel degrades while the isotropic growth drive continues.
 
 During the Energy Deficit Window, the high-cost Vector sensors (mechanoreceptors) fail first.
-\textbf{The Anisotropy Gap:} Our analysis of 23 key spinal proteins reveals a stark dichotomy. Demand-side mechanosensors like \textbf{Piezo2} and \textbf{Vimentin} are structurally anisotropic (high aspect ratio) and thus metabolically expensive to synthesize and maintain against thermal fluctuations~\cite{lynch2015bioenergetic}. Conversely, supply-side metabolic regulators like \textbf{PPARGC1A} are intrinsically disordered scalars. Extending this analysis to a 61-gene panel (afcc pipeline) reveals a complementary structural signature: mechanosensor proteins are interior-rigid, carrying $\sim 70\%$ fewer hinge regions per residue than other candidate proteins (fold-difference $0.30$, Mann--Whitney $p = 0.003$; see Figure~\ref{fig:hinge_density}). The combination of high anisotropy and low internal flexibility is consistent with mechanosensors operating as cooperative rigid-body conformational switches rather than flexible-jointed sensors.
-When energy is scarce, the cell prioritizes the cheaper scalar survival signals over the expensive vector alignment signals. This ``blinds'' the growing spine to gravity. The Scalar growth drive (IGF-1) continues unabated, but without the Vector rudder (Piezo2) to steer it, the growth becomes unstable, resulting in the characteristic 3D deformity of scoliosis. This mechanism aligns with observations of differential growth in porcine models~\cite{newton2005differential}.
+\textbf{The Anisotropy Gap:} Our analysis of 23 key spinal proteins reveals a stark dichotomy. Demand-side mechanosensors like \textbf{Piezo2} and \textbf{Vimentin} are structurally anisotropic (high aspect ratio) and thus metabolically expensive to synthesize and maintain against thermal fluctuations. Conversely, supply-side metabolic regulators like \textbf{PPARGC1A} are intrinsically disordered scalars. Extending this analysis to a 61-gene panel (afcc pipeline) reveals a complementary structural signature: mechanosensor proteins are interior-rigid, carrying $\sim 70\%$ fewer hinge regions per residue than other candidate proteins (fold-difference $0.30$, Mann--Whitney $p = 0.003$; see Figure~\ref{fig:hinge_density}). The combination of high anisotropy and low internal flexibility is consistent with mechanosensors operating as cooperative rigid-body conformational switches rather than flexible-jointed sensors.
+When energy is scarce, the cell prioritizes the cheaper scalar survival signals over the expensive vector alignment signals. This ``blinds'' the growing spine to gravity. The Scalar growth drive (IGF-1) continues unabated, but without the Vector rudder (Piezo2) to steer it, the growth becomes unstable, resulting in the characteristic 3D deformity of scoliosis. This mechanism aligns with observations of differential growth in porcine models.
 
 \subsection{Symmetry Breaking: The ``Twist-Bend Coupling'' Operator}
 
@@ -51,7 +51,7 @@ Let the growth rate of the left and right vertebral physes be governed by circad
 \begin{equation}
 \dot{L}_{L/R}(t) = \dot{L}_0 [ 1 + \epsilon \cos(\omega_{circ} t + \phi_{L/R}) ]
 \end{equation}
-``Spinal Jetlag'' is defined as a stable phase shift $\Delta \phi = \phi_L - \phi_R \neq 0$. This creates a differential growth rate that integrates into a permanent wedge deformity, potentially initiated by organ rotation asymmetry~\cite{kouwenhoven2006organ}.
+``Spinal Jetlag'' is defined as a stable phase shift $\Delta \phi = \phi_L - \phi_R \neq 0$. This creates a differential growth rate that integrates into a permanent wedge deformity, potentially initiated by organ rotation asymmetry.
 Mathematically, this introduces a skew-symmetric term in the stiffness tensor $\mathbf{K}$ coupling bending curvature $\kappa_y$ and torsion $\tau$:
 \begin{equation}
 \begin{pmatrix} M_y \\ M_z \end{pmatrix} = \begin{pmatrix} B & J_{couple}(\Delta \phi) \\ -J_{couple}(\Delta \phi) & C \end{pmatrix} \begin{pmatrix} \kappa_y \\ \tau \end{pmatrix}
@@ -65,8 +65,8 @@ We map the abstract control variables to specific molecular entities identified 
 \begin{enumerate}
     \item \textbf{Variable $P_{supply}$ (Metabolic Capacity):}
     \begin{itemize}
-        \item \textbf{PPARGC1A (PGC-1$\alpha$):} The master regulator of mitochondrial biogenesis. Its intrinsically disordered nature makes it a sensitive rheostat for cellular energy status. Downregulation in paraspinal muscles precedes deformity~\cite{handschin2024paraspinal}.
-        \item \textbf{NAD+ / SIRT1:} The fuel gauge of the cell. Depletion of NAD+ pools during rapid growth inhibits SIRT1-mediated deacetylation of clock proteins, linking metabolism to circadian desynchrony~\cite{  volume  = {15},}. Melatonin signaling deficiency further compromises this clock synchronization~\cite{domenech2016melatonin}.
+        \item \textbf{PPARGC1A (PGC-1$\alpha$):} The master regulator of mitochondrial biogenesis. Its intrinsically disordered nature makes it a sensitive rheostat for cellular energy status. Downregulation in paraspinal muscles has been proposed to precede deformity (citation removed pending a verified source).
+        \item \textbf{NAD+ / SIRT1:} The fuel gauge of the cell. Depletion of NAD+ pools during rapid growth inhibits SIRT1-mediated deacetylation of clock proteins, linking metabolism to circadian desynchrony. Melatonin signaling deficiency further compromises this clock synchronization.
     \end{itemize}
 
     \item \textbf{Variable $K_{active}$ (Vector Sensing):}

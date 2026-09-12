@@ -1,0 +1,56 @@
+{
+  "scope": "Equation and implementation checks, not biological validation",
+  "sha256": {
+    "src/spine_growth_analysis.py": "ae0acc8c2a8cf6bc65aec5b0b269d48b870f2e4046417dabbcdedbacc3cbe4e8",
+    "src/spinalmodes/recovery_ratchet.py": "9f67037e1de2bd93a784d61612bf0d633d9d9548a8abb68ce3202e9e0df221c8"
+  },
+  "delay_boundary": [
+    {
+      "kd": 2.0,
+      "independent_first_hopf_s": 0.024848068960886937,
+      "omega_rad_s": 7.6778594393419635,
+      "characteristic_residual": 1.7763568394002505e-15,
+      "existing_untracked_script_delay_s": 0.8711039056200542
+    },
+    {
+      "kd": 8.0,
+      "independent_first_hopf_s": 0.06702090279725142,
+      "omega_rad_s": 9.1226890569773,
+      "characteristic_residual": 7.105427357601002e-15,
+      "existing_untracked_script_delay_s": 1.4910408746873334
+    },
+    {
+      "kd": 12.0,
+      "independent_first_hopf_s": 0.07885167824526859,
+      "omega_rad_s": 11.827192181198509,
+      "characteristic_residual": 3.03543989777123e-14,
+      "existing_untracked_script_delay_s": 1.9386096297010487
+    },
+    {
+      "kd": 20.0,
+      "independent_first_hopf_s": 0.06225619767093107,
+      "omega_rad_s": 21.66595016247766,
+      "characteristic_residual": 3.197442310920451e-14,
+      "existing_untracked_script_delay_s": 2.9118299463635355
+    }
+  ],
+  "ratchet": [
+    {
+      "kr_per_year": 0.3,
+      "final_permanent_curvature_au": 0.059654499190642966,
+      "final_flexibility": 0.25108437317686894
+    },
+    {
+      "kr_per_year": 1.0,
+      "final_permanent_curvature_au": 0.03474105153254535,
+      "final_flexibility": 0.3653565183728585
+    },
+    {
+      "kr_per_year": 6.0,
+      "final_permanent_curvature_au": 0.009023726953136375,
+      "final_flexibility": 0.689091377971317
+    }
+  ],
+  "ratchet_inference": "Monotone accumulation and falling flexibility are imposed by the positive forcing and fixed elastic component.",
+  "growth_velocity_at_20": 0.07407752467886304
+}

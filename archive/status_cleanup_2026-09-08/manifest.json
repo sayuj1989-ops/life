@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-08",
+  "scope": "Spine research legacy status documents only",
+  "files": [
+    {
+      "original": "ABSOLUTE_FINAL_STATUS.md",
+      "archived": "archive/status_cleanup_2026-09-08/ABSOLUTE_FINAL_STATUS.md",
+      "sha256": "369ab9f58ca4184dc42ea2b38bda77cf7b4733cc1800cf2eb4418e4282103db5",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "MISSION_ACCOMPLISHED.txt",
+      "archived": "archive/status_cleanup_2026-09-08/MISSION_ACCOMPLISHED.txt",
+      "sha256": "8f9112d204a80a424769f9bffac0645cdc19c644ab5f7842bb04c7698c8022a8",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "MISSION_COMPLETE.md",
+      "archived": "archive/status_cleanup_2026-09-08/MISSION_COMPLETE.md",
+      "sha256": "65c15158c3f7ecd0ddc656b981f8fd69650a6177db63ae2b6db867e6e82ce7b1",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "PUBLICATION_READY_STATUS.md",
+      "archived": "archive/status_cleanup_2026-09-08/PUBLICATION_READY_STATUS.md",
+      "sha256": "e2055d3ea6e4aebab04af2396c7c4d6947bbd67d65c1f6fc6506251b5c625359",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "SUBMIT_NOW.md",
+      "archived": "archive/status_cleanup_2026-09-08/SUBMIT_NOW.md",
+      "sha256": "b14a8ddb2e68f478afc972031bb2134ba12c57e3a744eef2864f9b9bc1ee680f",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "SUBMIT_NOW_FINAL.md",
+      "archived": "archive/status_cleanup_2026-09-08/SUBMIT_NOW_FINAL.md",
+      "sha256": "f5b6d1145f8b382250c77004f061529f5948ba5294189719fb64e6e51998934b",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "TRULY_FINAL_STATUS.md",
+      "archived": "archive/status_cleanup_2026-09-08/TRULY_FINAL_STATUS.md",
+      "sha256": "b7d88d4bde508813dd8b813291b268f0e3900d9eb89a66d2fd0738cd8122be79",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "FINAL_PRE_SUBMISSION_VALIDATION.md",
+      "archived": "archive/status_cleanup_2026-09-08/FINAL_PRE_SUBMISSION_VALIDATION.md",
+      "sha256": "37b558bd507d4b11716c0dcceb535f1cdc6088339c2bc1f674c8632e85ed3d19",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "ACTION_CARD.txt",
+      "archived": "archive/status_cleanup_2026-09-08/ACTION_CARD.txt",
+      "sha256": "4a3b5e5fa114d1ca69da7253d3a2398aa9ed4c4ea679fcb51397fef980b3a112",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    },
+    {
+      "original": "START_HERE.txt",
+      "archived": "archive/status_cleanup_2026-09-08/START_HERE.txt",
+      "sha256": "c357b3271405044e31e9fe973ef495118145cdb05d9cf729e3a192d8341a322c",
+      "reason": "Superseded May 2026 readiness/status claim; contradicted by later research audits"
+    }
+  ],
+  "readme_snapshot_sha256": "116f45d941ca59e3f628940b0f57cca8363ed58546c6f5f4b151547a1a7825f1",
+  "retained_referenced_status_files": [
+    "DO_THIS_NOW.txt",
+    "SUBMISSION_READY_FINAL.md"
+  ],
+  "preserved": "All manuscript files, data, simulation code, and pre-existing working changes"
+}

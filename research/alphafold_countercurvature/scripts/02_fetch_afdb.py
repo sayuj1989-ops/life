@@ -60,7 +60,7 @@ def main():
         dry_run=args.dry_run
     )
 
-    results = {'downloaded': 0, 'failed': 0, 'skipped': 0, 'not_found': 0}
+    results = {'downloaded': 0, 'failed': 0, 'skipped': 0, 'not_found': 0, 'metadata_only': 0}
 
     for idx, row in to_fetch.iterrows():
         gene = row['gene_symbol']
@@ -73,6 +73,8 @@ def main():
 
         if status in ['downloaded', 'cached']:
              results['downloaded'] += 1
+        elif status == 'metadata_only':
+             results['metadata_only'] += 1
         elif status == 'not_found':
              results['not_found'] += 1
         elif status == 'skipped':
@@ -88,6 +90,8 @@ def main():
     print(f"   ✅ Downloaded/Cached: {results['downloaded']}")
     print(f"   ❌ Not Found: {results['not_found']}")
     print(f"   ⚠️  Failed: {results['failed']}")
+    if results['metadata_only']:
+        print(f"   Metadata checked (no downloads): {results['metadata_only']}")
     if results['skipped']:
         print(f"   ⏭️  Skipped: {results['skipped']}")
 

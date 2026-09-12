@@ -1,0 +1,22 @@
+{
+  "checked_at_utc": "2026-09-09T05:23:06.383357+00:00",
+  "scope": "Equation and implementation verification; no patient validation",
+  "units": {
+    "time": "years",
+    "curvature": "1/m",
+    "forcing": "1/m/year",
+    "rates": "1/year"
+  },
+  "assumed_rates": {
+    "kr": 0.7,
+    "kg": 0.3,
+    "kh_correction": 0.2
+  },
+  "impulse_remodeled_max_abs_error": 1.850918507004251e-13,
+  "impulse_final_remodeled": 0.005999999987574892,
+  "impulse_infinite_time_exact": 0.006,
+  "zero_load_max_abs_curvature": 0.0,
+  "no_growth_max_abs_remodeled": 0.0,
+  "mirror_max_abs_residual": 0.0,
+  "correction_final_remodeled": 0.0003663127780857448
+}

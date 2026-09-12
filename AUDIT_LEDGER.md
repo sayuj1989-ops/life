@@ -124,8 +124,20 @@ Crossref, 2026-09-12): Stokes 2007 Eur Spine J 16(10):1621 (PMID 17653775), Vill
 J Biomech 42(12):1793 (PMID 19540500), and Stokes et al. 1996 Spine 21(10):1162 (PMID 8727190) added
 to the same sentence; the uncited composite `stokes2002mechanical` (1996 title, 2002 volume) became
 the real 1996 record and the uncited `stokes2006biomechanics` (journal "Spinal Deformity", which did
-not exist in 2006) was deleted. Verified in the recompiled PDF reference list. Follow-up: a
-DOI-resolution pass over the 59 cited entries (offline-batched, not in the 03:00 hotspot window).
+not exist in 2006) was deleted. Verified in the recompiled PDF reference list.
+
+**Full pass, same day** (`scoliosis_publication_strategy/scripts/verify_doi.py`, new: Crossref then
+DataCite per DOI, PubMed then Crossref-title for DOI-less journal items; run by hand, not on the
+03:00 hotspot cron). Over the 57 keys the compiled manuscript cites: two more phantoms —
+`wuest2025vim` ("Vimentin intermediate filaments act as a gravitational strain gauge…", journal
+"Nature Microgravity", which does not exist; replaced by Hu et al. PNAS 2019;116:17175,
+`hu2019vimentin`) and `aubin2004brace` (paraphrased title, its own `note` called it a
+"representative example"; replaced by Périé et al. Spine 2003;28:1672 and Clin et al. Spine
+2010;35:1706); two wrong records — `lang1985nerve` (paraphrased title, "other authors"; the real
+paper is Lang et al. Muscle Nerve 1985;8:38) and `wolpert1998internal` (right paper, wrong journal
+"Neural Computation" and dead DOI; it is Trends Cogn Sci 1998;2:338); and 15 real entries that
+carried no DOI (added). Result: 57/57 resolve. Printed-provenance `note` fields I had added were
+removed again — `note` prints in the reference list.
 
 ## OPEN — blockers
 

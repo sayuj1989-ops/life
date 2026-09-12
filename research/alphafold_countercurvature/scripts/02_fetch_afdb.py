@@ -47,7 +47,14 @@ def main():
     mapping = pd.read_csv(INPUT_MAPPING)
 
     # Filter for successfully mapped genes
-    to_fetch = mapping[mapping['uniprot_accession'].notna()]
+    mapped = mapping[mapping['uniprot_accession'].notna()]
+    # AFDB models canonical sequences only, and the fetcher raises on anything else (isoform
+    # suffixes, whitespace); one such row must not abort the rest of the batch.
+    canonical = mapped['uniprot_accession'].astype(str).str.fullmatch(r'[A-Z0-9]+')
+    non_canonical = mapped.loc[~canonical, 'uniprot_accession'].tolist()
+    to_fetch = mapped[canonical]
+    if non_canonical:
+        print(f"   Non-canonical accessions (not fetchable from AFDB), skipped: {non_canonical}")
 
     if args.limit:
         to_fetch = to_fetch.head(args.limit)

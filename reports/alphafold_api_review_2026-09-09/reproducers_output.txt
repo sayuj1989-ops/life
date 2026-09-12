@@ -1,0 +1,37 @@
+
+== F. PAE precision through the downstream parser (structure.py / metrics.py)
+  parse_pae([[0,1.5],[2.9,0.75]]) -> [[0, 1], [2, 0]] uint8 | cache written: ['x_pae.json', 'x_pae.pae.npy']
+  calculate_pae_metrics on the float matrix: pae_mean=0.75 (true mean 1.2875)
+  fetcher accepts the same fractional file: True
+⚠️ Error parsing PAE /tmp/afdb_review_o2kbsaf9/F/x_pae.json: Python integer 300 out of bounds for uint8
+  parse_pae([[0, 300], [1, 0]]) -> None | fetcher _valid_file: True
+⚠️ Error parsing PAE /tmp/afdb_review_o2kbsaf9/F/x_pae.json: Python integer -1 out of bounds for uint8
+  parse_pae([[0, -1.0], [1, 0]]) -> None | fetcher _valid_file: False
+
+== E. A CIF stored at pdb_path, read by the downstream PDB-only parsers
+  fast_parse_pdb_arrays -> (None, None, None)
+  PDBParser on CIF -> atoms: 0 | analyze_structure row: {'n_residues': 0, 'plddt_mean': 0, 'morphology': 'Unstructured/Disordered'}
+  (fetcher now refuses CIF-only entries: see test_cif_only_entry_is_not_recorded_as_a_pdb_download)
+
+== B. Malformed / unexpected structure URLs
+  _download_file('ftp://alphafold.ebi.ac.uk/x.pdb') -> False
+  _download_file('file:///etc/hostname') -> False
+  _download_file('not a url') -> False
+  _download_file(123) -> False
+  _download_file({'u': 1}) -> False
+  no host allowlist: an https URL on any host would be fetched (trust is transitive from the API response)
+
+== A2. Lower-case accession is a loud MetadataError, not a silent miss
+   Expected one canonical AF-p02452-F1; found 0
+
+== C2. Manifest rows with missing columns / a valid PDB whose stored SHA-256 no longer matches
+  columns after load: ['uniprot', 'status', 'gene_symbol', 'pdb_path', 'pae_path', 'sha256_pdb', 'retrieved_at', 'notes']
+  row lacking pdb_path is cache-valid: False
+  matching sha, no PAE: True
+  valid PDB but sha differs: False
+
+== G. Downstream path resolution (03_parse_structures.py / 04_analyze_metrics.py)
+  publication manifest pdb_path: relative rows = 259 | absolute rows = ['/app/research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6.pdb']
+  scripts use Path(row['pdb_path']) without joining repo_root -> resolves only when cwd is the repo root;
+  from another cwd Path(rel).exists() -> False (04_analyze_metrics.py then `continue`s silently)
+  data/raw present on this checkout: False

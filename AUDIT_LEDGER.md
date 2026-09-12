@@ -81,6 +81,35 @@ is part of why the duplicate survived.
 
 ---
 
+### R-6 — Short-form theory and conclusion contradicted the abstract (found 2026-09-12)
+After the 08-07 audit fixed the abstract and results, `theory_summary.tex:12` still asserted
+the universal `B_g ≈ 0.1` threshold and "Humans occupy a unique position", `conclusion.tex:3`
+still said AIS is "a predictable consequence of crossing this boundary", the abstract's own
+Conclusions called `B_g` a "robust proxy" one paragraph after calling the same `r` a
+consistency check, T8–T10 was labelled "the thoracolumbar junction" (×3), one paragraph
+carried both "∼80 %" and "31.1 %" for the same reduction, the species count read 10 in two
+sections and 12 in two others (12 rows = 11 species + human ×2; 10 rows analysed), and the
+synthetic-cohort calibration was called validation "against gold-standard datasets" (×2).
+Full table with PDF line numbers:
+`reports/manuscript_consistency_review_2026-09-09/REVIEW.md`. Fixed in `9150ba50`
+(text only; no computed number moved) and verified in `pdftotext` of the recompiled PDF.
+Also: `theory.tex`, `methods.tex`, `biophysical_origins.tex` now start with an `% ORPHANED`
+line so gotcha 1 stops recurring.
+
+### R-7 — Newton ratchet-rod experiment measured the wrong quantity in the wrong plane (found 2026-09-12)
+Not a manuscript defect (no active section cites `results/newton_ratchet_rod/`), recorded
+here because the README and the 09-08 review point at it. Two defects:
+(i) `joint_dtheta` took `atan2(px, py)` of body *positions* — the azimuth of each body about
+the vertical, numerically undefined for a rod in the x–z plane — and the ratchet law
+consumed it; the 15,628° "Cobb" is this. (ii) The permanent set was written to
+`joint_rod_rest_kb_local[:, 0]` in 1/m; Newton's rod joint stores the DER curvature binormal
+(an angle per joint) in the parent-local frame with x–z bending in component 1, so the law
+prescribed rest bending in the y–z plane, 48× too large. Fixed in `f9d5b042`
+(`scripts/experiments/newton/rod_measure.py`, unit tests in
+`tests/test_newton_rod_measure.py`); every number from the 2026-09-03 run is void and kept as
+`*.pre-measurement-fix-2026-09-12.*`. The re-run's reading is pre-registered in
+`results/newton_ratchet_rod/PREREG_2026-09-12.md`; the result is recorded there, not here.
+
 ## OPEN — blockers
 
 ### O-1 (was B21, and worse than labelled) — the Demand/Supply anisotropy result does not reproduce

@@ -67,3 +67,18 @@ analysis; all are text.
 BrAIST IPD (t_3df16fb4) remains the only route to clinical validation; the manuscript's
 limitations already say so. The 09-09 AlphaFold hardening and the two-state comparator did
 not touch the manuscript and are not cited by it.
+
+## Applied 2026-09-12 (commit `9150ba50`)
+
+All OPEN items (#1, #2, #3, #3b, #4a, #4b, #5, #6, #8) and the optional #11 were applied
+on the author's instruction and the manuscript recompiled (45 pp, 0 errors, 0 undefined).
+Two further "predictable failure" occurrences were found outside `sections/` — the Impact
+Statement and a highlights bullet in `main.tex` / `main_blinded.tex` — and changed the same
+way. `pdftotext` of the new PDF: every old string absent, every replacement present;
+`verify_claims.py` and `verify_bib.py` exit 0.
+
+Left for the author (voice, not correctness): Impact Statement "quantitative scaling law …
+explaining why the human spine is uniquely vulnerable"; introduction heading "Why the Human
+Spine Is Uniquely Exposed" and `introduction.tex:15` "uniquely vulnerable during growth".
+These now rest on the posture/axial-load-path argument rather than a `B_g` threshold, so
+they are defensible, but they are the last places the word "uniquely" survives.

@@ -110,6 +110,23 @@ prescribed rest bending in the y–z plane, 48× too large. Fixed in `f9d5b042`
 `*.pre-measurement-fix-2026-09-12.*`. The re-run's reading is pre-registered in
 `results/newton_ratchet_rod/PREREG_2026-09-12.md`; the result is recorded there, not here.
 
+### R-8 — Both citations on the Hueter–Volkmann sentence were phantom records (found 2026-09-12)
+`introduction.tex` and `theory_summary.tex` supported "a sustained asymmetric deviation is
+progressively cemented by asymmetric growth-plate activity" with `stokes2006hueter` ("Hueter-Volkmann
+effect in the growth plate…", Eur Spine J 2006;15(7):1044) and `villemure2009growth` ("Growth
+biomechanics in the cause and progression of idiopathic scoliosis", Spine 2009). Neither exists:
+both DOIs return 404 at Crossref, both titles return 0 PubMed hits, and Stokes's only 2006 Eur Spine J
+paper is on trunk-muscle activation in low back pain (PMID 15906102). Found while the comparator
+work (t_9f29fa3b) verified its own references. **The nightly `verify_bib` scored both as clean
+because its fabrication heuristic checks that a DOI is *present*, not that it resolves** — a DOI
+string is the cheapest thing to fabricate. Replaced with verified records (PubMed esummary +
+Crossref, 2026-09-12): Stokes 2007 Eur Spine J 16(10):1621 (PMID 17653775), Villemure & Stokes 2009
+J Biomech 42(12):1793 (PMID 19540500), and Stokes et al. 1996 Spine 21(10):1162 (PMID 8727190) added
+to the same sentence; the uncited composite `stokes2002mechanical` (1996 title, 2002 volume) became
+the real 1996 record and the uncited `stokes2006biomechanics` (journal "Spinal Deformity", which did
+not exist in 2006) was deleted. Verified in the recompiled PDF reference list. Follow-up: a
+DOI-resolution pass over the 59 cited entries (offline-batched, not in the 03:00 hotspot window).
+
 ## OPEN — blockers
 
 ### O-1 (was B21, and worse than labelled) — the Demand/Supply anisotropy result does not reproduce

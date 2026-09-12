@@ -75,7 +75,7 @@ print("="*60)
 print(f"{'Study':<18} {'AIS mean':>10} {'Ctrl mean':>10} {'AIS>tau_c':>10} {'Ctrl<tau_c':>11}  {'p-value':>10}")
 print("-"*75)
 
-tau_c = healthy_tau_c  # 68 ms
+tau_c = healthy_tau_c  # ~79 ms (exact Hopf 78.85–78.95 at Kd=12)
 
 all_correct = []
 for study, ais_m, ais_s, ais_n, ctrl_m, ctrl_s, ctrl_n in studies:

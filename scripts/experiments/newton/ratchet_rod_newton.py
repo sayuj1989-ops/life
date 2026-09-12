@@ -44,6 +44,12 @@ Calibration notes (measured 2026-09-03, GB10):
      model's assumed kappa_e0 = 0.02) is measured by settling a column with
      zero rest curvature.
 
+Measurement (fixed 2026-09-12, see rod_measure.py): joint angles come from the body
+  quaternions' local +Z tangents and the permanent set is written to the bend-about-y
+  component of the DER rest curvature binormal in angle units. The 2026-09-03 run took
+  atan2 of body positions and wrote curvature (1/m) into the bend-about-x component;
+  every number it produced is void (kept as *.pre-measurement-fix-2026-09-12.*).
+
 Outputs (~/life/results/newton_ratchet_rod/):
   ratchet_rod.json / ratchet_rod.md
 """
@@ -52,6 +58,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import sys
 import time
 from pathlib import Path
@@ -63,8 +70,9 @@ import newton
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from greenhill_discrete_reference import bg_crit  # noqa: E402
+from rod_measure import joint_dtheta, out_of_plane, rest_kb_from_curvature  # noqa: E402
 
-OUT = Path.home() / "life/results/newton_ratchet_rod"
+OUT = Path(os.environ.get("RATCHET_OUT", Path.home() / "life/results/newton_ratchet_rod"))
 OUT.mkdir(parents=True, exist_ok=True)
 
 # -----------------------------------------------------------------------------
@@ -87,7 +95,10 @@ AGE_START, AGE_END = 5.0, 20.0
 K_G_PEAK = 1.0
 K_R_YEARS = (0.3, 1.0, 6.0)
 BG_RUN = 0.30                       # > 0.1359: passively stable
-MONTHS = int((AGE_END - AGE_START) * 12)
+# RATCHET_MONTHS shortens a smoke run (the full 180-month batch is ~90 min per run on
+# the GB10); RATCHET_SKIP_A1 skips the 5-min statics gate, which the measurement fix
+# does not touch (it reads tip x-positions, not joint angles).
+MONTHS = int(os.environ.get("RATCHET_MONTHS", (AGE_END - AGE_START) * 12))
 
 # Load cycling: sacral shake, 2 full cycles per simulated month.
 SHAKE_CYCLES = 2
@@ -106,11 +117,6 @@ def growth_velocity(t: float) -> float:
 def bg_to_k_bend(bg: float, mass: float) -> float:
     """B_g = EI/(M g L^2); add_rod takes k_bend = EI/SEG_L (per-joint)."""
     return bg * mass * G * L**2 / SEG_L
-
-
-def joint_dtheta(body_q, body_ids):
-    q = np.asarray(body_q, dtype=np.float64)[body_ids]
-    return np.diff(np.unwrap(np.arctan2(q[:, 0], q[:, 1])))
 
 
 def build_column(builder, k_bend, label):
@@ -179,7 +185,7 @@ def run_batch(model, months, k_r_per_world, bg_per_world, kappa_e_law=True,
     root_x0 = s0.body_q.numpy()[roots, 0].copy()
     dt_month = 1.0 / 12.0
 
-    obs = {"age": [], "cobb": [], "flex": [], "tip": []}
+    obs = {"age": [], "cobb": [], "flex": [], "tip": [], "oop": []}
     t_wall = time.time()
     for mstep in range(months):
         age = AGE_START + mstep / 12.0
@@ -199,9 +205,7 @@ def run_batch(model, months, k_r_per_world, bg_per_world, kappa_e_law=True,
                 curv = np.stack([joint_dtheta(q, np.arange(w * nb, (w + 1) * nb)) / SEG_L
                                  for w in range(W)])              # (W, nj)
                 rest_kp += kg[:, None] * (curv - rest_kp) * f[:, None] * dt_month
-                kb = np.zeros((model.joint_count, 3), dtype=np.float64)
-                kb[:, 0] = rest_kp.reshape(-1)
-                rest_kb.assign(kb)
+                rest_kb.assign(rest_kb_from_curvature(rest_kp, SEG_L))
         if mstep % observe_every == 0 or mstep == months - 1:
             q = s0.body_q.numpy()
             curv = np.stack([joint_dtheta(q, np.arange(w * nb, (w + 1) * nb)) / SEG_L
@@ -211,6 +215,7 @@ def run_batch(model, months, k_r_per_world, bg_per_world, kappa_e_law=True,
             set_frac = np.abs(rest_kp).sum(axis=1) / np.maximum(np.abs(curv).sum(axis=1), 1e-12)
             obs["flex"].append((1.0 - np.minimum(set_frac, 1.0)).tolist())
             obs["tip"].append(q[tips, 0].tolist())
+            obs["oop"].append([out_of_plane(q, np.arange(w * nb, (w + 1) * nb)) for w in range(W)])
     wp.synchronize()
     obs["wall_s"] = time.time() - t_wall
     return obs, rest_kp
@@ -262,7 +267,10 @@ def main():
     crit = bg_crit(N_SEG)
     print(f"column mass M = {m_col:.5f} kg   B_g_crit(N={N_SEG}) = {crit:.6f}")
 
-    ga = gate_a1(m_col)
+    if os.environ.get("RATCHET_SKIP_A1"):
+        ga = {"bg": [], "growth": [], "traj": [], "pass": True, "wall_s": 0.0, "skipped": True}
+    else:
+        ga = gate_a1(m_col)
     gstr = "  ".join(f"B_g={b:.2f}:{g:.2f}" for b, g in zip(ga["bg"], ga["growth"]))
     print(f"GATE A1 statics (damped, batched): {gstr}  [{ga['wall_s']:.0f}s]  "
           f"-> {'PASS' if ga['pass'] else 'FAIL'}")
@@ -355,7 +363,10 @@ def main():
         md.append(f"| {bg} | {kr} | {r['cobb_5y']:.1f} | {r['cobb_20y']:.1f} "
                   f"| {r['flex_20y']:.2f} | {r['rod_kappa_p_mean']:.5f} "
                   f"| {r['ode_kappa_p']:.5f} | {r['ratio_rod_over_ode']:.2f} |")
-    md.append(f"\nGate C per B_g: {gate_c}\nControl drift (deg): {drifts}")
+    oop = max(max(row) for row in exp_obs["oop"] + ctrl_obs["oop"])
+    md.append(f"\nGate C per B_g: {gate_c}\nControl drift (deg): {drifts}\n"
+              f"max out-of-plane tangent |t_y| over both runs: {oop:.2e} "
+              f"(planar x-z measurement valid only while this is ~0)")
     (OUT / "ratchet_rod.md").write_text("\n".join(md) + "\n")
     print(f"\nwrote {OUT/'ratchet_rod.json'} and ratchet_rod.md")
     return 0

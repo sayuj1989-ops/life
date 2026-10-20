@@ -48,6 +48,7 @@ This registry tracks all computational experiments supporting the "Biological Co
 | **CLIN_02_ALSPAC** | Literature comparison | Validate prior energy deficit using low BMI at age 10 predicting AIS at age 15. | Text/Supplementary Data | ⚪ **Planned** | Cross-check core hypothesis. |
 | **CLIN_03_Marfan** | `experiment_optimization_failure.py` | Map ~63% scoliosis prevalence in Marfan to FBN1 anisotropy metrics. | FBN1 Anisotropy Mapping | ✅ **Active** | Leverages existing script logic. |
 | **CLIN_04_SexRatio** | Literature comparison | Map stiffness and growth rate parameter variations to the 7:1 female-to-male clinical ratio. | Text/Plot | ⚪ **Planned** | Crucial for epidemiological alignment. |
+| **EXP_12_GrowthMismatchBifurcation** | `~/jupyterlab/scoliosis_publication_strategy/growth_metric_frustration/code/growth_mismatch_sweep.py` | Sagittally-constrained Cosserat rod with growth mismatch δ: find δ_c for out-of-plane bifurcation, rotation/Cobb slope, first-mode location; δ = 0 control. | `data/scratch/sweep.json` (Workbench project `spine-growth-metric`) | ⚪ **Planned** | Pre-registered 2026-10-21, SPEC.md G1–G5; Clef blind review 2026-10-22 window. |
 
 ## 5. Missing / Pending Experiments
 

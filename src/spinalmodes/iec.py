@@ -310,6 +310,17 @@ def solve_beam_static(
         and ``kappa`` the realized curvature (1/m).
     """
 
+    s, kappa_target, E_field, M_active = (
+        np.asarray(field, dtype=np.float64) for field in (s, kappa_target, E_field, M_active)
+    )
+    if s.ndim != 1 or any(field.shape != s.shape for field in (kappa_target, E_field, M_active)):
+        raise ValueError("Beam fields must be one-dimensional and match the spatial grid")
+    if not all(np.all(np.isfinite(field)) for field in (s, kappa_target, E_field, M_active)):
+        raise ValueError("Beam fields must be finite")
+    if not np.isfinite(I_moment) or I_moment <= 0 or np.any(E_field <= 0):
+        raise ValueError("Second moment (m^4) and Young's modulus (Pa) must be positive")
+    if not np.isfinite(P_load) or not np.isfinite(distributed_load):
+        raise ValueError("Beam loads must be finite (N and N/m)")
     if len(s) < 2:
         return np.zeros_like(s), np.zeros_like(s)
 
@@ -317,8 +328,10 @@ def solve_beam_static(
     if length <= 0:
         raise ValueError("Spatial coordinates must span a positive length")
 
-    # Effective bending stiffness, guard against degenerate values
-    EI = np.clip(E_field * I_moment, 1e-9, None)
+    # Reject invalid material inputs rather than silently simulating another material.
+    EI = E_field * I_moment
+    if not np.all(np.isfinite(EI)) or np.any(EI <= 0):
+        raise ValueError("Bending stiffness must be finite and positive (N m^2)")
 
     # External moment for a cantilever with tip load P_load: M_tip(s) = P*(L - s).
     # Uniform distributed load w gives M_dist(s) = 0.5 * w * (L - s)^2.

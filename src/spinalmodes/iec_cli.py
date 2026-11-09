@@ -1,6 +1,7 @@
 """CLI commands for IEC model analysis."""
 
 import json
+from dataclasses import asdict
 from pathlib import Path
 
 import matplotlib
@@ -22,6 +23,7 @@ from spinalmodes.iec import (
     solve_beam_static,
     solve_dynamic_modes,
 )
+from spinalmodes.utils.provenance import tracked_run
 
 app = typer.Typer(help="IEC model commands")
 
@@ -57,12 +59,17 @@ def demo(
         n_nodes=100,
     )
 
-    # Generate fields
-    s = params.get_s_array()
-    kappa_target, E_field, C_field, M_active = apply_iec_coupling(s, params)
-
-    # Solve beam
-    theta, kappa = solve_beam_static(s, kappa_target, E_field, M_active)
+    # This receipt describes the numerical stage, including failed solves.
+    with tracked_run(f'{out_prefix}_solver.provenance.json', 0, {
+        'parameters': asdict(params), 'solver': 'iec.solve_beam_static',
+        'I_moment_m4': 1e-8, 'tip_load_N': 100.0, 'distributed_load_N_per_m': 0.0,
+        'boundary': 'cantilever; theta at base = 0; free tip',
+        'coordinates': 'one-dimensional arclength from base to tip, metres',
+        'outputs': {'theta': 'rad', 'kappa': '1/m'}, 'stochastic': False,
+    }):
+        s = params.get_s_array()
+        kappa_target, E_field, C_field, M_active = apply_iec_coupling(s, params)
+        theta, kappa = solve_beam_static(s, kappa_target, E_field, M_active)
 
     # Compute statistics
     wavelength = compute_wavelength(s, theta)
@@ -123,6 +130,10 @@ def sweep(
     out_csv: str = typer.Option("outputs/csv/iec_sweep.csv", help="Output CSV file"),
 ):
     """Sweep a single IEC parameter and record outputs."""
+    if param not in {'chi_kappa', 'chi_E', 'chi_C', 'chi_f'}:
+        raise typer.BadParameter('Unknown coupling parameter', param_hint='--param')
+    if steps < 2 or not np.isfinite(start) or not np.isfinite(stop):
+        raise typer.BadParameter('Use finite bounds and at least two steps')
     out_path = Path(out_csv)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 

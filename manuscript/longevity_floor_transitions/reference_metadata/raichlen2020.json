@@ -1,0 +1,732 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          29
+        ]
+      ],
+      "date-time": "2026-09-29T21:23:13Z",
+      "timestamp": 1790716993291,
+      "version": "4.1.0"
+    },
+    "reference-count": 57,
+    "publisher": "National Academy of Sciences",
+    "issue": "13",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2020,
+              9,
+              9
+            ]
+          ],
+          "date-time": "2020-09-09T00:00:00Z",
+          "timestamp": 1599609600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 184,
+        "URL": "https://www.pnas.org/site/aboutpnas/licenses.xhtml"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "BCS-0850815"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "BCS-0850815"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "BCS 1440867"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "BCS 1440867"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "BCS 1440841"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "BCS 1440841"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "BCS 1440671"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "BCS 1440671"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000041",
+        "name": "American Diabetes Association",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "1-15-TS-14"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "1-15-TS-14"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000041",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "www.pnas.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Proc. Natl. Acad. Sci. U.S.A."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          31
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Significance</jats:title>\n                  <jats:p>Inactivity is a growing public health risk in industrialized societies, leading some to suggest that our bodies did not evolve to be sedentary. Here, we show that, in a group of hunter-gatherers, time spent sedentary is similar to that found in industrialized populations. However, sedentary time in hunter-gatherers is often spent in postures like squatting that lead to higher levels of muscle activity than chair sitting. Thus, we suggest human physiology likely evolved in a context that included substantial inactivity, but increased muscle activity during sedentary time, suggesting an inactivity mismatch with the more common chair-sitting postures found in contemporary urban populations.</jats:p>",
+    "DOI": "10.1073/pnas.1911868117",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          9
+        ]
+      ],
+      "date-time": "2020-03-09T20:29:33Z",
+      "timestamp": 1583785773000
+    },
+    "page": "7115-7121",
+    "update-policy": "https://doi.org/10.1073/pnas.cm10313",
+    "source": "Crossref",
+    "is-referenced-by-count": 92,
+    "title": [
+      "Sitting, squatting, and the evolutionary biology of human inactivity"
+    ],
+    "prefix": "10.1073",
+    "volume": "117",
+    "author": [
+      {
+        "given": "David A.",
+        "family": "Raichlen",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Human and Evolutionary Biology Section, Department of Biological Sciences, University of Southern California, Los Angeles, CA 90089;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Herman",
+        "family": "Pontzer",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Evolutionary Anthropology, Duke University, Durham, NC 27708;"
+          },
+          {
+            "name": "Duke Global Health Institute, Duke University, Durham, NC 27710;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Theodore W.",
+        "family": "Zderic",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Health and Human Performance, University of Houston, Houston, TX 77204;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jacob A.",
+        "family": "Harris",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Anthropology, University of California, Los Angeles, CA 90095;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Audax Z. P.",
+        "family": "Mabulla",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Archaeology, University of Dar es Salaam, Dar es Salaam, Tanzania;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Marc T.",
+        "family": "Hamilton",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Health and Human Performance, University of Houston, Houston, TX 77204;"
+          },
+          {
+            "name": "Department of Biology and Biochemistry, University of Houston, Houston, TX 77204;"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8187-9429",
+        "authenticated-orcid": false,
+        "given": "Brian M.",
+        "family": "Wood",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Anthropology, University of California, Los Angeles, CA 90095;"
+          },
+          {
+            "name": "Department of Human Behavior, Ecology and Culture, Max Plank Institute for Evolutionary Anthropology, 04103 Leipzig, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "341",
+    "published-online": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          9
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_3_3_1_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature03052"
+      },
+      {
+        "key": "e_1_3_3_2_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1086/203165"
+      },
+      {
+        "key": "e_1_3_3_3_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0047-2484(89)90037-7"
+      },
+      {
+        "key": "e_1_3_3_4_2",
+        "doi-asserted-by": "crossref",
+        "first-page": "135",
+        "DOI": "10.4324/9781315146287-15",
+        "volume-title": "The Routledge Handbook of Sport and Exercise Systems Genetics",
+        "author": "Raichlen D. A.",
+        "year": "2019",
+        "unstructured": "D. A. Raichlen, J. T. Webber, H. Pontzer, “The evolution of the human endurance phenotype” in The Routledge Handbook of Sport and Exercise Systems Genetics, T. J. Lightfoot, M. J. Hubal, S. M. Roth, Eds. (Routledge, New York, 2019), pp. 135–147."
+      },
+      {
+        "key": "e_1_3_3_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/sj.ejcn.1601353"
+      },
+      {
+        "key": "e_1_3_3_6_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0002-9343(88)90113-1"
+      },
+      {
+        "key": "e_1_3_3_7_2",
+        "volume-title": "The Story of the Human Body: Evolution, Health, and Disease",
+        "author": "Lieberman D. E.",
+        "year": "2014",
+        "unstructured": "D. E. Lieberman, The Story of the Human Body: Evolution, Health, and Disease (Vintage, 2014)."
+      },
+      {
+        "key": "e_1_3_3_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/obr.12785"
+      },
+      {
+        "key": "e_1_3_3_9_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/HCO.0b013e3283496605"
+      },
+      {
+        "key": "e_1_3_3_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/JP273284"
+      },
+      {
+        "key": "e_1_3_3_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/eurheartj/ehq451"
+      },
+      {
+        "key": "e_1_3_3_12_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.metabol.2010.08.014"
+      },
+      {
+        "key": "e_1_3_3_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0000000000001262"
+      },
+      {
+        "key": "e_1_3_3_14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0703267104"
+      },
+      {
+        "key": "e_1_3_3_15_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0000000000001305"
+      },
+      {
+        "key": "e_1_3_3_16_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0063171"
+      },
+      {
+        "key": "e_1_3_3_17_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00003677-200410000-00007"
+      },
+      {
+        "key": "e_1_3_3_18_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.ypmed.2015.04.013"
+      },
+      {
+        "key": "e_1_3_3_19_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/CIRCULATIONAHA.109.894824"
+      },
+      {
+        "key": "e_1_3_3_20_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0b013e3181930355"
+      },
+      {
+        "key": "e_1_3_3_21_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00125-015-3861-8"
+      },
+      {
+        "key": "e_1_3_3_22_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/ajhb.22919"
+      },
+      {
+        "key": "e_1_3_3_23_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/ajhb.20772"
+      },
+      {
+        "key": "e_1_3_3_24_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0055679"
+      },
+      {
+        "key": "e_1_3_3_25_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00888379"
+      },
+      {
+        "key": "e_1_3_3_26_2",
+        "volume-title": "Stone Age Economics",
+        "author": "Sahlins M. D.",
+        "year": "1972",
+        "unstructured": "M. D. Sahlins, Stone Age Economics (Aldine de Gruyter, 1972)."
+      },
+      {
+        "key": "e_1_3_3_27_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0140-6736(17)30752-3"
+      },
+      {
+        "key": "e_1_3_3_28_2",
+        "first-page": "219",
+        "article-title": "Influence of the difference in working postures during weeding on muscle activities of the lower back and the lower extremities",
+        "volume": "79",
+        "author": "Eguchi A.",
+        "year": "2003",
+        "unstructured": "A. Eguchi, Influence of the difference in working postures during weeding on muscle activities of the lower back and the lower extremities. J. Sci. Labour Part 1 Jpn. Ed. 79, 219–223 (2003).",
+        "journal-title": "J. Sci. Labour Part 1 Jpn. Ed."
+      },
+      {
+        "key": "e_1_3_3_29_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1525/aa.1955.57.2.02a00040"
+      },
+      {
+        "key": "e_1_3_3_30_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0003-6870(86)90006-2"
+      },
+      {
+        "key": "e_1_3_3_31_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0967-3334/35/11/2319"
+      },
+      {
+        "key": "e_1_3_3_32_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jsams.2015.05.004"
+      },
+      {
+        "key": "e_1_3_3_33_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0180119"
+      },
+      {
+        "key": "e_1_3_3_34_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0140-6736(16)30370-1"
+      },
+      {
+        "key": "e_1_3_3_35_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jacc.2019.02.031"
+      },
+      {
+        "key": "e_1_3_3_36_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1136/bmj.l4570"
+      },
+      {
+        "key": "e_1_3_3_37_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1123/jpah.2016-0366"
+      },
+      {
+        "key": "e_1_3_3_38_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1136/bjsports-2017-097563"
+      },
+      {
+        "key": "e_1_3_3_39_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s40279-018-0963-8"
+      },
+      {
+        "key": "e_1_3_3_40_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00125-016-4161-7"
+      },
+      {
+        "key": "e_1_3_3_41_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41598-018-26616-w"
+      },
+      {
+        "key": "e_1_3_3_42_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0000000000000527"
+      },
+      {
+        "key": "e_1_3_3_43_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00140139.2010.535025"
+      },
+      {
+        "key": "e_1_3_3_44_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0000000000000479"
+      },
+      {
+        "key": "e_1_3_3_45_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.12659/MSM.883589"
+      },
+      {
+        "key": "e_1_3_3_46_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.2003.045591"
+      },
+      {
+        "key": "e_1_3_3_47_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/jappl.1991.70.3.1245"
+      },
+      {
+        "key": "e_1_3_3_48_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jhevol.2010.03.006"
+      },
+      {
+        "key": "e_1_3_3_49_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0305-4403(75)90005-9"
+      },
+      {
+        "key": "e_1_3_3_50_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jhevol.2008.05.013"
+      },
+      {
+        "key": "e_1_3_3_51_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jhevol.2005.08.010"
+      },
+      {
+        "key": "e_1_3_3_52_2",
+        "volume-title": "The Hadza: Hunter-Gatherers of Tanzania",
+        "author": "Marlowe F.",
+        "year": "2010",
+        "unstructured": "F. Marlowe, The Hadza: Hunter-Gatherers of Tanzania (Univ of California Press, 2010)."
+      },
+      {
+        "key": "e_1_3_3_53_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s12110-013-9173-0"
+      },
+      {
+        "key": "e_1_3_3_54_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cub.2015.09.046"
+      },
+      {
+        "key": "e_1_3_3_55_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/ajpa.23160"
+      },
+      {
+        "key": "e_1_3_3_56_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.clinbiochem.2014.11.003"
+      },
+      {
+        "key": "e_1_3_3_57_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jacc.2013.01.079"
+      }
+    ],
+    "container-title": [
+      "Proceedings of the National Academy of Sciences"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://www.pnas.org/syndication/doi/10.1073/pnas.1911868117",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://pnas.org/doi/pdf/10.1073/pnas.1911868117",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          13
+        ]
+      ],
+      "date-time": "2022-04-13T05:46:47Z",
+      "timestamp": 1649828807000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://pnas.org/doi/full/10.1073/pnas.1911868117"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          9
+        ]
+      ]
+    },
+    "references-count": 57,
+    "journal-issue": {
+      "issue": "13",
+      "published-print": {
+        "date-parts": [
+          [
+            2020,
+            3,
+            31
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1073/pnas.1911868117"
+    ],
+    "URL": "https://doi.org/10.1073/pnas.1911868117",
+    "relation": {},
+    "ISSN": [
+      "0027-8424",
+      "1091-6490"
+    ],
+    "issn-type": [
+      {
+        "value": "0027-8424",
+        "type": "print"
+      },
+      {
+        "value": "1091-6490",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          3,
+          9
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2020-03-09",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

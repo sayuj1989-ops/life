@@ -1,0 +1,288 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          2
+        ]
+      ],
+      "date-time": "2026-10-02T03:09:00Z",
+      "timestamp": 1790910540859,
+      "version": "4.1.0"
+    },
+    "reference-count": 15,
+    "publisher": "American Physical Society (APS)",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1957,
+              5,
+              15
+            ]
+          ],
+          "date-time": "1957-05-15T00:00:00Z",
+          "timestamp": -398649600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev."
+    ],
+    "DOI": "10.1103/physrev.106.620",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          7,
+          27
+        ]
+      ],
+      "date-time": "2002-07-27T00:48:10Z",
+      "timestamp": 1027730890000
+    },
+    "page": "620-630",
+    "source": "Crossref",
+    "is-referenced-by-count": 9695,
+    "title": [
+      "Information Theory and Statistical Mechanics"
+    ],
+    "prefix": "10.1103",
+    "volume": "106",
+    "author": [
+      {
+        "given": "E. T.",
+        "family": "Jaynes",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          1957,
+          5,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRev.106.620Cc1R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "289",
+        "DOI": "10.1103/RevModPhys.27.289",
+        "volume": "27",
+        "author": "D. ter Haar",
+        "year": "1955",
+        "journal-title": "Revs. Modern Phys."
+      },
+      {
+        "key": "PhysRev.106.620Cc2R1",
+        "volume-title": "Elementary Principles in Statistical Mechanics",
+        "author": "J. W. Gibbs",
+        "year": "1928"
+      },
+      {
+        "key": "PhysRev.106.620Cc4R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "379",
+        "DOI": "10.1002/j.1538-7305.1948.tb01338.x",
+        "volume": "27",
+        "author": "C. E. Shannon",
+        "year": "1948",
+        "journal-title": "Bell System Tech. J."
+      },
+      {
+        "key": "PhysRev.106.620Cc4R2",
+        "volume-title": "The Mathematical Theory of Communication",
+        "author": "C. E. Shannon",
+        "year": "1949"
+      },
+      {
+        "key": "PhysRev.106.620Cc7R1",
+        "volume-title": "Riddles in Mathematics",
+        "author": "E. P. Northrop",
+        "year": "1944"
+      },
+      {
+        "key": "PhysRev.106.620Cc8R1",
+        "volume-title": "Mathematical Methods of Statistics",
+        "author": "H. Cramer",
+        "year": "1946"
+      },
+      {
+        "key": "PhysRev.106.620Cc9R1",
+        "volume-title": "An Introduction to Probability Theory and its Applications",
+        "author": "W. Feller",
+        "year": "1950"
+      },
+      {
+        "key": "PhysRev.106.620Cc10R1",
+        "volume-title": "A Treatise on Probability",
+        "author": "J. M. Keynes",
+        "year": "1921"
+      },
+      {
+        "key": "PhysRev.106.620Cc11R1",
+        "volume-title": "Theory of Probability",
+        "author": "H. Jeffreys",
+        "year": "1939"
+      },
+      {
+        "key": "PhysRev.106.620Cc12R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "700",
+        "DOI": "10.1017/S0305004100009580",
+        "volume": "22",
+        "author": "R. A. Fisher",
+        "year": "1925",
+        "journal-title": "Proc. Cambridge Phil. Soc."
+      },
+      {
+        "key": "PhysRev.106.620Cc13R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "410",
+        "DOI": "10.1090/S0002-9947-1936-1501855-5",
+        "volume": "39",
+        "author": "J. L. Doob",
+        "year": "1936",
+        "journal-title": "Trans. Am. Math. Soc."
+      },
+      {
+        "key": "PhysRev.106.620Cc14R1",
+        "volume-title": "Statistical Thermodynamics",
+        "author": "E. Schrödinger",
+        "year": "1948"
+      },
+      {
+        "key": "PhysRev.106.620Cc16R1",
+        "volume-title": "Elements of Statistical Mechanics",
+        "author": "D. ter Haar",
+        "year": "1954"
+      },
+      {
+        "key": "PhysRev.106.620Cc17R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1004",
+        "DOI": "10.1007/BF02744278",
+        "volume": "II",
+        "author": "D. Bohm",
+        "year": "1955",
+        "journal-title": "Nuovo cimento, Suppl."
+      },
+      {
+        "key": "PhysRev.106.620Cc19R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "1227",
+        "DOI": "10.1103/PhysRev.101.1227",
+        "volume": "101",
+        "author": "M. B. Lewis",
+        "year": "1956",
+        "journal-title": "Phys. Rev."
+      }
+    ],
+    "container-title": [
+      "Physical Review"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRev.106.620",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRev.106.620/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2017,
+          6,
+          15
+        ]
+      ],
+      "date-time": "2017-06-15T05:49:18Z",
+      "timestamp": 1497505758000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRev.106.620"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          1957,
+          5,
+          15
+        ]
+      ]
+    },
+    "references-count": 15,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            1957,
+            5
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrev.106.620",
+    "relation": {},
+    "ISSN": [
+      "0031-899X"
+    ],
+    "issn-type": [
+      {
+        "value": "0031-899X",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          1957,
+          5,
+          15
+        ]
+      ]
+    }
+  }
+}

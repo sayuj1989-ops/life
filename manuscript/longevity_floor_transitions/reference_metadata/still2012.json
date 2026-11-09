@@ -1,0 +1,427 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2026-09-30T23:31:54Z",
+      "timestamp": 1790811114448,
+      "version": "4.1.0"
+    },
+    "reference-count": 30,
+    "publisher": "American Physical Society (APS)",
+    "issue": "12",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2012,
+              9,
+              19
+            ]
+          ],
+          "date-time": "2012-09-19T00:00:00Z",
+          "timestamp": 1348012800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://link.aps.org/licenses/aps-default-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2013,
+              9,
+              19
+            ]
+          ],
+          "date-time": "2013-09-19T00:00:00Z",
+          "timestamp": 1379548800000
+        },
+        "content-version": "am",
+        "delay-in-days": 365,
+        "URL": "http://link.aps.org/licenses/aps-default-accepted-manuscript-license"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000015",
+        "name": "U.S. Department of Energy",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000015",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000001",
+        "name": "National Science Foundation",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100000001",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. Lett."
+    ],
+    "DOI": "10.1103/physrevlett.109.120604",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          21
+        ]
+      ],
+      "date-time": "2012-09-21T16:23:19Z",
+      "timestamp": 1348244599000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 221,
+    "title": [
+      "Thermodynamics of Prediction"
+    ],
+    "prefix": "10.1103",
+    "volume": "109",
+    "author": [
+      {
+        "given": "Susanne",
+        "family": "Still",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "David A.",
+        "family": "Sivak",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anthony J.",
+        "family": "Bell",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gavin E.",
+        "family": "Crooks",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          19
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevLett.109.120604Cc1R1",
+        "volume-title": "Molecular Cell Biology",
+        "author": "H. Lodish",
+        "year": "2000"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1146/annurev-conmatphys-062910-140506"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc3R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.78.2690"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc4R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.71.2401"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.60.2721"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.071034098"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1071152"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature04061"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc9R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.2307/2530899",
+        "volume-title": "Theory of Probability",
+        "author": "H. Jeffreys",
+        "year": "1998"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc10R1",
+        "volume-title": "Physics of Bio-Molecules and Cells",
+        "author": "W. Bialek",
+        "year": "2001"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/85/28005"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.3489885"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc13R1",
+        "volume-title": "The Dripping Faucet as a Model Chaotic System",
+        "author": "R. Shaw",
+        "year": "1984"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.63.105"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1162/089976601753195969"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.1530990"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1023/A:1023208217925"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.76.050101"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1214/aoms/1177729694"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0375-9601(97)00185-0"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.75.041119"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.108.150601"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc23R1",
+        "doi-asserted-by": "crossref",
+        "first-page": "379",
+        "DOI": "10.1002/j.1538-7305.1948.tb01338.x",
+        "volume": "27",
+        "author": "C. E. Shannon",
+        "year": "1948",
+        "journal-title": "Bell Syst. Tech. J.",
+        "ISSN": "https://id.crossref.org/issn/0005-8580",
+        "issn-type": "print"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1147/rd.53.0183"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1098/rstb.2000.0589"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0706653104"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc28R1",
+        "volume-title": "Optima for Animals",
+        "author": "R. M. Alexander",
+        "year": "1981"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc29R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0914886107"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc30R1",
+        "volume-title": "Biophysics: Searching for Principles",
+        "author": "W. Bialek"
+      },
+      {
+        "key": "PhysRevLett.109.120604Cc31R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s12064-011-0142-z"
+      }
+    ],
+    "container-title": [
+      "Physical Review Letters"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/accepted/10.1103/PhysRevLett.109.120604",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "unspecified"
+      },
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevLett.109.120604",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevLett.109.120604/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          2
+        ]
+      ],
+      "date-time": "2025-01-02T18:56:11Z",
+      "timestamp": 1735844171000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevLett.109.120604"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          19
+        ]
+      ]
+    },
+    "references-count": 30,
+    "journal-issue": {
+      "issue": "12",
+      "published-print": {
+        "date-parts": [
+          [
+            2012,
+            9
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevlett.109.120604",
+    "relation": {},
+    "ISSN": [
+      "0031-9007",
+      "1079-7114"
+    ],
+    "issn-type": [
+      {
+        "value": "0031-9007",
+        "type": "print"
+      },
+      {
+        "value": "1079-7114",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2012,
+          9,
+          19
+        ]
+      ]
+    },
+    "article-number": "120604"
+  }
+}

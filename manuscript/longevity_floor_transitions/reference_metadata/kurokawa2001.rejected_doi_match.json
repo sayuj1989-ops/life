@@ -1,0 +1,485 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          2,
+          20
+        ]
+      ],
+      "date-time": "2026-02-20T22:31:01Z",
+      "timestamp": 1771626661258,
+      "version": "3.50.1"
+    },
+    "reference-count": 44,
+    "publisher": "Wiley",
+    "issue": "2",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2001,
+              12,
+              1
+            ]
+          ],
+          "date-time": "2001-12-01T00:00:00Z",
+          "timestamp": 1007164800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "The Journal of Physiology"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2001,
+          12
+        ]
+      ]
+    },
+    "DOI": "10.1111/j.1469-7793.2001.00597.x",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2004,
+          8,
+          5
+        ]
+      ],
+      "date-time": "2004-08-05T08:40:31Z",
+      "timestamp": 1091695231000
+    },
+    "page": "597-605",
+    "source": "Crossref",
+    "is-referenced-by-count": 64,
+    "title": [
+      "Extracellular formation and uptake of adenosine during skeletal muscle contraction in the rat: role of adenosine transporters"
+    ],
+    "prefix": "10.1113",
+    "volume": "537",
+    "author": [
+      {
+        "given": "J.",
+        "family": "Lynge",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "C.",
+        "family": "Juel",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Y.",
+        "family": "Hellsten",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2001,
+          12
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_5_1_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.1993.sp019586"
+      },
+      {
+        "key": "e_1_2_5_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S1357-4310(99)01459-8"
+      },
+      {
+        "key": "e_1_2_5_3_1",
+        "first-page": "3136",
+        "article-title": "Adenosine in the local regulation of blood flow: a brief overview",
+        "volume": "42",
+        "author": "Berne R. M.",
+        "year": "1983",
+        "journal-title": "Federation Proceedings"
+      },
+      {
+        "key": "e_1_2_5_4_1",
+        "first-page": "115",
+        "article-title": "Adenosine and adenine nucleotides as possible mediators of cardiac and skeletal muscle blood flow regulation",
+        "volume": "28",
+        "author": "Berne R. M.",
+        "year": "1971",
+        "journal-title": "Circulation Research"
+      },
+      {
+        "key": "e_1_2_5_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/01.RES.68.3.797"
+      },
+      {
+        "key": "e_1_2_5_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1469-7793.2000.t01-1-00467.x"
+      },
+      {
+        "key": "e_1_2_5_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0006-2952(94)90357-3"
+      },
+      {
+        "key": "e_1_2_5_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1074/jbc.273.9.5288"
+      },
+      {
+        "key": "e_1_2_5_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00374914"
+      },
+      {
+        "key": "e_1_2_5_10_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "615",
+        "DOI": "10.1242/jcs.97.4.615",
+        "article-title": "Localization of actin, beta‐spectrin, 43 × 10(3) Mr and 58 × 10(3) Mr proteins to receptor‐enriched domains of newly formed acetylcholine receptor aggregates in isolated myotube membranes",
+        "volume": "97",
+        "author": "Daniels M. P.",
+        "year": "1990",
+        "journal-title": "Journal of Cell Science"
+      },
+      {
+        "key": "e_1_2_5_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/01.CIR.99.15.2041"
+      },
+      {
+        "key": "e_1_2_5_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/ajpheart.1995.269.6.H2155"
+      },
+      {
+        "key": "e_1_2_5_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0014-5793(83)80685-1"
+      },
+      {
+        "key": "e_1_2_5_14_1",
+        "first-page": "54",
+        "article-title": "Rat cardiac myocyte adenosine transport and metabolism",
+        "volume": "252",
+        "author": "Ford D. A.",
+        "year": "1987",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_15_1",
+        "first-page": "593",
+        "article-title": "Erythrocyte adenosine transport: effects of Ca2+ channel antagonists and ions",
+        "volume": "248",
+        "author": "Ford D. A.",
+        "year": "1985",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.1977.sp011862"
+      },
+      {
+        "key": "e_1_2_5_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0304-4157(96)00008-1"
+      },
+      {
+        "key": "e_1_2_5_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2337/diabetes.47.11.1671"
+      },
+      {
+        "key": "e_1_2_5_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1469-7793.1999.0761p.x"
+      },
+      {
+        "key": "e_1_2_5_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1469-7793.1997.695bd.x"
+      },
+      {
+        "key": "e_1_2_5_21_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/01.CIR.98.1.6"
+      },
+      {
+        "key": "e_1_2_5_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-1-4899-1928-1_9"
+      },
+      {
+        "key": "e_1_2_5_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0167-4889(88)90171-1"
+      },
+      {
+        "key": "e_1_2_5_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1042/bj2080083"
+      },
+      {
+        "key": "e_1_2_5_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF01871013"
+      },
+      {
+        "key": "e_1_2_5_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0005-2736(91)90004-R"
+      },
+      {
+        "key": "e_1_2_5_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1042/bj2490557"
+      },
+      {
+        "key": "e_1_2_5_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1365-201x.2000.00742.x"
+      },
+      {
+        "key": "e_1_2_5_29_1",
+        "unstructured": "Lynge J. Juel C.&Hellsten Y.(2000).Adenosine transport and transporters: No release of adenosine from skeletal muscle during contraction.Frontiers in Physiology A97."
+      },
+      {
+        "key": "e_1_2_5_30_1",
+        "doi-asserted-by": "crossref",
+        "first-page": "62",
+        "DOI": "10.1152/ajplegacy.1975.228.1.62",
+        "article-title": "Uptake of adenosine by dispersed chick embryonic cardiac cells",
+        "volume": "228",
+        "author": "Mustafa S. J.",
+        "year": "1975",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1042/bj1460625"
+      },
+      {
+        "key": "e_1_2_5_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/physrev.1990.70.3.761"
+      },
+      {
+        "key": "e_1_2_5_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/281384a0"
+      },
+      {
+        "key": "e_1_2_5_34_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0167-4889(88)90081-X"
+      },
+      {
+        "key": "e_1_2_5_35_1",
+        "first-page": "270",
+        "article-title": "Glucose transport and transporters in muscle giant vesicles: differential effects of insulin and contractions",
+        "volume": "264",
+        "author": "Ploug T.",
+        "year": "1993",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_36_1",
+        "first-page": "688",
+        "article-title": "Adenosine and free‐flow functional hyperemia in striated muscle",
+        "volume": "242",
+        "author": "Proctor K. G.",
+        "year": "1982",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_37_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1365-201x.2000.00705.x"
+      },
+      {
+        "key": "e_1_2_5_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/ajpcell.1990.258.2.C258"
+      },
+      {
+        "key": "e_1_2_5_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1172/JCI117104"
+      },
+      {
+        "key": "e_1_2_5_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1023/A:1012113931332"
+      },
+      {
+        "key": "e_1_2_5_41_1",
+        "first-page": "1058",
+        "article-title": "Na(+)‐dependent purine nucleoside transporter from human kidney: cloning and functional characterization",
+        "volume": "273",
+        "author": "Wang J.",
+        "year": "1997",
+        "journal-title": "American Journal of Physiology"
+      },
+      {
+        "key": "e_1_2_5_42_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1139/y84-005"
+      },
+      {
+        "key": "e_1_2_5_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/ajpheart.2000.279.4.H1715"
+      },
+      {
+        "key": "e_1_2_5_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.1978.sp012274"
+      }
+    ],
+    "container-title": [
+      "The Journal of Physiology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1469-7793.2001.00597.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1469-7793.2001.00597.x",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1111/j.1469-7793.2001.00597.x",
+        "content-type": "application/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1469-7793.2001.00597.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          4
+        ]
+      ],
+      "date-time": "2023-09-04T13:59:13Z",
+      "timestamp": 1693835953000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://physoc.onlinelibrary.wiley.com/doi/10.1111/j.1469-7793.2001.00597.x"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2001,
+          12
+        ]
+      ]
+    },
+    "references-count": 44,
+    "journal-issue": {
+      "issue": "2",
+      "published-print": {
+        "date-parts": [
+          [
+            2001,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1111/j.1469-7793.2001.00597.x"
+    ],
+    "URL": "https://doi.org/10.1111/j.1469-7793.2001.00597.x",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "0022-3751",
+      "1469-7793"
+    ],
+    "issn-type": [
+      {
+        "value": "0022-3751",
+        "type": "print"
+      },
+      {
+        "value": "1469-7793",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2001,
+          12
+        ]
+      ]
+    }
+  }
+}

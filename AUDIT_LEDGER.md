@@ -295,6 +295,67 @@ from `scripts/experiments/experiment_temporal_mismatch_dynamics.py` lines 85-110
 
 ---
 
+## OPEN — OX-series (2026-10-14): optogenetics-lane rod solver
+Lane: `~/jupyterlab/scoliosis_publication_strategy/optogenetic_gravity_feedback_20261008/continuation_20261012/hermes_research` (board `spine-research`, card t_4af299e8). Adjudication of the 2026-10-14 external Codex audit revision; every number below re-derived against the live code on this box.
+
+1. **Frame defect is real** (`code/rod3d.py:101`): `qrel = q_i* ⊗ q_{i+1}` already yields
+   `v = qlog_vec(qrel)` in material frame *i* (line-100 comment "world" is the wrong premise);
+   `R_i^T` is applied a second time, and with anisotropic `D=diag(EI,EI,GJ)` a global world
+   rotation mixes bend into twist. Repro (N=4, L=1, κ0=0, q_i=qexp([0.1i,0.05i,0.02i]),
+   left-mult Q0=qexp([0.4,0.2,0.3])): Eb 0.07644000 → 0.0755205547, max |Δkmat| 0.09024995,
+   while `v` itself is invariant to 1e-16. Replacing `kmat = R_i^T v/l0` with `kmat = v/l0`
+   restores invariance to ~2e-17.
+2. **The one-line fix is not sufficient**: FD-vs-analytic torque error is 4.31e-2 for BOTH
+   the current and the corrected energy (matches V1 `max_abs_err_rotation` 0.0428) — a second,
+   independent bug in the torque assembly (log-Jacobian / eta-convention); the exact
+   `J_r^{-1}(v)` right-Jacobian treatment is required. V1 axial error 10.09 also makes the
+   `l`-flow inconsistent (observed integrate blow-up at step 189 under numpy 2.x/py3.14;
+   recorded env is py3.12/numpy 2.2.6 — env-dependence flag).
+3. **Two gates can never pass as coded**: `V2_zero_state` `apex_max_dev` = max|r_tip| = L
+   (=1.0 for a straight vertical rod — it measures the axial coordinate); `V10_no_growth`
+   `k0_change` = the drive amplitude (1.2) switched off at withdrawal by protocol design
+   ("Withdrawal: drives and control off"). Metrics must be fixed before "all gates pass" means anything.
+4. **Axis-convention swap already inside the suite**: `kref_vec=[κ_ref/L,0,0]` is commented
+   "pure sagittal x-bend", but Darboux `d3' = κ2 d1 − κ1 d2` gives x̂-bend → d3 deflects along
+   −ŷ (coronal in the d1=x̂,d2=ŷ convention). `V3_arc` circumcenter solve hardcodes the z=0
+   plane while the drive `kgrow ∥ x̂` puts the arc in y–z → `max_radius_err = NaN`. Fiber
+   matching `ε_g = ε̄ + a cosφ + b sinφ` requires (κ1,κ2) = (+b/R, −a/R), not (a/R, b/R).
+5. **Results/code provenance gap**: `VERIFICATION_RESULTS.json` (15:13, records
+   rod3d_sha256 19498f05…) predates current `rod3d.py` (mtime 15:33, sha256 b6e77592…). The
+   results file does not describe the code on disk; regenerate both.
+6. **Oct-12 checker n3** (`scripts/analysis/verify_derivations_20261012.py`) right conclusion,
+   wrong printed boundary: for `z²+b+a e^{−z}`, crossing lines are `b ∓… = n²π²` families;
+   on its own ray (a,b)=(τ²,2τ²) with I=1,B=2,K=1, `N_RHP=2` at τ=1.814 (its printed
+   `π/√((B+K)/I)`) and first turns 0 at τ=π=π/√((B−K)/I); small-τ is unstable for all τ>0
+   (Re λ≈Kτ/2I). Full verified stability set: wedges `b−a>(2m+1)²π², b+a<(2m+2)²π²`;
+   argument-principle counts: a=0.5: (b=12,50,100)→(0,2,0) ✓; 8 further directional points
+   all match crossing-direction theory; `N_RHP` reaches 4 deep in a (ray τ=9.4).
+7. **Citations checked**: Simsek 2023 Nature 613:153 (PMC9846577) = pulsatile FGFR(SU5402)/MEK
+   *pharmacology* in clock-deficient zebrafish, not optogenetics, not somitoids; Bos 2025
+   Commun Biol 8:1233 (PMC12356878) = mouse slices, cervical/lumbar tonic vs thoracic
+   single-spiking. No compiled manuscript section contains optogenetics, `S_co`, or a π/2
+   DDE claim — those live in the proposal/HISTORICAL notes only; the 25-arm table vs
+   "31 primary runs" line in the lane's MODEL_PROTOCOL.md (and 25+5dt+2N=32 arithmetic) need AMEND-02.
+   `verify.py` runs on import (no main guard).
+
+### OX-series RESOLUTION (2026-10-14)
+
+All seven findings closed on the pinned env (py 3.12.3 / numpy 2.2.6,
+`~/jupyterlab/.venv`): (1) frame defect fixed — `kmat = v/ℓ0`, SO(3) energy invariance
+~2e-17; (2) torque assembly exact (analytic vs FD ≤1e-10); (3) axial penalty flow
+exponential-integrated (was |1−μₐdt·kA·l0/lg²| = 7 blow-up/step; the py3.14 "step-189"
+crash was environment-independent); (4) base clamp enforced per frozen protocol (free base
+= inverted-pendulum fall); (5) axis convention locked (κ₂ sagittal; kgrow = A(sin φ, −cos φ))
+— B-arms now exactly planar (oop 0.0), V6 mirror err 0.0e+00, V4 screw radius 5e-10,
+V2b axial strain 5e-17, V5 cantilever 0.0022 vs 0.0025; (6) results/code hash now matches,
+VERIFICATION_RESULTS.json ALL: true (13 gates), regenerated with env+sha256; (7) AMEND-01/
+02/03 written to the lane's AMENDMENTS.md; run table reconciled 32 rows = 30 executed
+(C4≡C1, H2≡B2 dedup); C3 = literal Ω-flip (phase 0); n3 boundary corrected in the checker;
+manuscript files untouched (zero S_co/π2/optogenetics hits confirmed). Frozen 30-run
+campaign + AMEND-03 perturbation-modes results in the lane's results/.
+
+---
+
 ## LOST
 
 Roughly 60 findings from the 2026-08-06/07 audit, including all of the M-series beyond

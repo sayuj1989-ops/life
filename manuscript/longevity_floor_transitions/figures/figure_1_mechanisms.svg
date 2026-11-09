@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="518.4pt" height="417.6pt" viewBox="0 0 518.4 417.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-02T23:10:12.924323</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 417.6 
+L 518.4 417.6 
+L 518.4 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 14.566 94.9848 
+L 148.232 94.9848 
+Q 154.7892 94.9848 154.7892 89.738 
+L 154.7892 43.324 
+Q 154.7892 38.0772 148.232 38.0772 
+L 14.566 38.0772 
+Q 8.0088 38.0772 8.0088 43.324 
+L 8.0088 89.738 
+Q 8.0088 94.9848 14.566 94.9848 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #176b83; fill-opacity: 0.070588; stroke: #176b83; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 191.106 94.9848 
+L 324.772 94.9848 
+Q 331.3292 94.9848 331.3292 89.738 
+L 331.3292 43.324 
+Q 331.3292 38.0772 324.772 38.0772 
+L 191.106 38.0772 
+Q 184.5488 38.0772 184.5488 43.324 
+L 184.5488 89.738 
+Q 184.5488 94.9848 191.106 94.9848 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #176b83; fill-opacity: 0.070588; stroke: #176b83; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 367.646 94.9848 
+L 501.312 94.9848 
+Q 507.8692 94.9848 507.8692 89.738 
+L 507.8692 43.324 
+Q 507.8692 38.0772 501.312 38.0772 
+L 367.646 38.0772 
+Q 361.0888 38.0772 361.0888 43.324 
+L 361.0888 89.738 
+Q 361.0888 94.9848 367.646 94.9848 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #176b83; fill-opacity: 0.070588; stroke: #176b83; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 14.566 220.1008 
+L 148.232 220.1008 
+Q 154.7892 220.1008 154.7892 214.854 
+L 154.7892 168.44 
+Q 154.7892 163.1932 148.232 163.1932 
+L 14.566 163.1932 
+Q 8.0088 163.1932 8.0088 168.44 
+L 8.0088 214.854 
+Q 8.0088 220.1008 14.566 220.1008 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #8a5a19; fill-opacity: 0.070588; stroke: #8a5a19; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 191.106 220.1008 
+L 324.772 220.1008 
+Q 331.3292 220.1008 331.3292 214.854 
+L 331.3292 168.44 
+Q 331.3292 163.1932 324.772 163.1932 
+L 191.106 163.1932 
+Q 184.5488 163.1932 184.5488 168.44 
+L 184.5488 214.854 
+Q 184.5488 220.1008 191.106 220.1008 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #8a5a19; fill-opacity: 0.070588; stroke: #8a5a19; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 367.646 220.1008 
+L 501.312 220.1008 
+Q 507.8692 220.1008 507.8692 214.854 
+L 507.8692 168.44 
+Q 507.8692 163.1932 501.312 163.1932 
+L 367.646 163.1932 
+Q 361.0888 163.1932 361.0888 168.44 
+L 361.0888 214.854 
+Q 361.0888 220.1008 367.646 220.1008 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #8a5a19; fill-opacity: 0.070588; stroke: #8a5a19; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 14.566 345.2168 
+L 148.232 345.2168 
+Q 154.7892 345.2168 154.7892 339.97 
+L 154.7892 293.556 
+Q 154.7892 288.3092 148.232 288.3092 
+L 14.566 288.3092 
+Q 8.0088 288.3092 8.0088 293.556 
+L 8.0088 339.97 
+Q 8.0088 345.2168 14.566 345.2168 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #347348; fill-opacity: 0.070588; stroke: #347348; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 191.106 345.2168 
+L 324.772 345.2168 
+Q 331.3292 345.2168 331.3292 339.97 
+L 331.3292 293.556 
+Q 331.3292 288.3092 324.772 288.3092 
+L 191.106 288.3092 
+Q 184.5488 288.3092 184.5488 293.556 
+L 184.5488 339.97 
+Q 184.5488 345.2168 191.106 345.2168 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #347348; fill-opacity: 0.070588; stroke: #347348; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 367.646 345.2168 
+L 501.312 345.2168 
+Q 507.8692 345.2168 507.8692 339.97 
+L 507.8692 293.556 
+Q 507.8692 288.3092 501.312 288.3092 
+L 367.646 288.3092 
+Q 361.0888 288.3092 361.0888 293.556 
+L 361.0888 339.97 
+Q 361.0888 345.2168 367.646 345.2168 
+z
+" clip-path="url(#p5d8a370020)" style="fill: #347348; fill-opacity: 0.070588; stroke: #347348; stroke-width: 1.25; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #176b83" x="14.566" y="29.198" transform="rotate(-0 14.566 29.198)">A  Inherited energy</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(46.032594 63.691469)">Descent loads</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(46.168531 74.889281)">elastic tissues</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(225.046031 63.691469)">Sitting pause</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(216.349156 74.889281)">changes storage</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(389.453219 63.691469)">Return during rise</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(403.97275 74.889281)">may decline</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 156.789621 66.531 
+Q 168.155166 66.531 177.955464 66.531 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 173.955464 64.531 
+L 177.955464 66.531 
+L 173.955464 68.531 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 333.329621 66.531 
+Q 344.695166 66.531 354.495464 66.531 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 350.495464 64.531 
+L 354.495464 66.531 
+L 350.495464 68.531 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #444444" x="14.566" y="112.264687" transform="rotate(-0 14.566 112.264687)">Measure loading history, support forces and tissue work.</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8a5a19" x="14.566" y="154.314" transform="rotate(-0 14.566 154.314)">B  New preload</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(47.116969 188.807469)">Muscle action</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(47.096656 200.005281)">before ascent</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(229.210875 188.807469)">New elastic</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(239.52025 200.005281)">loading</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(391.945406 188.807469)">Return can occur</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(388.939156 200.005281)">after a long pause</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 156.789621 191.647 
+Q 168.155166 191.647 177.955464 191.647 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 173.955464 189.647 
+L 177.955464 191.647 
+L 173.955464 193.647 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 333.329621 191.647 
+Q 344.695166 191.647 354.495464 191.647 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 350.495464 189.647 
+L 354.495464 191.647 
+L 350.495464 193.647 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #444444" x="14.566" y="237.380687" transform="rotate(-0 14.566 237.380687)">Recoil alone does not identify the source of stored energy.</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #347348" x="14.566" y="279.43" transform="rotate(-0 14.566 279.43)">C  Chronic adaptation</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(40.239625 313.923469)">Repeated varied</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(42.062281 325.121281)">floor transitions</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(217.852281 313.923469)">Adaptation over</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(242.196812 325.121281)">weeks</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(407.768844 313.923469)">Transfer to</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'" transform="translate(388.239937 325.121281)">untrained function</text>
+   </g>
+   <g id="patch_15">
+    <path d="M 156.789621 316.763 
+Q 168.155166 316.763 177.955464 316.763 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 173.955464 314.763 
+L 177.955464 316.763 
+L 173.955464 318.763 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 333.329621 316.763 
+Q 344.695166 316.763 354.495464 316.763 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+    <path d="M 350.495464 314.763 
+L 354.495464 316.763 
+L 350.495464 318.763 
+" style="fill: none; stroke: #404040; stroke-width: 1.4; stroke-linecap: round"/>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #444444" x="14.566" y="362.496688" transform="rotate(-0 14.566 362.496688)">Test against comparable activity; quantify strength, mobility and control.</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #555555" x="14.566" y="403.3352" transform="rotate(-0 14.566 403.3352)">Conceptual relationships; no participant data or effect estimates.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p5d8a370020">
+   <rect x="7" y="7" width="504.4" height="403.6"/>
+  </clipPath>
+ </defs>
+</svg>

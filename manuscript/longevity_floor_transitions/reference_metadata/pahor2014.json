@@ -1,0 +1,451 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          1
+        ]
+      ],
+      "date-time": "2026-10-01T21:37:54Z",
+      "timestamp": 1790890674144,
+      "version": "4.1.0"
+    },
+    "reference-count": 0,
+    "publisher": "American Medical Association (AMA)",
+    "issue": "23",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "JAMA"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2014,
+          6,
+          18
+        ]
+      ]
+    },
+    "DOI": "10.1001/jama.2014.5616",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2014,
+          5,
+          27
+        ]
+      ],
+      "date-time": "2014-05-27T15:44:57Z",
+      "timestamp": 1401205497000
+    },
+    "page": "2387",
+    "source": "Crossref",
+    "is-referenced-by-count": 1294,
+    "title": [
+      "Effect of Structured Physical Activity on Prevention of Major Mobility Disability in Older Adults"
+    ],
+    "prefix": "10.1001",
+    "volume": "311",
+    "author": [
+      {
+        "given": "Marco",
+        "family": "Pahor",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Aging and Geriatric Research,University of Florida, Gainesville"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jack M.",
+        "family": "Guralnik",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Aging and Geriatric Research,University of Florida, Gainesville2Department of Epidemiology and Public Health, University of Maryland School of Medicine, Baltimore"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Walter T.",
+        "family": "Ambrosius",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Steven",
+        "family": "Blair",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Exercise Science, Arnold School of Public Health, University of South Carolina, Columbia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Denise E.",
+        "family": "Bonds",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Division of Cardiac Sciences, National Heart, Lung, and Blood Institute, Bethesda, Maryland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Timothy S.",
+        "family": "Church",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Preventative Medicine, Pennington Biomedical Research Center, Louisiana"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Mark A.",
+        "family": "Espeland",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Roger A.",
+        "family": "Fielding",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Jean Mayer United States Department of Agriculture Human Nutrition Research Center on Aging, Tufts University, Boston, Massachusetts"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Thomas M.",
+        "family": "Gill",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Yale School of Medicine, New Haven, Connecticut"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Erik J.",
+        "family": "Groessl",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Veterans Affairs San Diego Healthcare System, San Diego, California10Department of Family and Preventive Medicine, University of California, San Diego, San Diego"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Abby C.",
+        "family": "King",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Health Research and Policy and Department of Medicine, Stanford University, School of Medicine, Stanford, California"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephen B.",
+        "family": "Kritchevsky",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Todd M.",
+        "family": "Manini",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Aging and Geriatric Research,University of Florida, Gainesville"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Mary M.",
+        "family": "McDermott",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Medicine and Preventive Medicine, Northwestern University Feinberg School of Medicine, Chicago, Illinois"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael E.",
+        "family": "Miller",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anne B.",
+        "family": "Newman",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Epidemiology, Graduate School of Public Health, University of Pittsburgh, Pittsburgh, Pennsylvania"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "W. Jack",
+        "family": "Rejeski",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Kaycee M.",
+        "family": "Sink",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jeff D.",
+        "family": "Williamson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Internal Medicine, Wake Forest University and School of Medicine, Winston-Salem, North Carolina"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "10",
+    "container-title": [
+      "JAMA"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://jamanetwork.com/journals/jama/fullarticle/1875328",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          15
+        ]
+      ],
+      "date-time": "2016-12-15T13:19:46Z",
+      "timestamp": 1481807986000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "http://jama.jamanetwork.com/article.aspx?doi=10.1001/jama.2014.5616"
+      }
+    },
+    "subtitle": [
+      "The LIFE Study Randomized Clinical Trial"
+    ],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          6,
+          18
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "issue": "23",
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            6,
+            18
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1001/jama.2014.5616",
+    "relation": {
+      "has-review": [
+        {
+          "id-type": "doi",
+          "id": "10.3410/f.718421677.793495725",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "ISSN": [
+      "0098-7484"
+    ],
+    "issn-type": [
+      {
+        "value": "0098-7484",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2014,
+          6,
+          18
+        ]
+      ]
+    }
+  }
+}

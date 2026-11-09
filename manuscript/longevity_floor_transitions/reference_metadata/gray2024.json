@@ -1,0 +1,529 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          25
+        ]
+      ],
+      "date-time": "2026-09-25T20:45:20Z",
+      "timestamp": 1790369120592,
+      "version": "4.1.0"
+    },
+    "reference-count": 40,
+    "publisher": "American Physiological Society",
+    "issue": "6",
+    "funder": [
+      {
+        "DOI": "10.13039/100000049",
+        "name": "HHS | NIH | National Institute on Aging",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "R01AG058615"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "R01AG058615"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000049",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/100000049",
+        "name": "HHS | NIH | National Institute on Aging",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "F32AG067675"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "F32AG067675"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000049",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.physiology.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Journal of Applied Physiology"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          1
+        ]
+      ]
+    },
+    "abstract": "<jats:p> This study provides the first empirical evidence to our knowledge that age-related decreases in k<jats:sub>AT</jats:sub> exact a potentially significant metabolic penalty during walking. These results pave the way for interventions focused on restoring ankle muscle-tendon unit structural stiffness to improve walking energetics in aging. </jats:p>",
+    "DOI": "10.1152/japplphysiol.00377.2024",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          11,
+          7
+        ]
+      ],
+      "date-time": "2024-11-07T16:00:20Z",
+      "timestamp": 1730995220000
+    },
+    "page": "1541-1548",
+    "update-policy": "https://doi.org/10.1152/aps-crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 9,
+    "title": [
+      "Reduced Achilles tendon stiffness in aging associates with higher metabolic cost of walking"
+    ],
+    "prefix": "10.1152",
+    "volume": "137",
+    "author": [
+      {
+        "given": "Aubrey J.",
+        "family": "Gray",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Joint Department of Biomedical Engineering, University of North Carolina at Chapel Hill and North Carolina State University, Chapel Hill, North Carolina, United States"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Rebecca L.",
+        "family": "Krupenevich",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Division of Behavioral and Social Research, National Institute on Aging, Bethesda, Maryland, United States"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "John A.",
+        "family": "Batsis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Division of Geriatric Medicine, Center for Aging and Health, University of North Carolina, Chapel Hill, North Carolina, United States"
+          },
+          {
+            "name": "Department of Nutrition, Gillings School of Global Public Health, University of North Carolina, Chapel Hill, North Carolina, United States"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5588-6297",
+        "authenticated-orcid": false,
+        "given": "Gregory S.",
+        "family": "Sawicki",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "George W. Woodruff School of Mechanical Engineering, Georgia Institute of Technology, Atlanta, Georgia, United States"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9523-9708",
+        "authenticated-orcid": false,
+        "given": "Jason R.",
+        "family": "Franz",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Joint Department of Biomedical Engineering, University of North Carolina at Chapel Hill and North Carolina State University, Chapel Hill, North Carolina, United States"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "24",
+    "reference": [
+      {
+        "key": "B1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/jor.1100060208"
+      },
+      {
+        "key": "B2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/jappl.1992.73.1.200"
+      },
+      {
+        "key": "B3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2165/00007256-199723050-00004"
+      },
+      {
+        "key": "B4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2016.04.032"
+      },
+      {
+        "key": "B5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/JP270228"
+      },
+      {
+        "key": "B6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.01950"
+      },
+      {
+        "key": "B7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1098/rsif.2010.0084"
+      },
+      {
+        "key": "B8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2009.03.009"
+      },
+      {
+        "key": "B9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.00782.2012"
+      },
+      {
+        "key": "B10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.01442.2005"
+      },
+      {
+        "key": "B11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1159/000516910"
+      },
+      {
+        "key": "B12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/s0003-9993(98)90013-2"
+      },
+      {
+        "key": "B13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1748-1716.2006.01634.x"
+      },
+      {
+        "key": "B14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2017.06.022"
+      },
+      {
+        "key": "B15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.7717/peerj.5182"
+      },
+      {
+        "key": "B16",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1123/jab.2019-0340"
+      },
+      {
+        "key": "B17",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.cmpb.2021.106120"
+      },
+      {
+        "key": "B18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2018.06.001"
+      },
+      {
+        "key": "B19",
+        "first-page": "463",
+        "volume": "41",
+        "author": "Brockway JM",
+        "year": "1987",
+        "journal-title": "Hum Nutr Clin Nutr"
+      },
+      {
+        "key": "B20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1371/journal.pone.0293331"
+      },
+      {
+        "key": "B21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10439-018-02162-4"
+      },
+      {
+        "key": "B22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.01337.2013"
+      },
+      {
+        "key": "B23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.01830"
+      },
+      {
+        "key": "B24",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2020.110067"
+      },
+      {
+        "key": "B25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jelekin.2006.09.008"
+      },
+      {
+        "key": "B26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.gaitpost.2006.09.081"
+      },
+      {
+        "key": "B27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s12020-020-02601-0"
+      },
+      {
+        "key": "B28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11357-013-9514-2"
+      },
+      {
+        "key": "B29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.00396.2016"
+      },
+      {
+        "key": "B30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.133009"
+      },
+      {
+        "key": "B31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41598-019-45602-4"
+      },
+      {
+        "key": "B32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.244863"
+      },
+      {
+        "key": "B33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.gaitpost.2020.01.018"
+      },
+      {
+        "key": "B34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature14288"
+      },
+      {
+        "key": "B35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/s41598-020-60360-4"
+      },
+      {
+        "key": "B36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.00720.2021"
+      },
+      {
+        "key": "B37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jbiomech.2023.111771"
+      },
+      {
+        "key": "B38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/glr008"
+      },
+      {
+        "key": "B39",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3109/17453677608998984"
+      },
+      {
+        "key": "B40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/03008207.2019.1612384"
+      }
+    ],
+    "container-title": [
+      "Journal of Applied Physiology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://journals.physiology.org/doi/pdf/10.1152/japplphysiol.00377.2024",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          16
+        ]
+      ],
+      "date-time": "2024-12-16T14:42:16Z",
+      "timestamp": 1734360136000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://journals.physiology.org/doi/10.1152/japplphysiol.00377.2024"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          1
+        ]
+      ]
+    },
+    "references-count": 40,
+    "journal-issue": {
+      "issue": "6",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            12,
+            1
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1152/japplphysiol.00377.2024"
+    ],
+    "URL": "https://doi.org/10.1152/japplphysiol.00377.2024",
+    "relation": {},
+    "ISSN": [
+      "8750-7587",
+      "1522-1601"
+    ],
+    "issn-type": [
+      {
+        "value": "8750-7587",
+        "type": "print"
+      },
+      {
+        "value": "1522-1601",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          1
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2024-05-21",
+        "order": 0,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2024-09-24",
+        "order": 1,
+        "name": "revised",
+        "label": "Revised",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2024-10-20",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      },
+      {
+        "value": "2024-12-09",
+        "order": 3,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

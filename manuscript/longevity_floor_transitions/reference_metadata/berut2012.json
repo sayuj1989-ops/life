@@ -1,0 +1,559 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          1
+        ]
+      ],
+      "date-time": "2026-10-01T06:39:58Z",
+      "timestamp": 1790836798137,
+      "version": "4.1.0"
+    },
+    "reference-count": 30,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "7388",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2012,
+              3,
+              1
+            ]
+          ],
+          "date-time": "2012-03-01T00:00:00Z",
+          "timestamp": 1330560000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://www.springer.com/tdm"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Nature"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2012,
+          3
+        ]
+      ]
+    },
+    "DOI": "10.1038/nature10872",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2012,
+          3,
+          6
+        ]
+      ],
+      "date-time": "2012-03-06T06:41:56Z",
+      "timestamp": 1331016116000
+    },
+    "page": "187-189",
+    "source": "Crossref",
+    "is-referenced-by-count": 1052,
+    "title": [
+      "Experimental verification of Landauer’s principle linking information and thermodynamics"
+    ],
+    "prefix": "10.1038",
+    "volume": "483",
+    "author": [
+      {
+        "given": "Antoine",
+        "family": "Bérut",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Artak",
+        "family": "Arakelyan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Artyom",
+        "family": "Petrosyan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sergio",
+        "family": "Ciliberto",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Raoul",
+        "family": "Dillenschneider",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Eric",
+        "family": "Lutz",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2012,
+          3,
+          7
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "BFnature10872_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "183",
+        "DOI": "10.1147/rd.53.0183",
+        "volume": "5",
+        "author": "R Landauer",
+        "year": "1961",
+        "unstructured": "Landauer, R. Irreversibility and heat generation in the computing process. IBM J. Res. Develop. 5, 183–191 (1961)",
+        "journal-title": "IBM J. Res. Develop."
+      },
+      {
+        "key": "BFnature10872_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "779",
+        "DOI": "10.1038/335779a0",
+        "volume": "335",
+        "author": "R Landauer",
+        "year": "1988",
+        "unstructured": "Landauer, R. Dissipation and noise immunity in computation and communication. Nature 335, 779–784 (1988)",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "BFnature10872_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "1047",
+        "DOI": "10.1038/35023282",
+        "volume": "406",
+        "author": "S Lloyd",
+        "year": "2000",
+        "unstructured": "Lloyd, S. Ultimate physical limits to computation. Nature 406, 1047–1054 (2000)",
+        "journal-title": "Nature"
+      },
+      {
+        "key": "BFnature10872_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "1515",
+        "DOI": "10.1109/4.871332",
+        "volume": "35",
+        "author": "JD Meindl",
+        "year": "2000",
+        "unstructured": "Meindl, J. D. & Davis, J. A. The fundamental limit on binary switching energy for terascale integration. IEEE J. Solid-state Circuits 35, 1515–1516 (2000)",
+        "journal-title": "IEEE J. Solid-state Circuits"
+      },
+      {
+        "key": "BFnature10872_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "25",
+        "DOI": "10.1080/00107510010018916",
+        "volume": "42",
+        "author": "MB Plenio",
+        "year": "2001",
+        "unstructured": "Plenio, M. B. & Vitelli, V. The physics of forgetting: Landauer’s erasure principle and information theory. Contemp. Phys. 42, 25–60 (2001)",
+        "journal-title": "Contemp. Phys."
+      },
+      {
+        "key": "BFnature10872_CR6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1063/1.3059856",
+        "volume-title": "Science and Information Theory",
+        "author": "L Brillouin",
+        "year": "1956",
+        "unstructured": "Brillouin, L. Science and Information Theory (Academic, 1956)"
+      },
+      {
+        "key": "BFnature10872_CR7",
+        "volume-title": "Maxwell’s Demon 2: Entropy, Classical and Quantum Information, Computing",
+        "author": "HS Leff",
+        "year": "2003",
+        "unstructured": "Leff, H. S. & Rex, A. F. Maxwell’s Demon 2: Entropy, Classical and Quantum Information, Computing (IOP, 2003)"
+      },
+      {
+        "key": "BFnature10872_CR8",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1103/RevModPhys.81.1",
+        "volume": "81",
+        "author": "K Maruyama",
+        "year": "2009",
+        "unstructured": "Maruyama, K., Nori, F. & Vedral, V. The physics of Maxwell’s demon and information. Rev. Mod. Phys. 81, 1–23 (2009)",
+        "journal-title": "Rev. Mod. Phys."
+      },
+      {
+        "key": "BFnature10872_CR9",
+        "doi-asserted-by": "publisher",
+        "first-page": "840",
+        "DOI": "10.1007/BF01341281",
+        "volume": "53",
+        "author": "L Szilard",
+        "year": "1929",
+        "unstructured": "Szilard, L. On the decrease of entropy in a thermodynamic system by the intervention of intelligent beings. Z. Phys. 53, 840–856 (1929)",
+        "journal-title": "Z. Phys."
+      },
+      {
+        "key": "BFnature10872_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "988",
+        "DOI": "10.1038/nphys1821",
+        "volume": "6",
+        "author": "S Toyabe",
+        "year": "2010",
+        "unstructured": "Toyabe, S., Sagawa, T., Ueda, M., Muneyuki, E. & Sano, M. Experimental demonstration of information-to-energy conversion and validation of the generalized Jarzynski equality. Nature Phys. 6, 988–992 (2010)",
+        "journal-title": "Nature Phys."
+      },
+      {
+        "key": "BFnature10872_CR11",
+        "volume-title": "Foundations of Statistical Mechanics: A Deductive Treatment",
+        "author": "O Penrose",
+        "year": "1970",
+        "unstructured": "Penrose, O. Foundations of Statistical Mechanics: A Deductive Treatment (Pergamon, 1970)"
+      },
+      {
+        "key": "BFnature10872_CR12",
+        "doi-asserted-by": "publisher",
+        "first-page": "905",
+        "DOI": "10.1007/BF02084158",
+        "volume": "21",
+        "author": "CH Bennett",
+        "year": "1982",
+        "unstructured": "Bennett, C. H. The thermodynamics of computation: a review. Int. J. Theor. Phys. 21, 905–940 (1982)",
+        "journal-title": "Int. J. Theor. Phys."
+      },
+      {
+        "key": "BFnature10872_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "525",
+        "DOI": "10.1147/rd.176.0525",
+        "volume": "17",
+        "author": "CH Bennett",
+        "year": "1973",
+        "unstructured": "Bennett, C. H. Logical reversibility of computation. IBM J. Res. Develop. 17, 525–532 (1973)",
+        "journal-title": "IBM J. Res. Develop."
+      },
+      {
+        "key": "BFnature10872_CR14",
+        "doi-asserted-by": "publisher",
+        "first-page": "3495",
+        "DOI": "10.1103/PhysRevE.52.3495",
+        "volume": "52",
+        "author": "K Shizume",
+        "year": "1995",
+        "unstructured": "Shizume, K. Heat generation required by information erasure. Phys. Rev. E 52, 3495–3499 (1995)",
+        "journal-title": "Phys. Rev. E"
+      },
+      {
+        "key": "BFnature10872_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "062314",
+        "DOI": "10.1103/PhysRevA.61.062314",
+        "volume": "61",
+        "author": "P Piechocinska",
+        "year": "2000",
+        "unstructured": "Piechocinska, P. Information erasure. Phys. Rev. A 61, 062314 (2000)",
+        "journal-title": "Phys. Rev. A"
+      },
+      {
+        "key": "BFnature10872_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "210601",
+        "DOI": "10.1103/PhysRevLett.102.210601",
+        "volume": "102",
+        "author": "R Dillenschneider",
+        "year": "2009",
+        "unstructured": "Dillenschneider, R. & Lutz, E. Memory erasure in small systems. Phys. Rev. Lett. 102, 210601 (2009)",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFnature10872_CR17",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1016/S0039-3681(98)00041-7",
+        "volume": "30",
+        "author": "J Earman",
+        "year": "1999",
+        "unstructured": "Earman, J. & Norton, J. D. EXORCIST XIV: The wrath of Maxwell’s demon. Part II. From Szilard to Landauer and beyond. Stud. Hist. Phil. Sci. B 30, 1–40 (1999)",
+        "journal-title": "Stud. Hist. Phil. Sci. B"
+      },
+      {
+        "key": "BFnature10872_CR18",
+        "unstructured": "Shenker, O. R. Logic and entropy. Preprint at 〈 http://philsci-archive.pitt.edu/115/ 〉 (2000)"
+      },
+      {
+        "key": "BFnature10872_CR19",
+        "first-page": "355",
+        "volume": "36",
+        "author": "OJE Maroney",
+        "year": "2005",
+        "unstructured": "Maroney, O. J. E. The (absence of a) relationship between thermodynamic and logical reversibility. Studies Hist. Phil. Sci. B 36, 355–374 (2005)",
+        "journal-title": "Studies Hist. Phil. Sci. B"
+      },
+      {
+        "key": "BFnature10872_CR20",
+        "first-page": "375",
+        "volume": "36",
+        "author": "JD Norton",
+        "year": "2005",
+        "unstructured": "Norton, J. D. Eaters of the lotus: Landauer’s principle and the return of Maxwell’s demon. Stud. Hist. Phil. Sci. B 36, 375–411 (2005)",
+        "journal-title": "Stud. Hist. Phil. Sci. B"
+      },
+      {
+        "key": "BFnature10872_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "250602",
+        "DOI": "10.1103/PhysRevLett.102.250602",
+        "volume": "102",
+        "author": "T Sagawa",
+        "year": "2009",
+        "unstructured": "Sagawa, T. & Ueda, M. Minimal energy cost for thermodynamic information processing: measurement and information erasure. Phys. Rev. Lett. 102, 250602 (2009)",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFnature10872_CR22",
+        "first-page": "184",
+        "volume": "42",
+        "author": "JD Norton",
+        "year": "2011",
+        "unstructured": "Norton, J. D. Waiting for Landauer. Stud. Hist. Phil. Sci. B 42, 184–198 (2011)",
+        "journal-title": "Stud. Hist. Phil. Sci. B"
+      },
+      {
+        "key": "BFnature10872_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "16",
+        "DOI": "10.1109/5992.998637",
+        "volume": "4",
+        "author": "MP Frank",
+        "year": "2002",
+        "unstructured": "Frank, M. P. The physical limits of computing. Comput. Sci. Eng. 4, 16–26 (2002)",
+        "journal-title": "Comput. Sci. Eng."
+      },
+      {
+        "key": "BFnature10872_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "147",
+        "DOI": "10.1007/s12274-010-1019-z",
+        "volume": "3",
+        "author": "E Pop",
+        "year": "2010",
+        "unstructured": "Pop, E. Energy dissipation and transport in nanoscale devices. Nano Res. 3, 147–169 (2010)",
+        "journal-title": "Nano Res."
+      },
+      {
+        "key": "BFnature10872_CR25",
+        "doi-asserted-by": "publisher",
+        "first-page": "050601",
+        "DOI": "10.1103/PhysRevLett.89.050601",
+        "volume": "89",
+        "author": "GM Wang",
+        "year": "2002",
+        "unstructured": "Wang, G. M., Sevick, E. M., Mittag, E., Searles, D. J. & Evans, D. J. Experimental demonstration of violations of the second law of thermodynamics for small systems and short time scales. Phys. Rev. Lett. 89, 050601 (2002)",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFnature10872_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "070603",
+        "DOI": "10.1103/PhysRevLett.96.070603",
+        "volume": "96",
+        "author": "V Blickle",
+        "year": "2006",
+        "unstructured": "Blickle, V., Speck, T., Helden, L., Seifert, U. & Bechinger, C. Thermodynamics of a colloidal particle in a time-dependent nonharmonic potential. Phys. Rev. Lett. 96, 070603 (2006)",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFnature10872_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "50005",
+        "DOI": "10.1209/0295-5075/81/50005",
+        "volume": "81",
+        "author": "P Jop",
+        "year": "2008",
+        "unstructured": "Jop, P., Petrosyan, A. & Ciliberto, S. Work and dissipation fluctuations near the stochastic resonance of a colloidal particle. Europhys. Lett. 81, 50005 (2008)",
+        "journal-title": "Europhys. Lett."
+      },
+      {
+        "key": "BFnature10872_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "040601",
+        "DOI": "10.1103/PhysRevLett.103.040601",
+        "volume": "103",
+        "author": "JR Gomez-Solano",
+        "year": "2009",
+        "unstructured": "Gomez-Solano, J. R., Petrosyan, A., Ciliberto, S., Chetrite, R. & Gawedzki, K. Experimental verification of a modified fluctuation-dissipation relation for a micron-sized particle in a nonequilibrium steady state. Phys. Rev. Lett. 103, 040601 (2009)",
+        "journal-title": "Phys. Rev. Lett."
+      },
+      {
+        "key": "BFnature10872_CR29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-05411-2",
+        "volume-title": "Stochastic Energetics",
+        "author": "K Sekimoto",
+        "year": "2010",
+        "unstructured": "Sekimoto, K. Stochastic Energetics (Springer, 2010)"
+      },
+      {
+        "key": "BFnature10872_CR30",
+        "doi-asserted-by": "publisher",
+        "first-page": "3326",
+        "DOI": "10.1143/JPSJ.66.3326",
+        "volume": "6",
+        "author": "K Sekimoto",
+        "year": "1997",
+        "unstructured": "Sekimoto, K. & Sasa, S. I. Complementarity relation for irreversible process derived from stochastic energetics. J. Phys. Soc. Jpn 6, 3326–3328 (1997)",
+        "journal-title": "J. Phys. Soc. Jpn"
+      }
+    ],
+    "container-title": [
+      "Nature"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://www.nature.com/articles/nature10872.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://www.nature.com/articles/nature10872",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://www.nature.com/articles/nature10872.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          3,
+          22
+        ]
+      ],
+      "date-time": "2025-03-22T10:36:46Z",
+      "timestamp": 1742639806000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://www.nature.com/articles/nature10872"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          3
+        ]
+      ]
+    },
+    "references-count": 30,
+    "journal-issue": {
+      "issue": "7388",
+      "published-print": {
+        "date-parts": [
+          [
+            2012,
+            3
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "BFnature10872"
+    ],
+    "URL": "https://doi.org/10.1038/nature10872",
+    "relation": {},
+    "ISSN": [
+      "0028-0836",
+      "1476-4687"
+    ],
+    "issn-type": [
+      {
+        "value": "0028-0836",
+        "type": "print"
+      },
+      {
+        "value": "1476-4687",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2012,
+          3
+        ]
+      ]
+    }
+  }
+}

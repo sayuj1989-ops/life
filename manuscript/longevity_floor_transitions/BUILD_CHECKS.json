@@ -1,0 +1,24 @@
+{
+  "built_utc": "2026-10-02T17:40:18.173583+00:00",
+  "references": 29,
+  "abstract_words_approx": 223,
+  "main_text_words_approx": 3348,
+  "editable_math_objects": 24,
+  "tables": 2,
+  "figures": 2,
+  "manuscript_pages": 15,
+  "supplement_pages": 4,
+  "citation_keys_complete": true,
+  "bibliography_dois_rendered": true,
+  "model_script_hash_matches_verified_artifact": true,
+  "remaining_author_checks": [
+    "author list",
+    "affiliations",
+    "correspondence",
+    "funding",
+    "conflicts",
+    "contributions",
+    "scientific and AI review",
+    "optional archive location/license if used"
+  ]
+}

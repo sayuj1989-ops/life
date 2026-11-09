@@ -1,0 +1,10 @@
+{
+  "status": "RESOLVED",
+  "references_fetched": 27,
+  "previous_errors": {
+    "hofmeyer2002": "HTTP Error 429: Too Many Requests",
+    "brito2014": "HTTP Error 429: Too Many Requests",
+    "raichlen2020": "HTTP Error 429: Too Many Requests",
+    "peltonen2013": "HTTP Error 429: Too Many Requests"
+  }
+}

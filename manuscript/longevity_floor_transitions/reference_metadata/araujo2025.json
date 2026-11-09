@@ -1,0 +1,754 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          8
+        ]
+      ],
+      "date-time": "2026-09-08T12:02:13Z",
+      "timestamp": 1788868933697,
+      "version": "build-2803163510"
+    },
+    "reference-count": 40,
+    "publisher": "Oxford University Press (OUP)",
+    "issue": "12",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              6,
+              18
+            ]
+          ],
+          "date-time": "2025-06-18T00:00:00Z",
+          "timestamp": 1750204800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by-nc/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          8
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:sec>\n                    <jats:title>Aims</jats:title>\n                    <jats:p>In a previous study, the ability to sit and rise from the floor was associated with all-cause mortality. Now, we aim to assess whether sitting–rising test (SRT) scores also predict premature natural and cardiovascular (CV) deaths. This is a prospective cohort design study.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Methods and results</jats:title>\n                    <jats:p>A total of 4282 adults aged 46–75 years (68% men) performed sitting and rising from the floor, which was scored from 0 to 5, with one point being subtracted from 5 for each support used (hand/knee) and 0.5 for an unsteadiness execution. The final SRT score was obtained by adding sitting and rising scores and stratified in five groups for analysis: 0–4, 4.5–7.5, 8, 8.5–9.5, and 10. During a median follow-up of 12.3 (interquartile range = 7.6–18.0) years, there were 665 deaths (15.5%). There was a continuous trend for higher mortality with low SRT scores (P &amp;lt; 0.001), with death rates of 3.7, 7.0, 11.1, 20.4, and 42.1%, respectively, for Groups 5 to 1 of SRT scores. The Cox multivariate-adjusted (age, sex, body mass index, and clinical variables) hazard ratios of 3.84 [95% confidence interval (CI) 2.25–6.97] and 6.05 (95% CI 2.29–20.94) (P &amp;lt; 0.001) were observed, respectively, for natural and CV mortality, when comparing the highest and lowest SRT score groups.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Conclusion</jats:title>\n                    <jats:p>Non-aerobic physical fitness, as assessed by SRT, was a significant predictor of natural and CV mortality in 46–75-year-old participants. Application of the SRT, a simple assessment tool that is influenced by muscular strength/power, flexibility, balance, and body composition, could add relevant clinical and prognostic information to routine examinations of healthy and unhealthy individuals.</jats:p>\n                  </jats:sec>",
+    "DOI": "10.1093/eurjpc/zwaf325",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          2
+        ]
+      ],
+      "date-time": "2025-06-02T07:21:22Z",
+      "timestamp": 1748848882000
+    },
+    "page": "2170-2178",
+    "source": "Crossref",
+    "is-referenced-by-count": 5,
+    "title": [
+      "Sitting–rising test scores predict natural and cardiovascular causes of deaths in middle-aged and older men and women"
+    ],
+    "prefix": "10.1093",
+    "volume": "33",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-6679-6695",
+        "authenticated-orcid": false,
+        "given": "Claudio Gil S",
+        "family": "Araújo",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Medical Department, Exercise Medicine Clinic—CLINIMEX, Rua Siqueira Campos , 93/101-103, Rio de Janeiro, RJ 22031071 ,",
+            "place": [
+              "Brazil"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0758-5174",
+        "authenticated-orcid": false,
+        "given": "Christina G",
+        "family": "de Souza e Silva",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Medical Department, Exercise Medicine Clinic—CLINIMEX, Rua Siqueira Campos , 93/101-103, Rio de Janeiro, RJ 22031071 ,",
+            "place": [
+              "Brazil"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2592-136X",
+        "authenticated-orcid": false,
+        "given": "Jonathan",
+        "family": "Myers",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Division of Cardiology, VA Palo Alto Health Care System and Stanford University , Palo Alto ,",
+            "place": [
+              "USA"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3738-1586",
+        "authenticated-orcid": false,
+        "given": "Jari A",
+        "family": "Laukkanen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Institute of Clinical Medicine, Department of Medicine, University of Eastern Finland , Kuopio ,",
+            "place": [
+              "Finland"
+            ]
+          },
+          {
+            "name": "Department of Medicine, Wellbeing Services County of Central Finland , Jyväskylä ,",
+            "place": [
+              "Finland"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4035-3890",
+        "authenticated-orcid": false,
+        "given": "Plínio Santos",
+        "family": "Ramos",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Medical and Health Sciences, SUPREMA , Juiz de Fora ,",
+            "place": [
+              "Brazil"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2456-1470",
+        "authenticated-orcid": false,
+        "given": "Djalma Rabelo",
+        "family": "Ricardo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Medical and Health Sciences, SUPREMA , Juiz de Fora ,",
+            "place": [
+              "Brazil"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "286",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "2026090719592545800_zwaf325-B1",
+        "volume-title": "ACSM's Health-Related Physical Fitness Assessment",
+        "author": "ACSM",
+        "year": "2017",
+        "edition": "5th ed"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B2",
+        "first-page": "36",
+        "article-title": "Componentes aeróbico e não-aeróbicos da aptidão física: fatores de risco para mortalidade por todas as causas",
+        "volume": "35",
+        "author": "Araújo",
+        "year": "2015",
+        "journal-title": "Revista Factores Risco"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B3",
+        "doi-asserted-by": "crossref",
+        "first-page": "943",
+        "DOI": "10.36660/abc.20200407",
+        "article-title": "Brazilian cardiovascular rehabilitation guideline—2020",
+        "volume": "114",
+        "author": "Carvalho",
+        "year": "2020",
+        "journal-title": "Arq Bras Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B4",
+        "doi-asserted-by": "crossref",
+        "first-page": "e14708",
+        "DOI": "10.1111/sms.14708",
+        "article-title": "Reduced body flexibility is associated with poor survival in middle-aged men and women: a prospective cohort study",
+        "volume": "34",
+        "author": "Araujo",
+        "year": "2024",
+        "journal-title": "Scand J Med Sci Sports"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B5",
+        "doi-asserted-by": "crossref",
+        "first-page": "975",
+        "DOI": "10.1136/bjsports-2021-105360",
+        "article-title": "Successful 10-second one-legged stance performance predicts survival in middle-aged and older individuals",
+        "volume": "56",
+        "author": "Araujo",
+        "year": "2022",
+        "journal-title": "Br J Sports Med"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B6",
+        "doi-asserted-by": "crossref",
+        "first-page": "1286",
+        "DOI": "10.1038/s41366-023-01388-0",
+        "article-title": "Waist to height ratio as a simple tool for predicting mortality: a systematic review and meta-analysis",
+        "volume": "47",
+        "author": "Abdi Dezfouli",
+        "year": "2023",
+        "journal-title": "Int J Obes (Lond)"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B7",
+        "doi-asserted-by": "crossref",
+        "first-page": "109",
+        "DOI": "10.1080/07853890.2020.1748220",
+        "article-title": "Handgrip strength is inversely associated with fatal cardiovascular and all-cause mortality events",
+        "volume": "52",
+        "author": "Laukkanen",
+        "year": "2020",
+        "journal-title": "Ann Med"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.mayocp.2025.02.015",
+        "article-title": "Muscle power outperforms strength as predictor of mortality in middle-aged and older men and women",
+        "volume": "100",
+        "author": "Araujo",
+        "year": "2025",
+        "journal-title": "Mayo Clin Proceed"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B9",
+        "doi-asserted-by": "crossref",
+        "first-page": "e328",
+        "DOI": "10.1161/CIR.0000000000001289",
+        "article-title": "Core components of cardiac rehabilitation programs: 2024 update: a scientific statement from the American Heart Association and the American Association of Cardiovascular and Pulmonary Rehabilitation",
+        "volume": "150",
+        "author": "Brown",
+        "year": "2024",
+        "journal-title": "Circulation"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B10",
+        "doi-asserted-by": "crossref",
+        "first-page": "230",
+        "DOI": "10.1093/eurjpc/zwab007",
+        "article-title": "Exercise intensity assessment and prescription in cardiovascular rehabilitation and beyond: why and how: a position statement from the Secondary Prevention and Rehabilitation Section of the European Association of Preventive Cardiology",
+        "volume": "29",
+        "author": "Hansen",
+        "year": "2022",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B11",
+        "doi-asserted-by": "crossref",
+        "first-page": "460",
+        "DOI": "10.1177/2047487320913379",
+        "article-title": "Secondary prevention through comprehensive cardiovascular rehabilitation: from knowledge to implementation. 2020 update. A position paper from the Secondary Prevention and Rehabilitation Section of the European Association of Preventive Cardiology",
+        "volume": "28",
+        "author": "Ambrosetti",
+        "year": "2021",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B12",
+        "doi-asserted-by": "crossref",
+        "first-page": "556",
+        "DOI": "10.1136/bjsports-2023-107849",
+        "article-title": "Cardiorespiratory fitness is a strong and consistent predictor of morbidity and mortality among adults: an overview of meta-analyses representing over 20.9 million observations from 199 unique cohort studies",
+        "volume": "58",
+        "author": "Lang",
+        "year": "2024",
+        "journal-title": "Br J Sports Med"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B13",
+        "doi-asserted-by": "crossref",
+        "first-page": "1135",
+        "DOI": "10.23736/S0022-4707.23.15237-6",
+        "article-title": "Flexibility exercises are often recommended but flexibility is rarely evaluated: a misconnection",
+        "volume": "63",
+        "author": "Araujo",
+        "year": "2023",
+        "journal-title": "J Sports Med Phys Fitness"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B14",
+        "doi-asserted-by": "crossref",
+        "first-page": "179",
+        "DOI": "10.1590/S1517-86921999000500004",
+        "article-title": "Sitting-rising test: introduction of a new procedure for evaluation in exercise and sports medicine",
+        "volume": "5",
+        "author": "Araújo",
+        "year": "1999",
+        "journal-title": "Rev Bras Med Esporte"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B15",
+        "first-page": "9",
+        "article-title": "Sitting-rising test: reliability studies",
+        "volume": "8",
+        "author": "Lira",
+        "year": "2000",
+        "journal-title": "Rev Bras Ciên e Mov"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B16",
+        "doi-asserted-by": "crossref",
+        "first-page": "892",
+        "DOI": "10.1177/2047487312471759",
+        "article-title": "Ability to sit and rise from the floor as a predictor of all-cause mortality",
+        "volume": "21",
+        "author": "Brito",
+        "year": "2014",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B17",
+        "doi-asserted-by": "crossref",
+        "first-page": "888",
+        "DOI": "10.1177/2047487319847004",
+        "article-title": "Sitting-rising test: sex- and age-reference scores derived from 6141 adults",
+        "volume": "27",
+        "author": "Araujo",
+        "year": "2020",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B18",
+        "doi-asserted-by": "crossref",
+        "first-page": "629",
+        "DOI": "10.1177/2047487314520784",
+        "article-title": "Exercise heart rate gradient: a novel index to predict all-cause mortality",
+        "volume": "22",
+        "author": "Duarte",
+        "year": "2015",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B19",
+        "doi-asserted-by": "crossref",
+        "first-page": "241",
+        "DOI": "10.1097/PHM.0b013e3182744203",
+        "article-title": "Does flexibility influence the ability to sit and rise from the floor?",
+        "volume": "92",
+        "author": "Brito",
+        "year": "2013",
+        "journal-title": "Am J Phys Med Rehabil"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B20",
+        "doi-asserted-by": "crossref",
+        "first-page": "120",
+        "DOI": "10.1097/HCR.0000000000000623",
+        "article-title": "Women have lower mortality than men after attending a long-term medically supervised exercise program",
+        "volume": "42",
+        "author": "de Souza",
+        "year": "2022",
+        "journal-title": "J Cardiopulm Rehabil Prev"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B21",
+        "first-page": "21",
+        "article-title": "Cognitive development and non-aerobic physical fitness in preschoolers: a longitudinal study",
+        "volume": "26",
+        "author": "Aguiar",
+        "year": "2021",
+        "journal-title": "Lecturas: Educación Física y Deportes"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B22",
+        "doi-asserted-by": "crossref",
+        "first-page": "45",
+        "DOI": "10.1590/S1517-86922001000200001",
+        "article-title": "Sitting-rising test: influence of excess body weight in adults",
+        "volume": "7",
+        "author": "Ricardo",
+        "year": "2001",
+        "journal-title": "Rev Bras Med Esporte"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B23",
+        "doi-asserted-by": "crossref",
+        "first-page": "1338",
+        "DOI": "10.1016/j.apmr.2020.03.012",
+        "article-title": "Validity and responsiveness of floor sitting-rising test in post-total knee arthroplasty: a cohort study",
+        "volume": "101",
+        "author": "Alomar",
+        "year": "2020",
+        "journal-title": "Arch Phys Med Rehabil"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B24",
+        "doi-asserted-by": "crossref",
+        "first-page": "3181",
+        "DOI": "10.16965/ijpr.2019.148",
+        "article-title": "Study of the relationship between fear of falling and ability to sit on and rise from the floor in elderly populations",
+        "volume": "7",
+        "author": "Samant",
+        "year": "2019",
+        "journal-title": "Int J Physiother Res"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B25",
+        "doi-asserted-by": "crossref",
+        "first-page": "1541",
+        "DOI": "10.1016/j.apmr.2021.01.079",
+        "article-title": "Reproducibility and convergent validity of the sitting-rising test in people with multiple sclerosis",
+        "volume": "102",
+        "author": "Greenberg",
+        "year": "2021",
+        "journal-title": "Arch Phys Med Rehabil"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B26",
+        "doi-asserted-by": "crossref",
+        "first-page": "1393332",
+        "DOI": "10.3389/fspor.2024.1393332",
+        "article-title": "Factors associated with lower quarter performance-based balance and strength tests: a cross-sectional analysis from the project baseline health study",
+        "volume": "6",
+        "author": "Taylor",
+        "year": "2024",
+        "journal-title": "Front Sports Act Living"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B27",
+        "doi-asserted-by": "crossref",
+        "first-page": "1701",
+        "DOI": "10.1589/jpts.28.1701",
+        "article-title": "The sitting and rising test for assessing people with chronic stroke",
+        "volume": "28",
+        "author": "Ng",
+        "year": "2016",
+        "journal-title": "J Phys Ther Sci"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B28",
+        "doi-asserted-by": "crossref",
+        "first-page": "1674",
+        "DOI": "10.1093/eurjpc/zwaf102",
+        "article-title": "Added predictive value of childhood physical fitness to traditional risk factors for adult cardiovascular disease",
+        "volume": "33",
+        "author": "Fraser",
+        "year": "2026",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B29",
+        "doi-asserted-by": "crossref",
+        "first-page": "1734",
+        "DOI": "10.1093/eurjpc/zwae225",
+        "article-title": "Comparisons of percent-predicted peak oxygen uptake achieved on cardiopulmonary exercise testing: stratifying mortality risk by Wasserman, FRIEND, and Brazilian equations",
+        "volume": "31",
+        "author": "Braga",
+        "year": "2024",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B30",
+        "doi-asserted-by": "crossref",
+        "first-page": "e188341",
+        "DOI": "10.1001/jamanetworkopen.2018.8341",
+        "article-title": "Association between push-up exercise capacity and future cardiovascular events among active adult men",
+        "volume": "2",
+        "author": "Yang",
+        "year": "2019",
+        "journal-title": "JAMA Netw Open"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B31",
+        "doi-asserted-by": "crossref",
+        "first-page": "108",
+        "DOI": "10.1186/s13690-021-00608-1",
+        "article-title": "Is functional fitness performance a useful predictor of risk of falls among community-dwelling older adults?",
+        "volume": "79",
+        "author": "Ho",
+        "year": "2021",
+        "journal-title": "Arch Public Health"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B32",
+        "doi-asserted-by": "crossref",
+        "first-page": "78",
+        "DOI": "10.1123/jsr.2019-0246",
+        "article-title": "Bend don't break: stretching improves scores on a battery of fall assessment tools in older adults",
+        "volume": "30",
+        "author": "Johnson",
+        "year": "2021",
+        "journal-title": "J Sport Rehabil"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B33",
+        "doi-asserted-by": "crossref",
+        "first-page": "1963",
+        "DOI": "10.3390/healthcare10101963",
+        "article-title": "The effects of 24 weeks of non-face-to-face home exercise on body composition, physical fitness, cardiovascular function, and blood profiles in Pre-metabolic syndrome Korean adults: a pilot study",
+        "volume": "10",
+        "author": "Ryu",
+        "year": "2022",
+        "journal-title": "Healthcare (Basel)"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B34",
+        "doi-asserted-by": "crossref",
+        "first-page": "710",
+        "DOI": "10.4111/kju.2014.55.11.710",
+        "article-title": "Men's health index: a pragmatic approach to stratifying and optimizing men's health",
+        "volume": "55",
+        "author": "Tan",
+        "year": "2014",
+        "journal-title": "Korean J Urol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B35",
+        "first-page": "1310",
+        "article-title": "Age-related decline in handgrip strength differs according to gender",
+        "volume": "21",
+        "author": "Vianna",
+        "year": "2007",
+        "journal-title": "J Strength Cond Res"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B36",
+        "first-page": "209",
+        "article-title": "Muscle matters: bridging the gap between terminology of age-related muscle loss and exercise interventions",
+        "volume": "33",
+        "author": "Araujo",
+        "year": "2025",
+        "journal-title": "J Aging Phys Act"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B37",
+        "doi-asserted-by": "crossref",
+        "first-page": "155348",
+        "DOI": "10.1016/j.metabol.2022.155348",
+        "article-title": "Revisiting skeletal myopathy and exercise training in heart failure: emerging role of myokines",
+        "volume": "138",
+        "author": "Ramirez-Velez",
+        "year": "2023",
+        "journal-title": "Metabolism"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B38",
+        "doi-asserted-by": "crossref",
+        "first-page": "e019370",
+        "DOI": "10.1136/bmjopen-2017-019370",
+        "article-title": "Association of body flexibility and carotid atherosclerosis in Japanese middle-aged men: a cross-sectional study",
+        "volume": "8",
+        "author": "Suwa",
+        "year": "2018",
+        "journal-title": "BMJ Open"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B39",
+        "doi-asserted-by": "crossref",
+        "first-page": "45",
+        "DOI": "10.1016/bs.apcsb.2023.12.021",
+        "article-title": "Diagnostic and predictive abilities of myokines in patients with heart failure",
+        "volume": "142",
+        "author": "Berezin",
+        "year": "2024",
+        "journal-title": "Adv Protein Chem Struct Biol"
+      },
+      {
+        "key": "2026090719592545800_zwaf325-B40",
+        "first-page": "410",
+        "article-title": "Sexual activity and heart patients: a contemporary perspective",
+        "volume": "32",
+        "author": "Stein",
+        "year": "2016",
+        "journal-title": "Can J Cardiol"
+      }
+    ],
+    "container-title": [
+      "European Journal of Preventive Cardiology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://academic.oup.com/eurjpc/advance-article-pdf/doi/10.1093/eurjpc/zwaf325/63494678/zwaf325.pdf",
+        "content-type": "application/pdf",
+        "content-version": "am",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://academic.oup.com/eurjpc/article-pdf/33/12/2170/63494678/zwaf325.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "https://academic.oup.com/eurjpc/article-pdf/33/12/2170/63494678/zwaf325.pdf",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          7
+        ]
+      ],
+      "date-time": "2026-09-07T23:59:40Z",
+      "timestamp": 1788825580000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://academic.oup.com/eurjpc/article/33/12/2170/8163161"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ]
+    },
+    "references-count": 40,
+    "journal-issue": {
+      "issue": "12",
+      "published-online": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2026,
+            9,
+            8
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1093/eurjpc/zwaf325",
+    "relation": {},
+    "ISSN": [
+      "2047-4873",
+      "2047-4881"
+    ],
+    "issn-type": [
+      {
+        "value": "2047-4873",
+        "type": "print"
+      },
+      {
+        "value": "2047-4881",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published-other": {
+      "date-parts": [
+        [
+          2026,
+          9
+        ]
+      ]
+    },
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ]
+    }
+  }
+}

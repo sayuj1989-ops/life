@@ -1,0 +1,155 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          1
+        ]
+      ],
+      "date-time": "2026-10-01T07:31:14Z",
+      "timestamp": 1790839874215,
+      "version": "4.1.0"
+    },
+    "reference-count": 0,
+    "publisher": "American Medical Association (AMA)",
+    "issue": "13",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "JAMA"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          1992,
+          4,
+          1
+        ]
+      ]
+    },
+    "DOI": "10.1001/jama.1992.03480130122036",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2011,
+          12,
+          2
+        ]
+      ],
+      "date-time": "2011-12-02T02:00:17Z",
+      "timestamp": 1322791217000
+    },
+    "page": "1806",
+    "source": "Crossref",
+    "is-referenced-by-count": 1248,
+    "title": [
+      "Loss of 'Complexity' and Aging"
+    ],
+    "prefix": "10.1001",
+    "volume": "267",
+    "author": [
+      {
+        "given": "Lewis A.",
+        "family": "Lipsitz",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "10",
+    "container-title": [
+      "JAMA"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://jamanetwork.com/journals/jama/fullarticle/396192",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2016,
+          12,
+          15
+        ]
+      ],
+      "date-time": "2016-12-15T12:51:49Z",
+      "timestamp": 1481806309000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "http://jama.jamanetwork.com/article.aspx?doi=10.1001/jama.1992.03480130122036"
+      }
+    },
+    "subtitle": [
+      "Potential Applications of Fractals and Chaos Theory to Senescence"
+    ],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          1992,
+          4,
+          1
+        ]
+      ]
+    },
+    "references-count": 0,
+    "aliases": [
+      "10.1001/jama.267.13.1806",
+      "10.1001/jama.267.13.1806"
+    ],
+    "journal-issue": {
+      "issue": "13",
+      "published-print": {
+        "date-parts": [
+          [
+            1992,
+            4,
+            1
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1001/jama.1992.03480130122036",
+    "relation": {},
+    "ISSN": [
+      "0098-7484"
+    ],
+    "issn-type": [
+      {
+        "value": "0098-7484",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          1992,
+          4,
+          1
+        ]
+      ]
+    }
+  }
+}

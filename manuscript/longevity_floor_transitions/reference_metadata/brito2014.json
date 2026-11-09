@@ -1,0 +1,519 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          8,
+          18
+        ]
+      ],
+      "date-time": "2026-08-18T02:16:09Z",
+      "timestamp": 1787019369390,
+      "version": "build-2736575974"
+    },
+    "reference-count": 37,
+    "publisher": "Oxford University Press (OUP)",
+    "issue": "7",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2012,
+              12,
+              13
+            ]
+          ],
+          "date-time": "2012-12-13T00:00:00Z",
+          "timestamp": 1355356800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://journals.sagepub.com/page/policies/text-and-data-mining-license"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "journals.sagepub.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Eur J Prev Cardiolog"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2014,
+          7
+        ]
+      ]
+    },
+    "DOI": "10.1177/2047487312471759",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2012,
+          12,
+          14
+        ]
+      ],
+      "date-time": "2012-12-14T21:16:30Z",
+      "timestamp": 1355519790000
+    },
+    "page": "892-898",
+    "update-policy": "https://doi.org/10.1177/sage-journals-update-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 121,
+    "title": [
+      "Ability to sit and rise from the floor as a predictor of all-cause mortality"
+    ],
+    "prefix": "10.1093",
+    "volume": "21",
+    "author": [
+      {
+        "given": "Leonardo Barbosa Barreto",
+        "family": "de Brito",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Gama Filho University, Rio de Janeiro, Brazil"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Djalma Rabelo",
+        "family": "Ricardo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Gama Filho University, Rio de Janeiro, Brazil"
+          },
+          {
+            "name": "SUPREMA, Juiz de Fora, Brazil"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Denise Sardinha Mendes Soares",
+        "family": "de Araújo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Federal State University of Rio de Janeiro (UNIRIO), Rio de Janeiro, Brazil"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Plínio Santos",
+        "family": "Ramos",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Gama Filho University, Rio de Janeiro, Brazil"
+          },
+          {
+            "name": "SUPREMA, Juiz de Fora, Brazil"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jonathan",
+        "family": "Myers",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Stanford University, Palo Alto, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Claudio Gil Soares",
+        "family": "de Araújo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Gama Filho University, Rio de Janeiro, Brazil"
+          },
+          {
+            "name": "CLINIMEX, Rio de Janeiro, Brazil"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "286",
+    "published-online": {
+      "date-parts": [
+        [
+          2012,
+          12,
+          13
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "bibr1-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1088665"
+      },
+      {
+        "key": "bibr2-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/0148607185009006701"
+      },
+      {
+        "key": "bibr3-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1001/jama.2011.1826"
+      },
+      {
+        "key": "bibr4-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/1741826711398432"
+      },
+      {
+        "key": "bibr5-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/CIRCULATIONAHA.110.938852"
+      },
+      {
+        "key": "bibr6-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1056/NEJMoa011858"
+      },
+      {
+        "key": "bibr7-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/039463200601900401"
+      },
+      {
+        "key": "bibr8-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.2004.52310.x"
+      },
+      {
+        "key": "bibr9-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/55.3.M168"
+      },
+      {
+        "key": "bibr10-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1136/bmj.a439"
+      },
+      {
+        "key": "bibr11-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1001/jama.2010.1923"
+      },
+      {
+        "key": "bibr13-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.1997.tb03088.x"
+      },
+      {
+        "key": "bibr14-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/86.650289"
+      },
+      {
+        "key": "bibr15-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1249/MSS.0b013e318213fefb"
+      },
+      {
+        "key": "bibr16-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0003-9993(96)90005-2"
+      },
+      {
+        "key": "bibr17-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1590/S1517-86921999000500004"
+      },
+      {
+        "key": "bibr18-2047487312471759",
+        "first-page": "11",
+        "volume": "8",
+        "author": "Lira VA",
+        "year": "2000",
+        "journal-title": "Rev Bras Ciên e Mov"
+      },
+      {
+        "key": "bibr19-2047487312471759",
+        "first-page": "112",
+        "volume": "20",
+        "author": "Araújo CGS",
+        "year": "2007",
+        "journal-title": "Rev SBC/RJ"
+      },
+      {
+        "key": "bibr20-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1590/S1517-86922002000200003"
+      },
+      {
+        "key": "bibr22-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1590/S1517-86922001000200001"
+      },
+      {
+        "key": "bibr23-2047487312471759",
+        "volume-title": "ACSM’s health-related physical fitness assessment manual",
+        "author": "Kaminsky LA and American College of Sports Medicine",
+        "year": "2010",
+        "edition": "3"
+      },
+      {
+        "key": "bibr24-2047487312471759",
+        "first-page": "381",
+        "volume": "12",
+        "author": "Cureton TK",
+        "year": "1941",
+        "journal-title": "Res Quart"
+      },
+      {
+        "key": "bibr25-2047487312471759",
+        "first-page": "387",
+        "volume": "67",
+        "author": "Mathias S",
+        "year": "1986",
+        "journal-title": "Arch Phys Med Rehabil"
+      },
+      {
+        "key": "bibr26-2047487312471759",
+        "first-page": "109",
+        "volume": "37",
+        "author": "Wall JC",
+        "year": "2000",
+        "journal-title": "J Rehabil Res Dev"
+      },
+      {
+        "key": "bibr27-2047487312471759",
+        "doi-asserted-by": "crossref",
+        "first-page": "866",
+        "DOI": "10.1093/ptj/82.9.866",
+        "volume": "82",
+        "author": "Janssen WG",
+        "year": "2002",
+        "journal-title": "Phys Ther"
+      },
+      {
+        "key": "bibr28-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1136/ip.2003.004721"
+      },
+      {
+        "key": "bibr29-2047487312471759",
+        "first-page": "280",
+        "volume": "90",
+        "author": "Araújo CGS",
+        "year": "2008",
+        "journal-title": "Arq Bras Cardiol"
+      },
+      {
+        "key": "bibr30-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/ajpheart.00061.2009"
+      },
+      {
+        "key": "bibr31-2047487312471759",
+        "doi-asserted-by": "crossref",
+        "first-page": "C611",
+        "DOI": "10.1152/ajpcell.2000.279.3.C611",
+        "volume": "279",
+        "author": "Frontera WR",
+        "year": "2000",
+        "journal-title": "Am J Physiol Cell Physiol"
+      },
+      {
+        "key": "bibr32-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0003-9993(99)90109-0"
+      },
+      {
+        "key": "bibr33-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1001/jama.1990.03440220053029"
+      },
+      {
+        "key": "bibr34-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1159/000212606"
+      },
+      {
+        "key": "bibr35-2047487312471759",
+        "first-page": "1310",
+        "volume": "21",
+        "author": "Vianna LC",
+        "year": "2007",
+        "journal-title": "J Strength Cond Res"
+      },
+      {
+        "key": "bibr36-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jacc.2010.12.025"
+      },
+      {
+        "key": "bibr37-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2522/ptj.20090035"
+      },
+      {
+        "key": "bibr38-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1186/1477-7525-6-45"
+      },
+      {
+        "key": "bibr39-2047487312471759",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1001/jama.1995.03520380029031"
+      }
+    ],
+    "container-title": [
+      "European Journal of Preventive Cardiology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://journals.sagepub.com/doi/pdf/10.1177/2047487312471759",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://journals.sagepub.com/doi/full-xml/10.1177/2047487312471759",
+        "content-type": "application/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://journals.sagepub.com/doi/pdf/10.1177/2047487312471759",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2021,
+          2,
+          4
+        ]
+      ],
+      "date-time": "2021-02-04T13:30:29Z",
+      "timestamp": 1612445429000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://academic.oup.com/eurjpc/article/21/7/892-898/5925784"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          12,
+          13
+        ]
+      ]
+    },
+    "references-count": 37,
+    "journal-issue": {
+      "issue": "7",
+      "published-online": {
+        "date-parts": [
+          [
+            2012,
+            9,
+            25
+          ]
+        ]
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            7
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1177/2047487312471759"
+    ],
+    "URL": "https://doi.org/10.1177/2047487312471759",
+    "relation": {},
+    "ISSN": [
+      "2047-4873",
+      "2047-4881"
+    ],
+    "issn-type": [
+      {
+        "value": "2047-4873",
+        "type": "print"
+      },
+      {
+        "value": "2047-4881",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2012,
+          12,
+          13
+        ]
+      ]
+    }
+  }
+}

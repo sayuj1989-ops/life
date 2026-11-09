@@ -1,0 +1,1861 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ],
+      "date-time": "2026-03-18T07:59:25Z",
+      "timestamp": 1773820765131,
+      "version": "3.50.1"
+    },
+    "reference-count": 145,
+    "publisher": "Frontiers Media SA",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              18
+            ]
+          ],
+          "date-time": "2026-03-18T00:00:00Z",
+          "timestamp": 1773792000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "frontiersin.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Front. Aging"
+    ],
+    "abstract": "<jats:sec>\n                    <jats:title>Background</jats:title>\n                    <jats:p>As the global population ages, it is crucial to understand sensorimotor compensation mechanisms. These mechanisms are thought to enable older adults to remain in good physical health, but despite important research efforts, their precise nature remains elusive and has not been definitively demonstrated. A major problem with their identification is the ambiguous interpretation of age-related alterations. Whether a change reflects deterioration or compensation is difficult to determine.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Methods</jats:title>\n                    <jats:p>To address this challenge, we examined movement efficiency in younger and older adults using two complementary approaches. In Experiment 1 (Younger, n = 20; mean age = 23.6 years, and older adults, n = 24; mean age = 72 years), we quantified energetic efficiency through the negativity of phasic EMG activity—an established marker of how the nervous system exploits gravity to minimize muscular effort—during both single-joint arm movements and whole-body actions (sit-to-stand/back-to-sit and whole-body reaching). In Experiment 2 (younger adults, n = 20; mean age = 22.9 years; older adults, n = 20; mean age = 70.6 years), we directly measured energetic cost using exhaled-gas analysis during treadmill walking under varying balance constraints.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Results</jats:title>\n                    <jats:p>In Experiment 1, older adults preserved efficient planning during arm movements, but they showed reduced gravity-related efficiency during whole-body tasks. Complementary center-of-mass analyses and optimal control simulations indicated that this reduced efficiency aligned with movement strategies favoring stability over energy minimization. In Experiment 2, older adults exhibited a disproportionately larger increase in metabolic cost and perceived effort when equilibrium demands were elevated, despite performing the same tasks as younger adults.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Discussion</jats:title>\n                    <jats:p>This supports a causal role of equilibrium constraints in decreasing walking efficiency in older adults. Overall, these results suggest that reduced movement efficiency in healthy older adults does not reflect a deterioration but rather a compensation process that adapts movement strategy to the task specificities. When balance is at stake, healthy older adults prefer stability to energy efficiency.</jats:p>\n                  </jats:sec>",
+    "DOI": "10.3389/fragi.2026.1715723",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ],
+      "date-time": "2026-03-18T06:57:21Z",
+      "timestamp": 1773817041000
+    },
+    "update-policy": "https://doi.org/10.3389/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Comparing arm to whole-body motor control disambiguates age-related deterioration from compensation"
+    ],
+    "prefix": "10.3389",
+    "volume": "7",
+    "author": [
+      {
+        "given": "Robin",
+        "family": "Mathieu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Florian",
+        "family": "Chambellant",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Denis",
+        "family": "Barbusse",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Elizabeth",
+        "family": "Thomas",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Charalambos",
+        "family": "Papaxanthis",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, CHU Dijon Bourgogne, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Pauline M.",
+        "family": "Hilt",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Patrick",
+        "family": "Manckoundia",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, CHU Dijon Bourgogne, Service de Médecine Interne Gériatrie, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "France",
+        "family": "Mourey",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Jeremie",
+        "family": "Gaveau",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Université Bourgogne Europe, INSERM, CAPS UMR 1093",
+            "place": [
+              "Dijon, France"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "member": "1965",
+    "published-online": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "B132",
+        "doi-asserted-by": "publisher",
+        "first-page": "269",
+        "DOI": "10.3389/fneur.2015.00269",
+        "article-title": "Perspectives on aging vestibular function",
+        "volume": "6",
+        "author": "Anson",
+        "year": "2016",
+        "journal-title": "Front. Neurology"
+      },
+      {
+        "key": "B1",
+        "doi-asserted-by": "publisher",
+        "first-page": "690",
+        "DOI": "10.1093/ageing/afs076",
+        "article-title": "Most older pedestrians are unable to cross the road in time: a cross-sectional study",
+        "volume": "41",
+        "author": "Asher",
+        "year": "2012",
+        "journal-title": "Age Ageing"
+      },
+      {
+        "key": "B2",
+        "doi-asserted-by": "publisher",
+        "first-page": "366",
+        "DOI": "10.1037/0003-066X.52.4.366",
+        "article-title": "On the incomplete architecture of human ontogeny: selection, optimization, and compensation as foundation of developmental theory",
+        "volume": "52",
+        "author": "Baltes",
+        "year": "1997",
+        "journal-title": "Am. Psychol."
+      },
+      {
+        "key": "B3",
+        "doi-asserted-by": "crossref",
+        "first-page": "1",
+        "DOI": "10.1017/CBO9780511665684.003",
+        "article-title": "Psychological perspectives on successful aging: the model of selective optimization with compensation",
+        "volume-title": "Successful aging",
+        "author": "Baltes",
+        "year": "1990"
+      },
+      {
+        "key": "B4",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-88-470-2463-2",
+        "volume-title": "Atlas of muscle innervation zones",
+        "author": "Barbero",
+        "year": "2012"
+      },
+      {
+        "key": "B5",
+        "doi-asserted-by": "publisher",
+        "first-page": "502",
+        "DOI": "10.1016/j.tics.2013.08.012",
+        "article-title": "Efficiency, capacity, compensation, maintenance, plasticity: emerging concepts in cognitive reserve",
+        "volume": "17",
+        "author": "Barulli",
+        "year": "2013",
+        "journal-title": "Trends Cognitive Sci."
+      },
+      {
+        "key": "B6",
+        "doi-asserted-by": "publisher",
+        "first-page": "1890",
+        "DOI": "10.1016/j.neurobiolaging.2011.06.021",
+        "article-title": "Evidence for motor cortex dedifferentiation in older adults",
+        "volume": "33",
+        "author": "Bernard",
+        "year": "2012",
+        "journal-title": "Neurobiol. Aging"
+      },
+      {
+        "key": "B7",
+        "doi-asserted-by": "publisher",
+        "first-page": "e1000194",
+        "DOI": "10.1371/journal.pcbi.1000194",
+        "article-title": "The inactivation principle: mathematical solutions minimizing the absolute work and biological implications for the planning of arm movements",
+        "volume": "4",
+        "author": "Berret",
+        "year": "2008",
+        "journal-title": "PLoS Comput. Biol."
+      },
+      {
+        "key": "B8",
+        "doi-asserted-by": "publisher",
+        "first-page": "e1002183",
+        "DOI": "10.1371/journal.pcbi.1002183",
+        "article-title": "Evidence for composite cost functions in arm movement planning: an inverse optimal control approach",
+        "volume": "7",
+        "author": "Berret",
+        "year": "2011",
+        "journal-title": "PLoS Comput. Biol."
+      },
+      {
+        "key": "B9",
+        "first-page": "64",
+        "volume-title": "Physical performance and perceived exertion",
+        "author": "Borg",
+        "year": "1962"
+      },
+      {
+        "key": "B10",
+        "doi-asserted-by": "publisher",
+        "first-page": "112102",
+        "DOI": "10.1016/j.exger.2023.112102",
+        "article-title": "Age-related changes in gait biomechanics and their impact on the metabolic cost of walking: report from a national institute on aging workshop",
+        "volume": "173",
+        "author": "Boyer",
+        "year": "2023",
+        "journal-title": "Exp. Gerontol."
+      },
+      {
+        "key": "B11",
+        "first-page": "463",
+        "article-title": "Derivation of formulae used to calculate energy expenditure in man",
+        "volume": "41",
+        "author": "Brockway",
+        "year": "1987",
+        "journal-title": "Hum. Nutr. Clin. Nutr."
+      },
+      {
+        "key": "B12",
+        "doi-asserted-by": "publisher",
+        "first-page": "1771",
+        "DOI": "10.1890/03-9000",
+        "article-title": "Toward a metabolic theory of ecology",
+        "volume": "85",
+        "author": "Brown",
+        "year": "2004",
+        "journal-title": "Ecology"
+      },
+      {
+        "key": "B13",
+        "doi-asserted-by": "crossref",
+        "first-page": "73",
+        "DOI": "10.1007/978-94-011-1976-4_6",
+        "article-title": "Age-related slowing",
+        "volume-title": "Sensorimotor impairment in the elderly",
+        "author": "Buckles",
+        "year": "1993"
+      },
+      {
+        "key": "B14",
+        "doi-asserted-by": "publisher",
+        "first-page": "1546",
+        "DOI": "10.1152/jn.1994.71.4.1546",
+        "article-title": "Muscle activation patterns for reaching: the representation of distance and time",
+        "volume": "71",
+        "author": "Buneo",
+        "year": "1994",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B15",
+        "doi-asserted-by": "publisher",
+        "first-page": "105489",
+        "DOI": "10.1016/j.neubiorev.2023.105489",
+        "article-title": "Trajectories and contributing factors of neural compensation in healthy and pathological aging",
+        "volume": "156",
+        "author": "Bunzeck",
+        "year": "2024",
+        "journal-title": "Neurosci. and Biobehav. Rev."
+      },
+      {
+        "key": "B16",
+        "doi-asserted-by": "publisher",
+        "first-page": "234",
+        "DOI": "10.1016/j.neuroimage.2018.11.008",
+        "article-title": "Sensorimotor network segregation declines with age and is linked to GABA and to sensorimotor performance",
+        "volume": "186",
+        "author": "Cassady",
+        "year": "2019",
+        "journal-title": "NeuroImage"
+      },
+      {
+        "key": "B17",
+        "doi-asserted-by": "publisher",
+        "first-page": "116663",
+        "DOI": "10.1016/j.neuroimage.2020.116663",
+        "article-title": "Network segregation varies with neural distinctiveness in sensorimotor cortex",
+        "volume": "212",
+        "author": "Cassady",
+        "year": "",
+        "journal-title": "NeuroImage"
+      },
+      {
+        "key": "B18",
+        "doi-asserted-by": "publisher",
+        "first-page": "3704",
+        "DOI": "10.1093/cercor/bhz336",
+        "article-title": "Neural dedifferentiation across the lifespan in the motor and somatosensory systems",
+        "volume": "30",
+        "author": "Cassady",
+        "year": "",
+        "journal-title": "Cereb. Cortex"
+      },
+      {
+        "key": "B19",
+        "doi-asserted-by": "publisher",
+        "first-page": "1609",
+        "DOI": "10.1093/gerona/gly066",
+        "article-title": "Shifts in key time points and strategies for a multisegment motor task in healthy aging subjects",
+        "volume": "73",
+        "author": "Casteran",
+        "year": "2018",
+        "journal-title": "Journals Gerontology Ser. A"
+      },
+      {
+        "key": "B20",
+        "doi-asserted-by": "publisher",
+        "first-page": "e33461",
+        "DOI": "10.1016/j.heliyon.2024.e33461",
+        "article-title": "Deactivation and collective phasic muscular tuning for pointing direction: insights from machine learning",
+        "volume": "10",
+        "author": "Chambellant",
+        "year": "2024",
+        "journal-title": "Heliyon"
+      },
+      {
+        "key": "B21",
+        "doi-asserted-by": "publisher",
+        "first-page": "68",
+        "DOI": "10.1016/j.neuropsychologia.2018.07.029",
+        "article-title": "Avoiding sedentary behaviors requires more cortical resources than avoiding physical activity: an EEG study",
+        "volume": "119",
+        "author": "Cheval",
+        "year": "2018",
+        "journal-title": "Neuropsychologia"
+      },
+      {
+        "key": "B22",
+        "doi-asserted-by": "publisher",
+        "first-page": "1422",
+        "DOI": "10.1093/gerona/glu125",
+        "article-title": "Enhanced somatosensory feedback reduces prefrontal cortical activity during walking in older adults",
+        "volume": "69",
+        "author": "Clark",
+        "year": "2014",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B23",
+        "doi-asserted-by": "publisher",
+        "first-page": "igy022",
+        "DOI": "10.1093/geroni/igy022",
+        "article-title": "Randomized controlled trial of exercise to improve walking energetics in older adults",
+        "volume": "2",
+        "author": "Collins",
+        "year": "2018",
+        "journal-title": "Innovation Aging"
+      },
+      {
+        "key": "B24",
+        "doi-asserted-by": "publisher",
+        "first-page": "786",
+        "DOI": "10.1152/jn.00113.2009",
+        "article-title": "Optimal integration of gravity in trajectory planning of vertical pointing movements",
+        "volume": "102",
+        "author": "Crevecoeur",
+        "year": "2009",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B25",
+        "doi-asserted-by": "publisher",
+        "first-page": "149",
+        "DOI": "10.1016/0197-4580(89)90024-9",
+        "article-title": "Control of simple arm movements in elderly humans",
+        "volume": "10",
+        "author": "Darling",
+        "year": "1989",
+        "journal-title": "Neurobiol. Aging"
+      },
+      {
+        "key": "B26",
+        "doi-asserted-by": "publisher",
+        "first-page": "12941",
+        "DOI": "10.1073/pnas.1007783107",
+        "article-title": "Shifts in metabolic scaling, production, and efficiency across major evolutionary transitions of life",
+        "volume": "107",
+        "author": "DeLong",
+        "year": "2010",
+        "journal-title": "Proc. Natl. Acad. Sci."
+      },
+      {
+        "key": "B27",
+        "doi-asserted-by": "publisher",
+        "first-page": "90",
+        "DOI": "10.1093/ageing/22.2.90",
+        "article-title": "The energetic cost of some daily activities: a comparison in a young and old population",
+        "volume": "22",
+        "author": "Didier",
+        "year": "1993",
+        "journal-title": "Age Ageing"
+      },
+      {
+        "key": "B28",
+        "doi-asserted-by": "publisher",
+        "first-page": "3717",
+        "DOI": "10.1242/jeb.205.23.3717",
+        "article-title": "Mechanical work for step-to-step transitions is a major determinant of the metabolic cost of human walking",
+        "volume": "205",
+        "author": "Donelan",
+        "year": "2002",
+        "journal-title": "J. Exp. Biol."
+      },
+      {
+        "key": "B29",
+        "doi-asserted-by": "publisher",
+        "first-page": "7791",
+        "DOI": "10.1523/JNEUROSCI.0830-06.2006",
+        "article-title": "Control of fast-reaching movements by muscle synergy combinations",
+        "volume": "26",
+        "author": "D’Avella",
+        "year": "2006",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B30",
+        "doi-asserted-by": "publisher",
+        "first-page": "1433",
+        "DOI": "10.1152/jn.01377",
+        "article-title": "Modulation of phasic and tonic muscle synergies with reaching direction and speed",
+        "volume": "100",
+        "author": "D’Avella",
+        "year": "2008",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B31",
+        "doi-asserted-by": "publisher",
+        "first-page": "551",
+        "DOI": "10.1016/j.neuroimage.2019.01.030",
+        "article-title": "Age-related changes in attention control and their relationship with gait performance in older adults with high risk of falls",
+        "volume": "189",
+        "author": "Fernandez",
+        "year": "2019",
+        "journal-title": "NeuroImage"
+      },
+      {
+        "key": "B32",
+        "doi-asserted-by": "publisher",
+        "first-page": "21148",
+        "DOI": "10.1038/s41598-021-00515-z",
+        "article-title": "Age differences in adaptation of medial-lateral gait parameters during split-belt treadmill walking",
+        "volume": "11",
+        "author": "Fettrow",
+        "year": "2021",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "B33",
+        "doi-asserted-by": "publisher",
+        "first-page": "931",
+        "DOI": "10.1152/jn.1992.67.4.931",
+        "article-title": "Two components of muscle activation: scaling with the speed of arm movement",
+        "volume": "67",
+        "author": "Flanders",
+        "year": "1992",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B34",
+        "doi-asserted-by": "publisher",
+        "first-page": "811",
+        "DOI": "10.1152/jn.1994.71.2.811",
+        "article-title": "Spatial/Temporal characteristics of a motor pattern for reaching",
+        "volume": "71",
+        "author": "Flanders",
+        "year": "1994",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B35",
+        "doi-asserted-by": "publisher",
+        "first-page": "e22045",
+        "DOI": "10.1371/journal.pone.0022045",
+        "article-title": "The temporal structure of vertical arm movements",
+        "volume": "6",
+        "author": "Gaveau",
+        "year": "2011",
+        "journal-title": "PLoS ONE"
+      },
+      {
+        "key": "B36",
+        "doi-asserted-by": "publisher",
+        "first-page": "620",
+        "DOI": "10.1152/jn.00081.2011",
+        "article-title": "Sensorimotor adaptation of point-to-point arm movements after spaceflight: the role of internal representation of gravity force in trajectory planning",
+        "volume": "106",
+        "author": "Gaveau",
+        "year": "2011",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B37",
+        "doi-asserted-by": "publisher",
+        "first-page": "4",
+        "DOI": "10.1152/jn.01029.2012",
+        "article-title": "Energy-related optimal control accounts for gravitational load: comparing shoulder, elbow, and wrist rotations",
+        "volume": "111",
+        "author": "Gaveau",
+        "year": "2014",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B38",
+        "doi-asserted-by": "publisher",
+        "first-page": "e16394",
+        "DOI": "10.7554/eLife.16394",
+        "article-title": "Direction-dependent arm kinematics reveal optimal integration of gravity cues",
+        "volume": "5",
+        "author": "Gaveau",
+        "year": "2016",
+        "journal-title": "eLife"
+      },
+      {
+        "key": "B39",
+        "doi-asserted-by": "publisher",
+        "first-page": "eabf7800",
+        "DOI": "10.1126/sciadv.abf7800",
+        "article-title": "A cross-species neural integration of gravity for motor optimization",
+        "volume": "7",
+        "author": "Gaveau",
+        "year": "2021",
+        "journal-title": "Sci. Adv."
+      },
+      {
+        "key": "B40",
+        "doi-asserted-by": "publisher",
+        "first-page": "20",
+        "DOI": "10.1016/j.neuroscience.2006.11.035",
+        "article-title": "Motor planning of arm movements is direction-dependent in the gravity field",
+        "volume": "145",
+        "author": "Gentili",
+        "year": "2007",
+        "journal-title": "Neuroscience"
+      },
+      {
+        "key": "B41",
+        "doi-asserted-by": "crossref",
+        "first-page": "523",
+        "DOI": "10.1007/978-0-387-77064-2_28",
+        "article-title": "Review of models for the generation of multi-joint movements in 3-D",
+        "volume-title": "Adv. Exp. Med. Biol.Progress in motor control",
+        "author": "Gielen",
+        "year": "2009"
+      },
+      {
+        "key": "B42",
+        "doi-asserted-by": "publisher",
+        "first-page": "271",
+        "DOI": "10.1016/j.neubiorev.2008.08.012",
+        "article-title": "Proprioceptive sensibility in the elderly: degeneration, functional consequences and plastic-adaptive processes",
+        "volume": "33",
+        "author": "Goble",
+        "year": "2009",
+        "journal-title": "Neurosci. and Biobehav. Rev."
+      },
+      {
+        "key": "B43",
+        "doi-asserted-by": "publisher",
+        "first-page": "1059",
+        "DOI": "10.1093/gerona/61.10.1059",
+        "article-title": "The loss of skeletal muscle strength, mass, and quality in older adults: the health, aging and body composition study",
+        "volume": "61",
+        "author": "Goodpaster",
+        "year": "2006",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B44",
+        "doi-asserted-by": "publisher",
+        "first-page": "107150",
+        "DOI": "10.1016/j.isci.2023.107150",
+        "article-title": "Gravity-efficient motor control is associated with contraction-dependent intracortical inhibition",
+        "volume": "26",
+        "author": "Gueugneau",
+        "year": "2023",
+        "journal-title": "iScience"
+      },
+      {
+        "key": "B45",
+        "doi-asserted-by": "publisher",
+        "first-page": "445",
+        "DOI": "10.1007/s00221-008-1643-y",
+        "article-title": "Gait capacity affects cortical activation patterns related to speed control in the elderly",
+        "volume": "193",
+        "author": "Harada",
+        "year": "2009",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B46",
+        "doi-asserted-by": "publisher",
+        "first-page": "46",
+        "DOI": "10.1016/j.humov.2018.03.010",
+        "article-title": "Prefrontal over-activation during walking in people with mobility deficits: interpretation and functional implications",
+        "volume": "59",
+        "author": "Hawkins",
+        "year": "2018",
+        "journal-title": "Hum. Mov. Sci."
+      },
+      {
+        "key": "B47",
+        "doi-asserted-by": "publisher",
+        "first-page": "e0282693",
+        "DOI": "10.1371/journal.pone.0282693",
+        "article-title": "Learning vs. minding: how subjective costs can mask motor learning",
+        "volume": "18",
+        "author": "Healy",
+        "year": "2023",
+        "journal-title": "PLOS ONE"
+      },
+      {
+        "key": "B48",
+        "doi-asserted-by": "publisher",
+        "first-page": "525",
+        "DOI": "10.1152/jn.00067.2019",
+        "article-title": "Age-related changes in leg proprioception: implications for postural control",
+        "volume": "122",
+        "author": "Henry",
+        "year": "2019",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B49",
+        "doi-asserted-by": "publisher",
+        "first-page": "91",
+        "DOI": "10.1523/JNEUROSCI.3300-07.2008",
+        "article-title": "Systems neuroplasticity in the aging brain: recruiting additional neural resources for successful motor performance in elderly persons",
+        "volume": "28",
+        "author": "Heuninckx",
+        "year": "2008",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B50",
+        "doi-asserted-by": "publisher",
+        "first-page": "23868",
+        "DOI": "10.1038/srep23868",
+        "article-title": "Evidence for subjective values guiding posture and movement coordination in a free-endpoint whole-body reaching task",
+        "volume": "6",
+        "author": "Hilt",
+        "year": "2016",
+        "journal-title": "Sci. Rep."
+      },
+      {
+        "key": "B51",
+        "doi-asserted-by": "publisher",
+        "first-page": "161",
+        "DOI": "10.1249/00005768-198820020-00010",
+        "article-title": "Age-related changes in speed of walking",
+        "volume": "20",
+        "author": "Himann",
+        "year": "1988",
+        "journal-title": "Med. Sci. Sports Exerc."
+      },
+      {
+        "key": "B52",
+        "doi-asserted-by": "publisher",
+        "first-page": "999",
+        "DOI": "10.1007/s00429-013-0696-2",
+        "article-title": "Age-related decrease of functional connectivity additional to gray matter atrophy in a network for movement initiation",
+        "volume": "220",
+        "author": "Hoffstaedter",
+        "year": "2015",
+        "journal-title": "Brain Struct. Funct."
+      },
+      {
+        "key": "B53",
+        "doi-asserted-by": "publisher",
+        "first-page": "152",
+        "DOI": "10.1016/j.neuroimage.2015.03.002",
+        "article-title": "Online fronto-cortical control of simple and attention-demanding locomotion in humans",
+        "volume": "112",
+        "author": "Holtzer",
+        "year": "2015",
+        "journal-title": "NeuroImage"
+      },
+      {
+        "key": "B54",
+        "doi-asserted-by": "publisher",
+        "first-page": "334",
+        "DOI": "10.1007/s10548-015-0465-z",
+        "article-title": "Neurological gait abnormalities moderate the functional brain signature of the posture first hypothesis",
+        "volume": "29",
+        "author": "Holtzer",
+        "year": "2016",
+        "journal-title": "Brain Topogr."
+      },
+      {
+        "key": "B55",
+        "doi-asserted-by": "publisher",
+        "first-page": "1575",
+        "DOI": "10.1007/s00221-015-4546-8",
+        "article-title": "Different damping responses explain vertical endpoint error differences between visual conditions",
+        "volume": "234",
+        "author": "Hondzinski",
+        "year": "2016",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B56",
+        "doi-asserted-by": "publisher",
+        "first-page": "M453",
+        "DOI": "10.1093/gerona/58.5.M453",
+        "article-title": "Old adults perform activities of daily living near their maximal capabilities",
+        "volume": "58",
+        "author": "Hortobagyi",
+        "year": "2003",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B57",
+        "doi-asserted-by": "publisher",
+        "first-page": "541",
+        "DOI": "10.1093/gerona/glr008",
+        "article-title": "Association between muscle activation and metabolic cost of walking in young and old adults",
+        "author": "Hortobagyi",
+        "year": "2011",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B58",
+        "doi-asserted-by": "publisher",
+        "first-page": "135",
+        "DOI": "10.1152/jn.00401.2013",
+        "article-title": "Older adults learn less, but still reduce metabolic cost, during motor adaptation",
+        "volume": "111",
+        "author": "Huang",
+        "year": "2014",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B59",
+        "doi-asserted-by": "publisher",
+        "first-page": "2182",
+        "DOI": "10.1523/JNEUROSCI.4003-11.2012",
+        "article-title": "Reduction of metabolic cost during motor learning of arm reaching dynamics",
+        "volume": "32",
+        "author": "Huang",
+        "year": "2012",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B60",
+        "doi-asserted-by": "publisher",
+        "first-page": "d4163",
+        "DOI": "10.1136/bmj.d4163",
+        "article-title": "How should we define health?",
+        "volume": "343",
+        "author": "Huber",
+        "year": "2011",
+        "journal-title": "BMJ"
+      },
+      {
+        "key": "B61",
+        "unstructured": "JASP\n          \n          \n          2025"
+      },
+      {
+        "key": "B62",
+        "doi-asserted-by": "publisher",
+        "first-page": "361",
+        "DOI": "10.1080/03610730109342354",
+        "article-title": "Compensatory stepping: the biomechanics of a preferred response among older adults",
+        "volume": "27",
+        "author": "Jensen",
+        "year": "2001",
+        "journal-title": "Exp. Aging Res."
+      },
+      {
+        "key": "B63",
+        "doi-asserted-by": "publisher",
+        "first-page": "110251",
+        "DOI": "10.1016/j.jbiomech.2021.110251",
+        "article-title": "Effects of different initial foot positions on kinematics, muscle activation patterns, and postural control during a sit-to-stand in younger and older adults",
+        "volume": "117",
+        "author": "Jeon",
+        "year": "2021",
+        "journal-title": "J. Biomechanics"
+      },
+      {
+        "key": "B64",
+        "doi-asserted-by": "publisher",
+        "first-page": "418",
+        "DOI": "10.1249/MSS.0b013e3181884480",
+        "article-title": "Biomechanics of muscular effort: age-related changes",
+        "volume": "41",
+        "author": "John",
+        "year": "2009",
+        "journal-title": "Med. and Sci. Sports and Exerc."
+      },
+      {
+        "key": "B65",
+        "doi-asserted-by": "publisher",
+        "first-page": "1669",
+        "DOI": "10.1093/gerona/glx063",
+        "article-title": "Executive network activation is linked to walking speed in older adults: functional MRI and TCD ultrasound evidence from the MOBILIZE Boston study",
+        "volume": "72",
+        "author": "Jor’dan",
+        "year": "2017",
+        "journal-title": "Journals Gerontology Ser. A"
+      },
+      {
+        "key": "B66",
+        "doi-asserted-by": "publisher",
+        "first-page": "1268",
+        "DOI": "10.2522/ptj.20110326",
+        "article-title": "Perceived effort of walking: relationship with gait, physical function and activity, fear of falling, and confidence in walking in older adults with mobility limitations",
+        "volume": "92",
+        "author": "Julius",
+        "year": "2012",
+        "journal-title": "Phys. Ther."
+      },
+      {
+        "key": "B67",
+        "doi-asserted-by": "publisher",
+        "first-page": "639",
+        "DOI": "10.1139/apnm-2017-0781",
+        "article-title": "Calculating metabolic energy expenditure across a wide range of exercise intensities: the equation matters",
+        "volume": "43",
+        "author": "Kipp",
+        "year": "2018",
+        "journal-title": "Appl. Physiology, Nutr. Metabolism"
+      },
+      {
+        "key": "B68",
+        "doi-asserted-by": "publisher",
+        "first-page": "480",
+        "DOI": "10.1016/j.neuron.2016.12.041",
+        "article-title": "Neuroscience needs behavior: correcting a reductionist bias",
+        "volume": "93",
+        "author": "Krakauer",
+        "year": "2017",
+        "journal-title": "Neuron"
+      },
+      {
+        "key": "B69",
+        "doi-asserted-by": "publisher",
+        "first-page": "3027",
+        "DOI": "10.1002/hbm.24578",
+        "article-title": "Functional and effective reorganization of the aging brain during unimanual and bimanual hand movements",
+        "volume": "40",
+        "author": "Larivière",
+        "year": "2019",
+        "journal-title": "Hum. Brain Mapp."
+      },
+      {
+        "key": "B70",
+        "doi-asserted-by": "publisher",
+        "first-page": "427",
+        "DOI": "10.1152/physrev.00061.2017",
+        "article-title": "Sarcopenia: aging-related loss of muscle mass and function",
+        "volume": "99",
+        "author": "Larsson",
+        "year": "2019",
+        "journal-title": "Physiol. Rev."
+      },
+      {
+        "key": "B71",
+        "doi-asserted-by": "publisher",
+        "first-page": "211",
+        "DOI": "10.1016/j.neulet.2007.07.034",
+        "article-title": "Multimodal reference frame for the planning of vertical arms movements",
+        "volume": "423",
+        "author": "Le Seac’h",
+        "year": "2007",
+        "journal-title": "Neurosci. Lett."
+      },
+      {
+        "key": "B72",
+        "doi-asserted-by": "publisher",
+        "first-page": "230",
+        "DOI": "10.1111/1467-9280.00341",
+        "article-title": "Walking while memorizing: age-related differences in compensatory behavior",
+        "volume": "12",
+        "author": "Li",
+        "year": "2001",
+        "journal-title": "Psychol. Sci."
+      },
+      {
+        "key": "B73",
+        "doi-asserted-by": "publisher",
+        "first-page": "9354",
+        "DOI": "10.1523/JNEUROSCI.1110-06.2007",
+        "article-title": "Evidence for the flexible sensorimotor strategies predicted by optimal feedback control",
+        "volume": "27",
+        "author": "Liu",
+        "year": "2007",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B74",
+        "doi-asserted-by": "publisher",
+        "first-page": "280",
+        "DOI": "10.1016/j.bbr.2011.04.040",
+        "article-title": "Non-effective increase of fMRI-activation for motor performance in elder individuals",
+        "volume": "223",
+        "author": "Loibl",
+        "year": "2011",
+        "journal-title": "Behav. Brain Res."
+      },
+      {
+        "key": "B75",
+        "doi-asserted-by": "publisher",
+        "first-page": "2248",
+        "DOI": "10.1152/japplphysiol.01106.2002",
+        "article-title": "Energy cost of walking and gait instability in healthy 65- and 80-yr-olds",
+        "volume": "95",
+        "author": "Malatesta",
+        "year": "2003",
+        "journal-title": "J. Appl. Physiology"
+      },
+      {
+        "key": "B76",
+        "doi-asserted-by": "publisher",
+        "first-page": "385",
+        "DOI": "10.1016/j.neuroscience.2005.08.079",
+        "article-title": "Comparison of motor strategies in sit-to-stand and back-to-sit motions between healthy and Alzheimer’s disease elderly subjects",
+        "volume": "137",
+        "author": "Manckoundia",
+        "year": "2006",
+        "journal-title": "Neuroscience"
+      },
+      {
+        "key": "B77",
+        "first-page": "380",
+        "article-title": "Effort: perception of",
+        "volume-title": "Encyclopedia of perception",
+        "author": "Marcora",
+        "year": "2010"
+      },
+      {
+        "key": "B78",
+        "doi-asserted-by": "publisher",
+        "first-page": "14",
+        "DOI": "10.1093/geront/gnu044",
+        "article-title": "Defining successful aging: a tangible or elusive concept?",
+        "volume": "55",
+        "author": "Martin",
+        "year": "2015",
+        "journal-title": "Gerontologist"
+      },
+      {
+        "key": "B79",
+        "doi-asserted-by": "publisher",
+        "first-page": "484",
+        "DOI": "10.1016/j.jamda.2018.02.002",
+        "article-title": "Cognitive-based interventions to improve mobility: a systematic review and meta-analysis",
+        "volume": "19",
+        "author": "Marusic",
+        "year": "2018",
+        "journal-title": "J. Am. Med. Dir. Assoc."
+      },
+      {
+        "key": "B80",
+        "doi-asserted-by": "publisher",
+        "first-page": "630",
+        "DOI": "10.1212/WNL.58.4.630",
+        "article-title": "Neurophysiological correlates of age-related changes in human motor function",
+        "volume": "58",
+        "author": "Mattay",
+        "year": "2002",
+        "journal-title": "Neurology"
+      },
+      {
+        "key": "B81",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11357-025-02051-4",
+        "article-title": "Adults up to 80 years old maintain effective movement planning when facing complex body dynamics",
+        "author": "Matthijs",
+        "year": "2025",
+        "journal-title": "GeroScience"
+      },
+      {
+        "key": "B82",
+        "doi-asserted-by": "publisher",
+        "first-page": "666",
+        "DOI": "10.1152/jn.00974.2002",
+        "article-title": "Thresholds for inducing protective stepping responses to external perturbations of human standing",
+        "volume": "90",
+        "author": "Mille",
+        "year": "2003",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B83",
+        "first-page": "609",
+        "article-title": "Biomechanical analysis of the sit-to-stand motion in elderly persons",
+        "volume": "73",
+        "author": "Millington",
+        "year": "1992",
+        "journal-title": "Archives Phys. Med. Rehabilitation"
+      },
+      {
+        "key": "B84",
+        "doi-asserted-by": "publisher",
+        "first-page": "369",
+        "DOI": "10.1007/s10514-009-9170-7",
+        "article-title": "From human to humanoid locomotion—An inverse optimal control approach",
+        "volume": "28",
+        "author": "Mombaur",
+        "year": "2010",
+        "journal-title": "Aut. Robots"
+      },
+      {
+        "key": "B133",
+        "doi-asserted-by": "publisher",
+        "first-page": "e1003422",
+        "DOI": "10.1371/journal.pcbi.1003422",
+        "article-title": "The brain ages optimally to model its environment: evidence from sensory learning over the adult lifespan",
+        "volume": "10",
+        "author": "Moran",
+        "year": "2014",
+        "journal-title": "PLoS Comput. Biol."
+      },
+      {
+        "key": "B85",
+        "doi-asserted-by": "publisher",
+        "first-page": "8706",
+        "DOI": "10.1523/JNEUROSCI.3956-16.2017",
+        "article-title": "Molecular and functional properties of regional astrocytes in the adult brain",
+        "volume": "37",
+        "author": "Morel",
+        "year": "2017",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B86",
+        "doi-asserted-by": "publisher",
+        "first-page": "137",
+        "DOI": "10.1093/ageing/27.2.137",
+        "article-title": "A kinematic comparison between elderly and young subjects standing up from and sitting Down in a chair",
+        "volume": "27",
+        "author": "Mourey",
+        "year": "1998",
+        "journal-title": "Age Ageing"
+      },
+      {
+        "key": "B87",
+        "doi-asserted-by": "publisher",
+        "first-page": "97",
+        "DOI": "10.1016/0028-3932(71)90067-4",
+        "article-title": "The assessment and analysis of handedness: the Edinburgh inventory",
+        "volume": "9",
+        "author": "Oldfield",
+        "year": "1971",
+        "journal-title": "Neuropsychologia"
+      },
+      {
+        "key": "B88",
+        "doi-asserted-by": "publisher",
+        "first-page": "873",
+        "DOI": "10.1016/j.cpr.2006.11.003",
+        "article-title": "A review of successful aging models: proposing proactive coping as an important additional strategy",
+        "volume": "27",
+        "author": "Ouwehand",
+        "year": "2007",
+        "journal-title": "Clin. Psychol. Rev."
+      },
+      {
+        "key": "B89",
+        "doi-asserted-by": "publisher",
+        "first-page": "1361",
+        "DOI": "10.1037/a0013280",
+        "article-title": "Reaching beyond arm length in normal aging: adaptation of hand trajectory and dynamic equilibrium",
+        "volume": "122",
+        "author": "Paizis",
+        "year": "2008",
+        "journal-title": "Behav. Neurosci."
+      },
+      {
+        "key": "B90",
+        "doi-asserted-by": "publisher",
+        "first-page": "233",
+        "DOI": "10.1007/s002210050397",
+        "article-title": "The representation of gravitational force during drawing movements of the arm",
+        "volume": "120",
+        "author": "Papaxanthis",
+        "year": "1998",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B91",
+        "doi-asserted-by": "publisher",
+        "first-page": "371",
+        "DOI": "10.1016/j.neuroscience.2005.06.063",
+        "article-title": "Kinematic and dynamic processes for the control of pointing movements in humans revealed by short-term exposure to microgravity",
+        "volume": "135",
+        "author": "Papaxanthis",
+        "year": "2005",
+        "journal-title": "Neuroscience"
+      },
+      {
+        "key": "B134",
+        "doi-asserted-by": "publisher",
+        "first-page": "474",
+        "DOI": "10.1152/jn.00558.2020",
+        "article-title": "Increased upper-limb sensory attenuation with age",
+        "volume": "127",
+        "author": "Parthasharathy",
+        "year": "2022",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B135",
+        "doi-asserted-by": "publisher",
+        "first-page": "742243",
+        "DOI": "10.3389/fnagi.2021.742243",
+        "article-title": "Lower cognitive set shifting ability is associated with stiffer balance recovery behavior and larger perturbation-evoked cortical responses in older adults",
+        "volume": "13",
+        "author": "Payne",
+        "year": "2021",
+        "journal-title": "Front. Aging Neurosci."
+      },
+      {
+        "key": "B92",
+        "doi-asserted-by": "publisher",
+        "first-page": "1537",
+        "DOI": "10.1038/s41593-020-00734-z",
+        "article-title": "Quantifying behavior to understand the brain",
+        "volume": "23",
+        "author": "Pereira",
+        "year": "2020",
+        "journal-title": "Nat. Neurosci."
+      },
+      {
+        "key": "B93",
+        "doi-asserted-by": "publisher",
+        "first-page": "37",
+        "DOI": "10.3389/fnagi.2020.00037",
+        "article-title": "Motor planning of vertical arm movements in healthy older adults: does effort minimization persist with aging?",
+        "volume": "12",
+        "author": "Poirier",
+        "year": "2020",
+        "journal-title": "Front. Aging Neurosci."
+      },
+      {
+        "key": "B155",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1101/2021.10.26.465988",
+        "article-title": "Aging decreases the lateralization of gravity-related effort minimization during vertical arm movements",
+        "author": "Poirier",
+        "year": "2023",
+        "journal-title": "bioRxiv"
+      },
+      {
+        "key": "B94",
+        "doi-asserted-by": "publisher",
+        "first-page": "33",
+        "DOI": "10.3390/geriatrics6010033",
+        "article-title": "Deterioration, compensation and motor control processes in healthy aging, mild cognitive impairment and alzheimer’s disease",
+        "volume": "6",
+        "author": "Poirier",
+        "year": "2021",
+        "journal-title": "Geriatrics"
+      },
+      {
+        "key": "B95",
+        "doi-asserted-by": "publisher",
+        "first-page": "1117",
+        "DOI": "10.1152/jn.00324.2021",
+        "article-title": "Muscle effort is best minimized by the right-dominant arm in the gravity field",
+        "volume": "127",
+        "author": "Poirier",
+        "year": "2022",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B96",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1101/2023.03.14.532654",
+        "volume-title": "Speed-dependent optimization of gravity effects for motor control",
+        "author": "Poirier",
+        "year": ""
+      },
+      {
+        "key": "B97",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1101/2021.10.26.465988",
+        "volume-title": "Aging decreases the lateralization of gravity-related effort minimization during vertical arm movements",
+        "author": "Poirier",
+        "year": ""
+      },
+      {
+        "key": "B98",
+        "doi-asserted-by": "publisher",
+        "first-page": "1687",
+        "DOI": "10.1016/S0531-5565(01)00143-7",
+        "article-title": "Changes in isokinetic torque and muscular activity of elbow flexors muscles with age",
+        "volume": "36",
+        "author": "Pousson",
+        "year": "2001",
+        "journal-title": "Exp. Gerontol."
+      },
+      {
+        "key": "B99",
+        "doi-asserted-by": "publisher",
+        "first-page": "539",
+        "DOI": "10.1093/gerona/glx149",
+        "article-title": "Muscle and tendon contributions to reduced rate of torque development in healthy older males",
+        "volume": "73",
+        "author": "Quinlan",
+        "year": "2018",
+        "journal-title": "Journals Gerontology Ser. A"
+      },
+      {
+        "key": "B100",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1145/1731022.1731032",
+        "article-title": "Algorithm 902: GPOPS, A MATLAB software for solving multiple-phase optimal control problems using the gauss pseudospectral method",
+        "volume": "37",
+        "author": "Rao",
+        "year": "2010",
+        "journal-title": "ACM Trans. Math. Softw."
+      },
+      {
+        "key": "B101",
+        "doi-asserted-by": "publisher",
+        "first-page": "2303",
+        "DOI": "10.1016/j.apmr.2022.04.006",
+        "article-title": "Effect of increasing obstacle distances task on postural stability variables during gait initiation in older nonfallers and fallers",
+        "volume": "103",
+        "author": "Rathore",
+        "year": "2022",
+        "journal-title": "Archives Phys. Med. Rehabilitation"
+      },
+      {
+        "key": "B102",
+        "doi-asserted-by": "publisher",
+        "first-page": "1345",
+        "DOI": "10.1016/j.neuroimage.2006.05.021",
+        "article-title": "Functional significance of age-related differences in motor activation patterns",
+        "volume": "32",
+        "author": "Riecker",
+        "year": "2006",
+        "journal-title": "NeuroImage"
+      },
+      {
+        "key": "B103",
+        "doi-asserted-by": "publisher",
+        "first-page": "6",
+        "DOI": "10.1016/j.maturitas.2020.05.018",
+        "article-title": "The world health organization (WHO) approach to healthy ageing",
+        "volume": "139",
+        "author": "Rudnicka",
+        "year": "2020",
+        "journal-title": "Maturitas"
+      },
+      {
+        "key": "B136",
+        "doi-asserted-by": "publisher",
+        "first-page": "1183",
+        "DOI": "10.1152/jn.00364.2022",
+        "article-title": "The differential effect of age on upper limb sensory processing, proprioception, and motor function",
+        "volume": "130",
+        "author": "Saenen",
+        "year": "2023",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B156",
+        "doi-asserted-by": "publisher",
+        "first-page": "509",
+        "DOI": "10.1152/jn.00699.2016",
+        "article-title": "Neuromuscular responses differ between slip-induced falls and recoveries in older adults",
+        "volume": "117",
+        "author": "Sawers",
+        "year": "2017",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B104",
+        "doi-asserted-by": "publisher",
+        "first-page": "11",
+        "DOI": "10.1186/s40101-018-0170-1",
+        "article-title": "Ageing vision and falls: a review",
+        "volume": "37",
+        "author": "Saftari",
+        "year": "2018",
+        "journal-title": "J. Physiological Anthropol."
+      },
+      {
+        "key": "B105",
+        "doi-asserted-by": "publisher",
+        "first-page": "721",
+        "DOI": "10.1093/cercor/bhh032",
+        "article-title": "Thinning of the cerebral cortex in aging",
+        "volume": "14",
+        "author": "Salat",
+        "year": "2004",
+        "journal-title": "Cereb. Cortex"
+      },
+      {
+        "key": "B137",
+        "doi-asserted-by": "publisher",
+        "first-page": "509",
+        "DOI": "10.1152/jn.00699.2016",
+        "article-title": "Neuromuscular responses differ between slip-induced falls and recoveries in older adults",
+        "volume": "117",
+        "author": "Sawers",
+        "year": "2017",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B106",
+        "doi-asserted-by": "publisher",
+        "first-page": "1811",
+        "DOI": "10.1111/j.1532-5415.2012.04153.x",
+        "article-title": "The role of energetic cost in the age‐related slowing of gait speed",
+        "volume": "60",
+        "author": "Schrack",
+        "year": "2012",
+        "journal-title": "J. Am. Geriatrics Soc."
+      },
+      {
+        "key": "B107",
+        "doi-asserted-by": "publisher",
+        "first-page": "721",
+        "DOI": "10.1016/j.neubiorev.2009.10.005",
+        "article-title": "Motor control and aging: links to age-related brain structural, functional, and biochemical effects",
+        "volume": "34",
+        "author": "Seidler",
+        "year": "2010",
+        "journal-title": "Neurosci. and Biobehav. Rev."
+      },
+      {
+        "key": "B108",
+        "doi-asserted-by": "publisher",
+        "first-page": "2452",
+        "DOI": "10.1016/j.cub.2015.08.016",
+        "article-title": "Humans can continuously optimize energetic cost during walking",
+        "volume": "25",
+        "author": "Selinger",
+        "year": "2015",
+        "journal-title": "Curr. Biol."
+      },
+      {
+        "key": "B109",
+        "doi-asserted-by": "publisher",
+        "first-page": "1929",
+        "DOI": "10.1016/j.cub.2016.05.065",
+        "article-title": "A representation of effort in decision-making and motor control",
+        "volume": "26",
+        "author": "Shadmehr",
+        "year": "2016",
+        "journal-title": "Curr. Biol."
+      },
+      {
+        "key": "B138",
+        "doi-asserted-by": "publisher",
+        "first-page": "20",
+        "DOI": "10.1016/S0966-6362(02)00003-6",
+        "article-title": "Contributions of altered sensation and feedback responses to changes in coordination of postural control due to aging",
+        "volume": "16",
+        "author": "Speers",
+        "year": "2002",
+        "journal-title": "Gait and Posture"
+      },
+      {
+        "key": "B110",
+        "doi-asserted-by": "publisher",
+        "first-page": "29",
+        "DOI": "10.1016/j.neurobiolaging.2019.02.005",
+        "article-title": "Corticospinal control of normal and visually guided gait in healthy older and younger adults",
+        "volume": "78",
+        "author": "Spedden",
+        "year": "2019",
+        "journal-title": "Neurobiol. Aging"
+      },
+      {
+        "key": "B111",
+        "doi-asserted-by": "publisher",
+        "first-page": "20181292",
+        "DOI": "10.1098/rspb.2018.1292",
+        "article-title": "Metabolic rates, climate and macroevolution: a case study using Neogene molluscs",
+        "volume": "285",
+        "author": "Strotz",
+        "year": "2018",
+        "journal-title": "Proc. R. Soc. B Biol. Sci."
+      },
+      {
+        "key": "B139",
+        "doi-asserted-by": "publisher",
+        "first-page": "134",
+        "DOI": "10.1007/s002210050944",
+        "article-title": "Does the coordination between posture and movement during human whole-body reaching ensure center of mass stabilization?",
+        "volume": "129",
+        "author": "Stapley",
+        "year": "1999",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B112",
+        "doi-asserted-by": "publisher",
+        "first-page": "e1596232024",
+        "DOI": "10.1523/JNEUROSCI.1596-23.2024",
+        "article-title": "Slowing of movements in healthy aging as a rational economic response to an elevated effort landscape",
+        "volume": "44",
+        "author": "Summerside",
+        "year": "2024",
+        "journal-title": "J. Neurosci."
+      },
+      {
+        "key": "B113",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1152/jn.00435.2022",
+        "article-title": "Accuracy and effort costs together lead to temporal asynchrony of multiple motor commands",
+        "volume": "129",
+        "author": "Tanis",
+        "year": "2023",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B114",
+        "doi-asserted-by": "publisher",
+        "first-page": "781",
+        "DOI": "10.1016/S0140-6736(09)60456-6",
+        "article-title": "What is health? The ability to adapt",
+        "volume": "373",
+        "year": "2009",
+        "journal-title": "Lancet"
+      },
+      {
+        "key": "B143",
+        "unstructured": "MATLAB version: 9.10.0 (R2021a)\n          \n          Natick, MA\n          The MathWorks Inc\n          \n          2021"
+      },
+      {
+        "key": "B115",
+        "doi-asserted-by": "publisher",
+        "first-page": "921355",
+        "DOI": "10.3389/fdata.2023.921355",
+        "article-title": "Too much information is no information: how machine learning and feature selection could help in understanding the motor control of pointing",
+        "volume": "6",
+        "author": "Thomas",
+        "year": "2023",
+        "journal-title": "Front. Big Data"
+      },
+      {
+        "key": "B140",
+        "doi-asserted-by": "publisher",
+        "first-page": "e20732",
+        "DOI": "10.1371/journal.pone.0020732",
+        "article-title": "An ensemble analysis of electromyographic activity during whole body pointing with the use of support vector machines",
+        "volume": "6",
+        "author": "Tolambiya",
+        "year": "2011",
+        "journal-title": "PLoS ONE"
+      },
+      {
+        "key": "B116",
+        "doi-asserted-by": "publisher",
+        "first-page": "11",
+        "DOI": "10.1038/s41593-021-00980-9",
+        "article-title": "Large-scale neural recordings call for new insights to link brain and behavior",
+        "volume": "25",
+        "author": "Urai",
+        "year": "2022",
+        "journal-title": "Nat. Neurosci."
+      },
+      {
+        "key": "B117",
+        "doi-asserted-by": "publisher",
+        "first-page": "11399",
+        "DOI": "10.1073/pnas.96.20.11399",
+        "article-title": "Genetic and environmental conditions that increase longevity in Caenorhabditis elegans decrease metabolic rate",
+        "volume": "96",
+        "author": "Van Voorhies",
+        "year": "1999",
+        "journal-title": "Proc. Natl. Acad. Sci."
+      },
+      {
+        "key": "B118",
+        "doi-asserted-by": "publisher",
+        "first-page": "1429",
+        "DOI": "10.1093/gerona/glu153",
+        "article-title": "Aging, motor skill, and the energy cost of walking: implications for the prevention and treatment of mobility decline in older persons",
+        "volume": "69",
+        "author": "VanSwearingen",
+        "year": "2014",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B119",
+        "doi-asserted-by": "publisher",
+        "first-page": "1190",
+        "DOI": "10.1093/gerona/glp098",
+        "article-title": "A randomized trial of two forms of therapeutic activity to improve walking: effect on the energy cost of walking",
+        "author": "VanSwearingen",
+        "year": "2009",
+        "journal-title": "Journals Gerontology Ser. A Biol. Sci. Med. Sci."
+      },
+      {
+        "key": "B120",
+        "doi-asserted-by": "publisher",
+        "first-page": "255",
+        "DOI": "10.1007/s00221-008-1301-4",
+        "article-title": "Effect of aging on the coordination between equilibrium and movement: what changes?",
+        "volume": "187",
+        "author": "Vernazza-Martin",
+        "year": "2008",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B121",
+        "doi-asserted-by": "publisher",
+        "first-page": "127",
+        "DOI": "10.1016/j.neuroscience.2016.04.027",
+        "article-title": "On the nature of motor planning variables during arm pointing movement: compositeness and speed dependence",
+        "volume": "328",
+        "author": "Vu",
+        "year": "2016",
+        "journal-title": "Neuroscience"
+      },
+      {
+        "key": "B122",
+        "doi-asserted-by": "publisher",
+        "first-page": "239",
+        "DOI": "10.1016/j.arr.2006.04.003",
+        "article-title": "Compensatory mechanisms in the aging motor system",
+        "volume": "5",
+        "author": "Ward",
+        "year": "2006",
+        "journal-title": "Ageing Res. Rev."
+      },
+      {
+        "key": "B123",
+        "doi-asserted-by": "publisher",
+        "first-page": "1434",
+        "DOI": "10.1016/j.neurobiolaging.2007.04.017",
+        "article-title": "Age-dependent changes in the neural correlates of force modulation: an fMRI study",
+        "volume": "29",
+        "author": "Ward",
+        "year": "2008",
+        "journal-title": "Neurobiol. Aging"
+      },
+      {
+        "key": "B124",
+        "doi-asserted-by": "publisher",
+        "first-page": "4",
+        "DOI": "10.1152/jn.00381.2019",
+        "article-title": "The gravitational imprint on sensorimotor planning and control",
+        "volume": "124",
+        "author": "White",
+        "year": "2020",
+        "journal-title": "J. Neurophysiology"
+      },
+      {
+        "key": "B125",
+        "doi-asserted-by": "publisher",
+        "first-page": "23337214231158476",
+        "DOI": "10.1177/23337214231158476",
+        "article-title": "Effects of physical activity on physical fitness and functional ability in older adults",
+        "volume": "9",
+        "author": "Wickramarachchi",
+        "year": "2023",
+        "journal-title": "Gerontology and Geriatric Med."
+      },
+      {
+        "key": "B141",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1002/9780470549148",
+        "volume-title": "Biomechanics and motor control of human movement",
+        "author": "Winter",
+        "year": "2009"
+      },
+      {
+        "key": "B142",
+        "doi-asserted-by": "publisher",
+        "first-page": "13034",
+        "DOI": "10.1038/ncomms13034",
+        "article-title": "Ageing increases reliance on sensorimotor prediction through structural and functional differences in frontostriatal circuits",
+        "volume": "7",
+        "author": "Wolpe",
+        "year": "2016",
+        "journal-title": "Nat. Commun."
+      },
+      {
+        "key": "B126",
+        "first-page": "983",
+        "article-title": "Constitution of the world health organization",
+        "year": "2002"
+      },
+      {
+        "key": "B127",
+        "first-page": "373",
+        "article-title": "World medical association declaration of helsinki. Ethical principles for medical research involving human subjects",
+        "volume": "79",
+        "year": "1964",
+        "journal-title": "Bull. World Health Organ."
+      },
+      {
+        "key": "B128",
+        "doi-asserted-by": "publisher",
+        "first-page": "703",
+        "DOI": "10.1007/s00221-013-3783-y",
+        "article-title": "Direction-dependent differences in temporal kinematics for vertical prehension movements",
+        "volume": "232",
+        "author": "Yamamoto",
+        "year": "2014",
+        "journal-title": "Exp. Brain Res."
+      },
+      {
+        "key": "B129",
+        "doi-asserted-by": "publisher",
+        "first-page": "175",
+        "DOI": "10.1055/s-0035-1555120",
+        "article-title": "Aging of the human vestibular System",
+        "volume": "36",
+        "author": "Zalewski",
+        "year": "2015",
+        "journal-title": "Seminars Hear."
+      },
+      {
+        "key": "B130",
+        "doi-asserted-by": "publisher",
+        "first-page": "534",
+        "DOI": "10.1016/j.gerinurse.2018.02.013",
+        "article-title": "Evidence on selection, optimization, and compensation strategies to optimize aging with multiple chronic conditions: a literature review",
+        "volume": "39",
+        "author": "Zhang",
+        "year": "2018",
+        "journal-title": "Geriatr. Nurs."
+      },
+      {
+        "key": "B131",
+        "doi-asserted-by": "publisher",
+        "first-page": "63",
+        "DOI": "10.1177/1941738113477832",
+        "article-title": "The role of mobility as a protective factor of cognitive functioning in aging adults: a review",
+        "volume": "6",
+        "author": "Zhao",
+        "year": "2014",
+        "journal-title": "Sports Health"
+      }
+    ],
+    "container-title": [
+      "Frontiers in Aging"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "https://www.frontiersin.org/articles/10.3389/fragi.2026.1715723/full",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ],
+      "date-time": "2026-03-18T06:57:28Z",
+      "timestamp": 1773817048000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://www.frontiersin.org/articles/10.3389/fragi.2026.1715723/full"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ]
+    },
+    "references-count": 145,
+    "alternative-id": [
+      "10.3389/fragi.2026.1715723"
+    ],
+    "URL": "https://doi.org/10.3389/fragi.2026.1715723",
+    "relation": {},
+    "ISSN": [
+      "2673-6217"
+    ],
+    "issn-type": [
+      {
+        "value": "2673-6217",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          18
+        ]
+      ]
+    },
+    "article-number": "1715723"
+  }
+}

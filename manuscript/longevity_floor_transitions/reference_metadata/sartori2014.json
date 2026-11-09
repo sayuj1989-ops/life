@@ -1,0 +1,724 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2026-09-30T10:49:19Z",
+      "timestamp": 1790765359650,
+      "version": "4.1.0"
+    },
+    "reference-count": 50,
+    "publisher": "Public Library of Science (PLoS)",
+    "issue": "12",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2014,
+              12,
+              11
+            ]
+          ],
+          "date-time": "2014-12-11T00:00:00Z",
+          "timestamp": 1418256000000
+        },
+        "content-version": "unspecified",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "www.ploscompbiol.org"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "PLoS Comput Biol"
+    ],
+    "DOI": "10.1371/journal.pcbi.1003974",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          11
+        ]
+      ],
+      "date-time": "2014-12-11T13:59:19Z",
+      "timestamp": 1418306359000
+    },
+    "page": "e1003974",
+    "update-policy": "https://doi.org/10.1371/journal.pcbi.corrections_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 129,
+    "title": [
+      "Thermodynamic Costs of Information Processing in Sensory Adaptation"
+    ],
+    "prefix": "10.1371",
+    "volume": "10",
+    "author": [
+      {
+        "given": "Pablo",
+        "family": "Sartori",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Léo",
+        "family": "Granger",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Chiu Fan",
+        "family": "Lee",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jordan M.",
+        "family": "Horowitz",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "340",
+    "published-online": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          11
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "ref1",
+        "doi-asserted-by": "crossref",
+        "first-page": "220",
+        "DOI": "10.1126/science.7089556",
+        "article-title": "Amplification and adaptation in regulatory and sensory systems",
+        "volume": "217",
+        "author": "DE Koshland",
+        "year": "1982",
+        "journal-title": "Science"
+      },
+      {
+        "key": "ref2",
+        "doi-asserted-by": "crossref",
+        "first-page": "955",
+        "DOI": "10.1016/S0896-6273(00)80387-6",
+        "article-title": "Myosin and adaption by hair cells",
+        "volume": "19",
+        "author": "P Gillespie",
+        "year": "1997",
+        "journal-title": "Neuron"
+      },
+      {
+        "key": "ref3",
+        "doi-asserted-by": "crossref",
+        "first-page": "39",
+        "DOI": "10.1242/jeb.146.1.39",
+        "article-title": "The role of sensory adaptation in the retina",
+        "volume": "146",
+        "author": "SB Laughlin",
+        "year": "1989",
+        "journal-title": "Journal of Experimental Biology"
+      },
+      {
+        "key": "ref4",
+        "doi-asserted-by": "crossref",
+        "first-page": "6285",
+        "DOI": "10.1523/JNEUROSCI.0426-12.2013",
+        "article-title": "Intensity invariant dynamics and odor-specific latencies in olfactory receptor neuron response",
+        "volume": "33",
+        "author": "C Martelli",
+        "year": "2013",
+        "journal-title": "The Journal of Neuroscience"
+      },
+      {
+        "key": "ref5",
+        "doi-asserted-by": "crossref",
+        "first-page": "618",
+        "DOI": "10.1016/j.neuron.2013.07.051",
+        "article-title": "The sensory neurons of touch",
+        "volume": "79",
+        "author": "VE Abraira",
+        "year": "2013",
+        "journal-title": "Neuron"
+      },
+      {
+        "key": "ref6",
+        "doi-asserted-by": "crossref",
+        "first-page": "160",
+        "DOI": "10.1016/j.cell.2009.04.047",
+        "article-title": "A systems-level analysis of perfect adaption in yeast osmoregulation",
+        "volume": "138",
+        "author": "D Muzzy",
+        "year": "2009",
+        "journal-title": "Cell"
+      },
+      {
+        "key": "ref7",
+        "doi-asserted-by": "crossref",
+        "first-page": "382",
+        "DOI": "10.1038/msb.2010.37",
+        "article-title": "A modular gradient-sensing network for chemotaxis in escherichia coli revealed by responses to time-varying stimuli",
+        "volume": "6",
+        "author": "TS Shimizu",
+        "year": "2010",
+        "journal-title": "Molecular systems biology"
+      },
+      {
+        "key": "ref8",
+        "doi-asserted-by": "crossref",
+        "first-page": "5373",
+        "DOI": "10.1073/pnas.0709903105",
+        "article-title": "The thermal impulse response of escherichia coli",
+        "volume": "105",
+        "author": "E Paster",
+        "year": "2008",
+        "journal-title": "Proceedings of the National Academy of Sciences"
+      },
+      {
+        "key": "ref9",
+        "doi-asserted-by": "crossref",
+        "first-page": "1482",
+        "DOI": "10.1111/mmi.12070",
+        "article-title": "Opposite responses by different chemoreceptors set a tunable preference point in escherichia coli ph taxis",
+        "volume": "86",
+        "author": "Y Yang",
+        "year": "2012",
+        "journal-title": "Molecular microbiology"
+      },
+      {
+        "key": "ref10",
+        "unstructured": "CUM S (2008) Biology of Sensory Systems. Wile-Blackwell, Chichester, 2nd edition."
+      },
+      {
+        "key": "ref11",
+        "unstructured": "Leff HS, Rex AF, editors (1990) Maxwell&apos;s Demon: Entropy, Information, Computing. Princeton University Press, New Jersey."
+      },
+      {
+        "key": "ref12",
+        "doi-asserted-by": "crossref",
+        "first-page": "905",
+        "DOI": "10.1007/BF02084158",
+        "article-title": "The thermodynamics of computation—a review",
+        "volume": "21",
+        "author": "C Bennett",
+        "year": "1982",
+        "journal-title": "Int J Theor Phys"
+      },
+      {
+        "key": "ref13",
+        "doi-asserted-by": "crossref",
+        "first-page": "062314",
+        "DOI": "10.1103/PhysRevA.61.062314",
+        "article-title": "Information erasure",
+        "volume": "61",
+        "author": "B Piechocinska",
+        "year": "2000",
+        "journal-title": "Phys Rev A"
+      },
+      {
+        "key": "ref14",
+        "doi-asserted-by": "crossref",
+        "first-page": "210601",
+        "DOI": "10.1103/PhysRevLett.102.210601",
+        "article-title": "Memory erasure in small systems",
+        "volume": "102",
+        "author": "R Dillenschneider",
+        "year": "2009",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref15",
+        "doi-asserted-by": "crossref",
+        "first-page": "250602",
+        "DOI": "10.1103/PhysRevLett.102.250602",
+        "article-title": "Minimal energy cost for thermodynamic information processing: Measurement and information erasure",
+        "volume": "102",
+        "author": "T Sagawa",
+        "year": "2009",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref16",
+        "doi-asserted-by": "crossref",
+        "first-page": "061110",
+        "DOI": "10.1103/PhysRevE.84.061110",
+        "article-title": "Thermodynamics of measurements",
+        "volume": "84",
+        "author": "L Granger",
+        "year": "2011",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref17",
+        "doi-asserted-by": "crossref",
+        "first-page": "50004",
+        "DOI": "10.1209/0295-5075/101/50004",
+        "article-title": "Differential landauer&apos;s principle",
+        "volume": "101",
+        "author": "L Granger",
+        "year": "2013",
+        "journal-title": "Europhys Lett"
+      },
+      {
+        "key": "ref18",
+        "doi-asserted-by": "crossref",
+        "first-page": "17978",
+        "DOI": "10.1073/pnas.1207814109",
+        "article-title": "Energetic costs of cellular computation",
+        "volume": "109",
+        "author": "P Mehta",
+        "year": "2012",
+        "journal-title": "Proceedings of the National Academy of Sciences"
+      },
+      {
+        "key": "ref19",
+        "doi-asserted-by": "crossref",
+        "first-page": "422",
+        "DOI": "10.1038/nphys2276",
+        "article-title": "The energy-speed-accuracy trade-off in sensory adaptation",
+        "volume": "8",
+        "author": "G Lan",
+        "year": "2012",
+        "journal-title": "Nature physics"
+      },
+      {
+        "key": "ref20",
+        "doi-asserted-by": "crossref",
+        "first-page": "032139",
+        "DOI": "10.1103/PhysRevE.87.032139",
+        "article-title": "Adaptive machine and it thermodynamic costs",
+        "volume": "87",
+        "author": "AE Allahverdyan",
+        "year": "2013",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref21",
+        "doi-asserted-by": "crossref",
+        "first-page": "20130489",
+        "DOI": "10.1098/rsif.2013.0489",
+        "article-title": "The cost of sensitive response and accurate adaptation in networks with an incoherent type-1 feed-forward loop",
+        "volume": "10",
+        "author": "G Lan",
+        "year": "2013",
+        "journal-title": "Journal of The Royal Society Interface"
+      },
+      {
+        "key": "ref22",
+        "doi-asserted-by": "crossref",
+        "first-page": "022712",
+        "DOI": "10.1103/PhysRevE.89.022712",
+        "article-title": "Efficient fold-change detection based on protein-protein interactions",
+        "volume": "89",
+        "author": "W Buijsman",
+        "year": "2014",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref23",
+        "doi-asserted-by": "crossref",
+        "first-page": "e1003300",
+        "DOI": "10.1371/journal.pcbi.1003300",
+        "article-title": "Unraveling adaptation in eukaryotic pathways: Lessons from protocells",
+        "volume": "9",
+        "author": "G De Palo",
+        "year": "2013",
+        "journal-title": "PLOS Computational Biology"
+      },
+      {
+        "key": "ref24",
+        "doi-asserted-by": "crossref",
+        "first-page": "218101",
+        "DOI": "10.1103/PhysRevLett.102.218101",
+        "article-title": "Mutual information between input and output trajectories of biochemical networks",
+        "volume": "102",
+        "author": "F Tostevin",
+        "year": "2009",
+        "journal-title": "Physical review letters"
+      },
+      {
+        "key": "ref25",
+        "doi-asserted-by": "crossref",
+        "first-page": "1206",
+        "DOI": "10.1007/s10955-011-0169-z",
+        "article-title": "Noise filtering strategies in adaptive biochemical signaling networks",
+        "volume": "142",
+        "author": "P Sartori",
+        "year": "2011",
+        "journal-title": "Journal of statistical physics"
+      },
+      {
+        "key": "ref26",
+        "doi-asserted-by": "crossref",
+        "first-page": "2329",
+        "DOI": "10.1529/biophysj.106.097808",
+        "article-title": "Effects of adaptation in maintaining high sensitivity over a wide range of backgrounds for escherichia coli chemotaxis",
+        "volume": "92",
+        "author": "BA Mello",
+        "year": "2007",
+        "journal-title": "Biophysical journal"
+      },
+      {
+        "key": "ref27",
+        "doi-asserted-by": "crossref",
+        "first-page": "14855",
+        "DOI": "10.1073/pnas.0807569105",
+        "article-title": "Modeling the chemotactic response of escherichia coli to time-varying stimuli",
+        "volume": "105",
+        "author": "Y Tu",
+        "year": "2008",
+        "journal-title": "Proceedings of the National Academy of Sciences"
+      },
+      {
+        "key": "ref28",
+        "doi-asserted-by": "crossref",
+        "first-page": "8987",
+        "DOI": "10.1073/pnas.83.23.8987",
+        "article-title": "Temporal comparisons in bacterial chemotaxis",
+        "volume": "83",
+        "author": "JE Segall",
+        "year": "1986",
+        "journal-title": "Proceedings of the National Academy of Sciences"
+      },
+      {
+        "key": "ref29",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Cover TM, Thomas JA (2006) Elements of Information Theory. Wiley-Interscience, second edition.",
+        "DOI": "10.1002/047174882X"
+      },
+      {
+        "key": "ref30",
+        "doi-asserted-by": "crossref",
+        "first-page": "495",
+        "DOI": "10.1016/j.crhy.2007.04.010",
+        "article-title": "Comparison of far-from-equilibrium work relations",
+        "volume": "8",
+        "author": "C Jarzynski",
+        "year": "2007",
+        "journal-title": "Comptes Rendus Physique"
+      },
+      {
+        "key": "ref31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Horowitz J, Jarzynski C (2007) Comparison of work fluctuation relations. J Stat Mech: Theor Exp: P11002.",
+        "DOI": "10.1088/1742-5468/2007/11/P11002"
+      },
+      {
+        "key": "ref32",
+        "doi-asserted-by": "crossref",
+        "first-page": "090601",
+        "DOI": "10.1103/PhysRevLett.104.090601",
+        "article-title": "Three detailed fluctuation theorems",
+        "volume": "104",
+        "author": "M Esposito",
+        "year": "2010",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref33",
+        "doi-asserted-by": "crossref",
+        "first-page": "051133",
+        "DOI": "10.1103/PhysRevE.81.051133",
+        "article-title": "Physical origins of entropy produciton, free energy dissipation, and their mathematical representations",
+        "volume": "81",
+        "author": "H Ge",
+        "year": "2010",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref34",
+        "doi-asserted-by": "crossref",
+        "first-page": "1786",
+        "DOI": "10.1073/pnas.0507438103",
+        "article-title": "Chemosensing in escherichia coli: two regimes of two-state receptors",
+        "volume": "103",
+        "author": "JE Keymer",
+        "year": "2006",
+        "journal-title": "Proceedings of the National Academy of Sciences of the United States of America"
+      },
+      {
+        "key": "ref35",
+        "doi-asserted-by": "crossref",
+        "first-page": "151",
+        "DOI": "10.1016/S0022-5193(86)80171-0",
+        "article-title": "A mechanism for exact sensory adaptation based on receptor modification",
+        "volume": "120",
+        "author": "LA Segel",
+        "year": "1986",
+        "journal-title": "Journal of theoretical biology"
+      },
+      {
+        "key": "ref36",
+        "doi-asserted-by": "crossref",
+        "first-page": "337",
+        "DOI": "10.1146/annurev-biophys-083012-130358",
+        "article-title": "Quantitative modeling of bacterial chemotaxis: Signal amplification and accurate adaptation",
+        "volume": "42",
+        "author": "Y Tu",
+        "year": "2013",
+        "journal-title": "Annual review of biophysics"
+      },
+      {
+        "key": "ref37",
+        "doi-asserted-by": "crossref",
+        "first-page": "126001",
+        "DOI": "10.1088/0034-4885/75/12/126001",
+        "article-title": "Stochastic thermodynamics, fluctuation theorems, and molecular motors",
+        "volume": "75",
+        "author": "U Seifert",
+        "year": "2012",
+        "journal-title": "Rep Prog Phys"
+      },
+      {
+        "key": "ref38",
+        "doi-asserted-by": "crossref",
+        "first-page": "080403",
+        "DOI": "10.1103/PhysRevLett.100.080403",
+        "article-title": "Second law of thermodynamics with discrete quantum feedback control",
+        "volume": "100",
+        "author": "T Sagawa",
+        "year": "2008",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref39",
+        "doi-asserted-by": "crossref",
+        "first-page": "021104",
+        "DOI": "10.1103/PhysRevE.85.021104",
+        "article-title": "Nonequilibrium thermodynamics of feedback control",
+        "volume": "85",
+        "author": "T Sagawa",
+        "year": "2012",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref40",
+        "doi-asserted-by": "crossref",
+        "first-page": "061120",
+        "DOI": "10.1103/PhysRevE.82.061120",
+        "article-title": "Nonequilibrium detailed fluctuation theorem for discrete feedback",
+        "volume": "82",
+        "author": "JM Horowitz",
+        "year": "2010",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref41",
+        "doi-asserted-by": "crossref",
+        "first-page": "125012",
+        "DOI": "10.1088/1367-2630/15/12/125012",
+        "article-title": "Role of mutual information in entropy production under information exchanges",
+        "volume": "15",
+        "author": "T Sagawa",
+        "year": "2013",
+        "journal-title": "New J Phys"
+      },
+      {
+        "key": "ref42",
+        "first-page": "031015",
+        "article-title": "Thermodynamics with continuous information flow",
+        "volume": "4",
+        "author": "JM Horowitz",
+        "year": "2014",
+        "journal-title": "Phys Rex X"
+      },
+      {
+        "key": "ref43",
+        "doi-asserted-by": "crossref",
+        "first-page": "041118",
+        "DOI": "10.1103/PhysRevE.79.041118",
+        "article-title": "Thermodynamics of feedback controlled systems",
+        "volume": "79",
+        "author": "FJ Cao",
+        "year": "2009",
+        "journal-title": "Phys Rev E"
+      },
+      {
+        "key": "ref44",
+        "unstructured": "Barato AC, Hartich D, Seifert U (2013) Information-theoretic vs. thermodynamic entropy production in autonomous sensory networks. Phys Rev E 87."
+      },
+      {
+        "key": "ref45",
+        "doi-asserted-by": "crossref",
+        "first-page": "180603",
+        "DOI": "10.1103/PhysRevLett.111.180603",
+        "article-title": "Information thermodynamics on causal networks",
+        "volume": "111",
+        "author": "S Ito",
+        "year": "2013",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref46",
+        "doi-asserted-by": "crossref",
+        "first-page": "120604",
+        "DOI": "10.1103/PhysRevLett.109.120604",
+        "article-title": "Thermodynamics of prediction",
+        "volume": "109",
+        "author": "S Still",
+        "year": "2012",
+        "journal-title": "Phys Rev Lett"
+      },
+      {
+        "key": "ref47",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Diana G, Esposito M (2014) Mutual entropy-production in bipartite systems. J Stat Mech: Theor Exp: P04010.",
+        "DOI": "10.1088/1742-5468/2014/04/P04010"
+      },
+      {
+        "key": "ref48",
+        "doi-asserted-by": "crossref",
+        "first-page": "40004",
+        "DOI": "10.1209/0295-5075/95/40004",
+        "article-title": "Second law and landauer principle far from equilibrium",
+        "volume": "95",
+        "author": "M Esposito",
+        "year": "2011",
+        "journal-title": "Europhys Lett"
+      },
+      {
+        "key": "ref49",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Van Kampen NG (2007) Stochastic Processes in Physics and Chemistry. Elsevier Ltd., New York, 3rd edition.",
+        "DOI": "10.1016/B978-044452965-7/50006-4"
+      },
+      {
+        "key": "ref50",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Sagawa T (2013) Second law-like inequalitites with quantum relative entropy: An introduction. In: Nakahara M, editor, Lectures on quantum computing, thermodynamics and statistical physics, World Scientific New Jersey, volume 8 of <italic>Kinki University Series on Quantum Computing</italic>.",
+        "DOI": "10.1142/9789814425193_0003"
+      }
+    ],
+    "container-title": [
+      "PLoS Computational Biology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://dx.plos.org/10.1371/journal.pcbi.1003974",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          24
+        ]
+      ],
+      "date-time": "2022-04-24T04:20:42Z",
+      "timestamp": 1650774042000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dx.plos.org/10.1371/journal.pcbi.1003974"
+      }
+    },
+    "subtitle": [],
+    "editor": [
+      {
+        "given": "Daniel A.",
+        "family": "Beard",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "editor"
+          }
+        ]
+      }
+    ],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          11
+        ]
+      ]
+    },
+    "references-count": 50,
+    "journal-issue": {
+      "issue": "12",
+      "published-online": {
+        "date-parts": [
+          [
+            2014,
+            12,
+            11
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1371/journal.pcbi.1003974",
+    "relation": {},
+    "ISSN": [
+      "1553-7358"
+    ],
+    "issn-type": [
+      {
+        "value": "1553-7358",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          11
+        ]
+      ]
+    }
+  }
+}

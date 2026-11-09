@@ -1,0 +1,412 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ],
+      "date-time": "2026-09-21T10:15:50Z",
+      "timestamp": 1789985750973,
+      "version": "4.0.1"
+    },
+    "reference-count": 41,
+    "publisher": "American Physiological Society",
+    "issue": "6",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Journal of Applied Physiology"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2015,
+          9,
+          15
+        ]
+      ]
+    },
+    "abstract": "<jats:p> Postural control performance is often described in terms of postural sway magnitude, assuming that lower sway magnitude reflects better performance. However, people do not typically minimize sway magnitude when performing a postural control task. Possibly, other criteria are satisfied when people select the amount of sway they do. Minimal metabolic cost has been suggested as such a criterion. The aim of this study was to experimentally test the relation between sway magnitude and metabolic cost to establish whether metabolic cost could be a potential optimization criterion in postural control. Nineteen healthy subjects engaged in two experiments in which different magnitudes of sway were evoked during upright standing on a foam surface while metabolic energy expenditure, center of pressure (CoP) excursion, and muscle activation were recorded. In one experiment, sway was manipulated by visual feedback of CoP excursion. The other experiment involved verbal instructions of standing still, natural or relaxed. In both experiments, metabolic cost changed with sway magnitude in an asymmetric parabolic fashion, with a minimum around self-selected sway magnitudes and a larger increase at small compared with large sway magnitudes. This metabolic response was paralleled by a change in tonic and phasic EMG activity in the major leg muscles. It is concluded that these results are in line with the notion that metabolic cost can be an optimization criterion used to set postural control and as such could account for the magnitude of naturally occurring postural sway in healthy individuals, although the pathway remains to be elucidated. </jats:p>",
+    "DOI": "10.1152/japplphysiol.00907.2014",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          9
+        ]
+      ],
+      "date-time": "2015-07-09T22:34:44Z",
+      "timestamp": 1436481284000
+    },
+    "page": "696-703",
+    "source": "Crossref",
+    "is-referenced-by-count": 34,
+    "title": [
+      "Relation between postural sway magnitude and metabolic energy cost during upright standing on a compliant surface"
+    ],
+    "prefix": "10.1152",
+    "volume": "119",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-7069-1973",
+        "authenticated-orcid": false,
+        "given": "Han",
+        "family": "Houdijk",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Faculty of Human Movement Sciences, MOVE Research Institute Amsterdam, VU University Amsterdam, Amsterdam, The Netherlands; and"
+          },
+          {
+            "name": "Heliomare Rehabilitation, Research and Development, Wijk aan Zee, The Netherlands"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Starr E.",
+        "family": "Brown",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Faculty of Human Movement Sciences, MOVE Research Institute Amsterdam, VU University Amsterdam, Amsterdam, The Netherlands; and"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jaap H.",
+        "family": "van Dieën",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Faculty of Human Movement Sciences, MOVE Research Institute Amsterdam, VU University Amsterdam, Amsterdam, The Netherlands; and"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "24",
+    "reference": [
+      {
+        "key": "B1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.01498"
+      },
+      {
+        "key": "B1a",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0966-6362(96)01091-0"
+      },
+      {
+        "key": "B2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/japplphysiol.01299.2012"
+      },
+      {
+        "key": "B3",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00221-007-0905-4"
+      },
+      {
+        "key": "B4",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.1992.sp019278"
+      },
+      {
+        "key": "B5",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3200/JMBR.38.6.411-422"
+      },
+      {
+        "key": "B6",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1365-201X.1987.tb10613.x"
+      },
+      {
+        "key": "B7",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1469-7793.1999.915ad.x"
+      },
+      {
+        "key": "B8",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/29528"
+      },
+      {
+        "key": "B9",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S1050-6411(00)00027-4"
+      },
+      {
+        "key": "B10",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/ageing/afl077"
+      },
+      {
+        "key": "B11",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF00230848"
+      },
+      {
+        "key": "B12",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.gaitpost.2009.05.009"
+      },
+      {
+        "key": "B13",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.gaitpost.2010.05.016"
+      },
+      {
+        "key": "B14",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/jn.00014.2014"
+      },
+      {
+        "key": "B15",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1523/JNEUROSCI.4003-11.2012"
+      },
+      {
+        "key": "B17",
+        "first-page": "73",
+        "volume": "11",
+        "author": "Jonsson B",
+        "year": "1982",
+        "journal-title": "J Hum Ergol"
+      },
+      {
+        "key": "B18",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/10.362914"
+      },
+      {
+        "key": "B19",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.apmr.2003.08.089"
+      },
+      {
+        "key": "B20",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00003677-200201000-00006"
+      },
+      {
+        "key": "B21",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TNSRE.2012.2199333"
+      },
+      {
+        "key": "B22",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1469-7793.2001.0879e.x"
+      },
+      {
+        "key": "B23",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1113/jphysiol.2001.013077"
+      },
+      {
+        "key": "B24",
+        "first-page": "221",
+        "volume": "46",
+        "author": "Nardone A",
+        "year": "2010",
+        "journal-title": "Eur J Phys Rehab Med"
+      },
+      {
+        "key": "B25",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1152/jn.00866.2011"
+      },
+      {
+        "key": "B26",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1242/jeb.105270"
+      },
+      {
+        "key": "B27",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00016480701827517"
+      },
+      {
+        "key": "B28",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/10.532130"
+      },
+      {
+        "key": "B29",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1053/apmr.2003.50004"
+      },
+      {
+        "key": "B30",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00221-008-1647-7"
+      },
+      {
+        "key": "B31",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10827-010-0278-8"
+      },
+      {
+        "key": "B32",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.gaitpost.2007.07.014"
+      },
+      {
+        "key": "B33",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.neulet.2008.07.021"
+      },
+      {
+        "key": "B34",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nn1309"
+      },
+      {
+        "key": "B35",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/JES.0b013e31820d7bc5"
+      },
+      {
+        "key": "B36",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10827-010-0291-y"
+      },
+      {
+        "key": "B37",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.jneumeth.2005.01.003"
+      },
+      {
+        "key": "B38",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00003677-200210000-00007"
+      },
+      {
+        "key": "B39",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.clinph.2008.07.220"
+      },
+      {
+        "key": "B40",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00426-005-0018-2"
+      },
+      {
+        "key": "B41",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0966-6362(01)00156-4"
+      }
+    ],
+    "container-title": [
+      "Journal of Applied Physiology"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.physiology.org/doi/pdf/10.1152/japplphysiol.00907.2014",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2019,
+          9,
+          8
+        ]
+      ],
+      "date-time": "2019-09-08T19:43:17Z",
+      "timestamp": 1567971797000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://www.physiology.org/doi/10.1152/japplphysiol.00907.2014"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          9,
+          15
+        ]
+      ]
+    },
+    "references-count": 41,
+    "journal-issue": {
+      "issue": "6",
+      "published-print": {
+        "date-parts": [
+          [
+            2015,
+            9,
+            15
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1152/japplphysiol.00907.2014"
+    ],
+    "URL": "https://doi.org/10.1152/japplphysiol.00907.2014",
+    "relation": {},
+    "ISSN": [
+      "8750-7587",
+      "1522-1601"
+    ],
+    "issn-type": [
+      {
+        "value": "8750-7587",
+        "type": "print"
+      },
+      {
+        "value": "1522-1601",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2015,
+          9,
+          15
+        ]
+      ]
+    }
+  }
+}

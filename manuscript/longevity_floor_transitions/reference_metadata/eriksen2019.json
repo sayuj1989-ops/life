@@ -1,0 +1,1117 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2026-09-30T04:37:59Z",
+      "timestamp": 1790743079731,
+      "version": "4.1.0"
+    },
+    "reference-count": 74,
+    "publisher": "Springer Science and Business Media LLC",
+    "issue": "1",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2019,
+              1,
+              31
+            ]
+          ],
+          "date-time": "2019-01-31T00:00:00Z",
+          "timestamp": 1548892800000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/501100004836",
+        "name": "Det Frie Forskningsråd",
+        "doi-asserted-by": "crossref",
+        "id": [
+          {
+            "id": "10.13039/501100004836",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100004825",
+        "name": "Nordea-fonden",
+        "doi-asserted-by": "crossref",
+        "award": [
+          "Center for Healthy Aging Grant"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "Center for Healthy Aging Grant"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100004825",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100003554",
+        "name": "Lundbeckfonden",
+        "doi-asserted-by": "crossref",
+        "id": [
+          {
+            "id": "10.13039/501100003554",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      },
+      {
+        "DOI": "10.13039/501100009708",
+        "name": "Novo Nordisk Fonden",
+        "doi-asserted-by": "crossref",
+        "id": [
+          {
+            "id": "10.13039/501100009708",
+            "id-type": "DOI",
+            "asserted-by": "crossref"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "BMC Geriatr"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          12
+        ]
+      ]
+    },
+    "DOI": "10.1186/s12877-019-1043-0",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2019,
+          1,
+          31
+        ]
+      ],
+      "date-time": "2019-01-31T08:05:29Z",
+      "timestamp": 1548921929000
+    },
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 42,
+    "title": [
+      "Load magnitude affects patellar tendon mechanical properties but not collagen or collagen cross-linking after long-term strength training in older adults"
+    ],
+    "prefix": "10.1186",
+    "volume": "19",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-0973-4708",
+        "authenticated-orcid": false,
+        "given": "Christian S.",
+        "family": "Eriksen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Rene B.",
+        "family": "Svensson",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anne T.",
+        "family": "Gylling",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Christian",
+        "family": "Couppé",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "S. Peter",
+        "family": "Magnusson",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael",
+        "family": "Kjaer",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2019,
+          1,
+          31
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "1043_CR1",
+        "doi-asserted-by": "publisher",
+        "first-page": "1",
+        "DOI": "10.1016/S0047-6374(98)00119-5",
+        "volume": "106",
+        "author": "AJ Bailey",
+        "year": "1998",
+        "unstructured": "Bailey AJ, Paul RG, Knott L. Mechanisms of maturation and ageing of collagen. Mech Ageing Dev. 1998;106:1–2):1–56.",
+        "journal-title": "Mech Ageing Dev"
+      },
+      {
+        "key": "1043_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "223",
+        "DOI": "10.1146/annurev.med.46.1.223",
+        "volume": "46",
+        "author": "M Brownlee",
+        "year": "1995",
+        "unstructured": "Brownlee M. Advanced protein glycosylation in diabetes and aging. Annu Rev Med. 1995;46:223–34.",
+        "journal-title": "Annu Rev Med"
+      },
+      {
+        "issue": "7",
+        "key": "1043_CR3",
+        "doi-asserted-by": "publisher",
+        "first-page": "387",
+        "DOI": "10.1016/j.patbio.2006.07.005",
+        "volume": "54",
+        "author": "NC Avery",
+        "year": "2006",
+        "unstructured": "Avery NC, Bailey AJ. The effects of the Maillard reaction on the physical properties and cell interactions of collagen. Pathol Biol [Internet]. 2006;54(7):387–95.",
+        "journal-title": "Pathol Biol [Internet]"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "25",
+        "DOI": "10.1046/j.1365-201X.2003.01097.x",
+        "volume": "178",
+        "author": "K Kubo",
+        "year": "2003",
+        "unstructured": "Kubo K, Kanehisa H, Miyatani M, Tachi M, Fukunaga T. Effect of low-load resistance training on the tendon properties in middle-aged and elderly women. Acta Physiol Scand. 2003;178(1):25–32.",
+        "journal-title": "Acta Physiol Scand"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR5",
+        "doi-asserted-by": "publisher",
+        "first-page": "986",
+        "DOI": "10.1152/japplphysiol.01305.2004",
+        "volume": "99",
+        "author": "J Bojsen-Møller",
+        "year": "2005",
+        "unstructured": "Bojsen-Møller J, Magnusson SP, Rasmussen LR, Kjaer M, Aagaard P. Muscle Perfomance during maximal isometric and dynamic contractions is influenced by the stiffness of the tendinous structures. J Appl Physiol. 2005;99(3):986–94.",
+        "journal-title": "J Appl Physiol"
+      },
+      {
+        "key": "1043_CR6",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Onambele GL, Narici MV, Maganaris CN. Calf muscle-tendon properties and postural balance in old age Calf muscle-tendon properties and postural balance in old age. J Appl Physiol. 2006:2048–56.",
+        "DOI": "10.1152/japplphysiol.01442.2005"
+      },
+      {
+        "issue": "4",
+        "key": "1043_CR7",
+        "doi-asserted-by": "publisher",
+        "first-page": "1039",
+        "DOI": "10.1016/S1095-6433(02)00148-4",
+        "volume": "133",
+        "author": "RKW Smith",
+        "year": "2002",
+        "unstructured": "Smith RKW, Birch HL, Goodman S, Heinegård D, Goodship AE. The influence of ageing and exercise on tendon growth and degeneration - hypotheses for the initiation and prevention of strain-induced tendinopathies. Comp Biochem Physiol - Part A. 2002;133(4):1039–50.",
+        "journal-title": "Comp Biochem Physiol - Part A"
+      },
+      {
+        "key": "1043_CR8",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Couppé C, Svensson RB, Grosset JF, Kovanen V, Nielsen RH, Olsen MR, et al. Life-long endurance running is associated with reduced glycation and mechanical stress in connective tissue. Age (Omaha). 2014;36(4).",
+        "DOI": "10.1007/s11357-014-9665-9"
+      },
+      {
+        "key": "1043_CR9",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Reeves ND, Maganaris CN, Narici M V. Effect of strength training on human patella tendon mechanical properties of older individuals. J Physiol [Internet]. 2003;548(Pt 3):971–81.",
+        "DOI": "10.1113/jphysiol.2002.035576"
+      },
+      {
+        "issue": "6",
+        "key": "1043_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "1008",
+        "DOI": "10.1242/jeb.146407",
+        "volume": "220",
+        "author": "G Epro",
+        "year": "2017",
+        "unstructured": "Epro G, Mierau A, Doerner J, Luetkens JA, Scheef L, Kukuk GM, et al. The Achilles tendon is mechanosensitive in older adults: adaptations following 14 weeks versus 1.5 years of cyclic strain exercise. J Exp Biol [Internet]. 2017;220(6):1008–18.",
+        "journal-title": "J Exp Biol [Internet]"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR11",
+        "doi-asserted-by": "publisher",
+        "first-page": "9657",
+        "DOI": "10.1007/s11357-014-9657-9",
+        "volume": "36",
+        "author": "JF Grosset",
+        "year": "2014",
+        "unstructured": "Grosset JF, Breen L, Stewart CE, Burgess KE, Onambélé GL. Influence of exercise intensity on training-induced tendon mechanical properties changes in older individuals. Age (Omaha). 2014;36(3):9657.",
+        "journal-title": "Age (Omaha)."
+      },
+      {
+        "key": "1043_CR12",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Bohm S, Mersmann F, Arampatzis A. Human tendon adaptation in response to mechanical loading: a systematic review and meta-analysis of exercise intervention studies on healthy adults. Sport Med - Open [Internet]. 2015;1(7). Available from: Missingcontent/1/1/7.",
+        "DOI": "10.1186/s40798-015-0009-9"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR13",
+        "doi-asserted-by": "publisher",
+        "first-page": "508",
+        "DOI": "10.1152/japplphysiol.01348.2010",
+        "volume": "111",
+        "author": "CC Carroll",
+        "year": "2011",
+        "unstructured": "Carroll CC, Dickinson JM, LeMoine JK, Haus JM, Weinheimer EM, Hollon CJ, et al. Influence of acetaminophen and ibuprofen on in vivo patellar tendon adaptations to knee extensor resistance exercise in older adults. J Appl Physiol. 2011;111(2):508–15.",
+        "journal-title": "J Appl Physiol"
+      },
+      {
+        "key": "1043_CR14",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Massey GJ, Balshaw TG, Maden-Wilkinson TM, Folland JP. Tendinous tissue properties after short- and long-term functional overload: Differences between controls, 12 weeks and 4 years of resistance training. Acta Physiol [Internet]. 2018;(July 2017):e13019.",
+        "DOI": "10.1111/apha.13019"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR15",
+        "doi-asserted-by": "publisher",
+        "first-page": "805",
+        "DOI": "10.1152/japplphysiol.90361.2008",
+        "volume": "105",
+        "author": "C Couppe",
+        "year": "2008",
+        "unstructured": "Couppe C, Kongsgaard M, Aagaard P, Hansen P, Bojsen-Moller J, Kjaer M, et al. Habitual loading results in tendon hypertrophy and increased stiffness of the human patellar tendon. J Appl Physiol [Internet]. 2008;105(3):805–10.",
+        "journal-title": "J Appl Physiol [Internet]"
+      },
+      {
+        "issue": "Pt 3",
+        "key": "1043_CR16",
+        "doi-asserted-by": "publisher",
+        "first-page": "1303",
+        "DOI": "10.1113/jphysiol.2007.127639",
+        "volume": "582",
+        "author": "KM Heinemeier",
+        "year": "2007",
+        "unstructured": "Heinemeier KM, Olesen JL, Haddad F, Langberg H, Kjaer M, Baldwin KM, et al. Expression of collagen and related growth factors in rat tendon and skeletal muscle in response to specific contraction types. J Physiol [Internet]. 2007;582(Pt 3):1303–16.",
+        "journal-title": "J Physiol [Internet]"
+      },
+      {
+        "key": "1043_CR17",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Langberg H, Skovgaard D, Petersen LJ, Bulow J, Kjaer M. Type I collagen synthesis and degradation in peritendinous tissue after exercise determined by microdialysis in humans. J Physiol [Internet]. 1999;521(1):299–306.",
+        "DOI": "10.1111/j.1469-7793.1999.00299.x"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR18",
+        "doi-asserted-by": "publisher",
+        "first-page": "25",
+        "DOI": "10.1111/sms.12143",
+        "volume": "25",
+        "author": "A Lenskjold",
+        "year": "2015",
+        "unstructured": "Lenskjold A, Kongsgaard M, Larsen JO, Nielsen RH, Kovanen V, Aagaard P, et al. The influence of physical activity during youth on structural and functional properties of the Achilles tendon. Scand J Med Sci Sport. 2015;25(1):25–31.",
+        "journal-title": "Scand J Med Sci Sport."
+      },
+      {
+        "issue": "5",
+        "key": "1043_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "2074",
+        "DOI": "10.1096/fj.12-225599",
+        "volume": "27",
+        "author": "KM Heinemeier",
+        "year": "2013",
+        "unstructured": "Heinemeier KM, Schjerling P, Heinemeier J, Magnusson SP, Kjaer M. Lack of tissue renewal in human adult Achilles tendon is revealed by nuclear bomb 14C. FASEB J. 2013;27(5):2074–9.",
+        "journal-title": "FASEB J"
+      },
+      {
+        "key": "1043_CR20",
+        "doi-asserted-by": "publisher",
+        "first-page": "717",
+        "DOI": "10.1146/annurev.bi.53.070184.003441",
+        "volume": "53",
+        "author": "DR Eyre",
+        "year": "1984",
+        "unstructured": "Eyre DR, M a P, Gallop PM. Cross-linking in collagen and elastin. Annu Rev Biochem. 1984;53:717–48.",
+        "journal-title": "Annu Rev Biochem"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR21",
+        "doi-asserted-by": "publisher",
+        "first-page": "346",
+        "DOI": "10.1002/jor.22824",
+        "volume": "34",
+        "author": "LK Wood",
+        "year": "2016",
+        "unstructured": "Wood LK, Brooks SV. Ten weeks of treadmill running decreases stiffness and increases collagen turnover in tendons of old mice. J Orthop Res. 2016;34(2):346–53.",
+        "journal-title": "J Orthop Res"
+      },
+      {
+        "issue": "7",
+        "key": "1043_CR22",
+        "doi-asserted-by": "publisher",
+        "first-page": "735",
+        "DOI": "10.1016/S0047-6374(01)00225-1",
+        "volume": "122",
+        "author": "AJ Bailey",
+        "year": "2001",
+        "unstructured": "Bailey AJ. Molecular mechanisms of ageing in connective tissues. Mech Ageing Dev. 2001;122(7):735–55.",
+        "journal-title": "Mech Ageing Dev"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "35",
+        "DOI": "10.1136/ard.58.1.35",
+        "volume": "58",
+        "author": "JM TeKoppele",
+        "year": "1999",
+        "unstructured": "Bank RA, TeKoppele JM, Oostingh G, Hazleman BL, Riley GP. Lysylhydroxylation and non-reducible crosslinking of human supraspinatus tendon collagen: changes with age and in chronic rotator cuff tendinitis. Ann Rheum Dis [Internet]. 1999;58(1):35–41.",
+        "journal-title": "Ann Rheum Dis [Internet]"
+      },
+      {
+        "issue": "4",
+        "key": "1043_CR24",
+        "doi-asserted-by": "publisher",
+        "first-page": "231",
+        "DOI": "10.1111/j.1600-0838.2005.00464.x",
+        "volume": "15",
+        "author": "NC Avery",
+        "year": "2005",
+        "unstructured": "Avery NC, Bailey AJ. Enzymic and non-enzymic cross-linking mechanisms in relation to turnover of collagen: relevance to aging and exercise. Scand J Med Sci Sport. 2005;15(4):231–40.",
+        "journal-title": "Scand J Med Sci Sport."
+      },
+      {
+        "key": "1043_CR25",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Fessel G, Li Y, Diederich V, Guizar-Sicairos M, Schneider P, Sell DR, et al. Advanced glycation end-products reduce collagen molecular sliding to affect collagen fibril damage mechanisms but not stiffness. PLoS One. 2014;9(11).",
+        "DOI": "10.1371/journal.pone.0110948"
+      },
+      {
+        "issue": "5",
+        "key": "1043_CR26",
+        "doi-asserted-by": "publisher",
+        "first-page": "B277",
+        "DOI": "10.1093/gerona/52A.5.B277",
+        "volume": "52",
+        "author": "DR Sell",
+        "year": "1997",
+        "unstructured": "Sell DR, Monnier VM. Age-related association of tail tendon break time with tissue pentosidine in DBA/2 vs C57BL/6 mice: the effect of dietary restriction. J Gerontol A Biol Sci Med Sci. 1997;52(5):B277–84.",
+        "journal-title": "J Gerontol A Biol Sci Med Sci"
+      },
+      {
+        "issue": "6",
+        "key": "1043_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "790",
+        "DOI": "10.1111/j.1600-0838.2009.00949.x",
+        "volume": "19",
+        "author": "M Kongsgaard",
+        "year": "2009",
+        "unstructured": "Kongsgaard M, Kovanen V, Aagaard P, Doessing S, Hansen P, Laursen AH, et al. Corticosteroid injections, eccentric decline squat training and heavy slow resistance training in patellar tendinopathy. Scand J Med Sci Sport. 2009;19(6):790–802.",
+        "journal-title": "Scand J Med Sci Sport."
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR28",
+        "doi-asserted-by": "publisher",
+        "first-page": "143",
+        "DOI": "10.1080/15438600490277860",
+        "volume": "5",
+        "author": "GK Reddy",
+        "year": "2004",
+        "unstructured": "Reddy GK. Cross-linking in collagen by nonenzymatic glycation increases the matrix stiffness in rabbit Achilles tendon. Exp Diabesity Res. 2004;5(2):143–53.",
+        "journal-title": "Exp Diabesity Res"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR29",
+        "doi-asserted-by": "publisher",
+        "first-page": "161",
+        "DOI": "10.1016/0167-4838(92)90319-9",
+        "volume": "1122",
+        "author": "MD Naresh",
+        "year": "1992",
+        "unstructured": "Naresh MD, Brodsky B. X-ray diffraction studies on human tendon show age-related changes in collagen packing. Biochim Biophys Acta [Internet]. 1992;1122(2):161–6.",
+        "journal-title": "Biochim Biophys Acta [Internet]"
+      },
+      {
+        "key": "1043_CR30",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Couppé C, Hansen P, Kongsgaard M, Kovanen V, Suetta C, Aagaard P, et al. Mechanical properties and collagen cross-linking of the patellar tendon in old and young men. J Appl Physiol 2009;107(June 2009):880–6.",
+        "DOI": "10.1152/japplphysiol.00291.2009"
+      },
+      {
+        "key": "1043_CR31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Eriksen CS, Garde E, Reislev NL, Wimmelmann CL, Bieler T, Ziegler AK, et al. Physical activity as intervention for age-related loss of muscle mass and function: protocol for a randomised controlled trial (the LISA study). BMJ Open [Internet]. 2016;6(12):e012951.",
+        "DOI": "10.1136/bmjopen-2016-012951"
+      },
+      {
+        "issue": "9",
+        "key": "1043_CR32",
+        "doi-asserted-by": "publisher",
+        "first-page": "R1135",
+        "DOI": "10.1152/ajpregu.00189.2015",
+        "volume": "309",
+        "author": "BD Volper",
+        "year": "2015",
+        "unstructured": "Volper BD, Huynh RT, Arthur KA, Noone J, Gordon BD, Zacherle EW, et al. Influence of acute and chronic streptozotocin-induced diabetes on the rat tendon extracellular matrix and mechanical properties. Am J Physiol Regul Integr Comp Physiol. 2015;309(9):R1135–43.",
+        "journal-title": "Am J Physiol Regul Integr Comp Physiol"
+      },
+      {
+        "key": "1043_CR33",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Couppé C, Svensson RB, Kongsgaard M, Kovanen V, Grosset J-F, Snorgaard O, et al. Human Achilles tendon glycation and function in diabetes. J Appl Physiol [Internet]. 2016;120(2):130–137. Available from: \n                    https://doi.org/10.1152/japplphysiol.00547.2015",
+        "DOI": "10.1152/japplphysiol.00547.2015"
+      },
+      {
+        "key": "1043_CR34",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Beason DP, Hsu JE, Marshall SM, McDaniel AL, Temel RE, Abboud JA, et al. Hypercholesterolemia increases supraspinatus tendon stiffness and elastic modulus across multiple species. J Shoulder Elb Surg [Internet]. 2013;22(5):681–686. Available from: \n                    https://doi.org/10.1016/j.jse.2012.07.008",
+        "DOI": "10.1016/j.jse.2012.07.008"
+      },
+      {
+        "key": "1043_CR35",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Hansen M, Couppe C, Hansen CSE, Skovgaard D, Kovanen V, Larsen JO, et al. Impact of oral contraceptive use and menstrual phases on patellar tendon morphology, biochemical composition, and biomechanical properties in female athletes. J Appl Physiol [Internet]. 2013;114(8):998–1008.",
+        "DOI": "10.1152/japplphysiol.01255.2012"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR36",
+        "doi-asserted-by": "publisher",
+        "first-page": "386",
+        "DOI": "10.1016/j.gaitpost.2010.06.022",
+        "volume": "32",
+        "author": "G Dahlgren",
+        "year": "2010",
+        "unstructured": "Dahlgren G, Carlsson D, Moorhead A, Häger-Ross C, McDonough SM. Test-retest reliability of step counts with the ActivPAL device in common daily activities. Gait Posture. 2010;32(3):386–90.",
+        "journal-title": "Gait Posture"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR37",
+        "doi-asserted-by": "publisher",
+        "first-page": "54",
+        "DOI": "10.1016/j.clinbiomech.2005.07.008",
+        "volume": "21",
+        "author": "P Hansen",
+        "year": "2006",
+        "unstructured": "Hansen P, Bojsen-Moller J, Aagaard P, Kjaer M, Magnusson SP. Mechanical properties of the human patellar tendon, in vivo. Clin Biomech. 2006;21(1):54–8.",
+        "journal-title": "Clin Biomech"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR38",
+        "doi-asserted-by": "publisher",
+        "first-page": "185",
+        "DOI": "10.1046/j.1365-201X.2003.01048.x",
+        "volume": "177",
+        "author": "SP Magnusson",
+        "year": "2003",
+        "unstructured": "Magnusson SP, Hansen P, Aagaard P, Brønd J, Dyhre-Poulsen P, Bojsen-Moller J, et al. Differential strain patterns of the human gastrocnemius aponeurosis and free tendon, in vivo. Acta Physiol Scand. 2003;177(2):185–95.",
+        "journal-title": "Acta Physiol Scand"
+      },
+      {
+        "issue": "5–6",
+        "key": "1043_CR39",
+        "doi-asserted-by": "publisher",
+        "first-page": "453",
+        "DOI": "10.1007/BF00236067",
+        "volume": "61",
+        "author": "JJ Visser",
+        "year": "1990",
+        "unstructured": "Visser JJ, Hoogkamer JE, Bobbert MF, Huijing PA. Length and moment arm of human leg muscles as a function of knee and hip-joint angles. Eur J Appl Physiol. 1990;61(5–6):453–60.",
+        "journal-title": "Eur J Appl Physiol"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "237",
+        "DOI": "10.1111/cpf.12086",
+        "volume": "34",
+        "author": "C Couppé",
+        "year": "2014",
+        "unstructured": "Couppé C, Svensson RB, Sødring-Elbrønd V, Hansen P, Kjær M, Magnusson SP. Accuracy of MRI technique in measuring tendon cross-sectional area. Clin Physiol Funct Imaging. 2014;34(3):237–41.",
+        "journal-title": "Clin Physiol Funct Imaging"
+      },
+      {
+        "key": "1043_CR41",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Boesen AP, Dideriksen K, Couppé C, Magnusson SP, Schjerling P, Boesen M, et al. Tendon and skeletal muscle matrix gene expression and functional responses to immobilisation and rehabilitation in young males: effect of growth hormone administration. J Physiol 2013;591.23(591):6039–6052.",
+        "DOI": "10.1113/jphysiol.2013.261263"
+      },
+      {
+        "issue": "11",
+        "key": "1043_CR42",
+        "doi-asserted-by": "publisher",
+        "first-page": "1841",
+        "DOI": "10.1249/01.MSS.0000145450.75035.61",
+        "volume": "36",
+        "author": "A Shalabi",
+        "year": "2004",
+        "unstructured": "Shalabi A, Kristoffersen-Wiberg M, Aspelin P, Movin T. Immediate achilles tendon response after strength training evaluated by MRI. Med Sci Sports Exerc. 2004;36(11):1841–6.",
+        "journal-title": "Med Sci Sports Exerc"
+      },
+      {
+        "issue": "4",
+        "key": "1043_CR43",
+        "doi-asserted-by": "publisher",
+        "first-page": "749",
+        "DOI": "10.1177/0363546509350915",
+        "volume": "38",
+        "author": "M Kongsgaard",
+        "year": "2010",
+        "unstructured": "Kongsgaard M, Qvortrup K, Larsen J, Aagaard P, Doessing S, Hansen P, et al. Fibril morphology and tendon mechanical properties in patellar tendinopathy: effects of heavy slow resistance training. Am J Sports Med. 2010;38(4):749–56.",
+        "journal-title": "Am J Sports Med"
+      },
+      {
+        "key": "1043_CR44",
+        "first-page": "1",
+        "volume": "4",
+        "author": "CYC Yeung",
+        "year": "2014",
+        "unstructured": "Yeung CYC, Gossan N, Lu Y, Hughes A, Hensman JJ, Bayer ML, et al. Gremlin-2 is a BMP antagonist that is regulated by the circadian clock. Sci Rep. 2014;4:1–8.",
+        "journal-title": "Sci Rep"
+      },
+      {
+        "key": "1043_CR45",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Heinemeier KM, Lorentzen MP, Jensen JK, Schjerling P, Seynnes O, Narici M V, et alLocal trauma in human patellar tendon leads to widespread changes in the tendon gene expression. J Appl Physiol [Internet]. 2016;120:1000–10.",
+        "DOI": "10.1152/japplphysiol.00870.2015"
+      },
+      {
+        "key": "1043_CR46",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Boesen AP, Dideriksen K, Couppe C, Magnusson SP, Schjerling P, Boesen M, et al. Effect of growth hormone on aging connective tissue in muscle and tendon: gene expression, morphology, and function following immobilization and rehabilitation. J Appl Physiol [Internet]. 2014;116(2):192–203.",
+        "DOI": "10.1152/japplphysiol.01077.2013"
+      },
+      {
+        "key": "1043_CR47",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Svensson RB, Smith ST, Moyer PJ, Magnusson SP. Acta Biomater Effects of maturation and advanced glycation on tensile mechanics of collagen fibrils from rat tail and Achilles tendons. Acta Biomater [Internet]. 2018. Available from: \n                    https://doi.org/10.1016/j.actbio.2018.02.005\n                    \n                  .",
+        "DOI": "10.1016/j.actbio.2018.02.005"
+      },
+      {
+        "issue": "7",
+        "key": "1043_CR48",
+        "doi-asserted-by": "publisher",
+        "first-page": "403",
+        "DOI": "10.1056/NEJM198602133140702",
+        "volume": "314",
+        "author": "VM Monnier",
+        "year": "1986",
+        "unstructured": "Monnier VM, Vishwanath V, KE F, CA E, P D RRK. Relation between complications of type I diabetes mellitus and collagen-linked fluorescence. N Engl J Med. 1986;314(7):403–8.",
+        "journal-title": "N Engl J Med"
+      },
+      {
+        "key": "1043_CR49",
+        "unstructured": "GraphPad Software I ©2017. Grubb’s test [Internet]. [cited 2017 Oct 11]. Available from: \n                    https://www.graphpad.com/quickcalcs/Grubbs1.cfm"
+      },
+      {
+        "key": "1043_CR50",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Peterson MD, Rhea MR, Sen A, Gordon PM. Resistance exercise for muscular strength in older adults: a meta-analysis. Ageing Res Rev [Internet] 2010;9(3):226–237. Available from: \n                    https://doi.org/10.1016/j.arr.2010.03.004",
+        "DOI": "10.1016/j.arr.2010.03.004"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR51",
+        "doi-asserted-by": "publisher",
+        "first-page": "427",
+        "DOI": "10.1007/s11357-011-9248-y",
+        "volume": "34",
+        "author": "GL Onambele-Pearson",
+        "year": "2012",
+        "unstructured": "Onambele-Pearson GL, Pearson SJ. The magnitude and character of resistance-training-induced increase in tendon stiffness at old age is gender specific. Age (Omaha). 2012;34(2):427–38.",
+        "journal-title": "Age (Omaha)"
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR52",
+        "doi-asserted-by": "publisher",
+        "first-page": "523",
+        "DOI": "10.1152/japplphysiol.00213.2009",
+        "volume": "107",
+        "author": "OR Seynnes",
+        "year": "2009",
+        "unstructured": "Seynnes OR, Erskine RM, Maganaris CN, Longo S, Simoneau EM, Grosset JF, et al. Training-induced changes in structural and mechanical properties of the patellar tendon are related to muscle hypertrophy but not to strength gains. J Appl Physiol. 2009;107(2):523–30.",
+        "journal-title": "J Appl Physiol"
+      },
+      {
+        "issue": "11",
+        "key": "1043_CR53",
+        "doi-asserted-by": "publisher",
+        "first-page": "1893",
+        "DOI": "10.1016/j.jbiomech.2013.04.022",
+        "volume": "46",
+        "author": "P Malliaras",
+        "year": "2013",
+        "unstructured": "Malliaras P, Kamal B, Nowell A, Farley T, Dhamu H, Simpson V, et al. Patellar tendon adaptation in relation to load-intensity and contraction type. J Biomech. 2013;46(11):1893–9.",
+        "journal-title": "J Biomech"
+      },
+      {
+        "key": "1043_CR54",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Arampatzis A, Karamanidis K, Albracht K. Adaptational responses of the human Achilles tendon by modulation of the applied cyclic strain magnitude. J Exp Biol 2007;210(Pt 15):2743–2753.",
+        "DOI": "10.1242/jeb.003814"
+      },
+      {
+        "issue": "3–4",
+        "key": "1043_CR55",
+        "doi-asserted-by": "publisher",
+        "first-page": "181",
+        "DOI": "10.1080/03008200390215881",
+        "volume": "44",
+        "author": "M Lavagnino",
+        "year": "2003",
+        "unstructured": "Lavagnino M, Arnoczky SP, Tian T, Vaupel Z. Effect of amplitude and frequency of cyclic tensile strain on the inhibition of MMP-1 mRNA expression in tendon cells: an in vitro study. Connect Tissue Res. 2003;44(3–4):181–7.",
+        "journal-title": "Connect Tissue Res"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR56",
+        "doi-asserted-by": "publisher",
+        "first-page": "281",
+        "DOI": "10.1016/0021-9290(94)00071-B",
+        "volume": "28",
+        "author": "M Voigt",
+        "year": "1995",
+        "unstructured": "Voigt M, Bojsen-Møller F, Simonsen EB, Dyhre-Poulsen P. The influence of tendon youngs modulus, dimensions and instantaneous moment arms on the efficiency of human movement. J Biomech. 1995;28(3):281–91.",
+        "journal-title": "J Biomech"
+      },
+      {
+        "issue": "23",
+        "key": "1043_CR57",
+        "doi-asserted-by": "publisher",
+        "first-page": "E257",
+        "DOI": "10.1152/ajpendo.00609.2009",
+        "volume": "298",
+        "author": "L Holm",
+        "year": "2010",
+        "unstructured": "Holm L, van Hall G, Rose AJ, Miller BF, Doessing S, E a R, et al. Contraction intensity and feeding affect collagen and myofibrillar protein synthesis rates differently in human skeletal muscle. Am J Physiol Endocrinol Metab. 2010;298(23):E257–69.",
+        "journal-title": "Am J Physiol Endocrinol Metab"
+      },
+      {
+        "issue": "3",
+        "key": "1043_CR58",
+        "doi-asserted-by": "publisher",
+        "first-page": "367",
+        "DOI": "10.1111/j.1600-0838.2011.01396.x",
+        "volume": "23",
+        "author": "RA Standley",
+        "year": "2013",
+        "unstructured": "Standley RA, Harber MP, Lee JD, Konopka AR, Trappe SW, Trappe TA. Influence of aerobic cycle exercise training on patellar tendon cross-sectional area in older women. Scand J Med Sci Sport. 2013;23(3):367–73.",
+        "journal-title": "Scand J Med Sci Sport."
+      },
+      {
+        "issue": "2",
+        "key": "1043_CR59",
+        "doi-asserted-by": "publisher",
+        "first-page": "111",
+        "DOI": "10.1111/j.1748-1716.2007.01714.x",
+        "volume": "191",
+        "author": "M Kongsgaard",
+        "year": "2007",
+        "unstructured": "Kongsgaard M, Reitelseder S, Pedersen TG, Holm L, Aagaard P, Kjaer M, et al. Region specific patellar tendon hypertrophy in humans following resistance training. Acta Physiol. 2007;191(2):111–21.",
+        "journal-title": "Acta Physiol"
+      },
+      {
+        "key": "1043_CR60",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Lemoine JK, Lee JD, Trappe TA. Impact of sex and chronic resistance training on human patellar tendon dry mass, collagen content, and collagen cross-linking. Am J Physiol Regul Integr Comp Physiol [Internet]. 2009;296(1):R119–24.",
+        "DOI": "10.1152/ajpregu.90607.2008"
+      },
+      {
+        "issue": "26",
+        "key": "1043_CR61",
+        "doi-asserted-by": "publisher",
+        "first-page": "16440",
+        "DOI": "10.1074/jbc.M115.641670",
+        "volume": "290",
+        "author": "A Herchenhan",
+        "year": "2015",
+        "unstructured": "Herchenhan A, Uhlenbrock F, Eliasson P, Weis M, Eyre D, Kadler KE, et al. Lysyl oxidase activity is required for ordered collagen fibrillogenesis by tendon cells. J Biol Chem. 2015;290(26):16440–50.",
+        "journal-title": "J Biol Chem"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR62",
+        "doi-asserted-by": "publisher",
+        "first-page": "47",
+        "DOI": "10.1152/japplphysiol.00944.2009",
+        "volume": "108",
+        "author": "P Hansen",
+        "year": "2010",
+        "unstructured": "Hansen P, Haraldsson BT, Aagaard P, Kovanen V, Avery NC, Qvortrup K, et al. Lower strength of the human posterior patellar tendon seems unrelated to mature collagen cross-linking and fibril morphology. J Appl Physiol. 2010;108(1):47–52.",
+        "journal-title": "J Appl Physiol"
+      },
+      {
+        "issue": "SUPPL. 38",
+        "key": "1043_CR63",
+        "doi-asserted-by": "publisher",
+        "first-page": "538",
+        "DOI": "10.1111/j.2042-3306.2010.00175.x",
+        "volume": "42",
+        "author": "CT Thorpe",
+        "year": "2010",
+        "unstructured": "Thorpe CT, Stark RJF, Goodship AE, Birch HL. Mechanical properties of the equine superficial digital flexor tendon relate to specific collagen cross-link levels. Equine Vet J. 2010;42(SUPPL. 38):538–43.",
+        "journal-title": "Equine Vet J"
+      },
+      {
+        "key": "1043_CR64",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Dubowitz N, Xue W, Long Q, Ownby JG, Olson DE, Barb D, et al. Aging is associated with increased HbA1c levels, independently of glucose levels and insulin resistance, and also with decreased HbA1c diagnostic specificity. Diabet Med [Internet]. 2014;31(8):927–935.",
+        "DOI": "10.1111/dme.12459"
+      },
+      {
+        "issue": "3–4",
+        "key": "1043_CR65",
+        "doi-asserted-by": "publisher",
+        "first-page": "169",
+        "DOI": "10.1016/j.matbio.2013.01.003",
+        "volume": "32",
+        "author": "Y Li",
+        "year": "2013",
+        "unstructured": "Li Y, Fessel G, Georgiadis M, Snedeker JG. Advanced glycation end-products diminish tendon collagen fiber sliding. Matrix Biol. 2013;32(3–4):169–77.",
+        "journal-title": "Matrix Biol"
+      },
+      {
+        "key": "1043_CR66",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Eriksen C, Svensson RB, Scheijen J, Hag A. MF, Schalkwijk C, Praet SFE, et al. Systemic stiffening of mouse tail tendon is related to dietary advanced glycation end products but not high-fat diet or cholesterol. J Appl Physiol [Internet]. 2014;117(8):840–7.",
+        "DOI": "10.1152/japplphysiol.00584.2014"
+      },
+      {
+        "issue": "11",
+        "key": "1043_CR67",
+        "doi-asserted-by": "publisher",
+        "first-page": "2476",
+        "DOI": "10.1016/j.bpj.2013.04.033",
+        "volume": "104",
+        "author": "RB Svensson",
+        "year": "2013",
+        "unstructured": "Svensson RB, Mulder H, Kovanen V, Magnusson SP. Fracture mechanics of collagen fibrils: influence of natural cross-links. Biophys J [Internet]. 2013;104(11):2476–84. Available from:. \n                    https://doi.org/10.1016/j.bpj.2013.04.033\n                    \n                  .",
+        "journal-title": "Biophys J [Internet]"
+      },
+      {
+        "key": "1043_CR68",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Uzel SGM, Buehler MJ. Molecular structure, mechanical behavior and failure mechanism of the C-terminal cross-link domain in type I collagen. J Mech Behav Biomed Mater [Internet] 2011;4(2):153–161. Available from: \n                    https://doi.org/10.1016/j.jmbbm.2010.07.003",
+        "DOI": "10.1016/j.jmbbm.2010.07.003"
+      },
+      {
+        "key": "1043_CR69",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Gautieri A, Passini FS, Silván U, Guizar-Sicairos M, Carimati G, Volpi P, et al. Advanced glycation end-products: Mechanics of aged collagen from molecule to tissue. Matrix Biol [Internet]. 2017;59:95–108. Available from: \n                    https://doi.org/10.1016/j.matbio.2016.09.001",
+        "DOI": "10.1016/j.matbio.2016.09.001"
+      },
+      {
+        "key": "1043_CR70",
+        "doi-asserted-by": "publisher",
+        "first-page": "237",
+        "DOI": "10.1111/j.1365-2613.2007.00551.x",
+        "volume": "88",
+        "author": "SP Magnusson",
+        "year": "2007",
+        "unstructured": "Magnusson SP, Hansen M, Langberg H, Miller B, Haraldsson B, Westh EK, Koskinen S, Aagaard P, Kjaer M. The adaptability of tendon to loading differs in men and women. Int J Exp Pathol. 2007;88:237–40.",
+        "journal-title": "Int J Exp Pathol"
+      },
+      {
+        "issue": "1",
+        "key": "1043_CR71",
+        "doi-asserted-by": "publisher",
+        "first-page": "23",
+        "DOI": "10.1111/j.1600-0838.2007.00638.x",
+        "volume": "18",
+        "author": "E Westh",
+        "year": "2008",
+        "unstructured": "Westh E, Kongsgaard M, Bojsen-Moller J, Aagaard P, Hansen M, Kjaer M, et al. Effect of habitual exercise on the structural and mechanical properties of human tendon, in vivo, in men and women. Scand J Med Sci Sport. 2008;18(1):23–30.",
+        "journal-title": "Scand J Med Sci Sport."
+      },
+      {
+        "issue": "6",
+        "key": "1043_CR72",
+        "doi-asserted-by": "publisher",
+        "first-page": "820",
+        "DOI": "10.1002/jor.20811",
+        "volume": "27",
+        "author": "KE Burgess",
+        "year": "2009",
+        "unstructured": "Burgess KE, Pearson SJ, Breen L, Onambélé GNL. Tendon structural and mechanical properties do not differ between genders in a healthy community-dwelling elderly population. J Orthop Res. 2009;27(6):820–5.",
+        "journal-title": "J Orthop Res"
+      },
+      {
+        "key": "1043_CR73",
+        "doi-asserted-by": "publisher",
+        "first-page": "323",
+        "DOI": "10.1016/j.clinbiomech.2013.12.010",
+        "volume": "29",
+        "author": "A Kösters",
+        "year": "2014",
+        "unstructured": "Kösters A, Wiesinger HP, Bojsen-Møller J, Müller E, Seynnes O. Influence of loading rate on patellar tendon mechanical properties in vivo. Clin Biomech. 2014;29:323–9.",
+        "journal-title": "Clin Biomech"
+      },
+      {
+        "key": "1043_CR74",
+        "doi-asserted-by": "publisher",
+        "first-page": "58",
+        "DOI": "10.1034/j.1600-0838.2000.010002058.x",
+        "volume": "10",
+        "author": "P Aagaard",
+        "year": "2000",
+        "unstructured": "Aagaard P, Simonsen EB, Andersen JL, Magnusson SP, Bojsen- Møller F, Dyhre-Poulsen P. Antagonist muscle coactivation during isokinetic knee extension. Scand J Med Sci Sport. 2000;10:58–67.",
+        "journal-title": "Scand J Med Sci Sport"
+      }
+    ],
+    "container-title": [
+      "BMC Geriatrics"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1186/s12877-019-1043-0.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/article/10.1186/s12877-019-1043-0/fulltext.html",
+        "content-type": "text/html",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "http://link.springer.com/content/pdf/10.1186/s12877-019-1043-0.pdf",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          1,
+          30
+        ]
+      ],
+      "date-time": "2020-01-30T19:10:12Z",
+      "timestamp": 1580411412000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://bmcgeriatr.biomedcentral.com/articles/10.1186/s12877-019-1043-0"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          1,
+          31
+        ]
+      ]
+    },
+    "references-count": 74,
+    "journal-issue": {
+      "issue": "1",
+      "published-print": {
+        "date-parts": [
+          [
+            2019,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "1043"
+    ],
+    "URL": "https://doi.org/10.1186/s12877-019-1043-0",
+    "relation": {},
+    "ISSN": [
+      "1471-2318"
+    ],
+    "issn-type": [
+      {
+        "value": "1471-2318",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2019,
+          1,
+          31
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "6 August 2018",
+        "order": 1,
+        "name": "received",
+        "label": "Received",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "23 January 2019",
+        "order": 2,
+        "name": "accepted",
+        "label": "Accepted",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "31 January 2019",
+        "order": 3,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ArticleHistory",
+          "label": "Article History"
+        }
+      },
+      {
+        "value": "The study complied with the Helsinki Declaration and all participants gave oral and written consent before enrollment. The study was registered at  (NCT02123641, registered on April 25th 2014) and was approved by the Capital Region ethical committee (J-no. H-3- 2014-017) and the Danish Data Protection Agency (J-no. 2012-58-0004 - BFH-2016-025, I-suite 04545).",
+        "order": 1,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Ethics approval and consent to participate"
+        }
+      },
+      {
+        "value": "Not applicable.",
+        "order": 2,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Consent for publication"
+        }
+      },
+      {
+        "value": "All authors declare that they have no competing interests.",
+        "order": 3,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Competing interests"
+        }
+      },
+      {
+        "value": "Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.",
+        "order": 4,
+        "name": "Ethics",
+        "group": {
+          "name": "EthicsHeading",
+          "label": "Publisher’s Note"
+        }
+      }
+    ],
+    "article-number": "30"
+  }
+}

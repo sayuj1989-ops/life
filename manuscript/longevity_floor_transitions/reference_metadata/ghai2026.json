@@ -1,0 +1,782 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ],
+      "date-time": "2026-05-29T07:02:36Z",
+      "timestamp": 1780038156152,
+      "version": "3.53.1"
+    },
+    "reference-count": 57,
+    "publisher": "Frontiers Media SA",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              29
+            ]
+          ],
+          "date-time": "2026-05-29T00:00:00Z",
+          "timestamp": 1780012800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100016777",
+        "name": "Karlstads universitet",
+        "doi-asserted-by": "publisher",
+        "id": [
+          {
+            "id": "10.13039/100016777",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "frontiersin.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Front. Rehabil. Sci."
+    ],
+    "abstract": "<jats:sec>\n                    <jats:title>Introduction</jats:title>\n                    <jats:p>Falls constitute a significant public health burden across the adult lifespan, affecting both working-age and older populations and compromising functional independence and quality of life through physical and psychological consequences. Current interventions typically address these dimensions in isolation, emphasizing fall avoidance rather than equipping individuals to manage and recover from falls when they occur.</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Methods</jats:title>\n                    <jats:p>This exploratory study evaluated the feasibility, acceptability, and safety of the Floor-Hugging Intervention (Floor-HI), a novel multicomponent program that combines controlled exposure to fall-risk environments with systematic training in post-fall recovery skills, including floor-to-standing transitions, fall imagination, and role-playing scenarios. Eight community-dwelling, middle-aged adults (3 males, 5 females; aged 31–55 years) completed a 3-week program. Outcomes including concern of falling, postural control, floor-rise ability, turning ability, and health-related quality of life were assessed at four time points (Weeks 0, 3, 6, and 9).</jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Results</jats:title>\n                    <jats:p>\n                      Recruitment, retention, and adherence rates were 100%, 89%, and 100%, respectively. Significant improvements over time were observed in postural stability (Mini-BESTest,\n                      <jats:italic>p</jats:italic>\n                       = .011), floor-rise ability (Sitting Rising Test,\n                      <jats:italic>p</jats:italic>\n                       = .011), and turning capacity (360° Turn Test duration,\n                      <jats:italic>p</jats:italic>\n                       = .012–.017). Concern of falling (Falls Efficacy Scale-International,\n                      <jats:italic>p</jats:italic>\n                      = .145) and health-related quality of life (RAND-36,\n                      <jats:italic>p</jats:italic>\n                       &amp;gt; .05) remained unchanged. Intervention acceptability was high across all domains of the Theoretical Framework of Acceptability questionnaire. Only a small number of mild, transient adverse events were reported, all resolving without medical intervention, and no serious adverse events occurred.\n                    </jats:p>\n                  </jats:sec>\n                  <jats:sec>\n                    <jats:title>Discussion</jats:title>\n                    <jats:p>Despite being limited by the absence of a control group and a small sample size, this study demonstrates that Floor-HI is feasible, acceptable, and safe in community-dwelling middle-aged adults. These findings provide a foundation for future feasibility and controlled trials to establish efficacy and applicability in populations with elevated fall risk.</jats:p>\n                  </jats:sec>",
+    "DOI": "10.3389/fresc.2026.1730161",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ],
+      "date-time": "2026-05-29T06:11:37Z",
+      "timestamp": 1780035097000
+    },
+    "update-policy": "https://doi.org/10.3389/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Floor-Hugging intervention: findings from an exploratory study of a novel floor-exposure and post-fall contingency program"
+    ],
+    "prefix": "10.3389",
+    "volume": "7",
+    "author": [
+      {
+        "given": "Shashank",
+        "family": "Ghai",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Political, Historical, Religious and Cultural Studies, Karlstad University",
+            "place": [
+              "Karlstad, Sweden"
+            ]
+          },
+          {
+            "name": "Centre for Societal Risk Research, Karlstad University",
+            "place": [
+              "Karlstad, Sweden"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "1965",
+    "published-online": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "B1",
+        "doi-asserted-by": "publisher",
+        "first-page": "748",
+        "DOI": "10.1097/TA.0b013e3181f6f5e5",
+        "article-title": "Societal consequences of falls in the older population: injuries, healthcare costs, and long-term reduced quality of life",
+        "volume": "71",
+        "author": "Hartholt",
+        "year": "2011",
+        "journal-title": "J Trauma Acute Care Surg"
+      },
+      {
+        "key": "B2",
+        "doi-asserted-by": "publisher",
+        "first-page": "e907",
+        "DOI": "10.1016/S2468-2667(21)00231-0",
+        "article-title": "Burden of falls among people aged 60 years and older in mainland China, 1990–2019: findings from the global burden of disease study 2019",
+        "volume": "6",
+        "author": "Ye",
+        "year": "2021",
+        "journal-title": "Lancet Public Health"
+      },
+      {
+        "key": "B3",
+        "volume-title": "The Global Strategy and Action Plan on Ageing and Health 2016–2020: Towards a World in Which Everyone can Live a Long and Healthy Life",
+        "year": "2020"
+      },
+      {
+        "key": "B4",
+        "year": "2015"
+      },
+      {
+        "key": "B5",
+        "doi-asserted-by": "publisher",
+        "first-page": "404",
+        "DOI": "10.1136/emermed-2023-213073",
+        "article-title": "Trends and projections in fall death in The Netherlands from 1990 to 2045",
+        "volume": "41",
+        "author": "van der Naald",
+        "year": "2024",
+        "journal-title": "Emerg Med J"
+      },
+      {
+        "key": "B6",
+        "doi-asserted-by": "publisher",
+        "first-page": "4",
+        "DOI": "10.1093/gerona/glad021",
+        "article-title": "The epidemiology and societal impact of aging-related functional limitations: a looming public health crisis",
+        "volume": "78",
+        "author": "Newman",
+        "year": "2023",
+        "journal-title": "J Gerontol: Series A"
+      },
+      {
+        "key": "B7",
+        "doi-asserted-by": "publisher",
+        "first-page": "272",
+        "DOI": "10.1136/ip-2023-045023",
+        "article-title": "Healthcare spending for non-fatal falls among older adults, USA",
+        "volume": "30",
+        "author": "Haddad",
+        "year": "2024",
+        "journal-title": "Inj Prev"
+      },
+      {
+        "key": "B8",
+        "doi-asserted-by": "publisher",
+        "first-page": "e58",
+        "DOI": "10.1002/oto2.58",
+        "article-title": "Balance disorder trends in US adults 2008-2016: epidemiology and functional impact",
+        "volume": "7",
+        "author": "Mitchell",
+        "year": "2023",
+        "journal-title": "OTO Open"
+      },
+      {
+        "key": "B9",
+        "doi-asserted-by": "publisher",
+        "first-page": "93",
+        "DOI": "10.14283/jarlife.2024.14",
+        "article-title": "Sedentary behaviour and fall-related injuries in aging adults: results from the Canadian longitudinal study on aging (CLSA)",
+        "volume": "13",
+        "author": "Gallibois",
+        "year": "2024",
+        "journal-title": "J Aging Res Lifestyle"
+      },
+      {
+        "key": "B10",
+        "year": "2025"
+      },
+      {
+        "key": "B11",
+        "doi-asserted-by": "publisher",
+        "first-page": "112371",
+        "DOI": "10.1016/j.injury.2025.112371",
+        "article-title": "Global burden of occupational injury-related transport and unintentional injuries in 204 countries: trends from 1990 to 2021 with a 15-year forecast",
+        "volume": "56",
+        "author": "Yu",
+        "year": "2025",
+        "journal-title": "Injury"
+      },
+      {
+        "key": "B12",
+        "year": "2024"
+      },
+      {
+        "key": "B13",
+        "doi-asserted-by": "publisher",
+        "first-page": "1030",
+        "DOI": "10.1016/j.mayocp.2014.07.001",
+        "article-title": "The chairman’s curse: lethal sitting",
+        "volume": "89",
+        "author": "Levine",
+        "year": "2014",
+        "journal-title": "Mayo Clin Proc"
+      },
+      {
+        "key": "B14",
+        "doi-asserted-by": "publisher",
+        "first-page": "2715",
+        "DOI": "10.2337/db10-1042",
+        "article-title": "Health-chair reform: your chair: comfortable but deadly",
+        "volume": "59",
+        "author": "Levine",
+        "year": "2010",
+        "journal-title": "Diabetes"
+      },
+      {
+        "key": "B15",
+        "doi-asserted-by": "publisher",
+        "first-page": "1190",
+        "DOI": "10.3390/app15031190",
+        "article-title": "The effects of cross-legged sitting on the lower limb muscles and body balance and the implications in rehabilitation",
+        "volume": "15",
+        "author": "Alsirhani",
+        "year": "2025",
+        "journal-title": "Appl Sci"
+      },
+      {
+        "key": "B16",
+        "doi-asserted-by": "publisher",
+        "first-page": "7115",
+        "DOI": "10.1073/pnas.1911868117",
+        "article-title": "Sitting, squatting, and the evolutionary biology of human inactivity",
+        "volume": "117",
+        "author": "Raichlen",
+        "year": "2020",
+        "journal-title": "Proc Natl Acad Sci USA"
+      },
+      {
+        "key": "B17",
+        "doi-asserted-by": "publisher",
+        "first-page": "27536351241271548",
+        "DOI": "10.1177/27536351241271548",
+        "article-title": "Floor-hugging intervention: a perspective on floor exposure and after-fall contingency intervention",
+        "volume": "13",
+        "author": "Ghai",
+        "year": "2024",
+        "journal-title": "Adv Rehabil Sci Pract"
+      },
+      {
+        "key": "B18",
+        "doi-asserted-by": "publisher",
+        "first-page": "100511",
+        "DOI": "10.1016/j.jorep.2024.100511",
+        "article-title": "Evaluation of lower extremity range of motion and muscle tightness in individual of age 18–20 years on performance of squat-to-stand and cross-legged sit-to-stand tests: a comparative-analytical study",
+        "volume": "4",
+        "author": "Deshmukh",
+        "year": "2025",
+        "journal-title": "J Orthopae Rep"
+      },
+      {
+        "key": "B19",
+        "doi-asserted-by": "publisher",
+        "first-page": "zwaf325",
+        "DOI": "10.1093/eurjpc/zwaf325",
+        "article-title": "Sitting–rising test scores predict natural and cardiovascular causes of deaths in middle-aged and older men and women",
+        "author": "Araújo",
+        "year": "2025",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "B20",
+        "doi-asserted-by": "publisher",
+        "first-page": "a2227",
+        "DOI": "10.1136/bmj.a2227",
+        "article-title": "Inability to get up after falling, subsequent time on floor, and summoning help: prospective cohort study in people over 90",
+        "volume": "337",
+        "author": "Fleming",
+        "year": "2008",
+        "journal-title": "Br Med J"
+      },
+      {
+        "key": "B21",
+        "doi-asserted-by": "publisher",
+        "first-page": "651",
+        "DOI": "10.1186/s12877-023-04364-5",
+        "article-title": "A concept analysis of fear of falling in older adults: insights from qualitative research studies",
+        "volume": "23",
+        "author": "Lee",
+        "year": "2023",
+        "journal-title": "BMC Geriatr"
+      },
+      {
+        "key": "B22",
+        "author": "McAuley",
+        "year": "2025"
+      },
+      {
+        "key": "B23",
+        "doi-asserted-by": "publisher",
+        "first-page": "1135",
+        "DOI": "10.1111/jgs.19330",
+        "article-title": "Examining factors influencing older adult engagement in fall prevention: a comparative analysis among stakeholders",
+        "volume": "73",
+        "author": "Wiseman",
+        "year": "2025",
+        "journal-title": "J Am Geriatr Soc"
+      },
+      {
+        "key": "B24",
+        "doi-asserted-by": "publisher",
+        "first-page": "e0310139",
+        "DOI": "10.1371/journal.pone.0310139",
+        "article-title": "Staff perspectives on fall prevention activities in long-term care facilities for older residents: “brief but often” staff education is key",
+        "volume": "19",
+        "author": "Albasha",
+        "year": "2024",
+        "journal-title": "PLoS One"
+      },
+      {
+        "key": "B25",
+        "doi-asserted-by": "publisher",
+        "first-page": "CD014666",
+        "DOI": "10.1002/14651858.CD014666",
+        "article-title": "Cognitive behavioural therapy (CBT) with and without exercise to reduce fear of falling in older people living in the community",
+        "volume": "11",
+        "author": "Lenouvel",
+        "year": "2023",
+        "journal-title": "Cochrane Database Syst Rev"
+      },
+      {
+        "key": "B26",
+        "doi-asserted-by": "publisher",
+        "first-page": "pzab236",
+        "DOI": "10.1093/ptj/pzab236",
+        "article-title": "A systematic review and meta-analysis of exercise interventions and use of exercise principles to reduce fear of falling in community-dwelling older adults",
+        "volume": "102",
+        "author": "Feng",
+        "year": "2022",
+        "journal-title": "Phys Ther"
+      },
+      {
+        "key": "B27",
+        "doi-asserted-by": "publisher",
+        "first-page": "385",
+        "DOI": "10.1186/s12877-020-01790-7",
+        "article-title": "Knowledge, skills and attitudes of older people and staff about getting up from the floor following a fall: a qualitative investigation",
+        "volume": "20",
+        "author": "Swancutt",
+        "year": "2020",
+        "journal-title": "BMC Geriatr"
+      },
+      {
+        "key": "B28",
+        "doi-asserted-by": "publisher",
+        "first-page": "488",
+        "DOI": "10.1038/nrn3524",
+        "article-title": "Uncertainty and anticipation in anxiety: an integrated neurobiological and psychological perspective",
+        "volume": "14",
+        "author": "Grupe",
+        "year": "2013",
+        "journal-title": "Nat Rev Neurosci"
+      },
+      {
+        "key": "B29",
+        "doi-asserted-by": "publisher",
+        "first-page": "277",
+        "DOI": "10.1007/s40520-015-0397-1",
+        "article-title": "Model development to study strategies of younger and older adults getting up from the floor",
+        "volume": "28",
+        "author": "Schwickert",
+        "year": "2016",
+        "journal-title": "Aging Clin Exp Res"
+      },
+      {
+        "key": "B30",
+        "doi-asserted-by": "publisher",
+        "first-page": "279",
+        "DOI": "10.1186/s12913-022-07577-3",
+        "article-title": "Development of a theory-informed questionnaire to assess the acceptability of healthcare interventions",
+        "volume": "22",
+        "author": "Sekhon",
+        "year": "2022",
+        "journal-title": "BMC Health Serv Res"
+      },
+      {
+        "key": "B31",
+        "doi-asserted-by": "publisher",
+        "first-page": "2190",
+        "DOI": "10.1111/j.1532-5415.2005.00509.x",
+        "article-title": "Monitoring falls in cohort studies of community-dwelling older people: effect of the recall interval",
+        "volume": "53",
+        "author": "Ganz",
+        "year": "2005",
+        "journal-title": "J Am Geriatr Soc"
+      },
+      {
+        "key": "B32",
+        "doi-asserted-by": "publisher",
+        "first-page": "60",
+        "DOI": "10.1016/j.jphys.2013.12.014",
+        "article-title": "Fall efficacy scale-international (FES-I)",
+        "volume": "60",
+        "author": "Dewan",
+        "year": "2014",
+        "journal-title": "J Physiother"
+      },
+      {
+        "key": "B33",
+        "doi-asserted-by": "publisher",
+        "first-page": "afad055",
+        "DOI": "10.1093/ageing/afad055",
+        "article-title": "A systematic review and meta-analysis of the measurement properties of concerns-about-falling instruments in older people and people at increased risk of falls",
+        "volume": "52",
+        "author": "McGarrigle",
+        "year": "2023",
+        "journal-title": "Age Ageing"
+      },
+      {
+        "key": "B34",
+        "doi-asserted-by": "publisher",
+        "first-page": "112",
+        "DOI": "10.1589/rika.39.112",
+        "article-title": "Minimal clinically important differences in values on the falls efficacy scale-international and brief-balance evaluation systems test for outpatients with lower extremity fractures",
+        "volume": "39",
+        "author": "Otani",
+        "year": "2024",
+        "journal-title": "Rigakuryoho Kagaku"
+      },
+      {
+        "key": "B35",
+        "doi-asserted-by": "publisher",
+        "first-page": "892",
+        "DOI": "10.1177/2047487312471759",
+        "article-title": "Ability to sit and rise from the floor as a predictor of all-cause mortality",
+        "volume": "21",
+        "author": "De Brito",
+        "year": "2014",
+        "journal-title": "Eur J Prev Cardiol"
+      },
+      {
+        "key": "B36",
+        "doi-asserted-by": "publisher",
+        "first-page": "97",
+        "DOI": "10.1097/MRR.0000000000000153",
+        "article-title": "The Mini-BESTest: a review of psychometric properties",
+        "volume": "39",
+        "author": "Di Carlo",
+        "year": "2016",
+        "journal-title": "Int J Rehabil Res"
+      },
+      {
+        "key": "B37",
+        "doi-asserted-by": "publisher",
+        "first-page": "14",
+        "DOI": "10.1016/j.gaitpost.2020.05.004",
+        "article-title": "Responsiveness and minimal clinically important difference of the Mini-BESTest in patients with Parkinson’s disease",
+        "volume": "80",
+        "author": "Godi",
+        "year": "2020",
+        "journal-title": "Gait Posture"
+      },
+      {
+        "key": "B38",
+        "doi-asserted-by": "publisher",
+        "first-page": "170",
+        "DOI": "10.1080/02703181.2019.1710319",
+        "article-title": "Validity of instrumented 360 turn test in older adults with cognitive impairment",
+        "volume": "38",
+        "author": "McGough",
+        "year": "2020",
+        "journal-title": "Phys Occup Ther Geriatr"
+      },
+      {
+        "key": "B39",
+        "doi-asserted-by": "publisher",
+        "first-page": "736",
+        "DOI": "10.1080/09593985.2019.1641867",
+        "article-title": "Reliability and validity of the timed 360° turn test in people with multiple sclerosis",
+        "volume": "37",
+        "author": "Soke",
+        "year": "2021",
+        "journal-title": "Physiother Theory Pract"
+      },
+      {
+        "key": "B40",
+        "doi-asserted-by": "publisher",
+        "first-page": "350",
+        "DOI": "10.3109/07853890109002089",
+        "article-title": "The RAND-36 measure of health-related quality of life",
+        "volume": "33",
+        "author": "Hays",
+        "year": "2001",
+        "journal-title": "Ann Med"
+      },
+      {
+        "key": "B41",
+        "doi-asserted-by": "publisher",
+        "first-page": "93",
+        "DOI": "10.1080/01924788.2016.1158594",
+        "article-title": "Fall recovery intervention and its effect on fear of falling in older adults",
+        "volume": "40",
+        "author": "Cox",
+        "year": "2016",
+        "journal-title": "Act Adapt Aging"
+      },
+      {
+        "key": "B42",
+        "doi-asserted-by": "publisher",
+        "first-page": "30",
+        "DOI": "10.1093/geronb/gbac105",
+        "article-title": "A protection motivation theory approach to understanding how fear of falling affects physical activity determinants in older adults",
+        "volume": "78",
+        "author": "Preissner",
+        "year": "2023",
+        "journal-title": "J Gerontol B Psychol Sci Soc Sci"
+      },
+      {
+        "key": "B43",
+        "doi-asserted-by": "publisher",
+        "first-page": "1330612",
+        "DOI": "10.3389/fragi.2025.1330612",
+        "article-title": "Convergent and predictive validity of the activities-specific balance confidence scales and balance recovery confidence scale, with regard to the falls efficacy scale-international: a cross-sectional study",
+        "volume": "6",
+        "author": "Ting",
+        "year": "2025",
+        "journal-title": "Front. Aging"
+      },
+      {
+        "key": "B44",
+        "doi-asserted-by": "publisher",
+        "first-page": "2166",
+        "DOI": "10.1016/j.apmr.2016.07.011",
+        "article-title": "Reliability, validity, and ability to identify fall Status of the balance evaluation systems test, Mini-balance evaluation systems test, and brief–balance evaluation systems test in older people living in the community",
+        "volume": "97",
+        "author": "Marques",
+        "year": "2016",
+        "journal-title": "Arch Phys Med Rehabil"
+      },
+      {
+        "key": "B45",
+        "doi-asserted-by": "publisher",
+        "first-page": "774",
+        "DOI": "10.1111/j.1532-5415.1994.tb06540.x",
+        "article-title": "Fall frequency and characteristics and the risk of hip fractures",
+        "volume": "42",
+        "author": "Cumming",
+        "year": "1994",
+        "journal-title": "J Am Geriatr Soc"
+      },
+      {
+        "key": "B46",
+        "doi-asserted-by": "publisher",
+        "first-page": "47",
+        "DOI": "10.1016/S0140-6736(12)61263-X",
+        "article-title": "Video capture of the circumstances of falls in elderly people residing in long-term care: an observational study",
+        "volume": "381",
+        "author": "Robinovitch",
+        "year": "2013",
+        "journal-title": "Lancet"
+      },
+      {
+        "key": "B47",
+        "doi-asserted-by": "publisher",
+        "first-page": "177",
+        "DOI": "10.1046/j.1460-9568.2003.02736.x",
+        "article-title": "Human walking along a curved path. I. Body trajectory, segment orientation and the effect of vision",
+        "volume": "18",
+        "author": "Courtine",
+        "year": "2003",
+        "journal-title": "Eur J Neurosci"
+      },
+      {
+        "key": "B48",
+        "doi-asserted-by": "publisher",
+        "first-page": "191",
+        "DOI": "10.1046/j.1460-9568.2003.02737.x",
+        "article-title": "Human walking along a curved path. II. Gait features and EMG patterns",
+        "volume": "18",
+        "author": "Courtine",
+        "year": "2003",
+        "journal-title": "Eur J Neurosci"
+      },
+      {
+        "key": "B49",
+        "doi-asserted-by": "publisher",
+        "first-page": "119",
+        "DOI": "10.3390/geriatrics10050119",
+        "article-title": "Floor-to-Stand transfers in older adults: insights into strategies and lower extremity demands",
+        "volume": "10",
+        "author": "Stutzenberger",
+        "year": "2025",
+        "journal-title": "Geriatrics"
+      },
+      {
+        "key": "B50",
+        "doi-asserted-by": "publisher",
+        "first-page": "2517",
+        "DOI": "10.1080/09638288.2022.2096124",
+        "article-title": "Validation of the Swedish version of PROMIS-29v2 and FACIT-dyspnea Index in patients with systemic sclerosis",
+        "volume": "45",
+        "author": "Wuttge",
+        "year": "2023",
+        "journal-title": "Disabil Rehabil"
+      },
+      {
+        "key": "B51",
+        "doi-asserted-by": "publisher",
+        "first-page": "985",
+        "DOI": "10.1007/s40520-019-01459-1",
+        "article-title": "Impact of the backward chaining method on physical and psychological outcome measures in older adults at risk of falling: a systematic review",
+        "volume": "32",
+        "author": "Leonhardt",
+        "year": "2020",
+        "journal-title": "Aging Clin Exp Res"
+      },
+      {
+        "key": "B52",
+        "doi-asserted-by": "publisher",
+        "first-page": "743",
+        "DOI": "10.1080/09638288.2018.1508509",
+        "article-title": "Are interventions effective in improving the ability of older adults to rise from the floor independently? A mixed method systematic review",
+        "volume": "42",
+        "author": "Burton",
+        "year": "2020",
+        "journal-title": "Disabil Rehabil"
+      },
+      {
+        "key": "B53",
+        "doi-asserted-by": "publisher",
+        "first-page": "afag064",
+        "DOI": "10.1093/ageing/afag064",
+        "article-title": "Comparing the impact of active floor-rise training with video demonstration on fear of falling and independent floor-rise ability in older adults living in the community: a pilot cluster randomised controlled trial",
+        "volume": "55",
+        "author": "Seeley",
+        "year": "2026",
+        "journal-title": "Age Ageing"
+      },
+      {
+        "key": "B54",
+        "doi-asserted-by": "publisher",
+        "first-page": "5293",
+        "DOI": "10.3390/jcm14155293",
+        "article-title": "Backward chaining method for teaching long-term care residents to stand up from the floor: a pilot randomized controlled trial",
+        "volume": "14",
+        "author": "Kubik",
+        "year": "2025",
+        "journal-title": "J Clin Med"
+      },
+      {
+        "key": "B55",
+        "doi-asserted-by": "publisher",
+        "first-page": "791",
+        "DOI": "10.1002/gps.4393",
+        "article-title": "Activity, balance, learning, and exposure (ABLE): a new intervention for fear of falling",
+        "volume": "31",
+        "author": "Wetherell",
+        "year": "2016",
+        "journal-title": "Int J Geriatr Psychiatry"
+      },
+      {
+        "key": "B56",
+        "doi-asserted-by": "publisher",
+        "first-page": "849",
+        "DOI": "10.1016/j.jagp.2018.04.001",
+        "article-title": "Integrated exposure therapy and exercise reduces fear of falling and avoidance in older adults: a randomized pilot study",
+        "volume": "26",
+        "author": "Wetherell",
+        "year": "2018",
+        "journal-title": "Am J Geriatr Psychiatr"
+      },
+      {
+        "key": "B57",
+        "doi-asserted-by": "publisher",
+        "first-page": "432",
+        "DOI": "10.1016/j.cbpra.2014.01.003",
+        "article-title": "Exposure-based CBT for older adults after fall injury: description of a manualized, time-limited intervention for anxiety",
+        "volume": "21",
+        "author": "Jayasinghe",
+        "year": "2014",
+        "journal-title": "Cogn Behav Pract"
+      }
+    ],
+    "container-title": [
+      "Frontiers in Rehabilitation Sciences"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "https://www.frontiersin.org/articles/10.3389/fresc.2026.1730161/full",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ],
+      "date-time": "2026-05-29T06:11:38Z",
+      "timestamp": 1780035098000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://www.frontiersin.org/articles/10.3389/fresc.2026.1730161/full"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ]
+    },
+    "references-count": 57,
+    "alternative-id": [
+      "10.3389/fresc.2026.1730161"
+    ],
+    "URL": "https://doi.org/10.3389/fresc.2026.1730161",
+    "relation": {},
+    "ISSN": [
+      "2673-6861"
+    ],
+    "issn-type": [
+      {
+        "value": "2673-6861",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          29
+        ]
+      ]
+    },
+    "article-number": "1730161"
+  }
+}

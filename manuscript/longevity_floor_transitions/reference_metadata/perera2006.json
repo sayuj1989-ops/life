@@ -1,0 +1,413 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          1
+        ]
+      ],
+      "date-time": "2026-10-01T05:53:41Z",
+      "timestamp": 1790834021584,
+      "version": "4.1.0"
+    },
+    "reference-count": 29,
+    "publisher": "Wiley",
+    "issue": "5",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2006,
+              4,
+              12
+            ]
+          ],
+          "date-time": "2006-04-12T00:00:00Z",
+          "timestamp": 1144800000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J American Geriatrics Society"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2006,
+          5
+        ]
+      ]
+    },
+    "abstract": "<jats:p>\n                    <jats:bold>OBJECTIVES:</jats:bold>\n                    To estimate the magnitude of small meaningful and substantial individual change in physical performance measures and evaluate their responsiveness.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>DESIGN:</jats:bold>\n                    Secondary data analyses using distribution‐ and anchor‐based methods to determine meaningful change.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>SETTING:</jats:bold>\n                    Secondary analysis of data from an observational study and clinical trials of community‐dwelling older people and subacute stroke survivors.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>PARTICIPANTS:</jats:bold>\n                    Older adults with mobility disabilities in a strength training trial (n=100), subacute stroke survivors in an intervention trial (n=100), and a prospective cohort of community‐dwelling older people (n=492).\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>MEASUREMENTS:</jats:bold>\n                    Gait speed, Short Physical Performance Battery (SPPB), 6‐minute‐walk distance (6MWD), and self‐reported mobility.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>RESULTS:</jats:bold>\n                    Most small meaningful change estimates ranged from 0.04 to 0.06 m/s for gait speed, 0.27 to 0.55 points for SPPB, and 19 to 22 m for 6MWD. Most substantial change estimates ranged from 0.08 to 0.14 m/s for gait speed, 0.99 to 1.34 points for SPPB, and 47 to 49 m for 6MWD. Based on responsiveness indices, per‐group sample sizes for clinical trials ranged from 13 to 42 for substantial change and 71 to 161 for small meaningful change.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>CONCLUSION:</jats:bold>\n                    Best initial estimates of small meaningful change are near 0.05 m/s for gait speed, 0.5 points for SPPB, and 20 m for 6MWD and of substantial change are near 0.10 m/s for gait speed, 1.0 point for SPPB, and 50 m for 6MWD. For clinical use, substantial change in these measures and small change in gait speed and 6MWD, but not SPPB, are detectable. For research use, these measures yield feasible sample sizes for detecting meaningful change.\n                  </jats:p>",
+    "DOI": "10.1111/j.1532-5415.2006.00701.x",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2006,
+          4,
+          23
+        ]
+      ],
+      "date-time": "2006-04-23T11:45:36Z",
+      "timestamp": 1145792736000
+    },
+    "page": "743-749",
+    "source": "Crossref",
+    "is-referenced-by-count": 2184,
+    "title": [
+      "Meaningful Change and Responsiveness in Common Physical Performance Measures in Older Adults"
+    ],
+    "prefix": "10.1111",
+    "volume": "54",
+    "author": [
+      {
+        "given": "Subashan",
+        "family": "Perera",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Samir H.",
+        "family": "Mody",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Richard C.",
+        "family": "Woodman",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephanie A.",
+        "family": "Studenski",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2006,
+          5,
+          2
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_6_2_2",
+        "first-page": "M85",
+        "article-title": "A short physical performance battery assessing lower extremity function",
+        "volume": "49",
+        "author": "Guralnik JM",
+        "year": "1994",
+        "journal-title": "Association with self-reported disability and prediction of mortality and nursing home placement"
+      },
+      {
+        "key": "e_1_2_6_3_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1532-5415.2003.51104.x"
+      },
+      {
+        "key": "e_1_2_6_4_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0002-9343(03)00263-8"
+      },
+      {
+        "key": "e_1_2_6_5_2",
+        "first-page": "576",
+        "article-title": "The effect of a task‐oriented walking intervention on improving balance self‐efficacy poststroke",
+        "volume": "53",
+        "author": "Salbach NM",
+        "year": "2005",
+        "journal-title": "A randomized, controlled trial"
+      },
+      {
+        "key": "e_1_2_6_6_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00005650-200110000-00002"
+      },
+      {
+        "key": "e_1_2_6_7_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00005650-198903001-00015"
+      },
+      {
+        "key": "e_1_2_6_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1525/ae.2004.31.4.475"
+      },
+      {
+        "key": "e_1_2_6_9_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00005650-199905000-00006"
+      },
+      {
+        "key": "e_1_2_6_10_2",
+        "first-page": "293",
+        "article-title": "Individual patient monitoring in clinical practice",
+        "volume": "4",
+        "author": "McHorney CA",
+        "year": "1995",
+        "journal-title": "Are available health status surveys adequate?"
+      },
+      {
+        "key": "e_1_2_6_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0197-2456(89)90005-6"
+      },
+      {
+        "key": "e_1_2_6_12_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0885-3924(02)00529-8"
+      },
+      {
+        "key": "e_1_2_6_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0895-4356(96)00373-3"
+      },
+      {
+        "key": "e_1_2_6_14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0021-9681(87)90069-5"
+      },
+      {
+        "key": "e_1_2_6_15_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0003-9993(98)90202-7"
+      },
+      {
+        "key": "e_1_2_6_16_2",
+        "first-page": "826",
+        "article-title": "Six‐minute walk test",
+        "volume": "82",
+        "author": "Troosters T",
+        "year": "2002",
+        "journal-title": "A valuable test, when properly standardized"
+      },
+      {
+        "key": "e_1_2_6_17_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1161/01.STR.0000083699.95351.F2"
+      },
+      {
+        "key": "e_1_2_6_18_2",
+        "first-page": "473",
+        "article-title": "The MOS 36‐item short‐form health survey (SF‐36)",
+        "volume": "30",
+        "author": "Ware JF",
+        "year": "1992",
+        "journal-title": "Conceptual framework and item selection"
+      },
+      {
+        "key": "e_1_2_6_19_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1097/00005650-198807000-00007"
+      },
+      {
+        "key": "e_1_2_6_20_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0021-9681(87)90080-4"
+      },
+      {
+        "key": "e_1_2_6_21_2",
+        "first-page": "S9",
+        "article-title": "Interpreting quality of life clinical trial data for use in the clinical practice of antihypertensive therapy",
+        "volume": "5",
+        "author": "Testa M.",
+        "year": "1987",
+        "journal-title": "J Hypertens"
+      },
+      {
+        "key": "e_1_2_6_22_2",
+        "first-page": "293",
+        "article-title": "Individual‐patient monitoring in clinical practice",
+        "volume": "4",
+        "author": "McHorney C",
+        "year": "1995",
+        "journal-title": "Are available health status surveys adequate?"
+      },
+      {
+        "key": "e_1_2_6_23_2",
+        "first-page": "837",
+        "article-title": "Mobility‐related function in older adults",
+        "volume": "80",
+        "author": "Harada ND",
+        "year": "1999",
+        "journal-title": "Assessment with a six-minute walk test"
+      },
+      {
+        "key": "e_1_2_6_24_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.4065/77.4.371"
+      },
+      {
+        "key": "e_1_2_6_25_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1191/0269215504cr761oa"
+      },
+      {
+        "key": "e_1_2_6_26_2",
+        "first-page": "799",
+        "article-title": "Increased Velocity Exercise Specific to Task (InVest) training",
+        "volume": "52",
+        "author": "Bean JF",
+        "year": "2004",
+        "journal-title": "A pilot study exploring effects on leg power, balance, and mobility in community-dwelling older women"
+      },
+      {
+        "key": "e_1_2_6_27_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1378/chest.125.6.2036"
+      },
+      {
+        "key": "e_1_2_6_28_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/59.2.M154"
+      },
+      {
+        "key": "e_1_2_6_29_2",
+        "first-page": "1278",
+        "article-title": "Interpreting small differences in functional status",
+        "volume": "155",
+        "author": "Redelmeier DA",
+        "year": "1997",
+        "journal-title": "The six-minute walk test in chronic lung disease patients"
+      },
+      {
+        "key": "e_1_2_6_30_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/60.7.894"
+      }
+    ],
+    "container-title": [
+      "Journal of the American Geriatrics Society"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1111%2Fj.1532-5415.2006.00701.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://agsjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1532-5415.2006.00701.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T13:27:14Z",
+      "timestamp": 1762176434000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/j.1532-5415.2006.00701.x"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2006,
+          5
+        ]
+      ]
+    },
+    "references-count": 29,
+    "journal-issue": {
+      "issue": "5",
+      "published-print": {
+        "date-parts": [
+          [
+            2006,
+            5
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1111/j.1532-5415.2006.00701.x"
+    ],
+    "URL": "https://doi.org/10.1111/j.1532-5415.2006.00701.x",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "0002-8614",
+      "1532-5415"
+    ],
+    "issn-type": [
+      {
+        "value": "0002-8614",
+        "type": "print"
+      },
+      {
+        "value": "1532-5415",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2006,
+          5
+        ]
+      ]
+    }
+  }
+}

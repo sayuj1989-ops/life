@@ -1,0 +1,657 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          30
+        ]
+      ],
+      "date-time": "2026-09-30T13:20:30Z",
+      "timestamp": 1790774430387,
+      "version": "4.1.0"
+    },
+    "reference-count": 73,
+    "publisher": "Wiley",
+    "issue": "4",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              1,
+              14
+            ]
+          ],
+          "date-time": "2024-01-14T00:00:00Z",
+          "timestamp": 1705190400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "onlinelibrary.wiley.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "J Intern Med"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          4
+        ]
+      ]
+    },
+    "abstract": "<jats:title>Abstract</jats:title><jats:p>Demographers have studied the Japanese mortality pattern since Japan became the most longevous population worldwide, half a century ago. Nutrition and lifestyle were considered by epidemiologists, gerontologists and other scientists as the most important reasons explaining the Japanese superiority. In Okinawa, the mortality pattern is even more exceptional, but few demographers have pointed out this exception. Other scientists proposed different explanations – for example some genetic characteristics, less salt and more animal protein in the food, a mild climate, a higher level of activity, a better consideration of the oldest in the population and, globally speaking, a more traditional lifestyle. At the end of the 1980s, lower improvements of mortality among young adults were identified in Okinawa. In 2002, Okinawa fell from the 4th to the 26th place in the ranking of the 47 Japanese prefectures by male life expectancy. This has been considered by the population of Okinawa as a ‘shock’. Our in‐depth analysis of available life tables and associated mortality rates proves that the population of Okinawa is divided into two groups of generations: those born before World War II and those born after. The older generations clearly experience a highly favourable mortality pattern, whereas the younger generations show mortality levels that are definitively higher compared to mainland Japan. This contribution considers which factors may explain such a situation, including the plausible invalidation of the age of some oldest in the population. We plea for in‐depth demographic age validation that will enhance all scientific findings so far and boost the exceptional longevity in Okinawa.</jats:p>",
+    "DOI": "10.1111/joim.13764",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          15
+        ]
+      ],
+      "date-time": "2024-01-15T03:49:43Z",
+      "timestamp": 1705290583000
+    },
+    "page": "387-399",
+    "update-policy": "https://doi.org/10.1002/crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 13,
+    "title": [
+      "Exceptional longevity in Okinawa: Demographic trends since 1975"
+    ],
+    "prefix": "10.1111",
+    "volume": "295",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-2642-7523",
+        "authenticated-orcid": false,
+        "given": "Michel",
+        "family": "Poulain",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Université Catholique de Louvain (UCLouvain)  Louvain‐la‐Neuve Belgium"
+          },
+          {
+            "name": "Tallinn University (TLU)  Tallinn Estonia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anne",
+        "family": "Herm",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Tallinn University (TLU)  Tallinn Estonia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          14
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_19_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/2730846"
+      },
+      {
+        "issue": "1",
+        "key": "e_1_2_19_3_1",
+        "first-page": "92",
+        "article-title": "Every day is a gift when you are over 100",
+        "volume": "143",
+        "author": "Leaf A",
+        "year": "1973",
+        "journal-title": "Nat Geo."
+      },
+      {
+        "key": "e_1_2_19_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/2061325"
+      },
+      {
+        "key": "e_1_2_19_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5264/eiyogakuzashi.34.163"
+      },
+      {
+        "key": "e_1_2_19_6_1",
+        "first-page": "98",
+        "article-title": "A social and medical survey on centenarians in Okinawa",
+        "volume": "9",
+        "author": "Sanabe E",
+        "year": "1977",
+        "journal-title": "Okinawa J Pub Health."
+      },
+      {
+        "key": "e_1_2_19_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/geronj/34.1.94"
+      },
+      {
+        "key": "e_1_2_19_8_1",
+        "volume-title": "Human longevity, its facts and its fictions",
+        "author": "Thoms WJ",
+        "year": "1873"
+      },
+      {
+        "key": "e_1_2_19_9_1",
+        "first-page": "25",
+        "volume-title": "Controversial issues in gerontology",
+        "author": "Leaf A",
+        "year": "1981"
+      },
+      {
+        "key": "e_1_2_19_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-60813-1_5"
+      },
+      {
+        "issue": "1",
+        "key": "e_1_2_19_11_1",
+        "first-page": "16",
+        "article-title": "Validating centenarian's age: a challenge for researchers and scholars",
+        "volume": "4",
+        "author": "Poulain M",
+        "year": "2006",
+        "journal-title": "Global Ageing."
+      },
+      {
+        "key": "e_1_2_19_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-11520-2_5"
+      },
+      {
+        "key": "e_1_2_19_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/101053950301500S03"
+      },
+      {
+        "key": "e_1_2_19_14_1",
+        "first-page": "208",
+        "article-title": "Survival beyond age 100. Acceleration of the evolution in Japan",
+        "volume": "29",
+        "author": "Robine JM",
+        "year": "2003",
+        "journal-title": "Popul Dev Rev."
+      },
+      {
+        "key": "e_1_2_19_15_1",
+        "volume-title": "Development of oldest‐old mortality, 1950–1990: evidence from 28 developed countries [Monographs on population aging]",
+        "author": "Kannisto V",
+        "year": "1994"
+      },
+      {
+        "key": "e_1_2_19_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/0091-7435(78)90246-3"
+      },
+      {
+        "key": "e_1_2_19_17_1",
+        "unstructured": "Okinawa Centenarian Study.Okinawa Rersearch Center for Longevity Science (ORCLS). Accessed 14 Oct 2023.http://www.orcls.org."
+      },
+      {
+        "key": "e_1_2_19_18_1",
+        "volume-title": "Mortality trends in Japan: why has the Japanese life expectancy kept on increasing?",
+        "author": "Kono S",
+        "year": "1989"
+      },
+      {
+        "key": "e_1_2_19_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/3004009"
+      },
+      {
+        "key": "e_1_2_19_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/2808156"
+      },
+      {
+        "key": "e_1_2_19_21_1",
+        "first-page": "39",
+        "article-title": "Trends in regional differences in age‐specific mortality rates",
+        "volume": "184",
+        "author": "Kaneko T",
+        "year": "1987",
+        "journal-title": "Jinko Mondai Kenkyu."
+      },
+      {
+        "key": "e_1_2_19_22_1",
+        "volume-title": "Health and mortality differentials among the elderly in Japan: a regional analysis with special emphasis on Okinawa [Working Paper Series]",
+        "author": "Takahashi S",
+        "year": "1993"
+      },
+      {
+        "key": "e_1_2_19_23_1",
+        "first-page": "107",
+        "article-title": "Recherche sur la prédisposition génétique dans les enquêtes sur les antécédents familiaux des centenaires",
+        "volume": "20",
+        "author": "Suzuki M",
+        "year": "1983",
+        "journal-title": "Jpn J Geriatr."
+      },
+      {
+        "key": "e_1_2_19_24_1",
+        "first-page": "284",
+        "article-title": "Une étude sur la prédisposition génétique à la super‐longévité. Enquête sur les antécédents familiaux et modèle HLA",
+        "volume": "73",
+        "author": "Suzuki M",
+        "year": "1984",
+        "journal-title": "Jpn J Intern Med."
+      },
+      {
+        "key": "e_1_2_19_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3143/geriatrics.22.457"
+      },
+      {
+        "key": "e_1_2_19_26_1",
+        "first-page": "120",
+        "volume-title": "Why do the Japanese live long?",
+        "author": "Matsuzaki T",
+        "year": "1988"
+      },
+      {
+        "key": "e_1_2_19_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3177/jnsv.42.241"
+      },
+      {
+        "key": "e_1_2_19_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/07315724.1997.10718679"
+      },
+      {
+        "key": "e_1_2_19_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1440-6047.2001.00235.x"
+      },
+      {
+        "key": "e_1_2_19_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1265/jjh.53.529"
+      },
+      {
+        "key": "e_1_2_19_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0277-9536(99)00444-X"
+      },
+      {
+        "key": "e_1_2_19_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1440-6047.2001.00232.x"
+      },
+      {
+        "key": "e_1_2_19_33_1",
+        "first-page": "63",
+        "article-title": "The examination of sleep health and life habits of the elderly individuals: the survey of long‐live prefecture Okinawa",
+        "volume": "45",
+        "author": "Tanaka H",
+        "year": "1999",
+        "journal-title": "Jpn J Mental Health."
+      },
+      {
+        "key": "e_1_2_19_34_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1440-1819.2000.00692.x"
+      },
+      {
+        "key": "e_1_2_19_35_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1440-1819.2002.01015.x"
+      },
+      {
+        "key": "e_1_2_19_36_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1046/j.1440-1819.2002.01014.x"
+      },
+      {
+        "key": "e_1_2_19_37_1",
+        "first-page": "453",
+        "article-title": "The bone density and activities of daily living in Okinawa centenarians",
+        "volume": "10",
+        "author": "Akisaka M",
+        "year": "1996",
+        "journal-title": "Hong Kong J Gerontol."
+      },
+      {
+        "key": "e_1_2_19_38_1",
+        "volume-title": "A study on relationship between socio‐biological environments and life span in Okinawa",
+        "author": "Sakihara S",
+        "year": "1999"
+      },
+      {
+        "key": "e_1_2_19_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3143/geriatrics.38.163"
+      },
+      {
+        "key": "e_1_2_19_40_1",
+        "unstructured": "Prefecture of Okinawa.Proclamation of Okinawa as world region of longevity.Okinawa:Okinawa Prefectural Governmen;1995. Accessed 15 Oct 2023 athttp://www.pref.okinawa.jp/syakaihosho/VI‐e.html"
+      },
+      {
+        "key": "e_1_2_19_41_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.36605/jscos.1.1_22"
+      },
+      {
+        "key": "e_1_2_19_42_1",
+        "unstructured": "OomuraJ.Okinawa crisis: chojyuken no ‘26 choc’ [“choc 26” of long‐life prefecture]. Press articles published on 3 and 10 September 2003 in Asahi shinbum."
+      },
+      {
+        "key": "e_1_2_19_43_1",
+        "unstructured": "Okinawa timeseditor.Okinawa ga chouju de nakunaru hi[Le jour où Okinawa ne sera plus une region de longévité].Tokyo:Iwanami shoten;2004."
+      },
+      {
+        "key": "e_1_2_19_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/61.4.345"
+      },
+      {
+        "key": "e_1_2_19_45_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.0801030105"
+      },
+      {
+        "key": "e_1_2_19_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/glt203"
+      },
+      {
+        "issue": "1",
+        "key": "e_1_2_19_47_1",
+        "first-page": "51",
+        "article-title": "Caloric restriction, caloric restriction mimetics, and healthy aging in Okinawa: controversies and clinical implications",
+        "volume": "17",
+        "author": "Willcox BJ",
+        "year": "2014",
+        "journal-title": "Curr Opin Clin Nutr Metab Care."
+      },
+      {
+        "key": "e_1_2_19_48_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10522-006-9008-z"
+      },
+      {
+        "key": "e_1_2_19_49_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1196/annals.1396.037"
+      },
+      {
+        "key": "e_1_2_19_50_1",
+        "unstructured": "National Institute of Population and Social Security Research.Japanese mortality database.Tokyo:National Institute of Population and Social Security Research. Accessed 15 Oct 2023http://www.ipss.go.jp/p‐toukei/JMD/index‐en.asp."
+      },
+      {
+        "key": "e_1_2_19_51_1",
+        "unstructured": "Human mortality database.Espoo:HMD. Accessed 15 Oct 2023http://www.mortality.org."
+      },
+      {
+        "key": "e_1_2_19_52_1",
+        "unstructured": "Ministry of Health Labour and Welfare.Complete life tables.Tokyo:National Institute of Population and Social Security Research. Assessed 15 Oct 2023http://www.ipss.go.jp/p‐toukei/JMD/index‐en.asp."
+      },
+      {
+        "issue": "1",
+        "key": "e_1_2_19_53_1",
+        "first-page": "29",
+        "article-title": "L’évolution de la longévité à Okinawa",
+        "volume": "33",
+        "author": "Poulain M",
+        "year": "2004",
+        "journal-title": "Cah Qué Démogr."
+      },
+      {
+        "key": "e_1_2_19_54_1",
+        "unstructured": "RyallJ.What's behind Okinawa's falling life expectancy? DW News.2022. Accessed on 15 Oct 2023 athttps://p.dw.com/p/4CVyC"
+      },
+      {
+        "key": "e_1_2_19_55_1",
+        "article-title": "Love of U.S. food shortening Okinawans' lives/life expectancy among islands' young men takes a big dive",
+        "author": "Onishi N",
+        "year": "2004",
+        "journal-title": "New York Times."
+      },
+      {
+        "key": "e_1_2_19_56_1",
+        "first-page": "55",
+        "article-title": "The effects of post‐war dietary change on longevity and health in Okinawa",
+        "volume": "1",
+        "author": "Todoriki H",
+        "year": "2004",
+        "journal-title": "Oki J Amer Studies."
+      },
+      {
+        "key": "e_1_2_19_57_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5551/jat.12.284"
+      },
+      {
+        "key": "e_1_2_19_58_1",
+        "first-page": "71",
+        "article-title": "Trends in mortality rates by sex, age and cause of death in Okinawa prefecture—comparisons between Okinawa prefecture and the rest of the country between 1973 and 2009",
+        "volume": "44",
+        "author": "Kuwae N",
+        "year": "2010",
+        "journal-title": "Okinawa Prefecture Sanitation and Environment Research Report (in Japanese)."
+      },
+      {
+        "key": "e_1_2_19_59_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-90-481-8556-6_3"
+      },
+      {
+        "key": "e_1_2_19_60_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1159/000328675"
+      },
+      {
+        "key": "e_1_2_19_61_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-319-63001-4_2"
+      },
+      {
+        "key": "e_1_2_19_62_1",
+        "unstructured": "The life of Okinawan citizens during the “Cycad Hell”.London:Royal College of Art.http://rca.open.ed.jp/web_e/history/story/epoch4/sotetu_1.html"
+      },
+      {
+        "key": "e_1_2_19_63_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.2307/2061281"
+      },
+      {
+        "key": "e_1_2_19_64_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.4054/DemRes.2011.25.7"
+      },
+      {
+        "key": "e_1_2_19_65_1",
+        "first-page": "215",
+        "volume-title": "Validation of exceptional longevity",
+        "author": "Perls T",
+        "year": "1999"
+      },
+      {
+        "key": "e_1_2_19_66_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1155/2010/423087"
+      },
+      {
+        "key": "e_1_2_19_67_1",
+        "first-page": "90",
+        "article-title": "Sengo Okinawa no Koseki Hosei [Lois en ce qui concerne les koseki à Okinawa d'après‐guerre]",
+        "volume": "29",
+        "author": "Nishihara J",
+        "year": "1977",
+        "journal-title": "Sociol Law."
+      },
+      {
+        "key": "e_1_2_19_68_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1553/populationyearbook2013s87"
+      },
+      {
+        "key": "e_1_2_19_69_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/gerona/63.4.338"
+      },
+      {
+        "key": "e_1_2_19_70_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.exger.2013.04.015"
+      },
+      {
+        "key": "e_1_2_19_71_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-11520-2_5"
+      },
+      {
+        "key": "e_1_2_19_72_1",
+        "unstructured": "Ryukyu Shimpo. 2021 Okinawa teams up with local organizations to improve health of working age people hopes to recapture longest average life expectancy title in Japan by 2040"
+      },
+      {
+        "key": "e_1_2_19_73_1",
+        "volume-title": "The Okinawa program: how the world's lived people achieve everlasting health and how you can too",
+        "author": "Willcox BJ",
+        "year": "2001"
+      },
+      {
+        "key": "e_1_2_19_74_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/00324720308075"
+      }
+    ],
+    "container-title": [
+      "Journal of Internal Medicine"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/joim.13764",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2024,
+          3,
+          14
+        ]
+      ],
+      "date-time": "2024-03-14T16:15:24Z",
+      "timestamp": 1710432924000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://onlinelibrary.wiley.com/doi/10.1111/joim.13764"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          14
+        ]
+      ]
+    },
+    "references-count": 73,
+    "journal-issue": {
+      "issue": "4",
+      "published-print": {
+        "date-parts": [
+          [
+            2024,
+            4
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1111/joim.13764"
+    ],
+    "URL": "https://doi.org/10.1111/joim.13764",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "0954-6820",
+      "1365-2796"
+    ],
+    "issn-type": [
+      {
+        "value": "0954-6820",
+        "type": "print"
+      },
+      {
+        "value": "1365-2796",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          1,
+          14
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2024-01-14",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

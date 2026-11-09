@@ -1,0 +1,318 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          9
+        ]
+      ],
+      "date-time": "2026-09-09T04:28:22Z",
+      "timestamp": 1788928102470,
+      "version": "build-2803163510"
+    },
+    "reference-count": 12,
+    "publisher": "Wiley",
+    "issue": "10",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2002,
+              10,
+              17
+            ]
+          ],
+          "date-time": "2002-10-17T00:00:00Z",
+          "timestamp": 1034812800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 16,
+        "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "J American Geriatrics Society"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2002,
+          10
+        ]
+      ]
+    },
+    "abstract": "<jats:p>\n                    <jats:bold>OBJECTIVES:</jats:bold>\n                    To determine the effect of a 2‐week (six‐session) training intervention to improve the ability of disabled older adults to rise from the floor.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>DESIGN:</jats:bold>\n                    Prospective intervention trial.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>SETTING:</jats:bold>\n                    Congregate housing in Michigan.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>PARTICIPANTS:</jats:bold>\n                    Subjects aged 65 and older who admitted to requiring assistance (such as from a person, equipment, or device) in performing at least one of the following mobility‐related activities of daily living: transferring, walking, bathing, and toileting.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>INTERVENTION:</jats:bold>\n                    Participants were randomly allocated to individual training (n = 17, mean age 81) in strategies to rise from the floor (using for example, certain key intermediate body positions) or a control chair‐based flexibility intervention (n = 18, mean age 80).\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>MEASUREMENTS:</jats:bold>\n                    At baseline and postintervention, residents were queried regarding their rise difficulty (difficulty scale) and symptoms (symptoms scale) associated with the rise and were tested in their ability to perform timed floor‐rise tasks. These tasks varied in starting position (supine vs all fours) and in use of a support to assist in rising (no support, use of an end table, use of a chair).\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>RESULTS:</jats:bold>\n                    Using baseline performance as the covariate, by analysis of covariance (ANCOVA), the training group showed a significant (\n                    <jats:italic>P</jats:italic>\n                    &lt; .05) improvement in mean number of rise tasks completed (baseline mean 6.6, postintervention mean 7.3) versus essentially no improvement in the controls. Similarly, by ANCOVA, the training group (compared with controls) showed a significant (\n                    <jats:italic>P</jats:italic>\n                    &lt; .05) improvement on the difficulty and symptoms scales. There was no intervention effect for rise time.\n                  </jats:p>\n                  <jats:p>\n                    <jats:bold>CONCLUSIONS:</jats:bold>\n                    A short‐term, strategy‐based intervention improved floor‐rise ability and perceived difficulty and symptoms associated with the rise. This approach, focusing on key intermediate body positions, may be useful in training floor‐rise skills, particularly in older adults at risk for falls.\n                  </jats:p>",
+    "DOI": "10.1046/j.1532-5415.2002.50463.x",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2002,
+          10,
+          29
+        ]
+      ],
+      "date-time": "2002-10-29T06:26:07Z",
+      "timestamp": 1035872767000
+    },
+    "page": "1702-1706",
+    "source": "Crossref",
+    "is-referenced-by-count": 47,
+    "title": [
+      "Floor‐Rise Strategy Training in Older Adults"
+    ],
+    "prefix": "10.1111",
+    "volume": "50",
+    "author": [
+      {
+        "given": "Mark R.",
+        "family": "Hofmeyer",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Neil B.",
+        "family": "Alexander",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Linda V.",
+        "family": "Nyquist",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jodi L.",
+        "family": "Medell",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Aaleya",
+        "family": "Koreishi",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "311",
+    "published-online": {
+      "date-parts": [
+        [
+          2002,
+          10,
+          17
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_6_2_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1056/NEJM199606273342606"
+      },
+      {
+        "key": "e_1_2_6_3_2",
+        "doi-asserted-by": "crossref",
+        "first-page": "65",
+        "DOI": "10.1001/jama.1993.03500010075035",
+        "article-title": "Predictors and prognosis of inability to get up after falls among elderly persons.",
+        "volume": "269",
+        "author": "Tinetti ME",
+        "year": "1993",
+        "journal-title": "JAMA"
+      },
+      {
+        "key": "e_1_2_6_4_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/ageing/22.4.294"
+      },
+      {
+        "key": "e_1_2_6_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.1997.tb03088.x"
+      },
+      {
+        "key": "e_1_2_6_6_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.2000.tb03874.x"
+      },
+      {
+        "key": "e_1_2_6_7_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.1985.tb07109.x"
+      },
+      {
+        "key": "e_1_2_6_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1300/J018v05n01_09"
+      },
+      {
+        "key": "e_1_2_6_9_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/j.1532-5415.1990.tb04422.x"
+      },
+      {
+        "key": "e_1_2_6_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/cpt1974155443"
+      },
+      {
+        "key": "e_1_2_6_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/geronj/45.6.P239"
+      },
+      {
+        "key": "e_1_2_6_12_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1093/geronb/53B.6.P384"
+      },
+      {
+        "key": "e_1_2_6_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/026921559100500306"
+      }
+    ],
+    "container-title": [
+      "Journal of the American Geriatrics Society"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1046%2Fj.1532-5415.2002.50463.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1046/j.1532-5415.2002.50463.x",
+        "content-type": "application/pdf",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1046/j.1532-5415.2002.50463.x",
+        "content-type": "application/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://agsjournals.onlinelibrary.wiley.com/doi/pdf/10.1046/j.1532-5415.2002.50463.x",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          11,
+          3
+        ]
+      ],
+      "date-time": "2025-11-03T18:50:29Z",
+      "timestamp": 1762195829000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1046/j.1532-5415.2002.50463.x"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2002,
+          10
+        ]
+      ]
+    },
+    "references-count": 12,
+    "journal-issue": {
+      "issue": "10",
+      "published-print": {
+        "date-parts": [
+          [
+            2002,
+            10
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1046/j.1532-5415.2002.50463.x"
+    ],
+    "URL": "https://doi.org/10.1046/j.1532-5415.2002.50463.x",
+    "archive": [
+      "Portico"
+    ],
+    "relation": {},
+    "ISSN": [
+      "0002-8614",
+      "1532-5415"
+    ],
+    "issn-type": [
+      {
+        "value": "0002-8614",
+        "type": "print"
+      },
+      {
+        "value": "1532-5415",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2002,
+          10
+        ]
+      ]
+    }
+  }
+}

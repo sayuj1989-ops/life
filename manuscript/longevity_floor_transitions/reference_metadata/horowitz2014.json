@@ -1,0 +1,627 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          29
+        ]
+      ],
+      "date-time": "2026-09-29T15:58:02Z",
+      "timestamp": 1790697482096,
+      "version": "4.1.0"
+    },
+    "reference-count": 85,
+    "publisher": "American Physical Society (APS)",
+    "issue": "3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2014,
+              7,
+              28
+            ]
+          ],
+          "date-time": "2014-07-28T00:00:00Z",
+          "timestamp": 1406505600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "http://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Phys. Rev. X"
+    ],
+    "DOI": "10.1103/physrevx.4.031015",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2014,
+          7,
+          28
+        ]
+      ],
+      "date-time": "2014-07-28T17:12:37Z",
+      "timestamp": 1406567557000
+    },
+    "source": "Crossref",
+    "is-referenced-by-count": 239,
+    "title": [
+      "Thermodynamics with Continuous Information Flow"
+    ],
+    "prefix": "10.1103",
+    "volume": "4",
+    "author": [
+      {
+        "given": "Jordan M.",
+        "family": "Horowitz",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Massimiliano",
+        "family": "Esposito",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "16",
+    "published-online": {
+      "date-parts": [
+        [
+          2014,
+          7,
+          28
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "PhysRevX.4.031015Cc1R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1515/9781400828739",
+        "volume-title": "Feedback Systems: An Introduction for Scientists and Engineers",
+        "author": "K. J. Astrom",
+        "year": "2008"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc2R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.77.783"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc3R1",
+        "volume-title": "Biology of Sensory Systems",
+        "author": "C. U. M. Smith",
+        "year": "2008"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc4R1",
+        "volume-title": "Maxwell’s Demon: Entropy, Information, Computing",
+        "year": "1990"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc5R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.81.1"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc6R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys2276"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc7R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/81/30003"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc8R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.100.080403"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc9R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.79.041118"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc10R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.80.012322"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc11R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1143/JPSJ.78.074007"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc12R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1143/JPSJ.79.104003"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc13R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.090602"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc14R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.82.031129"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc15R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.85.021104"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc16R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.82.061120"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc17R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys1821"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc18R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/95/10005"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc19R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/13/12/123019"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc20R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.84.061110"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc21R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/95/40004"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc22R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/94/10001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc23R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.108.030601"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc24R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1751-8113/45/16/162001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc25R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.109.180602"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc26R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.109.120604"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc27R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5506/APhysPolB.44.803"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc28R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1367-2630/15/12/125012"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc30R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/BF02084158"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc31R1",
+        "volume-title": "Maxwell’s Demon: Entropy, Information, Computing",
+        "author": "R. Landauer",
+        "year": "1990"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc32R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1088/0034-4885/42/12/002",
+        "volume-title": "Foundations of Statistical Mechanics: A Deductive Treatment",
+        "author": "O. Penrose",
+        "year": "1970"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc33R1",
+        "volume-title": "Maxwell’s Demon: Entropy, Information, Computing",
+        "author": "L. Szilard",
+        "year": "1990"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc34R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.75.022102"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc35R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2012/05/P05010"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc36R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/99/30003"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc37R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.040601"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc38R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2013/06/P06014"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc39R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.1207814109"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc40R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.87.042104"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc41R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2014/04/P04010"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc43R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.180603"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc44R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2014/02/P02016"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc45R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.85.041125"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc46R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1007/978-3-642-05411-2",
+        "volume-title": "Stochastic Energetics, Lecture Notes in Physics",
+        "author": "K. Sekimoto",
+        "year": "2010"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc47R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1140/epjb/e2008-00001-9"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc48R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/0034-4885/75/12/126001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc49R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.82.011143"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc50R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.physrep.2011.09.002"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc51R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.physrep.2011.09.001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc52R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/science.1071152"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc53R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature04061"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc54R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2010/12/P12003"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc55R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.110.180601"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc56R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.2.011001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc57R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.109.180601"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc58R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nphys2711"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc59R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1038/nature10872"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc60R1",
+        "doi-asserted-by": "crossref",
+        "DOI": "10.1063/1.2915501",
+        "volume-title": "Stochastic Processes in Physics and Chemistry",
+        "author": "N. G. Van Kampen",
+        "year": "2007"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc61R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10955-013-0834-5"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc62R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1006/jmbi.1999.2535"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc63R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.010602"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc64R1",
+        "volume-title": "Free Energy Transduction in Biology",
+        "author": "T. L. Hill",
+        "year": "1977"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc65R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/101/50004"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc67R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.48.571"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc68R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10955-006-9233-5"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc69R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.82.041303"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc70R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.104.076801"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc71R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/100/47008"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc72R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/104/49901"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc73R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.84.165114"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc74R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.103.056802"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc75R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.98.056801"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc77R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/j.crhy.2007.04.010"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc78R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2007/11/P11002"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc79R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/RevModPhys.83.771"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc80R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2008/05/P05002"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc81R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevA.74.063823"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc82R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1073/pnas.1204263109"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc83R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/101/60001"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc84R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevLett.111.030602"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc85R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevX.3.041003"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc86R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1209/0295-5075/105/50002"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc87R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1088/1742-5468/2009/09/P09011"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc88R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevE.89.042134"
+      },
+      {
+        "key": "PhysRevX.4.031015Cc89R1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevB.79.193407"
+      }
+    ],
+    "container-title": [
+      "Physical Review X"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "http://link.aps.org/article/10.1103/PhysRevX.4.031015",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "syndication"
+      },
+      {
+        "URL": "http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevX.4.031015/fulltext",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2020,
+          8,
+          22
+        ]
+      ],
+      "date-time": "2020-08-22T13:37:20Z",
+      "timestamp": 1598103440000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://link.aps.org/doi/10.1103/PhysRevX.4.031015"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          7,
+          28
+        ]
+      ]
+    },
+    "references-count": 85,
+    "journal-issue": {
+      "issue": "3",
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            7
+          ]
+        ]
+      }
+    },
+    "URL": "https://doi.org/10.1103/physrevx.4.031015",
+    "relation": {},
+    "ISSN": [
+      "2160-3308"
+    ],
+    "issn-type": [
+      {
+        "value": "2160-3308",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2014,
+          7,
+          28
+        ]
+      ]
+    },
+    "article-number": "031015"
+  }
+}

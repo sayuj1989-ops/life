@@ -1,0 +1,141 @@
+ 2 Supplementary Material S1: verification of the illustrative viscoelastic
+ 3 balance
+
+ 4   Supplementary Material S1
+ 5   Sayuj Krishnan — provisional author list
+ 6   Affiliation: [author to confirm]
+ 7   Corresponding author and email: [author to confirm]
+ 8   Running title: Floor transitions and functional aging
+ 9   Target journal: Frontiers in Aging — Musculoskeletal Aging
+10   Version: 1.0 | 2 October 2026 | Author-review draft
+11
+
+
+
+
+                                                 Page 1
+12   S1. Purpose and scope
+13   This supplement verifies the energy balance of the illustrative standard linear solid used in
+14   the main manuscript. It supplies analytic segment solutions, an independent numerical
+15   integration, normalized scenario outputs and the complete executable code. It contains no
+16   participant data, human material calibration, fitted metabolic effect or estimated survival
+17   benefit. The law is an established viscoelastic illustration; its verification is supplementary to
+18   the proposed experimental hypothesis.
+
+19   S2. Definitions and analytic segment solution
+20   The equilibrium spring has stiffness k ∞, the Maxwell spring has stiffness k 1, and its dashpot
+21   coefficient is c . The relaxation time is τ =c / k 1. Total deformation is x and Maxwell-spring
+22   deformation is z . Force and stored elastic energy are
+
+23                                  F=k ∞ x +k 1 z ,U e =1/2 k ∞ x 2 +1/2 k 1 z 2 .
+
+24   For a segment with constant velocity v , duration t , initial deformation x 0 and internal state z 0,
+25   set a=v τ and b=z 0 − a. Then
+
+26                                   x ( t )=x 0 +v t , z ( t )=a+b exp(− t / τ ).
+
+27   The integrated external mechanical work is
+                                               2     2
+28                         W =1/2 k ∞ [ x ( t ) − x 0 ]+k 1 v [a t +b τ ( 1 − exp( − t / τ ))] .
+
+29   The passive energy loss is
+
+30
+                         k
+                               [
+                       L= 1 a2 t +2 a b τ (1− exp(− t / τ ))+
+                          τ
+                                                              b2 τ
+                                                               2
+                                                                   (1− exp(− 2 t / τ )) .          ]
+31   The check W = Δ U e + L follows directly. At a fixed-deformation hold, the relaxing branch’s
+32   stored energy decays exponentially while the equilibrium spring retains energy. After
+33   prescribed unloading to x=0, any remaining internal-state energy dissipates in a final
+34   relaxation; it is included in the complete-cycle loss.
+
+35   S3. Normalization and scenario grid
+36   Total stiffness and deformation amplitude are set to one. Time is expressed in units of the
+37   assumed relaxation time; no empirical seconds are assigned. Energy is in units of total
+38   stiffness times deformation amplitude squared. The prescribed history starts at x=z=0, loads
+39   linearly to x=1, holds deformation, and unloads linearly to x=0.
+
+      Variable                                                Normalized values
+      Equilibrium stiffness fraction k ∞ /( k ∞ +k 1 )        0, 0.25, 0.5, 0.75, 1
+      Loading duration / relaxation time                      0.1, 1, 10
+      Holding duration / relaxation time                      0, 0.25, 1, 5, 20
+      Unloading duration / relaxation time                    0.1, 1, 10
+
+40   The Cartesian grid contains 225 cases, including 45 purely elastic controls. The fully elastic
+41   limit is implemented by setting k 1=0; the nominal time scale then has no physical role. The
+
+
+                                                         Page 2
+42   selected grid explores different mechanical histories and is not an estimate of a population
+43   distribution.
+
+44   S4. Independent numerical checks
+45   An independent fourth-order Runge–Kutta integration evaluates the internal state, external
+46   work and passive loss, using 1,000 and 2,000 steps per nonzero-duration segment. It also
+47   integrates the positive and negative parts of mechanical power. Analytic solutions initialize
+48   each segment consistently. The script checks segment balances, complete-cycle balance after
+49   final relaxation, nonnegative loss, numerical agreement, refinement agreement and the purely
+50   elastic limit.
+
+      Check                                           Verified result in supplied artifact
+      Normalized scenarios                            225
+      Purely elastic controls                         45
+      Maximum absolute complete-cycle balance         4.6074 × 10−15
+      residual
+      Maximum independent integration error           9.496 × 10−11
+      Maximum coarse/fine refinement difference       1.4346 × 10− 9
+      Cases with negative net unloading return        58
+
+51   Values are rounded here; full precision is retained in recoil_model_checks.json. This verifies
+52   arithmetic under the specified law and prescribed deformation. It does not validate the law for
+53   a human movement.
+
+54   S5. Signed work, slackness and biological translation
+55   Net unloading return is minus the integrated external work during unloading. Gross return
+56   integrates the negative part of mechanical power separately from the positive work injected
+57   during that segment. These differ when force changes sign. The linear material permits
+58   compression, and 58 histories have negative net return. A tendon can become slack and is not
+59   the same elastic element in compression; these histories must not be interpreted as biological
+60   tendon energy recovery. A human extension requires tension-only behavior, measured
+61   operating range and preload, appropriate nonlinear properties, and a mapped geometry.
+62   The illustrative plot shows mechanical sensitivity, including a shaded region for negative net
+63   return. No value should be relabeled as a floor-rise recoil fraction, oxygen saving or aging
+64   effect. Force–deformation work does not by itself reveal whether energy originated in the
+65   preceding descent or in subsequent muscle action.
+
+
+
+
+                                                  Page 3
+66
+67   Figure S1. Material history determines net return. Loading rate, hold duration and
+68   unloading rate can each affect the normalized balance. Different equilibrium fractions retain
+69   different amounts of energy through a hold. Negative net return is a feature of the signed
+70   linear model and requires caution about compression and slackness. The full grid is supplied
+71   in the CSV file; the selected panels are illustrative.
+
+72   S6. Reproducibility and provenance
+73   Files supplied in the supplement directory are recoil_model.py, recoil_model_checks.json,
+74   recoil_sensitivity.csv, render_recoil.py, and PNG/SVG copies of Figure S1. The verified
+75   model script SHA-256 is:
+76   a55882621535d2a5c68ff4bd7f9c67128b7d37fd79e6b200b2adad71a0fac739
+
+77   Run python3 recoil_model.py inside the supplement directory to regenerate the CSV
+78   and checks. The program uses the Python standard library. Plot regeneration additionally
+79   requires Matplotlib and uses python3 render_recoil.py. A rerun changes the
+80   generation timestamp while preserving the model definition and outputs, subject to ordinary
+81   floating-point differences.
+82   The supplied artifacts were copied from the verified research dossier dated 2 October 2026.
+83   They are independent of previous spine-growth simulations. Withdrawn or numerically
+84   unresolved spine mechanics are not used as evidence in this manuscript. A public repository
+85   accession and archive license require author confirmation before submission.
+
+
+
+
+                                                 Page 4
+

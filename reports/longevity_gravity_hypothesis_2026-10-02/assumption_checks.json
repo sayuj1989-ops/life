@@ -1,0 +1,230 @@
+{
+  "generated_utc": "2026-10-02T05:32:23.442163+00:00",
+  "status": "ARITHMETIC_VERIFIED_BIOLOGY_UNCALIBRATED",
+  "meaning": "Conditional reset-model arithmetic and hypothetical gravitational work only",
+  "input_sha256": {
+    "research/longevity_squat_stand_feasibility.md": "49961dbf5f3c14d037c0a3e4a34949b62cdc92e8f8c909aaff13ab37b8f540af",
+    "scripts/experiments/experiment_squat_stand_cycle.py": "a479bb80070d6e56f28c952075fc027afc340a74c64939e03ac1f0343f5b5450",
+    "reports/helical_growth_research_2026-10-01/RESEARCH_BRIEF.md": "b5fe75cc19118efdf20e01a5c644bf2ebd9ac0cd36f5178f637165c0debe45d3",
+    "reports/helical_growth_research_2026-10-01/DIAGNOSTIC_RESULTS.md": "396021eb929805d2acbaab935bdca523b9f728ccb5a57c9cd9043ba324f14343"
+  },
+  "script_sha256": "754b090b084024a2e8e8c9a88a7182e93a1c63794a187d7662a7f9ee40c92894",
+  "reset_model_sensitivity": [
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.06249999296655158,
+      "independent_integral_fraction": 0.06249999289988492,
+      "absolute_difference": 6.666665830490359e-11
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.20661880269812083,
+      "independent_integral_fraction": 0.20661880267828542,
+      "absolute_difference": 1.983541109140674e-11
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.6428199104425917,
+      "independent_integral_fraction": 0.6428199104401232,
+      "absolute_difference": 2.468469872951573e-12
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.79420126707054,
+      "independent_integral_fraction": 0.7942012670697775,
+      "absolute_difference": 7.625011733125575e-13
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.24542109027781644,
+      "independent_integral_fraction": 0.24542109026145506,
+      "absolute_difference": 1.6361384469476548e-11
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.5823381567398316,
+      "independent_integral_fraction": 0.5823381567363376,
+      "absolute_difference": 3.49398288079783e-12
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.8890505788893608,
+      "independent_integral_fraction": 0.8890505788891474,
+      "absolute_difference": 2.1338486533295509e-13
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.9423296940236874,
+      "independent_integral_fraction": 0.9423296940236308,
+      "absolute_difference": 5.6621374255882984e-14
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.6321205588285577,
+      "independent_integral_fraction": 0.6321205588259239,
+      "absolute_difference": 2.633782081318259e-12
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.8639392643942738,
+      "independent_integral_fraction": 0.8639392643939497,
+      "absolute_difference": 3.240741008880832e-13
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.9705911069291882,
+      "independent_integral_fraction": 0.9705911069291736,
+      "absolute_difference": 1.454392162258955e-14
+    },
+    {
+      "period_h": 24.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.985148881716394,
+      "independent_integral_fraction": 0.9851488817163904,
+      "absolute_difference": 3.6637359812630166e-15
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.09374781477176786,
+      "independent_integral_fraction": 0.09374781472732445,
+      "absolute_difference": 4.444340728770868e-11
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.29976181125676055,
+      "independent_integral_fraction": 0.2997618112439707,
+      "absolute_difference": 1.2789824754833035e-11
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.7386055874327366,
+      "independent_integral_fraction": 0.738605587431476,
+      "absolute_difference": 1.2606582444618653e-12
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 0.5,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.8557842591447158,
+      "independent_integral_fraction": 0.8557842591443506,
+      "absolute_difference": 3.65152352799214e-13
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.34894370579144945,
+      "independent_integral_fraction": 0.3489437057811104,
+      "absolute_difference": 1.0339062939124233e-11
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.688338794853473,
+      "independent_integral_fraction": 0.6883387948516374,
+      "absolute_difference": 1.835642748915234e-12
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.9241013189611791,
+      "independent_integral_fraction": 0.9241013189610805,
+      "absolute_difference": 9.85878045867139e-14
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 2.0,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.9610456701670527,
+      "independent_integral_fraction": 0.961045670167027,
+      "absolute_difference": 2.5646151868841116e-14
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 3,
+      "analytic_fraction": 0.729874321451112,
+      "independent_integral_fraction": 0.7298743214497604,
+      "absolute_difference": 1.3515855101786656e-12
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 10,
+      "analytic_fraction": 0.9063462346100907,
+      "independent_integral_fraction": 0.9063462346099396,
+      "absolute_difference": 1.511013536514838e-13
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 50,
+      "analytic_fraction": 0.9802640211919197,
+      "independent_integral_fraction": 0.9802640211919131,
+      "absolute_difference": 6.5503158452884236e-15
+    },
+    {
+      "period_h": 16.0,
+      "assumed_decay_h": 8.0,
+      "assumed_evenly_spaced_resets": 100,
+      "analytic_fraction": 0.9900663346622349,
+      "independent_integral_fraction": 0.9900663346622331,
+      "absolute_difference": 1.7763568394002505e-15
+    }
+  ],
+  "max_independent_integral_error": 6.666665830490359e-11,
+  "hypothetical_energy_examples": [
+    {
+      "scenario": "hypothetical_floor_rise",
+      "hypothetical_mass_kg": 70.0,
+      "hypothetical_com_rise_m": 0.7,
+      "positive_potential_energy_change_j": 480.69,
+      "return_descent_potential_energy_change_j": -480.69,
+      "closed_cycle_net_potential_energy_change_j": 0.0,
+      "metabolic_energy_j": null
+    },
+    {
+      "scenario": "hypothetical_chair_rise",
+      "hypothetical_mass_kg": 70.0,
+      "hypothetical_com_rise_m": 0.35,
+      "positive_potential_energy_change_j": 240.345,
+      "return_descent_potential_energy_change_j": -240.345,
+      "closed_cycle_net_potential_energy_change_j": 0.0,
+      "metabolic_energy_j": null
+    }
+  ],
+  "lifespan_effect": null,
+  "floor_specific_benefit": null,
+  "empirically_identified_decay_time": null
+}

@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "sealed_utc": "2026-09-30T20:49:24.721024+00:00",
+  "scope": "Artifact preservation only; no additional scientific validation",
+  "report_sha256": {
+    "ATTEMPT_01.md": "f8816e841d9e9a5739162801821046dd0b73a2c4f49290299dcfd4670b9748f0",
+    "RESEARCH_BRIEF.md": "b5fe75cc19118efdf20e01a5c644bf2ebd9ac0cd36f5178f637165c0debe45d3",
+    "check_gravity_torque.py": "544533e990e0f387e5c02c4eb0082ead52fda4805fdb0d8f271d1cc511d27063",
+    "gravity_torque_checks.json": "0300e1ec1ecb0292f5cadd199e497e0771b472f43623f4249511d0ea86266e28"
+  },
+  "referenced_source_sha256": {
+    "reports/helical_growth_research_2026-10-01/check_gravity_torque.py": "544533e990e0f387e5c02c4eb0082ead52fda4805fdb0d8f271d1cc511d27063",
+    "src/spinalmodes/iec.py": "e3b7fd3e1586807293ff8a1d9909fb77d0f833b9614988f9b55fcbf1605abd19",
+    "results/newton_mechanism_campaign_2026-09-12/campaign.json": "af11cbd38539442a6142bcaff7317693b061587606df211184f82a43bfc71067",
+    "results/newton_mechanism_campaign_2026-09-12/assessment.json": "3c9fb50169ff7d1432f9d2ab963b246d753e9e35632e88aefcb61f402233a90b"
+  },
+  "referenced_sources_match": {
+    "reports/helical_growth_research_2026-10-01/check_gravity_torque.py": true,
+    "src/spinalmodes/iec.py": true,
+    "results/newton_mechanism_campaign_2026-09-12/campaign.json": true,
+    "results/newton_mechanism_campaign_2026-09-12/assessment.json": true
+  }
+}

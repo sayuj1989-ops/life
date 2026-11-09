@@ -1,0 +1,130 @@
+[
+  {
+    "id": "C1",
+    "title": "Rindler Hamiltonian expansion",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Eq 1.1 (HISTORICAL)",
+    "method": "sympy series of rho c^2 (sqrt(1-rs/r)-1) in 1/c",
+    "verdict": "CHECK",
+    "detail": "rho c^2(sqrt(g00)-1) ~ 0 : leading term is MINUS rho*G*M/r (=-rho*g*h). Note claims '+rho*Phi=+rho*g*h'; correct as magnitude, wrong as signed potential energy. HISTORICAL note only; no manuscript equation depends on it."
+  },
+  {
+    "id": "C2",
+    "title": "Bio-Gravitational Number dimensionless + Euler relation",
+    "source": "manuscript/sections/supplementary.tex eq:bg_number_passive_supp",
+    "method": "sympy dimensional substitution; algebraic Euler-load comparison",
+    "verdict": "PASS",
+    "detail": "[B_g] -> 1; Mg/P_Euler = (4/pi^2)*B_g (4/pi**2*B_g) - consistent with 'passive flexural resistance vs gravitational bending moment'."
+  },
+  {
+    "id": "C3",
+    "title": "Energy-deficit scaling L^3 vs L^2 and R(0.45)/R(0.35)",
+    "source": "manuscript/sections/theory_summary.tex (Energy Deficit Window)",
+    "method": "sympy log-exponent extraction; exact rational ratio",
+    "verdict": "PASS",
+    "detail": "U ~ EI k^2 L with I~L^4, k~L^-1 -> exponent 3 (=3 required); R(0.45)/R(0.35) = 9/7 = 1.2857 -> paper's '~1.29' and '(0.45/0.35)^1' correct."
+  },
+  {
+    "id": "C4",
+    "title": "Recovery-ratchet cemented fraction k_g/(k_r+k_g)",
+    "source": "manuscript/sections/theory_summary.tex eq:recovery_ratchet; src/spinalmodes/recovery_ratchet.py docstring",
+    "method": "impulse recoil kappa_e=A exp(-(kr+kg)t); cemented = int kg*kappa_e dt (sympy)",
+    "verdict": "PASS",
+    "detail": "int_0^inf k_g A e^-(k_r+k_g)t dt / A = k_g/(k_g + k_r) = claimed fraction; limits kr->inf: 0, kg->inf: 1. NOTE: d kappa_p/dt = k_g*kappa_e0*[k_g/(k_r+k_g)] identifies the perturbation recurrence rate with k_g (modeling choice; a linear k_g*kappa_e0 feed would scale ~k_g, not k_g^2 at small k_g)."
+  },
+  {
+    "id": "C5",
+    "title": "Modal ansatz kappa=A e^{lam t} sin(n pi s/L) -> characteristic equation",
+    "source": "manuscript/sections/supplementary.tex eq:dde_spine_supp -> eq:char_eq_supp",
+    "method": "symbolic substitution, divide by mode shape",
+    "verdict": "PASS",
+    "detail": "PDE (rhoA k_tt + eta k_t + EI k_ssss + K_P k_tau + K_D k_t,tau = 0) reduces exactly to rhoA lam^2 + eta lam + EI (n pi/L)^4 + (K_P + K_D lam) e^{-lam tau} = 0."
+  },
+  {
+    "id": "C6",
+    "title": "Exact quadratic in x = omega^2 (Hopf boundary)",
+    "source": "manuscript/sections/supplementary.tex eq:hopf_quadratic_supp; scripts/hopf_exact.py",
+    "method": "eliminate (cos,sin) from RE=IM=0; impose cos^2+sin^2=1; compare coeffs",
+    "verdict": "PASS / tex typo",
+    "detail": "Derived: I^2 x^2 + (2 I mgL + b^2 - K_D^2) x + ((mgL)^2 - K_P^2) = 0 -- matches hopf_exact.py code (C = mgL*mgL - Kp*Kp). DISCREPANCY: supplementary.tex renders the constant term 'mgL^2 - K_P^2' (literal m*g*L^2); it must read (mgL)^2 - K_P^2. fix: change tex to (mgL)^2."
+  },
+  {
+    "id": "C9",
+    "title": "IEC energy functional -> constitutive moments",
+    "source": "manuscript/sections/supplementary.tex eq:iec_energy_supp",
+    "method": "symbolic functional derivative d/dkappa etc.",
+    "verdict": "PASS",
+    "detail": "delta E/delta kappa = B_eff (kappa - kappa_rest) (bending moment), torsion and stretch terms analogous; gravity term rho A r.g is a potential on the centreline (sign depends on g-vector convention: written as + r.g with g pointing down). Consistent with eq:stiffness_modulation_supp."
+  },
+  {
+    "id": "C7",
+    "title": "tau*(Kd) ridge numbers quoted in supplementary",
+    "source": "manuscript/sections/supplementary.tex (Kp=120 ridge K_D*=12.4, tau_c=79.0 ms)",
+    "method": "import scripts/hopf_exact.py; recompute table + ridge by ternary search",
+    "verdict": "PASS",
+    "detail": "Kp=120: Kd=4->40.7ms, Kd=8->67.0ms, Kd=12->78.9ms, Kd=13->78.8ms, Kd=20->62.3ms; ridge Kd*=12.41 tau*=78.9 ms (expect 12.4/79.0); Kp=200: Kd*=15.81, tau*=54.7 ms (expect 15.8/54.7). maxdev=0.05 ms."
+  },
+  {
+    "id": "C8",
+    "title": "Delay-Hopf rejection trajectory numbers",
+    "source": "manuscript/sections/supplementary.tex (rejection paragraphs); scripts/analysis/verify_hopf_rejection.py",
+    "method": "subprocess re-run, regex-assert against prose numbers",
+    "verdict": "PASS",
+    "detail": "v=15: (0.806, 0.655) (expect 0.806->0.655); v=55: (0.546, 0.324) (expect 0.546->0.324); dimless delay change -21.1% (expect -21.1); crossings [('0.8063', '5.0'), ('0.5456', '5.0')] -> none >= 1 as claimed."
+  },
+  {
+    "id": "N1",
+    "title": "Growth material-derivative expansion (HISTORICAL note)",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Sec 3.1",
+    "method": "apply (d_t + v d_s)^2 twice symbolically",
+    "verdict": "PASS-with-note",
+    "detail": "(D/Dt)^2 theta = theta_tt + 2 v theta_ts + v^2 theta_ss EXACTLY for constant v; residual for v(t): 0 -> note's expansion assumes growth-rate constancy (v=Ldot const); holds for logistic growth only approximately (v-dot theta_s dropped)."
+  },
+  {
+    "id": "N2",
+    "title": "Growth-convected DDE characteristic equation + B_eff (HISTORICAL note)",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Eq 3.1.5-3.1.7",
+    "method": "modal substitution lambda, k into expanded D^2 theta",
+    "verdict": "PASS",
+    "detail": "I(lam^2 + 2 Ldot lam i k - Ldot^2 k^2) + B + K e^{-lam tau} = 0 reproduces; real part at lam=i w gives B_eff = B - I Ldot^2 k^2 exactly as claimed."
+  },
+  {
+    "id": "N3",
+    "title": "S_crit = pi/2 instability criterion (HISTORICAL note; AMEND-02 corrected)",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Sec 3.2",
+    "method": "argument principle on h=(I lam^2+B+K e^{-lam tau}) over right half-disk + crossing-family algebra",
+    "verdict": "PASS(AMEND-02)",
+    "detail": "crossing law b+(-1)^n a = n^2 pi^2 verified on ray a=tau^2,b=2tau^2: first odd (n=1) boundary tau_1* = pi/sqrt((B-K)/I) = 3.1416 (2->0); even n=2 at 2pi/sqrt((B+K)/I)=3.6276 (+2), even n=4 at 7.2552 (+2, N_RHP=4 for tau in (7.26,9.42)), odd n=3 at 3pi (\u22122). Stability wedges W_m = {b-a>(2m+1)^2 pi^2, b+a<(2m+2)^2 pi^2}. PREVIOUSLY PRINTED tau=pi/sqrt((B+K)/I)=1.814 IS NOT A CROSSING (real part 2K != 0 at w tau=pi); N_RHP=2 there. S_co = K*Ldot*tau/B = (K/B)*(Ldot*tau) carries dimension [m] (growth distance per delay window), NOT dimensionless (cf. N7). Pi/2 in the HISTORICAL note is the first-order criterion; second-order boundary is omega*tau = pi. AMEND-02. counts: tau=0.5: 2.00(exp 2); tau=1.814: 2.00(exp 2); tau=3.2: 0.00(exp 0); tau=4.0: 2.00(exp 2); tau=8.0: 3.99(exp 4); tau=9.5: 1.98(exp 2)"
+  },
+  {
+    "id": "N4",
+    "title": "Spinal-jetlag differential growth identity (HISTORICAL note)",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Eq 4.1.2",
+    "method": "sympy product-to-sum expansion",
+    "verdict": "PASS-with-note",
+    "detail": "g_L-g_R = -2 A gbar sin(Omega t + (phi_L+phi_R)/2) sin(dphi/2) exactly; note drops the mean-phase factor -> its form holds only for phi_L+phi_R=0."
+  },
+  {
+    "id": "N5",
+    "title": "Generalized eigenproblem (B y'')'' = lambda Q y from variational principle",
+    "source": "research/multi_segment_cosserat_lenke_derivation.md Sec 2",
+    "method": "higher-order Euler-Lagrange on Pi[y] = int 1/2 B y''^2 - 1/2 lambda Q y^2",
+    "verdict": "PASS",
+    "detail": "delta Pi = 0 gives exactly (B(s) y'')'' = lambda Q(s) y for pinned/essential BCs. HISTORICAL note (route superseded by recovery ratchet), but the variational statement is correct."
+  },
+  {
+    "id": "N6",
+    "title": "Lenke-type localization demo: mode localizes to low-B/high-Q zone",
+    "source": "research/multi_segment_cosserat_lenke_derivation.md Sec 3-4",
+    "method": "generalized eigenproblem (B y'')'' = lam Q y, 4-region B,Q, pinned BC, scipy eigh",
+    "verdict": "CHECK",
+    "detail": "first-mode participation cervical:0.42, thoracic:0.94, thoracolumbar:0.73, lumbar:0.18; peak at s/L=0.59 in 'thoracic' region; eigenvalue1=2.14e+03. Mechanism claim (regional B,Q -> curve-type mapping) is mechanically valid; clinical mapping is illustrative."
+  },
+  {
+    "id": "N7",
+    "title": "Scoliosis Number dimensionlessness (HISTORICAL note)",
+    "source": "research/scoliosis_derivation_rindler_cosserat.md Eq 3.2.1",
+    "method": "units: [K]=N m, [Ldot L tau]=m, [B=EI]=N m^2",
+    "verdict": "PASS",
+    "detail": "S_co = K Ldot tau / B is dimensionless iff B is a bending stiffness EI (N m^2), but the note's DDE uses B as a per-mode torque/rad stiffness (N m) -> same symbol, two units; the ratio is only dimensionless under the EI reading. Note also rejects pi/2 threshold (N3)."
+  }
+]

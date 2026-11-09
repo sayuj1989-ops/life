@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-09-30T20:14:05.763522+00:00",
+  "scope": "Synthetic external gravity-torque identities; no growth/equilibrium/clinical inference",
+  "backend": "numpy CPU; GPU validation unavailable in this session",
+  "synthetic_parameters": {
+    "mass_kg": 30.0,
+    "radius_m": 0.025,
+    "height_m": 0.5,
+    "turns": 1.0,
+    "gravity_m_s2": 9.81,
+    "mass_distribution": "uniform per unit height"
+  },
+  "controls": {
+    "straight_max_abs_Nm": 0.0,
+    "sagittal_plane_max_abs_Nm": 0.0,
+    "rotated_vertical_plane_max_abs_Nm": 1.4988010832439613e-14,
+    "zero_gravity_max_abs_Nm": 0.0,
+    "mirror_max_abs_sum_Nm": 0.0,
+    "double_gravity_max_abs_error_Nm": 0.0,
+    "translation_max_abs_error_Nm": 7.949196856316121e-14
+  },
+  "controls_pass": true,
+  "synthetic_helix_max_abs_torque_Nm": 2.2049499644291863,
+  "analytic_base_torque_Nm": -2.2051663824075094,
+  "refinement": [
+    {
+      "segments": 32,
+      "base_torque_Nm": -2.1913401523989013,
+      "analytic_error_Nm": 0.013826230008608054
+    },
+    {
+      "segments": 64,
+      "base_torque_Nm": -2.2017051551410867,
+      "analytic_error_Nm": 0.0034612272664227284
+    },
+    {
+      "segments": 128,
+      "base_torque_Nm": -2.204300783523894,
+      "analytic_error_Nm": 0.0008655988836152595
+    },
+    {
+      "segments": 256,
+      "base_torque_Nm": -2.2049499644291863,
+      "analytic_error_Nm": 0.00021641797832305798
+    },
+    {
+      "segments": 512,
+      "base_torque_Nm": -2.205112276771789,
+      "analytic_error_Nm": 5.4105635720613776e-05
+    },
+    {
+      "segments": 1024,
+      "base_torque_Nm": -2.2051528559272575,
+      "analytic_error_Nm": 1.3526480251879747e-05
+    }
+  ],
+  "analytic_refinement_pass": true,
+  "legacy_helical_threshold_audit": {
+    "arguments": [
+      "delta_b",
+      "grad_I_norm",
+      "chi_f"
+    ],
+    "contains_gravity_growth_geometry_or_material_inputs": false,
+    "case_delta_b_0_gradient_0_chi_0": 0.1,
+    "case_delta_b_0_gradient_1_chi_0_05": 0.01,
+    "interpretation": "Existing heuristic is not an identified physical instability boundary"
+  },
+  "saved_campaign": {
+    "status": "waiting_for_window",
+    "heartbeat_utc": "2026-09-13T10:20:19.841928+00:00",
+    "verdict": "NUMERICALLY_UNRESOLVED",
+    "active_hours": 14.918301607425015,
+    "completed_jobs": [
+      "diag_legacy",
+      "diag_material",
+      "diag_exact",
+      "baseline",
+      "dt120",
+      "iter300",
+      "mesh48",
+      "dt240"
+    ],
+    "comparison_passes": {
+      "baseline_vs_dt120": false,
+      "dt120_vs_dt240": false,
+      "baseline_vs_iter300": false,
+      "iter300_vs_iter600": null,
+      "baseline_vs_mesh48": false,
+      "mesh48_vs_mesh96": null,
+      "baseline_vs_combined": null,
+      "dt120_vs_combined": null,
+      "iter300_vs_combined": null,
+      "mesh48_vs_combined": null
+    },
+    "file_source_seals": {
+      "scripts/experiments/newton/campaign/__init__.py": true,
+      "scripts/experiments/newton/campaign/comparators.py": true,
+      "scripts/experiments/newton/campaign/controller.py": true,
+      "scripts/experiments/newton/campaign/core.py": true,
+      "scripts/experiments/newton/campaign/report.py": true,
+      "scripts/experiments/newton/campaign/worker.py": true,
+      "scripts/experiments/recovery_comparators/models.py": true,
+      "src/spinalmodes/recovery_ratchet.py": true,
+      "src/spinalmodes/recovery_two_state.py": true
+    },
+    "directory_dependency_seals_checked": false
+  },
+  "sha256": {
+    "reports/helical_growth_research_2026-10-01/check_gravity_torque.py": "544533e990e0f387e5c02c4eb0082ead52fda4805fdb0d8f271d1cc511d27063",
+    "src/spinalmodes/iec.py": "e3b7fd3e1586807293ff8a1d9909fb77d0f833b9614988f9b55fcbf1605abd19",
+    "results/newton_mechanism_campaign_2026-09-12/campaign.json": "af11cbd38539442a6142bcaff7317693b061587606df211184f82a43bfc71067",
+    "results/newton_mechanism_campaign_2026-09-12/assessment.json": "3c9fb50169ff7d1432f9d2ab963b246d753e9e35632e88aefcb61f402233a90b"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "generated_utc": "2026-10-02T15:00:06.480944+00:00",
+  "status": "MODEL_ARITHMETIC_VERIFIED_HUMAN_BIOLOGY_UNCALIBRATED",
+  "scenarios": 225,
+  "model": "Passive standard linear solid under prescribed normalized deformation",
+  "energy_unit": "k_total * deformation_amplitude_squared; arbitrary scale",
+  "time_unit": "assumed material relaxation time; no empirical seconds assigned",
+  "negative_net_unloading_return_cases": 58,
+  "tension_only_scenarios": 225,
+  "tension_only_negative_net_return_cases": 0,
+  "tension_only_max_independent_integration_error": 2.370853513511406e-12,
+  "tension_only_max_refinement_difference": 3.567623974021217e-11,
+  "max_complete_cycle_balance_residual": 4.6074255521944e-15,
+  "max_independent_integration_error": 9.496176067713691e-11,
+  "max_refinement_difference": 1.434583563053593e-09,
+  "pure_elastic_control_cases": 45,
+  "script_sha256": "02e5d6c004345e31dcab1204fa8d4ce4a639c4632060194531fb739a03006b1c",
+  "human_recoil_fraction": null,
+  "metabolic_savings": null,
+  "aging_or_survival_effect": null
+}

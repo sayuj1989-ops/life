@@ -1,0 +1,1568 @@
+{
+  "manifest": "/home/sayuj/life/research/alphafold_countercurvature/data/manifest.csv",
+  "raw_dir_present": false,
+  "updated_rows": 0,
+  "unverified_count": 260,
+  "unverified": [
+    {
+      "uniprot": "Q9UKP6",
+      "gene_symbol": "UTS2R",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6.pdb"
+    },
+    {
+      "uniprot": "Q96QU1",
+      "gene_symbol": "PCDH15",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96QU1/Q96QU1.pdb"
+    },
+    {
+      "uniprot": "Q9Y6N9",
+      "gene_symbol": "USH1C",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y6N9/Q9Y6N9.pdb"
+    },
+    {
+      "uniprot": "Q8TDI8",
+      "gene_symbol": "TMC1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8TDI8/Q8TDI8.pdb"
+    },
+    {
+      "uniprot": "P11055",
+      "gene_symbol": "MYH3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P11055/P11055.pdb"
+    },
+    {
+      "uniprot": "Q3SXY8",
+      "gene_symbol": "ARL13B",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q3SXY8/Q3SXY8.pdb"
+    },
+    {
+      "uniprot": "O94907",
+      "gene_symbol": "DKK1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O94907/O94907.pdb"
+    },
+    {
+      "uniprot": "Q92793",
+      "gene_symbol": "CREBBP",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q92793/Q92793.pdb"
+    },
+    {
+      "uniprot": "Q9H3R0",
+      "gene_symbol": "KDM4C",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H3R0/Q9H3R0.pdb"
+    },
+    {
+      "uniprot": "Q96AY3",
+      "gene_symbol": "FKBP10",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96AY3/Q96AY3.pdb"
+    },
+    {
+      "uniprot": "Q99715",
+      "gene_symbol": "COL12A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q99715/Q99715.pdb"
+    },
+    {
+      "uniprot": "Q9Y2V0",
+      "gene_symbol": "CCDC103",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y2V0/Q9Y2V0.pdb"
+    },
+    {
+      "uniprot": "Q9UFE4",
+      "gene_symbol": "CCDC39",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UFE4/Q9UFE4.pdb"
+    },
+    {
+      "uniprot": "P22607",
+      "gene_symbol": "FGFR3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P22607/P22607.pdb"
+    },
+    {
+      "uniprot": "O75800",
+      "gene_symbol": "ZMYND10",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O75800/O75800.pdb"
+    },
+    {
+      "uniprot": "Q4G0P3",
+      "gene_symbol": "HYDIN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q4G0P3/Q4G0P3.pdb"
+    },
+    {
+      "uniprot": "Q5HYA8",
+      "gene_symbol": "TMEM67",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q5HYA8/Q5HYA8.pdb"
+    },
+    {
+      "uniprot": "P58215",
+      "gene_symbol": "LOXL3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P58215/P58215.pdb"
+    },
+    {
+      "uniprot": "O95925",
+      "gene_symbol": "FBLN4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O95925/O95925.pdb"
+    },
+    {
+      "uniprot": "Q13418",
+      "gene_symbol": "ILK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13418/Q13418.pdb"
+    },
+    {
+      "uniprot": "Q96BA8",
+      "gene_symbol": "CREB3L1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96BA8/Q96BA8.pdb"
+    },
+    {
+      "uniprot": "Q86UK5",
+      "gene_symbol": "EVC2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86UK5/Q86UK5.pdb"
+    },
+    {
+      "uniprot": "P20807",
+      "gene_symbol": "CAPN3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P20807/P20807.pdb"
+    },
+    {
+      "uniprot": "P56539",
+      "gene_symbol": "CAV3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P56539/P56539.pdb"
+    },
+    {
+      "uniprot": "Q9UH99",
+      "gene_symbol": "SUN2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UH99/Q9UH99.pdb"
+    },
+    {
+      "uniprot": "Q86Y38",
+      "gene_symbol": "XYLT1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86Y38/Q86Y38.pdb"
+    },
+    {
+      "uniprot": "Q96MS0",
+      "gene_symbol": "ROBO3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96MS0/Q96MS0.pdb"
+    },
+    {
+      "uniprot": "Q9H324",
+      "gene_symbol": "ADAMTS10",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H324/Q9H324.pdb"
+    },
+    {
+      "uniprot": "Q8TC44",
+      "gene_symbol": "POC1B",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8TC44/Q8TC44.pdb"
+    },
+    {
+      "uniprot": "P07951",
+      "gene_symbol": "TPM2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P07951/P07951.pdb"
+    },
+    {
+      "uniprot": "Q9NS15",
+      "gene_symbol": "LTBP3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9NS15/Q9NS15.pdb"
+    },
+    {
+      "uniprot": "Q15043",
+      "gene_symbol": "SLC39A14",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15043/Q15043.pdb"
+    },
+    {
+      "uniprot": "P57679",
+      "gene_symbol": "EVC",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P57679/P57679.pdb"
+    },
+    {
+      "uniprot": "Q9HBG6",
+      "gene_symbol": "IFT122",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9HBG6/Q9HBG6.pdb"
+    },
+    {
+      "uniprot": "P20849",
+      "gene_symbol": "COL9A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P20849/P20849.pdb"
+    },
+    {
+      "uniprot": "Q16236",
+      "gene_symbol": "NFE2L2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q16236/Q16236.pdb"
+    },
+    {
+      "uniprot": "P29279",
+      "gene_symbol": "CCN2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P29279/P29279.pdb"
+    },
+    {
+      "uniprot": "Q96RY7",
+      "gene_symbol": "IFT140",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96RY7/Q96RY7.pdb"
+    },
+    {
+      "uniprot": "P05019",
+      "gene_symbol": "IGF1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P05019/P05019.pdb"
+    },
+    {
+      "uniprot": "Q03692",
+      "gene_symbol": "COL10A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q03692/Q03692.pdb"
+    },
+    {
+      "uniprot": "O43463",
+      "gene_symbol": "SUV39H1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O43463/O43463.pdb"
+    },
+    {
+      "uniprot": "Q923J1",
+      "gene_symbol": "TRPM7",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q923J1/Q923J1.pdb"
+    },
+    {
+      "uniprot": "Q9UHC6",
+      "gene_symbol": "CNTNAP2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UHC6/Q9UHC6.pdb"
+    },
+    {
+      "uniprot": "Q8NHH1",
+      "gene_symbol": "TTLL11",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8NHH1/Q8NHH1.pdb"
+    },
+    {
+      "uniprot": "P51654",
+      "gene_symbol": "GPC3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P51654/P51654.pdb"
+    },
+    {
+      "uniprot": "Q9P2L0",
+      "gene_symbol": "WDR35",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9P2L0/Q9P2L0.pdb"
+    },
+    {
+      "uniprot": "Q8WVJ9",
+      "gene_symbol": "TWIST2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8WVJ9/Q8WVJ9.pdb"
+    },
+    {
+      "uniprot": "P12272",
+      "gene_symbol": "PTHLH",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P12272/P12272.pdb"
+    },
+    {
+      "uniprot": "P40763",
+      "gene_symbol": "STAT3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P40763/P40763.pdb"
+    },
+    {
+      "uniprot": "Q8WYB5",
+      "gene_symbol": "KAT6B",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8WYB5/Q8WYB5.pdb"
+    },
+    {
+      "uniprot": "Q7RTS9",
+      "gene_symbol": "DYM",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q7RTS9/Q7RTS9.pdb"
+    },
+    {
+      "uniprot": "Q96PY6",
+      "gene_symbol": "NEK1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96PY6/Q96PY6.pdb"
+    },
+    {
+      "uniprot": "Q86SG6",
+      "gene_symbol": "NEK8",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86SG6/Q86SG6.pdb"
+    },
+    {
+      "uniprot": "P10451",
+      "gene_symbol": "SPP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P10451/P10451.pdb"
+    },
+    {
+      "uniprot": "P27986",
+      "gene_symbol": "PIK3R1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P27986/P27986.pdb"
+    },
+    {
+      "uniprot": "P49023",
+      "gene_symbol": "PXN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P49023/P49023.pdb"
+    },
+    {
+      "uniprot": "Q9UHC3",
+      "gene_symbol": "ASIC3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UHC3/Q9UHC3.pdb"
+    },
+    {
+      "uniprot": "Q7Z3G6",
+      "gene_symbol": "PRICKLE2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q7Z3G6/Q7Z3G6.pdb"
+    },
+    {
+      "uniprot": "Q96D98",
+      "gene_symbol": "UNCX",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96D98/Q96D98.pdb"
+    },
+    {
+      "uniprot": "Q9BXP8",
+      "gene_symbol": "PAPPA2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9BXP8/Q9BXP8.pdb"
+    },
+    {
+      "uniprot": "P12830",
+      "gene_symbol": "CDH1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P12830/P12830.pdb"
+    },
+    {
+      "uniprot": "O00744",
+      "gene_symbol": "WNT10B",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O00744/O00744.pdb"
+    },
+    {
+      "uniprot": "P16615",
+      "gene_symbol": "ATP2A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P16615/P16615.pdb"
+    },
+    {
+      "uniprot": "Q9Y2T1",
+      "gene_symbol": "AXIN2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y2T1/Q9Y2T1.pdb"
+    },
+    {
+      "uniprot": "Q92806",
+      "gene_symbol": "KCNK2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q92806/Q92806.pdb"
+    },
+    {
+      "uniprot": "O94886",
+      "gene_symbol": "TMEM63A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O94886/O94886.pdb"
+    },
+    {
+      "uniprot": "Q9BPX3",
+      "gene_symbol": "FUZ",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9BPX3/Q9BPX3.pdb"
+    },
+    {
+      "uniprot": "Q9Y210",
+      "gene_symbol": "TRPC6",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y210/Q9Y210.pdb"
+    },
+    {
+      "uniprot": "Q00872",
+      "gene_symbol": "MYBPC1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q00872/Q00872.pdb"
+    },
+    {
+      "uniprot": "P54821",
+      "gene_symbol": "PRRX1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P54821/P54821.pdb"
+    },
+    {
+      "uniprot": "Q14055",
+      "gene_symbol": "COL9A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q14055/Q14055.pdb"
+    },
+    {
+      "uniprot": "O60663",
+      "gene_symbol": "LMX1B",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O60663/O60663.pdb"
+    },
+    {
+      "uniprot": "Q03001",
+      "gene_symbol": "DST",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q03001/Q03001.pdb"
+    },
+    {
+      "uniprot": "Q9UJ55",
+      "gene_symbol": "MAGEL2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UJ55/Q9UJ55.pdb"
+    },
+    {
+      "uniprot": "Q16665",
+      "gene_symbol": "HIF1A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q16665/Q16665.pdb"
+    },
+    {
+      "uniprot": "Q7RTM1",
+      "gene_symbol": "OTOP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q7RTM1/Q7RTM1.pdb"
+    },
+    {
+      "uniprot": "P20393",
+      "gene_symbol": "NR1D1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P20393/P20393.pdb"
+    },
+    {
+      "uniprot": "Q02809",
+      "gene_symbol": "PLOD1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q02809/Q02809.pdb"
+    },
+    {
+      "uniprot": "Q6NSZ9",
+      "gene_symbol": "CCDC57",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6NSZ9/Q6NSZ9.pdb"
+    },
+    {
+      "uniprot": "P28347",
+      "gene_symbol": "TEAD1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P28347/P28347.pdb"
+    },
+    {
+      "uniprot": "O15516",
+      "gene_symbol": "CLOCK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O15516/O15516.pdb"
+    },
+    {
+      "uniprot": "P50454",
+      "gene_symbol": "SERPINH1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P50454/P50454.pdb"
+    },
+    {
+      "uniprot": "P35556",
+      "gene_symbol": "FBN2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P35556/P35556.pdb"
+    },
+    {
+      "uniprot": "Q13402",
+      "gene_symbol": "MYO7A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13402/Q13402.pdb"
+    },
+    {
+      "uniprot": "Q9Y6J9",
+      "gene_symbol": "ETV1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y6J9/Q9Y6J9.pdb"
+    },
+    {
+      "uniprot": "Q96AC1",
+      "gene_symbol": "FERMT2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96AC1/Q96AC1.pdb"
+    },
+    {
+      "uniprot": "Q9H251",
+      "gene_symbol": "CDH23",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H251/Q9H251.pdb"
+    },
+    {
+      "uniprot": "P08123",
+      "gene_symbol": "COL1A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P08123/P08123.pdb"
+    },
+    {
+      "uniprot": "Q01974",
+      "gene_symbol": "ROR2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q01974/Q01974.pdb"
+    },
+    {
+      "uniprot": "P36897",
+      "gene_symbol": "TGFBR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P36897/P36897.pdb"
+    },
+    {
+      "uniprot": "Q9Y496",
+      "gene_symbol": "KIF3A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y496/Q9Y496.pdb"
+    },
+    {
+      "uniprot": "P16112",
+      "gene_symbol": "ACAN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P16112/P16112.pdb"
+    },
+    {
+      "uniprot": "Q9GZV5",
+      "gene_symbol": "WWTR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9GZV5/Q9GZV5.pdb"
+    },
+    {
+      "uniprot": "Q7Z2K8",
+      "gene_symbol": "ADGRG6",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q7Z2K8/Q7Z2K8.pdb"
+    },
+    {
+      "uniprot": "O75369",
+      "gene_symbol": "FLNB",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O75369/O75369.pdb"
+    },
+    {
+      "uniprot": "Q969V1",
+      "gene_symbol": "UTS2R",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q969V1/Q969V1.pdb"
+    },
+    {
+      "uniprot": "P48436",
+      "gene_symbol": "SOX9",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P48436/P48436.pdb"
+    },
+    {
+      "uniprot": "Q9ULK5",
+      "gene_symbol": "VANGL2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9ULK5/Q9ULK5.pdb"
+    },
+    {
+      "uniprot": "P46531",
+      "gene_symbol": "NOTCH1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P46531/P46531.pdb"
+    },
+    {
+      "uniprot": "Q8TAA9",
+      "gene_symbol": "VANGL1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8TAA9/Q8TAA9.pdb"
+    },
+    {
+      "uniprot": "P02458",
+      "gene_symbol": "COL2A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P02458/P02458.pdb"
+    },
+    {
+      "uniprot": "Q05397",
+      "gene_symbol": "PTK2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q05397/Q05397.pdb"
+    },
+    {
+      "uniprot": "Q13563",
+      "gene_symbol": "PKD2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13563/Q13563.pdb"
+    },
+    {
+      "uniprot": "Q9NYJ7",
+      "gene_symbol": "DLL3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9NYJ7/Q9NYJ7.pdb"
+    },
+    {
+      "uniprot": "P19022",
+      "gene_symbol": "CDH2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P19022/P19022.pdb"
+    },
+    {
+      "uniprot": "P11362",
+      "gene_symbol": "FGFR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P11362/P11362.pdb"
+    },
+    {
+      "uniprot": "Q03431",
+      "gene_symbol": "PTH1R",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q03431/Q03431.pdb"
+    },
+    {
+      "uniprot": "Q14160",
+      "gene_symbol": "SCRIB",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q14160/Q14160.pdb"
+    },
+    {
+      "uniprot": "P60709",
+      "gene_symbol": "ACTB",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P60709/P60709.pdb"
+    },
+    {
+      "uniprot": "P07437",
+      "gene_symbol": "TUBB",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P07437/P07437.pdb"
+    },
+    {
+      "uniprot": "Q9HBA0",
+      "gene_symbol": "TRPV4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9HBA0/Q9HBA0.pdb"
+    },
+    {
+      "uniprot": "Q9NYQ6",
+      "gene_symbol": "CELSR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9NYQ6/Q9NYQ6.pdb"
+    },
+    {
+      "uniprot": "P12107",
+      "gene_symbol": "COL11A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P12107/P12107.pdb"
+    },
+    {
+      "uniprot": "P12644",
+      "gene_symbol": "BMP4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P12644/P12644.pdb"
+    },
+    {
+      "uniprot": "P41221",
+      "gene_symbol": "WNT5A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P41221/P41221.pdb"
+    },
+    {
+      "uniprot": "P49747",
+      "gene_symbol": "COMP",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P49747/P49747.pdb"
+    },
+    {
+      "uniprot": "Q8TDX9",
+      "gene_symbol": "PKD1L1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8TDX9/Q8TDX9.pdb"
+    },
+    {
+      "uniprot": "Q15465",
+      "gene_symbol": "SHH",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15465/Q15465.pdb"
+    },
+    {
+      "uniprot": "Q13950",
+      "gene_symbol": "RUNX2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13950/Q13950.pdb"
+    },
+    {
+      "uniprot": "Q8NES3",
+      "gene_symbol": "LFNG",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8NES3/Q8NES3.pdb"
+    },
+    {
+      "uniprot": "Q6ZMV9",
+      "gene_symbol": "KIF6",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6ZMV9/Q6ZMV9.pdb"
+    },
+    {
+      "uniprot": "Q03135",
+      "gene_symbol": "CAV1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q03135/Q03135.pdb"
+    },
+    {
+      "uniprot": "P21941",
+      "gene_symbol": "MATN1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P21941/P21941.pdb"
+    },
+    {
+      "uniprot": "P56704",
+      "gene_symbol": "WNT3A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P56704/P56704.pdb"
+    },
+    {
+      "uniprot": "O60565",
+      "gene_symbol": "GREM1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O60565/O60565.pdb"
+    },
+    {
+      "uniprot": "Q96EB6",
+      "gene_symbol": "SIRT1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96EB6/Q96EB6.pdb"
+    },
+    {
+      "uniprot": "Q8IX30",
+      "gene_symbol": "SCUBE3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8IX30/Q8IX30.pdb"
+    },
+    {
+      "uniprot": "P14653",
+      "gene_symbol": "HOXB1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P14653/P14653.pdb"
+    },
+    {
+      "uniprot": "P38936",
+      "gene_symbol": "CDKN1A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P38936/P38936.pdb"
+    },
+    {
+      "uniprot": "P15863",
+      "gene_symbol": "PAX1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P15863/P15863.pdb"
+    },
+    {
+      "uniprot": "P78367",
+      "gene_symbol": "NKX3-2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P78367/P78367.pdb"
+    },
+    {
+      "uniprot": "P12109",
+      "gene_symbol": "COL6A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P12109/P12109.pdb"
+    },
+    {
+      "uniprot": "Q13642",
+      "gene_symbol": "FHL1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13642/Q13642.pdb"
+    },
+    {
+      "uniprot": "Q6KF10",
+      "gene_symbol": "GDF6",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6KF10/Q6KF10.pdb"
+    },
+    {
+      "uniprot": "O14640",
+      "gene_symbol": "DVL1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O14640/O14640.pdb"
+    },
+    {
+      "uniprot": "O75197",
+      "gene_symbol": "LRP5",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O75197/O75197.pdb"
+    },
+    {
+      "uniprot": "Q8NF91",
+      "gene_symbol": "SYNE1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8NF91/Q8NF91.pdb"
+    },
+    {
+      "uniprot": "P50221",
+      "gene_symbol": "MEOX1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P50221/P50221.pdb"
+    },
+    {
+      "uniprot": "Q9NR23",
+      "gene_symbol": "GDF3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9NR23/Q9NR23.pdb"
+    },
+    {
+      "uniprot": "Q96MT3",
+      "gene_symbol": "PRICKLE1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96MT3/Q96MT3.pdb"
+    },
+    {
+      "uniprot": "P03372",
+      "gene_symbol": "ESR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P03372/P03372.pdb"
+    },
+    {
+      "uniprot": "P03956",
+      "gene_symbol": "MMP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P03956/P03956.pdb"
+    },
+    {
+      "uniprot": "P08254",
+      "gene_symbol": "MMP3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P08254/P08254.pdb"
+    },
+    {
+      "uniprot": "P37231",
+      "gene_symbol": "PPARG",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P37231/P37231.pdb"
+    },
+    {
+      "uniprot": "P28300",
+      "gene_symbol": "LOX",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P28300/P28300.pdb"
+    },
+    {
+      "uniprot": "Q9Y283",
+      "gene_symbol": "INVS",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y283/Q9Y283.pdb"
+    },
+    {
+      "uniprot": "P04179",
+      "gene_symbol": "SOD2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P04179/P04179.pdb"
+    },
+    {
+      "uniprot": "O14793",
+      "gene_symbol": "MSTN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O14793/O14793.pdb"
+    },
+    {
+      "uniprot": "Q9BQB4",
+      "gene_symbol": "SOST",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9BQB4/Q9BQB4.pdb"
+    },
+    {
+      "uniprot": "Q04721",
+      "gene_symbol": "NOTCH2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q04721/Q04721.pdb"
+    },
+    {
+      "uniprot": "Q5TAB7",
+      "gene_symbol": "RIPPLY2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q5TAB7/Q5TAB7.pdb"
+    },
+    {
+      "uniprot": "Q14623",
+      "gene_symbol": "IHH",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q14623/Q14623.pdb"
+    },
+    {
+      "uniprot": "P17302",
+      "gene_symbol": "GJA1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P17302/P17302.pdb"
+    },
+    {
+      "uniprot": "Q15942",
+      "gene_symbol": "ZYX",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15942/Q15942.pdb"
+    },
+    {
+      "uniprot": "Q8NFJ9",
+      "gene_symbol": "BBS1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8NFJ9/Q8NFJ9.pdb"
+    },
+    {
+      "uniprot": "Q68CZ1",
+      "gene_symbol": "RPGRIP1L",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q68CZ1/Q68CZ1.pdb"
+    },
+    {
+      "uniprot": "Q92949",
+      "gene_symbol": "FOXJ1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q92949/Q92949.pdb"
+    },
+    {
+      "uniprot": "Q96JM2",
+      "gene_symbol": "ZNF462",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96JM2/Q96JM2.pdb"
+    },
+    {
+      "uniprot": "P35354",
+      "gene_symbol": "PTGS2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P35354/P35354.pdb"
+    },
+    {
+      "uniprot": "P84022",
+      "gene_symbol": "SMAD3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P84022/P84022.pdb"
+    },
+    {
+      "uniprot": "Q4G0X9",
+      "gene_symbol": "CCDC40",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q4G0X9/Q4G0X9.pdb"
+    },
+    {
+      "uniprot": "Q2M1P5",
+      "gene_symbol": "KIF7",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q2M1P5/Q2M1P5.pdb"
+    },
+    {
+      "uniprot": "Q15672",
+      "gene_symbol": "TWIST1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15672/Q15672.pdb"
+    },
+    {
+      "uniprot": "Q15063",
+      "gene_symbol": "POSTN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15063/Q15063.pdb"
+    },
+    {
+      "uniprot": "O95995",
+      "gene_symbol": "GAS8",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O95995/O95995.pdb"
+    },
+    {
+      "uniprot": "O00469",
+      "gene_symbol": "PLOD2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O00469/O00469.pdb"
+    },
+    {
+      "uniprot": "P35222",
+      "gene_symbol": "CTNNB1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P35222/P35222.pdb"
+    },
+    {
+      "uniprot": "Q13253",
+      "gene_symbol": "NOG",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13253/Q13253.pdb"
+    },
+    {
+      "uniprot": "P31749",
+      "gene_symbol": "AKT1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P31749/P31749.pdb"
+    },
+    {
+      "uniprot": "Q13485",
+      "gene_symbol": "SMAD4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13485/Q13485.pdb"
+    },
+    {
+      "uniprot": "P61586",
+      "gene_symbol": "RHOA",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P61586/P61586.pdb"
+    },
+    {
+      "uniprot": "P35579",
+      "gene_symbol": "MYH9",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P35579/P35579.pdb"
+    },
+    {
+      "uniprot": "P21810",
+      "gene_symbol": "BGN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P21810/P21810.pdb"
+    },
+    {
+      "uniprot": "P15311",
+      "gene_symbol": "EZR",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P15311/P15311.pdb"
+    },
+    {
+      "uniprot": "Q15599",
+      "gene_symbol": "SLC9A3R1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15599/Q15599.pdb"
+    },
+    {
+      "uniprot": "Q86TH1",
+      "gene_symbol": "ADAMTSL2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86TH1/Q86TH1.pdb"
+    },
+    {
+      "uniprot": "Q8N2S1",
+      "gene_symbol": "LTBP4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8N2S1/Q8N2S1.pdb"
+    },
+    {
+      "uniprot": "P42336",
+      "gene_symbol": "PIK3CA",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P42336/P42336.pdb"
+    },
+    {
+      "uniprot": "P20908",
+      "gene_symbol": "COL5A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P20908/P20908.pdb"
+    },
+    {
+      "uniprot": "P22105",
+      "gene_symbol": "TNXB",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P22105/P22105.pdb"
+    },
+    {
+      "uniprot": "P43235",
+      "gene_symbol": "CTSK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P43235/P43235.pdb"
+    },
+    {
+      "uniprot": "P48995",
+      "gene_symbol": "TRPC1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P48995/P48995.pdb"
+    },
+    {
+      "uniprot": "P04637",
+      "gene_symbol": "TP53",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P04637/P04637.pdb"
+    },
+    {
+      "uniprot": "P42771",
+      "gene_symbol": "CDKN2A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P42771/P42771.pdb"
+    },
+    {
+      "uniprot": "P18206",
+      "gene_symbol": "VCL",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P18206/P18206.pdb"
+    },
+    {
+      "uniprot": "Q9Y490",
+      "gene_symbol": "TLN1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y490/Q9Y490.pdb"
+    },
+    {
+      "uniprot": "Q9NVR2",
+      "gene_symbol": "INTU",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9NVR2/Q9NVR2.pdb"
+    },
+    {
+      "uniprot": "P05186",
+      "gene_symbol": "ALPL",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P05186/P05186.pdb"
+    },
+    {
+      "uniprot": "Q16665",
+      "gene_symbol": "HIF1A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q16665/Q16665.pdb"
+    },
+    {
+      "uniprot": "P20393",
+      "gene_symbol": "NR1D1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P20393/P20393.pdb"
+    },
+    {
+      "uniprot": "Q6XUX3",
+      "gene_symbol": "DSTYK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6XUX3/Q6XUX3.pdb"
+    },
+    {
+      "uniprot": "P22413",
+      "gene_symbol": "ENPP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P22413/P22413.pdb"
+    },
+    {
+      "uniprot": "P21359",
+      "gene_symbol": "NF1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P21359/P21359.pdb"
+    },
+    {
+      "uniprot": "Q13099",
+      "gene_symbol": "IFT88",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13099/Q13099.pdb"
+    },
+    {
+      "uniprot": "Q92508",
+      "gene_symbol": "PIEZO1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q92508/Q92508.pdb"
+    },
+    {
+      "uniprot": "Q7RTM1",
+      "gene_symbol": "OTOP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q7RTM1/Q7RTM1.pdb"
+    },
+    {
+      "uniprot": "Q02809",
+      "gene_symbol": "PLOD1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q02809/Q02809.pdb"
+    },
+    {
+      "uniprot": "P36897",
+      "gene_symbol": "TGFBR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P36897/P36897.pdb"
+    },
+    {
+      "uniprot": "Q01974",
+      "gene_symbol": "ROR2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q01974/Q01974.pdb"
+    },
+    {
+      "uniprot": "Q96AC1",
+      "gene_symbol": "FERMT2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96AC1/Q96AC1.pdb"
+    },
+    {
+      "uniprot": "P01137",
+      "gene_symbol": "TGFB1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P01137/P01137.pdb"
+    },
+    {
+      "uniprot": "Q9Y6J9",
+      "gene_symbol": "ETV1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9Y6J9/Q9Y6J9.pdb"
+    },
+    {
+      "uniprot": "Q6NSZ9",
+      "gene_symbol": "CCDC57",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6NSZ9/Q6NSZ9.pdb"
+    },
+    {
+      "uniprot": "P50454",
+      "gene_symbol": "SERPINH1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P50454/P50454.pdb"
+    },
+    {
+      "uniprot": "Q13402",
+      "gene_symbol": "MYO7A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13402/Q13402.pdb"
+    },
+    {
+      "uniprot": "Q9H251",
+      "gene_symbol": "CDH23",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H251/Q9H251.pdb"
+    },
+    {
+      "uniprot": "O15078",
+      "gene_symbol": "CEP290",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O15078/O15078.pdb"
+    },
+    {
+      "uniprot": "P35556",
+      "gene_symbol": "FBN2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P35556/P35556.pdb"
+    },
+    {
+      "uniprot": "P21333",
+      "gene_symbol": "FLNA",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P21333/P21333.pdb"
+    },
+    {
+      "uniprot": "P02452",
+      "gene_symbol": "COL1A1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P02452/P02452.pdb"
+    },
+    {
+      "uniprot": "P05556",
+      "gene_symbol": "ITGB1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P05556/P05556.pdb"
+    },
+    {
+      "uniprot": "P37173",
+      "gene_symbol": "TGFBR2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P37173/P37173.pdb"
+    },
+    {
+      "uniprot": "P08123",
+      "gene_symbol": "COL1A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P08123/P08123.pdb"
+    },
+    {
+      "uniprot": "P13497",
+      "gene_symbol": "BMP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P13497/P13497.pdb"
+    },
+    {
+      "uniprot": "P04628",
+      "gene_symbol": "WNT1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P04628/P04628.pdb"
+    },
+    {
+      "uniprot": "P28347",
+      "gene_symbol": "TEAD1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P28347/P28347.pdb"
+    },
+    {
+      "uniprot": "P42345",
+      "gene_symbol": "MTOR",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P42345/P42345.pdb"
+    },
+    {
+      "uniprot": "O15516",
+      "gene_symbol": "CLOCK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O15516/O15516.pdb"
+    },
+    {
+      "uniprot": "Q86U44",
+      "gene_symbol": "METTL3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86U44/Q86U44.pdb"
+    },
+    {
+      "uniprot": "O75531",
+      "gene_symbol": "BANF1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O75531/O75531.pdb"
+    },
+    {
+      "uniprot": "Q8WXH0",
+      "gene_symbol": "SYNE2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8WXH0/Q8WXH0.pdb"
+    },
+    {
+      "uniprot": "P61812",
+      "gene_symbol": "TGFB2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P61812/P61812.pdb"
+    },
+    {
+      "uniprot": "O94901",
+      "gene_symbol": "SUN1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O94901/O94901.pdb"
+    },
+    {
+      "uniprot": "P63173",
+      "gene_symbol": "RPL38",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P63173/P63173.pdb"
+    },
+    {
+      "uniprot": "P50443",
+      "gene_symbol": "SLC26A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P50443/P50443.pdb"
+    },
+    {
+      "uniprot": "P15502",
+      "gene_symbol": "ELN",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P15502/P15502.pdb"
+    },
+    {
+      "uniprot": "Q9GZV9",
+      "gene_symbol": "FGF23",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9GZV9/Q9GZV9.pdb"
+    },
+    {
+      "uniprot": "P05186",
+      "gene_symbol": "ALPL",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P05186/P05186.pdb"
+    },
+    {
+      "uniprot": "Q04771",
+      "gene_symbol": "ACVR1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q04771/Q04771.pdb"
+    },
+    {
+      "uniprot": "Q14118",
+      "gene_symbol": "DAG1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q14118/Q14118.pdb"
+    },
+    {
+      "uniprot": "P11532",
+      "gene_symbol": "DMD",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P11532/P11532.pdb"
+    },
+    {
+      "uniprot": "Q9UBK2",
+      "gene_symbol": "PPARGC1A",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UBK2/Q9UBK2.pdb"
+    },
+    {
+      "uniprot": "P08069",
+      "gene_symbol": "IGF1R",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P08069/P08069.pdb"
+    },
+    {
+      "uniprot": "P10912",
+      "gene_symbol": "GHR",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P10912/P10912.pdb"
+    },
+    {
+      "uniprot": "O00327",
+      "gene_symbol": "ARNTL",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O00327/O00327.pdb"
+    },
+    {
+      "uniprot": "Q15746",
+      "gene_symbol": "MYLK",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q15746/Q15746.pdb"
+    },
+    {
+      "uniprot": "Q9H5I5",
+      "gene_symbol": "PIEZO2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H5I5/Q9H5I5.pdb"
+    },
+    {
+      "uniprot": "Q16288",
+      "gene_symbol": "NTRK3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q16288/Q16288.pdb"
+    },
+    {
+      "uniprot": "P52954",
+      "gene_symbol": "LBX1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P52954/P52954.pdb"
+    },
+    {
+      "uniprot": "Q86SQ4",
+      "gene_symbol": "ADGRG6",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86SQ4/Q86SQ4.pdb"
+    },
+    {
+      "uniprot": "P55087",
+      "gene_symbol": "AQP4",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P55087/P55087.pdb"
+    },
+    {
+      "uniprot": "Q6ZN30",
+      "gene_symbol": "BNC2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q6ZN30/Q6ZN30.pdb"
+    },
+    {
+      "uniprot": "Q9H8M5",
+      "gene_symbol": "CNNM2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9H8M5/Q9H8M5.pdb"
+    },
+    {
+      "uniprot": "P13942",
+      "gene_symbol": "COL11A2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P13942/P13942.pdb"
+    },
+    {
+      "uniprot": "Q86YF9",
+      "gene_symbol": "DZIP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q86YF9/Q86YF9.pdb"
+    },
+    {
+      "uniprot": "P50402",
+      "gene_symbol": "EMD",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P50402/P50402.pdb"
+    },
+    {
+      "uniprot": "Q9UBX5",
+      "gene_symbol": "FBLN5",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UBX5/Q9UBX5.pdb"
+    },
+    {
+      "uniprot": "P43026",
+      "gene_symbol": "GDF5",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P43026/P43026.pdb"
+    },
+    {
+      "uniprot": "Q9BYE0",
+      "gene_symbol": "HES7",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9BYE0/Q9BYE0.pdb"
+    },
+    {
+      "uniprot": "Q0VG99",
+      "gene_symbol": "MESP2",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q0VG99/Q0VG99.pdb"
+    },
+    {
+      "uniprot": "Q96QZ0",
+      "gene_symbol": "PANX3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q96QZ0/Q96QZ0.pdb"
+    },
+    {
+      "uniprot": "Q8NA72",
+      "gene_symbol": "POC5",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8NA72/Q8NA72.pdb"
+    },
+    {
+      "uniprot": "Q13308",
+      "gene_symbol": "PTK7",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13308/Q13308.pdb"
+    },
+    {
+      "uniprot": "Q13464",
+      "gene_symbol": "ROCK1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q13464/Q13464.pdb"
+    },
+    {
+      "uniprot": "A2VEC9",
+      "gene_symbol": "SSPOP",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/A2VEC9/A2VEC9.pdb"
+    },
+    {
+      "uniprot": "Q8TAV4",
+      "gene_symbol": "STOML3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q8TAV4/Q8TAV4.pdb"
+    },
+    {
+      "uniprot": "P04406",
+      "gene_symbol": "GAPDH",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P04406/P04406.pdb"
+    },
+    {
+      "uniprot": "O43524",
+      "gene_symbol": "FOXO3",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/O43524/O43524.pdb"
+    },
+    {
+      "uniprot": "Q9UEF7",
+      "gene_symbol": "KLOTHO",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/Q9UEF7/Q9UEF7.pdb"
+    },
+    {
+      "uniprot": "P46937",
+      "gene_symbol": "YAP1",
+      "status": "UNVERIFIED",
+      "missing_pdb": "/home/sayuj/life/research/alphafold_countercurvature/data/raw/afdb/P46937/P46937.pdb"
+    }
+  ]
+}

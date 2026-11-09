@@ -139,6 +139,34 @@ def test_parse_pae_legacy_upgrade(tmp_path, parser):
     assert npy_data.dtype == np.uint8
     assert np.array_equal(npy_data, data)
 
+def test_parse_pae_fractional_values_are_rounded_not_floored(tmp_path, parser):
+    """Fractional PAE entries must round (np.rint), not floor via uint8 cast."""
+    pae_data = [[0, 1.5], [2.9, 0.75]]
+    pae_file = tmp_path / "fractional.json"
+    with open(pae_file, "w") as f:
+        json.dump([{"predicted_aligned_error": pae_data}], f)
+
+    arr = parser.parse_pae(pae_file)
+    assert arr is not None
+    assert arr.dtype == np.uint8
+    assert arr.tolist() == [[0, 2], [3, 1]]
+
+
+@pytest.mark.parametrize(
+    "pae_data",
+    [
+        [[0, 300], [1, 0]],
+        [[0, -1.0], [1, 0]],
+    ],
+)
+def test_parse_pae_out_of_range_returns_none(tmp_path, parser, pae_data):
+    pae_file = tmp_path / "bad.json"
+    with open(pae_file, "w") as f:
+        json.dump([{"predicted_aligned_error": pae_data}], f)
+
+    assert parser.parse_pae(pae_file) is None
+
+
 def test_parse_pae_corrupted_cache(tmp_path, parser):
     """Test fallback if cache is corrupted."""
     pae_data = [[0, 1], [1, 0]]

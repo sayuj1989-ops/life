@@ -66,6 +66,13 @@ class TestAFCCPipeline(unittest.TestCase):
         fetcher = AlphaFoldFetcher(Path("."), Path("manifest.csv"), dry_run="full")
         self.assertEqual(fetcher.dry_run_mode, "full")
 
+    def test_pae_mean_uses_float_safe_average(self):
+        """uint8 storage must not distort the mean via integer summation tricks."""
+        pae = np.array([[0, 2], [3, 1]], dtype=np.uint8)
+        plddt = np.array([90.0, 90.0])
+        metrics = self.analyzer.calculate_pae_metrics(pae, plddt)
+        self.assertAlmostEqual(metrics["pae_mean"], 1.5, places=5)
+
     def test_pae_metrics(self):
         # Create a synthetic case with 2 domains
         N = 30

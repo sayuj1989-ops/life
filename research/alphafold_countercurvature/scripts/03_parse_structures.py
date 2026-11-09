@@ -15,6 +15,7 @@ import pandas as pd
 repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
+from research.alphafold_countercurvature.src.afcc.paths import resolve_manifest_path
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +40,7 @@ def main():
     valid_count = 0
 
     for idx, row in downloaded.iterrows():
-        pdb_path = Path(row['pdb_path'])
+        pdb_path = resolve_manifest_path(row['pdb_path'], repo_root)
         gene = row['gene_symbol']
 
         # Check PDB
@@ -52,7 +53,7 @@ def main():
             # Check PAE
             has_pae = False
             if pd.notna(row['pae_path']):
-                pae = parser.parse_pae(Path(row['pae_path']))
+                pae = parser.parse_pae(resolve_manifest_path(row['pae_path'], repo_root))
                 has_pae = (pae is not None)
 
             print(f"   ✅ {gene}: {len(plddt)} residues, Mean pLDDT={mean_plddt:.1f}, PAE={has_pae}")

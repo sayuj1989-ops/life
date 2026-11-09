@@ -13,6 +13,19 @@ class StructureParser:
     def __init__(self):
         self.parser = PDBParser(QUIET=True)
 
+    @staticmethod
+    def _pae_to_uint8(pae_data) -> Optional[np.ndarray]:
+        """Round fractional PAE to integers and store as uint8; reject out-of-range values."""
+        raw = np.asarray(pae_data, dtype=float)
+        if raw.ndim != 2 or raw.size == 0 or raw.shape[0] != raw.shape[1]:
+            return None
+        if not (np.isfinite(raw).all() and (raw >= 0).all()):
+            return None
+        rounded = np.rint(raw)
+        if rounded.max(initial=0) > 255 or rounded.min(initial=0) < 0:
+            return None
+        return rounded.astype(np.uint8)
+
     def parse_pdb(self, pdb_path: Path, structure_id: str = "structure") -> Optional[Structure]:
         """Parses a PDB file using Bio.PDB"""
         if not pdb_path.exists():
@@ -187,14 +200,14 @@ class StructureParser:
                     try:
                         with np.load(cache_path_npz) as data:
                             arr = data['pae']
-                            # Auto-upgrade to NPY (uint8) for future speedups
+                            arr_uint8 = StructureParser._pae_to_uint8(arr)
+                            if arr_uint8 is None:
+                                return None
                             try:
-                                # Cast to uint8 (0-255 range covers PAE 0-32) for 8x compression vs int64
-                                arr_uint8 = arr.astype(np.uint8) if arr.dtype != np.uint8 else arr
                                 np.save(cache_path_npy, arr_uint8)
                             except Exception:
                                 pass
-                            return arr
+                            return arr_uint8
                     except Exception:
                         pass # Corrupted legacy cache
 
@@ -220,8 +233,9 @@ class StructureParser:
                 pae_data = data.get("predicted_aligned_error")
 
             if pae_data:
-                # ⚡ Bolt Optimization: Use uint8 to save 8x RAM/Disk space (PAE range 0-32)
-                arr = np.array(pae_data, dtype=np.uint8)
+                arr = self._pae_to_uint8(pae_data)
+                if arr is None:
+                    return None
 
                 # ⚡ Bolt Optimization: Save as uncompressed .npy for mmap support
                 # Writing uncompressed is 20x faster than compressed

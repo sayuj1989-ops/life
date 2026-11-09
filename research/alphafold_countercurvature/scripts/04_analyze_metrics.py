@@ -21,6 +21,7 @@ repo_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(repo_root))
 
 from research.alphafold_countercurvature.src.afcc.metrics import MetricsAnalyzer
+from research.alphafold_countercurvature.src.afcc.paths import resolve_manifest_path
 from research.alphafold_countercurvature.src.afcc.structure import StructureParser
 
 
@@ -132,7 +133,7 @@ def main():
     analyzer = MetricsAnalyzer()
 
     for idx, row in enumerate(to_process):
-        pdb_path = Path(row['pdb_path'])
+        pdb_path = resolve_manifest_path(row['pdb_path'], repo_root)
         gene = row['gene_symbol']
         uid = row['uniprot']
 
@@ -152,7 +153,7 @@ def main():
                 pae_fresh = True
                 pae_path_str = row.get('pae_path')
                 if pae_path_str and isinstance(pae_path_str, str):
-                    p_pae = Path(pae_path_str)
+                    p_pae = resolve_manifest_path(pae_path_str, repo_root)
                     if p_pae.exists() and p_pae.stat().st_mtime > m_time:
                         pae_fresh = False
 
@@ -183,8 +184,8 @@ def main():
             pae_path = row.get('pae_path')
             pae_matrix = None
             if pae_path and isinstance(pae_path, str):
-                 p = Path(pae_path)
-                 if p.exists():
+                 p = resolve_manifest_path(pae_path, repo_root)
+                 if p and p.exists():
                      pae_matrix = parser.parse_pae(p)
 
             metrics = analyzer.analyze_structure(structure, plddt, coords=coords, resnames=resnames, pae_matrix=pae_matrix)

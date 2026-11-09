@@ -1,5 +1,5 @@
 uniprot,gene_symbol,status,pdb_path,pae_path,sha256_pdb,retrieved_at,notes
-Q9UKP6,UTS2R,downloaded,/app/research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6.pdb,/app/research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6_pae.json,9088d8485be93905b0c7bd5f5e8f2446bffa47b26ab318acbf4c9dc41f75fdd7,2026-01-10 08:39:15,
+Q9UKP6,UTS2R,downloaded,research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6.pdb,research/alphafold_countercurvature/data/raw/afdb/Q9UKP6/Q9UKP6_pae.json,9088d8485be93905b0c7bd5f5e8f2446bffa47b26ab318acbf4c9dc41f75fdd7,2026-01-10 08:39:15,
 Q96QU1,PCDH15,downloaded,research/alphafold_countercurvature/data/raw/afdb/Q96QU1/Q96QU1.pdb,research/alphafold_countercurvature/data/raw/afdb/Q96QU1/Q96QU1_pae.json,f9faa65497f022cc337cb7efa13e5ed21cdadc69bde7c1207b11de61ec98e0ca,2026-02-08 19:24:16,
 Q9Y6N9,USH1C,downloaded,research/alphafold_countercurvature/data/raw/afdb/Q9Y6N9/Q9Y6N9.pdb,research/alphafold_countercurvature/data/raw/afdb/Q9Y6N9/Q9Y6N9_pae.json,a88d59a93789603a8e5789693cf9ddbfeeb3368348465f4f8a3b35a7f42b2c84,2026-02-08 19:24:16,
 Q8TDI8,TMC1,downloaded,research/alphafold_countercurvature/data/raw/afdb/Q8TDI8/Q8TDI8.pdb,research/alphafold_countercurvature/data/raw/afdb/Q8TDI8/Q8TDI8_pae.json,ba6b438b036b9386f4f04534cfa1dda3b6a35fbe05dd7fb2ec1b415bc6768d3b,2026-02-08 19:24:18,

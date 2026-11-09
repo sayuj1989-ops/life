@@ -224,9 +224,7 @@ class MetricsAnalyzer:
         if pae_matrix is None or pae_matrix.size == 0:
             return {'pae_mean': 0.0, 'pae_blockiness': 0.0, 'predicted_domain_segments': 0}
 
-        # Bolt Optimization: Avoid float64 upcast overhead in np.mean for uint8 matrices.
-        # Saves ~20% of calculate_pae_metrics time for N=3000
-        pae_mean = np.sum(pae_matrix, dtype=np.uint64) / pae_matrix.size
+        pae_mean = float(np.mean(pae_matrix, dtype=np.float64))
 
         # Domain blockiness
         # heuristic: blocks defined by pLDDT >= 70
